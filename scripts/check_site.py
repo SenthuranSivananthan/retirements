@@ -6,7 +6,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urljoin, urlsplit
 
-from .catalog import QUESTIONS, ROOT, parse_catalog, record_url
+from .catalog import QUESTIONS, ROOT, parse_catalog, record_url, retirement_outlook, valid_date
 
 
 class Elements(HTMLParser):
@@ -32,9 +32,17 @@ def check_site(root=ROOT):
     root = Path(root)
     destination = root / "docs"
     catalog = parse_catalog(json.loads((root / "data" / "retirements.json").read_text(encoding="utf-8")))
-    home = Elements((destination / "index.html").read_text(encoding="utf-8"))
+    home_html = (destination / "index.html").read_text(encoding="utf-8")
+    home = Elements(home_html)
     require(any(tag == "body" and attrs.get("data-home") == "./" for tag, attrs in home.tags), "Homepage links must be relative")
     require(sum(tag == "article" and attrs.get("class") == "card" for tag, attrs in home.tags) == min(24, len(catalog["records"])), "Incorrect initial card count")
+    as_of = next((attrs.get("datetime") for tag, attrs in home.tags if tag == "time" and attrs.get("id") == "outlook-date"), None)
+    require(isinstance(as_of, str) and valid_date(as_of), "Missing or invalid outlook date")
+    cards = re.findall(r'<a class="outlook-card"[^>]*>.*?</a>', home_html, re.S)
+    require(len(cards) == 4, "Expected four rolling retirement outlook cards")
+    for card, window in zip(cards, retirement_outlook(catalog["records"], as_of)):
+        require(f'data-window="{window["key"]}"' in card, "Incorrect retirement outlook window")
+        require(f'<strong data-window-count>{window["count"]}</strong>' in card, "Incorrect retirement outlook count")
     paths = set()
     for _, attrs in home.tags:
         href = attrs.get("href") or attrs.get("src")
