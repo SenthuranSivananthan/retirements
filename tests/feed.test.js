@@ -26,11 +26,30 @@ test('ambiguous, month-only, invalid and multiple deadlines remain unknown', () 
   assert.equal(titleDate('Retires 2028-02-29'), '2028-02-29');
 });
 
+test('ISO-shaped API versions never become deadlines or hide explicit retirement dates', () => {
+  for (const title of [
+    'Retirement: Azure Container Apps preview API versions 2023-04-01-preview',
+    'Azure Digital Twins Control-Plane Preview API Retirement (2020-03-31)',
+    'Pod Security Policy is being deprecated with AKS 1.25 and 2023-06-01 API version',
+    'We’re ending support for the 2017-03-01-GA API.',
+  ]) assert.equal(titleDate(title), null, title);
+  assert.equal(titleDate('Retirement: Azure Maps Data Registry APIs V 2023-06-01 will be retired on September 30th, 2025.'), '2025-09-30');
+  assert.equal(titleDate('Migrate to Azure Resource Manager control plane API version 2021-11-01 by 30 September 2026'), '2026-09-30');
+  assert.equal(titleDate('API version 2023-04-01-preview retires on 2027-03-31'), '2027-03-31');
+});
+
 test('announcement HTML is converted to text; entities and paragraph boundaries survive', () => {
   const result = readAnnouncement('<p>A &amp; B&nbsp;C</p><p>Next<br>line</p><script>evil()</script><a href="javascript:evil()">bad</a><a href="/updates/">Good</a>');
   assert.equal(result.details, 'A & B C\nNext\nline\nbadGood');
   assert.deepEqual(result.links, [{ title: 'Good', url: 'https://azure.microsoft.com/updates/' }]);
   assert.equal(normalize(item).details, 'Move to Entra ID.');
+  assert.equal(readAnnouncement('<p>A long\nline with <strong>formatted\ntext</strong>.</p>').details, 'A long line with formatted text.');
+});
+
+test('explicit action sections are retained as source guidance without inventing steps', () => {
+  const description = '<p>What changes.</p><h3>Recommended action</h3><p>Migrate to the new API.</p><h3>Help and support</h3><p>Contact us.</p>';
+  assert.equal(normalize({ ...item, description }).actions, 'Migrate to the new API.');
+  assert.equal(normalize(item).actions, null);
 });
 
 test('fetch follows count and explicit offsets even without nextLink', async () => {

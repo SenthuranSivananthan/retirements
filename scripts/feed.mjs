@@ -8,7 +8,7 @@ export function readAnnouncement(html) {
   const links = [];
   function text(node) {
     if (['script', 'style', 'iframe'].includes(node.tagName)) return '';
-    if (node.nodeName === '#text') return node.value;
+    if (node.nodeName === '#text') return node.value.replace(/\s+/g, ' ');
     const content = (node.childNodes || []).map(text).join('');
     if (node.tagName === 'a') {
       const href = node.attrs.find(attr => attr.name === 'href')?.value;
@@ -36,7 +36,12 @@ export function titleDate(title) {
   for (const match of title.matchAll(new RegExp(`\\b(\\d{1,2})(?:st|nd|rd|th)?\\s+(${monthPattern})[,]?\\s+(20\\d{2})\\b`, 'gi'))) {
     add(match[3], months.findIndex(month => month.toLowerCase() === match[2].toLowerCase()) + 1, match[1]);
   }
-  for (const match of title.matchAll(/\b(20\d{2})-(\d{2})-(\d{2})\b/g)) add(match[1], match[2], match[3]);
+  for (const match of title.matchAll(/\b(20\d{2})-(\d{2})-(\d{2})\b/g)) {
+    const before = title.slice(0, match.index);
+    const after = title.slice(match.index + match[0].length);
+    const deadlineContext = /\b(?:on|by|after|from|retire[sd]?|retiring|ends?|ending|deadline(?:\s+is)?)\s*[:(]?\s*$/i.test(before);
+    if (deadlineContext && !/^-(?:preview|ga)\b/i.test(after)) add(match[1], match[2], match[3]);
+  }
   const unique = [...new Set(dates)];
   return unique.length === 1 ? unique[0] : null;
 }
@@ -47,6 +52,7 @@ export function normalize(item) {
     throw new Error('Invalid retirement announcement');
   }
   const { details, links } = readAnnouncement(item.description);
+  const actionMatch = details.match(/(?:^|\n)(?:recommended actions?|required actions?|action required|what you need to do)[: ]*\n([\s\S]*?)(?=\n(?:help and support|more information|learn more)[: ]*(?:\n|$)|$)/i);
   const services = Array.isArray(item.products) ? item.products.filter(value => typeof value === 'string' && value.trim()) : [];
   if (!services.length) services.push('Azure platform');
   const availability = item.availabilities?.find(value => value.ring === 'Retirement');
@@ -63,6 +69,7 @@ export function normalize(item) {
     announcedOn,
     summary: details.length > 240 ? `${details.slice(0, 237).replace(/\s+\S*$/, '')}…` : details,
     details,
+    actions: actionMatch?.[1].trim() || null,
     links,
     sourceUrl: `https://azure.microsoft.com/updates?id=${encodeURIComponent(item.id)}`,
   };

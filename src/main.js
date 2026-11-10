@@ -184,6 +184,7 @@ function renderDetail(id) {
         </section>
         <section id="actions"><h2><span class="section-number">2</span>What do I need to do?</h2>
           <p class="section-intro">Required actions, options, and available support.</p>
+          ${record.actions ? `<h3>Microsoft’s recommended action</h3>${record.actions.split(/\n+/).filter(Boolean).map(paragraph => `<p>${e(paragraph)}</p>`).join('')}` : ''}
           <p>Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.</p>
           ${sourceLink(record, 'Open Microsoft migration guidance')}
           ${record.links?.some(link => safeUrl(link.url)) ? `<h3>Resources from the announcement</h3><ul class="resource-links">${record.links.filter(link => safeUrl(link.url)).map(link => `<li><a href="${e(safeUrl(link.url))}" target="_blank" rel="noopener noreferrer">${e(link.title || link.url)} ${icon('external')}</a></li>`).join('')}</ul>` : ''}
