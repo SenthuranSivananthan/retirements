@@ -1904,152 +1904,705 @@
   <div id="group-filter" class="group-filter" aria-label="Current navigation filters" hidden></div>
   <div class="filters" data-enhancement hidden>
     <label class="search-field"><span class="sr-only">Search retirements</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><input id="search" type="search" placeholder="Search services, features, or keywords…"></label>
+    <label><span>Category</span><select id="category"><option value="">All categories</option><option value="AI + machine learning">AI + machine learning</option><option value="Analytics">Analytics</option><option value="Compute">Compute</option><option value="Containers">Containers</option><option value="Databases">Databases</option><option value="Developer tools">Developer tools</option><option value="DevOps">DevOps</option><option value="Hybrid + multicloud">Hybrid + multicloud</option><option value="Identity">Identity</option><option value="Integration">Integration</option><option value="Internet of Things">Internet of Things</option><option value="Management and governance">Management and governance</option><option value="Media">Media</option><option value="Migration">Migration</option><option value="Mixed reality">Mixed reality</option><option value="Mobile">Mobile</option><option value="Networking">Networking</option><option value="Security">Security</option><option value="Storage">Storage</option><option value="Uncategorized">Uncategorized</option><option value="Virtual desktop infrastructure">Virtual desktop infrastructure</option><option value="Web">Web</option></select></label>
     <label><span>Service</span><select id="service"><option value="">All services</option><option value="Alerts">Alerts</option><option value="Alerts (Classic)">Alerts (Classic)</option><option value="API Management">API Management</option><option value="App Center">App Center</option><option value="App Service">App Service</option><option value="Application Gateway">Application Gateway</option><option value="Application Insights">Application Insights</option><option value="Automation">Automation</option><option value="Avere vFXT for Azure">Avere vFXT for Azure</option><option value="Azure Active Directory B2C">Azure Active Directory B2C</option><option value="Azure Advisor">Azure Advisor</option><option value="Azure AI Custom Vision">Azure AI Custom Vision</option><option value="Azure AI Document Intelligence">Azure AI Document Intelligence</option><option value="Azure AI Language">Azure AI Language</option><option value="Azure AI Personalizer">Azure AI Personalizer</option><option value="Azure AI Search">Azure AI Search</option><option value="Azure AI Services">Azure AI Services</option><option value="Azure AI Speech">Azure AI Speech</option><option value="Azure AI Translator">Azure AI Translator</option><option value="Azure AI Video Indexer">Azure AI Video Indexer</option><option value="Azure Analysis Services">Azure Analysis Services</option><option value="Azure API for FHIR">Azure API for FHIR</option><option value="Azure Arc">Azure Arc</option><option value="Azure Automanage">Azure Automanage</option><option value="Azure Backup">Azure Backup</option><option value="Azure Batch AI">Azure Batch AI</option><option value="Azure Blob Storage">Azure Blob Storage</option><option value="Azure Blockchain Service">Azure Blockchain Service</option><option value="Azure Blueprints">Azure Blueprints</option><option value="Azure Cache for Redis">Azure Cache for Redis</option><option value="Azure Communication Services">Azure Communication Services</option><option value="Azure confidential ledger">Azure confidential ledger</option><option value="Azure Container Apps">Azure Container Apps</option><option value="Azure Container Registry">Azure Container Registry</option><option value="Azure Cosmos DB">Azure Cosmos DB</option><option value="Azure CycleCloud">Azure CycleCloud</option><option value="Azure Data Explorer">Azure Data Explorer</option><option value="Azure Data Factory">Azure Data Factory</option><option value="Azure Data Lake Storage">Azure Data Lake Storage</option><option value="Azure Data Share">Azure Data Share</option><option value="Azure Database for MariaDB">Azure Database for MariaDB</option><option value="Azure Database for MySQL">Azure Database for MySQL</option><option value="Azure Database for PostgreSQL">Azure Database for PostgreSQL</option><option value="Azure Database Migration Service">Azure Database Migration Service</option><option value="Azure Databricks">Azure Databricks</option><option value="Azure Dedicated Host">Azure Dedicated Host</option><option value="Azure Dedicated HSM">Azure Dedicated HSM</option><option value="Azure Deployment Environments">Azure Deployment Environments</option><option value="Azure Dev Spaces">Azure Dev Spaces</option><option value="Azure DevOps">Azure DevOps</option><option value="Azure DevTest Labs">Azure DevTest Labs</option><option value="Azure Digital Twins">Azure Digital Twins</option><option value="Azure Disk Storage">Azure Disk Storage</option><option value="Azure DNS">Azure DNS</option><option value="Azure ExpressRoute">Azure ExpressRoute</option><option value="Azure Files">Azure Files</option><option value="Azure Fluid Relay">Azure Fluid Relay</option><option value="Azure Front Door">Azure Front Door</option><option value="Azure Functions">Azure Functions</option><option value="Azure FXT Edge Filer">Azure FXT Edge Filer</option><option value="Azure HDInsight on Azure Kubernetes Service (AKS)">Azure HDInsight on Azure Kubernetes Service (AKS)</option><option value="Azure HPC Cache">Azure HPC Cache</option><option value="Azure Internet Analyzer">Azure Internet Analyzer</option><option value="Azure IoT Central">Azure IoT Central</option><option value="Azure IoT Edge">Azure IoT Edge</option><option value="Azure IoT Hub">Azure IoT Hub</option><option value="Azure Kubernetes Service (AKS)">Azure Kubernetes Service (AKS)</option><option value="Azure Lab Services">Azure Lab Services</option><option value="Azure Load Testing">Azure Load Testing</option><option value="Azure Machine Learning">Azure Machine Learning</option><option value="Azure Managed Grafana">Azure Managed Grafana</option><option value="Azure Maps">Azure Maps</option><option value="Azure Media Player">Azure Media Player</option><option value="Azure Migrate">Azure Migrate</option><option value="Azure mobile app">Azure mobile app</option><option value="Azure Modular Datacenter">Azure Modular Datacenter</option><option value="Azure Monitor">Azure Monitor</option><option value="Azure platform">Azure platform</option><option value="Azure Red Hat OpenShift">Azure Red Hat OpenShift</option><option value="Azure Resource Manager">Azure Resource Manager</option><option value="Azure Resource Manager templates">Azure Resource Manager templates</option><option value="Azure Service Fabric">Azure Service Fabric</option><option value="Azure Site Recovery">Azure Site Recovery</option><option value="Azure Sphere">Azure Sphere</option><option value="Azure Spring Apps">Azure Spring Apps</option><option value="Azure SQL">Azure SQL</option><option value="Azure SQL Database">Azure SQL Database</option><option value="Azure SQL Edge">Azure SQL Edge</option><option value="Azure SQL Managed Instance">Azure SQL Managed Instance</option><option value="Azure Stack Edge">Azure Stack Edge</option><option value="Azure Stack Hub">Azure Stack Hub</option><option value="Azure Stream Analytics">Azure Stream Analytics</option><option value="Azure Synapse Analytics">Azure Synapse Analytics</option><option value="Azure Time Series Insights">Azure Time Series Insights</option><option value="Azure VMware Solution">Azure VMware Solution</option><option value="Batch">Batch</option><option value="Bing Search">Bing Search</option><option value="Bing Speech">Bing Speech</option><option value="Cloud Services">Cloud Services</option><option value="Content Delivery Network">Content Delivery Network</option><option value="Data Science Virtual Machines">Data Science Virtual Machines</option><option value="DevOps tool integrations">DevOps tool integrations</option><option value="Event Grid">Event Grid</option><option value="Event Hubs">Event Hubs</option><option value="HDInsight">HDInsight</option><option value="IP Addresses">IP Addresses</option><option value="Key Vault">Key Vault</option><option value="Language Understanding (LUIS)">Language Understanding (LUIS)</option><option value="Linux Virtual Machines">Linux Virtual Machines</option><option value="Load Balancer">Load Balancer</option><option value="Log Analytics">Log Analytics</option><option value="Logic Apps">Logic Apps</option><option value="Media Services">Media Services</option><option value="Metrics">Metrics</option><option value="Microsoft Cost Management">Microsoft Cost Management</option><option value="Microsoft Defender for Cloud">Microsoft Defender for Cloud</option><option value="Microsoft Dev Box">Microsoft Dev Box</option><option value="Microsoft Entra Domain Services">Microsoft Entra Domain Services</option><option value="Microsoft Entra ID (formerly Azure AD)">Microsoft Entra ID (formerly Azure AD)</option><option value="Microsoft Fabric">Microsoft Fabric</option><option value="Microsoft Foundry">Microsoft Foundry</option><option value="Microsoft Playwright Testing">Microsoft Playwright Testing</option><option value="Microsoft Sentinel">Microsoft Sentinel</option><option value="Network Watcher">Network Watcher</option><option value="Power BI Embedded">Power BI Embedded</option><option value="QnA Maker">QnA Maker</option><option value="Remote Rendering">Remote Rendering</option><option value="Scheduler">Scheduler</option><option value="SDKs">SDKs</option><option value="Service Bus">Service Bus</option><option value="Service Map">Service Map</option><option value="SQL Server on Azure Virtual Machines">SQL Server on Azure Virtual Machines</option><option value="Static Web Apps">Static Web Apps</option><option value="Storage Accounts">Storage Accounts</option><option value="StorSimple">StorSimple</option><option value="Traffic Manager">Traffic Manager</option><option value="Virtual Machine Scale Sets">Virtual Machine Scale Sets</option><option value="Virtual Machines">Virtual Machines</option><option value="Virtual WAN">Virtual WAN</option><option value="Visual Studio Code">Visual Studio Code</option><option value="VPN Gateway">VPN Gateway</option><option value="Web Application Firewall">Web Application Firewall</option><option value="Windows Virtual Machines">Windows Virtual Machines</option></select></label>
     <label><span>Date window</span><select id="window"><option value="">All dates</option><option value="retired-year">Retired this calendar year</option><option value="6">Next 6 months</option><option value="12">Next 12 months</option><option value="18">Next 18 months</option><option value="2031">2031</option><option value="2029">2029</option><option value="2028">2028</option><option value="2027">2027</option><option value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option><option value="2023">2023</option><option value="2022">2022</option><option value="2021">2021</option><option value="2020">2020</option><option value="2019">2019</option><option value="2017">2017</option></select></label>
   </div>
-  <div class="results-bar"><p id="result-count" role="status" aria-live="polite">Showing 24 of 634 retirements</p><label data-enhancement hidden>Sort by <select id="sort"><option value="date">Retirement date</option><option value="newest" selected>Latest announced</option><option value="title">Title A–Z</option></select></label></div>
-  <div id="results" class="cards"><article class="card">
-  <div class="card-top"><span class="service-name">Static Web Apps</span><span class="badge soon" data-deadline="2026-11-10"><span></span>Within 90 days</span></div>
-  <h3><a href="./retirements/2026-11-10/575106/">Retirement: Support for .NET 8 and .NET 9 on Static Web Apps is ending November 10, 2026</a></h3>
-  <p>Support for .NET 8 and .NET 9 will end on November 10, 2026. Please transition your managed Functions APIs to .NET 10 by that date.
-Your apps will continue to operate, but security updates will no longer be provided and support for .NET…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2026-11-10">10 Nov 2026</time></span><a href="./retirements/2026-11-10/575106/" aria-label="View details: Retirement: Support for .NET 8 and .NET 9 on Static Web Apps is ending November 10, 2026">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Azure Fluid Relay</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h3><a href="./retirements/unknown-date/570498/">Retirement: Azure Fluid Relay</a></h3>
-  <p>On June 2, 2027, we will retire Azure Fluid Relay. After this date, Azure Fluid Relay will reach end of availability, and workloads that continue to depend on the service may experience disruption.
+  <div class="results-bar"><p id="result-count" role="status" aria-live="polite">Showing 24 of 634 retirements</p><span>Retirement date: newest first</span></div>
+  <p class="timeline-note" id="timeline-note">Grouped by service category and service. Retirements appear in each applicable group; result counts are unique. Dates to confirm appear last within each service.</p>
+  <div id="results" class="retirement-timeline" aria-describedby="timeline-note"><section class="timeline-category" data-category="AI + machine learning" aria-labelledby="timeline-category-1">
+  <div class="timeline-category-heading"><h3 id="timeline-category-1">AI + machine learning</h3><span>3 retirements</span></div>
+  <section class="timeline-service" data-service="Azure AI Custom Vision" aria-labelledby="timeline-service-1-1">
+    <div class="timeline-service-heading"><h4 id="timeline-service-1-1">Azure AI Custom Vision</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="502914">
+        <div class="timeline-date"><time datetime="2028-09-25">25 Sep 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-09-25"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-09-25/502914/">Retirement: Azure Custom Vision will be retired on September 25, 2028</a></h5>
+          <p>Microsoft is announcing the planned retirement of the Azure Custom Vision service.
+Microsoft will provide full support for all existing Azure Custom Vision customers until 9/25/2028. During this support window, customers are encouraged…</p>
+          <a class="timeline-detail" href="./retirements/2028-09-25/502914/" aria-label="View details: Retirement: Azure Custom Vision will be retired on September 25, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Azure AI Document Intelligence" aria-labelledby="timeline-service-1-2">
+    <div class="timeline-service-heading"><h4 id="timeline-service-1-2">Azure AI Document Intelligence</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="561176">
+        <div class="timeline-date"><time datetime="2029-03-30">30 Mar 2029</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2029-03-30"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2029-03-30/561176/">Retirement: Azure Document Intelligence v3.0 API will be retired on March 30, 2029</a></h5>
+          <p>On March 30, 2029, Azure Document Intelligence v3.0 API will be retired. Please migrate to latest generally available Azure Document Intelligence API version, v4.0, by that date.
 
-The Fluid Framework remains available…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date not specified</span><a href="./retirements/unknown-date/570498/" aria-label="View details: Retirement: Azure Fluid Relay">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Azure platform</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h3><a href="./retirements/unknown-date/576255/">Retirement: OT security in Microsoft Defender for IoT</a></h3>
-  <p>This is the formal notice that Microsoft plans to deprecate the operational technology (OT) security component of Microsoft Defender for IoT. The service will be fully deprecated in October 2029, following a three-year transition…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date not specified</span><a href="./retirements/unknown-date/576255/" aria-label="View details: Retirement: OT security in Microsoft Defender for IoT">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Azure platform</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h3><a href="./retirements/unknown-date/570313/">Retirement: Azure Key Vault Secrets Provider Extension for Azure Arc enabled Kubernetes clusters</a></h3>
-  <p>The Azure Key Vault Secrets Provider Extension for Azure Arc-enabled Kubernetes will be retired on October 9, 2027.
+After March 30, 2029, Azure Document Intelligence v3.0…</p>
+          <a class="timeline-detail" href="./retirements/2029-03-30/561176/" aria-label="View details: Retirement: Azure Document Intelligence v3.0 API will be retired on March 30, 2029">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Microsoft Foundry" aria-labelledby="timeline-service-1-3">
+    <div class="timeline-service-heading"><h4 id="timeline-service-1-3">Microsoft Foundry</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="502909">
+        <div class="timeline-date"><time datetime="2028-09-25">25 Sep 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-09-25"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-09-25/502909/">Retirement: Azure Computer Vision – Image Analysis will be retired on September 25, 2028</a></h5>
+          <p>Microsoft is announcing the planned retirement of the Azure Computer Vision – Image Analysis service.
 
-Customers currently using the extension should plan to migrate to the Azure Key Vault Secret Store Extension before the…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date not specified</span><a href="./retirements/unknown-date/570313/" aria-label="View details: Retirement: Azure Key Vault Secrets Provider Extension for Azure Arc enabled Kubernetes clusters">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Azure Deployment Environments</span><span class="badge upcoming" data-deadline="2027-02-22"><span></span>Upcoming</span></div>
-  <h3><a href="./retirements/2027-02-22/567934/">Retirement: Azure Deployment Environments will be retired on February 22, 2027</a></h3>
-  <p>Azure Deployment Environments will retire on February 22, 2027. Beginning on September 14, 2026, Azure Deployment Environments will begin the closing-down process. After retirement, the service will no longer be available.
-To help avoid…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2027-02-22">22 Feb 2027</time></span><a href="./retirements/2027-02-22/567934/" aria-label="View details: Retirement: Azure Deployment Environments will be retired on February 22, 2027">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Microsoft Dev Box</span><span class="badge upcoming" data-deadline="2028-09-18"><span></span>Upcoming</span></div>
-  <h3><a href="./retirements/2028-09-18/567933/">Retirement: Microsoft Dev Box will be retired on September 18, 2028</a></h3>
-  <p>Microsoft Dev Box will retire on September 18, 2028. Beginning on September 14, 2026, Microsoft Dev Box will begin the closing-down process. After retirement, Microsoft Dev Box will no longer be available.
-Microsoft Dev Box is currently…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2028-09-18">18 Sep 2028</time></span><a href="./retirements/2028-09-18/567933/" aria-label="View details: Retirement: Microsoft Dev Box will be retired on September 18, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Azure SQL Database</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h3><a href="./retirements/unknown-date/569236/">Retirement: Always Encrypted with Intel SGX Enclaves</a></h3>
-  <p>Always Encrypted with Intel SGX enclaves in Azure SQL Database will retire on October 31, 2027 as support for SGX-enabled DC-series hardware is phased out. Customers should transition to Virtualization-Based Security (VBS) enclaves, a…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date not specified</span><a href="./retirements/unknown-date/569236/" aria-label="View details: Retirement: Always Encrypted with Intel SGX Enclaves">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">App Service · Azure Stack Hub</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h3><a href="./retirements/unknown-date/568178/">Retirement: Azure App Service on Azure Stack Hub</a></h3>
-  <p>Azure App Service on Azure Stack Hub will be retired on September 30, 2029.
-Starting September 30, 2026, new installations will no longer be supported, and no new product releases, features, or enhancements will be made available.…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date not specified</span><a href="./retirements/unknown-date/568178/" aria-label="View details: Retirement: Azure App Service on Azure Stack Hub">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h3><a href="./retirements/unknown-date/570232/">Retirement: Pod name dimension in AKS pod platform metrics</a></h3>
-  <p>Beginning September 30, 2027, support for the pod name dimension on the following Azure Monitor platform metrics is retiring, and these metrics are transitioning to aggregate pod counters:
-Number of pods by phase (kube_pod_status_phase)…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date not specified</span><a href="./retirements/unknown-date/570232/" aria-label="View details: Retirement: Pod name dimension in AKS pod platform metrics">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">App Service</span><span class="badge upcoming" data-deadline="2027-09-01"><span></span>Upcoming</span></div>
-  <h3><a href="./retirements/2027-09-01/568585/">Retirement: Support for Java 8, 11 and 17 will end on September 1, 2027</a></h3>
-  <p>On September 1, 2027 support for Java 8, 11 and 17 will end. Your apps that are hosted on App Service will continue to run, but security updates will no longer be available, and we’ll no longer provide customer service for Java 8, 11…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2027-09-01">1 Sep 2027</time></span><a href="./retirements/2027-09-01/568585/" aria-label="View details: Retirement: Support for Java 8, 11 and 17 will end on September 1, 2027">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Linux Virtual Machines · Virtual Machines · Windows Virtual Machines</span><span class="badge upcoming" data-deadline="2029-10-31"><span></span>Upcoming</span></div>
-  <h3><a href="./retirements/2029-10-31/569592/">Retirement: DCsv3 and DCdsv3-series Azure Virtual Machines will be retired on October 31, 2029</a></h3>
-  <p>On October 31, 2029, DCsv3 and DCdsv3-series Azure Linux, Windows and Dedicated Host virtual machines will be retired. After that date, they will no longer be available for use or purchase.
+Microsoft will provide full support for all existing Azure Computer Vision – Image Analysis customers until 9/25/2028. During this…</p>
+          <a class="timeline-detail" href="./retirements/2028-09-25/502909/" aria-label="View details: Retirement: Azure Computer Vision – Image Analysis will be retired on September 25, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+</section>
+<section class="timeline-category" data-category="Compute" aria-labelledby="timeline-category-2">
+  <div class="timeline-category-heading"><h3 id="timeline-category-2">Compute</h3><span>8 retirements</span></div>
+  <section class="timeline-service" data-service="App Service" aria-labelledby="timeline-service-2-1">
+    <div class="timeline-service-heading"><h4 id="timeline-service-2-1">App Service</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="485047">
+        <div class="timeline-date"><time datetime="2028-03-31">31 Mar 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-03-31/485047/">Retirement: Azure App Service Will No Longer Support Linked Databases as a Part of Custom Backups After March 31, 2028</a></h5>
+          <p>Beginning March 31, 2028, the Azure App Service custom backup feature will no longer back up linked databases configured as part of the Azure App Service custom backup feature. We strongly recommend that you use the native backup and…</p>
+          <a class="timeline-detail" href="./retirements/2028-03-31/485047/" aria-label="View details: Retirement: Azure App Service Will No Longer Support Linked Databases as a Part of Custom Backups After March 31, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Azure Functions" aria-labelledby="timeline-service-2-2">
+    <div class="timeline-service-heading"><h4 id="timeline-service-2-2">Azure Functions</h4><span>2 retirements</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="499451">
+        <div class="timeline-date"><time datetime="2028-09-30">30 Sep 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-09-30"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-09-30/499451/">Retirement: The Linux Consumption hosting plan of Azure Functions will be retired on September 30, 2028. Migrate to Flex Consumption.</a></h5>
+          <p>The Azure Functions Linux Consumption hosting plan is being retired. Customers are advised to migrate to the Flex Consumption plan, which offers faster scaling, advanced networking, cold start mitigation, and concurrency control. To…</p>
+          <a class="timeline-detail" href="./retirements/2028-09-30/499451/" aria-label="View details: Retirement: The Linux Consumption hosting plan of Azure Functions will be retired on September 30, 2028. Migrate to Flex Consumption.">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+      <li class="timeline-entry" data-record="489009">
+        <div class="timeline-date"><time datetime="2028-03-31">31 Mar 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-03-31/489009/">Retirement: Azure Functions – Durable Functions support for Netherite will end on March 31, 2028</a></h5>
+          <p>Netherite, one of several backend providers supported by Durable Functions, will no longer be supported after March 31, 2028. For function apps that need the higher throughput benefits previously offered by Netherite, it is recommended…</p>
+          <a class="timeline-detail" href="./retirements/2028-03-31/489009/" aria-label="View details: Retirement: Azure Functions – Durable Functions support for Netherite will end on March 31, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Azure Kubernetes Service (AKS)" aria-labelledby="timeline-service-2-3">
+    <div class="timeline-service-heading"><h4 id="timeline-service-2-3">Azure Kubernetes Service (AKS)</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="500268">
+        <div class="timeline-date"><time datetime="2028-09-30">30 Sep 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-09-30"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-09-30/500268/">Retirement: Azure Network Policy Manager (NPM) for Linux nodes on AKS to Be Retired by September 30, 2028</a></h5>
+          <p>On September 30, 2028, we’ll end support for Azure Network Policy Manager (NPM) on Linux nodes in AKS. To avoid disruptions, migrate AKS clusters running Linux nodes from NPM to Cilium Network Policy by that date.
+
+Transitioning to…</p>
+          <a class="timeline-detail" href="./retirements/2028-09-30/500268/" aria-label="View details: Retirement: Azure Network Policy Manager (NPM) for Linux nodes on AKS to Be Retired by September 30, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Azure Spring Apps" aria-labelledby="timeline-service-2-4">
+    <div class="timeline-service-heading"><h4 id="timeline-service-2-4">Azure Spring Apps</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="485865">
+        <div class="timeline-date"><time datetime="2028-03-31">31 Mar 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-03-31/485865/">Retirement: Azure Spring Apps will be retired on March 31, 2028</a></h5>
+          <p>Following the retirement announcement of Azure Spring Apps, we would like to share an important update regarding the retirement of Azure Spring Apps Basic, Standard and Enterprise plans.
+On March 17, 2025, Azure Spring Apps Basic,…</p>
+          <a class="timeline-detail" href="./retirements/2028-03-31/485865/" aria-label="View details: Retirement: Azure Spring Apps will be retired on March 31, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Azure VMware Solution" aria-labelledby="timeline-service-2-5">
+    <div class="timeline-service-heading"><h4 id="timeline-service-2-5">Azure VMware Solution</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="557094">
+        <div class="timeline-date"><time datetime="2029-06-30">30 Jun 2029</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2029-06-30"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2029-06-30/557094/">Retirement: Azure VMware Solution AV36P and AV52 node retirement on June 30, 2029</a></h5>
+          <p>Microsoft is announcing the retirement of the AV36P and AV52 Nodes on June 30, 2029.
+
+UPDATE: On August 30, 2027, as a result of the latest Broadcom VCF licensing change, the AVS license-included SKUs will be retired. AV36P and AV52…</p>
+          <a class="timeline-detail" href="./retirements/2029-06-30/557094/" aria-label="View details: Retirement: Azure VMware Solution AV36P and AV52 node retirement on June 30, 2029">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Linux Virtual Machines" aria-labelledby="timeline-service-2-6">
+    <div class="timeline-service-heading"><h4 id="timeline-service-2-6">Linux Virtual Machines</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="569592">
+        <div class="timeline-date"><time datetime="2029-10-31">31 Oct 2029</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2029-10-31"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2029-10-31/569592/">Retirement: DCsv3 and DCdsv3-series Azure Virtual Machines will be retired on October 31, 2029</a></h5>
+          <p>On October 31, 2029, DCsv3 and DCdsv3-series Azure Linux, Windows and Dedicated Host virtual machines will be retired. After that date, they will no longer be available for use or purchase.
 Before October 31, 2029, migrate your…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2029-10-31">31 Oct 2029</time></span><a href="./retirements/2029-10-31/569592/" aria-label="View details: Retirement: DCsv3 and DCdsv3-series Azure Virtual Machines will be retired on October 31, 2029">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Virtual Machines</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h3><a href="./retirements/unknown-date/572346/">Retirement: Dv3, Dsv3, Ev3, and Esv3 Azure VMs</a></h3>
-  <p>As part of the Microsoft Azure VM lifecycle policy, Microsoft is announcing the retirement of the Dv3, Dsv3, Ev3, and Esv3 Azure VM series in public cloud Azure regions. These VMs will enter the End-of-Life lifecycle stage and retire on…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date not specified</span><a href="./retirements/unknown-date/572346/" aria-label="View details: Retirement: Dv3, Dsv3, Ev3, and Esv3 Azure VMs">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Virtual Machines</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h3><a href="./retirements/unknown-date/573414/">Retirement: NVv3-series Azure Virtual Machines</a></h3>
-  <p>On September 30, 2026, Microsoft Azure retired the Standard_NV12s_v3, Standard_NV12hs_v3, Standard_NV24s_v3, Standard_NV24ms_v3, Standard_NV32ms_v3, and Standard_NV48s_v3 virtual machines (VMs) in the NVv3-series VMs.
-Any remaining…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date not specified</span><a href="./retirements/unknown-date/573414/" aria-label="View details: Retirement: NVv3-series Azure Virtual Machines">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Virtual Machines</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h3><a href="./retirements/unknown-date/573415/">Retirement: NVv4-series Azure Virtual Machines</a></h3>
-  <p>On September 30, 2026, Microsoft Azure retired the Standard_NV4as_v4, Standard_NV4ahs_v4, Standard_NV8as_v4, Standard_NV8ahs_v4, Standard_NV16as_v4, Standard_NV16ahs_v4, Standard_NV32as_v4, and Standard_NV32ahs_v4 virtual machines (VMs)…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date not specified</span><a href="./retirements/unknown-date/573415/" aria-label="View details: Retirement: NVv4-series Azure Virtual Machines">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Azure platform</span><span class="badge upcoming" data-deadline="2029-09-30"><span></span>Upcoming</span></div>
-  <h3><a href="./retirements/2029-09-30/570283/">Retirement: Azure Arc enabled System Center Virtual Machine Manager will be retired September 30, 2029</a></h3>
-  <p>Microsoft is retiring Azure Arc-enabled System Center Virtual Machine Manager (SCVMM) in September 2029. Customers must plan and transition to alternative solutions.
+          <a class="timeline-detail" href="./retirements/2029-10-31/569592/" aria-label="View details: Retirement: DCsv3 and DCdsv3-series Azure Virtual Machines will be retired on October 31, 2029">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Virtual Machines" aria-labelledby="timeline-service-2-7">
+    <div class="timeline-service-heading"><h4 id="timeline-service-2-7">Virtual Machines</h4><span>2 retirements</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="569592">
+        <div class="timeline-date"><time datetime="2029-10-31">31 Oct 2029</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2029-10-31"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2029-10-31/569592/">Retirement: DCsv3 and DCdsv3-series Azure Virtual Machines will be retired on October 31, 2029</a></h5>
+          <p>On October 31, 2029, DCsv3 and DCdsv3-series Azure Linux, Windows and Dedicated Host virtual machines will be retired. After that date, they will no longer be available for use or purchase.
+Before October 31, 2029, migrate your…</p>
+          <a class="timeline-detail" href="./retirements/2029-10-31/569592/" aria-label="View details: Retirement: DCsv3 and DCdsv3-series Azure Virtual Machines will be retired on October 31, 2029">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+      <li class="timeline-entry" data-record="485569">
+        <div class="timeline-date"><time datetime="2028-05-01">1 May 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-05-01"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-05-01/485569/">Retirement: D, Ds, Dv2, Dsv2, and Ls Series Virtual Machines to Be Retired on May 1, 2028</a></h5>
+          <p>D, Ds, Dv2, Dsv2, and Ls series Azure Virtual Machines will retire on May 1st, 2028. These VMs will no longer be able to be used or purchased after this date. To ensure any applications and workloads running on these VMs will be…</p>
+          <a class="timeline-detail" href="./retirements/2028-05-01/485569/" aria-label="View details: Retirement: D, Ds, Dv2, Dsv2, and Ls Series Virtual Machines to Be Retired on May 1, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Windows Virtual Machines" aria-labelledby="timeline-service-2-8">
+    <div class="timeline-service-heading"><h4 id="timeline-service-2-8">Windows Virtual Machines</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="569592">
+        <div class="timeline-date"><time datetime="2029-10-31">31 Oct 2029</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2029-10-31"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2029-10-31/569592/">Retirement: DCsv3 and DCdsv3-series Azure Virtual Machines will be retired on October 31, 2029</a></h5>
+          <p>On October 31, 2029, DCsv3 and DCdsv3-series Azure Linux, Windows and Dedicated Host virtual machines will be retired. After that date, they will no longer be available for use or purchase.
+Before October 31, 2029, migrate your…</p>
+          <a class="timeline-detail" href="./retirements/2029-10-31/569592/" aria-label="View details: Retirement: DCsv3 and DCdsv3-series Azure Virtual Machines will be retired on October 31, 2029">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+</section>
+<section class="timeline-category" data-category="Containers" aria-labelledby="timeline-category-3">
+  <div class="timeline-category-heading"><h3 id="timeline-category-3">Containers</h3><span>3 retirements</span></div>
+  <section class="timeline-service" data-service="Azure Functions" aria-labelledby="timeline-service-3-1">
+    <div class="timeline-service-heading"><h4 id="timeline-service-3-1">Azure Functions</h4><span>2 retirements</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="499451">
+        <div class="timeline-date"><time datetime="2028-09-30">30 Sep 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-09-30"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-09-30/499451/">Retirement: The Linux Consumption hosting plan of Azure Functions will be retired on September 30, 2028. Migrate to Flex Consumption.</a></h5>
+          <p>The Azure Functions Linux Consumption hosting plan is being retired. Customers are advised to migrate to the Flex Consumption plan, which offers faster scaling, advanced networking, cold start mitigation, and concurrency control. To…</p>
+          <a class="timeline-detail" href="./retirements/2028-09-30/499451/" aria-label="View details: Retirement: The Linux Consumption hosting plan of Azure Functions will be retired on September 30, 2028. Migrate to Flex Consumption.">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+      <li class="timeline-entry" data-record="489009">
+        <div class="timeline-date"><time datetime="2028-03-31">31 Mar 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-03-31/489009/">Retirement: Azure Functions – Durable Functions support for Netherite will end on March 31, 2028</a></h5>
+          <p>Netherite, one of several backend providers supported by Durable Functions, will no longer be supported after March 31, 2028. For function apps that need the higher throughput benefits previously offered by Netherite, it is recommended…</p>
+          <a class="timeline-detail" href="./retirements/2028-03-31/489009/" aria-label="View details: Retirement: Azure Functions – Durable Functions support for Netherite will end on March 31, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Azure Kubernetes Service (AKS)" aria-labelledby="timeline-service-3-2">
+    <div class="timeline-service-heading"><h4 id="timeline-service-3-2">Azure Kubernetes Service (AKS)</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="500268">
+        <div class="timeline-date"><time datetime="2028-09-30">30 Sep 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-09-30"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-09-30/500268/">Retirement: Azure Network Policy Manager (NPM) for Linux nodes on AKS to Be Retired by September 30, 2028</a></h5>
+          <p>On September 30, 2028, we’ll end support for Azure Network Policy Manager (NPM) on Linux nodes in AKS. To avoid disruptions, migrate AKS clusters running Linux nodes from NPM to Cilium Network Policy by that date.
+
+Transitioning to…</p>
+          <a class="timeline-detail" href="./retirements/2028-09-30/500268/" aria-label="View details: Retirement: Azure Network Policy Manager (NPM) for Linux nodes on AKS to Be Retired by September 30, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+</section>
+<section class="timeline-category" data-category="Databases" aria-labelledby="timeline-category-4">
+  <div class="timeline-category-heading"><h3 id="timeline-category-4">Databases</h3><span>1 retirement</span></div>
+  <section class="timeline-service" data-service="Azure Cache for Redis" aria-labelledby="timeline-service-4-1">
+    <div class="timeline-service-heading"><h4 id="timeline-service-4-1">Azure Cache for Redis</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="499577">
+        <div class="timeline-date"><time datetime="2028-09-30">30 Sep 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-09-30"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-09-30/499577/">Retirement: Azure Cache for Redis is retiring on September 30, 2028.</a></h5>
+          <p>Azure Cache for Redis (Basic, Standard and Premium) will be retired on September 30, 2028. We recommend you migrate your workloads to use Azure Managed Redis before September 30, 2028. Azure Cache for Redis instances that are not…</p>
+          <a class="timeline-detail" href="./retirements/2028-09-30/499577/" aria-label="View details: Retirement: Azure Cache for Redis is retiring on September 30, 2028.">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+</section>
+<section class="timeline-category" data-category="Developer tools" aria-labelledby="timeline-category-5">
+  <div class="timeline-category-heading"><h3 id="timeline-category-5">Developer tools</h3><span>1 retirement</span></div>
+  <section class="timeline-service" data-service="Microsoft Dev Box" aria-labelledby="timeline-service-5-1">
+    <div class="timeline-service-heading"><h4 id="timeline-service-5-1">Microsoft Dev Box</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="567933">
+        <div class="timeline-date"><time datetime="2028-09-18">18 Sep 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-09-18"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-09-18/567933/">Retirement: Microsoft Dev Box will be retired on September 18, 2028</a></h5>
+          <p>Microsoft Dev Box will retire on September 18, 2028. Beginning on September 14, 2026, Microsoft Dev Box will begin the closing-down process. After retirement, Microsoft Dev Box will no longer be available.
+Microsoft Dev Box is currently…</p>
+          <a class="timeline-detail" href="./retirements/2028-09-18/567933/" aria-label="View details: Retirement: Microsoft Dev Box will be retired on September 18, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+</section>
+<section class="timeline-category" data-category="DevOps" aria-labelledby="timeline-category-6">
+  <div class="timeline-category-heading"><h3 id="timeline-category-6">DevOps</h3><span>3 retirements</span></div>
+  <section class="timeline-service" data-service="Application Insights" aria-labelledby="timeline-service-6-1">
+    <div class="timeline-service-heading"><h4 id="timeline-service-6-1">Application Insights</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="transition-to-using-standard-tests-for-singlestep-availability-testing-in-azure-monitor-application-insights-by-30-september">
+        <div class="timeline-date"><time datetime="2028-09-30">30 Sep 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-09-30"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-09-30/transition-to-using-standard-tests-for-singlestep-availability-testing-in-azure-monitor-application-insights-by-30-september/">Retirement: Transition to using standard tests for single-step availability testing in Azure Monitor application insights by September 30, 2028</a></h5>
+          <p>URL ping tests in Application Insights were originally planned for retirement on September 30, 2026. In response to customer feedback requesting more time to complete migration, the retirement date has been extended by 24 months to…</p>
+          <a class="timeline-detail" href="./retirements/2028-09-30/transition-to-using-standard-tests-for-singlestep-availability-testing-in-azure-monitor-application-insights-by-30-september/" aria-label="View details: Retirement: Transition to using standard tests for single-step availability testing in Azure Monitor application insights by September 30, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Azure Monitor" aria-labelledby="timeline-service-6-2">
+    <div class="timeline-service-heading"><h4 id="timeline-service-6-2">Azure Monitor</h4><span>2 retirements</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="transition-to-using-standard-tests-for-singlestep-availability-testing-in-azure-monitor-application-insights-by-30-september">
+        <div class="timeline-date"><time datetime="2028-09-30">30 Sep 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-09-30"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-09-30/transition-to-using-standard-tests-for-singlestep-availability-testing-in-azure-monitor-application-insights-by-30-september/">Retirement: Transition to using standard tests for single-step availability testing in Azure Monitor application insights by September 30, 2028</a></h5>
+          <p>URL ping tests in Application Insights were originally planned for retirement on September 30, 2026. In response to customer feedback requesting more time to complete migration, the retirement date has been extended by 24 months to…</p>
+          <a class="timeline-detail" href="./retirements/2028-09-30/transition-to-using-standard-tests-for-singlestep-availability-testing-in-azure-monitor-application-insights-by-30-september/" aria-label="View details: Retirement: Transition to using standard tests for single-step availability testing in Azure Monitor application insights by September 30, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+      <li class="timeline-entry" data-record="491629">
+        <div class="timeline-date"><time datetime="2028-06-30">30 Jun 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-06-30"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-06-30/491629/">Retirement: VM Insights Map and Dependency Agent are being on June 30, 2028</a></h5>
+          <p>Dependency Agent and VM Insights Map will be retired on June 30, 2028 and no longer be supported.
+With this retirement, all functionality associated with the VM Insights Map and the Dependency Agent will be completely retired.
+After…</p>
+          <a class="timeline-detail" href="./retirements/2028-06-30/491629/" aria-label="View details: Retirement: VM Insights Map and Dependency Agent are being on June 30, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Microsoft Dev Box" aria-labelledby="timeline-service-6-3">
+    <div class="timeline-service-heading"><h4 id="timeline-service-6-3">Microsoft Dev Box</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="567933">
+        <div class="timeline-date"><time datetime="2028-09-18">18 Sep 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-09-18"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-09-18/567933/">Retirement: Microsoft Dev Box will be retired on September 18, 2028</a></h5>
+          <p>Microsoft Dev Box will retire on September 18, 2028. Beginning on September 14, 2026, Microsoft Dev Box will begin the closing-down process. After retirement, Microsoft Dev Box will no longer be available.
+Microsoft Dev Box is currently…</p>
+          <a class="timeline-detail" href="./retirements/2028-09-18/567933/" aria-label="View details: Retirement: Microsoft Dev Box will be retired on September 18, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+</section>
+<section class="timeline-category" data-category="Internet of Things" aria-labelledby="timeline-category-7">
+  <div class="timeline-category-heading"><h3 id="timeline-category-7">Internet of Things</h3><span>5 retirements</span></div>
+  <section class="timeline-service" data-service="Azure Functions" aria-labelledby="timeline-service-7-1">
+    <div class="timeline-service-heading"><h4 id="timeline-service-7-1">Azure Functions</h4><span>2 retirements</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="499451">
+        <div class="timeline-date"><time datetime="2028-09-30">30 Sep 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-09-30"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-09-30/499451/">Retirement: The Linux Consumption hosting plan of Azure Functions will be retired on September 30, 2028. Migrate to Flex Consumption.</a></h5>
+          <p>The Azure Functions Linux Consumption hosting plan is being retired. Customers are advised to migrate to the Flex Consumption plan, which offers faster scaling, advanced networking, cold start mitigation, and concurrency control. To…</p>
+          <a class="timeline-detail" href="./retirements/2028-09-30/499451/" aria-label="View details: Retirement: The Linux Consumption hosting plan of Azure Functions will be retired on September 30, 2028. Migrate to Flex Consumption.">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+      <li class="timeline-entry" data-record="489009">
+        <div class="timeline-date"><time datetime="2028-03-31">31 Mar 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-03-31/489009/">Retirement: Azure Functions – Durable Functions support for Netherite will end on March 31, 2028</a></h5>
+          <p>Netherite, one of several backend providers supported by Durable Functions, will no longer be supported after March 31, 2028. For function apps that need the higher throughput benefits previously offered by Netherite, it is recommended…</p>
+          <a class="timeline-detail" href="./retirements/2028-03-31/489009/" aria-label="View details: Retirement: Azure Functions – Durable Functions support for Netherite will end on March 31, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Azure IoT Central" aria-labelledby="timeline-service-7-2">
+    <div class="timeline-service-heading"><h4 id="timeline-service-7-2">Azure IoT Central</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="569914">
+        <div class="timeline-date"><time datetime="2029-09-20">20 Sep 2029</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2029-09-20"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2029-09-20/569914/">Retirement: Azure IoT Central will be retired on September 20, 2029</a></h5>
+          <p>Azure IoT Central will be retired on September 20, 2029. You can continue using Azure IoT Central until the retirement date, but we recommend starting your transition planning early.
+Why is this happening?
+As Azure IoT evolves,…</p>
+          <a class="timeline-detail" href="./retirements/2029-09-20/569914/" aria-label="View details: Retirement: Azure IoT Central will be retired on September 20, 2029">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Azure Maps" aria-labelledby="timeline-service-7-3">
+    <div class="timeline-service-heading"><h4 id="timeline-service-7-3">Azure Maps</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="485810">
+        <div class="timeline-date"><time datetime="2028-03-31">31 Mar 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-03-31/485810/">Retirement: Azure Maps Traffic APIs Version 1.0 to Be Retired on March 31, 2028</a></h5>
+          <p>The following Azure Maps Traffic APIs version 1.0 will be retired on March 31, 2028:
+
+Get Traffic Flow Segment
+
+Get Traffic Flow Tile
+
+Get Traffic Incident Detail
+
+Get Traffic Incident Tile
+
+Get Traffic Incident Viewport
+
+Please…</p>
+          <a class="timeline-detail" href="./retirements/2028-03-31/485810/" aria-label="View details: Retirement: Azure Maps Traffic APIs Version 1.0 to Be Retired on March 31, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Azure Sphere" aria-labelledby="timeline-service-7-4">
+    <div class="timeline-service-heading"><h4 id="timeline-service-7-4">Azure Sphere</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="557123">
+        <div class="timeline-date"><time datetime="2031-07-31">31 Jul 2031</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2031-07-31"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2031-07-31/557123/">Retirement: Azure Sphere will be retired on July 31, 2031</a></h5>
+          <p>The Azure Sphere service is retiring and will stop supporting all customer application, OS, bug and security updates, along with DAA certificate issuance, on July 31, 2031.
+Why is this happening?
+Azure Sphere pioneered secure IoT…</p>
+          <a class="timeline-detail" href="./retirements/2031-07-31/557123/" aria-label="View details: Retirement: Azure Sphere will be retired on July 31, 2031">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+</section>
+<section class="timeline-category" data-category="Management and governance" aria-labelledby="timeline-category-8">
+  <div class="timeline-category-heading"><h3 id="timeline-category-8">Management and governance</h3><span>2 retirements</span></div>
+  <section class="timeline-service" data-service="Application Insights" aria-labelledby="timeline-service-8-1">
+    <div class="timeline-service-heading"><h4 id="timeline-service-8-1">Application Insights</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="transition-to-using-standard-tests-for-singlestep-availability-testing-in-azure-monitor-application-insights-by-30-september">
+        <div class="timeline-date"><time datetime="2028-09-30">30 Sep 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-09-30"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-09-30/transition-to-using-standard-tests-for-singlestep-availability-testing-in-azure-monitor-application-insights-by-30-september/">Retirement: Transition to using standard tests for single-step availability testing in Azure Monitor application insights by September 30, 2028</a></h5>
+          <p>URL ping tests in Application Insights were originally planned for retirement on September 30, 2026. In response to customer feedback requesting more time to complete migration, the retirement date has been extended by 24 months to…</p>
+          <a class="timeline-detail" href="./retirements/2028-09-30/transition-to-using-standard-tests-for-singlestep-availability-testing-in-azure-monitor-application-insights-by-30-september/" aria-label="View details: Retirement: Transition to using standard tests for single-step availability testing in Azure Monitor application insights by September 30, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Azure Monitor" aria-labelledby="timeline-service-8-2">
+    <div class="timeline-service-heading"><h4 id="timeline-service-8-2">Azure Monitor</h4><span>2 retirements</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="transition-to-using-standard-tests-for-singlestep-availability-testing-in-azure-monitor-application-insights-by-30-september">
+        <div class="timeline-date"><time datetime="2028-09-30">30 Sep 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-09-30"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-09-30/transition-to-using-standard-tests-for-singlestep-availability-testing-in-azure-monitor-application-insights-by-30-september/">Retirement: Transition to using standard tests for single-step availability testing in Azure Monitor application insights by September 30, 2028</a></h5>
+          <p>URL ping tests in Application Insights were originally planned for retirement on September 30, 2026. In response to customer feedback requesting more time to complete migration, the retirement date has been extended by 24 months to…</p>
+          <a class="timeline-detail" href="./retirements/2028-09-30/transition-to-using-standard-tests-for-singlestep-availability-testing-in-azure-monitor-application-insights-by-30-september/" aria-label="View details: Retirement: Transition to using standard tests for single-step availability testing in Azure Monitor application insights by September 30, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+      <li class="timeline-entry" data-record="491629">
+        <div class="timeline-date"><time datetime="2028-06-30">30 Jun 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-06-30"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-06-30/491629/">Retirement: VM Insights Map and Dependency Agent are being on June 30, 2028</a></h5>
+          <p>Dependency Agent and VM Insights Map will be retired on June 30, 2028 and no longer be supported.
+With this retirement, all functionality associated with the VM Insights Map and the Dependency Agent will be completely retired.
+After…</p>
+          <a class="timeline-detail" href="./retirements/2028-06-30/491629/" aria-label="View details: Retirement: VM Insights Map and Dependency Agent are being on June 30, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+</section>
+<section class="timeline-category" data-category="Mobile" aria-labelledby="timeline-category-9">
+  <div class="timeline-category-heading"><h3 id="timeline-category-9">Mobile</h3><span>3 retirements</span></div>
+  <section class="timeline-service" data-service="App Service" aria-labelledby="timeline-service-9-1">
+    <div class="timeline-service-heading"><h4 id="timeline-service-9-1">App Service</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="485047">
+        <div class="timeline-date"><time datetime="2028-03-31">31 Mar 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-03-31/485047/">Retirement: Azure App Service Will No Longer Support Linked Databases as a Part of Custom Backups After March 31, 2028</a></h5>
+          <p>Beginning March 31, 2028, the Azure App Service custom backup feature will no longer back up linked databases configured as part of the Azure App Service custom backup feature. We strongly recommend that you use the native backup and…</p>
+          <a class="timeline-detail" href="./retirements/2028-03-31/485047/" aria-label="View details: Retirement: Azure App Service Will No Longer Support Linked Databases as a Part of Custom Backups After March 31, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Azure Communication Services" aria-labelledby="timeline-service-9-2">
+    <div class="timeline-service-heading"><h4 id="timeline-service-9-2">Azure Communication Services</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="557117">
+        <div class="timeline-date"><time datetime="2028-09-30">30 Sep 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-09-30"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-09-30/557117/">Retirement: Azure Communication Services (ACS) standalone services will be retired on September 30, 2028</a></h5>
+          <p>Microsoft will retire several standalone Azure Communication Services (ACS) offerings on September 30, 2028. After this date, the affected services will no longer be available.
+Details
+Beginning September 30, 2028, the following ACS…</p>
+          <a class="timeline-detail" href="./retirements/2028-09-30/557117/" aria-label="View details: Retirement: Azure Communication Services (ACS) standalone services will be retired on September 30, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Azure Maps" aria-labelledby="timeline-service-9-3">
+    <div class="timeline-service-heading"><h4 id="timeline-service-9-3">Azure Maps</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="485810">
+        <div class="timeline-date"><time datetime="2028-03-31">31 Mar 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-03-31/485810/">Retirement: Azure Maps Traffic APIs Version 1.0 to Be Retired on March 31, 2028</a></h5>
+          <p>The following Azure Maps Traffic APIs version 1.0 will be retired on March 31, 2028:
+
+Get Traffic Flow Segment
+
+Get Traffic Flow Tile
+
+Get Traffic Incident Detail
+
+Get Traffic Incident Tile
+
+Get Traffic Incident Viewport
+
+Please…</p>
+          <a class="timeline-detail" href="./retirements/2028-03-31/485810/" aria-label="View details: Retirement: Azure Maps Traffic APIs Version 1.0 to Be Retired on March 31, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+</section>
+<section class="timeline-category" data-category="Networking" aria-labelledby="timeline-category-10">
+  <div class="timeline-category-heading"><h3 id="timeline-category-10">Networking</h3><span>1 retirement</span></div>
+  <section class="timeline-service" data-service="VPN Gateway" aria-labelledby="timeline-service-10-1">
+    <div class="timeline-service-heading"><h4 id="timeline-service-10-1">VPN Gateway</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="557395">
+        <div class="timeline-date"><time datetime="2029-03-31">31 Mar 2029</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2029-03-31"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2029-03-31/557395/">Retirement: Manually registered Azure VPN Clients for ​Azure Government and ​Microsoft Azure operated by 21Vianet clouds will be retired on March 31, 2029</a></h5>
+          <p>On March 31, 2029, we’ll be retiring manually registered Azure VPN clients for point-to-site connections with Microsoft Entra ID authentication for ​Azure Government and ​Microsoft Azure operated by 21Vianet clouds.
+Recommended action:…</p>
+          <a class="timeline-detail" href="./retirements/2029-03-31/557395/" aria-label="View details: Retirement: Manually registered Azure VPN Clients for ​Azure Government and ​Microsoft Azure operated by 21Vianet clouds will be retired on March 31, 2029">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+</section>
+<section class="timeline-category" data-category="Security" aria-labelledby="timeline-category-11">
+  <div class="timeline-category-heading"><h3 id="timeline-category-11">Security</h3><span>1 retirement</span></div>
+  <section class="timeline-service" data-service="VPN Gateway" aria-labelledby="timeline-service-11-1">
+    <div class="timeline-service-heading"><h4 id="timeline-service-11-1">VPN Gateway</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="557395">
+        <div class="timeline-date"><time datetime="2029-03-31">31 Mar 2029</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2029-03-31"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2029-03-31/557395/">Retirement: Manually registered Azure VPN Clients for ​Azure Government and ​Microsoft Azure operated by 21Vianet clouds will be retired on March 31, 2029</a></h5>
+          <p>On March 31, 2029, we’ll be retiring manually registered Azure VPN clients for point-to-site connections with Microsoft Entra ID authentication for ​Azure Government and ​Microsoft Azure operated by 21Vianet clouds.
+Recommended action:…</p>
+          <a class="timeline-detail" href="./retirements/2029-03-31/557395/" aria-label="View details: Retirement: Manually registered Azure VPN Clients for ​Azure Government and ​Microsoft Azure operated by 21Vianet clouds will be retired on March 31, 2029">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+</section>
+<section class="timeline-category" data-category="Storage" aria-labelledby="timeline-category-12">
+  <div class="timeline-category-heading"><h3 id="timeline-category-12">Storage</h3><span>1 retirement</span></div>
+  <section class="timeline-service" data-service="Azure Disk Storage" aria-labelledby="timeline-service-12-1">
+    <div class="timeline-service-heading"><h4 id="timeline-service-12-1">Azure Disk Storage</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="500157">
+        <div class="timeline-date"><time datetime="2028-09-08">8 Sep 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-09-08"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-09-08/500157/">Retirement: Operating System (OS) Disks on Standard HDD will be retired on 08 September 2028</a></h5>
+          <p>As part of our ongoing commitment to improve customer experience, we continuously evaluate our product portfolio to ensure it meets the evolving needs of our customers. To better align with current usage patterns and future investments…</p>
+          <a class="timeline-detail" href="./retirements/2028-09-08/500157/" aria-label="View details: Retirement: Operating System (OS) Disks on Standard HDD will be retired on 08 September 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+</section>
+<section class="timeline-category" data-category="Uncategorized" aria-labelledby="timeline-category-13">
+  <div class="timeline-category-heading"><h3 id="timeline-category-13">Uncategorized</h3><span>3 retirements</span></div>
+  <section class="timeline-service" data-service="Azure platform" aria-labelledby="timeline-service-13-1">
+    <div class="timeline-service-heading"><h4 id="timeline-service-13-1">Azure platform</h4><span>3 retirements</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="570283">
+        <div class="timeline-date"><time datetime="2029-09-30">30 Sep 2029</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2029-09-30"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2029-09-30/570283/">Retirement: Azure Arc enabled System Center Virtual Machine Manager will be retired September 30, 2029</a></h5>
+          <p>Microsoft is retiring Azure Arc-enabled System Center Virtual Machine Manager (SCVMM) in September 2029. Customers must plan and transition to alternative solutions.
 
 What does this mean for you?
 
 If you are using Azure Arc-enabled…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2029-09-30">30 Sep 2029</time></span><a href="./retirements/2029-09-30/570283/" aria-label="View details: Retirement: Azure Arc enabled System Center Virtual Machine Manager will be retired September 30, 2029">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Azure IoT Central</span><span class="badge upcoming" data-deadline="2029-09-20"><span></span>Upcoming</span></div>
-  <h3><a href="./retirements/2029-09-20/569914/">Retirement: Azure IoT Central will be retired on September 20, 2029</a></h3>
-  <p>Azure IoT Central will be retired on September 20, 2029. You can continue using Azure IoT Central until the retirement date, but we recommend starting your transition planning early.
-Why is this happening?
-As Azure IoT evolves,…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2029-09-20">20 Sep 2029</time></span><a href="./retirements/2029-09-20/569914/" aria-label="View details: Retirement: Azure IoT Central will be retired on September 20, 2029">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Azure Container Apps</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h3><a href="./retirements/unknown-date/570800/">Retirement: Functions on Azure Container Apps V1</a></h3>
-  <p>The Functions on Azure Container Apps (ACA) V1 will be retired on September 29, 2027. After this date, existing Functions on ACA V1 Apps will stop running and no longer process requests or event-driven triggers.
-Action required
-Review…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date not specified</span><a href="./retirements/unknown-date/570800/" aria-label="View details: Retirement: Functions on Azure Container Apps V1">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Azure platform</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h3><a href="./retirements/unknown-date/570046/">Retirement: Microsoft HPC Pack</a></h3>
-  <p>Microsoft is retiring all versions of HPC Pack. End of Support is August 27, 2027. HPC Pack is now entering a one-year retirement period. Microsoft will provide limited, retirement-only support during this period. The scope of this…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date not specified</span><a href="./retirements/unknown-date/570046/" aria-label="View details: Retirement: Microsoft HPC Pack">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Azure Communication Services</span><span class="badge upcoming" data-deadline="2028-09-30"><span></span>Upcoming</span></div>
-  <h3><a href="./retirements/2028-09-30/557117/">Retirement: Azure Communication Services (ACS) standalone services will be retired on September 30, 2028</a></h3>
-  <p>Microsoft will retire several standalone Azure Communication Services (ACS) offerings on September 30, 2028. After this date, the affected services will no longer be available.
+          <a class="timeline-detail" href="./retirements/2029-09-30/570283/" aria-label="View details: Retirement: Azure Arc enabled System Center Virtual Machine Manager will be retired September 30, 2029">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+      <li class="timeline-entry" data-record="556085">
+        <div class="timeline-date"><time datetime="2029-03-31">31 Mar 2029</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2029-03-31"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2029-03-31/556085/">Retirement: Azure Cosmos DB for PostgreSQL will retire on March 31, 2029</a></h5>
+          <p>On March 31, 2029, Azure Cosmos DB for PostgreSQL will be retired, and you&#39;ll need to migrate to Azure Database for PostgreSQL Elastic Cluster by that date.
+Azure Database for PostgreSQL Elastic Cluster delivers the same distributed…</p>
+          <a class="timeline-detail" href="./retirements/2029-03-31/556085/" aria-label="View details: Retirement: Azure Cosmos DB for PostgreSQL will retire on March 31, 2029">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+      <li class="timeline-entry" data-record="485819">
+        <div class="timeline-date"><time datetime="2028-03-31">31 Mar 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-03-31/485819/">Retirement: Azure Maps Route APIs Version 1.0 to Be Retired on March 31, 2028</a></h5>
+          <p>The following Azure Maps Route APIs version 1.0 will be retired on March 31, 2028:
+
+Get Route Directions
+
+Get Route Directions Batch
+
+Post Route Directions
+
+Post Route Direction Batch
+
+Post Route Directions Batch Sync
+
+Get Route Matrix…</p>
+          <a class="timeline-detail" href="./retirements/2028-03-31/485819/" aria-label="View details: Retirement: Azure Maps Route APIs Version 1.0 to Be Retired on March 31, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+</section>
+<section class="timeline-category" data-category="Virtual desktop infrastructure" aria-labelledby="timeline-category-14">
+  <div class="timeline-category-heading"><h3 id="timeline-category-14">Virtual desktop infrastructure</h3><span>1 retirement</span></div>
+  <section class="timeline-service" data-service="Microsoft Dev Box" aria-labelledby="timeline-service-14-1">
+    <div class="timeline-service-heading"><h4 id="timeline-service-14-1">Microsoft Dev Box</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="567933">
+        <div class="timeline-date"><time datetime="2028-09-18">18 Sep 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-09-18"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-09-18/567933/">Retirement: Microsoft Dev Box will be retired on September 18, 2028</a></h5>
+          <p>Microsoft Dev Box will retire on September 18, 2028. Beginning on September 14, 2026, Microsoft Dev Box will begin the closing-down process. After retirement, Microsoft Dev Box will no longer be available.
+Microsoft Dev Box is currently…</p>
+          <a class="timeline-detail" href="./retirements/2028-09-18/567933/" aria-label="View details: Retirement: Microsoft Dev Box will be retired on September 18, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+</section>
+<section class="timeline-category" data-category="Web" aria-labelledby="timeline-category-15">
+  <div class="timeline-category-heading"><h3 id="timeline-category-15">Web</h3><span>3 retirements</span></div>
+  <section class="timeline-service" data-service="App Service" aria-labelledby="timeline-service-15-1">
+    <div class="timeline-service-heading"><h4 id="timeline-service-15-1">App Service</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="485047">
+        <div class="timeline-date"><time datetime="2028-03-31">31 Mar 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-03-31/485047/">Retirement: Azure App Service Will No Longer Support Linked Databases as a Part of Custom Backups After March 31, 2028</a></h5>
+          <p>Beginning March 31, 2028, the Azure App Service custom backup feature will no longer back up linked databases configured as part of the Azure App Service custom backup feature. We strongly recommend that you use the native backup and…</p>
+          <a class="timeline-detail" href="./retirements/2028-03-31/485047/" aria-label="View details: Retirement: Azure App Service Will No Longer Support Linked Databases as a Part of Custom Backups After March 31, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Azure Communication Services" aria-labelledby="timeline-service-15-2">
+    <div class="timeline-service-heading"><h4 id="timeline-service-15-2">Azure Communication Services</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="557117">
+        <div class="timeline-date"><time datetime="2028-09-30">30 Sep 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-09-30"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-09-30/557117/">Retirement: Azure Communication Services (ACS) standalone services will be retired on September 30, 2028</a></h5>
+          <p>Microsoft will retire several standalone Azure Communication Services (ACS) offerings on September 30, 2028. After this date, the affected services will no longer be available.
 Details
 Beginning September 30, 2028, the following ACS…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2028-09-30">30 Sep 2028</time></span><a href="./retirements/2028-09-30/557117/" aria-label="View details: Retirement: Azure Communication Services (ACS) standalone services will be retired on September 30, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Azure Functions</span><span class="badge soon" data-deadline="2026-11-10"><span></span>Within 90 days</span></div>
-  <h3><a href="./retirements/2026-11-10/572838/">Retirement: Support for .NET 8 and .NET 9 ends on November 10, 2026—upgrade your apps to .NET 10</a></h3>
-  <p>Support for .NET 8 and .NET 9 will end on November 10, 2026. Please transition to .NET 10 by that date. Your Azure Function Apps will continue to operate, but security updates will no longer be provided, and support for .NET 8 and .NET…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2026-11-10">10 Nov 2026</time></span><a href="./retirements/2026-11-10/572838/" aria-label="View details: Retirement: Support for .NET 8 and .NET 9 ends on November 10, 2026—upgrade your apps to .NET 10">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Azure Functions</span><span class="badge soon" data-deadline="2026-11-10"><span></span>Within 90 days</span></div>
-  <h3><a href="./retirements/2026-11-10/572770/">Retirement: Support for PowerShell 7.4 ends on November 10, 2026</a></h3>
-  <p>Support for PowerShell 7.4 will end on November 10, 2026, please transition to PowerShell 7.6. Your Azure Function apps will continue to run, but security patches and updates will no longer be provided and customer support for…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2026-11-10">10 Nov 2026</time></span><a href="./retirements/2026-11-10/572770/" aria-label="View details: Retirement: Support for PowerShell 7.4 ends on November 10, 2026">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Azure Functions</span><span class="badge upcoming" data-deadline="2027-04-30"><span></span>Upcoming</span></div>
-  <h3><a href="./retirements/2027-04-30/572771/">Retirement: Support for Node.js 22 ends on April 30, 2027</a></h3>
-  <p>Support for Node.js 22 will end on April 30, 2027, please transition to Node.js 24 by that date. Your Azure Function apps will continue to run, but security patches and updates will no longer be provided and customer support for Node.js…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2027-04-30">30 Apr 2027</time></span><a href="./retirements/2027-04-30/572771/" aria-label="View details: Retirement: Support for Node.js 22 ends on April 30, 2027">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2026-10-14"><span></span>Retired</span></div>
-  <h3><a href="./retirements/2026-10-14/571342/">Retirement Update: SAP container images removed October 14, 2026</a></h3>
-  <p>The containerized SAP data connector retired on September 14, 2026 and is unsupported and unmaintained. Existing TLS-compliant agents may continue sending logs through the retired HTTP Data Collector API. Container images will be…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><time datetime="2026-10-14">14 Oct 2026</time></span><a href="./retirements/2026-10-14/571342/" aria-label="View details: Retirement Update: SAP container images removed October 14, 2026">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article><article class="card">
-  <div class="card-top"><span class="service-name">Azure platform</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h3><a href="./retirements/unknown-date/571257/">Retirement: Azure Linux with OS Guard in Azure Kubernetes Service</a></h3>
-  <p>Support for Azure Linux with OS Guard in Azure Kubernetes Service will end on December 10, 2026. Azure Container Linux is the replacement for Azure Linux with OS Guard (preview). Starting on December 10, 2026:Users won’t be able to…</p>
-  <div class="card-bottom"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date not specified</span><a href="./retirements/unknown-date/571257/" aria-label="View details: Retirement: Azure Linux with OS Guard in Azure Kubernetes Service">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a></div>
-</article></div>
+          <a class="timeline-detail" href="./retirements/2028-09-30/557117/" aria-label="View details: Retirement: Azure Communication Services (ACS) standalone services will be retired on September 30, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+  <section class="timeline-service" data-service="Azure Maps" aria-labelledby="timeline-service-15-3">
+    <div class="timeline-service-heading"><h4 id="timeline-service-15-3">Azure Maps</h4><span>1 retirement</span></div>
+    <ol class="timeline-events">
+      <li class="timeline-entry" data-record="485810">
+        <div class="timeline-date"><time datetime="2028-03-31">31 Mar 2028</time></div>
+        <article class="timeline-content">
+          <span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span>
+          <h5><a href="./retirements/2028-03-31/485810/">Retirement: Azure Maps Traffic APIs Version 1.0 to Be Retired on March 31, 2028</a></h5>
+          <p>The following Azure Maps Traffic APIs version 1.0 will be retired on March 31, 2028:
+
+Get Traffic Flow Segment
+
+Get Traffic Flow Tile
+
+Get Traffic Incident Detail
+
+Get Traffic Incident Tile
+
+Get Traffic Incident Viewport
+
+Please…</p>
+          <a class="timeline-detail" href="./retirements/2028-03-31/485810/" aria-label="View details: Retirement: Azure Maps Traffic APIs Version 1.0 to Be Retired on March 31, 2028">View details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        </article>
+      </li>
+    </ol>
+  </section>
+</section>
+</div>
   <div class="load-more"><button id="load-more" class="button" data-enhancement hidden>Show more retirements</button></div>
 </section>
 <footer>Last refreshed 10 Nov 2026 · 634 announcements

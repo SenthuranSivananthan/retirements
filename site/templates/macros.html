@@ -21,12 +21,30 @@
 {% if view.sourceUrl %}<a class="button primary" href="{{ view.sourceUrl }}" target="_blank" rel="noopener noreferrer">{{ text }} {{ icon('external') }}</a>{% endif %}
 {%- endmacro %}
 
-{% macro card(view) -%}
-{% set record = view.record %}
-<article class="card">
-  <div class="card-top"><span class="service-name">{{ record.service }}</span><span class="badge {{ view.status }}" data-deadline="{{ record.questions.deadline.date or '' }}"><span></span>{{ view.label }}</span></div>
-  <h3><a href="{{ view.url | relative_url }}">{{ record.title }}</a></h3>
-  <p>{{ record.summary }}</p>
-  <div class="card-bottom"><span>{{ icon('clock') }}{% if record.questions.deadline.date %}<time datetime="{{ record.questions.deadline.date }}">{{ view.deadline }}</time>{% else %}Date not specified{% endif %}</span><a href="{{ view.url | relative_url }}" aria-label="View details: {{ record.title }}">View details {{ icon('arrow') }}</a></div>
-</article>
+{% macro timeline(groups) -%}
+{% for category in groups %}
+{% set category_index = loop.index %}
+<section class="timeline-category" data-category="{{ category.name }}" aria-labelledby="timeline-category-{{ category_index }}">
+  <div class="timeline-category-heading"><h3 id="timeline-category-{{ category_index }}">{{ category.name }}</h3><span>{{ category.count }} {{ 'retirement' if category.count == 1 else 'retirements' }}</span></div>
+  {% for service in category.services %}
+  <section class="timeline-service" data-service="{{ service.name }}" aria-labelledby="timeline-service-{{ category_index }}-{{ loop.index }}">
+    <div class="timeline-service-heading"><h4 id="timeline-service-{{ category_index }}-{{ loop.index }}">{{ service.name }}</h4><span>{{ service.records | length }} {{ 'retirement' if service.records | length == 1 else 'retirements' }}</span></div>
+    <ol class="timeline-events">
+      {% for record in service.records %}
+      {% set view = site.byId[record.id] %}
+      <li class="timeline-entry" data-record="{{ record.id }}">
+        <div class="timeline-date">{% if record.questions.deadline.date %}<time datetime="{{ record.questions.deadline.date }}">{{ view.deadline }}</time>{% else %}<span>Date to confirm</span>{% endif %}</div>
+        <article class="timeline-content">
+          <span class="badge {{ view.status }}" data-deadline="{{ record.questions.deadline.date or '' }}"><span></span>{{ view.label }}</span>
+          <h5><a href="{{ view.url | relative_url }}">{{ record.title }}</a></h5>
+          <p>{{ record.summary }}</p>
+          <a class="timeline-detail" href="{{ view.url | relative_url }}" aria-label="View details: {{ record.title }}">View details {{ icon('arrow') }}</a>
+        </article>
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
+  {% endfor %}
+</section>
+{% endfor %}
 {%- endmacro %}

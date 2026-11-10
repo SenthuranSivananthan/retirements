@@ -172,6 +172,35 @@ def categories_of(record):
     return list(dict.fromkeys(record.get("categories") or ["Uncategorized"]))
 
 
+def services_of(record):
+    return list(dict.fromkeys(record["services"] or [record["service"]]))
+
+
+def sort_timeline(records):
+    ordered = sorted(records, key=lambda record: (record["title"].casefold(), record["id"]))
+    return sorted(ordered, key=lambda record: record["questions"]["deadline"]["date"] or "", reverse=True)
+
+
+def group_timeline(records, category="", service=""):
+    groups = {}
+    for record in records:
+        for category_name in categories_of(record):
+            if category and category_name != category:
+                continue
+            services = groups.setdefault(category_name, {})
+            for service_name in services_of(record):
+                if not service or service_name == service:
+                    services.setdefault(service_name, []).append(record)
+    return [{
+        "name": name,
+        "count": len({record["id"] for entries in groups[name].values() for record in entries}),
+        "services": [
+            {"name": service_name, "records": sort_timeline(groups[name][service_name])}
+            for service_name in sorted(groups[name], key=str.casefold)
+        ],
+    } for name in sorted(groups, key=str.casefold) if groups[name]]
+
+
 def group_retirements(records):
     years = {}
     for record in records:
@@ -247,12 +276,11 @@ def prepare_site(root=ROOT, today=None):
             "records": [{"id": record["id"], "title": record["title"], "url": by_id[record["id"]]["url"]} for record in category["records"]],
         } for category in group["categories"]],
     } for group in group_retirements(catalog["records"])]
-    newest = sorted(catalog["records"], key=lambda record: (record["title"].casefold(), record["id"]))
-    newest.sort(key=lambda record: record["announcedOn"] or "", reverse=True)
     metadata = {
         "byId": by_id, "navigation": navigation, "buildDate": today,
-        "services": sorted({service for record in catalog["records"] for service in record["services"]}, key=str.casefold),
-        "initialIds": [record["id"] for record in newest[:24]], "count": len(by_id),
+        "categories": sorted({category for record in catalog["records"] for category in categories_of(record)}, key=str.casefold),
+        "services": sorted({service for record in catalog["records"] for service in services_of(record)}, key=str.casefold),
+        "initialIds": [record["id"] for record in sort_timeline(catalog["records"])[:24]], "count": len(by_id),
         "refreshed": format_date(timestamp(catalog["retrievedAt"]).date().isoformat()),
         "upcoming": sum(view["status"] in {"upcoming", "soon"} for view in by_id.values()),
         "soon": sum(view["status"] == "soon" for view in by_id.values()),

@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 from pathlib import Path
-from scripts.catalog import record_url, retirement_outlook
+from scripts.catalog import format_date, record_url, retirement_outlook
 from html5lib import parse
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -54,7 +54,7 @@ class StaticSiteTests(unittest.TestCase):
         }
         self.metadata = {
             "byId": {"example": self.view}, "buildDate": "2026-11-10", "count": 1,
-            "navigation": [], "services": [], "initialIds": ["example"], "upcoming": 0, "soon": 0,
+            "navigation": [], "categories": [], "services": [], "initialIds": ["example"], "upcoming": 0, "soon": 0,
             "refreshed": "10 Nov 2026",
             "outlook": retirement_outlook([record], "2026-11-10"),
         }
@@ -86,6 +86,8 @@ class StaticSiteTests(unittest.TestCase):
             self.assertIn(f'?window={window}&amp;sort=date#catalog', home)
         self.assertIn('id="window"', home)
         document = parse(home, namespaceHTMLElements=False)
+        self.assertEqual(document.find(".//div[@id='results']").attrib["class"], "retirement-timeline")
+        self.assertIsNone(document.find(".//select[@id='sort']"))
         hero_links = document.findall(".//div[@class='hero-cta']/a")
         self.assertEqual(len(hero_links), 1)
         self.assertEqual(hero_links[0].attrib["href"], "#catalog")
@@ -105,6 +107,47 @@ class StaticSiteTests(unittest.TestCase):
         self.assertEqual(len(document.findall(".//section[@class='outlook']")), 1)
         self.assertIsNone(document.find(".//main//section[@class='outlook']"))
         self.assertIn("hidden", document.find(".//section[@class='stats']").attrib)
+
+    def test_static_timeline_groups_categories_services_and_orders_deadlines_descending(self):
+        self.metadata["byId"] = {}
+        self.metadata["initialIds"] = []
+        for identifier, title, deadline, categories, services in (
+            ("a", "Zulu", "2028-01-01", ["Compute"], ["VM"]),
+            ("b", "Earlier", "2026-01-01", ["Compute"], ["VM"]),
+            ("c", "Unknown", None, ["Compute"], ["VM"]),
+            ("d", "Alpha", "2028-01-01", ["Compute"], ["VM"]),
+            ("e", "Shared", "2027-01-01", ["Compute", "Storage"], ["VM", "Blob"]),
+        ):
+            view = copy.deepcopy(self.view)
+            view["record"].update({"id": identifier, "title": title, "categories": categories, "services": services})
+            view["record"]["questions"]["deadline"].update({"date": deadline, "month": "May 2029"})
+            view.update({"url": record_url(view["record"]), "deadline": format_date(deadline)})
+            self.metadata["byId"][identifier] = view
+            self.metadata["initialIds"].append(identifier)
+        self.metadata["count"] = 5
+        self.save()
+        builder.build_site(self.root)
+        document = parse((self.root / "docs" / "index.html").read_text(encoding="utf-8"), namespaceHTMLElements=False)
+        categories = document.findall(".//div[@id='results']/section")
+        self.assertEqual([group.attrib["data-category"] for group in categories], ["Compute", "Storage"])
+        services = categories[0].findall("section")
+        self.assertEqual([group.attrib["data-service"] for group in services], ["Blob", "VM"])
+        entries = services[1].findall("ol/li")
+        self.assertEqual([entry.attrib["data-record"] for entry in entries], ["d", "a", "e", "b", "c"])
+        self.assertEqual(entries[0].find(".//time").attrib["datetime"], "2028-01-01")
+        self.assertIsNone(entries[-1].find(".//time"))
+        self.assertIn("Date to confirm", "".join(entries[-1].itertext()))
+        ids = [node.attrib["id"] for node in document.iter() if "id" in node.attrib]
+        self.assertEqual(len(ids), len(set(ids)))
+
+    def test_category_dropdown_lists_all_prepared_categories_with_an_all_option(self):
+        self.metadata["categories"] = ["Compute", "Storage", "Uncategorized"]
+        self.save()
+        builder.build_site(self.root)
+        document = parse((self.root / "docs" / "index.html").read_text(encoding="utf-8"), namespaceHTMLElements=False)
+        options = document.findall(".//select[@id='category']/option")
+        self.assertEqual([option.attrib["value"] for option in options], ["", "Compute", "Storage", "Uncategorized"])
+        self.assertEqual(options[0].text, "All categories")
 
     def test_stale_pages_are_removed_but_unrelated_files_are_preserved(self):
         builder.build_site(self.root)

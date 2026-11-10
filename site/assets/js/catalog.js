@@ -47,6 +47,40 @@ export function retirementYear(record) {
 export function categoriesOf(record) {
     return record.categories?.length ? [...new Set(record.categories)] : ['Uncategorized'];
 }
+export function servicesOf(record) {
+    return [...new Set(record.services.length ? record.services : [record.service])];
+}
+function compareTimelineDates(a, b) {
+    return (b.questions.deadline.date || '').localeCompare(a.questions.deadline.date || '')
+        || a.title.localeCompare(b.title) || a.id.localeCompare(b.id);
+}
+export function groupTimeline(records, filters = {}) {
+    const groups = new Map();
+    for (const record of records) {
+        for (const category of categoriesOf(record)) {
+            if (filters.category && category !== filters.category)
+                continue;
+            if (!groups.has(category))
+                groups.set(category, new Map());
+            const services = groups.get(category);
+            for (const service of servicesOf(record)) {
+                if (filters.service && service !== filters.service)
+                    continue;
+                if (!services.has(service))
+                    services.set(service, []);
+                services.get(service).push(record);
+            }
+        }
+    }
+    return [...groups].filter(([, services]) => services.size)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([name, services]) => ({
+            name,
+            count: new Set([...services.values()].flat().map(record => record.id)).size,
+            services: [...services].sort(([a], [b]) => a.localeCompare(b))
+                .map(([name, records]) => ({ name, records: [...records].sort(compareTimelineDates) })),
+        }));
+}
 export function groupRetirements(records) {
     const years = new Map();
     for (const record of records) {
@@ -91,7 +125,7 @@ export function filterRecords(records, filters, today = new Date().toISOString()
         const status = statusOf(record.questions.deadline, today);
         const text = `${record.title} ${record.service} ${record.summary} ${record.questions.what.announcement}`.toLocaleLowerCase();
         return terms.every(term => text.includes(term))
-            && (!filters.service || record.services.includes(filters.service))
+            && (!filters.service || servicesOf(record).includes(filters.service))
             && (!filters.year || retirementYear(record) === filters.year)
             && (!filters.category || categoriesOf(record).includes(filters.category))
             && (!window || inRetirementWindow(record.questions.deadline, window))
@@ -102,6 +136,8 @@ export function filterRecords(records, filters, today = new Date().toISOString()
             return a.title.localeCompare(b.title);
         if (filters.sort === 'newest')
             return (b.announcedOn || '').localeCompare(a.announcedOn || '') || a.title.localeCompare(b.title);
+        if (filters.sort === 'date-desc')
+            return compareTimelineDates(a, b);
         return (a.questions.deadline.date || '9999').localeCompare(b.questions.deadline.date || '9999') || a.title.localeCompare(b.title);
     });
 }
