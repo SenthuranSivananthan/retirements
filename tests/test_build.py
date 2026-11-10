@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 from pathlib import Path
-from scripts.catalog import retirement_outlook
+from scripts.catalog import record_url, retirement_outlook
 from html5lib import parse
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -41,12 +41,13 @@ class StaticSiteTests(unittest.TestCase):
         (source / "assets" / "css" / "style.css").write_text("body {}", encoding="utf-8")
         record = copy.deepcopy(json.loads((ROOT / "data" / "retirements.json").read_text(encoding="utf-8"))["records"][0])
         record["id"] = "example"
+        record["questions"]["deadline"].update({"date": None, "month": None})
         record["title"] = 'Retirement <script>alert("unsafe")</script>'
         record["questions"]["what"]["announcement"] = "First <script>unsafe</script>\nSecond line"
         self.view = {
             "record": record, "status": "unknown", "label": "Date to confirm",
             "countdown": "Retirement date to confirm", "year": "unknown", "categories": ["Uncategorized"],
-            "url": "/retirements/example/", "deadline": "Date not specified", "announced": "Date not specified",
+            "url": record_url(record), "deadline": "Date not specified", "announced": "Date not specified",
             "updated": "Not provided by source", "sourceUrl": None, "resources": [],
             "support": {"url": None, "title": "Support"}, "advisor": {"url": None, "title": "Advisor"},
             "sections": [{"id": key, "question": value["question"]} for key, value in record["questions"].items()],
@@ -67,9 +68,9 @@ class StaticSiteTests(unittest.TestCase):
     def test_complete_static_content_relative_links_and_escaping(self):
         self.assertEqual(builder.build_site(self.root), 1)
         destination = self.root / "docs"
-        html = (destination / "retirements" / "example" / "index.html").read_text(encoding="utf-8")
-        self.assertIn('data-home="../../"', html)
-        self.assertIn('src="../../assets/js/main.js"', html)
+        html = (destination / "retirements" / "unknown-date" / "example" / "index.html").read_text(encoding="utf-8")
+        self.assertIn('data-home="../../../"', html)
+        self.assertIn('src="../../../assets/js/main.js"', html)
         positions = [html.index(f'<section id="{key}">') for key in ("what", "actions", "impact", "deadline", "progress")]
         self.assertEqual(positions, sorted(positions))
         self.assertNotIn("<script>unsafe</script>", html)
@@ -94,7 +95,7 @@ class StaticSiteTests(unittest.TestCase):
         self.assertIsNotNone(page_content.find("main[@id='main']"))
         detail_document = parse(html, namespaceHTMLElements=False)
         detail_shortcut = detail_document.find(".//aside//a[@data-nav='soon']")
-        self.assertEqual(detail_shortcut.attrib["href"], "../../?status=soon&sort=date#catalog")
+        self.assertEqual(detail_shortcut.attrib["href"], "../../../?status=soon&sort=date#catalog")
         self.assertIsNotNone(detail_document.find(".//div[@class='page-content']/main[@id='main']"))
         hero_outlook = document.find(".//section[@id='home-hero']/div[@class='hero-in']/section[@class='outlook']")
         self.assertIsNotNone(hero_outlook)
@@ -106,7 +107,7 @@ class StaticSiteTests(unittest.TestCase):
     def test_stale_pages_are_removed_but_unrelated_files_are_preserved(self):
         builder.build_site(self.root)
         destination = self.root / "docs"
-        notes = destination / "retirements" / "example" / "notes.txt"
+        notes = destination / "retirements" / "unknown-date" / "example" / "notes.txt"
         notes.write_text("Preserve this file.", encoding="utf-8")
         download = destination / "downloads" / "custom.txt"
         download.parent.mkdir()
@@ -119,6 +120,41 @@ class StaticSiteTests(unittest.TestCase):
         self.assertFalse((notes.parent / "index.html").exists())
         self.assertEqual(notes.read_text(encoding="utf-8"), "Preserve this file.")
         self.assertTrue(download.is_file())
+
+    def test_deadline_changes_move_pages_and_remove_stale_and_legacy_paths(self):
+        builder.build_site(self.root)
+        retirement_root = self.root / "docs" / "retirements"
+        legacy = retirement_root / "example"
+        legacy.mkdir()
+        (legacy / "index.html").write_text("Old flat page", encoding="utf-8")
+        (legacy / "notes.txt").write_text("Preserve this file.", encoding="utf-8")
+        for deadline, previous in (
+            ("2026-05-12", "unknown-date"),
+            ("2027-01-02", "2026-05-12"),
+            (None, "2027-01-02"),
+        ):
+            self.view["record"]["questions"]["deadline"]["date"] = deadline
+            self.view["url"] = record_url(self.view["record"])
+            self.save()
+            self.assertEqual(builder.build_site(self.root), 1)
+            self.assertFalse((retirement_root / previous).exists())
+            target = retirement_root / (deadline or "unknown-date") / "example" / "index.html"
+            self.assertTrue(target.is_file())
+            document = parse(target.read_text(encoding="utf-8"), namespaceHTMLElements=False)
+            self.assertEqual(document.find(".//body").attrib["data-home"], "../../../")
+            home = (self.root / "docs" / "index.html").read_text(encoding="utf-8")
+            self.assertIn(f'href="./retirements/{deadline or "unknown-date"}/example/"', home)
+        self.assertFalse((legacy / "index.html").exists())
+        self.assertEqual((legacy / "notes.txt").read_text(encoding="utf-8"), "Preserve this file.")
+        self.assertEqual(len(list(retirement_root.rglob("index.html"))), 1)
+
+    def test_invalid_deadline_folder_cannot_escape_the_output_directory(self):
+        for deadline in ("../../outside", "2026-02-30", ""):
+            self.view["record"]["questions"]["deadline"]["date"] = deadline
+            self.save()
+            with self.subTest(deadline=deadline), self.assertRaisesRegex(ValueError, "Invalid retirement date"):
+                builder.build_site(self.root)
+            self.assertFalse((self.root / "docs").exists())
 
     def test_date_window_lists_all_known_years_after_rolling_windows_without_status_dropdown(self):
         self.metadata["navigation"] = [

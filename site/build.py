@@ -15,7 +15,7 @@ from markupsafe import Markup, escape
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from scripts.catalog import prepare_site
+from scripts.catalog import prepare_site, record_url
 from scripts.check_site import check_site
 
 
@@ -53,6 +53,7 @@ def build_site(root=ROOT):
     for identifier, view in metadata["byId"].items():
         if not identifier or identifier in {".", ".."} or view["record"]["id"] != identifier:
             raise ValueError(f"Invalid retirement ID in prepared metadata: {identifier!r}")
+        record_url(view["record"])
     environment = Environment(
         loader=FileSystemLoader(source / "templates"),
         autoescape=True,
@@ -89,15 +90,18 @@ def build_site(root=ROOT):
     expected = set()
     for view in metadata["byId"].values():
         record = view["record"]
-        path = Path("retirements") / quote(record["id"], safe="!~*'()") / "index.html"
+        path = Path(record_url(record).lstrip("/")) / "index.html"
         expected.add(path)
         render("retirement.html", path, record["title"], "retirement", view)
 
-    for old in (destination / "retirements").glob("*/index.html"):
+    retirement_root = destination / "retirements"
+    for old in list(retirement_root.rglob("index.html")):
         if old.relative_to(destination) not in expected:
             old.unlink()
-            if not any(old.parent.iterdir()):
-                old.parent.rmdir()
+            parent = old.parent
+            while parent != retirement_root and not any(parent.iterdir()):
+                parent.rmdir()
+                parent = parent.parent
 
     for directory in ("css", "js", "data"):
         shutil.copytree(source / "assets" / directory, destination / "assets" / directory, dirs_exist_ok=True, copy_function=copy_asset)

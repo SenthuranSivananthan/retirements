@@ -113,7 +113,9 @@ retirements
     .nojekyll               Tells GitHub Pages to serve generated files directly
     index.html
     404.html
-    retirements\            One complete HTML page per retirement
+    retirements\
+      YYYY-MM-DD\<id>\      Detail pages grouped by exact retirement deadline
+      unknown-date\<id>\    Detail pages without an exact retirement deadline
     assets\                 Published CSS, JavaScript, and catalog download
   data\
     retirements.json        Canonical, manually enrichable source catalog
@@ -142,7 +144,9 @@ The `docs/.nojekyll` file disables Jekyll processing. GitHub serves the already-
 
 `site/config.json` sets `url` to `https://senthuransivananthan.github.io` and `baseurl` to `/retirements`. Update them for another repository or custom domain, using an empty `baseurl` for a domain-root site. Normal pages use page-relative assets and navigation, supporting both root-level local preview and project-path publishing. The 404 page uses the configured production base path so it works for arbitrary missing URLs.
 
-Each detail has a real static URL, for example `/retirements/retirements/575106/` on the project site. The first `retirements` is the repository's base path. Filters use ordinary query strings. Existing `#/retirements/<id>` and `#/?...` links redirect to their static or query-string equivalents, retaining navigation context.
+Each detail has a real static URL shaped like `/retirements/retirements/YYYY-MM-DD/<id>/` on the project site. The first `retirements` is the repository's base path; the date folder is the exact retirement deadline, not the announcement date. Records sharing a deadline keep separate ID folders. Unknown or month-only deadlines use `unknown-date/<id>/` without inventing a day. Rebuilding removes stale generated pages and empty date folders when a deadline changes, while preserving unrelated files.
+
+Filters use ordinary query strings. Existing `#/retirements/<id>` and `#/?...` links redirect to their current static or query-string equivalents, retaining navigation context. On GitHub Pages, the custom 404 page also redirects old flat detail URLs and outdated date folders to the current detail page, preserving query strings and section anchors. These redirects require JavaScript; current detail pages and navigation remain usable without it. Python's basic local HTTP server does not serve the custom 404 page for missing paths.
 
 ### Automated refresh
 
