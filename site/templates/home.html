@@ -27,6 +27,7 @@
     <label><span>Category</span><select id="category"><option value="">All categories</option>{% for category in site.categories %}<option value="{{ category }}">{{ category }}</option>{% endfor %}</select></label>
     <label><span>Service</span><select id="service"><option value="">All services</option>{% for service in site.services %}<option value="{{ service }}">{{ service }}</option>{% endfor %}</select></label>
     <label><span>Date window</span><select id="window"><option value="">All dates</option>{% for window in site.outlook %}<option value="{{ window.key }}">{{ window.label }}</option>{% endfor %}{% for group in site.navigation if group.year != 'unknown' %}<option value="{{ group.year }}">{{ group.label }}</option>{% endfor %}</select></label>
+    <button id="reset-filters" type="button" class="button">Reset filters</button>
   </div>
   <div class="results-bar"><p id="result-count" role="status" aria-live="polite">Showing {{ site.initialIds | length }} of {{ site.count }} retirements</p><span>Retirement date: newest first</span></div>
   <p class="timeline-note" id="timeline-note">Grouped by service category and service. Retirements appear in each applicable group; result counts are unique. Dates to confirm appear last within each service.</p>

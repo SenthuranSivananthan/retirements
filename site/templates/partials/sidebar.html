@@ -18,6 +18,7 @@
       {% endfor %}
     </details>
     {% endfor %}
+    <p id="navigation-empty" class="nav-empty" role="status" hidden>No retirements match the current filters. <a href="{{ '/' | relative_url }}#catalog">Clear filters</a></p>
     <details class="status-navigation"><summary>Browse by status</summary>
       <a href="{{ '/' | relative_url }}?status=upcoming" data-nav="upcoming">Upcoming retirements</a>
       <a href="{{ '/' | relative_url }}?status=soon&amp;sort=date#catalog" data-nav="soon">Within 90 days</a>

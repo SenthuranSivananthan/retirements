@@ -50,6 +50,11 @@ export function categoriesOf(record) {
 export function servicesOf(record) {
     return [...new Set(record.services.length ? record.services : [record.service])];
 }
+export function servicesForCategory(records, category = '') {
+    return [...new Set(records
+        .filter(record => !category || categoriesOf(record).includes(category))
+        .flatMap(servicesOf))].sort((a, b) => a.localeCompare(b));
+}
 function compareTimelineDates(a, b) {
     return (b.questions.deadline.date || '').localeCompare(a.questions.deadline.date || '')
         || a.title.localeCompare(b.title) || a.id.localeCompare(b.id);

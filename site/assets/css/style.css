@@ -79,6 +79,8 @@ nav a svg { width: 17px; height: 17px; }
 .sidebar summary:hover { background: var(--accent-soft); }
 .sidebar details a { padding-left: 34px; }
 .nav-section-label { color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; margin: 20px 12px 8px; }
+.nav-empty { margin: 12px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.sidebar .nav-empty a { padding: 8px 0; color: var(--accent); }
 .year-group > summary, .category-group > summary { display: flex; align-items: center; gap: 8px; list-style: none; }
 .year-group > summary::-webkit-details-marker, .category-group > summary::-webkit-details-marker { display: none; }
 .year-group > summary::before, .category-group > summary::before { content: ''; width: 6px; height: 6px; border-right: 1.5px solid var(--muted); border-bottom: 1.5px solid var(--muted); transform: rotate(-45deg); flex: none; margin-right: 4px; }
@@ -147,8 +149,9 @@ h2 { font-size: 24px; letter-spacing: -.7px; margin: 10px 0; font-weight: 600; }
 .filters { display: flex; align-items: stretch; gap: 12px; margin-top: 24px; background: var(--soft); border: 1px solid var(--line); border-radius: 9px; padding: 16px; }
 .filters > label:not(.search-field) { display: flex; align-items: center; position: relative; min-width: 0; }
 .filters select { min-width: 0; width: 100%; }
+.filters > .button { flex: none; white-space: nowrap; }
 .filters > label > span:not(.sr-only) { position: absolute; top: -9px; left: 10px; font-size: 9px; padding: 0 4px; background: var(--soft); color: var(--muted); z-index: 1; }
-.search-field { display: flex; align-items: center; flex: 1; position: relative; min-width: 100px; }
+.search-field { display: flex; align-items: center; flex: 1 1 220px; position: relative; min-width: 100px; }
 .search-field svg { position: absolute; left: 12px; width: 16px; color: var(--muted); }
 input, select { background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 6px; font-size: 12px; height: 40px; }
 input { width: 100%; padding: 0 12px 0 37px; }
@@ -252,7 +255,8 @@ dl { margin: 20px 0; } dt { font-size: 10px; color: var(--muted); margin-top: 18
 }
 @media (max-width: 600px) {
   .outlook-grid { gap: 10px; }.outlook-card { padding: 14px; }
-  .filters > label:last-child { flex-basis: 100%; }
+  .filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .filters .search-field { grid-column: 1 / -1; }
   .top { padding: 0 12px; gap: 10px; }
   .header-search { min-width: 0; }
   .header-search input { padding-right: 10px; font-size: 13px; }
