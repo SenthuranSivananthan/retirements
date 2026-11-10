@@ -6,7 +6,9 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urljoin, urlsplit
 
-from .catalog import QUESTIONS, ROOT, parse_catalog, record_url, retirement_outlook, valid_date
+from html5lib import parse
+
+from .catalog import QUESTIONS, ROOT, categories_of, group_timeline, parse_catalog, record_url, retirement_outlook, sort_timeline, valid_date
 
 
 class Elements(HTMLParser):
@@ -35,7 +37,23 @@ def check_site(root=ROOT):
     home_html = (destination / "index.html").read_text(encoding="utf-8")
     home = Elements(home_html)
     require(any(tag == "body" and attrs.get("data-home") == "./" for tag, attrs in home.tags), "Homepage links must be relative")
-    require(sum(tag == "article" and attrs.get("class") == "card" for tag, attrs in home.tags) == min(24, len(catalog["records"])), "Incorrect initial card count")
+    document = parse(home_html, namespaceHTMLElements=False)
+    category_options = document.findall(".//select[@id='category']/option")
+    expected_categories = sorted({category for record in catalog["records"] for category in categories_of(record)}, key=str.casefold)
+    require([option.attrib.get("value") for option in category_options] == ["", *expected_categories], "Category filter does not include every catalog category")
+    timeline = document.find(".//div[@id='results']")
+    require(timeline is not None and timeline.attrib.get("class") == "retirement-timeline", "Missing grouped retirement timeline")
+    initial = sort_timeline(catalog["records"])[:24]
+    expected_groups = group_timeline(initial)
+    categories = timeline.findall("section[@class='timeline-category']")
+    require([group.attrib.get("data-category") for group in categories] == [group["name"] for group in expected_groups], "Incorrect timeline categories")
+    for category, expected_category in zip(categories, expected_groups):
+        services = category.findall("section[@class='timeline-service']")
+        require([group.attrib.get("data-service") for group in services] == [group["name"] for group in expected_category["services"]], "Incorrect timeline services")
+        for service, expected_service in zip(services, expected_category["services"]):
+            entries = service.findall("./ol/li[@class='timeline-entry']")
+            require([entry.attrib.get("data-record") for entry in entries] == [record["id"] for record in expected_service["records"]], "Incorrect timeline entries or descending deadline order")
+    require({entry.attrib.get("data-record") for entry in timeline.findall(".//li[@class='timeline-entry']")} == {record["id"] for record in initial}, "Incorrect unique initial timeline records")
     as_of = next((attrs.get("datetime") for tag, attrs in home.tags if tag == "time" and attrs.get("id") == "outlook-date"), None)
     require(isinstance(as_of, str) and valid_date(as_of), "Missing or invalid outlook date")
     cards = re.findall(r'<a class="outlook-card"[^>]*>.*?</a>', home_html, re.S)

@@ -15,7 +15,7 @@ from markupsafe import Markup, escape
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from scripts.catalog import prepare_site, record_url
+from scripts.catalog import group_timeline, prepare_site, record_url
 from scripts.check_site import check_site
 
 
@@ -65,7 +65,10 @@ def build_site(root=ROOT):
     environment.filters["relative_url"] = relative_url
     environment.filters["url_encode"] = lambda value: quote(str(value), safe="")
     environment.filters["nl2br"] = lambda value: Markup("<br>").join(escape(value).splitlines())
-    site = {**config, **metadata}
+    site = {
+        **config, **metadata,
+        "timeline": group_timeline([metadata["byId"][identifier]["record"] for identifier in metadata["initialIds"]]),
+    }
 
     def render(template, path, title, layout, view=None):
         target = destination / path

@@ -8,12 +8,72 @@ from fixtures import ITEM, catalog
 from scripts.catalog import (
     ROOT, QUESTIONS, categories_of, countdown, days_until, format_date, group_retirements,
     parse_catalog, prepare_site, record_url, retirement_year, safe_url, status_of,
-    in_retirement_window, retirement_outlook, retirement_window,
+    group_timeline, in_retirement_window, retirement_outlook, retirement_window, services_of, sort_timeline,
 )
 from scripts.feed import normalize, title_date
 
 
 class CatalogTests(unittest.TestCase):
+    def test_timeline_groups_categories_and_individual_services_with_descending_deadlines(self):
+        def record(identifier, title, deadline, categories, services):
+            return {
+                "id": identifier, "title": title, "categories": categories,
+                "service": "Combined services", "services": services,
+                "questions": {"deadline": {"date": deadline, "month": "May 2029"}},
+            }
+        records = [
+            record("a", "Zulu", "2028-01-01", ["Compute"], ["VM"]),
+            record("b", "Earlier", "2026-01-01", ["Compute"], ["VM"]),
+            record("c", "Unconfirmed", None, ["Compute"], ["VM"]),
+            record("d", "Alpha", "2028-01-01", ["Compute"], ["VM"]),
+            record("e", "Multiple services", "2027-01-01", ["Storage", "Compute", "Storage"], ["VM", "Blob", "VM"]),
+        ]
+        before = copy.deepcopy(records)
+        groups = group_timeline(records)
+        self.assertEqual([group["name"] for group in groups], ["Compute", "Storage"])
+        self.assertEqual([group["count"] for group in groups], [5, 1])
+        self.assertEqual([group["name"] for group in groups[0]["services"]], ["Blob", "VM"])
+        self.assertEqual([record["id"] for record in groups[0]["services"][1]["records"]], ["d", "a", "e", "b", "c"])
+        self.assertEqual([record["id"] for record in sort_timeline(records)], ["d", "a", "e", "b", "c"])
+        filtered = group_timeline(records, category="Storage", service="Blob")
+        self.assertEqual(len(filtered), 1)
+        self.assertEqual([group["name"] for group in filtered[0]["services"]], ["Blob"])
+        self.assertEqual([record["id"] for record in filtered[0]["services"][0]["records"]], ["e"])
+        self.assertEqual(group_timeline(records, service="Missing"), [])
+        self.assertEqual(group_timeline([]), [])
+        self.assertEqual(records, before)
+
+    def test_timeline_keeps_uncategorized_and_primary_service_fallbacks(self):
+        record = catalog()["records"][0]
+        del record["categories"]
+        record.update({"services": [], "service": "Azure fallback"})
+        self.assertEqual(services_of(record), ["Azure fallback"])
+        group = group_timeline([record])[0]
+        self.assertEqual(group["name"], "Uncategorized")
+        self.assertEqual(group["services"][0]["name"], "Azure fallback")
+
+    def test_preparation_selects_latest_deadlines_instead_of_latest_announcements(self):
+        value = catalog()
+        original = value["records"][0]
+        value["records"] = []
+        for identifier, deadline, announced in (
+            ("unknown", None, "2026-11-10"),
+            ("earliest", "2025-01-01", "2026-11-10"),
+            ("latest", "2029-01-01", "2020-01-01"),
+            ("middle", "2027-01-01", "2025-01-01"),
+        ):
+            record = copy.deepcopy(original)
+            record.update({"id": identifier, "title": identifier, "announcedOn": announced})
+            record["questions"]["deadline"]["date"] = deadline
+            value["records"].append(record)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "data" / "retirements.json"
+            source.parent.mkdir()
+            source.write_text(json.dumps(value), encoding="utf-8")
+            metadata = prepare_site(root, "2026-11-10")
+            self.assertEqual(metadata["initialIds"], ["latest", "middle", "earliest", "unknown"])
+
     def test_detail_urls_use_exact_deadlines_or_unknown_date_and_keep_unique_ids(self):
         record = catalog()["records"][0]
         for deadline, month, folder in (
@@ -208,6 +268,7 @@ class CatalogTests(unittest.TestCase):
             self.assertEqual(metadata["byId"]["a"]["record"], record)
             self.assertEqual(metadata["byId"]["a"]["url"], record_url(record))
             self.assertEqual(metadata["byId"]["a"]["categories"], ["Uncategorized"])
+            self.assertEqual(metadata["categories"], ["Uncategorized"])
             self.assertEqual([section["id"] for section in metadata["byId"]["a"]["sections"]], list(QUESTIONS))
             self.assertEqual(source.read_bytes(), original)
             self.assertEqual((root / "site" / "assets" / "data" / "retirements.json").read_bytes(), original)

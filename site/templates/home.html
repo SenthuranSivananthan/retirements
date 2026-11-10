@@ -24,11 +24,13 @@
   <div id="group-filter" class="group-filter" aria-label="Current navigation filters" hidden></div>
   <div class="filters" data-enhancement hidden>
     <label class="search-field"><span class="sr-only">Search retirements</span>{{ icon('search') }}<input id="search" type="search" placeholder="Search services, features, or keywords…"></label>
+    <label><span>Category</span><select id="category"><option value="">All categories</option>{% for category in site.categories %}<option value="{{ category }}">{{ category }}</option>{% endfor %}</select></label>
     <label><span>Service</span><select id="service"><option value="">All services</option>{% for service in site.services %}<option value="{{ service }}">{{ service }}</option>{% endfor %}</select></label>
     <label><span>Date window</span><select id="window"><option value="">All dates</option>{% for window in site.outlook %}<option value="{{ window.key }}">{{ window.label }}</option>{% endfor %}{% for group in site.navigation if group.year != 'unknown' %}<option value="{{ group.year }}">{{ group.label }}</option>{% endfor %}</select></label>
   </div>
-  <div class="results-bar"><p id="result-count" role="status" aria-live="polite">Showing {{ site.initialIds | length }} of {{ site.count }} retirements</p><label data-enhancement hidden>Sort by <select id="sort"><option value="date">Retirement date</option><option value="newest" selected>Latest announced</option><option value="title">Title A–Z</option></select></label></div>
-  <div id="results" class="cards">{% for id in site.initialIds %}{{ card(site.byId[id]) }}{% endfor %}</div>
+  <div class="results-bar"><p id="result-count" role="status" aria-live="polite">Showing {{ site.initialIds | length }} of {{ site.count }} retirements</p><span>Retirement date: newest first</span></div>
+  <p class="timeline-note" id="timeline-note">Grouped by service category and service. Retirements appear in each applicable group; result counts are unique. Dates to confirm appear last within each service.</p>
+  <div id="results" class="retirement-timeline" aria-describedby="timeline-note">{{ timeline(site.timeline) }}</div>
   <div class="load-more"><button id="load-more" class="button" data-enhancement hidden>Show more retirements</button></div>
 </section>
 {% endblock %}

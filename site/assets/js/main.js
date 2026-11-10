@@ -1,5 +1,5 @@
 import catalog from './data.js';
-import { RETIREMENT_WINDOWS, categoriesOf, directoryUrl, escapeHtml as e, filterRecords, formatDate, groupRetirements, inRetirementWindow, recordUrl, retirementCountdown, retirementWindow, retirementYear, statusOf } from './catalog.js';
+import { RETIREMENT_WINDOWS, categoriesOf, directoryUrl, escapeHtml as e, filterRecords, formatDate, groupRetirements, groupTimeline, inRetirementWindow, recordUrl, retirementCountdown, retirementWindow, retirementYear, servicesOf, statusOf } from './catalog.js';
 function element(selector) {
     const node = document.querySelector(selector);
     if (!node)
@@ -12,7 +12,7 @@ if (!home)
 const homeUrl = new URL(home, location.href);
 const isDirectory = document.body.dataset.page === 'home';
 const activeRecord = catalog.records.find(record => record.id === document.body.dataset.record);
-const services = new Set(catalog.records.flatMap(record => record.services));
+const services = new Set(catalog.records.flatMap(servicesOf));
 const categories = new Set(catalog.records.flatMap(categoriesOf));
 const years = new Set(groupRetirements(catalog.records).map(group => group.year));
 const labels = { upcoming: 'Upcoming', soon: 'Within 90 days', retired: 'Retired', unknown: 'Date to confirm' };
@@ -27,9 +27,6 @@ function detailLink(record, context = {}) {
 function statusFilter(value) {
     return value === 'upcoming' || value === 'soon' || value === 'retired' || value === 'unknown' ? value : 'all';
 }
-function sortOrder(value) {
-    return value === 'date' || value === 'title' ? value : 'newest';
-}
 function windowFilter(value) {
     return RETIREMENT_WINDOWS.includes(value) ? value : '';
 }
@@ -41,7 +38,7 @@ function readFilters() {
     return {
         q: params.get('q') || '', service: services.has(service) ? service : '',
         year: years.has(year) ? year : '', category: categories.has(category) ? category : '',
-        status: statusFilter(params.get('status')), sort: sortOrder(params.get('sort')),
+        status: statusFilter(params.get('status')), sort: 'date-desc',
         window: windowFilter(params.get('window')),
     };
 }
@@ -226,19 +223,32 @@ function updateNav() {
             link.removeAttribute('aria-current');
     }
 }
+function renderTimelineEntry(record) {
+    const deadline = record.questions.deadline;
+    const status = statusOf(deadline);
+    const url = detailLink(record, filters);
+    return `<li class="timeline-entry" data-record="${e(record.id)}">
+      <div class="timeline-date">${deadline.date ? `<time datetime="${e(deadline.date)}">${e(formatDate(deadline.date))}</time>` : '<span>Date to confirm</span>'}</div>
+      <article class="timeline-content">
+        <span class="badge ${status}" data-deadline="${e(deadline.date || '')}"><span></span>${labels[status]}</span>
+        <h5><a href="${e(url)}">${e(record.title)}</a></h5><p>${e(record.summary)}</p>
+        <a class="timeline-detail" href="${e(url)}" aria-label="View details: ${e(record.title)}">View details ${icon('arrow')}</a>
+      </article>
+    </li>`;
+}
 function renderResults() {
     const records = filterRecords(catalog.records, filters);
     element('#result-count').textContent = `Showing ${Math.min(visible, records.length)} of ${records.length} retirements`;
-    element('#results').innerHTML = records.length ? records.slice(0, visible).map(record => {
-        const deadline = record.questions.deadline;
-        const status = statusOf(deadline);
-        const url = detailLink(record, filters);
-        return `<article class="card">
-      <div class="card-top"><span class="service-name">${e(record.service)}</span><span class="badge ${status}" data-deadline="${e(deadline.date || '')}"><span></span>${labels[status]}</span></div>
-      <h3><a href="${e(url)}">${e(record.title)}</a></h3><p>${e(record.summary)}</p>
-      <div class="card-bottom"><span>${icon('clock')}${deadline.date ? `<time datetime="${e(deadline.date)}">${e(formatDate(deadline.date))}</time>` : 'Date not specified'}</span><a href="${e(url)}" aria-label="View details: ${e(record.title)}">View details ${icon('arrow')}</a></div>
-    </article>`;
-    }).join('') : `<div class="empty"><h3>No matching retirements</h3><p>Try a different keyword, service, date window, or category.</p><a class="button" href="${e(homeUrl.pathname)}">Clear filters</a></div>`;
+    const groups = groupTimeline(records.slice(0, visible), filters);
+    element('#results').innerHTML = records.length ? groups.map((category, categoryIndex) => `
+      <section class="timeline-category" data-category="${e(category.name)}" aria-labelledby="timeline-category-${categoryIndex}">
+        <div class="timeline-category-heading"><h3 id="timeline-category-${categoryIndex}">${e(category.name)}</h3><span>${category.count} ${category.count === 1 ? 'retirement' : 'retirements'}</span></div>
+        ${category.services.map((service, serviceIndex) => `
+        <section class="timeline-service" data-service="${e(service.name)}" aria-labelledby="timeline-service-${categoryIndex}-${serviceIndex}">
+          <div class="timeline-service-heading"><h4 id="timeline-service-${categoryIndex}-${serviceIndex}">${e(service.name)}</h4><span>${service.records.length} ${service.records.length === 1 ? 'retirement' : 'retirements'}</span></div>
+          <ol class="timeline-events">${service.records.map(renderTimelineEntry).join('')}</ol>
+        </section>`).join('')}
+      </section>`).join('') : `<div class="empty"><h3>No matching retirements</h3><p>Try a different keyword, service, date window, or category.</p><a class="button" href="${e(homeUrl.pathname)}">Clear filters</a></div>`;
     element('#load-more').hidden = records.length <= visible;
     const group = element('#group-filter');
     group.hidden = !filters.year && !filters.category && filters.status === 'all';
@@ -253,13 +263,11 @@ function renderResults() {
 function bindDirectory() {
     for (const control of document.querySelectorAll('[data-enhancement]'))
         control.hidden = false;
-    for (const [id, key, event] of [['search', 'q', 'input'], ['service', 'service', 'change'], ['sort', 'sort', 'change'], ['window', 'window', 'change']]) {
+    for (const [id, key, event] of [['search', 'q', 'input'], ['category', 'category', 'change'], ['service', 'service', 'change'], ['window', 'window', 'change']]) {
         const control = element(`#${id}`);
         control.value = key === 'window' ? filters.window || filters.year : filters[key];
         control.addEventListener(event, () => {
-            if (key === 'sort')
-                filters.sort = sortOrder(control.value);
-            else if (key === 'window') {
+            if (key === 'window') {
                 filters.window = windowFilter(control.value);
                 filters.year = years.has(control.value) ? control.value : '';
                 filters.status = 'all';
@@ -273,15 +281,16 @@ function bindDirectory() {
         });
     }
     element('#load-more').addEventListener('click', () => {
-        const firstNewCard = visible;
+        const nextRecord = filterRecords(catalog.records, filters)[visible];
         visible += 24;
         renderResults();
-        document.querySelectorAll('.card h3 a')[firstNewCard]?.focus();
+        [...document.querySelectorAll('.timeline-entry')].find(entry => entry.dataset.record === nextRecord?.id)
+            ?.querySelector('h5 a')?.focus();
     });
     window.addEventListener('popstate', () => {
         filters = readFilters();
         visible = 24;
-        for (const [id, key] of [['search', 'q'], ['service', 'service'], ['sort', 'sort'], ['window', 'window']]) {
+        for (const [id, key] of [['search', 'q'], ['category', 'category'], ['service', 'service'], ['window', 'window']]) {
             element(`#${id}`).value = key === 'window' ? filters.window || filters.year : filters[key];
         }
         renderResults();
