@@ -4,24 +4,100 @@ A static, searchable TypeScript web app for Microsoft Azure retirement announcem
 
 ## Run locally
 
-Requires Node.js 22.12 or newer.
+### Prerequisites
+
+Install **Node.js 22.12 or newer** with npm, and Git if cloning the repository. CI uses Node.js 22. Run all commands below from the repository root.
+
+The checked-in catalog makes local development and builds possible without contacting Microsoft. There is no backend, Azure login, API key, or environment file to configure. Installing dependencies requires access to the npm registry; refreshing the catalog separately requires access to Microsoft's public feed.
+
+### Start the development server
 
 ```sh
+git clone https://github.com/SenthuranSivananthan/retirements.git
+cd retirements
 npm ci
 npm run dev
 ```
 
+If you already have a checkout, start with `npm ci` in its root. Open the URL printed by Vite, normally **http://localhost:5173**. Vite reloads the app as you edit its source. Stop the server with `Ctrl+C`.
+
+On Windows PowerShell, if execution policy blocks `npm.ps1`, use `npm.cmd` in place of `npm` in these commands.
+
+### Check changes and preview the production build
+
 ```sh
-npm test             # Node's test runner via tsx; no Azure/network access needed
-npm run typecheck    # Strict TypeScript checks without emitting files
-npm run build        # Type-check, then produce static output in dist/
-npm run preview      # Preview the production build
-npm run refresh-data # Fetch all official retirement announcements
+npm test
+npm run build
+npm run preview
 ```
 
-The checked-in catalog makes local builds reproducible without contacting Microsoft. There is no backend, Azure login, or browser-to-Microsoft API dependency.
+Open the preview URL printed by Vite, normally **http://localhost:4173**. `npm run build` performs strict TypeScript checking before generating `dist`; `npm run dev` does not replace that check. Rebuild after source or catalog changes before previewing again.
 
-Browser code lives in `src/*.ts`, with shared catalog and filter types in `src/types.ts`. Catalog JSON is validated at runtime before rendering. The data-refresh scripts remain Node.js ES modules; tests use `tsx` to exercise the TypeScript source directly. Production builds (including CI) must pass strict TypeScript checking.
+Use the development or preview server rather than opening `index.html` directly: the app loads its catalog over HTTP. The preview server is for local verification; GitHub Pages serves the generated static site in production.
+
+### Refresh or enrich the catalog
+
+Refreshing data is optional for local development:
+
+```sh
+npm run refresh-data
+npm test
+npm run build
+```
+
+The refresh fetches all official retirement announcements and updates `data/retirements.json`, preserving records marked `manuallyEnriched: true`. To curate an announcement, edit its five question sections, set that flag, and commit the JSON changes as described in [Protecting manual enrichments](#protecting-manual-enrichments). Do not edit the generated catalog in `dist`.
+
+If a refresh fails, the previous snapshot stays intact. Resolve the reported source, network, or local-data error before retrying; a refresh is not required just to run the app with its checked-in data.
+
+### Command reference
+
+| Command | Purpose |
+| --- | --- |
+| `npm ci` | Install the exact dependency versions in the lockfile |
+| `npm run dev` | Start Vite's development server |
+| `npm test` | Run Node's test runner through `tsx`, without Azure or network access |
+| `npm run typecheck` | Check TypeScript without emitting files |
+| `npm run build` | Type-check and create the static site in `dist` |
+| `npm run preview` | Serve the existing production build locally |
+| `npm run refresh-data` | Refresh the source catalog while preserving manual enrichments |
+
+## Project structure
+
+```text
+retirements
+  .github\
+    workflows\
+      pages.yml             Validation, source refresh, and Pages deployment
+  data\
+    retirements.json        Checked-in, question-organized catalog
+  scripts\
+    feed.mjs                Source parsing, normalization, pagination, protected merging
+    refresh-data.mjs        Refresh entry point and guarded atomic snapshot writer
+  src\
+    main.ts                 App shell, navigation, filters, details, and local progress
+    catalog.ts              Validation, grouping, filtering, dates, and countdowns
+    data.ts                 Catalog loading and downloadable asset URL
+    types.ts                Shared catalog, question, and filter types
+    style.css               Themes, layout, and responsive styles
+  tests\
+    catalog.test.js         Search, statuses, dates, countdowns, and safe rendering helpers
+    feed.test.js            Source parsing, normalization, and complete pagination
+    navigation.test.js      Retirement-year/category grouping, filters, and URLs
+    refresh.test.js         Manual-enrichment preservation and snapshot publishing
+    schema.test.js          Runtime catalog validation
+    snapshot.test.js        Checked-in catalog integrity and provenance
+  index.html                Browser entry point loading src\main.ts
+  package.json              npm commands and development dependencies
+  package-lock.json         Locked dependency versions
+  tsconfig.json             Strict, no-emit TypeScript configuration
+  vite.config.ts            Vite configuration with relative asset paths
+  dist\                     Generated production output; ignored by Git
+  node_modules\             Installed dependencies; ignored by Git
+```
+
+Browser code is TypeScript; the refresh scripts remain Node.js ES modules. Tests are JavaScript ES modules and use `tsx` to exercise TypeScript directly. The browser validates catalog JSON before rendering it. Vite publishes the JSON as a separate asset, and the same catalog powers both the UI and the download.
+
+For UI changes, start in `src\main.ts` and `src\style.css`. Keep reusable catalog behavior in `src\catalog.ts` and its data contracts in `src\types.ts`. For source ingestion or refresh changes, use `scripts` and the feed/refresh tests. Change curated content in `data\retirements.json`, not in generated output.
 
 ## Publish on github.io
 
