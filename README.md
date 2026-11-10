@@ -1,14 +1,16 @@
 # Azure Retirements
 
-A static, searchable TypeScript web app for Microsoft Azure retirement announcements, built with Vite and designed for GitHub Pages. Its Azure-blue palette, Segoe typography, full-width hero, and light/dark themes follow the visual direction of [Multi-region platform](https://azure.github.io/multi-region-platform/).
+A static Jekyll site for Microsoft Azure retirement announcements, with TypeScript enhancements for search, filters, live countdowns, themes, and saved checklists. Its Azure-blue palette, Segoe typography, full-width hero, and light/dark themes follow the visual direction of [Multi-region platform](https://azure.github.io/multi-region-platform/).
+
+Jekyll renders the directory, shared navigation, and a complete HTML page for every retirement. Retirement content and navigation remain available without JavaScript; interactive features require it.
 
 ## Run locally
 
 ### Prerequisites
 
-Install **Node.js 22.12 or newer** with npm, and Git if cloning the repository. CI uses Node.js 22. Run all commands below from the repository root.
+Install **Ruby 3.3**, **Bundler**, and **Node.js 22 or newer** with npm, plus Git if cloning the repository. CI uses Ruby 3.3 and Node.js 22. On Windows, use RubyInstaller with Devkit and its recommended MSYS2 development tools so native gems can be installed. Run all commands below from the repository root.
 
-The checked-in catalog makes local development and builds possible without contacting Microsoft. There is no backend, Azure login, API key, or environment file to configure. Installing dependencies requires access to the npm registry; refreshing the catalog separately requires access to Microsoft's public feed.
+The checked-in catalog makes local development and builds possible without contacting Microsoft. There is no backend, Azure login, API key, or environment file to configure. Initial installation requires access to npm and RubyGems; refreshing the catalog separately requires access to Microsoft's public feed.
 
 ### Start the development server
 
@@ -16,10 +18,13 @@ The checked-in catalog makes local development and builds possible without conta
 git clone https://github.com/SenthuranSivananthan/retirements.git
 cd retirements
 npm ci
+bundle install
 npm run dev
 ```
 
-If you already have a checkout, start with `npm ci` in its root. Open the URL printed by Vite, normally **http://localhost:5173**. Vite reloads the app as you edit its source. Stop the server with `Ctrl+C`.
+If you already have a checkout, start with `npm ci` and `bundle install` in its root. Open **http://localhost:4000**. The development command prepares the catalog and compiled scripts, then serves the Jekyll source in `site` with live reload and an empty base URL. Stop the server with `Ctrl+C`.
+
+Jekyll watches layouts, includes, and CSS inside `site`. After changing TypeScript or the catalog, run `npm run prepare-site` in another terminal to regenerate the scripts, navigation metadata, and retirement documents; Jekyll then rebuilds those changes. Restart the server after changing `site\_config.yml`.
 
 On Windows PowerShell, if execution policy blocks `npm.ps1`, use `npm.cmd` in place of `npm` in these commands.
 
@@ -31,9 +36,9 @@ npm run build
 npm run preview
 ```
 
-Open the preview URL printed by Vite, normally **http://localhost:4173**. `npm run build` performs strict TypeScript checking before generating `dist`; `npm run dev` does not replace that check. Rebuild after source or catalog changes before previewing again.
+Open **http://localhost:4000/retirements/** with the checked-in production configuration. `npm run build` compiles and checks TypeScript once during preparation, generates static assets and retirement documents, builds Jekyll from `site`, and checks the generated site in `site\_site`. Type errors or unused TypeScript code stop preparation before new browser modules are emitted. Rebuild after source or catalog changes before previewing again.
 
-Use the development or preview server rather than opening `index.html` directly: the app loads its catalog over HTTP. The preview server is for local verification; GitHub Pages serves the generated static site in production.
+Use Jekyll's development or preview server rather than opening `site\index.html` directly: source pages contain Liquid templates and front matter, and interactive features fetch their catalog over HTTP. GitHub Pages serves the generated HTML, CSS, JavaScript, and JSON in production.
 
 ### Refresh or enrich the catalog
 
@@ -45,7 +50,7 @@ npm test
 npm run build
 ```
 
-The refresh fetches all official retirement announcements and updates `data/retirements.json`, preserving records marked `manuallyEnriched: true`. To curate an announcement, edit its five question sections, set that flag, and commit the JSON changes as described in [Protecting manual enrichments](#protecting-manual-enrichments). Do not edit the generated catalog in `dist`.
+The refresh fetches all official retirement announcements and updates `data/retirements.json`, preserving records marked `manuallyEnriched: true`. To curate an announcement, edit its five question sections, set that flag, and commit the JSON changes as described in [Protecting manual enrichments](#protecting-manual-enrichments). Do not edit generated documents, metadata, compiled scripts, or the copied catalog under `site\_generated`, `site\_data`, `site\assets\js`, `site\assets\data`, or `site\_site`.
 
 If a refresh fails, the previous snapshot stays intact. Resolve the reported source, network, or local-data error before retrying; a refresh is not required just to run the app with its checked-in data.
 
@@ -54,10 +59,13 @@ If a refresh fails, the previous snapshot stays intact. Resolve the reported sou
 | Command | Purpose |
 | --- | --- |
 | `npm ci` | Install the exact dependency versions in the lockfile |
-| `npm run dev` | Start Vite's development server |
+| `bundle install` | Install Jekyll and its Ruby dependencies |
+| `npm run dev` | Prepare assets and start Jekyll with live reload at the site root |
+| `npm run prepare-site` | Compile TypeScript and generate Jekyll documents, navigation metadata, and the download |
 | `npm test` | Run Node's test runner through `tsx`, without Azure or network access |
 | `npm run typecheck` | Check TypeScript without emitting files |
-| `npm run build` | Type-check and create the static site in `dist` |
+| `npm run build` | Type-check, prepare assets, build Jekyll, and check `site\_site` |
+| `npm run check-site` | Verify an existing Jekyll build, including detail pages and local asset links |
 | `npm run preview` | Serve the existing production build locally |
 | `npm run refresh-data` | Refresh the source catalog while preserving manual enrichments |
 
@@ -68,17 +76,33 @@ retirements
   .github\
     workflows\
       pages.yml             Validation, source refresh, and Pages deployment
+  site\                     All website source and generated assets
+    _includes\              Shared header, sidebar, cards, links, and footer
+    _layouts\               Default, directory, and retirement Liquid layouts
+    _generated\             Generated retirement collection; ignored by Git
+    _data\site.json         Generated Jekyll view metadata; ignored by Git
+    assets\
+      css\style.css         Themes, layout, and responsive styles
+      js\                   Compiled TypeScript modules; ignored by Git
+      data\                 Downloadable catalog copy; ignored by Git
+    src\
+      main.ts               Progressive search, filters, themes, countdowns, and progress
+      catalog.ts            Validation, grouping, filtering, dates, and countdowns
+      data.ts               Catalog loading and visible failure reporting
+      types.ts              Shared catalog, question, and filter types
+    _config.yml             Jekyll collections, deployment URL, and exclusions
+    index.html              Directory front matter using the home layout
+    404.html                Static not-found page
+    tsconfig.json           Strict, no-emit TypeScript configuration
+    tsconfig.build.json     Browser module compilation into site\assets\js
+    _site\                  Jekyll production output; ignored by Git
   data\
-    retirements.json        Checked-in, question-organized catalog
+    retirements.json        Canonical catalog shared by ingestion, tests, and the site
   scripts\
     feed.mjs                Source parsing, normalization, pagination, protected merging
     refresh-data.mjs        Refresh entry point and guarded atomic snapshot writer
-  src\
-    main.ts                 App shell, navigation, filters, details, and local progress
-    catalog.ts              Validation, grouping, filtering, dates, and countdowns
-    data.ts                 Catalog loading and downloadable asset URL
-    types.ts                Shared catalog, question, and filter types
-    style.css               Themes, layout, and responsive styles
+    prepare-site.mjs        Validated Jekyll documents and view metadata
+    check-site.mjs          Generated HTML, page coverage, and local link checks
   tests\
     catalog.test.js         Search, statuses, dates, countdowns, and safe rendering helpers
     feed.test.js            Source parsing, normalization, and complete pagination
@@ -86,28 +110,35 @@ retirements
     refresh.test.js         Manual-enrichment preservation and snapshot publishing
     schema.test.js          Runtime catalog validation
     snapshot.test.js        Checked-in catalog integrity and provenance
-  index.html                Browser entry point loading src\main.ts
+    site.test.js            Static document generation and source preservation
+  Gemfile                   Jekyll dependency declaration
+  Gemfile.lock              Locked Ruby dependency versions
   package.json              npm commands and development dependencies
   package-lock.json         Locked dependency versions
-  tsconfig.json             Strict, no-emit TypeScript configuration
-  vite.config.ts            Vite configuration with relative asset paths
-  dist\                     Generated production output; ignored by Git
   node_modules\             Installed dependencies; ignored by Git
 ```
 
-Browser code is TypeScript; the refresh scripts remain Node.js ES modules. Tests are JavaScript ES modules and use `tsx` to exercise TypeScript directly. The browser validates catalog JSON before rendering it. Vite publishes the JSON as a separate asset, and the same catalog powers both the UI and the download.
+Jekyll owns page rendering; JavaScript enhances the static pages rather than replacing them with a client-side router. TypeScript checks native ES module imports and compiles browser modules without a bundler. Node.js scripts prepare the static collection and metadata using the same validation, grouping, and date helpers as the browser. Tests use `tsx` to exercise those helpers directly. The same canonical JSON powers static pages, interactive filtering, and downloads.
 
-For UI changes, start in `src\main.ts` and `src\style.css`. Keep reusable catalog behavior in `src\catalog.ts` and its data contracts in `src\types.ts`. For source ingestion or refresh changes, use `scripts` and the feed/refresh tests. Change curated content in `data\retirements.json`, not in generated output.
+The `site` folder separates all website files from the shared catalog, ingestion scripts, tests, and root-level dependency tooling. npm commands run from the repository root and select the correct Jekyll source, configuration, and destination automatically. The source folder does not add `/site` to public URLs.
+
+Git ignores installed dependencies, generated site files, build caches, and temporary catalog writes. Recreate dependencies with `npm ci` and `bundle install`, and site assets with `npm run prepare-site` or the complete `npm run build`. Keep the dependency manifests and lockfiles, website source, and canonical `data\retirements.json` checked in: the catalog contains the durable baseline for manual enrichments and offline builds.
+
+For markup changes, edit `site\_layouts` and `site\_includes`; for visual changes, edit `site\assets\css\style.css`. Interactive behavior lives in `site\src\main.ts`, reusable catalog behavior in `site\src\catalog.ts`, and data contracts in `site\src\types.ts`. For source ingestion or refresh changes, use `scripts` and the feed/refresh tests. Change curated content in `data\retirements.json`, not in generated output.
 
 ## Publish on github.io
 
 1. In this repository's **Settings → Pages → Build and deployment**, select **GitHub Actions** as the source.
-2. Merge these changes into `main`. The **Validate and deploy GitHub Pages** workflow tests, refreshes the catalog, builds, and deploys the site.
+2. Merge changes into `main`. The **Validate and deploy GitHub Pages** workflow installs Node.js and Ruby dependencies, refreshes the catalog, tests, builds Jekyll, and deploys `site\_site`.
 3. Open **https://senthuransivananthan.github.io/retirements/**.
 
 Pull requests run tests and build only, without deployment privileges. A daily scheduled run and **Run workflow** also refresh and deploy from `main`. A failed refresh fails deployment, leaving the previous live site intact. Scheduled runs do not commit data changes; the deployed artifact includes the freshly fetched catalog. To update the checked-in snapshot, run `npm run refresh-data` locally and commit the result.
 
-Assets use relative paths. Detail URLs use hash routing (for example, `#/retirements/575106`), so sharing or reloading a retirement page works under the project subdirectory without server rewrites.
+Keep **GitHub Actions** as the publishing source rather than **Deploy from a branch**: the workflow must compile TypeScript and prepare the retirement collection before Jekyll runs. The site uses standard Liquid layouts and collections, without custom Jekyll plugins.
+
+`site\_config.yml` sets `url` to `https://senthuransivananthan.github.io` and `baseurl` to `/retirements`. Update both when publishing to a different repository or custom domain; use an empty `baseurl` for a domain-root site. Liquid's `relative_url` filter and the browser's site-root metadata keep assets and links inside that base path.
+
+Each detail has a real static URL, for example `/retirements/retirements/575106/` on the project site (the first `retirements` is the repository base path). Directory filters use ordinary query strings. Existing `#/retirements/<id>` and `#/?...` links are redirected by JavaScript to their new static or query-string URLs, including navigation context.
 
 ## Explore and plan
 
@@ -118,7 +149,7 @@ Assets use relative paths. Detail URLs use hash routing (for example, `#/retirem
 - Expand the sidebar by **retirement year → Azure service category → retirement**. Years appear newest first, followed by **Unconfirmed year**. Each year and category also links to its filtered directory; status shortcuts and official resources remain available. On small screens, use the navigation button; click the backdrop or press Escape to close it.
 - Year/category filters combine with search, service, status, and sorting, remain in shareable URLs, and can be cleared independently. Detail links from the tree retain their year/category context for returning to the directory.
 - Jump between detail sections using the **In this article** navigation.
-- Each detail page prominently shows the whole days remaining until its exact retirement date, calculated using UTC calendar days. Deadlines today say **Retires today (0 days remaining)**; past dates say **Retired**. Records without an exact date show **Retirement date to confirm**, without inventing a countdown from a month-only deadline.
+- Each detail page prominently shows the whole days remaining until its exact retirement date, calculated using UTC calendar days. Deadlines today say **Retires today (0 days remaining)**; past dates say **Retired**. Records without an exact date show **Retirement date to confirm**, without inventing a countdown from a month-only deadline. Jekyll renders a build-time value; JavaScript refreshes it when the page loads and when the UTC date changes.
 - Every retirement detail page contains these sections, in order:
   1. **What is changing?** — official announcement text and financial considerations.
   2. **What do I need to do?** — migration resources and support options.
@@ -142,9 +173,9 @@ Checklist progress is per announcement and saved only in the current browser's l
 | `deadline` | What is the deadline? | Nullable exact `date`, source `month`, date uncertainty, and consequences |
 | `progress` | How can I track progress? | Planning guidance, checklist steps, and browser-storage limitations |
 
-Every section includes its full `question` text and an `introduction`. The detail page and article navigation read these answers and headings from JSON rather than keeping a separate set in the UI. Refreshing the source regenerates the same structure for every announcement. The loader rejects catalogs missing a section or containing malformed answers.
+Every section includes its full `question` text and an `introduction`. Jekyll's detail layout and article navigation read these answers and headings from prepared JSON rather than keeping a separate set in the UI. Refreshing the source regenerates the same structure for every announcement. Both site preparation and browser loading reject catalogs missing a section or containing malformed answers.
 
-Version 2 replaces the old flat `details`, `actions`, `links`, `retirementDate`, and `retirementMonth` fields with `questions.what.announcement`, `questions.actions.recommendedAction`, `questions.actions.resources`, `questions.deadline.date`, and `questions.deadline.month`. Source announcement content remains distinct from general planning guidance; tenant-specific impact and actual team progress are not inferred or written into the catalog.
+Source announcement content remains distinct from general planning guidance; tenant-specific impact and actual team progress are not inferred or written into the catalog.
 
 `lastUpdatedOn` is the UTC calendar date (`YYYY-MM-DD`) from Microsoft's per-announcement `modified` timestamp, displayed as **Last updated** in the retirement facts. It is not the publication date, retirement deadline, or catalog retrieval time. If the source omits the timestamp, the field is `null` and the UI says **Not provided by source**; a malformed timestamp fails the refresh. The catalog-level `retrievedAt` separately records when the complete feed was fetched.
 

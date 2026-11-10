@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { parseCatalog, safeUrl } from '../src/catalog.ts';
+import { parseCatalog, safeUrl } from '../site/src/catalog.ts';
 import { titleDate } from '../scripts/feed.mjs';
 
 test('the bundled catalog has stable unique IDs, valid provenance, and conservative dates', async () => {

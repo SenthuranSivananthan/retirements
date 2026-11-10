@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { parseCatalog } from '../src/catalog.ts';
+import { parseCatalog } from '../site/src/catalog.ts';
 import { normalize } from '../scripts/feed.mjs';
 
 function catalog() {

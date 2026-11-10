@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { daysUntilRetirement, escapeHtml, filterRecords, formatDate, safeUrl, statusOf } from '../src/catalog.ts';
+import { daysUntilRetirement, escapeHtml, filterRecords, formatDate, safeUrl, statusOf } from '../site/src/catalog.ts';
 
 const records = [
   { id: 'a', title: 'Retire compute', service: 'Compute', services: ['Compute'], summary: 'Migrate VMs', questions: { what: { announcement: 'Use new sizes' }, deadline: { date: '2026-11-10' } }, announcedOn: '2026-09-01' },

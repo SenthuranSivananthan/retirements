@@ -4,18 +4,18 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "npm run typecheck && vite build",
-    "typecheck": "tsc --noEmit",
-    "preview": "vite preview",
+    "dev": "npm run prepare-site && bundle exec jekyll serve --source site --destination site/_site --config site/_config.yml --livereload --baseurl \"\"",
+    "prepare-site": "tsc --project site/tsconfig.build.json && tsx scripts/prepare-site.mjs",
+    "build": "npm run prepare-site && bundle exec jekyll build --source site --destination site/_site --config site/_config.yml && npm run check-site",
+    "check-site": "tsx scripts/check-site.mjs",
+    "typecheck": "tsc --project site/tsconfig.json --noEmit",
+    "preview": "bundle exec jekyll serve --source site --destination site/_site --config site/_config.yml --skip-initial-build",
     "test": "tsx --test tests/*.test.js",
     "refresh-data": "node scripts/refresh-data.mjs"
   },
   "devDependencies": {
-    "@types/node": "^22.0.0",
     "parse5": "^8.1.0",
     "tsx": "^4.0.0",
-    "typescript": "^5.9.3",
-    "vite": "^8.3.5"
+    "typescript": "^5.9.3"
   }
 }

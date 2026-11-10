@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { endpoint, mergeRetirements, normalize } from '../scripts/feed.mjs';
 import { refreshCatalog } from '../scripts/refresh-data.mjs';
-import { parseCatalog } from '../src/catalog.ts';
+import { parseCatalog } from '../site/src/catalog.ts';
 
 const item = {
   id: 'a', title: 'Retirement: API keys end on 31 March 2027',

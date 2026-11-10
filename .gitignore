@@ -1,17 +1,33 @@
-# Logs
-logs
+# Installed dependencies
+node_modules/
+.bundle/
+/vendor/
+
+# Generated site files
+/site/_data/site.json
+/site/_generated/
+/site/assets/js/
+/site/assets/data/retirements.json
+/site/_site/
+
+# Build caches
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+*.tsbuildinfo
+
+# Temporary catalog writes
+/data/*.tmp
+
+# Local configuration and logs
+*.local
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-data/*.tmp
 
 # Editor directories and files
 .vscode/*

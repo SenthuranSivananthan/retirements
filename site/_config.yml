@@ -1,0 +1,14 @@
+title: Azure Retirements
+description: Track Azure service retirements, understand the impact, and plan your migration with official Microsoft guidance.
+url: https://senthuransivananthan.github.io
+baseurl: /retirements
+timezone: Etc/UTC
+data_dir: _data
+collections_dir: _generated
+collections:
+  retirements:
+    output: true
+exclude:
+  - src
+  - tsconfig.json
+  - tsconfig.build.json
