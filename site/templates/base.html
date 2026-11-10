@@ -20,7 +20,7 @@
         {% if page.layout == 'home' %}
         <section class="hero" id="home-hero" aria-labelledby="hero-title">
           <div class="hero-in"><h1 id="hero-title">Plan your next Azure migration</h1><p>Stay ahead of service retirements. Understand what is changing, find official guidance, and plan your path forward.</p>
-            <div class="hero-cta"><a class="button" href="#catalog">Explore retirements {{ icon('arrow') }}</a><a class="button ghost" href="{{ '/' | relative_url }}?status=soon&amp;sort=date#catalog">Review the next 90 days</a></div>
+            <div class="hero-cta"><a class="button" href="#catalog">Explore retirements {{ icon('arrow') }}</a></div>
             {% block hero_extra %}{% endblock %}
           </div>
           <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="art-center">{{ icon('clock') }}</div><span class="node node-one"></span><span class="node node-two"></span><span class="node node-three"></span></div>
