@@ -1,5 +1,5 @@
 import catalog from './data.js';
-import { categoriesOf, directoryUrl, escapeHtml as e, filterRecords, formatDate, groupRetirements, retirementCountdown, retirementYear, statusOf } from './catalog.js';
+import { RETIREMENT_WINDOWS, categoriesOf, directoryUrl, escapeHtml as e, filterRecords, formatDate, groupRetirements, inRetirementWindow, retirementCountdown, retirementWindow, retirementYear, statusOf } from './catalog.js';
 function element(selector) {
     const node = document.querySelector(selector);
     if (!node)
@@ -30,6 +30,9 @@ function statusFilter(value) {
 function sortOrder(value) {
     return value === 'date' || value === 'title' ? value : 'newest';
 }
+function windowFilter(value) {
+    return RETIREMENT_WINDOWS.includes(value) ? value : '';
+}
 function readFilters() {
     const params = new URLSearchParams(location.search);
     const service = params.get('service') || '';
@@ -39,6 +42,7 @@ function readFilters() {
         q: params.get('q') || '', service: services.has(service) ? service : '',
         year: years.has(year) ? year : '', category: categories.has(category) ? category : '',
         status: statusFilter(params.get('status')), sort: sortOrder(params.get('sort')),
+        window: windowFilter(params.get('window')),
     };
 }
 let filters = readFilters();
@@ -183,7 +187,7 @@ function updateNav() {
             ? activeRecord?.id === link.dataset.record && link.dataset.year === year && link.dataset.category === category
             : link.dataset.year
                 ? isDirectory && link.dataset.year === filters.year && link.dataset.category === filters.category
-                : isDirectory && !filters.year && !filters.category && link.dataset.nav === filters.status;
+                : isDirectory && !filters.year && !filters.category && !filters.window && link.dataset.nav === filters.status;
         if (active) {
             link.setAttribute('aria-current', 'page');
             let group = link.closest('details');
@@ -208,23 +212,32 @@ function renderResults() {
       <h3><a href="${e(url)}">${e(record.title)}</a></h3><p>${e(record.summary)}</p>
       <div class="card-bottom"><span>${icon('clock')}${deadline.date ? `<time datetime="${e(deadline.date)}">${e(formatDate(deadline.date))}</time>` : 'Date not specified'}</span><a href="${e(url)}" aria-label="View details: ${e(record.title)}">View details ${icon('arrow')}</a></div>
     </article>`;
-    }).join('') : `<div class="empty"><h3>No matching retirements</h3><p>Try a different keyword, service, status, year, or category.</p><a class="button" href="${e(homeUrl.pathname)}">Clear filters</a></div>`;
+    }).join('') : `<div class="empty"><h3>No matching retirements</h3><p>Try a different keyword, service, date window, or category.</p><a class="button" href="${e(homeUrl.pathname)}">Clear filters</a></div>`;
     element('#load-more').hidden = records.length <= visible;
     const group = element('#group-filter');
-    group.hidden = !filters.year && !filters.category;
-    group.innerHTML = `${filters.year ? `<span>Retirement year: <strong>${e(yearLabel(filters.year))}</strong></span>` : ''}${filters.category ? `<span>Azure category: <strong>${e(filters.category)}</strong></span>` : ''}<a href="${e(directoryLink({ ...filters, year: '', category: '' }))}">Clear year and category</a>`;
+    group.hidden = !filters.year && !filters.category && filters.status === 'all';
+    group.innerHTML = `${filters.year ? `<span>Retirement year: <strong>${e(yearLabel(filters.year))}</strong></span>` : ''}${filters.category ? `<span>Azure category: <strong>${e(filters.category)}</strong></span>` : ''}${filters.year || filters.category ? `<a href="${e(directoryLink({ ...filters, year: '', category: '' }))}">Clear year and category</a>` : ''}${filters.status !== 'all' ? `<span>Status: <strong>${e(labels[filters.status])}</strong></span><a href="${e(directoryLink({ ...filters, status: 'all' }))}">Clear status</a>` : ''}`;
+    for (const card of document.querySelectorAll('[data-window]')) {
+        if (card.dataset.window === filters.window)
+            card.setAttribute('aria-current', 'true');
+        else
+            card.removeAttribute('aria-current');
+    }
 }
 function bindDirectory() {
     for (const control of document.querySelectorAll('[data-enhancement]'))
         control.hidden = false;
-    for (const [id, key, event] of [['search', 'q', 'input'], ['service', 'service', 'change'], ['status', 'status', 'change'], ['sort', 'sort', 'change']]) {
+    for (const [id, key, event] of [['search', 'q', 'input'], ['service', 'service', 'change'], ['sort', 'sort', 'change'], ['window', 'window', 'change']]) {
         const control = element(`#${id}`);
-        control.value = filters[key];
+        control.value = key === 'window' ? filters.window || filters.year : filters[key];
         control.addEventListener(event, () => {
-            if (key === 'status')
-                filters.status = statusFilter(control.value);
-            else if (key === 'sort')
+            if (key === 'sort')
                 filters.sort = sortOrder(control.value);
+            else if (key === 'window') {
+                filters.window = windowFilter(control.value);
+                filters.year = years.has(control.value) ? control.value : '';
+                filters.status = 'all';
+            }
             else
                 filters[key] = control.value;
             visible = 24;
@@ -242,8 +255,8 @@ function bindDirectory() {
     window.addEventListener('popstate', () => {
         filters = readFilters();
         visible = 24;
-        for (const [id, key] of [['search', 'q'], ['service', 'service'], ['status', 'status'], ['sort', 'sort']]) {
-            element(`#${id}`).value = filters[key];
+        for (const [id, key] of [['search', 'q'], ['service', 'service'], ['sort', 'sort'], ['window', 'window']]) {
+            element(`#${id}`).value = key === 'window' ? filters.window || filters.year : filters[key];
         }
         renderResults();
         updateNav();
@@ -307,6 +320,16 @@ function updateDates() {
     if (isDirectory) {
         element('#upcoming-count').textContent = String(catalog.records.filter(record => ['upcoming', 'soon'].includes(statusOf(record.questions.deadline))).length);
         element('#soon-count').textContent = String(catalog.records.filter(record => statusOf(record.questions.deadline) === 'soon').length);
+        const today = new Date().toISOString().slice(0, 10);
+        const asOf = element('#outlook-date');
+        asOf.dateTime = today;
+        asOf.textContent = formatDate(today);
+        for (const card of document.querySelectorAll('[data-window]')) {
+            const window = card.dataset.window;
+            const bounds = retirementWindow(window, today);
+            card.querySelector('[data-window-count]').textContent = String(catalog.records.filter(record => inRetirementWindow(record.questions.deadline, bounds)).length);
+            card.querySelector('[data-window-range]').textContent = bounds.range;
+        }
     }
 }
 if (!redirectLegacyRoute()) {

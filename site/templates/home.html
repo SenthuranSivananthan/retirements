@@ -1,7 +1,20 @@
 {% extends "base.html" %}
+{% block hero_extra %}
+<section class="outlook" aria-labelledby="outlook-title">
+  <div class="section-heading"><div><span class="eyebrow">YOUR RETIREMENT OUTLOOK</span><h2 id="outlook-title">Plan by retirement window</h2><p>Exact retirement dates only. Cumulative windows include the whole current month through the end of the target month.</p></div></div>
+  <p class="outlook-as-of">As of <time id="outlook-date" datetime="{{ site.buildDate }}">{{ site.buildDate }}</time> (UTC). Retired means the deadline has passed, not that your migration is complete.</p>
+  <div class="outlook-grid">
+    {% for window in site.outlook %}
+    <a class="outlook-card" data-window="{{ window.key }}" href="{{ '/' | relative_url }}?window={{ window.key }}&amp;sort=date#catalog">
+      <span class="outlook-label">{{ window.label }}</span><strong data-window-count>{{ window.count }}</strong><span data-window-range>{{ window.range }}</span><span class="outlook-action">View retirements {{ icon('arrow') }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
 {% block content %}
 <div class="crumbs">Azure lifecycle <span>/</span> Retirement explorer</div>
-<section class="stats" aria-label="Catalog summary">
+<section class="stats" aria-label="Catalog summary" hidden>
   <div><span class="stat-icon blue">{{ icon() }}</span><div><strong>{{ site.count }}</strong><span>Retirement announcements</span></div></div>
   <div><span class="stat-icon teal">{{ icon('clock') }}</span><div><strong id="upcoming-count">{{ site.upcoming }}</strong><span>With known upcoming dates</span></div></div>
   <div><span class="stat-icon amber">{{ icon('clock') }}</span><div><strong id="soon-count">{{ site.soon }}</strong><span>Within the next 90 days</span></div></div>
@@ -12,7 +25,7 @@
   <div class="filters" data-enhancement hidden>
     <label class="search-field"><span class="sr-only">Search retirements</span>{{ icon('search') }}<input id="search" type="search" placeholder="Search services, features, or keywords…"></label>
     <label><span>Service</span><select id="service"><option value="">All services</option>{% for service in site.services %}<option value="{{ service }}">{{ service }}</option>{% endfor %}</select></label>
-    <label><span>Status</span><select id="status"><option value="all">All statuses</option><option value="upcoming">Upcoming</option><option value="soon">Next 90 days</option><option value="retired">Retired</option><option value="unknown">Date to confirm</option></select></label>
+    <label><span>Date window</span><select id="window"><option value="">All dates</option>{% for window in site.outlook %}<option value="{{ window.key }}">{{ window.label }}</option>{% endfor %}{% for group in site.navigation if group.year != 'unknown' %}<option value="{{ group.year }}">{{ group.label }}</option>{% endfor %}</select></label>
   </div>
   <div class="results-bar"><p id="result-count" role="status" aria-live="polite">Showing {{ site.initialIds | length }} of {{ site.count }} retirements</p><label data-enhancement hidden>Sort by <select id="sort"><option value="date">Retirement date</option><option value="newest" selected>Latest announced</option><option value="title">Title A–Z</option></select></label></div>
   <div id="results" class="cards">{% for id in site.initialIds %}{{ card(site.byId[id]) }}{% endfor %}</div>

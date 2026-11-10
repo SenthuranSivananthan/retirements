@@ -20,7 +20,7 @@
     {% endfor %}
     <details class="status-navigation"><summary>Browse by status</summary>
       <a href="{{ '/' | relative_url }}?status=upcoming" data-nav="upcoming">Upcoming retirements</a>
-      <a href="{{ '/' | relative_url }}?status=soon" data-nav="soon">Within 90 days</a>
+      <a href="{{ '/' | relative_url }}?status=soon&amp;sort=date#catalog" data-nav="soon">Within 90 days</a>
       <a href="{{ '/' | relative_url }}?status=retired" data-nav="retired">Retired services</a>
       <a href="{{ '/' | relative_url }}?status=unknown" data-nav="unknown">Dates to confirm</a>
     </details>

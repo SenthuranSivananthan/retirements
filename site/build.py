@@ -4,6 +4,8 @@ import json
 import argparse
 import shutil
 import sys
+import tempfile
+from contextlib import contextmanager
 from pathlib import Path
 from urllib.parse import quote
 
@@ -20,6 +22,26 @@ from scripts.check_site import check_site
 @pass_context
 def relative_url(context, value):
     return context["home"] + value.lstrip("/")
+
+
+@contextmanager
+def atomic_output(destination):
+    # Replacing avoids truncating files memory-mapped by Windows diff viewers.
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(dir=Path(destination).parent, prefix=".build-", suffix=".tmp", delete=False) as handle:
+            temporary = Path(handle.name)
+        yield temporary
+        temporary.replace(destination)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+
+
+def copy_asset(source, destination):
+    with atomic_output(destination) as temporary:
+        shutil.copy2(source, temporary)
+    return destination
 
 
 def build_site(root=ROOT):
@@ -58,7 +80,8 @@ def build_site(root=ROOT):
         )
         target.parent.mkdir(parents=True, exist_ok=True)
         html = "\n".join(line.rstrip() for line in html.splitlines()) + "\n"
-        target.write_text(html, encoding="utf-8", newline="\n")
+        with atomic_output(target) as temporary:
+            temporary.write_text(html, encoding="utf-8", newline="\n")
 
     # Render before copying assets so missing templates and invalid context fail explicitly.
     render("home.html", Path("index.html"), "Plan your next move", "home")
@@ -77,8 +100,9 @@ def build_site(root=ROOT):
                 old.parent.rmdir()
 
     for directory in ("css", "js", "data"):
-        shutil.copytree(source / "assets" / directory, destination / "assets" / directory, dirs_exist_ok=True)
-    (destination / ".nojekyll").write_text("", encoding="utf-8")
+        shutil.copytree(source / "assets" / directory, destination / "assets" / directory, dirs_exist_ok=True, copy_function=copy_asset)
+    with atomic_output(destination / ".nojekyll") as temporary:
+        temporary.write_text("", encoding="utf-8")
     return len(expected)
 
 

@@ -8,11 +8,60 @@ from fixtures import ITEM, catalog
 from scripts.catalog import (
     ROOT, QUESTIONS, categories_of, countdown, days_until, format_date, group_retirements,
     parse_catalog, prepare_site, retirement_year, safe_url, status_of,
+    in_retirement_window, retirement_outlook, retirement_window,
 )
 from scripts.feed import normalize, title_date
 
 
 class CatalogTests(unittest.TestCase):
+    def test_calendar_windows_cover_whole_months_and_leap_years(self):
+        for today, window, expected in (
+            ("2026-11-10", "6", "2027-05-31"),
+            ("2026-11-10", "12", "2027-11-30"),
+            ("2026-11-10", "18", "2028-05-31"),
+            ("2026-11-30", "6", "2027-05-31"),
+            ("2026-08-10", "6", "2027-02-28"),
+            ("2026-08-31", "6", "2027-02-28"),
+            ("2023-08-31", "6", "2024-02-29"),
+            ("2024-02-29", "12", "2025-02-28"),
+            ("2026-12-31", "6", "2027-06-30"),
+            ("2026-03-31", "18", "2027-09-30"),
+        ):
+            with self.subTest(today=today, window=window):
+                bounds = retirement_window(window, today)
+                self.assertEqual(bounds["start"], today[:7] + "-01")
+                self.assertEqual(bounds["end"], expected)
+        with self.assertRaisesRegex(ValueError, "Unknown retirement window"):
+            retirement_window("7", "2026-11-10")
+
+    def test_outlook_is_cumulative_and_excludes_unknown_dates(self):
+        dates = ["2025-12-31", "2026-01-01", "2026-10-31", "2026-11-01", "2026-11-09",
+                 "2026-11-10", "2027-05-31", "2027-06-01", "2027-11-30",
+                 "2027-12-01", "2028-05-31", "2028-06-01", None]
+        records = [{"questions": {"deadline": {"date": value, "month": "May 2027"}}} for value in dates]
+        outlook = retirement_outlook(records, "2026-11-10")
+        self.assertEqual([window["key"] for window in outlook], ["retired-year", "6", "12", "18"])
+        self.assertEqual([window["count"] for window in outlook], [4, 4, 6, 8])
+        self.assertFalse(in_retirement_window({"date": None}, "18", "2026-11-10"))
+        self.assertTrue(in_retirement_window({"date": "2026-11-10"}, "6", "2026-11-10"))
+        self.assertFalse(in_retirement_window({"date": "2026-11-10"}, "retired-year", "2026-11-10"))
+        self.assertTrue(in_retirement_window({"date": "2026-11-01"}, "6", "2026-11-10"))
+        self.assertFalse(in_retirement_window({"date": "2026-10-31"}, "6", "2026-11-10"))
+
+    def test_upcoming_windows_roll_at_month_boundaries_not_day_changes(self):
+        first = retirement_window("6", "2026-11-01")
+        for today in ("2026-11-10", "2026-11-30"):
+            self.assertEqual(retirement_window("6", today), first)
+        december = retirement_window("6", "2026-12-01")
+        self.assertEqual(december["start"], "2026-12-01")
+        self.assertEqual(december["end"], "2027-06-30")
+
+    def test_retired_calendar_year_rolls_over_at_new_year(self):
+        for value in ("2026-12-31", "2027-01-01"):
+            self.assertFalse(in_retirement_window({"date": value}, "retired-year", "2027-01-01"))
+        self.assertTrue(in_retirement_window({"date": "2027-01-01"}, "retired-year", "2027-01-02"))
+        self.assertFalse(in_retirement_window({"date": "2026-12-31"}, "retired-year", "2027-01-02"))
+
     def test_nullable_fields_and_protected_older_categories(self):
         value = catalog()
         self.assertEqual(parse_catalog(value), value)

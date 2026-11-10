@@ -16,6 +16,28 @@ export function retirementCountdown(deadline, today) {
             : days === 0 ? 'Retires today (0 days remaining)'
                 : `${days} ${days === 1 ? 'day' : 'days'} remaining`;
 }
+export const RETIREMENT_WINDOWS = ['retired-year', '6', '12', '18'];
+export function retirementWindow(window, today = new Date().toISOString().slice(0, 10)) {
+    if (!RETIREMENT_WINDOWS.includes(window))
+        throw new Error(`Unknown retirement window: ${window}`);
+    const current = new Date(`${today}T00:00:00Z`);
+    const retired = window === 'retired-year';
+    const start = retired ? `${today.slice(0, 4)}-01-01` : `${today.slice(0, 7)}-01`;
+    let end = today;
+    if (!retired) {
+        const target = new Date(Date.UTC(current.getUTCFullYear(), current.getUTCMonth() + Number(window) + 1, 0));
+        end = target.toISOString().slice(0, 10);
+    }
+    return {
+        key: window, start, end, retired,
+        label: retired ? 'Retired this calendar year' : `Next ${window} months`,
+        range: retired ? `Before today, since ${formatDate(start)}` : `${formatDate(start)} – ${formatDate(end)}`,
+    };
+}
+export function inRetirementWindow(deadline, bounds) {
+    return deadline.date !== null && deadline.date >= bounds.start
+        && (bounds.retired ? deadline.date < bounds.end : deadline.date <= bounds.end);
+}
 export function retirementYear(record) {
     const { date, month } = record.questions.deadline;
     if (date)
@@ -59,8 +81,9 @@ export function directoryUrl(filters, base = '/') {
     const query = new URLSearchParams(Object.entries(filters).filter(([, value]) => value));
     return query.size ? `${base}?${query}` : base;
 }
-export function filterRecords(records, filters, today) {
+export function filterRecords(records, filters, today = new Date().toISOString().slice(0, 10)) {
     const terms = (filters.q || '').toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+    const window = filters.window ? retirementWindow(filters.window, today) : null;
     return records.filter(record => {
         const status = statusOf(record.questions.deadline, today);
         const text = `${record.title} ${record.service} ${record.summary} ${record.questions.what.announcement}`.toLocaleLowerCase();
@@ -68,6 +91,7 @@ export function filterRecords(records, filters, today) {
             && (!filters.service || record.services.includes(filters.service))
             && (!filters.year || retirementYear(record) === filters.year)
             && (!filters.category || categoriesOf(record).includes(filters.category))
+            && (!window || inRetirementWindow(record.questions.deadline, window))
             && (!filters.status || filters.status === 'all' || status === filters.status
                 || (filters.status === 'upcoming' && status === 'soon'));
     }).sort((a, b) => {

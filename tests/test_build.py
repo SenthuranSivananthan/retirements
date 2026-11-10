@@ -4,7 +4,10 @@ import json
 import shutil
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
+from scripts.catalog import retirement_outlook
+from html5lib import parse
 
 ROOT = Path(__file__).resolve().parents[1]
 SPEC = importlib.util.spec_from_file_location("retirement_builder", ROOT / "site" / "build.py")
@@ -13,6 +16,19 @@ SPEC.loader.exec_module(builder)
 
 
 class StaticSiteTests(unittest.TestCase):
+    def test_asset_copy_replaces_existing_content_and_cleans_failed_temporary_files(self):
+        source = self.root / "source.js"
+        target = self.root / "published.js"
+        source.write_text("export const value = 'updated';", encoding="utf-8")
+        target.write_text("old", encoding="utf-8")
+        builder.copy_asset(source, target)
+        self.assertEqual(target.read_bytes(), source.read_bytes())
+        with patch.object(Path, "replace", side_effect=PermissionError("locked")):
+            with self.assertRaises(PermissionError):
+                builder.copy_asset(source, target)
+        self.assertEqual(target.read_bytes(), source.read_bytes())
+        self.assertEqual(list(self.root.glob(".build-*.tmp")), [])
+
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporary.cleanup)
@@ -39,6 +55,7 @@ class StaticSiteTests(unittest.TestCase):
             "byId": {"example": self.view}, "buildDate": "2026-11-10", "count": 1,
             "navigation": [], "services": [], "initialIds": ["example"], "upcoming": 0, "soon": 0,
             "refreshed": "10 Nov 2026",
+            "outlook": retirement_outlook([record], "2026-11-10"),
         }
         self.save()
 
@@ -62,6 +79,29 @@ class StaticSiteTests(unittest.TestCase):
         self.assertTrue((destination / ".nojekyll").is_file())
         self.assertFalse((destination / "src").exists())
         self.assertFalse((destination / "templates").exists())
+        home = (destination / "index.html").read_text(encoding="utf-8")
+        for window in ("retired-year", "6", "12", "18"):
+            self.assertIn(f'data-window="{window}"', home)
+            self.assertIn(f'?window={window}&amp;sort=date#catalog', home)
+        self.assertIn('id="window"', home)
+        document = parse(home, namespaceHTMLElements=False)
+        shortcut = document.find(".//div[@class='hero-cta']/a[@class='button ghost']")
+        self.assertEqual(shortcut.attrib["href"], "./?status=soon&sort=date#catalog")
+        layout = document.find(".//div[@class='layout']")
+        self.assertEqual(layout[0].attrib.get("id"), "navigation")
+        page_content = layout.find("div[@class='page-content']")
+        self.assertIsNotNone(page_content.find("section[@id='home-hero']"))
+        self.assertIsNotNone(page_content.find("main[@id='main']"))
+        detail_document = parse(html, namespaceHTMLElements=False)
+        detail_shortcut = detail_document.find(".//aside//a[@data-nav='soon']")
+        self.assertEqual(detail_shortcut.attrib["href"], "../../?status=soon&sort=date#catalog")
+        self.assertIsNotNone(detail_document.find(".//div[@class='page-content']/main[@id='main']"))
+        hero_outlook = document.find(".//section[@id='home-hero']/div[@class='hero-in']/section[@class='outlook']")
+        self.assertIsNotNone(hero_outlook)
+        self.assertEqual(len(hero_outlook.findall(".//a[@data-window]")), 4)
+        self.assertEqual(len(document.findall(".//section[@class='outlook']")), 1)
+        self.assertIsNone(document.find(".//main//section[@class='outlook']"))
+        self.assertIn("hidden", document.find(".//section[@class='stats']").attrib)
 
     def test_stale_pages_are_removed_but_unrelated_files_are_preserved(self):
         builder.build_site(self.root)
@@ -79,6 +119,22 @@ class StaticSiteTests(unittest.TestCase):
         self.assertFalse((notes.parent / "index.html").exists())
         self.assertEqual(notes.read_text(encoding="utf-8"), "Preserve this file.")
         self.assertTrue(download.is_file())
+
+    def test_date_window_lists_all_known_years_after_rolling_windows_without_status_dropdown(self):
+        self.metadata["navigation"] = [
+            {"year": year, "label": year, "count": 1, "categories": []}
+            for year in ("2029", "2028", "2020", "unknown")
+        ]
+        self.save()
+        builder.build_site(self.root)
+        document = parse((self.root / "docs" / "index.html").read_text(encoding="utf-8"), namespaceHTMLElements=False)
+        self.assertIsNone(document.find(".//select[@id='status']"))
+        options = document.findall(".//select[@id='window']/option")
+        self.assertEqual(
+            [option.attrib["value"] for option in options],
+            ["", "retired-year", "6", "12", "18", "2029", "2028", "2020"],
+        )
+        self.assertEqual([option.text for option in options[-3:]], ["2029", "2028", "2020"])
 
     def test_dot_segments_cannot_overwrite_the_homepage(self):
         self.view["record"]["id"] = ".."

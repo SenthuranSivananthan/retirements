@@ -3,6 +3,7 @@
 import json
 import re
 import shutil
+from calendar import monthrange
 from datetime import date, datetime, timezone
 from pathlib import Path
 from urllib.parse import quote, urlsplit
@@ -121,6 +122,44 @@ def countdown(deadline, today=None):
     return f"{days} {'day' if days == 1 else 'days'} remaining"
 
 
+def retirement_window(window, today=None):
+    current = date.fromisoformat(today or utc_today())
+    if window == "retired-year":
+        start, end = current.replace(month=1, day=1), current
+        label = "Retired this calendar year"
+        description = f"Before today, since {format_date(start.isoformat())}"
+    elif window in ("6", "12", "18"):
+        month = current.month - 1 + int(window)
+        year, month = current.year + month // 12, month % 12 + 1
+        start = current.replace(day=1)
+        end = date(year, month, monthrange(year, month)[1])
+        label = f"Next {window} months"
+        description = f"{format_date(start.isoformat())} – {format_date(end.isoformat())}"
+    else:
+        raise ValueError(f"Unknown retirement window: {window}")
+    return {
+        "key": window, "label": label, "start": start.isoformat(), "end": end.isoformat(),
+        "retired": window == "retired-year", "range": description,
+    }
+
+
+def in_retirement_window(deadline, window, today=None):
+    bounds = retirement_window(window, today)
+    value = deadline["date"]
+    return value is not None and value >= bounds["start"] and (
+        value < bounds["end"] if bounds["retired"] else value <= bounds["end"]
+    )
+
+
+def retirement_outlook(records, today=None):
+    today = today or utc_today()
+    return [
+        {**retirement_window(window, today),
+         "count": sum(in_retirement_window(record["questions"]["deadline"], window, today) for record in records)}
+        for window in ("retired-year", "6", "12", "18")
+    ]
+
+
 def retirement_year(record):
     deadline = record["questions"]["deadline"]
     if deadline["date"]:
@@ -214,6 +253,7 @@ def prepare_site(root=ROOT, today=None):
         "refreshed": format_date(timestamp(catalog["retrievedAt"]).date().isoformat()),
         "upcoming": sum(view["status"] in {"upcoming", "soon"} for view in by_id.values()),
         "soon": sum(view["status"] == "soon" for view in by_id.values()),
+        "outlook": retirement_outlook(catalog["records"], today),
     }
     output = root / "site" / "_data" / "site.json"
     output.parent.mkdir(parents=True, exist_ok=True)
