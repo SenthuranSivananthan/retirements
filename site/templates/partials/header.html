@@ -1,0 +1,15 @@
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <button class="icon-button mobile-menu" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navigation">{{ icon('menu') }}</button>
+  <a class="brand" href="{{ '/' | relative_url }}" aria-label="Azure Retirements home"><span class="brand-mark">{{ icon('clock') }}</span><span class="brand-separator"></span><span class="brand-name">Azure Retirements</span><span class="brand-tag">Lifecycle guidance</span></a>
+  <div class="header-search" role="search">
+    {{ icon('search') }}<input id="global-search" type="search" placeholder="Search retirements" aria-label="Search all retirements" aria-controls="search-results" autocomplete="off"><kbd>Ctrl K</kbd>
+    <div id="search-results" class="search-results" aria-label="Search results" hidden></div>
+  </div>
+  <div class="top-actions">
+    <div class="downloads"><button id="downloads" class="button" aria-label="Downloads" aria-expanded="false" aria-controls="download-menu">{{ icon('download') }}<span>Downloads</span></button>
+      <div id="download-menu" class="download-menu" hidden><a href="{{ '/assets/data/retirements.json' | relative_url }}" download="retirements.json">{{ icon('download') }}<span><strong>Retirement catalog (JSON)</strong><small>All {{ site.count }} announcements</small></span></a></div>
+    </div>
+    <button id="theme" class="icon-button" aria-label="Toggle dark theme"><span class="sun">{{ icon('sun') }}</span><span class="moon">{{ icon('moon') }}</span></button>
+  </div>
+</header>

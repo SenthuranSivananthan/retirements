@@ -1,4 +1,4 @@
-name: Validate and deploy GitHub Pages
+name: Validate site and refresh GitHub Pages
 
 on:
   push:
@@ -16,49 +16,61 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  build:
+  validate:
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: read
     steps:
       - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
-      - uses: actions/setup-node@v7.1.0
+      - uses: actions/setup-python@v7.1.0
         with:
-          node-version: '22'
-          cache: npm
-      - run: npm ci
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.3'
-          bundler-cache: true
-      - name: Refresh official retirement catalog
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-        run: npm run refresh-data
-      - run: npm test
-      - run: npm run build
-      - name: Configure Pages
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-        uses: actions/configure-pages@v6.0.0
-      - name: Upload site
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-        uses: actions/upload-pages-artifact@v5.0.0
-        with:
-          path: site/_site
+          python-version: '3.13'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: python -m unittest discover -s tests -v
+      - name: Check committed publishing output
+        run: python -m scripts.check_site
+      - name: Rebuild and verify from source
+        run: python site/build.py
 
-  deploy:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    needs: build
+  refresh:
+    if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
+      contents: write
       pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v5.0.1
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.1.0
+        with:
+          python-version: '3.13'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - name: Verify branch-based Pages configuration
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          configured="$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq '.build_type == "legacy" and .source.branch == "main" and .source.path == "/docs"')"
+          if [ "$configured" != "true" ]; then
+            echo "::error::Set Settings > Pages to Deploy from a branch, main, /docs before running the refresh."
+            exit 1
+          fi
+      - name: Refresh official retirement catalog
+        run: python -m scripts.refresh_data
+      - run: python -m unittest discover -s tests -v
+      - run: python site/build.py
+      - name: Commit refreshed catalog and generated website
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/retirements.json docs
+          if ! git diff --cached --quiet; then
+            git commit -m "Refresh retirement catalog and generated website" \
+              -m "Co-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>"
+            git push origin HEAD:main
+          fi
+      - name: Request native GitHub Pages build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"

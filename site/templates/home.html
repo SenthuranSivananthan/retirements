@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="crumbs">Azure lifecycle <span>/</span> Retirement explorer</div>
+<section class="stats" aria-label="Catalog summary">
+  <div><span class="stat-icon blue">{{ icon() }}</span><div><strong>{{ site.count }}</strong><span>Retirement announcements</span></div></div>
+  <div><span class="stat-icon teal">{{ icon('clock') }}</span><div><strong id="upcoming-count">{{ site.upcoming }}</strong><span>With known upcoming dates</span></div></div>
+  <div><span class="stat-icon amber">{{ icon('clock') }}</span><div><strong id="soon-count">{{ site.soon }}</strong><span>Within the next 90 days</span></div></div>
+</section>
+<section id="catalog" aria-labelledby="catalog-title">
+  <div class="section-heading"><div><span class="eyebrow">THE RETIREMENT EXPLORER</span><h2 id="catalog-title">Know what’s changing</h2><p>Your next migration starts with a little visibility.</p></div><a class="text-link" href="{{ '/assets/data/retirements.json' | relative_url }}" download="retirements.json">Download catalog ↓</a></div>
+  <div id="group-filter" class="group-filter" aria-label="Current navigation filters" hidden></div>
+  <div class="filters" data-enhancement hidden>
+    <label class="search-field"><span class="sr-only">Search retirements</span>{{ icon('search') }}<input id="search" type="search" placeholder="Search services, features, or keywords…"></label>
+    <label><span>Service</span><select id="service"><option value="">All services</option>{% for service in site.services %}<option value="{{ service }}">{{ service }}</option>{% endfor %}</select></label>
+    <label><span>Status</span><select id="status"><option value="all">All statuses</option><option value="upcoming">Upcoming</option><option value="soon">Next 90 days</option><option value="retired">Retired</option><option value="unknown">Date to confirm</option></select></label>
+  </div>
+  <div class="results-bar"><p id="result-count" role="status" aria-live="polite">Showing {{ site.initialIds | length }} of {{ site.count }} retirements</p><label data-enhancement hidden>Sort by <select id="sort"><option value="date">Retirement date</option><option value="newest" selected>Latest announced</option><option value="title">Title A–Z</option></select></label></div>
+  <div id="results" class="cards">{% for id in site.initialIds %}{{ card(site.byId[id]) }}{% endfor %}</div>
+  <div class="load-more"><button id="load-more" class="button" data-enhancement hidden>Show more retirements</button></div>
+</section>
+{% endblock %}

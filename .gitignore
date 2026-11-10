@@ -1,20 +1,13 @@
 # Installed dependencies
-node_modules/
-.bundle/
-/vendor/
+.venv/
 
 # Generated site files
 /site/_data/site.json
-/site/_generated/
-/site/assets/js/
 /site/assets/data/retirements.json
-/site/_site/
 
 # Build caches
-.jekyll-cache/
-.jekyll-metadata
-.sass-cache/
-*.tsbuildinfo
+__pycache__/
+*.py[cod]
 
 # Temporary catalog writes
 /data/*.tmp
@@ -23,19 +16,11 @@ node_modules/
 *.local
 logs/
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
+Thumbs.db
 *.sw?

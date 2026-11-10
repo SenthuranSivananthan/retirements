@@ -1,0 +1,34 @@
+<aside class="sidebar" id="navigation">
+  <p class="nav-label">Retirement guidance</p>
+  <nav aria-label="Retirement navigation">
+    <a href="{{ '/' | relative_url }}" data-nav="all"{% if page.layout == 'home' %} aria-current="page"{% endif %}>{{ icon() }}All retirements<span class="nav-count">{{ site.count }}</span></a>
+    <p class="nav-section-label">By retirement year</p>
+    {% for group in site.navigation %}
+    <details class="year-group" data-year-group="{{ group.year }}"{% if (view and group.year == view.year) or group.year == current_year %} open{% endif %}>
+      <summary>{{ group.label }}<span class="nav-count">{{ group.count }}</span></summary>
+      <a href="{{ '/' | relative_url }}?year={{ group.year }}" data-year="{{ group.year }}" data-category="">All in {{ group.label }}</a>
+      {% for category in group.categories %}
+      <details class="category-group" data-category-group="{{ category.name }}"{% if view and group.year == view.year and category.name == view.categories[0] %} open{% endif %}>
+        <summary>{{ category.name }}<span class="nav-count">{{ category.count }}</span></summary>
+        <a class="category-all" href="{{ '/' | relative_url }}?year={{ group.year }}&amp;category={{ category.name | url_encode }}" data-year="{{ group.year }}" data-category="{{ category.name }}">View all {{ category.name }} retirements</a>
+        {% for record in category.records %}
+        <a class="nav-record" href="{{ record.url | relative_url }}?year={{ group.year }}&amp;category={{ category.name | url_encode }}" data-record="{{ record.id }}" data-year="{{ group.year }}" data-category="{{ category.name }}"{% if view and record.id == page.record_id and category.name == view.categories[0] %} aria-current="page"{% endif %}>{{ record.title }}</a>
+        {% endfor %}
+      </details>
+      {% endfor %}
+    </details>
+    {% endfor %}
+    <details class="status-navigation"><summary>Browse by status</summary>
+      <a href="{{ '/' | relative_url }}?status=upcoming" data-nav="upcoming">Upcoming retirements</a>
+      <a href="{{ '/' | relative_url }}?status=soon" data-nav="soon">Within 90 days</a>
+      <a href="{{ '/' | relative_url }}?status=retired" data-nav="retired">Retired services</a>
+      <a href="{{ '/' | relative_url }}?status=unknown" data-nav="unknown">Dates to confirm</a>
+    </details>
+    <details><summary>Official resources</summary>
+      <a href="https://azure.microsoft.com/updates/" target="_blank" rel="noopener noreferrer">Azure Updates {{ icon('external') }}</a>
+      <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor {{ icon('external') }}</a>
+    </details>
+  </nav>
+  <div class="sidebar-note"><p>Plan with official guidance</p><small>Confirm dates, migration options, and workload impact with Microsoft.</small></div>
+  <div class="sidebar-bottom"><a href="https://github.com/SenthuranSivananthan/retirements" target="_blank" rel="noopener noreferrer">View on GitHub {{ icon('external') }}</a><small>Community project · Not affiliated with Microsoft</small></div>
+</aside>
