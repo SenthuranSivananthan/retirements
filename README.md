@@ -8,25 +8,142 @@ Jekyll renders the directory, shared navigation, and a complete HTML page for ev
 
 ### Prerequisites
 
-Install **Ruby 3.3**, **Bundler**, and **Node.js 22 or newer** with npm, plus Git if cloning the repository. CI uses Ruby 3.3 and Node.js 22. On Windows, use RubyInstaller with Devkit and its recommended MSYS2 development tools so native gems can be installed. Run all commands below from the repository root.
+Use **Ruby 3.3**, **Node.js 22 or newer** (including npm), **Git**, and **Bundler 2.5.23**. CI uses Ruby 3.3 and Node.js 22; the Bundler version matches `Gemfile.lock`.
 
 The checked-in catalog makes local development and builds possible without contacting Microsoft. There is no backend, Azure login, API key, or environment file to configure. Initial installation requires access to npm and RubyGems; refreshing the catalog separately requires access to Microsoft's public feed.
 
-### Start the development server
+#### Windows
+
+1. Install [Git for Windows](https://git-scm.com/downloads/win), keeping the option that makes Git available from the command line.
+2. Install Node.js 22 or a newer LTS version from the [official Node.js downloads](https://nodejs.org/en/download). Include npm and add Node.js to `PATH`.
+3. Install **Ruby+Devkit 3.3**, not the Ruby-only package, from [RubyInstaller](https://rubyinstaller.org/downloads/). Enable the option to add Ruby executables to `PATH`.
+4. Run `ridk install` at the end of the installer, or from PowerShell afterward, and select **MSYS2 and MINGW development toolchain**. This installs the compiler and tools needed by native Ruby gems.
+5. Open a new PowerShell window so the updated `PATH` takes effect, then continue with the dependency installation below.
+
+The Gemfile includes `tzinfo` and `tzinfo-data` for Windows; Bundler installs them to support the site's UTC timezone. For additional platform troubleshooting, see [Jekyll on Windows](https://jekyllrb.com/docs/installation/windows/). If using WSL instead, install Git, Node.js, and Ruby inside WSL and run all project commands there rather than mixing Windows and Linux runtimes.
+
+#### macOS
+
+Install the Apple command-line tools with `xcode-select --install`, then install [Homebrew](https://brew.sh/) if needed. Install the project runtimes:
+
+```sh
+brew install git node@22 ruby@3.3
+export PATH="$(brew --prefix ruby@3.3)/bin:$(brew --prefix node@22)/bin:$PATH"
+export PATH="$(ruby -r rubygems -e 'puts Gem.bindir'):$PATH"
+```
+
+Persist the equivalent `PATH` setup in your shell profile. Use the Homebrew Ruby rather than macOS's system Ruby; the second export also makes installed gem executables such as `bundle` available.
+
+#### Linux (Ubuntu / Debian, including Ubuntu on WSL)
+
+The commands below assume Bash and a fresh user setup. If you already manage Ruby or Node.js with a version manager, use it to select Ruby 3.3 and Node.js 22 instead of installing another manager.
+
+Install Git, download tools, and the native build prerequisites:
+
+```sh
+sudo apt-get update
+sudo apt-get install -y git curl ca-certificates build-essential autoconf bison \
+  libssl-dev libyaml-dev zlib1g-dev libffi-dev libreadline-dev libgdbm-dev \
+  libgmp-dev pkg-config python3
+```
+
+Install [rbenv and ruby-build](https://github.com/rbenv/rbenv#installation), then build and select the latest stable Ruby 3.3 patch release. This also installs the matching Ruby headers needed by native gems:
+
+```sh
+git clone https://github.com/rbenv/rbenv.git "$HOME/.rbenv"
+git clone https://github.com/rbenv/ruby-build.git "$HOME/.rbenv/plugins/ruby-build"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - bash)"
+
+ruby_version="$(rbenv install --list-all | grep -E '^3\.3\.[0-9]+$' | sort -V | tail -n 1)"
+rbenv install "$ruby_version"
+rbenv global "$ruby_version"
+```
+
+Load rbenv automatically in future Bash terminals:
+
+```sh
+printf '%s\n' 'export PATH="$HOME/.rbenv/bin:$PATH"' \
+  'eval "$(rbenv init - bash)"' >> "$HOME/.bashrc"
+```
+
+Install [nvm](https://github.com/nvm-sh/nvm#git-install) and Node.js 22, which includes npm:
+
+```sh
+git clone --branch v0.41.0 --depth 1 https://github.com/nvm-sh/nvm.git "$HOME/.nvm"
+export NVM_DIR="$HOME/.nvm"
+. "$NVM_DIR/nvm.sh"
+nvm install 22
+nvm alias default 22
+```
+
+Load nvm automatically in future Bash terminals:
+
+```sh
+printf '%s\n' 'export NVM_DIR="$HOME/.nvm"' \
+  '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"' >> "$HOME/.bashrc"
+```
+
+Open a new Bash terminal, verify the versions below, and continue with **Install project dependencies**. Do not assume the distribution's default Ruby or Node.js package matches these versions. Use your user-managed Ruby for gem installation rather than `sudo gem install`. On other Linux distributions, install the equivalent compiler, OpenSSL, YAML, zlib, and Ruby build prerequisites using your package manager before following the version-manager steps.
+
+#### Verify the system tools
+
+In the terminal you will use for development, confirm that all commands are available and report the expected versions:
+
+```sh
+git --version
+node --version
+npm --version
+ruby --version
+gem --version
+```
+
+On Windows PowerShell, if execution policy blocks `npm.ps1`, use `npm.cmd` in place of `npm` in these commands and the steps below.
+
+### Install project dependencies
+
+Clone the repository, or change into the root of your existing checkout:
 
 ```sh
 git clone https://github.com/SenthuranSivananthan/retirements.git
 cd retirements
-npm ci
+```
+
+Run the following from the repository root:
+
+```sh
+gem install bundler --version 2.5.23
+bundle --version
+npm ci --include=dev
+bundle config set --local path vendor
 bundle install
+```
+
+`npm ci --include=dev` installs the locked Node dependencies, including the build and test tools: TypeScript, `tsx`, and `parse5`. `bundle install` installs the locked Jekyll dependencies, including its local web server and platform-specific gems. You do not need to install TypeScript or Jekyll globally.
+
+The local Bundler configuration installs Ruby gems under `vendor` instead of requiring a system-wide gem installation. Both `vendor` and `.bundle` are ignored by Git. Keep `package-lock.json` and `Gemfile.lock` checked in; do not delete them to resolve installation errors.
+
+Verify the project dependencies:
+
+```sh
+bundle check
+bundle exec jekyll --version
+npm run typecheck
+```
+
+After pulling changes to either dependency manifest or lockfile, rerun `npm ci --include=dev` and `bundle install` before starting or building the site.
+
+### Start the development server
+
+From the repository root:
+
+```sh
 npm run dev
 ```
 
-If you already have a checkout, start with `npm ci` and `bundle install` in its root. Open **http://localhost:4000**. The development command prepares the catalog and compiled scripts, then serves the Jekyll source in `site` with live reload and an empty base URL. Stop the server with `Ctrl+C`.
+Open **http://localhost:4000**. The development command prepares the catalog and compiled scripts, then serves the Jekyll source in `site` with live reload and an empty base URL. Stop the server with `Ctrl+C`.
 
 Jekyll watches layouts, includes, and CSS inside `site`. After changing TypeScript or the catalog, run `npm run prepare-site` in another terminal to regenerate the scripts, navigation metadata, and retirement documents; Jekyll then rebuilds those changes. Restart the server after changing `site\_config.yml`.
-
-On Windows PowerShell, if execution policy blocks `npm.ps1`, use `npm.cmd` in place of `npm` in these commands.
 
 ### Check changes and preview the production build
 
@@ -58,8 +175,11 @@ If a refresh fails, the previous snapshot stays intact. Resolve the reported sou
 
 | Command | Purpose |
 | --- | --- |
-| `npm ci` | Install the exact dependency versions in the lockfile |
+| `gem install bundler --version 2.5.23` | Install the Bundler version recorded in `Gemfile.lock` |
+| `npm ci --include=dev` | Install all locked Node dependencies, including build and test tools |
+| `bundle config set --local path vendor` | Keep this checkout's installed Ruby gems in the ignored `vendor` folder |
 | `bundle install` | Install Jekyll and its Ruby dependencies |
+| `bundle check` | Confirm all required Ruby gems are installed |
 | `npm run dev` | Prepare assets and start Jekyll with live reload at the site root |
 | `npm run prepare-site` | Compile TypeScript and generate Jekyll documents, navigation metadata, and the download |
 | `npm test` | Run Node's test runner through `tsx`, without Azure or network access |
