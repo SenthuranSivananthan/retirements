@@ -1,4 +1,4 @@
-import type { CatalogFilters, DeadlineQuestion, RetirementCatalog, RetirementQuestions, RetirementRecord, RetirementStatus } from './types';
+import type { CatalogFilters, DeadlineQuestion, RetirementCatalog, RetirementQuestions, RetirementRecord, RetirementStatus } from './types.js';
 
 export function daysUntilRetirement(deadline: Pick<DeadlineQuestion, 'date'>, today = new Date().toISOString().slice(0, 10)): number | null {
   return deadline.date === null ? null : Math.round((Date.parse(deadline.date) - Date.parse(today)) / 86400000);
@@ -9,6 +9,14 @@ export function statusOf(deadline: Pick<DeadlineQuestion, 'date'>, today?: strin
   if (days === null) return 'unknown';
   if (days < 0) return 'retired';
   return days <= 90 ? 'soon' : 'upcoming';
+}
+
+export function retirementCountdown(deadline: Pick<DeadlineQuestion, 'date'>, today?: string): string {
+  const days = daysUntilRetirement(deadline, today);
+  return days === null ? 'Retirement date to confirm'
+    : days < 0 ? 'Retired'
+      : days === 0 ? 'Retires today (0 days remaining)'
+        : `${days} ${days === 1 ? 'day' : 'days'} remaining`;
 }
 
 export function retirementYear(record: Pick<RetirementRecord, 'questions'>): string {
@@ -48,9 +56,9 @@ export function groupRetirements(records: readonly RetirementRecord[]) {
     });
 }
 
-export function directoryUrl(filters: Partial<CatalogFilters>): string {
+export function directoryUrl(filters: Partial<CatalogFilters>, base = '/'): string {
   const query = new URLSearchParams(Object.entries(filters).filter(([, value]) => value));
-  return query.size ? `#/?${query}` : '#/';
+  return query.size ? `${base}?${query}` : base;
 }
 
 export function filterRecords<T extends Pick<RetirementRecord, 'title' | 'service' | 'services' | 'categories' | 'summary' | 'questions' | 'announcedOn'>>(

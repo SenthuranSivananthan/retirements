@@ -1,0 +1,13 @@
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+{%- case include.name -%}
+{%- when 'clock' -%}<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+{%- when 'arrow' -%}<path d="M5 12h14m-5-5 5 5-5 5"/>
+{%- when 'search' -%}<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/>
+{%- when 'moon' -%}<path d="M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10Z"/>
+{%- when 'sun' -%}<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/>
+{%- when 'download' -%}<path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/>
+{%- when 'menu' -%}<path d="M4 6h16M4 12h16M4 18h16"/>
+{%- when 'external' -%}<path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/>
+{%- else -%}<rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="3" width="6" height="6" rx="1"/><rect x="3" y="15" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/>
+{%- endcase -%}
+</svg>

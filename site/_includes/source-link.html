@@ -1,0 +1,1 @@
+{% if include.view.sourceUrl %}<a class="button primary" href="{{ include.view.sourceUrl | escape }}" target="_blank" rel="noopener noreferrer">{{ include.text | default: 'Read official announcement' | escape }} {% include icon.html name="external" %}</a>{% endif %}

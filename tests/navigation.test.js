@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { categoriesOf, directoryUrl, filterRecords, groupRetirements, retirementYear, statusOf } from '../src/catalog.ts';
+import { categoriesOf, directoryUrl, filterRecords, groupRetirements, retirementYear, statusOf } from '../site/src/catalog.ts';
 import { normalize } from '../scripts/feed.mjs';
 
 function records() {
@@ -75,5 +75,6 @@ test('directory URLs preserve and safely encode year, category and existing filt
   assert.equal(params.get('status'), filters.status);
   assert.equal(params.get('sort'), filters.sort);
   assert.equal(params.has('service'), false);
-  assert.equal(directoryUrl({}), '#/');
+  assert.equal(directoryUrl({}), '/');
+  assert.equal(directoryUrl({ year: '2027' }), '/?year=2027');
 });

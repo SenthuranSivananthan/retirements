@@ -1,0 +1,1 @@
+{% if include.link.url %}<a href="{{ include.link.url | escape }}" target="_blank" rel="noopener noreferrer">{{ include.link.title | default: include.link.url | escape }} {% include icon.html name="external" %}</a>{% endif %}

@@ -1,0 +1,7 @@
+{% assign card = include.view.record %}
+<article class="card">
+  <div class="card-top"><span class="service-name">{{ card.service | escape }}</span><span class="badge {{ include.view.status }}" data-deadline="{{ card.questions.deadline.date | escape }}"><span></span>{{ include.view.label }}</span></div>
+  <h3><a href="{{ include.view.url | relative_url }}">{{ card.title | escape }}</a></h3>
+  <p>{{ card.summary | escape }}</p>
+  <div class="card-bottom"><span>{% include icon.html name="clock" %}{% if card.questions.deadline.date %}<time datetime="{{ card.questions.deadline.date }}">{{ include.view.deadline }}</time>{% else %}Date not specified{% endif %}</span><a href="{{ include.view.url | relative_url }}" aria-label="View details: {{ card.title | escape }}">View details {% include icon.html name="arrow" %}</a></div>
+</article>
