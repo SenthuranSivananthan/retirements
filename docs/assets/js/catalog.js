@@ -81,6 +81,9 @@ export function directoryUrl(filters, base = '/') {
     const query = new URLSearchParams(Object.entries(filters).filter(([, value]) => value));
     return query.size ? `${base}?${query}` : base;
 }
+export function recordUrl(record) {
+    return `/retirements/${record.questions.deadline.date || 'unknown-date'}/${encodeURIComponent(record.id)}/`;
+}
 export function filterRecords(records, filters, today = new Date().toISOString().slice(0, 10)) {
     const terms = (filters.q || '').toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
     const window = filters.window ? retirementWindow(filters.window, today) : null;

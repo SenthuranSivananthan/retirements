@@ -7,13 +7,27 @@ from pathlib import Path
 from fixtures import ITEM, catalog
 from scripts.catalog import (
     ROOT, QUESTIONS, categories_of, countdown, days_until, format_date, group_retirements,
-    parse_catalog, prepare_site, retirement_year, safe_url, status_of,
+    parse_catalog, prepare_site, record_url, retirement_year, safe_url, status_of,
     in_retirement_window, retirement_outlook, retirement_window,
 )
 from scripts.feed import normalize, title_date
 
 
 class CatalogTests(unittest.TestCase):
+    def test_detail_urls_use_exact_deadlines_or_unknown_date_and_keep_unique_ids(self):
+        record = catalog()["records"][0]
+        for deadline, month, folder in (
+            ("2026-05-12", None, "2026-05-12"),
+            ("2028-02-29", None, "2028-02-29"),
+            (None, "May 2027", "unknown-date"),
+            (None, None, "unknown-date"),
+        ):
+            record["questions"]["deadline"].update({"date": deadline, "month": month})
+            with self.subTest(deadline=deadline, month=month):
+                self.assertEqual(record_url(record), f"/retirements/{folder}/a/")
+        record["id"] = "record /?#"
+        self.assertEqual(record_url(record), "/retirements/unknown-date/record%20%2F%3F%23/")
+
     def test_calendar_windows_cover_whole_months_and_leap_years(self):
         for today, window, expected in (
             ("2026-11-10", "6", "2027-05-31"),
@@ -192,6 +206,7 @@ class CatalogTests(unittest.TestCase):
             source.write_bytes(original)
             metadata = prepare_site(root, "2026-11-10")
             self.assertEqual(metadata["byId"]["a"]["record"], record)
+            self.assertEqual(metadata["byId"]["a"]["url"], record_url(record))
             self.assertEqual(metadata["byId"]["a"]["categories"], ["Uncategorized"])
             self.assertEqual([section["id"] for section in metadata["byId"]["a"]["sections"]], list(QUESTIONS))
             self.assertEqual(source.read_bytes(), original)

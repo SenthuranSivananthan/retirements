@@ -1,5 +1,5 @@
 import catalog from './data.js';
-import { RETIREMENT_WINDOWS, categoriesOf, directoryUrl, escapeHtml as e, filterRecords, formatDate, groupRetirements, inRetirementWindow, retirementCountdown, retirementWindow, retirementYear, statusOf } from './catalog.js';
+import { RETIREMENT_WINDOWS, categoriesOf, directoryUrl, escapeHtml as e, filterRecords, formatDate, groupRetirements, inRetirementWindow, recordUrl, retirementCountdown, retirementWindow, retirementYear, statusOf } from './catalog.js';
 function element(selector) {
     const node = document.querySelector(selector);
     if (!node)
@@ -19,8 +19,8 @@ const labels = { upcoming: 'Upcoming', soon: 'Within 90 days', retired: 'Retired
 const yearLabel = (year) => year === 'unknown' ? 'Unconfirmed year' : year;
 const directoryLink = (filters) => directoryUrl(filters, homeUrl.pathname);
 const icon = (name) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${name === 'clock' ? '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>' : '<path d="M5 12h14m-5-5 5 5-5 5"/>'}</svg>`;
-function detailLink(id, context = {}) {
-    const url = new URL(`retirements/${encodeURIComponent(id)}/`, homeUrl);
+function detailLink(record, context = {}) {
+    const url = new URL(recordUrl(record).slice(1), homeUrl);
     url.search = new URLSearchParams(Object.entries(context).filter(([, value]) => value)).toString();
     return `${url.pathname}${url.search}`;
 }
@@ -60,8 +60,9 @@ function redirectLegacyRoute() {
             location.replace(new URL('404.html', homeUrl));
             return true;
         }
-        const target = catalog.records.some(record => record.id === id)
-            ? new URL(detailLink(id), location.origin) : new URL('404.html', homeUrl);
+        const record = catalog.records.find(record => record.id === id);
+        const target = record
+            ? new URL(detailLink(record), location.origin) : new URL('404.html', homeUrl);
         target.search = query;
         location.replace(target);
     }
@@ -70,6 +71,31 @@ function redirectLegacyRoute() {
         target.search = query;
         location.replace(target);
     }
+    return true;
+}
+function redirectMovedDetail() {
+    if (document.body.dataset.page !== 'not-found' || !location.pathname.startsWith(homeUrl.pathname))
+        return false;
+    const path = location.pathname.slice(homeUrl.pathname.length);
+    const match = /^retirements\/(?:(?:\d{4}-\d{2}-\d{2}|unknown-date)\/)?([^/]+)\/?$/.exec(path);
+    if (!match)
+        return false;
+    let id;
+    try {
+        id = decodeURIComponent(match[1]);
+    }
+    catch {
+        return false;
+    }
+    const record = catalog.records.find(record => record.id === id);
+    if (!record)
+        return false;
+    const target = new URL(detailLink(record), location.origin);
+    target.search = location.search;
+    target.hash = location.hash;
+    if (target.href === location.href)
+        return false;
+    location.replace(target);
     return true;
 }
 function setNavigation(open) {
@@ -125,7 +151,7 @@ function bindShell() {
         }
         const hits = filterRecords(catalog.records, { q, sort: 'newest' }).slice(0, 8);
         results.innerHTML = hits.length
-            ? hits.map(record => `<a href="${e(detailLink(record.id))}"><strong>${e(record.title)}</strong><small>${e(record.service)}</small></a>`).join('')
+            ? hits.map(record => `<a href="${e(detailLink(record))}"><strong>${e(record.title)}</strong><small>${e(record.service)}</small></a>`).join('')
             : '<p>No matching retirements.</p>';
         results.hidden = false;
     };
@@ -206,7 +232,7 @@ function renderResults() {
     element('#results').innerHTML = records.length ? records.slice(0, visible).map(record => {
         const deadline = record.questions.deadline;
         const status = statusOf(deadline);
-        const url = detailLink(record.id, filters);
+        const url = detailLink(record, filters);
         return `<article class="card">
       <div class="card-top"><span class="service-name">${e(record.service)}</span><span class="badge ${status}" data-deadline="${e(deadline.date || '')}"><span></span>${labels[status]}</span></div>
       <h3><a href="${e(url)}">${e(record.title)}</a></h3><p>${e(record.summary)}</p>
@@ -332,7 +358,7 @@ function updateDates() {
         }
     }
 }
-if (!redirectLegacyRoute()) {
+if (!redirectLegacyRoute() && !redirectMovedDetail()) {
     bindShell();
     if (isDirectory)
         bindDirectory();

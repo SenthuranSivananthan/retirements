@@ -57,7 +57,7 @@ def check_site(root=ROOT):
             require((target / "index.html" if path.endswith("/") or not path else target).is_file(), f"Missing local target: {href}")
     expected = set()
     for record in catalog["records"]:
-        path = record_url(record["id"]).lstrip("/") + "index.html"
+        path = record_url(record).lstrip("/") + "index.html"
         expected.add(path)
         html = (destination / path).read_text(encoding="utf-8")
         heading = re.search(r"<h1>(.*?)</h1>", html, re.S)
@@ -70,9 +70,9 @@ def check_site(root=ROOT):
         require(len(headings) == 5, f'{record["id"]}: incorrect question count')
         for key, value in zip(QUESTIONS, headings):
             require("".join(Elements(value).text).endswith(record["questions"][key]["question"]), f'{record["id"]}: {key} heading missing')
-        require('data-countdown' in html and 'data-home="../../"' in html, f'{record["id"]}: countdown or home path missing')
-        require('src="../../assets/js/main.js"' in html, f'{record["id"]}: script path missing')
-    actual = {str(path.relative_to(destination)).replace("\\", "/") for path in (destination / "retirements").glob("*/index.html")}
+        require('data-countdown' in html and 'data-home="../../../"' in html, f'{record["id"]}: countdown or home path missing')
+        require('src="../../../assets/js/main.js"' in html, f'{record["id"]}: script path missing')
+    actual = {str(path.relative_to(destination)).replace("\\", "/") for path in (destination / "retirements").rglob("index.html")}
     require(actual == expected, "Generated retirement pages do not match the catalog")
     require(json.loads((destination / "assets" / "data" / "retirements.json").read_text(encoding="utf-8")) == catalog, "Download differs from the canonical catalog")
     require((destination / ".nojekyll").is_file(), "Missing docs/.nojekyll")

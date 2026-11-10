@@ -207,8 +207,11 @@ def safe_url(value):
         return None
 
 
-def record_url(identifier):
-    return "/retirements/" + quote(identifier, safe="!~*'()") + "/"
+def record_url(record):
+    deadline = record["questions"]["deadline"]["date"]
+    if not valid_date(deadline):
+        raise ValueError(f"Invalid retirement date for {record['id']!r}: {deadline!r}")
+    return "/retirements/" + (deadline or "unknown-date") + "/" + quote(record["id"], safe="!~*'()") + "/"
 
 
 def prepare_site(root=ROOT, today=None):
@@ -229,7 +232,7 @@ def prepare_site(root=ROOT, today=None):
             "record": record, "status": status, "label": labels[status], "countdown": countdown(questions["deadline"], today),
             "sections": [{"id": key, "question": questions[key]["question"]} for key in QUESTIONS],
             "year": retirement_year(record), "categories": sorted(categories_of(record), key=str.casefold),
-            "url": record_url(record["id"]), "deadline": format_date(questions["deadline"]["date"]),
+            "url": record_url(record), "deadline": format_date(questions["deadline"]["date"]),
             "announced": format_date(record["announcedOn"]),
             "updated": format_date(record["lastUpdatedOn"]) if record["lastUpdatedOn"] else "Not provided by source",
             "sourceUrl": safe_url(record["sourceUrl"]),
