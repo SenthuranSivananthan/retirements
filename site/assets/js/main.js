@@ -1,5 +1,5 @@
 import catalog from './data.js';
-import { RETIREMENT_WINDOWS, categoriesOf, directoryUrl, escapeHtml as e, filterRecords, formatDate, groupRetirements, groupTimeline, inRetirementWindow, recordUrl, retirementCountdown, retirementWindow, retirementYear, servicesOf, statusOf } from './catalog.js';
+import { RETIREMENT_WINDOWS, categoriesOf, directoryUrl, escapeHtml as e, filterRecords, formatDate, groupRetirements, groupTimeline, inRetirementWindow, recordUrl, retirementCountdown, retirementWindow, retirementYear, servicesForCategory, statusOf } from './catalog.js';
 function element(selector) {
     const node = document.querySelector(selector);
     if (!node)
@@ -12,7 +12,6 @@ if (!home)
 const homeUrl = new URL(home, location.href);
 const isDirectory = document.body.dataset.page === 'home';
 const activeRecord = catalog.records.find(record => record.id === document.body.dataset.record);
-const services = new Set(catalog.records.flatMap(servicesOf));
 const categories = new Set(catalog.records.flatMap(categoriesOf));
 const years = new Set(groupRetirements(catalog.records).map(group => group.year));
 const labels = { upcoming: 'Upcoming', soon: 'Within 90 days', retired: 'Retired', unknown: 'Date to confirm' };
@@ -34,10 +33,11 @@ function readFilters() {
     const params = new URLSearchParams(location.search);
     const service = params.get('service') || '';
     const year = params.get('year') || '';
-    const category = params.get('category') || '';
+    const requestedCategory = params.get('category') || '';
+    const category = categories.has(requestedCategory) ? requestedCategory : '';
     return {
-        q: params.get('q') || '', service: services.has(service) ? service : '',
-        year: years.has(year) ? year : '', category: categories.has(category) ? category : '',
+        q: params.get('q') || '', service: servicesForCategory(catalog.records, category).includes(service) ? service : '',
+        year: years.has(year) ? year : '', category,
         status: statusFilter(params.get('status')), sort: 'date-desc',
         window: windowFilter(params.get('window')),
     };
@@ -201,6 +201,33 @@ function bindShell() {
     });
 }
 function updateNav() {
+    const matches = new Map(filterRecords(catalog.records, filters).map(record => [record.id, record]));
+    for (const yearGroup of document.querySelectorAll('#navigation .year-group')) {
+        const year = yearGroup.dataset.yearGroup;
+        const yearIds = new Set();
+        const yearContext = { ...filters, year };
+        yearGroup.querySelector(':scope > a[data-year]').href = `${directoryLink(yearContext)}#catalog`;
+        for (const categoryGroup of yearGroup.querySelectorAll('.category-group')) {
+            const category = categoryGroup.dataset.categoryGroup;
+            const context = { ...yearContext, category };
+            const categoryIds = new Set();
+            categoryGroup.querySelector('.category-all').href = `${directoryLink(context)}#catalog`;
+            for (const link of categoryGroup.querySelectorAll('.nav-record')) {
+                const record = matches.get(link.dataset.record);
+                link.hidden = !record || Boolean(filters.category && category !== filters.category);
+                if (!link.hidden) {
+                    categoryIds.add(record.id);
+                    yearIds.add(record.id);
+                    link.href = detailLink(record, context);
+                }
+            }
+            categoryGroup.hidden = categoryIds.size === 0;
+            categoryGroup.querySelector('summary .nav-count').textContent = String(categoryIds.size);
+        }
+        yearGroup.hidden = yearIds.size === 0;
+        yearGroup.querySelector(':scope > summary .nav-count').textContent = String(yearIds.size);
+    }
+    element('#navigation-empty').hidden = matches.size > 0;
     const year = activeRecord ? retirementYear(activeRecord) : filters.year;
     const recordCategories = activeRecord ? categoriesOf(activeRecord).sort() : [];
     const category = activeRecord
@@ -260,9 +287,28 @@ function renderResults() {
             card.removeAttribute('aria-current');
     }
 }
+function updateServiceOptions() {
+    const services = servicesForCategory(catalog.records, filters.category);
+    if (!services.includes(filters.service))
+        filters.service = '';
+    const control = element('#service');
+    control.replaceChildren(new Option('All services', ''), ...services.map(service => new Option(service, service)));
+    control.value = filters.service;
+}
+function restoreDirectoryFilters() {
+    filters = readFilters();
+    visible = 24;
+    updateServiceOptions();
+    for (const [id, key] of [['search', 'q'], ['category', 'category'], ['service', 'service'], ['window', 'window']]) {
+        element(`#${id}`).value = key === 'window' ? filters.window || filters.year : filters[key];
+    }
+    renderResults();
+    updateNav();
+}
 function bindDirectory() {
     for (const control of document.querySelectorAll('[data-enhancement]'))
         control.hidden = false;
+    updateServiceOptions();
     for (const [id, key, event] of [['search', 'q', 'input'], ['category', 'category', 'change'], ['service', 'service', 'change'], ['window', 'window', 'change']]) {
         const control = element(`#${id}`);
         control.value = key === 'window' ? filters.window || filters.year : filters[key];
@@ -274,6 +320,8 @@ function bindDirectory() {
             }
             else
                 filters[key] = control.value;
+            if (key === 'category')
+                updateServiceOptions();
             visible = 24;
             history.replaceState(null, '', directoryLink(filters));
             renderResults();
@@ -287,15 +335,11 @@ function bindDirectory() {
         [...document.querySelectorAll('.timeline-entry')].find(entry => entry.dataset.record === nextRecord?.id)
             ?.querySelector('h5 a')?.focus();
     });
-    window.addEventListener('popstate', () => {
-        filters = readFilters();
-        visible = 24;
-        for (const [id, key] of [['search', 'q'], ['category', 'category'], ['service', 'service'], ['window', 'window']]) {
-            element(`#${id}`).value = key === 'window' ? filters.window || filters.year : filters[key];
-        }
-        renderResults();
-        updateNav();
+    element('#reset-filters').addEventListener('click', () => {
+        history.replaceState(null, '', `${homeUrl.pathname}#catalog`);
+        restoreDirectoryFilters();
     });
+    window.addEventListener('popstate', restoreDirectoryFilters);
     renderResults();
 }
 function bindProgress(record) {
@@ -388,6 +432,7 @@ if (!redirectLegacyRoute() && !redirectMovedDetail()) {
         day = current;
         if (isDirectory)
             renderResults();
+        updateNav();
         updateDates();
     };
     window.setInterval(refreshDay, 60000);
