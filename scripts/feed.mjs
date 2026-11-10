@@ -46,6 +46,81 @@ export function titleDate(title) {
   return unique.length === 1 ? unique[0] : null;
 }
 
+function sourceUpdatedOn(value) {
+  if (value === undefined || value === null) return null;
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}T/.test(value)) {
+    throw new Error('Invalid announcement modified timestamp');
+  }
+  const parsed = new Date(value);
+  const day = new Date(`${value.slice(0, 10)}T00:00:00Z`);
+  if (!Number.isFinite(parsed.getTime()) || !Number.isFinite(day.getTime())
+    || day.toISOString().slice(0, 10) !== value.slice(0, 10)) {
+    throw new Error('Invalid announcement modified timestamp');
+  }
+  return parsed.toISOString().slice(0, 10);
+}
+
+export function organizeRecord(record) {
+  const { details, actions, links, retirementDate, retirementMonth, ...metadata } = record;
+  return {
+    ...metadata,
+    questions: {
+      what: {
+        question: 'What is changing?',
+        introduction: 'The change and what it means, including technical and financial considerations.',
+        announcement: details || record.summary,
+        financialConsiderations: 'The text above is from Microsoft\u2019s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating.',
+      },
+      actions: {
+        question: 'What do I need to do?',
+        introduction: 'Required actions, options, and available support.',
+        recommendedAction: actions,
+        guidance: 'Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.',
+        resources: links,
+        supportGuidance: 'For help with your specific environment, contact your Microsoft account team or Azure support.',
+        support: { title: 'Azure support', url: 'https://azure.microsoft.com/support/create-ticket/' },
+      },
+      impact: {
+        question: 'Where, and how much, am I impacted?',
+        introduction: 'Your affected environments, resources, and users.',
+        guidance: `This announcement concerns ${record.service}. Compare the versions, regions, configurations, and exceptions in the announcement with your inventory.`,
+        checklist: [
+          'Check every subscription and environment, including development, test, and production.',
+          'Identify dependent applications, users, and resource owners.',
+          'Estimate migration effort, downtime risk, and replacement-service costs.',
+        ],
+        notice: 'No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service.',
+        advisor: {
+          title: 'Azure Advisor service retirements',
+          url: 'https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement',
+        },
+      },
+      deadline: {
+        question: 'What is the deadline?',
+        introduction: 'Key dates and the consequences of not acting.',
+        date: retirementDate,
+        month: retirementMonth,
+        dateGuidance: retirementDate
+          ? 'This date is extracted from the announcement title. Check the full announcement for phased deadlines, extensions, and exceptions.'
+          : `An unambiguous exact date could not be extracted from the announcement title.${retirementMonth ? ` The source lists ${retirementMonth} as the retirement month.` : ''} Review the official announcement for all applicable dates.`,
+        consequences: 'After the applicable deadline, support or service availability may change. The exact consequences are service-specific; verify them in the announcement and plan to finish your migration ahead of time.',
+      },
+      progress: {
+        question: 'How can I track progress?',
+        introduction: 'What work remains, and what needs attention.',
+        guidance: 'Use this planning checklist as a starting point. Record resource-level owners, target dates, blockers, and evidence in your team\u2019s tracking system.',
+        checklist: [
+          'Identify affected resources, subscriptions, and owners',
+          'Review the official migration guidance and estimate cost changes',
+          'Test the replacement and agree a migration plan',
+          'Complete migration and validate production workloads',
+        ],
+        storageNote: 'Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it.',
+      },
+    },
+  };
+}
+
 export function normalize(item) {
   if (!item.id || typeof item.title !== 'string' || typeof item.description !== 'string'
     || !Array.isArray(item.tags) || !item.tags.includes('Retirements')) {
@@ -55,24 +130,52 @@ export function normalize(item) {
   const actionMatch = details.match(/(?:^|\n)(?:recommended actions?|required actions?|action required|what you need to do)[: ]*\n([\s\S]*?)(?=\n(?:help and support|more information|learn more)[: ]*(?:\n|$)|$)/i);
   const services = Array.isArray(item.products) ? item.products.filter(value => typeof value === 'string' && value.trim()) : [];
   if (!services.length) services.push('Azure platform');
+  const categories = Array.isArray(item.productCategories)
+    ? [...new Set(item.productCategories.filter(value => typeof value === 'string' && value.trim()).map(value => value.trim()))] : [];
+  if (!categories.length) categories.push('Uncategorized');
   const availability = item.availabilities?.find(value => value.ring === 'Retirement');
   const retirementMonth = availability && Number.isInteger(availability.year) && months.includes(availability.month)
     ? `${availability.month} ${availability.year}` : null;
   const announcedOn = typeof item.created === 'string' && /^\d{4}-\d{2}-\d{2}T/.test(item.created) ? item.created.slice(0, 10) : null;
-  return {
+  return organizeRecord({
     id: String(item.id),
     title: item.title.trim(),
     services,
+    categories,
     service: services.join(' · '),
     retirementDate: titleDate(item.title),
     retirementMonth,
     announcedOn,
+    lastUpdatedOn: sourceUpdatedOn(item.modified),
+    manuallyEnriched: false,
     summary: details.length > 240 ? `${details.slice(0, 237).replace(/\s+\S*$/, '')}…` : details,
     details,
     actions: actionMatch?.[1].trim() || null,
     links,
     sourceUrl: `https://azure.microsoft.com/updates?id=${encodeURIComponent(item.id)}`,
-  };
+  });
+}
+
+function recordMap(records) {
+  if (!Array.isArray(records)) throw new Error('Invalid catalog records; existing snapshot preserved');
+  const result = new Map();
+  for (const record of records) {
+    if (!record || typeof record.id !== 'string' || !record.id
+      || typeof record.manuallyEnriched !== 'boolean' || result.has(record.id)) {
+      throw new Error('Invalid record ID, enrichment flag, or duplicate ID; existing snapshot preserved');
+    }
+    result.set(record.id, record);
+  }
+  return result;
+}
+
+export function mergeRetirements(fetched, existing) {
+  const previous = recordMap(existing);
+  const merged = recordMap(fetched);
+  for (const record of previous.values()) {
+    if (record.manuallyEnriched) merged.set(record.id, record);
+  }
+  return [...merged.values()].sort((a, b) => a.id.localeCompare(b.id));
 }
 
 export async function fetchRetirements(fetcher = fetch) {
