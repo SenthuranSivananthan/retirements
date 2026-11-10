@@ -1,12 +1,14 @@
+import { parseCatalog } from './catalog';
+import type { RetirementCatalog } from './types';
+
 export const catalogDownload = new URL('../data/retirements.json', import.meta.url).href;
 
-async function loadCatalog() {
+async function loadCatalog(): Promise<RetirementCatalog> {
   try {
     const response = await fetch(catalogDownload);
     if (!response.ok) throw new Error(`Catalog request failed: ${response.status}`);
-    const catalog = await response.json();
-    if (!Array.isArray(catalog.records) || !catalog.records.length) throw new Error('Empty retirement catalog');
-    return catalog;
+    const catalog: unknown = await response.json();
+    return parseCatalog(catalog);
   } catch (error) {
     const message = document.createElement('main');
     const heading = document.createElement('h1');
@@ -17,7 +19,7 @@ async function loadCatalog() {
     link.href = 'https://azure.microsoft.com/updates/';
     link.textContent = 'Open Azure Updates';
     message.append(heading, hint, link);
-    document.querySelector('#app').replaceChildren(message);
+    document.querySelector('#app')?.replaceChildren(message);
     throw error;
   }
 }

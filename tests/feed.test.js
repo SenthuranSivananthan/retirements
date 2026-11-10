@@ -6,15 +6,26 @@ const item = {
   id: 'stable-id-2025', title: 'Retirement: API keys end on 31 March 2027',
   description: '<p>Move to <a href="https://learn.microsoft.com/azure/">Entra ID</a>.</p>',
   products: ['Monitor'], tags: ['Retirements'], created: '2026-11-01T10:00:00Z',
+  modified: '2026-11-05T08:30:45.1234567Z',
   availabilities: [{ ring: 'Retirement', year: 2027, month: 'March' }],
 };
 
 test('exact dates come from current titles, never URL IDs or publication dates', () => {
   const record = normalize(item);
-  assert.equal(record.retirementDate, '2027-03-31');
-  assert.equal(record.retirementMonth, 'March 2027');
+  assert.equal(record.questions.deadline.date, '2027-03-31');
+  assert.equal(record.questions.deadline.month, 'March 2027');
   assert.equal(record.announcedOn, '2026-11-01');
+  assert.equal(record.lastUpdatedOn, '2026-11-05');
   assert.equal(record.sourceUrl, 'https://azure.microsoft.com/updates?id=stable-id-2025');
+});
+
+test('last updated dates come from the source modified timestamp, not publication or refresh dates', () => {
+  assert.equal(normalize({ ...item, modified: undefined }).lastUpdatedOn, null);
+  assert.equal(normalize({ ...item, modified: null }).lastUpdatedOn, null);
+  assert.equal(normalize({ ...item, modified: '2026-11-05T23:30:00-02:00' }).lastUpdatedOn, '2026-11-06');
+  for (const modified of ['', 'invalid', '2026-11-05', '2026-02-30T00:00:00Z', 42]) {
+    assert.throws(() => normalize({ ...item, modified }), /Invalid announcement modified timestamp/);
+  }
 });
 
 test('ambiguous, month-only, invalid and multiple deadlines remain unknown', () => {
@@ -42,14 +53,41 @@ test('announcement HTML is converted to text; entities and paragraph boundaries 
   const result = readAnnouncement('<p>A &amp; B&nbsp;C</p><p>Next<br>line</p><script>evil()</script><a href="javascript:evil()">bad</a><a href="/updates/">Good</a>');
   assert.equal(result.details, 'A & B C\nNext\nline\nbadGood');
   assert.deepEqual(result.links, [{ title: 'Good', url: 'https://azure.microsoft.com/updates/' }]);
-  assert.equal(normalize(item).details, 'Move to Entra ID.');
+  assert.equal(normalize(item).questions.what.announcement, 'Move to Entra ID.');
   assert.equal(readAnnouncement('<p>A long\nline with <strong>formatted\ntext</strong>.</p>').details, 'A long line with formatted text.');
 });
 
 test('explicit action sections are retained as source guidance without inventing steps', () => {
   const description = '<p>What changes.</p><h3>Recommended action</h3><p>Migrate to the new API.</p><h3>Help and support</h3><p>Contact us.</p>';
-  assert.equal(normalize({ ...item, description }).actions, 'Migrate to the new API.');
-  assert.equal(normalize(item).actions, null);
+  assert.equal(normalize({ ...item, description }).questions.actions.recommendedAction, 'Migrate to the new API.');
+  assert.equal(normalize(item).questions.actions.recommendedAction, null);
+});
+
+test('normalized records organize source content and planning guidance under all five questions', () => {
+  const record = normalize(item);
+  assert.deepEqual(Object.keys(record.questions), ['what', 'actions', 'impact', 'deadline', 'progress']);
+  assert.deepEqual(Object.values(record.questions).map(answer => answer.question), [
+    'What is changing?',
+    'What do I need to do?',
+    'Where, and how much, am I impacted?',
+    'What is the deadline?',
+    'How can I track progress?',
+  ]);
+  assert.deepEqual(record.questions.actions.resources, [{ title: 'Entra ID', url: 'https://learn.microsoft.com/azure/' }]);
+  assert.ok(record.questions.impact.guidance.includes('Monitor'));
+  assert.ok(record.questions.impact.notice.includes('cannot determine whether your resources are affected'));
+  assert.equal(record.questions.progress.checklist.length, 4);
+  for (const key of ['details', 'actions', 'links', 'retirementDate', 'retirementMonth']) {
+    assert.equal(Object.hasOwn(record, key), false, key);
+  }
+});
+
+test('question answers retain unknown dates and month-only deadline guidance', () => {
+  const record = normalize({ ...item, title: 'Retirement: API keys' });
+  assert.equal(record.questions.deadline.date, null);
+  assert.equal(record.questions.deadline.month, 'March 2027');
+  assert.match(record.questions.deadline.dateGuidance, /unambiguous exact date could not be extracted/);
+  assert.match(record.questions.deadline.dateGuidance, /March 2027/);
 });
 
 test('fetch follows count and explicit offsets even without nextLink', async () => {
@@ -74,4 +112,11 @@ test('an incomplete, duplicate, malformed, or changing feed cannot replace the s
 test('missing source products use an explicit platform fallback', () => {
   assert.deepEqual(normalize({ ...item, products: [] }).services, ['Azure platform']);
   assert.throws(() => normalize({ ...item, tags: [] }), /Invalid/);
+});
+
+test('official service categories are trimmed and deduplicated without inferring categories from products', () => {
+  assert.deepEqual(normalize({ ...item, productCategories: ['Analytics', ' Internet of Things ', 'Analytics', '', null] }).categories, ['Analytics', 'Internet of Things']);
+  for (const productCategories of [undefined, null, [], ['', ' ', null]]) {
+    assert.deepEqual(normalize({ ...item, productCategories }).categories, ['Uncategorized']);
+  }
 });
