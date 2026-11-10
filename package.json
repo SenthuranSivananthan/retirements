@@ -1,0 +1,17 @@
+{
+  "name": "azure-retirements",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test",
+    "refresh-data": "node scripts/refresh-data.mjs"
+  },
+  "devDependencies": {
+    "parse5": "^8.1.1",
+    "vite": "^8.3.7"
+  }
+}
