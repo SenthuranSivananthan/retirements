@@ -2,10 +2,24 @@ import unittest
 from urllib.parse import parse_qs, urlsplit
 
 from fixtures import ITEM
-from scripts.feed import fetch_retirements, normalize, read_announcement, title_date
+from scripts.feed import fetch_retirements, merge_retirements, normalize, read_announcement, title_date
 
 
 class FeedTests(unittest.TestCase):
+    def test_hidden_flag_survives_refresh_without_protecting_other_fields(self):
+        previous = normalize(ITEM)
+        previous["hidden"] = True
+        fresh = normalize({**ITEM, "title": "Updated announcement"})
+        merged = merge_retirements([fresh], [previous])
+        self.assertTrue(merged[0]["hidden"])
+        self.assertEqual(merged[0]["title"], "Updated announcement")
+        self.assertFalse(fresh["hidden"])
+        previous["hidden"] = False
+        self.assertFalse(merge_retirements([fresh], [previous])[0]["hidden"])
+        previous["hidden"] = "true"
+        with self.assertRaises(ValueError):
+            merge_retirements([fresh], [previous])
+
     def test_source_backed_dates_and_five_questions(self):
         record = normalize(ITEM)
         self.assertEqual(record["questions"]["deadline"]["date"], "2027-03-31")

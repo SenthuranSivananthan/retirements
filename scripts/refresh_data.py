@@ -29,6 +29,13 @@ def refresh_catalog(fetcher=fetch_page, output=ROOT / "data" / "retirements.json
         "schemaVersion": 2, "source": ENDPOINT,
         "retrievedAt": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"), "records": records,
     })
+    write_snapshot(catalog, output, original)
+    return catalog
+
+
+def write_snapshot(catalog, output, original, operation="refresh"):
+    parse_catalog(catalog)
+    output = Path(output)
     output.parent.mkdir(parents=True, exist_ok=True)
     temporary = None
     try:
@@ -42,12 +49,11 @@ def refresh_catalog(fetcher=fetch_page, output=ROOT / "data" / "retirements.json
             handle.flush()
             os.fsync(handle.fileno())
         if read_snapshot(output) != original:
-            raise ValueError("Catalog changed during refresh; existing snapshot preserved. Retry the refresh.")
+            raise ValueError(f"Catalog changed during {operation}; existing snapshot preserved. Retry the {operation}.")
         os.replace(temporary, output)
     finally:
         if temporary is not None:
             temporary.unlink(missing_ok=True)
-    return catalog
 
 
 if __name__ == "__main__":

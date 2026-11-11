@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 from pathlib import Path
-from scripts.catalog import format_date, record_url, retirement_outlook
+from scripts.catalog import DETAIL_QUESTIONS, format_date, record_url, retirement_outlook
 from html5lib import parse
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -40,6 +40,8 @@ class StaticSiteTests(unittest.TestCase):
             (source / "assets" / directory).mkdir(parents=True)
         (source / "assets" / "css" / "style.css").write_text("body {}", encoding="utf-8")
         record = copy.deepcopy(json.loads((ROOT / "data" / "retirements.json").read_text(encoding="utf-8"))["records"][0])
+        record.pop("sourceReview", None)
+        record["manuallyEnriched"] = False
         record["id"] = "example"
         record["questions"]["deadline"].update({"date": None, "month": None})
         record["title"] = 'Retirement <script>alert("unsafe")</script>'
@@ -50,7 +52,7 @@ class StaticSiteTests(unittest.TestCase):
             "url": record_url(record), "deadline": "Date not specified", "announced": "Date not specified",
             "updated": "Not provided by source", "sourceUrl": None, "resources": [],
             "support": {"url": None, "title": "Support"}, "advisor": {"url": None, "title": "Advisor"},
-            "sections": [{"id": key, "question": value["question"]} for key, value in record["questions"].items()],
+            "sections": [{"id": key, "question": record["questions"][key]["question"]} for key in DETAIL_QUESTIONS],
         }
         self.metadata = {
             "byId": {"example": self.view}, "buildDate": "2026-11-10", "count": 1,
@@ -71,7 +73,7 @@ class StaticSiteTests(unittest.TestCase):
         html = (destination / "retirements" / "unknown-date" / "example" / "index.html").read_text(encoding="utf-8")
         self.assertIn('data-home="../../../"', html)
         self.assertIn('src="../../../assets/js/main.js"', html)
-        positions = [html.index(f'<section id="{key}">') for key in ("what", "actions", "impact", "deadline", "progress")]
+        positions = [html.index(f'<section id="{key}">') for key in DETAIL_QUESTIONS]
         self.assertEqual(positions, sorted(positions))
         self.assertNotIn("<script>unsafe</script>", html)
         self.assertIn("First &lt;script&gt;unsafe&lt;/script&gt;<br>Second line", html)
@@ -86,6 +88,8 @@ class StaticSiteTests(unittest.TestCase):
             self.assertIn(f'?window={window}&amp;sort=date#catalog', home)
         self.assertIn('id="window"', home)
         document = parse(home, namespaceHTMLElements=False)
+        self.assertEqual(document.find(".//h1[@id='hero-title']").text, "Azure Retirement Catalog")
+        self.assertIsNone(document.find(".//select[@id='announced']"))
         self.assertIn("hidden", document.find(".//p[@id='navigation-empty']").attrib)
         self.assertEqual(document.find(".//div[@id='results']").attrib["class"], "retirement-timeline")
         reset = document.find(".//button[@id='reset-filters']")
@@ -142,10 +146,184 @@ class StaticSiteTests(unittest.TestCase):
         entries = services[1].findall("ol/li")
         self.assertEqual([entry.attrib["data-record"] for entry in entries], ["d", "a", "e", "b", "c"])
         self.assertEqual(entries[0].find(".//time").attrib["datetime"], "2028-01-01")
-        self.assertIsNone(entries[-1].find(".//time"))
+        self.assertEqual(entries[0].find(".//span[@class='timeline-date-label']").text, "Retirement date")
+        self.assertIsNone(entries[0].find(".//span[@class='timeline-announced']"))
+        self.assertIsNone(entries[-1].find(".//div[@class='timeline-date']/time"))
         self.assertIn("Date to confirm", "".join(entries[-1].itertext()))
         ids = [node.attrib["id"] for node in document.iter() if "id" in node.attrib]
         self.assertEqual(len(ids), len(set(ids)))
+
+    def test_source_review_renders_sources_once_after_questions_without_original_box(self):
+        record = self.view["record"]
+        record["sourceReview"] = {
+            "reviewedOn": "2026-11-11", "status": "needs-review",
+            "issues": ["Conflicting source years <script>unsafe</script>"],
+            "originalAnnouncement": "Original <script>unsafe</script>\r\nSecond line\n\n  \nLast paragraph",
+            "sources": [{
+                "title": "Learn <script>unsafe</script>",
+                "url": "https://learn.microsoft.com/en-us/azure/example",
+                "sections": ["what", "actions", "impact", "deadline", "progress"],
+                "note": "Scope <img src=x onerror=unsafe>",
+            }],
+        }
+        self.save()
+        builder.build_site(self.root)
+        html = (self.root / "docs" / "retirements" / "unknown-date" / "example" / "index.html").read_text(encoding="utf-8")
+        document = parse(html, namespaceHTMLElements=False)
+        article = document.find(".//article[@class='detail-content']")
+        self.assertEqual([section.attrib["id"] for section in article.findall("section")],
+                         list(DETAIL_QUESTIONS))
+        self.assertEqual([section.find("h2/span").text for section in article.findall("section")],
+                         ["1", "2", "3", "4", "5"])
+        nav = document.find(".//nav[@class='article-nav']")
+        self.assertEqual([link.attrib["href"] for link in nav.findall("a")[:5]],
+                         ["#" + key for key in DETAIL_QUESTIONS])
+        reading = article.find("div[@id='further-reading']")
+        self.assertEqual(article[-1], reading)
+        self.assertIsNone(document.find(".//div[@class='fact-card']/div[@id='further-reading']"))
+        self.assertEqual(reading.find("h3").text, "References")
+        links = reading.findall(".//a[@href='https://learn.microsoft.com/en-us/azure/example']")
+        self.assertEqual(len(links), 1)
+        self.assertEqual(links[0].attrib["rel"], "noopener noreferrer")
+        self.assertIsNone(reading.find(".//details"))
+        nav_link = document.find(".//nav[@class='article-nav']/a[@href='#further-reading']")
+        self.assertEqual(nav_link.text, "References")
+        self.assertNotIn("About this source", html)
+        self.assertNotIn("Sources for this answer", html)
+        self.assertNotIn("Resources from the announcement", html)
+        self.assertIn("Source review needs verification", html)
+        self.assertIn('datetime="2026-11-11"', html)
+        self.assertNotIn("<script>unsafe</script>", html)
+        self.assertNotIn("<img src=x", html)
+        self.assertNotIn("Microsoft Update", html)
+        self.assertNotIn("Original &lt;script&gt;", html)
+        self.assertNotIn("Original announcement from the feed", html)
+        self.assertEqual(record["sourceReview"]["originalAnnouncement"],
+                         "Original <script>unsafe</script>\r\nSecond line\n\n  \nLast paragraph")
+
+        record["sourceReview"]["status"] = "enriched"
+        self.save()
+        builder.build_site(self.root)
+        html = (self.root / "docs" / "retirements" / "unknown-date" / "example" / "index.html").read_text(encoding="utf-8")
+        self.assertNotIn("Source-enriched content", html)
+        self.assertNotIn("Source review needs verification", html)
+        self.assertNotIn("Microsoft Update", html)
+
+    def test_stream_analytics_answers_include_original_announcement_milestones(self):
+        record = self.view["record"]
+        record["sourceReview"] = copy.deepcopy(
+            json.loads((ROOT / "data" / "retirements.json").read_text(encoding="utf-8"))["records"][0]["sourceReview"]
+        )
+        self.view["guidanceSource"] = record["sourceReview"]["guidanceSource"]
+        self.save()
+        builder.build_site(self.root)
+        path = self.root / "docs" / "retirements" / "unknown-date" / "example" / "index.html"
+        document = parse(path.read_text(encoding="utf-8"), namespaceHTMLElements=False)
+        deadline = "".join(document.find(".//section[@id='deadline']").itertext())
+        actions = "".join(document.find(".//section[@id='actions']").itertext())
+        self.assertIn("October 31, 2024", deadline)
+        self.assertIn("new customers", deadline)
+        self.assertIn("October 31, 2027", deadline)
+        self.assertIn("existing jobs", deadline)
+        self.assertIn("Fabric Real-Time Intelligence", actions)
+        self.assertIn("Eventstream", actions)
+        self.assertIn("Real-Time Dashboards", actions)
+        self.assertNotIn("Verify dates and consequences", deadline)
+        link = document.find(".//section[@id='actions']/a[@class='button primary']")
+        self.assertEqual(link.attrib["href"], "https://learn.microsoft.com/en-us/azure/stream-analytics/power-bi-output")
+        self.assertEqual(link.attrib["rel"], "noopener noreferrer")
+        self.assertIn("Microsoft Learn guidance", "".join(link.itertext()))
+        self.assertIsNone(document.find(".//details[@class='notice microsoft-update']"))
+
+    def test_further_reading_resolves_and_deduplicates_resources_without_mutating_evidence(self):
+        record = self.view["record"]
+        record["questions"]["actions"]["resources"] = [
+            {"title": "Migration instructions", "url": "https://go.microsoft.com/fwlink/?linkid=1"},
+            {"title": "Repeated guide", "url": "https://learn.microsoft.com/en-us/azure/migrate"},
+            {"title": "Versioned guide", "url": "https://learn.microsoft.com/en-us/azure/migrate?view=v2#steps"},
+            {"title": "Section link", "url": "https://learn.microsoft.com/en-us/azure/migrate#limits"},
+            {"title": "Unsafe link", "url": "javascript:alert(1)"},
+        ]
+        record["sourceReview"] = {
+            "sources": [{
+                "title": "Migration guide", "url": "https://learn.microsoft.com/en-us/azure/migrate",
+                "sections": ["actions"], "note": "Scope of the migration.",
+            }],
+            "resourceChecks": [{
+                "url": "https://go.microsoft.com/fwlink/?linkid=1",
+                "resolvedUrl": "https://learn.microsoft.com/en-us/azure/migrate",
+            }],
+        }
+        before = copy.deepcopy(record)
+        reading = builder.further_reading(record)
+        self.assertEqual([link["url"] for link in reading], [
+            "https://learn.microsoft.com/en-us/azure/migrate",
+            "https://learn.microsoft.com/en-us/azure/migrate?view=v2#steps",
+            "https://learn.microsoft.com/en-us/azure/migrate#limits",
+        ])
+        self.assertEqual(reading[0]["title"], "Migration guide")
+        self.assertEqual(reading[0]["note"], "Scope of the migration.")
+        self.assertEqual(record, before)
+
+    def test_excluded_references_are_not_displayed_even_via_redirect(self):
+        record = self.view["record"]
+        record["questions"]["actions"]["resources"] = [
+            {"title": "Short link", "url": "https://go.microsoft.com/fwlink/?linkid=1"},
+            {"title": "Good guide", "url": "https://learn.microsoft.com/en-us/azure/good"},
+        ]
+        record["sourceReview"] = {
+            "sources": [{"title": "Gone", "url": "https://learn.microsoft.com/en-us/azure/gone"}],
+            "resourceChecks": [{"url": "https://go.microsoft.com/fwlink/?linkid=1",
+                                "resolvedUrl": "https://learn.microsoft.com/en-us/azure/gone"}],
+            "excludedReferences": [{"url": "https://learn.microsoft.com/en-us/azure/gone",
+                                    "checkedOn": "2026-11-11", "httpStatus": 404}],
+        }
+        before = copy.deepcopy(record)
+        self.assertEqual([reference["url"] for reference in builder.further_reading(record)],
+                         ["https://learn.microsoft.com/en-us/azure/good"])
+        self.assertEqual(record, before)
+
+    def test_unreviewed_resources_render_in_further_reading_and_empty_lists_are_omitted(self):
+        record = self.view["record"]
+        record["questions"]["actions"]["resources"] = [{
+            "title": "Guide <script>unsafe</script>", "url": "https://learn.microsoft.com/en-us/azure/guide",
+        }]
+        self.save()
+        builder.build_site(self.root)
+        path = self.root / "docs" / "retirements" / "unknown-date" / "example" / "index.html"
+        document = parse(path.read_text(encoding="utf-8"), namespaceHTMLElements=False)
+        link = document.find(".//article[@class='detail-content']/div[@id='further-reading']//a")
+        self.assertEqual(link.attrib["href"], "https://learn.microsoft.com/en-us/azure/guide")
+        self.assertTrue(link.text.startswith("Guide <script>unsafe</script>"))
+        self.assertIsNone(document.find(".//section[@id='actions']//a"))
+        record["questions"]["actions"]["resources"] = []
+        self.save()
+        builder.build_site(self.root)
+        document = parse(path.read_text(encoding="utf-8"), namespaceHTMLElements=False)
+        self.assertIsNone(document.find(".//*[@id='further-reading']"))
+        self.assertIsNone(document.find(".//nav[@class='article-nav']/a[@href='#further-reading']"))
+
+    def test_progress_shows_only_documented_tracking_or_unavailable_message(self):
+        record = self.view["record"]
+        self.save()
+        builder.build_site(self.root)
+        path = self.root / "docs" / "retirements" / "unknown-date" / "example" / "index.html"
+        document = parse(path.read_text(encoding="utf-8"), namespaceHTMLElements=False)
+        progress = document.find(".//section[@id='progress']")
+        self.assertIn("Tracking guidance is not available for this retirement.", "".join(progress.itertext()))
+        self.assertIsNone(progress.find(".//input"))
+        record["questions"]["progress"]["tracking"] = {
+            "guidance": "Inspect the documented resources.",
+            "sourceUrl": "https://learn.microsoft.com/en-us/azure/example",
+        }
+        self.save()
+        builder.build_site(self.root)
+        document = parse(path.read_text(encoding="utf-8"), namespaceHTMLElements=False)
+        progress = document.find(".//section[@id='progress']")
+        self.assertIn("Inspect the documented resources.", "".join(progress.itertext()))
+        self.assertNotIn("Tracking guidance is not available", "".join(progress.itertext()))
+        self.assertEqual(progress.find(".//a").attrib["href"], record["questions"]["progress"]["tracking"]["sourceUrl"])
+        self.assertIsNone(progress.find(".//input"))
 
     def test_category_dropdown_lists_all_prepared_categories_with_an_all_option(self):
         self.metadata["categories"] = ["Compute", "Storage", "Uncategorized"]

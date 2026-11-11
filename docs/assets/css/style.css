@@ -173,6 +173,7 @@ select { padding: 0 30px 0 12px; max-width: 210px; }
 .timeline-entry:last-child::before { display: none; }
 .timeline-entry::after { content: ''; position: absolute; left: 132px; top: 4px; width: 12px; height: 12px; border: 2px solid var(--accent); border-radius: 50%; background: var(--bg); box-shadow: 0 0 0 3px var(--bg); }
 .timeline-date { font-size: 12px; font-weight: 600; color: var(--accent); padding-top: 3px; overflow-wrap: anywhere; }
+.timeline-date-label { display: block; color: var(--muted); font-size: 10px; font-weight: 400; margin-bottom: 4px; }
 .timeline-content { min-width: 0; padding: 20px; border: 1px solid var(--line); border-radius: 10px; background: var(--soft); overflow-wrap: anywhere; }
 .timeline-content h5 { margin: 12px 0 10px; font-size: 17px; font-weight: 600; letter-spacing: -.3px; }
 .timeline-content h5 a { color: var(--ink); }
@@ -219,13 +220,10 @@ footer p { margin: 5px 0 0; max-width: 850px; }
 dl { margin: 20px 0; } dt { font-size: 10px; color: var(--muted); margin-top: 18px; } dd { margin: 3px 0; color: var(--ink); font-size: 14px; font-weight: 600; }
 .fact-card .button { font-size: 10px; width: 100%; padding: 9px; }
 .resource-links { padding-left: 18px; }.resource-links svg { width: 13px; height: 13px; margin-left: 5px; }
+.further-reading { border-top: 1px solid var(--line); padding: 22px 0; overflow-wrap: anywhere; scroll-margin-top: 90px; }
+.further-reading h3 { font-size: 23px; margin: 0 0 12px; }
+.detail-content #progress svg { width: 13px; height: 13px; margin-left: 5px; }
 .detail-content .deadline-date { color: var(--accent); font-size: 25px; font-weight: 600; }
-.progress-summary { color: var(--teal); font-weight: 600; font-size: 13px; margin: 20px 0 10px; }
-.checklist { display: grid; gap: 10px; }
-.checklist label { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; padding: 12px; border: 1px solid var(--line); border-radius: 6px; cursor: pointer; }
-.checklist input { width: 17px; height: 17px; margin: 3px 0 0; flex-shrink: 0; accent-color: var(--teal); }
-.checklist input:checked + span { text-decoration: line-through; color: var(--muted); }
-.detail-content .storage-note { font-size: 11px; color: var(--muted); }
 .article-nav { border-left: 1px solid var(--line); padding-left: 16px; margin: 0 0 28px; }
 .article-nav h2 { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
 .article-nav a { display: block; font-size: 13px; line-height: 1.45; color: var(--muted); padding: 6px 0; }

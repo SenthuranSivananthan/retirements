@@ -12,8 +12,9 @@ if (!home)
 const homeUrl = new URL(home, location.href);
 const isDirectory = document.body.dataset.page === 'home';
 const activeRecord = catalog.records.find(record => record.id === document.body.dataset.record);
-const categories = new Set(catalog.records.flatMap(categoriesOf));
-const years = new Set(groupRetirements(catalog.records).map(group => group.year));
+const visibleRecords = catalog.records.filter(record => !record.hidden);
+const categories = new Set(visibleRecords.flatMap(categoriesOf));
+const years = new Set(groupRetirements(visibleRecords).map(group => group.year));
 const labels = { upcoming: 'Upcoming', soon: 'Within 90 days', retired: 'Retired', unknown: 'Date to confirm' };
 const yearLabel = (year) => year === 'unknown' ? 'Unconfirmed year' : year;
 const directoryLink = (filters) => directoryUrl(filters, homeUrl.pathname);
@@ -36,7 +37,7 @@ function readFilters() {
     const requestedCategory = params.get('category') || '';
     const category = categories.has(requestedCategory) ? requestedCategory : '';
     return {
-        q: params.get('q') || '', service: servicesForCategory(catalog.records, category).includes(service) ? service : '',
+        q: params.get('q') || '', service: servicesForCategory(visibleRecords, category).includes(service) ? service : '',
         year: years.has(year) ? year : '', category,
         status: statusFilter(params.get('status')), sort: 'date-desc',
         window: windowFilter(params.get('window')),
@@ -146,7 +147,7 @@ function bindShell() {
             closeSearch();
             return;
         }
-        const hits = filterRecords(catalog.records, { q, sort: 'newest' }).slice(0, 8);
+        const hits = filterRecords(visibleRecords, { q, sort: 'newest' }).slice(0, 8);
         results.innerHTML = hits.length
             ? hits.map(record => `<a href="${e(detailLink(record))}"><strong>${e(record.title)}</strong><small>${e(record.service)}</small></a>`).join('')
             : '<p>No matching retirements.</p>';
@@ -201,7 +202,7 @@ function bindShell() {
     });
 }
 function updateNav() {
-    const matches = new Map(filterRecords(catalog.records, filters).map(record => [record.id, record]));
+    const matches = new Map(filterRecords(visibleRecords, filters).map(record => [record.id, record]));
     for (const yearGroup of document.querySelectorAll('#navigation .year-group')) {
         const year = yearGroup.dataset.yearGroup;
         const yearIds = new Set();
@@ -255,7 +256,7 @@ function renderTimelineEntry(record) {
     const status = statusOf(deadline);
     const url = detailLink(record, filters);
     return `<li class="timeline-entry" data-record="${e(record.id)}">
-      <div class="timeline-date">${deadline.date ? `<time datetime="${e(deadline.date)}">${e(formatDate(deadline.date))}</time>` : '<span>Date to confirm</span>'}</div>
+      <div class="timeline-date"><span class="timeline-date-label">Retirement date</span>${deadline.date ? `<time datetime="${e(deadline.date)}">${e(formatDate(deadline.date))}</time>` : '<span>Date to confirm</span>'}</div>
       <article class="timeline-content">
         <span class="badge ${status}" data-deadline="${e(deadline.date || '')}"><span></span>${labels[status]}</span>
         <h5><a href="${e(url)}">${e(record.title)}</a></h5><p>${e(record.summary)}</p>
@@ -264,7 +265,7 @@ function renderTimelineEntry(record) {
     </li>`;
 }
 function renderResults() {
-    const records = filterRecords(catalog.records, filters);
+    const records = filterRecords(visibleRecords, filters);
     element('#result-count').textContent = `Showing ${Math.min(visible, records.length)} of ${records.length} retirements`;
     const groups = groupTimeline(records.slice(0, visible), filters);
     element('#results').innerHTML = records.length ? groups.map((category, categoryIndex) => `
@@ -288,7 +289,7 @@ function renderResults() {
     }
 }
 function updateServiceOptions() {
-    const services = servicesForCategory(catalog.records, filters.category);
+    const services = servicesForCategory(visibleRecords, filters.category);
     if (!services.includes(filters.service))
         filters.service = '';
     const control = element('#service');
@@ -329,7 +330,7 @@ function bindDirectory() {
         });
     }
     element('#load-more').addEventListener('click', () => {
-        const nextRecord = filterRecords(catalog.records, filters)[visible];
+        const nextRecord = filterRecords(visibleRecords, filters)[visible];
         visible += 24;
         renderResults();
         [...document.querySelectorAll('.timeline-entry')].find(entry => entry.dataset.record === nextRecord?.id)
@@ -341,35 +342,6 @@ function bindDirectory() {
     });
     window.addEventListener('popstate', restoreDirectoryFilters);
     renderResults();
-}
-function bindProgress(record) {
-    const key = `retirements-progress:${record.id}`;
-    let saved = [];
-    try {
-        const value = JSON.parse(localStorage.getItem(key) || '[]');
-        if (Array.isArray(value))
-            saved = value;
-    }
-    catch { /* Invalid or unavailable storage starts with an empty checklist. */ }
-    const checkboxes = [...document.querySelectorAll('[data-step]')];
-    const update = () => {
-        const done = checkboxes.filter(input => input.checked).length;
-        element('#progress-summary').textContent = `${done} of ${checkboxes.length} planning steps complete · ${checkboxes.length - done} remaining`;
-    };
-    for (const input of checkboxes) {
-        input.disabled = false;
-        input.checked = saved[Number(input.dataset.step)] === true;
-        input.addEventListener('change', () => {
-            update();
-            try {
-                localStorage.setItem(key, JSON.stringify(checkboxes.map(input => input.checked)));
-            }
-            catch {
-                element('#storage-note').textContent = 'Browser storage is unavailable. Progress will not be saved when you leave this page.';
-            }
-        });
-    }
-    update();
 }
 function updateArticleNav() {
     const links = [...document.querySelectorAll('.article-nav a')];
@@ -397,8 +369,8 @@ function updateDates() {
         element('[data-countdown] strong').textContent = retirementCountdown(activeRecord.questions.deadline);
     }
     if (isDirectory) {
-        element('#upcoming-count').textContent = String(catalog.records.filter(record => ['upcoming', 'soon'].includes(statusOf(record.questions.deadline))).length);
-        element('#soon-count').textContent = String(catalog.records.filter(record => statusOf(record.questions.deadline) === 'soon').length);
+        element('#upcoming-count').textContent = String(visibleRecords.filter(record => ['upcoming', 'soon'].includes(statusOf(record.questions.deadline))).length);
+        element('#soon-count').textContent = String(visibleRecords.filter(record => statusOf(record.questions.deadline) === 'soon').length);
         const today = new Date().toISOString().slice(0, 10);
         const asOf = element('#outlook-date');
         asOf.dateTime = today;
@@ -406,7 +378,7 @@ function updateDates() {
         for (const card of document.querySelectorAll('[data-window]')) {
             const window = card.dataset.window;
             const bounds = retirementWindow(window, today);
-            card.querySelector('[data-window-count]').textContent = String(catalog.records.filter(record => inRetirementWindow(record.questions.deadline, bounds)).length);
+            card.querySelector('[data-window-count]').textContent = String(visibleRecords.filter(record => inRetirementWindow(record.questions.deadline, bounds)).length);
             card.querySelector('[data-window-range]').textContent = bounds.range;
         }
     }
@@ -418,7 +390,6 @@ if (!redirectLegacyRoute() && !redirectMovedDetail()) {
     if (activeRecord) {
         for (const link of document.querySelectorAll('[data-back]'))
             link.href = directoryLink(filters);
-        bindProgress(activeRecord);
         window.addEventListener('scroll', updateArticleNav, { passive: true });
         updateArticleNav();
     }

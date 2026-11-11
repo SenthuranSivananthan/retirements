@@ -12,14 +12,14 @@
   </head>
   <body data-home="{{ home }}" data-page="{{ page.layout }}" data-record="{{ page.record_id or '' }}">
     {% include "partials/header.html" %}
-    <noscript><style>.sidebar{display:block;position:static;width:auto;max-width:none;height:auto}.mobile-menu,.header-search,.downloads,#theme,[data-enhancement]{display:none!important}</style><div class="notice">Search and saved checklists require JavaScript. All retirement pages and the year/category navigation are available below. Countdown values reflect the last site build.</div></noscript>
+    <noscript><style>.sidebar{display:block;position:static;width:auto;max-width:none;height:auto}.mobile-menu,.header-search,.downloads,#theme,[data-enhancement]{display:none!important}</style><div class="notice">Search requires JavaScript. All retirement pages and the year/category navigation are available below. Countdown values reflect the last site build.</div></noscript>
     <div class="nav-backdrop" hidden></div>
     <div class="layout">
       {% include "partials/sidebar.html" %}
       <div class="page-content">
         {% if page.layout == 'home' %}
         <section class="hero" id="home-hero" aria-labelledby="hero-title">
-          <div class="hero-in"><h1 id="hero-title">Plan your next Azure migration</h1><p>Stay ahead of service retirements. Understand what is changing, find official guidance, and plan your path forward.</p>
+          <div class="hero-in"><h1 id="hero-title">Azure Retirement Catalog</h1><p>Stay ahead of service retirements. Understand what is changing, find official guidance, and plan your path forward.</p>
             <div class="hero-cta"><a class="button" href="#catalog">Explore retirements {{ icon('arrow') }}</a></div>
             {% block hero_extra %}{% endblock %}
           </div>
