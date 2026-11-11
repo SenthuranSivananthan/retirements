@@ -319,6 +319,17 @@ function isMicrosoftTechCommunityArticle(value) {
 function isAuthoritativeRetirementUrl(value) {
     return isLearnDocumentation(value) || isMicrosoftTechCommunityArticle(value);
 }
+function isAzureUpdatesAnnouncement(value, record) {
+    const matches = candidate => {
+        if (typeof candidate !== 'string' || /[\x00-\x20\x7f]/.test(candidate)
+            || !/^https:\/\/azure\.microsoft\.com(?::443)?\/(?:[a-z]{2}-[a-z]{2}\/)?updates\/?(?:[?#]|$)/i.test(candidate)
+            || !safeUrl(candidate))
+            return false;
+        const ids = new URL(candidate).searchParams.getAll('id');
+        return ids.length === 1 && ids[0] === record.id;
+    };
+    return matches(value) && matches(record.sourceUrl);
+}
 function isSourceReview(record) {
     const tracking = record.questions.progress.tracking;
     if (record.sourceReview === undefined)
@@ -339,7 +350,8 @@ function isSourceReview(record) {
             && isChecklist(source.sections) && source.sections.every(section => sections.includes(section))))
         return false;
     if (!sections.every(section => review.sources.some(source => source.sections.includes(section)))
-        || (review.status === 'enriched' && !review.sources.some(source => isAuthoritativeRetirementUrl(source.url))))
+        || (review.status === 'enriched' && !review.sources.some(source =>
+            isAuthoritativeRetirementUrl(source.url) || isAzureUpdatesAnnouncement(source.url, record))))
         return false;
     if (tracking !== undefined && tracking !== null
         && (!hasStrings(tracking, ['guidance', 'sourceUrl']) || Object.keys(tracking).length !== 2
@@ -350,7 +362,8 @@ function isSourceReview(record) {
         && (!isLearnDocumentation(review.guidanceSource)
             || !review.sources.some(source => source.url === review.guidanceSource && source.sections.includes('actions'))))
         return false;
-    if (review.deadlineSource !== null && (!isAuthoritativeRetirementUrl(review.deadlineSource)
+    if (review.deadlineSource !== null
+        && (!(isAuthoritativeRetirementUrl(review.deadlineSource) || isAzureUpdatesAnnouncement(review.deadlineSource, record))
         || !review.sources.some(source => source.url === review.deadlineSource && source.sections.includes('deadline'))))
         return false;
     if (record.questions.deadline.date !== null && record.questions.deadline.date !== review.originalDeadline.date

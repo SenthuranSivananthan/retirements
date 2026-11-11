@@ -2,13 +2,15 @@ import copy
 import hashlib
 import io
 import json
+import shutil
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
 from fixtures import catalog
-from scripts.catalog import QUESTIONS, learn_documentation_url, microsoft_techcommunity_url, parse_catalog
+from scripts.catalog import ROOT, QUESTIONS, learn_documentation_url, microsoft_techcommunity_url, parse_catalog
 from scripts.feed import merge_retirements
 from scripts.refresh_data import read_snapshot
 from scripts.review_data import apply_reviews, main, review_report
@@ -43,6 +45,17 @@ class ReviewTests(unittest.TestCase):
             }],
         }
 
+    def announcement_batch(self, url):
+        batch = self.batch()
+        review = batch["reviews"][0]
+        review["questions"]["deadline"]["date"] = "2029-01-02"
+        review["sourceReview"]["deadlineSource"] = url
+        review["sourceReview"]["sources"] = [{
+            "title": "Azure Updates announcement", "url": url, "sections": list(QUESTIONS),
+            "note": "The announcement describes the retirement and its deadline.",
+        }]
+        return batch
+
     def test_apply_preserves_feed_metadata_original_evidence_and_unrelated_records(self):
         batch = self.batch()
         batch["reviews"][0]["questions"]["deadline"]["date"] = "2029-01-02"
@@ -50,6 +63,8 @@ class ReviewTests(unittest.TestCase):
         record = result["records"][0]
         old = self.original["records"][0]
         self.assertTrue(record["manuallyEnriched"])
+        self.assertEqual(record["questions"]["deadline"]["date"], "2029-01-02")
+        self.assertEqual(record["sourceReview"]["deadlineSource"], self.url)
         self.assertEqual(record["sourceReview"]["originalAnnouncement"], old["questions"]["what"]["announcement"])
         self.assertEqual(record["sourceReview"]["originalDeadline"]["date"], old["questions"]["deadline"]["date"])
         for field in ("id", "title", "sourceUrl", "services", "categories", "announcedOn", "lastUpdatedOn"):
@@ -179,6 +194,140 @@ class ReviewTests(unittest.TestCase):
         }]
         result = apply_reviews(batch, self.output)
         self.assertEqual(result["records"][0]["sourceReview"]["deadlineSource"], techcommunity_url)
+
+    def test_announcement_title_or_description_can_support_reviewed_deadline(self):
+        for location, url in (
+            ("title", "https://azure.microsoft.com/updates?id=a"),
+            ("description", "https://azure.microsoft.com/en-us/updates?id=a"),
+        ):
+            with self.subTest(location=location):
+                self.original = catalog()
+                record = self.original["records"][0]
+                record["title"] = "API keys retire on 2 January 2029" if location == "title" else "API keys retire"
+                record["questions"]["what"]["announcement"] = (
+                    "API keys retire on 2 January 2029." if location == "description" else "API keys are retiring."
+                )
+                record["questions"]["deadline"].update({"date": None, "month": None})
+                self.output.write_text(json.dumps(self.original), encoding="utf-8")
+                result = apply_reviews(self.announcement_batch(url), self.output)
+                reviewed = result["records"][0]
+                self.assertEqual(reviewed["questions"]["deadline"]["date"], "2029-01-02")
+                self.assertEqual(reviewed["sourceReview"]["deadlineSource"], url)
+                self.assertIsNone(reviewed["sourceReview"]["originalDeadline"]["date"])
+                self.assertEqual(reviewed["sourceReview"]["originalAnnouncement"], record["questions"]["what"]["announcement"])
+
+    def test_announcement_deadline_requires_matching_official_record_and_citation(self):
+        original = self.output.read_bytes()
+        for url in (
+            "https://azure.microsoft.com/en-us/updates?id=other",
+            "https://azure.microsoft.com.evil.test/en-us/updates?id=a",
+            "https://azure.microsoft.com@evil.test/en-us/updates?id=a",
+            "https://name@azure.microsoft.com/en-us/updates?id=a",
+            "http://azure.microsoft.com/en-us/updates?id=a",
+            "https://azure.microsoft.com:8443/en-us/updates?id=a",
+            "https://azure.microsoft.com:invalid/en-us/updates?id=a",
+            "https://azure.microsoft.com/en-us/updates?id=a&id=a",
+            "https://azure.microsoft.com/en-us/updates",
+            "https://azure.microsoft.com/en-us/updates/other?id=a",
+        ):
+            batch = self.batch()
+            review = batch["reviews"][0]
+            review["questions"]["deadline"]["date"] = "2029-01-02"
+            review["sourceReview"]["deadlineSource"] = url
+            review["sourceReview"]["sources"].append({
+                "title": "Claimed announcement", "url": url, "sections": ["deadline"], "note": "Claimed deadline.",
+            })
+            with self.subTest(url=url), self.assertRaises(ValueError):
+                apply_reviews(batch, self.output)
+            self.assertEqual(self.output.read_bytes(), original)
+        url = self.original["records"][0]["sourceUrl"]
+        batch = self.batch()
+        review = batch["reviews"][0]
+        review["questions"]["deadline"]["date"] = "2029-01-02"
+        review["sourceReview"]["deadlineSource"] = url
+        review["sourceReview"]["sources"].append({
+            "title": "Announcement", "url": url, "sections": ["what"], "note": "Announcement scope.",
+        })
+        with self.assertRaises(ValueError):
+            apply_reviews(batch, self.output)
+        self.assertEqual(self.output.read_bytes(), original)
+
+    def test_announcement_does_not_expand_guidance_or_tracking_sources(self):
+        url = self.original["records"][0]["sourceUrl"]
+        value = apply_reviews(self.announcement_batch(url), self.output)
+        invalid = copy.deepcopy(value)
+        invalid["records"][0]["sourceReview"]["guidanceSource"] = url
+        with self.assertRaises(ValueError):
+            parse_catalog(invalid)
+        invalid = copy.deepcopy(value)
+        invalid["records"][0]["questions"]["progress"]["tracking"] = {
+            "guidance": "Inspect the affected resources.", "sourceUrl": url,
+        }
+        with self.assertRaises(ValueError):
+            parse_catalog(invalid)
+        invalid = copy.deepcopy(value)
+        invalid["records"][0]["sourceUrl"] = "https://azure.microsoft.com/updates?id=another-record"
+        with self.assertRaises(ValueError):
+            parse_catalog(invalid)
+
+    @unittest.skipUnless(shutil.which("node"), "Node.js is optional")
+    def test_browser_and_python_agree_on_announcement_deadline_sources(self):
+        url = "https://azure.microsoft.com/en-us/updates?id=a"
+        valid = apply_reviews(self.announcement_batch(url), self.output)
+        cases = [valid]
+        for source in (
+            self.original["records"][0]["sourceUrl"],
+            "https://azure.microsoft.com/en-us/updates?id=other",
+            "https://azure.microsoft.com.evil.test/en-us/updates?id=a",
+            "https://name@azure.microsoft.com/en-us/updates?id=a",
+            "https://azure.microsoft.com:8443/en-us/updates?id=a",
+            "https://azure.microsoft.com/en-us/updates?id=a&id=a",
+        ):
+            case = copy.deepcopy(valid)
+            case["records"][0]["sourceReview"]["deadlineSource"] = source
+            case["records"][0]["sourceReview"]["sources"][0]["url"] = source
+            cases.append(case)
+        invalid = copy.deepcopy(valid)
+        invalid["records"][0]["sourceUrl"] = "https://azure.microsoft.com/updates?id=other"
+        cases.append(invalid)
+        invalid = copy.deepcopy(valid)
+        invalid["records"][0]["sourceReview"]["sources"][0]["sections"].remove("deadline")
+        invalid["records"][0]["sourceReview"]["sources"].append({
+            "title": "Learn source", "url": self.url, "sections": ["deadline"], "note": "Other deadline evidence.",
+        })
+        cases.append(invalid)
+        invalid = copy.deepcopy(valid)
+        invalid["records"][0]["questions"]["progress"]["tracking"] = {"guidance": "Inspect resources.", "sourceUrl": url}
+        cases.append(invalid)
+        expected = [True, True, False, False, False, False, False, False, False, False]
+        python_results = []
+        for case in cases:
+            try:
+                parse_catalog(case)
+                python_results.append(True)
+            except ValueError:
+                python_results.append(False)
+        self.assertEqual(python_results, expected)
+        module = (ROOT / "site" / "assets" / "js" / "catalog.js").as_uri()
+        program = f"""
+            import {{ readFile }} from 'node:fs/promises';
+            const source = await readFile(new URL({json.dumps(module)}), 'utf8');
+            const {{ parseCatalog }} = await import(
+                `data:text/javascript;base64,${{Buffer.from(source).toString('base64')}}`
+            );
+            let input = '';
+            for await (const chunk of process.stdin) input += chunk;
+            const results = JSON.parse(input).map(catalog => {{
+                try {{ parseCatalog(catalog); return true; }} catch {{ return false; }}
+            }});
+            console.log(JSON.stringify(results));
+        """
+        result = subprocess.run(
+            [shutil.which("node"), "--input-type=module", "-e", program],
+            input=json.dumps(cases), text=True, capture_output=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout), expected)
 
     def test_tracking_requires_a_cited_authoritative_source_covering_progress_and_can_be_cleared(self):
         batch = self.batch()

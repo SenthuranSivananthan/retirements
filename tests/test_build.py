@@ -139,18 +139,26 @@ class StaticSiteTests(unittest.TestCase):
         self.assertIn("hidden", document.find(".//section[@class='stats']").attrib)
 
     def test_question_html_renders_semantic_markup_and_escapes_text(self):
-        markup = "<p>First line</p><p>Second line<br>with <strong>emphasis</strong> and &lt;script&gt; text.</p>"
-        self.view["record"]["questions"]["what"]["html"] = markup
+        markup = (
+            "<p>First line</p><p>Second line<br>with <strong>emphasis</strong> and &lt;script&gt; text.</p>"
+            "<ul><li>Item</li></ul><ol><li>Step</li></ol>"
+        )
+        for section in DETAIL_QUESTIONS:
+            self.view["record"]["questions"][section]["html"] = markup
         self.save()
         builder.build_site(self.root)
         html = self.detail_path().read_text(encoding="utf-8")
         document = parse(html, namespaceHTMLElements=False)
-        content = document.find(".//section[@id='what']/div[@class='rich-content']")
-        self.assertIsNotNone(content)
-        paragraphs = content.findall("./p")
-        self.assertEqual(paragraphs[0].text, "First line")
-        self.assertIsNotNone(paragraphs[1].find("./br"))
-        self.assertEqual(paragraphs[1].find("./strong").text, "emphasis")
+        for section in DETAIL_QUESTIONS:
+            with self.subTest(section=section):
+                content = document.find(f".//section[@id='{section}']/div[@class='rich-content']")
+                self.assertIsNotNone(content)
+                paragraphs = content.findall("./p")
+                self.assertEqual(paragraphs[0].text, "First line")
+                self.assertIsNotNone(paragraphs[1].find("./br"))
+                self.assertEqual(paragraphs[1].find("./strong").text, "emphasis")
+                self.assertEqual(content.find("./ul/li").text, "Item")
+                self.assertEqual(content.find("./ol/li").text, "Step")
         self.assertIn("&lt;script&gt;", html)
         self.assertNotIn("<script> text.", html)
 

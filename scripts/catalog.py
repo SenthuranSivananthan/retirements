@@ -10,7 +10,7 @@ from datetime import date, datetime, timezone
 from html import escape as escape_html
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 
 QUESTIONS = ("what", "actions", "impact", "deadline", "progress")
 DETAIL_QUESTIONS = ("deadline", "what", "actions", "impact", "progress")
@@ -164,6 +164,21 @@ def authoritative_retirement_url(value):
     return learn_documentation_url(value) or microsoft_techcommunity_url(value)
 
 
+def azure_updates_announcement_url(value, record):
+    def matches(candidate):
+        return (
+            bool(safe_url(candidate))
+            and not re.search(r"[\x00-\x20\x7f]", candidate)
+            and re.match(
+                r"^https://azure\.microsoft\.com(?::443)?/(?:[a-z]{2}-[a-z]{2}/)?updates/?(?:[?#]|$)",
+                candidate, re.I | re.ASCII,
+            ) is not None
+            and parse_qs(urlsplit(candidate).query, keep_blank_values=True).get("id") == [record["id"]]
+        )
+
+    return matches(value) and matches(record["sourceUrl"])
+
+
 def valid_source_review(record):
     tracking = record["questions"]["progress"].get("tracking")
     if "sourceReview" not in record:
@@ -200,7 +215,10 @@ def valid_source_review(record):
         covered.update(source["sections"])
     if covered != set(QUESTIONS):
         return False
-    if review["status"] == "enriched" and not any(authoritative_retirement_url(source["url"]) for source in sources):
+    if review["status"] == "enriched" and not any(
+        authoritative_retirement_url(source["url"]) or azure_updates_announcement_url(source["url"], record)
+        for source in sources
+    ):
         return False
     if tracking is not None and (
         not isinstance(tracking, dict) or set(tracking) != {"guidance", "sourceUrl"}
@@ -219,7 +237,7 @@ def valid_source_review(record):
         return False
     deadline_source = review["deadlineSource"]
     if deadline_source is not None and (
-        not authoritative_retirement_url(deadline_source)
+        not (authoritative_retirement_url(deadline_source) or azure_updates_announcement_url(deadline_source, record))
         or not any(source["url"] == deadline_source and "deadline" in source["sections"] for source in sources)
     ):
         return False
