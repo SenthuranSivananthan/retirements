@@ -22,6 +22,7 @@ class ReviewTests(unittest.TestCase):
         self.original = catalog()
         self.output.write_text(json.dumps(self.original), encoding="utf-8")
         self.url = "https://learn.microsoft.com/en-us/azure/example/retirement"
+        self.techcommunity_url = "https://techcommunity.microsoft.com/blog/azure/retirement-announcement/123456"
 
     def batch(self):
         record = self.original["records"][0]
@@ -142,15 +143,24 @@ class ReviewTests(unittest.TestCase):
             self.assertFalse(learn_documentation_url(url))
         self.assertTrue(learn_documentation_url(self.url))
         for url in (
-            "https://techcommunity.microsoft.com.evil.test/blog/azure/retirement",
-            "https://name@techcommunity.microsoft.com/blog/azure/retirement",
-            "http://techcommunity.microsoft.com/blog/azure/retirement",
+            "https://techcommunity.microsoft.com.evil.test/blog/azure/retirement-announcement/123456",
+            "https://name@techcommunity.microsoft.com/blog/azure/retirement-announcement/123456",
+            "http://techcommunity.microsoft.com/blog/azure/retirement-announcement/123456",
+            "https://techcommunity.microsoft.com/",
+            "https://techcommunity.microsoft.com/discussions/azure/retirement",
+            "https://techcommunity.microsoft.com/t5/user/viewprofilepage/user-id/123",
+            "https://techcommunity.microsoft.com/blog/azure/retirement-announcement",
+            "https://techcommunity.microsoft.com/blog/azure/",
+            "https://techcommunity.microsoft.com/t5/azure-blog/retirement-announcement",
         ):
             self.assertFalse(microsoft_techcommunity_url(url))
-        self.assertTrue(microsoft_techcommunity_url("https://techcommunity.microsoft.com/blog/azure/retirement"))
+        self.assertTrue(microsoft_techcommunity_url(self.techcommunity_url))
+        self.assertTrue(microsoft_techcommunity_url(
+            "https://techcommunity.microsoft.com/t5/azure-sql-blog/change-hardware-generation/ba-p/699824"
+        ))
 
     def test_verified_techcommunity_article_can_support_retirement_and_deadline(self):
-        techcommunity_url = "https://techcommunity.microsoft.com/blog/azure/retirement"
+        techcommunity_url = self.techcommunity_url
         batch = self.batch()
         batch["reviews"][0]["questions"]["deadline"]["date"] = "2029-01-02"
         batch["reviews"][0]["sourceReview"]["deadlineSource"] = techcommunity_url
@@ -190,7 +200,7 @@ class ReviewTests(unittest.TestCase):
         })
         with self.assertRaises(ValueError):
             parse_catalog(invalid)
-        techcommunity_url = "https://techcommunity.microsoft.com/blog/azure/retirement"
+        techcommunity_url = self.techcommunity_url
         batch = self.batch()
         batch["reviews"][0]["questions"]["progress"]["tracking"] = {
             "guidance": "Inventory the affected resources.", "sourceUrl": techcommunity_url,

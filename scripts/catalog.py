@@ -81,7 +81,10 @@ def microsoft_techcommunity_url(value):
     if not safe_url(value):
         return False
     parsed = urlsplit(value)
-    return parsed.hostname == "techcommunity.microsoft.com" and parsed.username is None
+    return (
+        parsed.hostname == "techcommunity.microsoft.com" and parsed.username is None
+        and re.fullmatch(r"/(?:blog/[^/]+/[^/]+/\d+|t5/[^/]+/[^/]+/ba-p/\d+)/?", parsed.path, re.I) is not None
+    )
 
 
 def authoritative_retirement_url(value):
