@@ -77,6 +77,20 @@ def learn_documentation_url(value):
     )
 
 
+def microsoft_techcommunity_url(value):
+    if not safe_url(value):
+        return False
+    parsed = urlsplit(value)
+    return (
+        parsed.hostname == "techcommunity.microsoft.com" and parsed.username is None
+        and re.fullmatch(r"/(?:blog/[^/]+/[^/]+/\d+|t5/[^/]+/[^/]+/ba-p/\d+)/?", parsed.path, re.I) is not None
+    )
+
+
+def authoritative_retirement_url(value):
+    return learn_documentation_url(value) or microsoft_techcommunity_url(value)
+
+
 def valid_source_review(record):
     tracking = record["questions"]["progress"].get("tracking")
     if "sourceReview" not in record:
@@ -113,12 +127,12 @@ def valid_source_review(record):
         covered.update(source["sections"])
     if covered != set(QUESTIONS):
         return False
-    if review["status"] == "enriched" and not any(learn_documentation_url(source["url"]) for source in sources):
+    if review["status"] == "enriched" and not any(authoritative_retirement_url(source["url"]) for source in sources):
         return False
     if tracking is not None and (
         not isinstance(tracking, dict) or set(tracking) != {"guidance", "sourceUrl"}
         or not strings(tracking, ("guidance", "sourceUrl")) or not tracking["guidance"].strip()
-        or not learn_documentation_url(tracking["sourceUrl"])
+        or not authoritative_retirement_url(tracking["sourceUrl"])
         or not any(source["url"] == tracking["sourceUrl"] and "progress" in source["sections"] for source in sources)
     ):
         return False
@@ -132,7 +146,7 @@ def valid_source_review(record):
         return False
     deadline_source = review["deadlineSource"]
     if deadline_source is not None and (
-        not learn_documentation_url(deadline_source)
+        not authoritative_retirement_url(deadline_source)
         or not any(source["url"] == deadline_source and "deadline" in source["sections"] for source in sources)
     ):
         return False

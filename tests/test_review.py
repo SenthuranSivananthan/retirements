@@ -8,7 +8,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from fixtures import catalog
-from scripts.catalog import QUESTIONS, learn_documentation_url, parse_catalog
+from scripts.catalog import QUESTIONS, learn_documentation_url, microsoft_techcommunity_url, parse_catalog
 from scripts.feed import merge_retirements
 from scripts.refresh_data import read_snapshot
 from scripts.review_data import apply_reviews, main, review_report
@@ -22,6 +22,7 @@ class ReviewTests(unittest.TestCase):
         self.original = catalog()
         self.output.write_text(json.dumps(self.original), encoding="utf-8")
         self.url = "https://learn.microsoft.com/en-us/azure/example/retirement"
+        self.techcommunity_url = "https://techcommunity.microsoft.com/blog/azure/retirement-announcement/123456"
 
     def batch(self):
         record = self.original["records"][0]
@@ -105,7 +106,7 @@ class ReviewTests(unittest.TestCase):
                 apply_reviews(value, self.output)
             self.assertEqual(self.output.read_bytes(), original)
 
-    def test_review_validation_requires_evidence_and_rejects_community_authority(self):
+    def test_review_validation_requires_evidence_and_rejects_untrusted_sources(self):
         value = apply_reviews(self.batch(), self.output)
         cases = [
             {"reviewedOn": None}, {"reviewedOn": "2026-02-30"}, {"status": "verified"},
@@ -115,6 +116,7 @@ class ReviewTests(unittest.TestCase):
             {"guidanceSource": "https://azure.microsoft.com/updates"},
             {"guidanceSource": "https://learn.microsoft.com/en-us/azure/other"},
             {"guidanceSource": "https://learn.microsoft.com/en-us/answers/questions/1"},
+            {"guidanceSource": "https://techcommunity.microsoft.com/blog/azure/retirement"},
         ]
         for changes in cases:
             invalid = copy.deepcopy(value)
@@ -140,8 +142,38 @@ class ReviewTests(unittest.TestCase):
                     "https://name@learn.microsoft.com/azure/", "http://learn.microsoft.com/azure/"):
             self.assertFalse(learn_documentation_url(url))
         self.assertTrue(learn_documentation_url(self.url))
+        for url in (
+            "https://techcommunity.microsoft.com.evil.test/blog/azure/retirement-announcement/123456",
+            "https://name@techcommunity.microsoft.com/blog/azure/retirement-announcement/123456",
+            "http://techcommunity.microsoft.com/blog/azure/retirement-announcement/123456",
+            "https://techcommunity.microsoft.com/",
+            "https://techcommunity.microsoft.com/discussions/azure/retirement",
+            "https://techcommunity.microsoft.com/t5/user/viewprofilepage/user-id/123",
+            "https://techcommunity.microsoft.com/blog/azure/retirement-announcement",
+            "https://techcommunity.microsoft.com/blog/azure/",
+            "https://techcommunity.microsoft.com/t5/azure-blog/retirement-announcement",
+        ):
+            self.assertFalse(microsoft_techcommunity_url(url))
+        self.assertTrue(microsoft_techcommunity_url(self.techcommunity_url))
+        self.assertTrue(microsoft_techcommunity_url(
+            "https://techcommunity.microsoft.com/t5/azure-sql-blog/change-hardware-generation/ba-p/699824"
+        ))
 
-    def test_tracking_requires_a_cited_learn_source_covering_progress_and_can_be_cleared(self):
+    def test_verified_techcommunity_article_can_support_retirement_and_deadline(self):
+        techcommunity_url = self.techcommunity_url
+        batch = self.batch()
+        batch["reviews"][0]["questions"]["deadline"]["date"] = "2029-01-02"
+        batch["reviews"][0]["sourceReview"]["deadlineSource"] = techcommunity_url
+        batch["reviews"][0]["sourceReview"]["sources"] = [{
+            "title": "Azure retirement announcement",
+            "url": techcommunity_url,
+            "sections": list(QUESTIONS),
+            "note": "The Microsoft product-team post describes the affected scope, deadline, and migration guidance.",
+        }]
+        result = apply_reviews(batch, self.output)
+        self.assertEqual(result["records"][0]["sourceReview"]["deadlineSource"], techcommunity_url)
+
+    def test_tracking_requires_a_cited_authoritative_source_covering_progress_and_can_be_cleared(self):
         batch = self.batch()
         batch["reviews"][0]["questions"]["progress"]["tracking"] = {
             "guidance": "Inspect the affected resources.", "sourceUrl": self.url,
@@ -168,6 +200,20 @@ class ReviewTests(unittest.TestCase):
         })
         with self.assertRaises(ValueError):
             parse_catalog(invalid)
+        techcommunity_url = self.techcommunity_url
+        batch = self.batch()
+        batch["reviews"][0]["questions"]["progress"]["tracking"] = {
+            "guidance": "Inventory the affected resources.", "sourceUrl": techcommunity_url,
+        }
+        batch["reviews"][0]["sourceReview"]["sources"] = [{
+            "title": "Azure retirement announcement",
+            "url": techcommunity_url,
+            "sections": list(QUESTIONS),
+            "note": "The Microsoft product-team post gives resource inventory and migration guidance.",
+        }]
+        batch["reviews"][0]["sourceReview"]["deadlineSource"] = techcommunity_url
+        tracked = apply_reviews(batch, self.output)
+        self.assertEqual(tracked["records"][0]["questions"]["progress"]["tracking"]["sourceUrl"], techcommunity_url)
         invalid = copy.deepcopy(value)
         del invalid["records"][0]["sourceReview"]
         with self.assertRaises(ValueError):
@@ -220,20 +266,36 @@ class ReviewTests(unittest.TestCase):
         record = copy.deepcopy(value["records"][0])
         record["id"] = "manual"
         record["manuallyEnriched"] = True
+        record["customNotes"] = {"owner": "Platform team"}
         value["records"].append(record)
         self.output.write_text(json.dumps(value), encoding="utf-8")
         report = review_report(value, 10)
         self.assertEqual(report["manualOnly"], 1)
-        self.assertNotIn("manual", [item["id"] for item in report["next"]])
+        self.assertIn("manual", [item["id"] for item in report["next"]])
         batch = self.batch()
         batch["reviews"][0]["id"] = "manual"
-        with self.assertRaisesRegex(ValueError, "human reconciliation"):
-            apply_reviews(batch, self.output)
-        reviewed = apply_reviews(self.batch(), self.output)
+        batch["reviews"][0]["summary"] = record["summary"]
+        batch["reviews"][0]["questions"] = {section: {} for section in QUESTIONS}
+        unsafe_batch = copy.deepcopy(batch)
+        unsafe_batch["reviews"][0]["summary"] = "Overwrite custom summary."
+        with self.assertRaisesRegex(ValueError, "preserve its summary"):
+            apply_reviews(unsafe_batch, self.output)
+        unsafe_batch = copy.deepcopy(batch)
+        unsafe_batch["reviews"][0]["questions"]["what"]["announcement"] = "Overwrite manual answer."
+        with self.assertRaisesRegex(ValueError, "preserve its answers"):
+            apply_reviews(unsafe_batch, self.output)
+        # Apply the metadata-only batch to the manual record without replacing its content.
+        reviewed = apply_reviews(batch, self.output)
+        manual = next(item for item in reviewed["records"] if item["id"] == "manual")
+        self.assertEqual(manual["summary"], record["summary"])
+        self.assertEqual(manual["questions"], record["questions"])
+        self.assertEqual(manual["customNotes"], record["customNotes"])
+        self.assertEqual(manual["sourceReview"]["status"], "enriched")
         report = review_report(reviewed, 10)
         self.assertEqual(report["reviewed"], 1)
         self.assertEqual(report["enriched"], 1)
-        self.assertEqual(report["next"][0]["id"], reviewed["records"][0]["id"])
+        self.assertEqual(report["manualOnly"], 0)
+        self.assertEqual({item["id"] for item in report["next"]}, {"a", "manual"})
         for limit in (0, -1, True):
             with self.assertRaises(ValueError):
                 review_report(reviewed, limit)

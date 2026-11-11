@@ -244,6 +244,16 @@ function isLearnDocumentation(value) {
     return url.hostname === 'learn.microsoft.com' && !url.username
         && !/^\/(?:[a-z]{2}-[a-z]{2}\/)?(?:answers|users|training)(?:\/|$)/i.test(url.pathname);
 }
+function isMicrosoftTechCommunityArticle(value) {
+    if (!safeUrl(value))
+        return false;
+    const url = new URL(value);
+    return url.hostname === 'techcommunity.microsoft.com' && !url.username
+        && /^\/(?:blog\/[^/]+\/[^/]+\/\d+|t5\/[^/]+\/[^/]+\/ba-p\/\d+)\/?$/i.test(url.pathname);
+}
+function isAuthoritativeRetirementUrl(value) {
+    return isLearnDocumentation(value) || isMicrosoftTechCommunityArticle(value);
+}
 function isSourceReview(record) {
     const tracking = record.questions.progress.tracking;
     if (record.sourceReview === undefined)
@@ -264,18 +274,18 @@ function isSourceReview(record) {
             && isChecklist(source.sections) && source.sections.every(section => sections.includes(section))))
         return false;
     if (!sections.every(section => review.sources.some(source => source.sections.includes(section)))
-        || (review.status === 'enriched' && !review.sources.some(source => isLearnDocumentation(source.url))))
+        || (review.status === 'enriched' && !review.sources.some(source => isAuthoritativeRetirementUrl(source.url))))
         return false;
     if (tracking !== undefined && tracking !== null
         && (!hasStrings(tracking, ['guidance', 'sourceUrl']) || Object.keys(tracking).length !== 2
-            || !tracking.guidance.trim() || !isLearnDocumentation(tracking.sourceUrl)
+            || !tracking.guidance.trim() || !isAuthoritativeRetirementUrl(tracking.sourceUrl)
             || !review.sources.some(source => source.url === tracking.sourceUrl && source.sections.includes('progress'))))
         return false;
     if (review.guidanceSource !== undefined && review.guidanceSource !== null
         && (!isLearnDocumentation(review.guidanceSource)
             || !review.sources.some(source => source.url === review.guidanceSource && source.sections.includes('actions'))))
         return false;
-    if (review.deadlineSource !== null && (!isLearnDocumentation(review.deadlineSource)
+    if (review.deadlineSource !== null && (!isAuthoritativeRetirementUrl(review.deadlineSource)
         || !review.sources.some(source => source.url === review.deadlineSource && source.sections.includes('deadline'))))
         return false;
     if (record.questions.deadline.date !== null && record.questions.deadline.date !== review.originalDeadline.date
