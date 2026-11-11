@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "https://www.microsoft.com/releasecommunications/api/v2/azure",
-  "retrievedAt": "2026-11-11T19:10:37.021286Z",
+  "retrievedAt": "2026-11-11T19:53:59.993358Z",
   "records": [
     {
       "id": "466774",
@@ -92,7 +92,6 @@
         "reviewedOn": "2026-11-11",
         "status": "enriched",
         "issues": [],
-        "deadlineSource": "https://learn.microsoft.com/azure/stream-analytics/power-bi-output",
         "sources": [
           {
             "title": "Power BI output from Azure Stream Analytics",
@@ -104,7 +103,7 @@
               "deadline",
               "progress"
             ],
-            "note": "The current product documentation specifies that after October 31, 2027, new jobs cannot use the connector and existing jobs stop, and recommends exploring Fabric Real-Time Intelligence. It does not provide tenant-specific resource inventory or progress tracking."
+            "note": "The current Learn page states that the Power BI output connector is deprecated, new jobs cannot use it beginning October 31, 2027, existing jobs using it stop, and Microsoft recommends exploring Fabric Real-Time Intelligence. The page does not provide tenant-specific inventory or progress tracking instructions."
           },
           {
             "title": "Simplifying Migration to Fabric Real-Time Intelligence for Power BI Real Time Reports",
@@ -113,48 +112,40 @@
               "actions",
               "impact"
             ],
-            "note": "The Microsoft-authored migration article describes Eventstream and Eventhouse with Power BI DirectQuery, alternative Stream Analytics outputs, and Fabric Real-Time Dashboards; it does not promise automatic conversion or feature parity."
+            "note": "Microsoft author Vaibhav Shrivastava published this article on October 31, 2024 and updated it on November 13, 2024. It describes Eventstream and Eventhouse with Power BI DirectQuery, alternate Stream Analytics outputs, and Real-Time Dashboards; it does not describe automatic conversion or guarantee feature parity."
           },
           {
             "title": "Retirement: Azure Stream Analytics PowerBI output connector",
             "url": "https://azure.microsoft.com/updates?id=466774",
             "sections": [
               "what",
-              "actions",
               "deadline"
             ],
-            "note": "The preserved Azure Updates feed snapshot identifies the October 31, 2024 new-customer restriction and October 31, 2027 final cutoff and job-stop milestone. The current update URL serves a general listing rather than the announcement body."
-          },
-          {
-            "title": "Announcing the retirement of real-time streaming in Power BI",
-            "url": "https://community.fabric.microsoft.com/blog/fbc_pbiupdatesblog/announcing-the-retirement-of-real-time-streaming-in-power-bi/5174368",
-            "sections": [
-              "what"
-            ],
-            "note": "The linked Power BI Updates blog describes the broader real-time streaming retirement and recommends Fabric Real-Time Intelligence. Its date is subject to change for that broader feature set and is not used as the Azure Stream Analytics connector deadline."
+            "note": "The preserved Azure Updates feed snapshot gives the October 31, 2024 new-customer restriction and October 31, 2027 final cutoff. The public update URL currently displays the general Azure Updates listing rather than the specific announcement."
           }
         ],
         "resourceChecks": [
           {
             "url": "https://go.microsoft.com/fwlink/?linkid=2295913",
             "resolvedUrl": "https://community.fabric.microsoft.com/blog/fbc_pbiupdatesblog/announcing-the-retirement-of-real-time-streaming-in-power-bi/5174368",
-            "status": "read",
-            "detail": "Read the public Power BI Updates blog. It describes the broader Power BI real-time streaming retirement and Fabric recommendation; its date is subject to change for that separate feature set."
+            "status": "not-evidence",
+            "detail": "Read the Power BI Updates blog. It covers the broader Power BI real-time semantic-model retirement and says its date is subject to change; it is not used as evidence for the Azure Stream Analytics connector deadline."
           },
           {
             "url": "https://go.microsoft.com/fwlink/?linkid=2296200",
             "resolvedUrl": "https://techcommunity.microsoft.com/blog/analyticsonazure/simplifying-migration-to-fabric-real-time-intelligence-for-power-bi-real-time-re/4283180",
             "status": "read",
-            "detail": "Read the full Microsoft-authored migration article, including the Azure Stream Analytics alternatives and Real-Time Dashboard guidance."
+            "detail": "Resolved to the full Microsoft-authored Analytics on Azure migration article, published October 31, 2024 and updated November 13, 2024. It describes the replacement architecture patterns cited in the actions answer."
           },
           {
             "url": "https://go.microsoft.com/fwlink/?linkid=2295529",
             "resolvedUrl": "https://learn.microsoft.com/en-us/fabric/real-time-intelligence/",
             "status": "not-evidence",
-            "detail": "Read the Real-Time Intelligence documentation landing page. It links to Eventstream, Eventhouse, and dashboards but is not retirement-specific migration evidence."
+            "detail": "Read the Fabric Real-Time Intelligence documentation landing page. It links to Eventstream, Eventhouse, and dashboards but does not provide retirement-specific migration guidance."
           }
         ],
         "guidanceSource": "https://learn.microsoft.com/azure/stream-analytics/power-bi-output",
+        "deadlineSource": "https://learn.microsoft.com/azure/stream-analytics/power-bi-output",
         "originalAnnouncement": "Azure stream analytics PowerBI output connector will be retired on Oct 31, 2027.\n\nWhat is changing for Azure Stream Analytics Power BI output connector?\nDateWhat happens\nBeginning October 31st, 2024New customers will not be able to create new Azure Stream Analytics jobs with Power BI as output connector\n\nBeginning Oct 31 31st, 2027Existing customers will not be able to create new Azure Stream Analytics jobs with Power BI as output connector\n\nBeginning Oct 31 31st, 2027Existing Azure Stream Analytic jobs with Power BI output connector will be stopped\n\nReason for retirement: Power BI has announced retirement of real time streaming. Find out more details about Power BI Streaming Datasets retirement: real time streaming in Power BI.\nWe encourage you to transition to Fabric real time intelligence prior to the retirement date to experience the new capabilities of Fabric Real Time Intelligence including:\nEventstream\nKQL Database\nDataActivator\nReal Time Dashboards\nFrom now to 10/31/2027 existing customers can continue to use Azure stream analytics PowerBI output connector without disruption. On 10/31/2027 stream analytics jobs running with PowerBI output connector will be stopped. Resources to aid in your migration can be found below.\nRequired action\nTo avoid service disruptions, please follow these instructions to migrate to real time intelligence by 10/31/2027.\nLearn more.",
         "originalDeadline": {
           "date": null,
@@ -8717,44 +8708,48 @@
       "service": "Azure Modular Datacenter",
       "announcedOn": "2025-05-22",
       "lastUpdatedOn": "2025-05-22",
-      "manuallyEnriched": false,
+      "manuallyEnriched": true,
       "hidden": false,
-      "summary": "Over the past decade, Microsoft Azure operated by 21Vianet (Azure in China) has been expanding the Azure cloud infrastructure in China, demonstrating long-term investment in the market. Azure in China is committed to building a…",
+      "summary": "China North 1 and China East 1 retired on July 1, 2026; verify current resource status, including Azure Compute Gallery image versions.",
       "sourceUrl": "https://azure.microsoft.com/updates?id=494297",
       "questions": {
         "what": {
           "question": "What is changing?",
           "introduction": "The change and what it means, including technical and financial considerations.",
-          "announcement": "Over the past decade, Microsoft Azure operated by 21Vianet (Azure in China) has been expanding the Azure cloud infrastructure in China, demonstrating long-term investment in the market. Azure in China is committed to building a compliant, flexible, and innovative cloud platform to meet the unique needs of customers.\n\nAs part of this commitment, Azure in China consistently evaluates opportunities to optimize the deployment of the cloud datacenter infrastructure to support customer’s critical work efficiently and in a modern, more secure and cost-effective manner.\n\nWith this in mind, Azure in China announces the 2 first-generation regions, China North 1 and China East 1, will be retired on July 1, 2026, as the infrastructure of these regions does not support advanced Azure products and workloads.\n\nAzure in China will continue to operate in multiple regions, such as China North 3, which provide enhanced capabilities to the China North 1 and China East 1 regions. As long as customer migrates out of these regions before July 1, 2026, this will not impact the ability to use Azure in China.\n\nBeginning July 1, 2026, China North 1 and China East 1 regions will be retired, and customers will experience disruption in their services if they have not migrated their Azure resources from these two regions.\n\nTo avoid disruptions to applications, customers are recommended to complete migration of their Azure resources by July 1, 2026.\nIf you have questions, contact support.",
-          "financialConsiderations": "The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating."
+          "announcement": "Microsoft Azure operated by 21Vianet retired China North 1 and China East 1 on July 1, 2026. The announcement recommended moving resources to an available region such as China North 3 and warned of service disruption for resources left in the retiring regions.",
+          "financialConsiderations": "The announcement does not quantify migration costs. Compare current regional pricing, service availability, and contract terms for any destination or replacement service."
         },
         "actions": {
           "question": "What do I need to do?",
           "introduction": "Required actions, options, and available support.",
-          "recommendedAction": null,
-          "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
+          "recommendedAction": "Verify the current status of resources that were in China North 1 or China East 1 and address workloads that remain affected.",
+          "guidance": "The Azure China announcement recommended moving resources out of both regions, with China North 3 as one surviving option. Migration responsibilities vary by service: for Azure Compute Gallery, Microsoft migrates resource groups, galleries, and image definitions, but you must publish replacement image versions in a surviving region and update dependent deployments. Use service-specific guidance for other resources.",
           "resources": [
             {
-              "title": "support",
+              "title": "Azure operated by 21Vianet support (sign-in required)",
               "url": "https://support.azure.cn/support/support-azure/"
+            },
+            {
+              "title": "Migrate Azure Compute Gallery resources from China North and China East",
+              "url": "https://learn.microsoft.com/azure/virtual-machines/compute-gallery-migrate-china-regions"
             }
           ],
-          "supportGuidance": "For help with your specific environment, contact your Microsoft account team or Azure support.",
+          "supportGuidance": "For resource-specific status or migration blockers, use the Azure operated by 21Vianet support portal; sign-in is required.",
           "support": {
-            "title": "Azure support",
-            "url": "https://azure.microsoft.com/support/create-ticket/"
+            "title": "Azure operated by 21Vianet support (sign-in required)",
+            "url": "https://support.azure.cn/support/support-azure/"
           }
         },
         "impact": {
           "question": "Where, and how much, am I impacted?",
           "introduction": "Your affected environments, resources, and users.",
-          "guidance": "This announcement concerns Azure Modular Datacenter. Compare the versions, regions, configurations, and exceptions in the announcement with your inventory.",
+          "guidance": "The announcement warned that customers whose resources remained in the retiring regions would experience service disruption. For Azure Compute Gallery, image versions whose home region was China North or China East were listed for permanent deletion on September 30, 2026; operations that depend on deleted versions can fail, although running VMs are not stopped solely because a source image version is deleted.",
           "checklist": [
-            "Check every subscription and environment, including development, test, and production.",
-            "Identify dependent applications, users, and resource owners.",
-            "Estimate migration effort, downtime risk, and replacement-service costs."
+            "Check the current state of resources originally deployed in both regions.",
+            "For Azure Compute Gallery, inventory image versions and dependencies across regions, subscriptions, and tenants.",
+            "Review deployment templates, pipelines, runbooks, and recovery processes that reference affected resources."
           ],
-          "notice": "No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service.",
+          "notice": "This directory cannot inspect Azure operated by 21Vianet subscriptions or determine which resources remain or whether recovery is required.",
           "advisor": {
             "title": "Azure Advisor service retirements",
             "url": "https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement"
@@ -8765,20 +8760,77 @@
           "introduction": "Key dates and the consequences of not acting.",
           "date": "2026-07-01",
           "month": "July 2026",
-          "dateGuidance": "This date is extracted from the announcement title. Check the full announcement for phased deadlines, extensions, and exceptions.",
-          "consequences": "After the applicable deadline, support or service availability may change. The exact consequences are service-specific; verify them in the announcement and plan to finish your migration ahead of time."
+          "dateGuidance": "The China North 1 and China East 1 region retirement date was July 1, 2026. For Azure Compute Gallery only, Microsoft Learn lists September 30, 2026 as the separate deadline for image versions whose home region was China North or China East.",
+          "consequences": "The announcement warned of service disruption for resources left in the retired regions. The Learn guide says operations that require an affected Compute Gallery image version can fail after its listed deletion deadline, while existing running VMs are not stopped solely because the source image version is deleted. Verify current resource status because the September 30, 2026 date has passed."
         },
         "progress": {
           "question": "How can I track progress?",
           "introduction": "What work remains, and what needs attention.",
-          "guidance": "Use this planning checklist as a starting point. Record resource-level owners, target dates, blockers, and evidence in your team’s tracking system.",
+          "guidance": "For Azure Compute Gallery only, use the Microsoft Learn guide's Azure Resource Graph queries to identify affected image versions and dependent VMs or scale sets across subscriptions and regions. The queries do not identify templates, pipelines, or other undeployed references; review those dependencies separately.",
           "checklist": [
             "Identify affected resources, subscriptions, and owners",
             "Review the official migration guidance and estimate cost changes",
             "Test the replacement and agree a migration plan",
             "Complete migration and validate production workloads"
           ],
-          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it."
+          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it.",
+          "tracking": {
+            "guidance": "For Azure Compute Gallery only, use the Microsoft Learn guide's Azure Resource Graph queries to identify affected image versions and dependent VMs or scale sets across subscriptions and regions. The queries do not identify templates, pipelines, or other undeployed references; review those dependencies separately.",
+            "sourceUrl": "https://learn.microsoft.com/azure/virtual-machines/compute-gallery-migrate-china-regions"
+          }
+        }
+      },
+      "sourceReview": {
+        "reviewedOn": "2026-11-11",
+        "status": "needs-review",
+        "issues": [
+          "The reviewed Learn migration procedure covers Azure Compute Gallery only and does not establish migration steps or current status for other Azure resource types in the retired regions."
+        ],
+        "sources": [
+          {
+            "title": "Retirement: MICROSOFT AZURE OPERATED BY 21VIANET - Action required to migrate to Azure China North 3 region by July 1, 2026 due to China North 1 and China East 1 region retirement",
+            "url": "https://azure.microsoft.com/updates?id=494297",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline"
+            ],
+            "note": "The preserved official Azure Updates feed snapshot states that China North 1 and China East 1 retired on July 1, 2026, recommends moving resources to surviving regions such as China North 3, and warns of disruption for resources not migrated. The public update URL currently displays the general Azure Updates listing rather than the specific announcement."
+          },
+          {
+            "title": "Migrate Azure Compute Gallery resources from China North and China East",
+            "url": "https://learn.microsoft.com/azure/virtual-machines/compute-gallery-migrate-china-regions",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline",
+              "progress"
+            ],
+            "note": "The current Learn guide confirms the July 1, 2026 region retirement and gives a separate September 30, 2026 image-version deadline for Azure Compute Gallery. It says Microsoft moves resource groups, galleries, and image definitions to China North 3, but customers must replace image versions; its Resource Graph queries identify gallery versions and dependent VMs or scale sets. The guidance is limited to Azure Compute Gallery."
+          }
+        ],
+        "resourceChecks": [
+          {
+            "url": "https://support.azure.cn/support/support-azure/",
+            "resolvedUrl": null,
+            "status": "unavailable",
+            "detail": "The support portal redirects to Microsoft identity sign-in. Sign-in was not attempted; the resource is retained as a support link, not retirement evidence."
+          },
+          {
+            "url": "https://learn.microsoft.com/azure/virtual-machines/compute-gallery-migrate-china-regions",
+            "resolvedUrl": "https://learn.microsoft.com/azure/virtual-machines/compute-gallery-migrate-china-regions",
+            "status": "read",
+            "detail": "Read the complete current Learn guide. Its migration, impact, and Resource Graph guidance is specific to Azure Compute Gallery resources."
+          }
+        ],
+        "guidanceSource": "https://learn.microsoft.com/azure/virtual-machines/compute-gallery-migrate-china-regions",
+        "deadlineSource": "https://learn.microsoft.com/azure/virtual-machines/compute-gallery-migrate-china-regions",
+        "originalAnnouncement": "Over the past decade, Microsoft Azure operated by 21Vianet (Azure in China) has been expanding the Azure cloud infrastructure in China, demonstrating long-term investment in the market. Azure in China is committed to building a compliant, flexible, and innovative cloud platform to meet the unique needs of customers.\n\nAs part of this commitment, Azure in China consistently evaluates opportunities to optimize the deployment of the cloud datacenter infrastructure to support customer’s critical work efficiently and in a modern, more secure and cost-effective manner.\n\nWith this in mind, Azure in China announces the 2 first-generation regions, China North 1 and China East 1, will be retired on July 1, 2026, as the infrastructure of these regions does not support advanced Azure products and workloads.\n\nAzure in China will continue to operate in multiple regions, such as China North 3, which provide enhanced capabilities to the China North 1 and China East 1 regions. As long as customer migrates out of these regions before July 1, 2026, this will not impact the ability to use Azure in China.\n\nBeginning July 1, 2026, China North 1 and China East 1 regions will be retired, and customers will experience disruption in their services if they have not migrated their Azure resources from these two regions.\n\nTo avoid disruptions to applications, customers are recommended to complete migration of their Azure resources by July 1, 2026.\nIf you have questions, contact support.",
+        "originalDeadline": {
+          "date": "2026-07-01",
+          "month": "July 2026"
         }
       }
     },
@@ -8941,50 +8993,50 @@
       "service": "Virtual Machines",
       "announcedOn": "2025-06-16",
       "lastUpdatedOn": "2025-06-16",
-      "manuallyEnriched": false,
+      "manuallyEnriched": true,
       "hidden": false,
-      "summary": "On June 30, 2026, DCsv2-series Azure virtual machines (VMs) will be retired. After that date, they will no longer be available for use.\n\nPlease migrate your workloads before June 30, 2026. Options:\nTo continue using the enclave-based…",
+      "summary": "DCsv2-series VMs were retired on June 30, 2026. The Learn guide says remaining subscriptions stop working and stop incurring VM charges; affected uses include VMs, VM scale sets, and AKS enclave-aware container workloads.",
       "sourceUrl": "https://azure.microsoft.com/updates?id=496104",
       "questions": {
         "what": {
           "question": "What is changing?",
           "introduction": "The change and what it means, including technical and financial considerations.",
-          "announcement": "On June 30, 2026, DCsv2-series Azure virtual machines (VMs) will be retired. After that date, they will no longer be available for use.\n\nPlease migrate your workloads before June 30, 2026. Options:\nTo continue using the enclave-based Intel SGX technology, migrate your workloads to DCdsv3 virtual machines.\nTo use a VM based programming model, consider DCasv5/DCadsv5/ECasv5/ECadsv5 VMs, DCasv6/ECasv6 series (currently in preview) or DC/ECesv6 (currently in preview) confidential VMs (CVMs).\nFor containerized applications, consider using Azure Confidential Container Instances (C-ACI) or Virtual nodes on Azure Container Instances (C-VN2) for Azure Kubernetes Service (AKS).\nThere may be changes to your VMs billing when you switch SKUs. Refer to our Azure Virtual Machines pricing page for more information.\n\nRequired Action\nTo avoid service disruptions, migrate your DCsv2-series VMs to one of the recommended options before June 30, 2026. To learn more, please check the migration guide.\n\nStarting July 1, 2025, capacity restrictions will be applied to DCsv2-series VMs.\n\nMore Information\nFor technical questions, issues, and help get answers from community experts in Microsoft Q&A. If you have a support plan and you need technical help, create a support request.\n\nLearn more about service retirements that may impact your resources in the Azure Retirement Workbook. Please note that retirements may not be visible in the workbook for up to two weeks after being announced.",
+          "announcement": "Microsoft retired DCsv2-series virtual machines on June 30, 2026, after capacity restrictions began on July 1, 2025. The retirement includes DCsv2 virtual machines, Virtual Machine Scale Sets, and AKS workloads using the DCsv2 SKU.",
           "financialConsiderations": "The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating."
         },
         "actions": {
           "question": "What do I need to do?",
           "introduction": "Required actions, options, and available support.",
-          "recommendedAction": "To avoid service disruptions, migrate your DCsv2-series VMs to one of the recommended options before June 30, 2026. To learn more, please check the migration guide.\n\nStarting July 1, 2025, capacity restrictions will be applied to DCsv2-series VMs.",
-          "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
+          "recommendedAction": "If any DCsv2 resources remain in your inventory, verify their current status and workload path before planning a migration. The Learn guide recommends DCdsv3 for Intel SGX enclaves, other confidential VM families for VM workloads, and confidential Azure Container Instances or AKS virtual nodes for containerized workloads; check current region, SKU availability, and preview status first.",
+          "guidance": "DCdsv3 is itself scheduled to retire on October 31, 2029, is unavailable in some regions, and doesn't support Intel EPID Attestation Service (IAS). Before resizing, confirm quota and region: a resize restarts the VM and deallocation can release dynamic IPs, though OS and data disks are unaffected.",
           "resources": [
             {
               "title": "DCdsv3 virtual machines",
-              "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/dcdsv3-series?tabs=sizebasic"
+              "url": "https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcdsv3-series?tabs=sizebasic"
             },
             {
               "title": "DCasv5/DCadsv5/ECasv5/ECadsv5",
-              "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/dcadsv5-series?tabs=sizebasic"
+              "url": "https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcadsv5-series?tabs=sizebasic"
             },
             {
               "title": "DCasv6/ECasv6 series",
               "url": "https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752"
             },
             {
-              "title": "DC",
-              "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/dcesv6-series?tabs=sizebasic"
+              "title": "DCesv6",
+              "url": "https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcesv6-series?tabs=sizebasic"
             },
             {
               "title": "ECesv6",
-              "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/ecesv5-ecedsv5-series"
+              "url": "https://learn.microsoft.com/azure/virtual-machines/sizes/memory-optimized/ecesv6-series"
             },
             {
               "title": "Azure Confidential Container Instances (C-ACI)",
-              "url": "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-confidential-overview"
+              "url": "https://learn.microsoft.com/azure/container-instances/container-instances-confidential-overview"
             },
             {
               "title": "Virtual nodes on Azure Container Instances (C-VN2)",
-              "url": "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-virtual-nodes"
+              "url": "https://learn.microsoft.com/azure/container-instances/container-instances-virtual-nodes"
             },
             {
               "title": "pricing page",
@@ -9016,11 +9068,11 @@
         "impact": {
           "question": "Where, and how much, am I impacted?",
           "introduction": "Your affected environments, resources, and users.",
-          "guidance": "This announcement concerns Virtual Machines. Compare the versions, regions, configurations, and exceptions in the announcement with your inventory.",
+          "guidance": "The retirement guide covers DCsv2 virtual machines, Virtual Machine Scale Sets, and enclave-aware containers on AKS. It says remaining DCsv2 subscriptions stop working after June 30, 2026; this directory cannot determine whether a tenant still has affected resources.",
           "checklist": [
-            "Check every subscription and environment, including development, test, and production.",
-            "Identify dependent applications, users, and resource owners.",
-            "Estimate migration effort, downtime risk, and replacement-service costs."
+            "Inventory DCsv2 virtual machines, scale sets, and AKS enclave-aware container workloads across subscriptions.",
+            "Check target SKU and regional availability, quota, temporary-disk requirements, and attestation dependencies.",
+            "Compare replacement pricing and test workload behavior before moving production."
           ],
           "notice": "No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service.",
           "advisor": {
@@ -9033,20 +9085,199 @@
           "introduction": "Key dates and the consequences of not acting.",
           "date": "2026-06-30",
           "month": "June 2026",
-          "dateGuidance": "This date is extracted from the announcement title. Check the full announcement for phased deadlines, extensions, and exceptions.",
-          "consequences": "After the applicable deadline, support or service availability may change. The exact consequences are service-specific; verify them in the announcement and plan to finish your migration ahead of time."
+          "dateGuidance": "The current Learn retirement guide gives June 30, 2026; the date has passed. Verify actual resource status rather than assuming an affected workload completed migration.",
+          "consequences": "The retirement guide says remaining DCsv2 subscriptions stop working and no longer incur billing charges after June 30, 2026."
         },
         "progress": {
           "question": "How can I track progress?",
           "introduction": "What work remains, and what needs attention.",
-          "guidance": "Use this planning checklist as a starting point. Record resource-level owners, target dates, blockers, and evidence in your team’s tracking system.",
+          "guidance": "Tracking guidance is not available for this retirement.",
           "checklist": [
             "Identify affected resources, subscriptions, and owners",
             "Review the official migration guidance and estimate cost changes",
             "Test the replacement and agree a migration plan",
             "Complete migration and validate production workloads"
           ],
-          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it."
+          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it.",
+          "tracking": null
+        }
+      },
+      "sourceReview": {
+        "reviewedOn": "2026-11-11",
+        "status": "enriched",
+        "issues": [],
+        "sources": [
+          {
+            "title": "Retirement: DCsv2-series Azure Virtual Machines will be retired on June 30, 2026",
+            "url": "https://azure.microsoft.com/updates?id=496104",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline"
+            ],
+            "note": "The preserved Azure Updates feed snapshot states the June 30, 2026 retirement, July 1, 2025 capacity restrictions, and recommended workload options. The public update URL currently displays the general Azure Updates listing rather than the specific announcement."
+          },
+          {
+            "title": "DCsv2-series retirement - Azure Virtual Machines | Microsoft Learn",
+            "url": "https://learn.microsoft.com/azure/virtual-machines/sizes/lifecycle/retirement/dcsv2-series-retirement",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline",
+              "progress"
+            ],
+            "note": "The current guide gives June 30, 2026, says remaining DCsv2 subscriptions stop working and stop incurring billing after that date, and includes VM, scale-set, and AKS enclave-aware container uses. It recommends checking region and quota, describes resize effects, and identifies alternatives; it does not provide a specific resource-inventory query for progress tracking."
+          },
+          {
+            "title": "DCdsv3 sizes series",
+            "url": "https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcdsv3-series?tabs=sizebasic",
+            "sections": [
+              "actions",
+              "impact"
+            ],
+            "note": "The recommended Intel SGX-capable DCdsv3 series is itself scheduled to retire on October 31, 2029; check its availability and lifecycle before selecting it."
+          },
+          {
+            "title": "DCadsv5 sizes series",
+            "url": "https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcadsv5-series?tabs=sizebasic",
+            "sections": [
+              "actions"
+            ],
+            "note": "This page documents DCadsv5 confidential VMs and AMD SEV-SNP capabilities; it is not evidence for the retirement date and does not document every series named in the grouped recommendation."
+          },
+          {
+            "title": "Preview: New DCasv6 and ECasv6 confidential VMs based on 4th Generation AMD EPYC processors",
+            "url": "https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752",
+            "sections": [
+              "actions"
+            ],
+            "note": "Microsoft author Rakesh Ginjupalli published this post on November 19, 2024 and updated it on November 20, 2024. It describes DCasv6/ECasv6 preview capabilities and sign-up; it does not cover the DCsv2 retirement or guarantee migration compatibility."
+          },
+          {
+            "title": "DCesv6-series sizes",
+            "url": "https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcesv6-series?tabs=sizebasic",
+            "sections": [
+              "actions"
+            ],
+            "note": "The page describes Intel TDX-based confidential VMs and their storage and feature characteristics; the retirement guide, not this size page, identifies their preview status."
+          },
+          {
+            "title": "ECesv6-series - Azure Virtual Machines | Microsoft Learn",
+            "url": "https://learn.microsoft.com/azure/virtual-machines/sizes/memory-optimized/ecesv6-series",
+            "sections": [
+              "actions"
+            ],
+            "note": "The legacy ECesv5 resource URL resolves to the current ECesv6-series page, which describes Intel TDX confidential VMs, memory-oriented workloads, and the lack of local temporary storage."
+          },
+          {
+            "title": "Confidential containers on Azure Container Instances",
+            "url": "https://learn.microsoft.com/azure/container-instances/container-instances-confidential-overview",
+            "sections": [
+              "actions",
+              "impact"
+            ],
+            "note": "This page describes confidential container groups in hardware-based TEEs and lift-and-shift container scenarios; Windows containers are in preview. It is a container pathway, not a VM resize replacement."
+          },
+          {
+            "title": "Virtual nodes on Azure Container Instances",
+            "url": "https://learn.microsoft.com/azure/container-instances/container-instances-virtual-nodes",
+            "sections": [
+              "actions",
+              "impact"
+            ],
+            "note": "This page describes running AKS pods as ACI container groups, including confidential containers; enclave support is in preview. It is an orchestration option for container workloads."
+          },
+          {
+            "title": "Legacy Generation Virtual Machines Pricing",
+            "url": "https://azure.microsoft.com/en-us/pricing/details/virtual-machines/linux-previous/",
+            "sections": [
+              "impact"
+            ],
+            "note": "The pricing page warns that legacy VM listings may have availability restrictions or be retired and that listed prices don't establish availability; compare current target-SKU pricing separately."
+          }
+        ],
+        "resourceChecks": [
+          {
+            "url": "https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcdsv3-series?tabs=sizebasic",
+            "resolvedUrl": "https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcdsv3-series?tabs=sizebasic",
+            "status": "read",
+            "detail": "Read the current DCdsv3 sizes page. It documents Intel SGX and also gives the series retirement date of October 31, 2029."
+          },
+          {
+            "url": "https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcadsv5-series?tabs=sizebasic",
+            "resolvedUrl": "https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcadsv5-series?tabs=sizebasic",
+            "status": "read",
+            "detail": "Read the current DCadsv5 sizes page; it describes AMD SEV-SNP confidential VMs and their capabilities."
+          },
+          {
+            "url": "https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752",
+            "resolvedUrl": "https://techcommunity.microsoft.com/blog/azureconfidentialcomputingblog/preview-new-dcasv6-and-ecasv6-confidential-vms-based-on-4th-generation-amd-epyc%E2%84%A2/4303752",
+            "status": "read",
+            "detail": "Read the complete Microsoft-authored post, published November 19, 2024 and updated November 20, 2024. It covers the DCasv6/ECasv6 preview, not the DCsv2 retirement."
+          },
+          {
+            "url": "https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcesv6-series?tabs=sizebasic",
+            "resolvedUrl": "https://learn.microsoft.com/azure/virtual-machines/sizes/general-purpose/dcesv6-series?tabs=sizebasic",
+            "status": "read",
+            "detail": "Read the complete current DCesv6 sizes page; it documents Intel TDX confidential VMs and configuration characteristics."
+          },
+          {
+            "url": "https://learn.microsoft.com/azure/virtual-machines/sizes/memory-optimized/ecesv6-series",
+            "resolvedUrl": "https://learn.microsoft.com/azure/virtual-machines/sizes/memory-optimized/ecesv6-series",
+            "status": "read",
+            "detail": "The legacy Learn URL redirected to the current ECesv6-series page. Read the current page; the resource link and check now use its locale-free canonical URL."
+          },
+          {
+            "url": "https://learn.microsoft.com/azure/container-instances/container-instances-confidential-overview",
+            "resolvedUrl": "https://learn.microsoft.com/azure/container-instances/container-instances-confidential-overview",
+            "status": "read",
+            "detail": "Read the current confidential-container guide, including its feature set, scenarios, and Windows-preview limitation."
+          },
+          {
+            "url": "https://learn.microsoft.com/azure/container-instances/container-instances-virtual-nodes",
+            "resolvedUrl": "https://learn.microsoft.com/azure/container-instances/container-instances-virtual-nodes",
+            "status": "read",
+            "detail": "Read the current virtual-nodes guide, including AKS orchestration, confidential-container support, and preview limitations."
+          },
+          {
+            "url": "https://azure.microsoft.com/en-us/pricing/details/virtual-machines/linux-previous/",
+            "resolvedUrl": "https://azure.microsoft.com/en-us/pricing/details/virtual-machines/linux-previous/",
+            "status": "read",
+            "detail": "Read the public legacy-VM pricing page. It warns that listed legacy SKUs may be retired or unavailable and that listed prices don't establish availability."
+          },
+          {
+            "url": "https://aka.ms/dcsv2-series-retirement",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/lifecycle/retirement/dcsv2-series-retirement",
+            "status": "read",
+            "detail": "The shortlink resolves to the public DCsv2-series retirement guide, which was read in full."
+          },
+          {
+            "url": "https://learn.microsoft.com/en-us/search/?terms=confidential%20computing&category=QnA",
+            "resolvedUrl": null,
+            "status": "not-evidence",
+            "detail": "Microsoft Q&A is a community-help destination, not authoritative retirement or migration evidence; no redirect or page read is claimed."
+          },
+          {
+            "url": "https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest",
+            "resolvedUrl": null,
+            "status": "not-evidence",
+            "detail": "This is an Azure Portal support-request workflow, not public retirement documentation. No sign-in or tenant inspection was attempted."
+          },
+          {
+            "url": "https://aka.ms/ServicesRetirementWorkbook",
+            "resolvedUrl": "https://portal.azure.com/#view/AppInsightsExtension/UsageNotebookBlade/ComponentId/Azure%20Advisor/ConfigurationId/community-Workbooks%2FAzure%20Advisor%2FAzureServiceRetirement/Type/workbook/WorkbookTemplateName/Service%20Retirement",
+            "status": "partial",
+            "detail": "The shortlink resolves to an Azure Portal Azure Advisor service-retirement workbook, but only the portal shell is public; workbook contents require portal context and were not accessed."
+          }
+        ],
+        "guidanceSource": "https://learn.microsoft.com/azure/virtual-machines/sizes/lifecycle/retirement/dcsv2-series-retirement",
+        "deadlineSource": "https://learn.microsoft.com/azure/virtual-machines/sizes/lifecycle/retirement/dcsv2-series-retirement",
+        "originalAnnouncement": "On June 30, 2026, DCsv2-series Azure virtual machines (VMs) will be retired. After that date, they will no longer be available for use.\n\nPlease migrate your workloads before June 30, 2026. Options:\nTo continue using the enclave-based Intel SGX technology, migrate your workloads to DCdsv3 virtual machines.\nTo use a VM based programming model, consider DCasv5/DCadsv5/ECasv5/ECadsv5 VMs, DCasv6/ECasv6 series (currently in preview) or DC/ECesv6 (currently in preview) confidential VMs (CVMs).\nFor containerized applications, consider using Azure Confidential Container Instances (C-ACI) or Virtual nodes on Azure Container Instances (C-VN2) for Azure Kubernetes Service (AKS).\nThere may be changes to your VMs billing when you switch SKUs. Refer to our Azure Virtual Machines pricing page for more information.\n\nRequired Action\nTo avoid service disruptions, migrate your DCsv2-series VMs to one of the recommended options before June 30, 2026. To learn more, please check the migration guide.\n\nStarting July 1, 2025, capacity restrictions will be applied to DCsv2-series VMs.\n\nMore Information\nFor technical questions, issues, and help get answers from community experts in Microsoft Q&A. If you have a support plan and you need technical help, create a support request.\n\nLearn more about service retirements that may impact your resources in the Azure Retirement Workbook. Please note that retirements may not be visible in the workbook for up to two weeks after being announced.",
+        "originalDeadline": {
+          "date": "2026-06-30",
+          "month": "June 2026"
         }
       }
     },
@@ -9063,26 +9294,26 @@
       "service": "Azure Kubernetes Service (AKS)",
       "announcedOn": "2025-06-19",
       "lastUpdatedOn": "2025-06-19",
-      "manuallyEnriched": false,
+      "manuallyEnriched": true,
       "hidden": false,
-      "summary": "On August 14 2025, Azure Kubernetes Service will no longer support the skip-gpu-driver-install node pool tag to skip automatic driver installation on GPU node pools. Starting on August 14 2025, you will no longer be able to use this…",
+      "summary": "AKS stopped supporting the --skip-gpu-driver-install node pool tag on August 14, 2025. To skip automatic GPU driver installation, use the --gpu-driver field set to none.",
       "sourceUrl": "https://azure.microsoft.com/updates?id=496440",
       "questions": {
         "what": {
           "question": "What is changing?",
           "introduction": "The change and what it means, including technical and financial considerations.",
-          "announcement": "On August 14 2025, Azure Kubernetes Service will no longer support the skip-gpu-driver-install node pool tag to skip automatic driver installation on GPU node pools. Starting on August 14 2025, you will no longer be able to use this node pool tag at AKS node pool creation time to install custom GPU drivers or use the GPU Operator. Alternatively, you should use the generally available gpu-driver API field to update your existing node pools or create new GPU-enabled node pools to skip automatic GPU driver installation.",
+          "announcement": "On August 14, 2025, Azure Kubernetes Service stopped supporting the --skip-gpu-driver-install node pool tag. The tag can no longer be used to provision GPU-enabled node pools that bypass automatic GPU driver installation; use the generally available --gpu-driver field set to none instead.",
           "financialConsiderations": "The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating."
         },
         "actions": {
           "question": "What do I need to do?",
           "introduction": "Required actions, options, and available support.",
-          "recommendedAction": null,
-          "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
+          "recommendedAction": "Update existing node-pool configuration and deployment definitions to use --gpu-driver set to none wherever you need to skip automatic driver installation, including custom-driver or GPU Operator scenarios. Use the same field when creating new GPU-enabled node pools.",
+          "guidance": "The AKS GPU guide documents the replacement field and the exact retirement date. Its separate Azure Linux 2.0 node-image retirement notice has different milestones and does not apply to this node-pool tag.",
           "resources": [
             {
-              "title": "skip automatic GPU driver installation.",
-              "url": "https://learn.microsoft.com/en-us/azure/aks/gpu-cluster?tabs=add-ubuntu-gpu-node-pool#skip-gpu-driver-installation-preview"
+              "title": "Skip automatic GPU driver installation",
+              "url": "https://learn.microsoft.com/azure/aks/gpu-cluster?tabs=add-ubuntu-gpu-node-pool#skip-gpu-driver-installation-preview"
             }
           ],
           "supportGuidance": "For help with your specific environment, contact your Microsoft account team or Azure support.",
@@ -9094,11 +9325,11 @@
         "impact": {
           "question": "Where, and how much, am I impacted?",
           "introduction": "Your affected environments, resources, and users.",
-          "guidance": "This announcement concerns Azure Kubernetes Service (AKS). Compare the versions, regions, configurations, and exceptions in the announcement with your inventory.",
+          "guidance": "This change affects AKS GPU node-pool provisioning that relies on the retired tag; it does not retire AKS GPU support. The Learn page also covers a separate Azure Linux 2.0 node-image lifecycle change, which has different dates and consequences.",
           "checklist": [
-            "Check every subscription and environment, including development, test, and production.",
-            "Identify dependent applications, users, and resource owners.",
-            "Estimate migration effort, downtime risk, and replacement-service costs."
+            "Review AKS GPU node-pool configurations and deployment definitions for the retired tag.",
+            "Replace the tag with the gpu-driver field set to none where automatic driver installation must be skipped.",
+            "Validate the updated node-pool configuration for custom GPU drivers or GPU Operator use."
           ],
           "notice": "No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service.",
           "advisor": {
@@ -9111,20 +9342,66 @@
           "introduction": "Key dates and the consequences of not acting.",
           "date": "2025-08-14",
           "month": "August 2025",
-          "dateGuidance": "This date is extracted from the announcement title. Check the full announcement for phased deadlines, extensions, and exceptions.",
-          "consequences": "After the applicable deadline, support or service availability may change. The exact consequences are service-specific; verify them in the announcement and plan to finish your migration ahead of time."
+          "dateGuidance": "The AKS GPU guidance gives August 14, 2025; the date has passed.",
+          "consequences": "Since August 14, 2025, AKS no longer supports the tag for provisioning GPU-enabled node pools. The documented replacement is the --gpu-driver field set to none."
         },
         "progress": {
           "question": "How can I track progress?",
           "introduction": "What work remains, and what needs attention.",
-          "guidance": "Use this planning checklist as a starting point. Record resource-level owners, target dates, blockers, and evidence in your team’s tracking system.",
+          "guidance": "Tracking guidance is not available for this retirement.",
           "checklist": [
             "Identify affected resources, subscriptions, and owners",
             "Review the official migration guidance and estimate cost changes",
             "Test the replacement and agree a migration plan",
             "Complete migration and validate production workloads"
           ],
-          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it."
+          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it.",
+          "tracking": null
+        }
+      },
+      "sourceReview": {
+        "reviewedOn": "2026-11-11",
+        "status": "enriched",
+        "issues": [],
+        "sources": [
+          {
+            "title": "Retirement: skip-gpu-driver-install nodepool tag retirement on August 14, 2025",
+            "url": "https://azure.microsoft.com/updates?id=496440",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline"
+            ],
+            "note": "The preserved official Azure Updates feed snapshot identifies the retired node-pool tag and the gpu-driver API field replacement. The public update URL currently displays the general Azure Updates listing rather than this announcement."
+          },
+          {
+            "title": "Use GPUs for compute-intensive workloads on Azure Kubernetes Service (AKS)",
+            "url": "https://learn.microsoft.com/azure/aks/gpu-cluster?tabs=add-ubuntu-gpu-node-pool#skip-gpu-driver-installation-preview",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline",
+              "progress"
+            ],
+            "note": "The current tag-specific section gives August 14, 2025, says the tag can no longer provision GPU-enabled node pools, and documents --gpu-driver set to none. The page has no specific inventory query for progress tracking and also contains a separate Azure Linux 2.0 notice, whose dates were not attributed to this tag."
+          }
+        ],
+        "resourceChecks": [
+          {
+            "url": "https://learn.microsoft.com/azure/aks/gpu-cluster?tabs=add-ubuntu-gpu-node-pool#skip-gpu-driver-installation-preview",
+            "resolvedUrl": "https://learn.microsoft.com/azure/aks/gpu-cluster?tabs=add-ubuntu-gpu-node-pool#skip-gpu-driver-installation-preview",
+            "status": "read",
+            "detail": "The locale-free Learn URL serves the same GPU guide. Read the tag-specific section for the August 14, 2025 cutoff and --gpu-driver replacement; excluded the separate Azure Linux 2.0 notice."
+          }
+        ],
+        "guidanceSource": "https://learn.microsoft.com/azure/aks/gpu-cluster?tabs=add-ubuntu-gpu-node-pool#skip-gpu-driver-installation-preview",
+        "deadlineSource": "https://learn.microsoft.com/azure/aks/gpu-cluster?tabs=add-ubuntu-gpu-node-pool#skip-gpu-driver-installation-preview",
+        "originalAnnouncement": "On August 14 2025, Azure Kubernetes Service will no longer support the skip-gpu-driver-install node pool tag to skip automatic driver installation on GPU node pools. Starting on August 14 2025, you will no longer be able to use this node pool tag at AKS node pool creation time to install custom GPU drivers or use the GPU Operator. Alternatively, you should use the generally available gpu-driver API field to update your existing node pools or create new GPU-enabled node pools to skip automatic GPU driver installation.",
+        "originalDeadline": {
+          "date": "2025-08-14",
+          "month": "August 2025"
         }
       }
     },
@@ -9140,34 +9417,34 @@
       "service": "Storage Accounts",
       "announcedOn": "2025-10-03",
       "lastUpdatedOn": "2025-10-03",
-      "manuallyEnriched": false,
+      "manuallyEnriched": true,
       "hidden": false,
-      "summary": "As part of our ongoing efforts to streamline the Azure Storage portfolio and deliver enhanced performance, scalability, and cost efficiency, we are announcing the retirement of all General purpose v1 (GPv1) storage accounts. This…",
+      "summary": "Microsoft's published deadline to upgrade GPv1 and legacy Blob Storage accounts to GPv2 was October 13, 2026. Learn guidance warns of automatic conversion and possible billing changes, but its account-creation and conversion timelines conflict.",
       "sourceUrl": "https://azure.microsoft.com/updates?id=496964",
       "questions": {
         "what": {
           "question": "What is changing?",
           "introduction": "The change and what it means, including technical and financial considerations.",
-          "announcement": "As part of our ongoing efforts to streamline the Azure Storage portfolio and deliver enhanced performance, scalability, and cost efficiency, we are announcing the retirement of all General purpose v1 (GPv1) storage accounts. This includes legacy blob storage and Files accounts configurations.\n\nKey Dates\n\nOctober 1st, 2025: Public announcement.\n\n2026 Q1, blocking of new account creation\n\nOctober 13th, 2026: Final retirement. All remaining GPv1 accounts will be transitioned to GPv2.\n\nWhat’s Changing:\n\nThe following account types will be retired:\n\nGeneral purpose v1 (GPv1) storage accounts (all redundancy options)\n\nLegacy blob storage accounts.\n\nFiles storage accounts hosted on GPv1.\n\nCustomers are encouraged to migrate to General Purpose v2 (GPv2) or specialized alternatives such as BlockBlobStorage or FileStorage, depending on workload requirements.\n\nAutomatic migration warning\n\nAfter October 13, 2026, all existing GPv1 accounts will be auto migrated over to a GPv2 account, which may result in higher billing costs. Your decision not to migrate an existing GPv1 account will be construed as consent for Microsoft to migrate the account on your behalf.\n\nResources\n\nhttps://learn.microsoft.com/en-us/azure/storage/common/storage-account-upgrade\n\nGPv1 storage account retirement overview - Azure Storage | Microsoft Learn\n\nLegacy Blob Storage account retirement overview - Azure Storage | Microsoft Learn\n\nPlease Contact your Microsoft account team for support and migration assistance.",
-          "financialConsiderations": "The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating."
+          "announcement": "Microsoft retired General Purpose v1 (GPv1) and legacy Blob Storage accounts on October 13, 2026. The migration guidance says remaining accounts can be converted to GPv2, where transaction and access-tier pricing may change; verify each account's current type and billing rather than assuming conversion is complete.",
+          "financialConsiderations": "GPv2 transaction and access-tier charges can increase costs for some workloads, especially those with frequent read, write, or list operations. Estimate costs from actual usage and current regional pricing before upgrading."
         },
         "actions": {
           "question": "What do I need to do?",
           "introduction": "Required actions, options, and available support.",
-          "recommendedAction": null,
-          "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
+          "recommendedAction": "If any GPv1 or legacy Blob Storage accounts remain, verify their current type and status, estimate GPv2 costs, and upgrade through the Azure portal, PowerShell, or Azure CLI. The upgrade is permanent; select the default Hot or Cool access tier deliberately and validate workloads and billing afterward.",
+          "guidance": "The Learn guide describes an in-place GPv1-to-GPv2 upgrade with no downtime or data loss, but it cannot be reversed. Confirm whether an account is a Databricks-managed DBFS account before taking action; the legacy Blob guide says those managed accounts require no customer action.",
           "resources": [
             {
-              "title": "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-upgrade",
-              "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-upgrade"
+              "title": "Upgrade a storage account to GPv2",
+              "url": "https://learn.microsoft.com/azure/storage/common/storage-account-upgrade"
             },
             {
               "title": "GPv1 storage account retirement overview - Azure Storage | Microsoft Learn",
-              "url": "https://learn.microsoft.com/en-us/azure/storage/common/general-purpose-version-1-account-migration-overview"
+              "url": "https://learn.microsoft.com/azure/storage/common/general-purpose-version-1-account-migration-overview"
             },
             {
               "title": "Legacy Blob Storage account retirement overview - Azure Storage | Microsoft Learn",
-              "url": "https://learn.microsoft.com/en-us/azure/storage/common/legacy-blob-storage-account-migration-overview"
+              "url": "https://learn.microsoft.com/azure/storage/common/legacy-blob-storage-account-migration-overview"
             }
           ],
           "supportGuidance": "For help with your specific environment, contact your Microsoft account team or Azure support.",
@@ -9179,11 +9456,11 @@
         "impact": {
           "question": "Where, and how much, am I impacted?",
           "introduction": "Your affected environments, resources, and users.",
-          "guidance": "This announcement concerns Storage Accounts. Compare the versions, regions, configurations, and exceptions in the announcement with your inventory.",
+          "guidance": "The retirement covers GPv1 accounts and legacy Blob Storage accounts globally. The announcement also includes Files accounts hosted on GPv1; the migration guide distinguishes Blob pricing changes from Azure Files pricing. The legacy Blob guide identifies Databricks-managed DBFS accounts as a no-customer-action exception, which must be verified by managed resource group and permissions.",
           "checklist": [
-            "Check every subscription and environment, including development, test, and production.",
-            "Identify dependent applications, users, and resource owners.",
-            "Estimate migration effort, downtime risk, and replacement-service costs."
+            "Identify GPv1 and legacy Blob accounts across subscriptions and classify each account's current type.",
+            "Review usage, access tiers, redundancy, dependent applications, and any Databricks-managed DBFS exception.",
+            "Estimate GPv2 transaction and storage costs, then validate account behavior and billing after upgrading."
           ],
           "notice": "No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service.",
           "advisor": {
@@ -9194,22 +9471,109 @@
         "deadline": {
           "question": "What is the deadline?",
           "introduction": "Key dates and the consequences of not acting.",
-          "date": null,
+          "date": "2026-10-13",
           "month": "October 2026",
-          "dateGuidance": "An unambiguous exact date could not be extracted from the announcement title. The source lists October 2026 as the retirement month. Review the official announcement for all applicable dates.",
-          "consequences": "After the applicable deadline, support or service availability may change. The exact consequences are service-specific; verify them in the announcement and plan to finish your migration ahead of time."
+          "dateGuidance": "The preserved announcement and current storage-account upgrade guidance give October 13, 2026 as the retirement deadline. Their separate account-creation cutoff milestones conflict and are documented as unresolved.",
+          "consequences": "The Learn pages say remaining accounts can be migrated to GPv2 automatically, which may change billing. The legacy Blob overview gives inconsistent conversion timing, so verify the actual account type and migration state."
         },
         "progress": {
           "question": "How can I track progress?",
           "introduction": "What work remains, and what needs attention.",
-          "guidance": "Use this planning checklist as a starting point. Record resource-level owners, target dates, blockers, and evidence in your team’s tracking system.",
+          "guidance": "Use the Azure Resource Graph query in the GPv1 retirement overview to identify GPv1 accounts (kind Storage) and legacy Blob accounts (kind BlobStorage). Review results across subscriptions, verify account type and managed-account exceptions, and record each account's upgrade and billing status.",
           "checklist": [
             "Identify affected resources, subscriptions, and owners",
             "Review the official migration guidance and estimate cost changes",
             "Test the replacement and agree a migration plan",
             "Complete migration and validate production workloads"
           ],
-          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it."
+          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it.",
+          "tracking": {
+            "guidance": "Use the Azure Resource Graph query in the GPv1 retirement overview to identify GPv1 accounts (kind Storage) and legacy Blob accounts (kind BlobStorage). Review results across subscriptions, verify account type and managed-account exceptions, and record each account's upgrade and billing status.",
+            "sourceUrl": "https://learn.microsoft.com/azure/storage/common/general-purpose-version-1-account-migration-overview"
+          }
+        }
+      },
+      "sourceReview": {
+        "reviewedOn": "2026-11-11",
+        "status": "needs-review",
+        "issues": [
+          "The preserved announcement gives Q1 2026 for blocking new account creation, while the current GPv1 and legacy Blob Learn overviews give September 2026. Neither page explicitly supersedes the other, so the exact creation-cutoff milestone remains unresolved.",
+          "The legacy Blob overview says automatic conversion begins in early November and extends to Q1CY26, but its Databricks-specific section says conversion waves extend to Q1CY2027. Do not assume conversion is complete; verify actual account status."
+        ],
+        "sources": [
+          {
+            "title": "Retirement: General Purpose v1 (GPv1) and legacy blob storage accounts",
+            "url": "https://azure.microsoft.com/updates?id=496964",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline"
+            ],
+            "note": "The preserved official Azure Updates feed snapshot lists GPv1 and legacy Blob accounts, an October 13, 2026 final-retirement date, and Q1 2026 for blocking new account creation. The public update URL currently displays the general Azure Updates listing rather than the specific announcement."
+          },
+          {
+            "title": "Upgrade to a general-purpose v2 storage account",
+            "url": "https://learn.microsoft.com/azure/storage/common/storage-account-upgrade",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline"
+            ],
+            "note": "The current upgrade page gives October 13, 2026, says remaining GPv1 accounts will be automatically migrated, describes the permanent in-place upgrade and portal/PowerShell/CLI steps, and warns that GPv2 transaction costs can increase."
+          },
+          {
+            "title": "About the retirement of general-purpose v1 (GPv1) storage accounts",
+            "url": "https://learn.microsoft.com/azure/storage/common/general-purpose-version-1-account-migration-overview",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline",
+              "progress"
+            ],
+            "note": "The current overview describes global retirement, GPv1-to-GPv2 migration, cost and workload checks, and an Azure Resource Graph query for GPv1 and legacy Blob accounts. Its account-creation cutoff is September 2026, differing from the preserved announcement's Q1 2026."
+          },
+          {
+            "title": "Overview of legacy blob storage account retirement",
+            "url": "https://learn.microsoft.com/azure/storage/common/legacy-blob-storage-account-migration-overview",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline",
+              "progress"
+            ],
+            "note": "The page describes the October 13, 2026 conversion deadline, cost implications, a Resource Graph query, and a Databricks DBFS exception. Its account-creation cutoff is September 2026, and its general conversion schedule says Q1CY26 while its Databricks-specific section says Q1CY2027."
+          }
+        ],
+        "resourceChecks": [
+          {
+            "url": "https://learn.microsoft.com/azure/storage/common/storage-account-upgrade",
+            "resolvedUrl": "https://learn.microsoft.com/azure/storage/common/storage-account-upgrade",
+            "status": "read",
+            "detail": "The locale-free Learn URL serves the current GPv2 upgrade guide. Read the full guide, including the October 13, 2026 deadline, irreversible upgrade steps, no-downtime/no-data-loss statement, and billing impact."
+          },
+          {
+            "url": "https://learn.microsoft.com/azure/storage/common/general-purpose-version-1-account-migration-overview",
+            "resolvedUrl": "https://learn.microsoft.com/azure/storage/common/general-purpose-version-1-account-migration-overview",
+            "status": "read",
+            "detail": "The locale-free Learn URL serves the current GPv1 retirement overview. Read the full page, including its Resource Graph query, costs, and September 2026 creation cutoff."
+          },
+          {
+            "url": "https://learn.microsoft.com/azure/storage/common/legacy-blob-storage-account-migration-overview",
+            "resolvedUrl": "https://learn.microsoft.com/azure/storage/common/legacy-blob-storage-account-migration-overview",
+            "status": "read",
+            "detail": "The locale-free Learn URL serves the current legacy Blob retirement overview. Read the full page, including its Resource Graph query, Databricks exception, September 2026 creation cutoff, and inconsistent conversion schedule."
+          }
+        ],
+        "guidanceSource": "https://learn.microsoft.com/azure/storage/common/storage-account-upgrade",
+        "deadlineSource": "https://learn.microsoft.com/azure/storage/common/storage-account-upgrade",
+        "originalAnnouncement": "As part of our ongoing efforts to streamline the Azure Storage portfolio and deliver enhanced performance, scalability, and cost efficiency, we are announcing the retirement of all General purpose v1 (GPv1) storage accounts. This includes legacy blob storage and Files accounts configurations.\n\nKey Dates\n\nOctober 1st, 2025: Public announcement.\n\n2026 Q1, blocking of new account creation\n\nOctober 13th, 2026: Final retirement. All remaining GPv1 accounts will be transitioned to GPv2.\n\nWhat’s Changing:\n\nThe following account types will be retired:\n\nGeneral purpose v1 (GPv1) storage accounts (all redundancy options)\n\nLegacy blob storage accounts.\n\nFiles storage accounts hosted on GPv1.\n\nCustomers are encouraged to migrate to General Purpose v2 (GPv2) or specialized alternatives such as BlockBlobStorage or FileStorage, depending on workload requirements.\n\nAutomatic migration warning\n\nAfter October 13, 2026, all existing GPv1 accounts will be auto migrated over to a GPv2 account, which may result in higher billing costs. Your decision not to migrate an existing GPv1 account will be construed as consent for Microsoft to migrate the account on your behalf.\n\nResources\n\nhttps://learn.microsoft.com/en-us/azure/storage/common/storage-account-upgrade\n\nGPv1 storage account retirement overview - Azure Storage | Microsoft Learn\n\nLegacy Blob Storage account retirement overview - Azure Storage | Microsoft Learn\n\nPlease Contact your Microsoft account team for support and migration assistance.",
+        "originalDeadline": {
+          "date": null,
+          "month": "October 2026"
         }
       }
     },
@@ -9225,26 +9589,26 @@
       "service": "HDInsight",
       "announcedOn": "2025-07-15",
       "lastUpdatedOn": "2025-07-16",
-      "manuallyEnriched": false,
+      "manuallyEnriched": true,
       "hidden": false,
-      "summary": "Microsoft will no longer provides support for ESP (Enterprise Security Package) version of Azure HDInsight from 31-July-2026. For more details on impact please refer to Supported HDInsight versions.\nRequired Action\nTo avoid potential…",
+      "summary": "HDInsight stopped supporting Enterprise Security Package (ESP) on July 31, 2026. Learn lists Microsoft Fabric as an alternative but provides no ESP-specific migration steps or post-retirement cluster status.",
       "sourceUrl": "https://azure.microsoft.com/updates?id=497263",
       "questions": {
         "what": {
           "question": "What is changing?",
           "introduction": "The change and what it means, including technical and financial considerations.",
-          "announcement": "Microsoft will no longer provides support for ESP (Enterprise Security Package) version of Azure HDInsight from 31-July-2026. For more details on impact please refer to Supported HDInsight versions.\nRequired Action\nTo avoid potential service disruptions and data loss, you are required to migrate to alternative offerings such as Microsoft Fabric.\nMore Information\nIf you have questions, get answers from community experts in Microsoft Q&A. If you have a support plan and you need technical help, create a support request.",
-          "financialConsiderations": "The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating."
+          "announcement": "Support for the Enterprise Security Package (ESP) version of Azure HDInsight ended on July 31, 2026. The preserved announcement recommends alternatives such as Microsoft Fabric and warns of potential disruption and data loss; the current Learn table lists the date and alternative but does not describe existing-cluster behavior.",
+          "financialConsiderations": "The reviewed sources do not quantify migration costs. Check the pricing and licensing of the selected replacement against your workload before transitioning."
         },
         "actions": {
           "question": "What do I need to do?",
           "introduction": "Required actions, options, and available support.",
-          "recommendedAction": "To avoid potential service disruptions and data loss, you are required to migrate to alternative offerings such as Microsoft Fabric.",
-          "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
+          "recommendedAction": "If any HDInsight clusters still use ESP, confirm their current status and data-migration requirements with Microsoft or your account representative before changing them. The current Learn table recommends moving to another Azure offering such as Microsoft Fabric, but the reviewed documentation does not provide an ESP-specific migration procedure.",
+          "guidance": "Identify the affected ESP clusters, validate the target service and data-retention requirements, and agree on a tested transition plan with Microsoft. Do not assume the retirement automatically migrated a cluster or its data.",
           "resources": [
             {
               "title": "Supported HDInsight versions",
-              "url": "https://learn.microsoft.com/en-us/azure/hdinsight/hdinsight-component-retirements-and-action-required#supported-hdinsight-versions-1"
+              "url": "https://learn.microsoft.com/azure/hdinsight/hdinsight-component-retirements-and-action-required#supported-hdinsight-versions-1"
             },
             {
               "title": "Microsoft Fabric",
@@ -9268,11 +9632,11 @@
         "impact": {
           "question": "Where, and how much, am I impacted?",
           "introduction": "Your affected environments, resources, and users.",
-          "guidance": "This announcement concerns HDInsight. Compare the versions, regions, configurations, and exceptions in the announcement with your inventory.",
+          "guidance": "The specific Learn table lists ESP as a retirement item on July 31, 2026, but marks cluster creation as not applicable and does not specify whether existing ESP clusters remain available. The announcement warns of potential disruption and data loss; verify current cluster and data status with Microsoft.",
           "checklist": [
-            "Check every subscription and environment, including development, test, and production.",
-            "Identify dependent applications, users, and resource owners.",
-            "Estimate migration effort, downtime risk, and replacement-service costs."
+            "Identify HDInsight clusters that use the Enterprise Security Package.",
+            "Confirm current cluster status, data-retention needs, and dependent workloads with Microsoft.",
+            "Validate the target service and data transition before making production changes."
           ],
           "notice": "No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service.",
           "advisor": {
@@ -9283,22 +9647,90 @@
         "deadline": {
           "question": "What is the deadline?",
           "introduction": "Key dates and the consequences of not acting.",
-          "date": null,
+          "date": "2026-07-31",
           "month": "July 2026",
-          "dateGuidance": "An unambiguous exact date could not be extracted from the announcement title. The source lists July 2026 as the retirement month. Review the official announcement for all applicable dates.",
-          "consequences": "After the applicable deadline, support or service availability may change. The exact consequences are service-specific; verify them in the announcement and plan to finish your migration ahead of time."
+          "dateGuidance": "The current Learn retirement table gives July 31, 2026; that date has passed, but the page does not specify the state of any particular existing ESP cluster.",
+          "consequences": "The announcement says ESP support ended on July 31, 2026. The reviewed Learn page does not specify whether existing clusters were stopped or how the announced disruption and data-loss risks apply."
         },
         "progress": {
           "question": "How can I track progress?",
           "introduction": "What work remains, and what needs attention.",
-          "guidance": "Use this planning checklist as a starting point. Record resource-level owners, target dates, blockers, and evidence in your team’s tracking system.",
+          "guidance": "Tracking guidance is not available for this retirement.",
           "checklist": [
             "Identify affected resources, subscriptions, and owners",
             "Review the official migration guidance and estimate cost changes",
             "Test the replacement and agree a migration plan",
             "Complete migration and validate production workloads"
           ],
-          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it."
+          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it.",
+          "tracking": null
+        }
+      },
+      "sourceReview": {
+        "reviewedOn": "2026-11-11",
+        "status": "needs-review",
+        "issues": [
+          "The current Learn table lists the ESP retirement date and Microsoft Fabric as an alternative but does not provide an ESP-specific migration procedure or explain whether existing clusters continue to run.",
+          "The announcement warns of potential disruption and data loss, but the reviewed Learn page does not explain the consequences or data-migration requirements."
+        ],
+        "sources": [
+          {
+            "title": "Retirement: Azure HDInsight - Enterprise Security Package",
+            "url": "https://azure.microsoft.com/updates?id=497263",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline",
+              "progress"
+            ],
+            "note": "The preserved official Azure Updates feed snapshot says ESP support ends July 31, 2026, recommends alternatives including Microsoft Fabric, and warns of potential disruption and data loss. The direct public update URL currently displays the general Azure Updates listing."
+          },
+          {
+            "title": "Azure HDInsight component retirements and action required",
+            "url": "https://learn.microsoft.com/azure/hdinsight/hdinsight-component-retirements-and-action-required#supported-hdinsight-versions-1",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline",
+              "progress"
+            ],
+            "note": "The current retirement table lists Enterprise Security Package for July 31, 2026 and recommends migration to alternative Azure offerings such as Microsoft Fabric. It does not provide ESP-specific migration steps, resource-inventory guidance, or existing-cluster status."
+          }
+        ],
+        "resourceChecks": [
+          {
+            "url": "https://learn.microsoft.com/azure/hdinsight/hdinsight-component-retirements-and-action-required#supported-hdinsight-versions-1",
+            "resolvedUrl": "https://learn.microsoft.com/azure/hdinsight/hdinsight-component-retirements-and-action-required#supported-hdinsight-versions-1",
+            "status": "read",
+            "detail": "The locale-free Learn URL serves the current component-retirement table. Read the full page and checked the ESP row, which gives July 31, 2026 and recommends alternative Azure offerings."
+          },
+          {
+            "url": "https://www.microsoft.com/en-us/microsoft-fabric",
+            "resolvedUrl": "https://www.microsoft.com/en-us/microsoft-fabric",
+            "status": "partial",
+            "detail": "Read the public Microsoft Fabric product landing page. It describes Fabric generally but provides no HDInsight ESP migration or data-transfer guidance."
+          },
+          {
+            "url": "https://aka.ms/appserviceqanode14",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/answers/tags/?disclaimer=tag-not-found",
+            "status": "not-evidence",
+            "detail": "The Microsoft Q&A shortlink resolves to a generic tag index with a tag-not-found disclaimer. It is a community-help destination, not retirement evidence."
+          },
+          {
+            "url": "https://ms.portal.azure.com/#view/Microsoft_Azure_Support/NewSupportRequestV3Blade/callerWorkflowId/ff9f68ad-28dd-4a70-b184-f0ed93043cab/callerName/Microsoft_Azure_Support%2FHelpAndSupportOverview.ReactView",
+            "resolvedUrl": null,
+            "status": "not-evidence",
+            "detail": "This is an Azure Portal support-request workflow, not public retirement documentation. No sign-in or tenant inspection was attempted."
+          }
+        ],
+        "guidanceSource": "https://learn.microsoft.com/azure/hdinsight/hdinsight-component-retirements-and-action-required#supported-hdinsight-versions-1",
+        "deadlineSource": "https://learn.microsoft.com/azure/hdinsight/hdinsight-component-retirements-and-action-required#supported-hdinsight-versions-1",
+        "originalAnnouncement": "Microsoft will no longer provides support for ESP (Enterprise Security Package) version of Azure HDInsight from 31-July-2026. For more details on impact please refer to Supported HDInsight versions.\nRequired Action\nTo avoid potential service disruptions and data loss, you are required to migrate to alternative offerings such as Microsoft Fabric.\nMore Information\nIf you have questions, get answers from community experts in Microsoft Q&A. If you have a support plan and you need technical help, create a support request.",
+        "originalDeadline": {
+          "date": null,
+          "month": "July 2026"
         }
       }
     },
@@ -9315,22 +9747,22 @@
       "service": "Azure Monitor",
       "announcedOn": "2025-09-25",
       "lastUpdatedOn": "2025-09-25",
-      "manuallyEnriched": false,
+      "manuallyEnriched": true,
       "hidden": false,
-      "summary": "The Insights blade in AKS has been renamed to Monitor and relocated from the Monitoring section to the top level of the table of contents for increased visibility. You’ll continue to have access to the same monitoring data and…",
+      "summary": "The Azure Updates snapshot says the AKS Insights blade was renamed Monitor without changing its monitoring data or features, and scheduled the old blade's retirement for January 1, 2026. Current behavior and the date remain unverified in product documentation.",
       "sourceUrl": "https://azure.microsoft.com/updates?id=497368",
       "questions": {
         "what": {
           "question": "What is changing?",
           "introduction": "The change and what it means, including technical and financial considerations.",
-          "announcement": "The Insights blade in AKS has been renamed to Monitor and relocated from the Monitoring section to the top level of the table of contents for increased visibility. You’ll continue to have access to the same monitoring data and features—there are no changes to functionality, just a more streamlined and unified navigation experience. The Insights blade will be fully retired on January 1, 2026.",
+          "announcement": "The preserved Azure Updates announcement says the AKS Insights blade was renamed Monitor and moved to top-level navigation, with the same monitoring data and features. It scheduled full retirement of the Insights blade for January 1, 2026, but this review did not verify the current blade behavior in product documentation.",
           "financialConsiderations": "The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating."
         },
         "actions": {
           "question": "What do I need to do?",
           "introduction": "Required actions, options, and available support.",
-          "recommendedAction": null,
-          "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
+          "recommendedAction": "Use the Monitor experience in AKS and verify that the monitoring data and workflows you need are available there. The announcement describes a navigation change rather than a change to monitoring functionality.",
+          "guidance": "Check the current AKS portal experience for your cluster and confirm that dashboards, alerts, and monitoring workflows are accessible through Monitor; the reviewed sources do not provide a migration procedure.",
           "resources": [],
           "supportGuidance": "For help with your specific environment, contact your Microsoft account team or Azure support.",
           "support": {
@@ -9341,11 +9773,11 @@
         "impact": {
           "question": "Where, and how much, am I impacted?",
           "introduction": "Your affected environments, resources, and users.",
-          "guidance": "This announcement concerns Azure Monitor. Compare the versions, regions, configurations, and exceptions in the announcement with your inventory.",
+          "guidance": "The announcement describes a rename and navigation move, says monitoring data and features remain unchanged, and schedules retirement of the Insights blade. It does not establish whether the old blade was removed or whether any tenant-specific data is affected.",
           "checklist": [
-            "Check every subscription and environment, including development, test, and production.",
-            "Identify dependent applications, users, and resource owners.",
-            "Estimate migration effort, downtime risk, and replacement-service costs."
+            "Open Monitor for each AKS environment that previously used Insights.",
+            "Verify required monitoring data and workflows in the current portal.",
+            "Record any missing views or tenant-specific issues for Microsoft support."
           ],
           "notice": "No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service.",
           "advisor": {
@@ -9358,20 +9790,49 @@
           "introduction": "Key dates and the consequences of not acting.",
           "date": null,
           "month": "January 2026",
-          "dateGuidance": "An unambiguous exact date could not be extracted from the announcement title. The source lists January 2026 as the retirement month. Review the official announcement for all applicable dates.",
-          "consequences": "After the applicable deadline, support or service availability may change. The exact consequences are service-specific; verify them in the announcement and plan to finish your migration ahead of time."
+          "dateGuidance": "The preserved announcement body lists January 1, 2026, but the exact day has not been independently verified in current product documentation; the structured date remains unconfirmed.",
+          "consequences": "The announcement scheduled the Insights blade's retirement for January 1, 2026. Current behavior was not verified, so check the Monitor experience rather than assuming the old blade remains available or that monitoring data was removed."
         },
         "progress": {
           "question": "How can I track progress?",
           "introduction": "What work remains, and what needs attention.",
-          "guidance": "Use this planning checklist as a starting point. Record resource-level owners, target dates, blockers, and evidence in your team’s tracking system.",
+          "guidance": "Tracking guidance is not available for this retirement.",
           "checklist": [
             "Identify affected resources, subscriptions, and owners",
             "Review the official migration guidance and estimate cost changes",
             "Test the replacement and agree a migration plan",
             "Complete migration and validate production workloads"
           ],
-          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it."
+          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it.",
+          "tracking": null
+        }
+      },
+      "sourceReview": {
+        "reviewedOn": "2026-11-11",
+        "status": "needs-review",
+        "issues": [
+          "The preserved announcement gives January 1, 2026, but the reviewed Microsoft Learn results did not establish the blade-specific retirement date or current behavior. Keep the exact date unconfirmed and verify the current Monitor experience."
+        ],
+        "sources": [
+          {
+            "title": "Retirement: The Insights blade in AKS is now called Monitor",
+            "url": "https://azure.microsoft.com/updates?id=497368",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline",
+              "progress"
+            ],
+            "note": "The preserved official Azure Updates feed snapshot describes the rename, unchanged monitoring features, and January 1, 2026 planned retirement. The direct public update URL currently displays the general Azure Updates listing; current blade behavior was not independently verified."
+          }
+        ],
+        "resourceChecks": [],
+        "deadlineSource": null,
+        "originalAnnouncement": "The Insights blade in AKS has been renamed to Monitor and relocated from the Monitoring section to the top level of the table of contents for increased visibility. You’ll continue to have access to the same monitoring data and features—there are no changes to functionality, just a more streamlined and unified navigation experience. The Insights blade will be fully retired on January 1, 2026.",
+        "originalDeadline": {
+          "date": null,
+          "month": "January 2026"
         }
       }
     },
