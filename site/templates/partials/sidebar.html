@@ -2,7 +2,7 @@
   <p class="nav-label">Retirement guidance</p>
   <nav aria-label="Retirement navigation">
     <a href="{{ '/' | relative_url }}" data-nav="all"{% if page.layout == 'home' %} aria-current="page"{% endif %}>{{ icon() }}All retirements<span class="nav-count">{{ site.count }}</span></a>
-    <p class="nav-section-label">By retirement year</p>
+    <p class="nav-section-label">By retirement year<span id="year-navigation-count" class="nav-count">{{ site.count }}</span></p>
     {% for group in site.navigation %}
     <details class="year-group" data-year-group="{{ group.year }}"{% if (view and group.year == view.year) or group.year == current_year %} open{% endif %}>
       <summary>{{ group.label }}<span class="nav-count">{{ group.count }}</span></summary>

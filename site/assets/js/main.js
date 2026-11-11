@@ -1,5 +1,5 @@
 import catalog from './data.js';
-import { RETIREMENT_WINDOWS, categoriesOf, directoryUrl, escapeHtml as e, filterRecords, formatDate, groupRetirements, groupTimeline, inRetirementWindow, recordUrl, retirementCountdown, retirementWindow, retirementYear, servicesForCategory, statusOf } from './catalog.js';
+import { RETIREMENT_WINDOWS, announcedYears, categoriesOf, customerLeadTime, directoryUrl, escapeHtml as e, filterRecords, formatDate, groupRetirements, groupTimeline, inRetirementWindow, recordUrl, retirementCountdown, retirementWindow, retirementYear, servicesForCategory, statusOf } from './catalog.js';
 function element(selector) {
     const node = document.querySelector(selector);
     if (!node)
@@ -30,6 +30,9 @@ function statusFilter(value) {
 function windowFilter(value) {
     return RETIREMENT_WINDOWS.includes(value) ? value : '';
 }
+function announcementYearFilter(value) {
+    return announcedYears().includes(value) ? value : '';
+}
 function readFilters() {
     const params = new URLSearchParams(location.search);
     const service = params.get('service') || '';
@@ -41,6 +44,7 @@ function readFilters() {
         year: years.has(year) ? year : '', category,
         status: statusFilter(params.get('status')), sort: 'date-desc',
         window: windowFilter(params.get('window')),
+        announcedYear: announcementYearFilter(params.get('announcedYear')),
     };
 }
 let filters = readFilters();
@@ -203,6 +207,7 @@ function bindShell() {
 }
 function updateNav() {
     const matches = new Map(filterRecords(visibleRecords, filters).map(record => [record.id, record]));
+    element('#year-navigation-count').textContent = String(matches.size);
     for (const yearGroup of document.querySelectorAll('#navigation .year-group')) {
         const year = yearGroup.dataset.yearGroup;
         const yearIds = new Set();
@@ -238,7 +243,7 @@ function updateNav() {
             ? activeRecord?.id === link.dataset.record && link.dataset.year === year && link.dataset.category === category
             : link.dataset.year
                 ? isDirectory && link.dataset.year === filters.year && link.dataset.category === filters.category
-                : isDirectory && !filters.year && !filters.category && !filters.window && link.dataset.nav === filters.status;
+                : isDirectory && !filters.year && !filters.category && !filters.window && !filters.announcedYear && link.dataset.nav === filters.status;
         if (active) {
             link.setAttribute('aria-current', 'page');
             let group = link.closest('details');
@@ -256,7 +261,7 @@ function renderTimelineEntry(record) {
     const status = statusOf(deadline);
     const url = detailLink(record, filters);
     return `<li class="timeline-entry" data-record="${e(record.id)}">
-      <div class="timeline-date"><span class="timeline-date-label">Retirement date</span>${deadline.date ? `<time datetime="${e(deadline.date)}">${e(formatDate(deadline.date))}</time>` : '<span>Date to confirm</span>'}</div>
+      <div class="timeline-date"><span class="timeline-date-label">Retirement date</span>${deadline.date ? `<time datetime="${e(deadline.date)}">${e(formatDate(deadline.date))}</time>` : '<span>Date to confirm</span>'}<span class="timeline-date-label timeline-lead-time-label">Customer lead time</span><span class="timeline-lead-time">${e(customerLeadTime(record.announcedOn, deadline.date))}</span></div>
       <article class="timeline-content">
         <span class="badge ${status}" data-deadline="${e(deadline.date || '')}"><span></span>${labels[status]}</span>
         <h5><a href="${e(url)}">${e(record.title)}</a></h5><p>${e(record.summary)}</p>
@@ -276,11 +281,11 @@ function renderResults() {
           <div class="timeline-service-heading"><h4 id="timeline-service-${categoryIndex}-${serviceIndex}">${e(service.name)}</h4><span>${service.records.length} ${service.records.length === 1 ? 'retirement' : 'retirements'}</span></div>
           <ol class="timeline-events">${service.records.map(renderTimelineEntry).join('')}</ol>
         </section>`).join('')}
-      </section>`).join('') : `<div class="empty"><h3>No matching retirements</h3><p>Try a different keyword, service, date window, or category.</p><a class="button" href="${e(homeUrl.pathname)}">Clear filters</a></div>`;
+      </section>`).join('') : `<div class="empty"><h3>No matching retirements</h3><p>Try a different keyword, service, retirement window, announcement year, or category.</p><a class="button" href="${e(homeUrl.pathname)}">Clear filters</a></div>`;
     element('#load-more').hidden = records.length <= visible;
     const group = element('#group-filter');
-    group.hidden = !filters.year && !filters.category && filters.status === 'all';
-    group.innerHTML = `${filters.year ? `<span>Retirement year: <strong>${e(yearLabel(filters.year))}</strong></span>` : ''}${filters.category ? `<span>Azure category: <strong>${e(filters.category)}</strong></span>` : ''}${filters.year || filters.category ? `<a href="${e(directoryLink({ ...filters, year: '', category: '' }))}">Clear year and category</a>` : ''}${filters.status !== 'all' ? `<span>Status: <strong>${e(labels[filters.status])}</strong></span><a href="${e(directoryLink({ ...filters, status: 'all' }))}">Clear status</a>` : ''}`;
+    group.hidden = !filters.year && !filters.announcedYear && !filters.category && filters.status === 'all';
+    group.innerHTML = `${filters.year ? `<span>Retirement year: <strong>${e(yearLabel(filters.year))}</strong></span>` : ''}${filters.announcedYear ? `<span>Announced in: <strong>${e(filters.announcedYear)}</strong></span><a href="${e(directoryLink({ ...filters, announcedYear: '' }))}">Clear announcement year</a>` : ''}${filters.category ? `<span>Azure category: <strong>${e(filters.category)}</strong></span>` : ''}${filters.year || filters.category ? `<a href="${e(directoryLink({ ...filters, year: '', category: '' }))}">Clear year and category</a>` : ''}${filters.status !== 'all' ? `<span>Status: <strong>${e(labels[filters.status])}</strong></span><a href="${e(directoryLink({ ...filters, status: 'all' }))}">Clear status</a>` : ''}`;
     for (const card of document.querySelectorAll('[data-window]')) {
         if (card.dataset.window === filters.window)
             card.setAttribute('aria-current', 'true');
@@ -296,11 +301,19 @@ function updateServiceOptions() {
     control.replaceChildren(new Option('All services', ''), ...services.map(service => new Option(service, service)));
     control.value = filters.service;
 }
+function updateAnnouncementYearOptions() {
+    const control = element('#announced-year');
+    control.replaceChildren(
+        new Option('All announcement dates', ''),
+        ...announcedYears().map(year => new Option(`Announced in ${year}`, year)),
+    );
+}
 function restoreDirectoryFilters() {
     filters = readFilters();
     visible = 24;
     updateServiceOptions();
-    for (const [id, key] of [['search', 'q'], ['category', 'category'], ['service', 'service'], ['window', 'window']]) {
+    updateAnnouncementYearOptions();
+    for (const [id, key] of [['search', 'q'], ['category', 'category'], ['service', 'service'], ['window', 'window'], ['announced-year', 'announcedYear']]) {
         element(`#${id}`).value = key === 'window' ? filters.window || filters.year : filters[key];
     }
     renderResults();
@@ -310,7 +323,8 @@ function bindDirectory() {
     for (const control of document.querySelectorAll('[data-enhancement]'))
         control.hidden = false;
     updateServiceOptions();
-    for (const [id, key, event] of [['search', 'q', 'input'], ['category', 'category', 'change'], ['service', 'service', 'change'], ['window', 'window', 'change']]) {
+    updateAnnouncementYearOptions();
+    for (const [id, key, event] of [['search', 'q', 'input'], ['category', 'category', 'change'], ['service', 'service', 'change'], ['window', 'window', 'change'], ['announced-year', 'announcedYear', 'change']]) {
         const control = element(`#${id}`);
         control.value = key === 'window' ? filters.window || filters.year : filters[key];
         control.addEventListener(event, () => {
@@ -319,6 +333,8 @@ function bindDirectory() {
                 filters.year = years.has(control.value) ? control.value : '';
                 filters.status = 'all';
             }
+            else if (key === 'announcedYear')
+                filters.announcedYear = announcementYearFilter(control.value);
             else
                 filters[key] = control.value;
             if (key === 'category')

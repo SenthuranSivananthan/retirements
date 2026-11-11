@@ -9,7 +9,7 @@
   <div class="card-top"><span class="service-name">{{ record.service }}</span><span class="badge {{ view.status }}" data-deadline="{{ questions.deadline.date or '' }}"><span></span>{{ view.label }}</span></div>
   <h1>{{ record.title }}</h1><p>{{ record.summary }}</p>
   {% if record.get('sourceReview') and record.sourceReview.status == 'needs-review' %}<div class="notice content-review"><strong>Source review needs verification</strong><p>Content reviewed <time datetime="{{ record.sourceReview.reviewedOn }}">{{ record.sourceReview.reviewedOn }}</time>. This is separate from the announcement’s last-updated date.</p>{% if record.sourceReview.issues %}<ul>{% for issue in record.sourceReview.issues %}<li>{{ issue }}</li>{% endfor %}</ul>{% endif %}</div>{% endif %}
-  <div class="retirement-countdown {{ view.status }}" data-countdown data-deadline="{{ questions.deadline.date or '' }}"><strong>{{ view.countdown }}</strong>{% if questions.deadline.date %}<span>Retirement date: <time datetime="{{ questions.deadline.date }}">{{ view.deadline }}</time></span>{% endif %}</div>
+  <div class="retirement-countdown {{ view.status }}" data-countdown data-deadline="{{ questions.deadline.date or '' }}"><strong>{{ view.countdown }}</strong>{% if questions.deadline.date %}<span>Retirement date: <time datetime="{{ questions.deadline.date }}">{{ view.deadline }}</time></span>{% endif %}<span class="badge amber customer-lead-time-pill">Lead time: {{ view.customerLeadTime }}</span></div>
 </div>
 <div class="detail-layout">
   <article class="detail-content">
@@ -50,6 +50,7 @@
     <nav class="article-nav" aria-label="In this article"><h2>In this article</h2>{% for section in view.sections %}<a href="#{{ section.id }}">{{ section.question }}</a>{% endfor %}{% if reading %}<a href="#further-reading">References</a>{% endif %}</nav>
     <div class="fact-card"><span class="eyebrow">RETIREMENT AT A GLANCE</span><dl>
       <dt>Retirement date</dt><dd>{% if questions.deadline.date %}<time datetime="{{ questions.deadline.date }}">{{ view.deadline }}</time>{% else %}Not specified as an exact date{% endif %}</dd>
+      <dt>Customer lead time</dt><dd>{{ view.customerLeadTime }}</dd>
       <dt>Service</dt><dd>{{ record.service }}</dd><dt>Announced</dt><dd>{{ view.announced }}</dd>
       <dt>Last updated</dt><dd>{% if record.lastUpdatedOn %}<time datetime="{{ record.lastUpdatedOn }}">{{ view.updated }}</time>{% else %}{{ view.updated }}{% endif %}</dd>
       <dt>Source</dt><dd>Microsoft Azure Updates</dd>

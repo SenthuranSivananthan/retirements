@@ -78,7 +78,7 @@ nav a svg { width: 17px; height: 17px; }
 .sidebar summary { padding: 9px 12px; font-size: 14px; cursor: pointer; border-radius: 6px; }
 .sidebar summary:hover { background: var(--accent-soft); }
 .sidebar details a { padding-left: 34px; }
-.nav-section-label { color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; margin: 20px 12px 8px; }
+.nav-section-label { display: flex; align-items: center; color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; margin: 20px 12px 8px; }
 .nav-empty { margin: 12px; color: var(--muted); font-size: 12px; line-height: 1.6; }
 .sidebar .nav-empty a { padding: 8px 0; color: var(--accent); }
 .year-group > summary, .category-group > summary { display: flex; align-items: center; gap: 8px; list-style: none; }
@@ -174,10 +174,12 @@ select { padding: 0 30px 0 12px; max-width: 210px; }
 .timeline-entry::after { content: ''; position: absolute; left: 132px; top: 4px; width: 12px; height: 12px; border: 2px solid var(--accent); border-radius: 50%; background: var(--bg); box-shadow: 0 0 0 3px var(--bg); }
 .timeline-date { font-size: 12px; font-weight: 600; color: var(--accent); padding-top: 3px; overflow-wrap: anywhere; }
 .timeline-date-label { display: block; color: var(--muted); font-size: 10px; font-weight: 400; margin-bottom: 4px; }
+.timeline-lead-time-label { margin-top: 10px; }
 .timeline-content { min-width: 0; padding: 20px; border: 1px solid var(--line); border-radius: 10px; background: var(--soft); overflow-wrap: anywhere; }
 .timeline-content h5 { margin: 12px 0 10px; font-size: 17px; font-weight: 600; letter-spacing: -.3px; }
 .timeline-content h5 a { color: var(--ink); }
 .timeline-content > p { font-size: 14px; line-height: 1.6; color: var(--muted); margin: 0 0 16px; }
+.timeline-date .timeline-lead-time { display: block; color: var(--ink); font-size: 11px; font-weight: 600; line-height: 1.4; }
 .timeline-detail { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; }
 .timeline-detail svg { width: 14px; height: 14px; }
 .card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
@@ -204,6 +206,7 @@ footer p { margin: 5px 0 0; max-width: 850px; }
 .retirement-countdown { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 20px; margin-top: 20px; padding: 16px; border-left: 4px solid var(--accent); background: var(--accent-soft); color: var(--accent); }
 .retirement-countdown strong { font-size: 20px; }
 .retirement-countdown > span { font-size: 13px; color: var(--text); }
+.retirement-countdown > .customer-lead-time-pill { border: 1px solid var(--amber); color: var(--amber); font-size: 14px; font-weight: 600; padding: 5px 10px; }
 .retirement-countdown.soon, .retirement-countdown.retired { border-color: var(--amber); background: var(--amber-soft); color: var(--amber); }
 .retirement-countdown.unknown { border-color: var(--line); background: var(--soft); color: var(--muted); }
 .detail-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 45px; }

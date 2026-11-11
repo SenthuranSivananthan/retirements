@@ -26,7 +26,9 @@
     <label class="search-field"><span class="sr-only">Search retirements</span>{{ icon('search') }}<input id="search" type="search" placeholder="Search services, features, or keywords…"></label>
     <label><span>Category</span><select id="category"><option value="">All categories</option>{% for category in site.categories %}<option value="{{ category }}">{{ category }}</option>{% endfor %}</select></label>
     <label><span>Service</span><select id="service"><option value="">All services</option>{% for service in site.services %}<option value="{{ service }}">{{ service }}</option>{% endfor %}</select></label>
-    <label><span>Date window</span><select id="window"><option value="">All dates</option>{% for window in site.outlook %}<option value="{{ window.key }}">{{ window.label }}</option>{% endfor %}{% for group in site.navigation if group.year != 'unknown' %}<option value="{{ group.year }}">{{ group.label }}</option>{% endfor %}</select></label>
+    <label><span>Retirement window</span><select id="window"><option value="">All dates</option>{% for window in site.outlook %}<option value="{{ window.key }}">{{ window.label }}</option>{% endfor %}{% for group in site.navigation if group.year != 'unknown' %}<option value="{{ group.year }}">{{ group.label }}</option>{% endfor %}</select></label>
+    {% set current_announcement_year = site.buildDate[:4] | int %}
+    <label><span>Announcement year</span><select id="announced-year"><option value="">All announcement dates</option>{% for year in range(current_announcement_year, current_announcement_year - 4, -1) %}<option value="{{ year }}">Announced in {{ year }}</option>{% endfor %}</select></label>
     <button id="reset-filters" type="button" class="button">Reset filters</button>
   </div>
   <div class="results-bar"><p id="result-count" role="status" aria-live="polite">Showing {{ site.initialIds | length }} of {{ site.count }} retirements</p><span>Retirement date: newest first</span></div>

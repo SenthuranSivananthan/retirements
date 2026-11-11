@@ -50,7 +50,7 @@ class StaticSiteTests(unittest.TestCase):
             "record": record, "status": "unknown", "label": "Date to confirm",
             "countdown": "Retirement date to confirm", "year": "unknown", "categories": ["Uncategorized"],
             "url": record_url(record), "deadline": "Date not specified", "announced": "Date not specified",
-            "updated": "Not provided by source", "sourceUrl": None, "resources": [],
+            "customerLeadTime": "Not calculable", "updated": "Not provided by source", "sourceUrl": None, "resources": [],
             "support": {"url": None, "title": "Support"}, "advisor": {"url": None, "title": "Advisor"},
             "sections": [{"id": key, "question": record["questions"][key]["question"]} for key in DETAIL_QUESTIONS],
         }
@@ -78,18 +78,31 @@ class StaticSiteTests(unittest.TestCase):
         self.assertNotIn("<script>unsafe</script>", html)
         self.assertIn("First &lt;script&gt;unsafe&lt;/script&gt;<br>Second line", html)
         self.assertIn("Retirement date to confirm", html)
+        self.assertIn("<dt>Customer lead time</dt><dd>Not calculable</dd>", html)
+        self.assertIn('<span class="badge amber customer-lead-time-pill">Lead time: Not calculable</span>', html)
         self.assertTrue(all(line == line.rstrip() for line in html.splitlines()))
         self.assertTrue((destination / ".nojekyll").is_file())
         self.assertFalse((destination / "src").exists())
         self.assertFalse((destination / "templates").exists())
         home = (destination / "index.html").read_text(encoding="utf-8")
+        self.assertIn("<title>Azure Retirement Catalog</title>", home)
         for window in ("retired-year", "6", "12", "18"):
             self.assertIn(f'data-window="{window}"', home)
             self.assertIn(f'?window={window}&amp;sort=date#catalog', home)
-        self.assertIn('id="window"', home)
+        self.assertIn('<label><span>Retirement window</span><select id="window">', home)
+        self.assertNotIn('<span>Date window</span>', home)
         document = parse(home, namespaceHTMLElements=False)
+        timeline_date = document.find(".//div[@class='timeline-date']")
+        self.assertEqual([label.text for label in timeline_date.findall("span")
+                          if "timeline-date-label" in label.attrib.get("class", "").split()],
+                         ["Retirement date", "Customer lead time"])
+        self.assertEqual(timeline_date.find("span[@class='timeline-lead-time']").text, "Not calculable")
+        announced_options = document.findall(".//select[@id='announced-year']/option")
+        self.assertEqual([option.attrib["value"] for option in announced_options], ["", "2026", "2025", "2024", "2023"])
+        self.assertEqual(announced_options[1].text, "Announced in 2026")
         self.assertEqual(document.find(".//h1[@id='hero-title']").text, "Azure Retirement Catalog")
         self.assertIsNone(document.find(".//select[@id='announced']"))
+        self.assertEqual(document.find(".//span[@id='year-navigation-count']").text, "1")
         self.assertIn("hidden", document.find(".//p[@id='navigation-empty']").attrib)
         self.assertEqual(document.find(".//div[@id='results']").attrib["class"], "retirement-timeline")
         reset = document.find(".//button[@id='reset-filters']")
@@ -230,7 +243,7 @@ class StaticSiteTests(unittest.TestCase):
         self.assertIn("Real-Time Dashboards", actions)
         self.assertNotIn("Verify dates and consequences", deadline)
         link = document.find(".//section[@id='actions']/a[@class='button primary']")
-        self.assertEqual(link.attrib["href"], "https://learn.microsoft.com/en-us/azure/stream-analytics/power-bi-output")
+        self.assertEqual(link.attrib["href"], "https://learn.microsoft.com/azure/stream-analytics/power-bi-output")
         self.assertEqual(link.attrib["rel"], "noopener noreferrer")
         self.assertIn("Microsoft Learn guidance", "".join(link.itertext()))
         self.assertIsNone(document.find(".//details[@class='notice microsoft-update']"))
@@ -334,21 +347,26 @@ class StaticSiteTests(unittest.TestCase):
         self.assertEqual([option.attrib["value"] for option in options], ["", "Compute", "Storage", "Uncategorized"])
         self.assertEqual(options[0].text, "All categories")
 
-    def test_stale_pages_are_removed_but_unrelated_files_are_preserved(self):
+    def test_all_retirement_details_are_recreated_and_unrelated_files_are_preserved(self):
         builder.build_site(self.root)
         destination = self.root / "docs"
-        notes = destination / "retirements" / "unknown-date" / "example" / "notes.txt"
+        detail = destination / "retirements" / "unknown-date" / "example" / "index.html"
+        detail.write_text("stale detail page", encoding="utf-8")
+        notes = detail.parent / "notes.txt"
         notes.write_text("Preserve this file.", encoding="utf-8")
+        orphan = destination / "retirements" / "2030-01-01" / "orphan" / "index.html"
+        orphan.parent.mkdir(parents=True)
+        orphan.write_text("orphaned detail", encoding="utf-8")
         download = destination / "downloads" / "custom.txt"
         download.parent.mkdir()
         download.write_text("Preserve this download.", encoding="utf-8")
-        self.metadata["byId"] = {}
-        self.metadata["initialIds"] = []
-        self.metadata["count"] = 0
-        self.save()
         builder.build_site(self.root)
-        self.assertFalse((notes.parent / "index.html").exists())
-        self.assertEqual(notes.read_text(encoding="utf-8"), "Preserve this file.")
+        rendered = detail.read_text(encoding="utf-8")
+        document = parse(rendered, namespaceHTMLElements=False)
+        self.assertEqual(document.find(".//h1").text, self.view["record"]["title"])
+        self.assertNotIn("stale detail page", rendered)
+        self.assertFalse(notes.exists())
+        self.assertFalse(orphan.parent.exists())
         self.assertTrue(download.is_file())
 
     def test_deadline_changes_move_pages_and_remove_stale_and_legacy_paths(self):
@@ -375,7 +393,7 @@ class StaticSiteTests(unittest.TestCase):
             home = (self.root / "docs" / "index.html").read_text(encoding="utf-8")
             self.assertIn(f'href="./retirements/{deadline or "unknown-date"}/example/"', home)
         self.assertFalse((legacy / "index.html").exists())
-        self.assertEqual((legacy / "notes.txt").read_text(encoding="utf-8"), "Preserve this file.")
+        self.assertFalse(legacy.exists())
         self.assertEqual(len(list(retirement_root.rglob("index.html"))), 1)
 
     def test_invalid_deadline_folder_cannot_escape_the_output_directory(self):
@@ -386,7 +404,7 @@ class StaticSiteTests(unittest.TestCase):
                 builder.build_site(self.root)
             self.assertFalse((self.root / "docs").exists())
 
-    def test_date_window_lists_all_known_years_after_rolling_windows_without_status_dropdown(self):
+    def test_retirement_window_lists_all_known_years_after_rolling_windows_without_status_dropdown(self):
         self.metadata["navigation"] = [
             {"year": year, "label": year, "count": 1, "categories": []}
             for year in ("2029", "2028", "2020", "unknown")

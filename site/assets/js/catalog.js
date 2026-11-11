@@ -16,7 +16,41 @@ export function retirementCountdown(deadline, today) {
             : days === 0 ? 'Retires today (0 days remaining)'
                 : `${days} ${days === 1 ? 'day' : 'days'} remaining`;
 }
+export function customerLeadTime(announcedOn, retirementDate) {
+    if (announcedOn === null || retirementDate === null)
+        return 'Not calculable';
+    let start = new Date(`${announcedOn}T00:00:00Z`);
+    let end = new Date(`${retirementDate}T00:00:00Z`);
+    const negative = end < start;
+    if (negative)
+        [start, end] = [end, start];
+    let months = (end.getUTCFullYear() - start.getUTCFullYear()) * 12
+        + end.getUTCMonth() - start.getUTCMonth();
+    const addMonths = (value, count) => {
+        const month = value.getUTCMonth() + count;
+        const year = value.getUTCFullYear();
+        const lastDay = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+        return new Date(Date.UTC(year, month, Math.min(value.getUTCDate(), lastDay)));
+    };
+    let anchor = addMonths(start, months);
+    if (anchor > end) {
+        months--;
+        anchor = addMonths(start, months);
+    }
+    const days = Math.round((end - anchor) / 86400000);
+    const years = Math.floor(months / 12);
+    months %= 12;
+    const parts = [[years, 'year'], [months, 'month'], [days, 'day']]
+        .filter(([value]) => value)
+        .map(([value, unit]) => `${value} ${unit}${value === 1 ? '' : 's'}`);
+    const duration = parts.join(', ') || '0 days';
+    return negative ? `-${duration}` : duration;
+}
 export const RETIREMENT_WINDOWS = ['retired-year', '6', '12', '18'];
+export function announcedYears(today = new Date().toISOString().slice(0, 10)) {
+    const currentYear = Number(today.slice(0, 4));
+    return Array.from({ length: 4 }, (_, offset) => String(currentYear - offset));
+}
 export function retirementWindow(window, today = new Date().toISOString().slice(0, 10)) {
     if (!RETIREMENT_WINDOWS.includes(window))
         throw new Error(`Unknown retirement window: ${window}`);
@@ -126,11 +160,13 @@ export function recordUrl(record) {
 export function filterRecords(records, filters, today = new Date().toISOString().slice(0, 10)) {
     const terms = (filters.q || '').toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
     const window = filters.window ? retirementWindow(filters.window, today) : null;
+    const announcedYear = announcedYears(today).includes(filters.announcedYear) ? filters.announcedYear : '';
     return records.filter(record => {
         const status = statusOf(record.questions.deadline, today);
         const text = `${record.title} ${record.service} ${record.summary} ${record.questions.what.announcement}`.toLocaleLowerCase();
         return terms.every(term => text.includes(term))
             && (!filters.service || servicesOf(record).includes(filters.service))
+            && (!announcedYear || record.announcedOn?.slice(0, 4) === announcedYear)
             && (!filters.year || retirementYear(record) === filters.year)
             && (!filters.category || categoriesOf(record).includes(filters.category))
             && (!window || inRetirementWindow(record.questions.deadline, window))

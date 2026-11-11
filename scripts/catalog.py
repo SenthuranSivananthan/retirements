@@ -336,6 +336,37 @@ def format_date(value):
     return f"{parsed.day} {MONTHS[parsed.month - 1][:3]} {parsed.year}"
 
 
+def add_calendar_months(value, months):
+    month_index = value.month - 1 + months
+    year = value.year + month_index // 12
+    month = month_index % 12 + 1
+    return date(year, month, min(value.day, monthrange(year, month)[1]))
+
+
+def customer_lead_time(announced_on, retirement_date):
+    if announced_on is None or retirement_date is None:
+        return "Not calculable"
+    start = date.fromisoformat(announced_on)
+    end = date.fromisoformat(retirement_date)
+    negative = end < start
+    if negative:
+        start, end = end, start
+    months = (end.year - start.year) * 12 + end.month - start.month
+    anchor = add_calendar_months(start, months)
+    if anchor > end:
+        months -= 1
+        anchor = add_calendar_months(start, months)
+    days = (end - anchor).days
+    years, months = divmod(months, 12)
+    parts = [
+        f"{value} {unit}{'' if value == 1 else 's'}"
+        for value, unit in ((years, "year"), (months, "month"), (days, "day"))
+        if value
+    ]
+    duration = ", ".join(parts) or "0 days"
+    return f"-{duration}" if negative else duration
+
+
 def safe_url(value):
     if not isinstance(value, str):
         return None
@@ -373,6 +404,7 @@ def prepare_site(root=ROOT, today=None):
             "year": retirement_year(record), "categories": sorted(categories_of(record), key=str.casefold),
             "url": record_url(record), "deadline": format_date(questions["deadline"]["date"]),
             "announced": format_date(record["announcedOn"]),
+            "customerLeadTime": customer_lead_time(record["announcedOn"], questions["deadline"]["date"]),
             "updated": format_date(record["lastUpdatedOn"]) if record["lastUpdatedOn"] else "Not provided by source",
             "sourceUrl": safe_url(record["sourceUrl"]),
             "guidanceSource": (record.get("sourceReview") or {}).get("guidanceSource"),
