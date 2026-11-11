@@ -15,30 +15,39 @@
   <article class="detail-content">
     <section id="deadline"><h2><span class="section-number">1</span>{{ questions.deadline.question }}</h2>
       <p class="section-intro">{{ questions.deadline.introduction }}</p>
-      <p class="deadline-date">{{ view.deadline }}</p><p>{{ questions.deadline.dateGuidance }}</p>
-      <p>{{ questions.deadline.consequences }}</p>
+      <p class="deadline-date">{{ view.deadline }}</p>
+      {% if questions.deadline.get('html') %}<div class="rich-content">{{ questions.deadline.html | question_html }}</div>
+      {% else %}<p>{{ questions.deadline.dateGuidance }}</p><p>{{ questions.deadline.consequences }}</p>{% endif %}
     </section>
     <section id="what"><h2><span class="section-number">2</span>{{ questions.what.question }}</h2>
       <p class="section-intro">{{ questions.what.introduction }}</p>
-      <p>{{ questions.what.announcement | nl2br }}</p>
+      {% if questions.what.get('html') %}<div class="rich-content">{{ questions.what.html | question_html }}</div>
+      {% else %}<p>{{ questions.what.announcement | nl2br }}</p>{% endif %}
       <div class="notice">{{ questions.what.financialConsiderations }}</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>{{ questions.actions.question }}</h2>
       <p class="section-intro">{{ questions.actions.introduction }}</p>
+      {% if questions.actions.get('html') %}<div class="rich-content">{{ questions.actions.html | question_html }}</div>
+      {% else %}
       {% if questions.actions.recommendedAction %}<h3>Microsoft’s recommended action</h3><p>{{ questions.actions.recommendedAction | nl2br }}</p>{% endif %}
       <p>{{ questions.actions.guidance }}</p>
+      {% endif %}
       {% if view.get('guidanceSource') %}<a class="button primary" href="{{ view.guidanceSource }}" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance {{ icon('external') }}</a>{% endif %}
       <p>{{ questions.actions.supportGuidance }} {{ external_link(view.support) }}</p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>{{ questions.impact.question }}</h2>
       <p class="section-intro">{{ questions.impact.introduction }}</p>
+      {% if questions.impact.get('html') %}<div class="rich-content">{{ questions.impact.html | question_html }}</div>
+      {% else %}
       <p>{{ questions.impact.guidance }}</p>
       <ul>{% for step in questions.impact.checklist %}<li>{{ step }}</li>{% endfor %}</ul>
+      {% endif %}
       <div class="notice">{{ questions.impact.notice }} {{ external_link(view.advisor) }}</div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>{{ questions.progress.question }}</h2>
-      {% if questions.progress.get('tracking') %}<p>{{ questions.progress.tracking.guidance }}</p>
-      <p><a href="{{ questions.progress.tracking.sourceUrl }}" target="_blank" rel="noopener noreferrer">Read the tracking guidance {{ icon('external') }}</a></p>
+      {% if questions.progress.get('html') %}<div class="rich-content">{{ questions.progress.html | question_html }}</div>
+      {% elif questions.progress.get('tracking') %}<p>{{ questions.progress.tracking.guidance }}</p>{% endif %}
+      {% if questions.progress.get('tracking') %}<p><a href="{{ questions.progress.tracking.sourceUrl }}" target="_blank" rel="noopener noreferrer">Read the tracking guidance {{ icon('external') }}</a></p>
       {% else %}<p>Tracking guidance is not available for this retirement.</p>{% endif %}
     </section>
     {% if reading %}<div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">

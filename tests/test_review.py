@@ -60,6 +60,13 @@ class ReviewTests(unittest.TestCase):
         self.assertEqual(json.loads(self.output.read_bytes()), result)
         self.assertEqual(list(self.output.parent.glob("*.tmp")), [])
 
+    def test_apply_accepts_safe_question_html(self):
+        batch = self.batch()
+        markup = "<p>Formatted <strong>answer</strong>.</p>"
+        batch["reviews"][0]["questions"]["what"]["html"] = markup
+        result = apply_reviews(batch, self.output)
+        self.assertEqual(result["records"][0]["questions"]["what"]["html"], markup)
+
     def test_repeat_review_preserves_first_announcement_and_deadline(self):
         initial = self.batch()
         initial["reviews"][0]["sourceReview"]["guidanceSource"] = self.url

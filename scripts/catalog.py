@@ -5,11 +5,15 @@ import re
 import shutil
 from calendar import monthrange
 from datetime import date, datetime, timezone
+from html import escape as escape_html
+from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import quote, urlsplit
 
 QUESTIONS = ("what", "actions", "impact", "deadline", "progress")
 DETAIL_QUESTIONS = ("deadline", "what", "actions", "impact", "progress")
+QUESTION_HTML_TAGS = frozenset(("br", "code", "em", "h3", "li", "ol", "p", "pre", "strong", "ul"))
+QUESTION_HTML_VOID_TAGS = frozenset(("br",))
 MONTHS = ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -45,11 +49,76 @@ def checklist(value):
     return isinstance(value, list) and bool(value) and all(isinstance(step, str) for step in value)
 
 
+class _QuestionHTMLParser(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.output = []
+        self.open_tags = []
+        self.tags_seen = set()
+        self.invalid = False
+
+    def handle_starttag(self, tag, attrs):
+        if tag not in QUESTION_HTML_TAGS or attrs:
+            self.invalid = True
+            return
+        self.tags_seen.add(tag)
+        self.output.append(f"<{tag}>")
+        if tag not in QUESTION_HTML_VOID_TAGS:
+            self.open_tags.append(tag)
+
+    def handle_startendtag(self, tag, attrs):
+        if tag != "br" or attrs:
+            self.invalid = True
+            return
+        self.tags_seen.add(tag)
+        self.output.append("<br>")
+
+    def handle_endtag(self, tag):
+        if tag in QUESTION_HTML_VOID_TAGS or not self.open_tags or self.open_tags[-1] != tag:
+            self.invalid = True
+            return
+        self.open_tags.pop()
+        self.output.append(f"</{tag}>")
+
+    def handle_data(self, data):
+        self.output.append(escape_html(data, quote=False))
+
+    def handle_comment(self, data):
+        self.invalid = True
+
+    def handle_decl(self, decl):
+        self.invalid = True
+
+    def handle_pi(self, data):
+        self.invalid = True
+
+
+def sanitize_question_html(value):
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError("Invalid question HTML")
+    parser = _QuestionHTMLParser()
+    parser.feed(value)
+    parser.close()
+    if parser.invalid or parser.open_tags or not parser.tags_seen:
+        raise ValueError("Invalid question HTML")
+    return "".join(parser.output)
+
+
+def valid_question_html(value):
+    try:
+        return sanitize_question_html(value) == value
+    except (TypeError, ValueError):
+        return False
+
+
 def valid_questions(value):
     if not isinstance(value, dict) or set(value) != set(QUESTIONS):
         return False
     for section in QUESTIONS:
-        if not strings(value[section], ("question", "introduction")):
+        if (
+            not strings(value[section], ("question", "introduction"))
+            or ("html" in value[section] and not valid_question_html(value[section]["html"]))
+        ):
             return False
     what, actions, impact, deadline, progress = (value[key] for key in QUESTIONS)
     return (

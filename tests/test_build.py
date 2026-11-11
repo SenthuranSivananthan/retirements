@@ -40,6 +40,9 @@ class StaticSiteTests(unittest.TestCase):
             (source / "assets" / directory).mkdir(parents=True)
         (source / "assets" / "css" / "style.css").write_text("body {}", encoding="utf-8")
         record = copy.deepcopy(json.loads((ROOT / "data" / "retirements.json").read_text(encoding="utf-8"))["records"][0])
+        for question in record["questions"].values():
+            question.pop("html", None)
+        record["questions"]["progress"].pop("tracking", None)
         record.pop("sourceReview", None)
         record["manuallyEnriched"] = False
         record["id"] = "example"
@@ -131,6 +134,22 @@ class StaticSiteTests(unittest.TestCase):
         self.assertEqual(len(document.findall(".//section[@class='outlook']")), 1)
         self.assertIsNone(document.find(".//main//section[@class='outlook']"))
         self.assertIn("hidden", document.find(".//section[@class='stats']").attrib)
+
+    def test_question_html_renders_semantic_markup_and_escapes_text(self):
+        markup = "<p>First line</p><p>Second line<br>with <strong>emphasis</strong> and &lt;script&gt; text.</p>"
+        self.view["record"]["questions"]["what"]["html"] = markup
+        self.save()
+        builder.build_site(self.root)
+        html = (self.root / "docs" / "retirements" / "unknown-date" / "example" / "index.html").read_text(encoding="utf-8")
+        document = parse(html, namespaceHTMLElements=False)
+        content = document.find(".//section[@id='what']/div[@class='rich-content']")
+        self.assertIsNotNone(content)
+        paragraphs = content.findall("./p")
+        self.assertEqual(paragraphs[0].text, "First line")
+        self.assertIsNotNone(paragraphs[1].find("./br"))
+        self.assertEqual(paragraphs[1].find("./strong").text, "emphasis")
+        self.assertIn("&lt;script&gt;", html)
+        self.assertNotIn("<script> text.", html)
 
     def test_static_timeline_groups_categories_services_and_orders_deadlines_descending(self):
         self.metadata["byId"] = {}

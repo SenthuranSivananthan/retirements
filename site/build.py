@@ -15,7 +15,7 @@ from markupsafe import Markup, escape
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from scripts.catalog import group_timeline, prepare_site, record_url, safe_url
+from scripts.catalog import group_timeline, prepare_site, record_url, safe_url, sanitize_question_html
 from scripts.check_site import check_site
 
 
@@ -83,6 +83,7 @@ def build_site(root=ROOT):
     environment.filters["relative_url"] = relative_url
     environment.filters["url_encode"] = lambda value: quote(str(value), safe="")
     environment.filters["nl2br"] = lambda value: Markup("<br>").join(escape(value).splitlines())
+    environment.filters["question_html"] = lambda value: Markup(sanitize_question_html(value))
     environment.globals["further_reading"] = further_reading
     site = {
         **config, **metadata,

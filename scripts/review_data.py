@@ -77,7 +77,9 @@ def apply_reviews(batch, output=ROOT / "data" / "retirements.json"):
         }))
         for section in QUESTIONS:
             changes = questions[section]
-            allowed = (set(record["questions"][section]) - {"question"}) | ({"tracking"} if section == "progress" else set())
+            allowed = (set(record["questions"][section]) - {"question"}) | {"html"}
+            if section == "progress":
+                allowed.add("tracking")
             if not isinstance(changes, dict) or set(changes) - allowed:
                 raise ValueError(f"Invalid answer fields for {identifier}/{section}")
             if manual_only and changes:

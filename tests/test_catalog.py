@@ -8,7 +8,7 @@ from fixtures import ITEM, catalog
 from scripts.catalog import (
     ROOT, QUESTIONS, DETAIL_QUESTIONS, categories_of, countdown, customer_lead_time, days_until, format_date, group_retirements,
     parse_catalog, prepare_site, record_url, retirement_year, safe_url, status_of,
-    group_timeline, in_retirement_window, retirement_outlook, retirement_window, services_of, sort_timeline,
+    group_timeline, in_retirement_window, retirement_outlook, retirement_window, sanitize_question_html, services_of, sort_timeline,
 )
 from scripts.feed import normalize, title_date
 
@@ -244,6 +244,23 @@ class CatalogTests(unittest.TestCase):
             value["records"][0]["questions"][section][field] = invalid
             with self.subTest(section=section, field=field), self.assertRaises(ValueError):
                 parse_catalog(value)
+
+    def test_question_html_allows_only_safe_semantic_markup(self):
+        value = catalog()
+        markup = "<p>First line<br>Second line with <strong>emphasis</strong> and &lt;script&gt; text.</p>"
+        value["records"][0]["questions"]["what"]["html"] = markup
+        self.assertEqual(sanitize_question_html(markup), markup)
+        self.assertEqual(parse_catalog(value), value)
+        for unsafe in (
+            "<script>alert(1)</script>",
+            '<p onclick="alert(1)">Unsafe</p>',
+            '<a href="javascript:alert(1)">Unsafe</a>',
+            "<p>Unclosed",
+        ):
+            invalid = copy.deepcopy(value)
+            invalid["records"][0]["questions"]["what"]["html"] = unsafe
+            with self.subTest(unsafe=unsafe), self.assertRaises(ValueError):
+                parse_catalog(invalid)
 
     def test_utc_countdown_boundaries_and_labels(self):
         for deadline, expected in (("2026-11-09", -1), ("2026-11-10", 0), ("2026-11-11", 1), ("2027-02-08", 90), ("2027-02-09", 91), (None, None)):

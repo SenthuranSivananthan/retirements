@@ -217,6 +217,10 @@ footer p { margin: 5px 0 0; max-width: 850px; }
 .detail-content p, .detail-content li { font-size: 16px; line-height: 1.6; }
 .detail-content .section-intro { color: var(--muted); font-size: 12px; margin-bottom: 24px; }
 .detail-content li { padding-left: 5px; margin: 10px 0; }
+.detail-content .rich-content > :first-child { margin-top: 0; }
+.detail-content .rich-content > :last-child { margin-bottom: 0; }
+.detail-content .rich-content h3 { font-size: 18px; margin: 20px 0 8px; }
+.detail-content .rich-content ul, .detail-content .rich-content ol { padding-left: 22px; }
 .notice { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 15px; font-size: 12px; line-height: 1.8; margin: 20px 0; }
 .fact-card { background: var(--soft); border: 1px solid var(--line); border-radius: 9px; padding: 23px; }
 .fact-card .eyebrow { font-size: 9px; color: var(--muted); }
