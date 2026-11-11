@@ -6,7 +6,7 @@ from pathlib import Path
 
 from fixtures import ITEM, catalog
 from scripts.catalog import (
-    ROOT, QUESTIONS, DETAIL_QUESTIONS, categories_of, countdown, days_until, format_date, group_retirements,
+    ROOT, QUESTIONS, DETAIL_QUESTIONS, categories_of, countdown, customer_lead_time, days_until, format_date, group_retirements,
     parse_catalog, prepare_site, record_url, retirement_year, safe_url, status_of,
     group_timeline, in_retirement_window, retirement_outlook, retirement_window, services_of, sort_timeline,
 )
@@ -14,6 +14,15 @@ from scripts.feed import normalize, title_date
 
 
 class CatalogTests(unittest.TestCase):
+    def test_customer_lead_time_uses_calendar_years_months_and_days(self):
+        self.assertEqual(customer_lead_time("2024-01-01", "2025-03-06"), "1 year, 2 months, 5 days")
+        self.assertEqual(customer_lead_time("2024-01-31", "2024-02-29"), "1 month")
+        self.assertEqual(customer_lead_time("2024-01-03", "2024-01-01"), "-2 days")
+        self.assertEqual(customer_lead_time("2024-01-01", "2024-01-01"), "0 days")
+        self.assertEqual(customer_lead_time("2024-02-29", "2025-02-28"), "1 year")
+        self.assertEqual(customer_lead_time(None, "2024-01-01"), "Not calculable")
+        self.assertEqual(customer_lead_time("2024-01-01", None), "Not calculable")
+
     def test_hidden_records_remain_directly_available_but_not_in_navigation_counts(self):
         value = catalog()
         hidden = copy.deepcopy(value["records"][0])

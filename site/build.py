@@ -89,9 +89,9 @@ def build_site(root=ROOT):
         "timeline": group_timeline([metadata["byId"][identifier]["record"] for identifier in metadata["initialIds"]]),
     }
 
-    def render(template, path, title, layout, view=None):
-        target = destination / path
-        home = "../" * (len(path.parts) - 1) or "./"
+    def render(template, path, title, layout, view=None, output_root=destination, home_depth=None):
+        target = Path(output_root) / path
+        home = "../" * (home_depth if home_depth is not None else len(path.parts) - 1) or "./"
         if layout == "not-found":
             home = config["baseurl"].rstrip("/") + "/"
         html = environment.get_template(template).render(
@@ -107,23 +107,22 @@ def build_site(root=ROOT):
             temporary.write_text(html, encoding="utf-8", newline="\n")
 
     # Render before copying assets so missing templates and invalid context fail explicitly.
-    render("home.html", Path("index.html"), "Plan your next move", "home")
+    render("home.html", Path("index.html"), "Azure Retirement Catalog", "home")
     render("404.html", Path("404.html"), "Retirement not found", "not-found")
-    expected = set()
-    for view in metadata["byId"].values():
-        record = view["record"]
-        path = Path(record_url(record).lstrip("/")) / "index.html"
-        expected.add(path)
-        render("retirement.html", path, record["title"], "retirement", view)
-
     retirement_root = destination / "retirements"
-    for old in list(retirement_root.rglob("index.html")):
-        if old.relative_to(destination) not in expected:
-            old.unlink()
-            parent = old.parent
-            while parent != retirement_root and not any(parent.iterdir()):
-                parent.rmdir()
-                parent = parent.parent
+    expected = set()
+    with tempfile.TemporaryDirectory(prefix=".r-", dir=tempfile.gettempdir()) as staging:
+        for view in metadata["byId"].values():
+            record = view["record"]
+            path = Path(record_url(record).lstrip("/")) / "index.html"
+            expected.add(path)
+            render(
+                "retirement.html", Path(*path.parts[1:]), record["title"], "retirement", view,
+                output_root=staging, home_depth=len(path.parts) - 1,
+            )
+        if retirement_root.exists():
+            shutil.rmtree(retirement_root)
+        shutil.copytree(staging, retirement_root)
 
     for directory in ("css", "js", "data"):
         shutil.copytree(source / "assets" / directory, destination / "assets" / directory, dirs_exist_ok=True, copy_function=copy_asset)
