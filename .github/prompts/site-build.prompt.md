@@ -17,6 +17,10 @@ Use this prompt to change or rebuild the website. For evidence-based catalog enr
 - Keep the Azure-blue palette, Segoe typography, navigation, hero, and light/dark theme consistent with [Multi-region platform](https://azure.github.io/multi-region-platform/). Preserve responsive desktop and mobile layouts.
 - The home page browser title and main heading are **Azure Retirement Catalog**.
 - Every record uses the five-question catalog schema validated in `scripts/catalog.py`. Detail pages display the deadline question first, followed by what changes, required actions, impact, and progress. Keep the question content grouped under those schema keys and preserve source citations and uncertainty.
+- Each question may have an optional `html` fragment alongside its plain-text fields. Render the fragment as the section's main answer when present; otherwise retain the existing escaped plain-text fallback. Keep the rich content consistent with the plain-text claims and preserve separately displayed dates, notices, support and Advisor links, and guidance links.
+- Validate and render question fragments through `sanitize_question_html` in `scripts/catalog.py`. Allow only `p`, `h3`, `ul`, `ol`, `li`, `strong`, `em`, `code`, `pre`, and `br`; reject attributes, comments, unsupported tags, and malformed markup. Escape text nodes and other catalog text, and never render raw announcement HTML.
+- For progress, display the tracking guidance or its rich-content replacement and link to the tracking source when available. Otherwise display "Tracking guidance is not available for this retirement." Do not display legacy progress checklists.
+- Keep the official announcement link and the **References** list. Build the list from reviewed sources and action resources, honor exclusions and reviewed redirects, and deduplicate safe destinations.
 - The home page is a retirement timeline grouped by service category, then service, then retirement. Preserve unique result counts, deadline-descending order, and deterministic title ordering for equal or unknown dates.
 - The sidebar groups records by retirement year, Azure category, and retirement. It shows the unique count for the active filters beside **By retirement year**, and updates year/category counts and links with active filters.
 - Keep search and filters combinable and shareable through query strings, browser history, and detail-page return links. The date filter is labeled **Retirement window**. The **Announcement year** filter uses `announcedOn` and offers the current UTC calendar year plus the previous three, newest first, labeled `Announced in <year>`.
@@ -27,10 +31,9 @@ Use this prompt to change or rebuild the website. For evidence-based catalog enr
 
 ## Build and verification
 
-Run commands from the repository root with Python 3.10 or newer. Install dependencies only if needed:
+Run commands from the repository root with Python 3.10 or newer. If dependencies are missing, install them with `python -m pip install -r requirements.txt`. For changes affecting rendering or behavior, run:
 
 ```sh
-python -m pip install -r requirements.txt
 python -m unittest discover -s tests -q
 python site/build.py
 python -m scripts.check_site
@@ -38,10 +41,10 @@ python -m scripts.check_site
 
 `site/build.py` prepares metadata from the canonical catalog, renders the home page, 404 page, and every detail page, copies public assets, and validates the result. It stages detail pages outside `docs`, then recreates the complete `docs/retirements` tree to prevent stale or orphaned routes; unrelated files elsewhere in `docs` must be preserved. Commit generated `docs` changes with their source changes.
 
-Add focused tests for new behavior in the existing suite. Test client-side behavior at its JavaScript source and static fallbacks through generated markup; keep corresponding server-rendered and browser behavior consistent. Run the tests, build, and `scripts.check_site` after changes that affect rendering or behavior. Ensure the build completes with the expected detail pages and local links. Do not claim validation that did not run.
+Add focused tests for new behavior in the existing suite. Cover rich HTML and plain-text fallbacks, including rejection of unsafe markup, when changing question rendering. Test client-side behavior at its JavaScript source and static fallbacks through generated markup; keep corresponding server-rendered and browser behavior consistent. Ensure the build completes with the expected detail pages and local links. Do not claim validation that did not run.
 
 ## Scope and completion
 
-- Do not rewrite or reformat unrelated catalog records or generated pages. Do not change the five-question schema, data-refresh policy, workflow permissions, or publishing configuration unless required by the user’s request.
+- Do not make unrelated catalog changes or edit generated pages by hand; rebuilding may update many pages when shared site sources change. Do not change the five-question schema, data-refresh policy, workflow permissions, or publishing configuration unless required by the user’s request.
 - Do not commit, push, create or update a pull request, or merge unless explicitly requested.
 - Report the files and user-visible behavior changed, plus the actual test/build/check results and any remaining limitation.
