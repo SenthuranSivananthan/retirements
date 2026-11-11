@@ -6,7 +6,7 @@ from pathlib import Path
 
 from fixtures import ITEM, catalog
 from scripts.catalog import (
-    ROOT, QUESTIONS, categories_of, countdown, days_until, format_date, group_retirements,
+    ROOT, QUESTIONS, DETAIL_QUESTIONS, categories_of, countdown, days_until, format_date, group_retirements,
     parse_catalog, prepare_site, record_url, retirement_year, safe_url, status_of,
     group_timeline, in_retirement_window, retirement_outlook, retirement_window, services_of, sort_timeline,
 )
@@ -14,6 +14,30 @@ from scripts.feed import normalize, title_date
 
 
 class CatalogTests(unittest.TestCase):
+    def test_hidden_records_remain_directly_available_but_not_in_navigation_counts(self):
+        value = catalog()
+        hidden = copy.deepcopy(value["records"][0])
+        hidden.update({"id": "hidden", "title": "Hidden retirement", "hidden": True, "categories": ["Hidden category"]})
+        value["records"].append(hidden)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "data" / "retirements.json"
+            source.parent.mkdir()
+            source.write_text(json.dumps(value), encoding="utf-8")
+            metadata = prepare_site(root, "2026-11-10")
+            self.assertIn("hidden", metadata["byId"])
+            self.assertNotIn("hidden", metadata["initialIds"])
+            self.assertNotIn("Hidden category", metadata["categories"])
+            self.assertEqual(metadata["count"], len(value["records"]) - 1)
+            self.assertNotIn("hidden", [entry["id"] for year in metadata["navigation"]
+                                        for category in year["categories"] for entry in category["records"]])
+            self.assertEqual(json.loads((root / "site" / "assets" / "data" / "retirements.json").read_text(encoding="utf-8")), value)
+        for bad in (None, "true", 1, []):
+            invalid = copy.deepcopy(value)
+            invalid["records"][-1]["hidden"] = bad
+            with self.subTest(bad=bad), self.assertRaises(ValueError):
+                parse_catalog(invalid)
+
     def test_timeline_groups_categories_and_individual_services_with_descending_deadlines(self):
         def record(identifier, title, deadline, categories, services):
             return {
@@ -269,7 +293,7 @@ class CatalogTests(unittest.TestCase):
             self.assertEqual(metadata["byId"]["a"]["url"], record_url(record))
             self.assertEqual(metadata["byId"]["a"]["categories"], ["Uncategorized"])
             self.assertEqual(metadata["categories"], ["Uncategorized"])
-            self.assertEqual([section["id"] for section in metadata["byId"]["a"]["sections"]], list(QUESTIONS))
+            self.assertEqual([section["id"] for section in metadata["byId"]["a"]["sections"]], list(DETAIL_QUESTIONS))
             self.assertEqual(source.read_bytes(), original)
             self.assertEqual((root / "site" / "assets" / "data" / "retirements.json").read_bytes(), original)
             self.assertFalse((root / "docs").exists())

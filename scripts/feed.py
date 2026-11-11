@@ -93,7 +93,7 @@ def normalize(item):
     summary = re.sub(r"\s+\S*$", "", details[:237]) + "…" if len(details) > 240 else details
     return {
         "id": str(item["id"]), "title": item["title"].strip(), "services": services, "categories": categories,
-        "service": service, "announcedOn": announced, "lastUpdatedOn": updated, "manuallyEnriched": False,
+        "service": service, "announcedOn": announced, "lastUpdatedOn": updated, "manuallyEnriched": False, "hidden": False,
         "summary": summary, "sourceUrl": "https://azure.microsoft.com/updates?id=" + quote(str(item["id"]), safe="!~*'()"),
         "questions": {
             "what": {
@@ -155,7 +155,8 @@ def record_map(records):
     result = {}
     for record in records:
         if (not isinstance(record, dict) or not isinstance(record.get("id"), str) or not record["id"]
-                or type(record.get("manuallyEnriched")) is not bool or record["id"] in result):
+                or type(record.get("manuallyEnriched")) is not bool
+                or ("hidden" in record and type(record["hidden"]) is not bool) or record["id"] in result):
             raise ValueError("Invalid record ID, enrichment flag, or duplicate ID; existing snapshot preserved")
         result[record["id"]] = record
     return result
@@ -164,6 +165,9 @@ def record_map(records):
 def merge_retirements(fetched, existing):
     previous = record_map(existing)
     merged = record_map(fetched)
+    for identifier, record in merged.items():
+        if identifier in previous and "hidden" in previous[identifier]:
+            merged[identifier] = {**record, "hidden": previous[identifier]["hidden"]}
     merged.update({identifier: record for identifier, record in previous.items() if record["manuallyEnriched"]})
     return [merged[identifier] for identifier in sorted(merged)]
 

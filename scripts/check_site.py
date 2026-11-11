@@ -8,7 +8,7 @@ from urllib.parse import urljoin, urlsplit
 
 from html5lib import parse
 
-from .catalog import QUESTIONS, ROOT, categories_of, group_timeline, parse_catalog, record_url, retirement_outlook, sort_timeline, valid_date
+from .catalog import DETAIL_QUESTIONS, ROOT, categories_of, group_timeline, parse_catalog, record_url, retirement_outlook, sort_timeline, valid_date
 
 
 class Elements(HTMLParser):
@@ -34,16 +34,17 @@ def check_site(root=ROOT):
     root = Path(root)
     destination = root / "docs"
     catalog = parse_catalog(json.loads((root / "data" / "retirements.json").read_text(encoding="utf-8")))
+    visible = [record for record in catalog["records"] if not record.get("hidden", False)]
     home_html = (destination / "index.html").read_text(encoding="utf-8")
     home = Elements(home_html)
     require(any(tag == "body" and attrs.get("data-home") == "./" for tag, attrs in home.tags), "Homepage links must be relative")
     document = parse(home_html, namespaceHTMLElements=False)
     category_options = document.findall(".//select[@id='category']/option")
-    expected_categories = sorted({category for record in catalog["records"] for category in categories_of(record)}, key=str.casefold)
+    expected_categories = sorted({category for record in visible for category in categories_of(record)}, key=str.casefold)
     require([option.attrib.get("value") for option in category_options] == ["", *expected_categories], "Category filter does not include every catalog category")
     timeline = document.find(".//div[@id='results']")
     require(timeline is not None and timeline.attrib.get("class") == "retirement-timeline", "Missing grouped retirement timeline")
-    initial = sort_timeline(catalog["records"])[:24]
+    initial = sort_timeline(visible)[:24]
     expected_groups = group_timeline(initial)
     categories = timeline.findall("section[@class='timeline-category']")
     require([group.attrib.get("data-category") for group in categories] == [group["name"] for group in expected_groups], "Incorrect timeline categories")
@@ -58,7 +59,7 @@ def check_site(root=ROOT):
     require(isinstance(as_of, str) and valid_date(as_of), "Missing or invalid outlook date")
     cards = re.findall(r'<a class="outlook-card"[^>]*>.*?</a>', home_html, re.S)
     require(len(cards) == 4, "Expected four rolling retirement outlook cards")
-    for card, window in zip(cards, retirement_outlook(catalog["records"], as_of)):
+    for card, window in zip(cards, retirement_outlook(visible, as_of)):
         require(f'data-window="{window["key"]}"' in card, "Incorrect retirement outlook window")
         require(f'<strong data-window-count>{window["count"]}</strong>' in card, "Incorrect retirement outlook count")
     paths = set()
@@ -83,11 +84,49 @@ def check_site(root=ROOT):
         article = re.search(r'<article class="detail-content">(.*?)</article>', html, re.S)
         require(article is not None, f'{record["id"]}: static article missing')
         sections = [attrs.get("id") for tag, attrs in Elements(article[1]).tags if tag == "section"]
-        require(sections == list(QUESTIONS), f'{record["id"]}: incorrect question order')
+        require(sections == list(DETAIL_QUESTIONS), f'{record["id"]}: incorrect question order')
         headings = re.findall(r"<h2>(.*?)</h2>", article[1], re.S)
         require(len(headings) == 5, f'{record["id"]}: incorrect question count')
-        for key, value in zip(QUESTIONS, headings):
+        for key, value in zip(DETAIL_QUESTIONS, headings):
             require("".join(Elements(value).text).endswith(record["questions"][key]["question"]), f'{record["id"]}: {key} heading missing')
+        guidance = (record.get("sourceReview") or {}).get("guidanceSource")
+        actions = re.search(r'<section id="actions">(.*?)</section>', article[1], re.S)
+        require(actions is not None, f'{record["id"]}: actions missing')
+        guidance_links = [attrs for tag, attrs in Elements(actions[1]).tags if tag == "a" and attrs.get("class") == "button primary"]
+        require([link.get("href") for link in guidance_links] == ([guidance] if guidance else []),
+                f'{record["id"]}: incorrect Learn guidance link')
+        require("Verify dates and consequences" not in article[1] and "Microsoft Update</summary>" not in article[1],
+                f'{record["id"]}: removed announcement UI is present')
+        progress = re.search(r'<section id="progress">(.*?)</section>', article[1], re.S)
+        require(progress is not None, f'{record["id"]}: progress missing')
+        tracking = record["questions"]["progress"].get("tracking")
+        tracking_links = [attrs.get("href") for tag, attrs in Elements(progress[1]).tags if tag == "a"]
+        require(tracking_links == ([tracking["sourceUrl"]] if tracking else []), f'{record["id"]}: incorrect tracking source')
+        require(bool(tracking) or "Tracking guidance is not available for this retirement." in progress[1],
+                f'{record["id"]}: tracking fallback missing')
+        require("data-step" not in progress[1] and "progress-summary" not in progress[1],
+                f'{record["id"]}: obsolete checklist is present')
+        review = record.get("sourceReview") or {}
+        excluded = {item["url"] for item in review.get("excludedReferences", [])}
+        destinations = {check["url"]: check["resolvedUrl"] for check in review.get("resourceChecks", []) if check["resolvedUrl"]}
+        references = [
+            source for source in review.get("sources", []) + record["questions"]["actions"]["resources"]
+            if source["url"] not in excluded and destinations.get(source["url"], source["url"]) not in excluded
+        ]
+        if references:
+            reading = re.search(r'<div id="further-reading".*?</div>', article[1], re.S)
+            require(reading is not None, f'{record["id"]}: References missing')
+            require('<h3 id="further-reading-heading">References</h3>' in reading[0], f'{record["id"]}: References heading missing')
+            require("About this source" not in reading[0] and "<details" not in reading[0],
+                    f'{record["id"]}: source notes must not be displayed')
+            require(article[1].rfind("</section>") < reading.start(),
+                    f'{record["id"]}: references must follow the five answers')
+            links = [attrs["href"] for tag, attrs in Elements(reading[0]).tags if tag == "a" and "href" in attrs]
+            require(len(links) == len(set(links)), f'{record["id"]}: duplicate References destinations')
+            require(not excluded.intersection(links), f'{record["id"]}: excluded reference is displayed')
+        else:
+            require('id="further-reading"' not in article[1], f'{record["id"]}: empty References is displayed')
+        require("Sources for this answer" not in article[1], f'{record["id"]}: inline answer citations remain')
         require('data-countdown' in html and 'data-home="../../../"' in html, f'{record["id"]}: countdown or home path missing')
         require('src="../../../assets/js/main.js"' in html, f'{record["id"]}: script path missing')
     actual = {str(path.relative_to(destination)).replace("\\", "/") for path in (destination / "retirements").rglob("index.html")}

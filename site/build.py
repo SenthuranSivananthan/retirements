@@ -15,7 +15,7 @@ from markupsafe import Markup, escape
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from scripts.catalog import group_timeline, prepare_site, record_url
+from scripts.catalog import group_timeline, prepare_site, record_url, safe_url
 from scripts.check_site import check_site
 
 
@@ -44,6 +44,24 @@ def copy_asset(source, destination):
     return destination
 
 
+def further_reading(record):
+    review = record.get("sourceReview") or {}
+    excluded = {item["url"] for item in review.get("excludedReferences", [])}
+    destinations = {
+        check["url"]: check["resolvedUrl"]
+        for check in review.get("resourceChecks", [])
+        if safe_url(check["resolvedUrl"])
+    }
+    references = []
+    seen = set()
+    for source in review.get("sources", []) + record["questions"]["actions"]["resources"]:
+        url = destinations.get(source["url"], source["url"])
+        if source["url"] not in excluded and url not in excluded and safe_url(url) and url not in seen:
+            references.append({**source, "url": url})
+            seen.add(url)
+    return references
+
+
 def build_site(root=ROOT):
     root = Path(root)
     source = root / "site"
@@ -65,6 +83,7 @@ def build_site(root=ROOT):
     environment.filters["relative_url"] = relative_url
     environment.filters["url_encode"] = lambda value: quote(str(value), safe="")
     environment.filters["nl2br"] = lambda value: Markup("<br>").join(escape(value).splitlines())
+    environment.globals["further_reading"] = further_reading
     site = {
         **config, **metadata,
         "timeline": group_timeline([metadata["byId"][identifier]["record"] for identifier in metadata["initialIds"]]),

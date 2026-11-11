@@ -201,15 +201,91 @@ function isQuestions(value) {
         && hasStrings(progress, ['question', 'introduction', 'guidance', 'storageNote'])
         && isChecklist(progress.checklist);
 }
+function isLearnDocumentation(value) {
+    if (!safeUrl(value))
+        return false;
+    const url = new URL(value);
+    return url.hostname === 'learn.microsoft.com' && !url.username
+        && !/^\/(?:[a-z]{2}-[a-z]{2}\/)?(?:answers|users|training)(?:\/|$)/i.test(url.pathname);
+}
+function isSourceReview(record) {
+    const tracking = record.questions.progress.tracking;
+    if (record.sourceReview === undefined)
+        return tracking === undefined || tracking === null;
+    const review = record.sourceReview;
+    const sections = ['what', 'actions', 'impact', 'deadline', 'progress'];
+    if (!isObject(review) || !record.manuallyEnriched
+        || !['enriched', 'needs-review'].includes(review.status)
+        || review.reviewedOn === null || !isCatalogDate(review.reviewedOn)
+        || typeof review.originalAnnouncement !== 'string' || !review.originalAnnouncement.trim()
+        || !Array.isArray(review.issues) || !review.issues.every(issue => typeof issue === 'string' && issue.trim())
+        || (review.status === 'needs-review' && !review.issues.length)
+        || !isObject(review.originalDeadline) || !isCatalogDate(review.originalDeadline.date)
+        || !isNullableString(review.originalDeadline.month)
+        || !Array.isArray(review.sources) || !review.sources.length
+        || !review.sources.every(source => hasStrings(source, ['title', 'url', 'note'])
+            && source.title.trim() && source.note.trim() && safeUrl(source.url)
+            && isChecklist(source.sections) && source.sections.every(section => sections.includes(section))))
+        return false;
+    if (!sections.every(section => review.sources.some(source => source.sections.includes(section)))
+        || (review.status === 'enriched' && !review.sources.some(source => isLearnDocumentation(source.url))))
+        return false;
+    if (tracking !== undefined && tracking !== null
+        && (!hasStrings(tracking, ['guidance', 'sourceUrl']) || Object.keys(tracking).length !== 2
+            || !tracking.guidance.trim() || !isLearnDocumentation(tracking.sourceUrl)
+            || !review.sources.some(source => source.url === tracking.sourceUrl && source.sections.includes('progress'))))
+        return false;
+    if (review.guidanceSource !== undefined && review.guidanceSource !== null
+        && (!isLearnDocumentation(review.guidanceSource)
+            || !review.sources.some(source => source.url === review.guidanceSource && source.sections.includes('actions'))))
+        return false;
+    if (review.deadlineSource !== null && (!isLearnDocumentation(review.deadlineSource)
+        || !review.sources.some(source => source.url === review.deadlineSource && source.sections.includes('deadline'))))
+        return false;
+    if (record.questions.deadline.date !== null && record.questions.deadline.date !== review.originalDeadline.date
+        && review.deadlineSource === null)
+        return false;
+    const resources = new Set(record.questions.actions.resources.map(resource => resource.url));
+    if (!Array.isArray(review.resourceChecks) || review.resourceChecks.length !== resources.size)
+        return false;
+    const checked = new Set();
+    if (!review.resourceChecks.every(check => {
+        if (!hasStrings(check, ['url', 'detail']) || !check.detail.trim()
+            || !['read', 'partial', 'unavailable', 'not-evidence'].includes(check.status)
+            || (check.resolvedUrl !== null && !safeUrl(check.resolvedUrl))
+            || (check.status === 'read' && check.resolvedUrl === null)
+            || !resources.has(check.url) || checked.has(check.url))
+            return false;
+        checked.add(check.url);
+        return true;
+    }))
+        return false;
+    const exclusions = review.excludedReferences ?? [];
+    if (!Array.isArray(exclusions))
+        return false;
+    const eligible = new Set([...resources, ...review.sources.map(source => source.url),
+        ...review.resourceChecks.map(check => check.resolvedUrl).filter(url => url !== null)]);
+    const excluded = new Set();
+    return exclusions.every(item => {
+        if (!isObject(item) || Object.keys(item).length !== 3 || typeof item.url !== 'string'
+            || !eligible.has(item.url) || excluded.has(item.url) || typeof item.checkedOn !== 'string'
+            || !isCatalogDate(item.checkedOn) || ![404, 410].includes(item.httpStatus))
+            return false;
+        excluded.add(item.url);
+        return true;
+    });
+}
 function isRetirementRecord(value) {
     return isObject(value)
         && typeof value.id === 'string' && typeof value.title === 'string'
         && typeof value.service === 'string' && typeof value.summary === 'string'
         && typeof value.sourceUrl === 'string' && isCatalogDate(value.announcedOn) && isCatalogDate(value.lastUpdatedOn)
         && typeof value.manuallyEnriched === 'boolean'
+        && (value.hidden === undefined || typeof value.hidden === 'boolean')
         && (value.categories === undefined || (Array.isArray(value.categories) && value.categories.length > 0
             && value.categories.every((category) => typeof category === 'string' && category.trim().length > 0)))
         && isQuestions(value.questions)
+        && isSourceReview(value)
         && Array.isArray(value.services) && value.services.every((service) => typeof service === 'string');
 }
 export function parseCatalog(value) {

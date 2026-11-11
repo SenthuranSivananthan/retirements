@@ -4,7 +4,7 @@ A static website for Microsoft Azure retirement announcements. Its Azure-blue pa
 
 Like the [reference project's build](https://github.com/SenthuranSivananthan/multi-region-platform/blob/main/guides/building.md), this project uses a **Python static-site generator** and commits the public website in **`docs`** for GitHub Pages. Python handles building, data refresh, validation, and tests. Browser enhancements use ordinary JavaScript modules; **Node.js, npm, TypeScript, Ruby, Bundler, and Jekyll are not required**.
 
-Every retirement has a complete HTML page with all five planning questions. Content and sidebar navigation work without JavaScript; search, filters, live countdowns, themes, and saved checklists are progressive enhancements.
+Every retirement has a complete HTML page with all five planning questions. Content and sidebar navigation work without JavaScript; search, filters, live countdowns, and themes are progressive enhancements.
 
 ## Quick preview
 
@@ -100,6 +100,7 @@ After changing source or data, rebuild and commit **both the source changes and 
 retirements
   .github\
     workflows\pages.yml     Python validation and scheduled/manual catalog refresh
+    prompts\retirement-enrichment.prompt.md  Reusable evidence-review task; not a schedule
   site\                     Website source, separate from shared data and tooling
     build.py                Python/Jinja static-site generator and optional server
     config.json             Title, description, production URL, and project base URL
@@ -123,6 +124,7 @@ retirements
     catalog.py              Validation, dates, countdowns, grouping, and preparation
     feed.py                 Source parsing, normalization, pagination, and merging
     refresh_data.py         Refresh entry point and guarded atomic snapshot writer
+    review_data.py          Review coverage, source-evidence checks, and guarded batch edits
     check_site.py           Generated page, question, link, and catalog checks
   tests\                    Python unittest suite and offline fixtures
   requirements.txt          Python dependencies
@@ -165,7 +167,7 @@ The refresh requires `contents: write` and `pages: write`; repository policy and
 ## Explore and plan
 
 - The home page's blue header banner contains the **Retirement outlook**, showing deadlines already passed this calendar year and cumulative **next 6, 12, and 18 calendar months**. Click a card to view its retirements, or use the **Date window** dropdown: rolling windows come first, followed by every known retirement year, newest first. Year options include month-only deadlines with a confirmed year. Selecting a date window replaces the previous year/window and clears any status shortcut filter. The selection is preserved in shareable URLs and detail-page return links.
-- Outlook counts and date ranges update on page load, at UTC date changes, and when returning to the tab. The cumulative 6/12/18-month windows start on the first day of the current UTC month and end on the last day of the month 6/12/18 months ahead, including both endpoints and dates already passed earlier this month. For example, in November 2026 the 6-month window is November 1, 2026 through May 31, 2027. These ranges roll forward when the current month changes. The retired view includes January 1 through yesterday of the current UTC year. Only exact source-backed deadlines count; unknown or month-only dates are excluded. “Retired” describes the deadline, not completion of your migration checklist. Without JavaScript, the outlook reflects the last build.
+- Outlook counts and date ranges update on page load, at UTC date changes, and when returning to the tab. The cumulative 6/12/18-month windows start on the first day of the current UTC month and end on the last day of the month 6/12/18 months ahead, including both endpoints and dates already passed earlier this month. For example, in November 2026 the 6-month window is November 1, 2026 through May 31, 2027. These ranges roll forward when the current month changes. The retired view includes January 1 through yesterday of the current UTC year. Only exact source-backed deadlines count; unknown or month-only dates are excluded. “Retired” describes the deadline, not completion of a migration. Without JavaScript, the outlook reflects the last build.
 - The directory is a vertical timeline grouped by **service category > individual service > retirements**. Categories and services are alphabetical; entries within each service are ordered by exact retirement deadline descending (furthest future first), with unknown or month-only dates last. Equal dates are ordered by title. Records with multiple categories or services appear in each applicable group, while result counts and pagination count unique retirements.
 - Search titles and announcement text; combine **Category**, **Service**, and **Date window** dropdown filters. Category includes every catalog category and an **All categories** option. Service choices narrow to the selected category; changing categories keeps a compatible service selection or resets it to **All services**. Selecting **All categories** restores the full service list. Selected category and service filters also restrict the timeline headings and persist in shared URLs, browser history, and detail-page return links. Status views remain available through sidebar shortcuts, with a visible status label and clear link instead of a Status dropdown. Load more results without changing the timeline's descending deadline order. The initial timeline is rendered in HTML and remains available without JavaScript.
 - Expand the sidebar by **retirement year > Azure service category > retirement**. Years appear newest first, then **Unconfirmed year**. The tree follows all active directory filters, including category, service, date window, status, and search; empty branches disappear and counts reflect all matching retirements, independent of timeline pagination. Year, category, and detail links retain the active filter context. Clearing filters restores the complete tree, which remains available without JavaScript.
@@ -179,13 +181,13 @@ Each detail shows whole days remaining until an exact retirement date using UTC 
 
 Every retirement detail keeps these sections in order:
 
-1. **What is changing?**
-2. **What do I need to do?**
-3. **Where, and how much, am I impacted?**
-4. **What is the deadline?**
+1. **What is the deadline?**
+2. **What is changing?**
+3. **What do I need to do?**
+4. **Where, and how much, am I impacted?**
 5. **How can I track progress?**
 
-Checklist progress is per announcement and browser-local. It is not a tenant assessment or a shared migration tracker.
+The progress section shows specific Microsoft Learn guidance for identifying or tracking affected resources when verified; otherwise it says tracking guidance is unavailable in the catalog. It does not assess a tenant or track migrations. Previously saved browser checklists are not displayed or deleted.
 
 ## Data provenance and limitations
 
@@ -195,13 +197,13 @@ The canonical catalog and download use `schemaVersion: 2`. Each record keeps its
 
 | Key | Organized content |
 | --- | --- |
-| `what` | Official announcement text and separate financial considerations |
+| `what` | Announcement text or source-backed change summary, and separate financial considerations |
 | `actions` | Nullable official recommended action, planning guidance, announcement resources, and support |
 | `impact` | Inventory guidance, impact checklist, tenant-access limitations, and Azure Advisor |
 | `deadline` | Nullable exact `date`, source `month`, uncertainty, and consequences |
-| `progress` | Planning guidance, checklist steps, and browser-storage limitations |
+| `progress` | Optional `tracking` object with documented guidance and its cited Learn `sourceUrl`; legacy checklist fields remain for compatibility but are not displayed |
 
-Every section contains its complete `question` and `introduction`. Templates read the headings and answers from prepared JSON, not a second UI-specific set. Preparation and browser loading reject missing or malformed sections. Source content is distinguished from general advice; tenant-specific impact and actual team progress are never inferred.
+Every section contains its complete `question` and `introduction`. The JSON key order remains unchanged; detail pages and their article navigation display `deadline` first. Templates read the headings and answers from prepared JSON, not a second UI-specific set. Preparation and browser loading reject missing or malformed sections. Source content is distinguished from general advice; tenant-specific impact and actual team progress are never inferred.
 
 `lastUpdatedOn` is the UTC calendar date from Microsoft's per-announcement `modified` timestamp, displayed as **Last updated**. It is not the publication date, deadline, or retrieval time. Missing timestamps produce `null` and **Not provided by source**; malformed timestamps fail refresh. Catalog-level `retrievedAt` records when the complete feed was fetched.
 
@@ -213,9 +215,57 @@ Navigation uses the exact deadline's year, otherwise the stated year of a valid 
 
 Every retirement has a boolean `manuallyEnriched`, initially `false`. When editing answers or adding custom information, set **`"manuallyEnriched": true`** and commit the JSON. Both automated and local refreshes preserve the entire protected record, including custom fields and its recorded `lastUpdatedOn`, even if the source removes that ID.
 
+Each record also has a `hidden` boolean, initially `false`. Set it to `true` to exclude that retirement from search, navigation, filters, and visible counts; the direct detail page and public JSON download remain accessible, so this is not an access-control feature. Feed refresh preserves the flag for matching records. Older records without the field are treated as visible.
+
+
 Unflagged records continue to refresh; new announcements use `false`. Set the flag back to `false` to resume source updates, replacing custom content on the next successful refresh. Keep all five sections and valid field types when enriching records.
 
+For source-reviewed records, remove `sourceReview` as well when deliberately returning to feed-only content. The validator rejects review evidence without refresh protection.
+
 The refresh reads the existing snapshot after fetching, incorporating edits saved during the fetch. Invalid flags, duplicate IDs, malformed snapshots, and detected concurrent publishing edits fail instead of overwriting local data. Publishing uses a temporary file and atomic replacement. Changes made only to generated output are not durable.
+
+### Evidence-based content reviews
+
+Source reviews keep all answers under the existing five questions and add record-level **`sourceReview`** metadata. Integrate relevant announcement details into those answers and state verified facts directly instead of repeatedly saying that Microsoft Learn confirms them; retain attribution where needed to explain conflicts or uncertainty. Detail pages collect answer sources and announcement resources in **References** after the five questions, with duplicate destinations listed once. Evidence notes and per-question source mappings remain in the JSON. Reviewed redirects are used for reference links without changing the original resource URLs in the catalog. Unresolved review issues and the UTC content-review day are visible when verification is needed; the original announcement remains in the catalog as preserved evidence. The review day does not change `lastUpdatedOn` or catalog `retrievedAt`.
+
+For reviewed resources, visit the public destination and use its actual page title instead of labels such as "Learn more", "here", or "instructions"; publisher branding may be omitted. Preserve URL fragments and version selectors. Do not invent titles from URL slugs or treat error/sign-in page titles as documentation titles. Keep a descriptive support label for sign-in-only resources and report unavailable destinations in `resourceChecks`. The initial title cleanup covers the ten-record pilot, not all unreviewed announcements.
+
+- `status` is `enriched` for Learn-supported enrichment or `needs-review` for unresolved source questions. A reviewed record is not necessarily fully verified; unknowns, conflicting years, inaccessible sources, and archived instructions remain explicit.
+- `sources` records descriptive titles, resolved HTTPS URLs, supported question keys in `sections`, and factual evidence notes. Microsoft Learn product documentation is authoritative; community Q&A on the same host, training, generic directories, and authenticated portals are not substitutes.
+- Optional `guidanceSource` selects a relevant Microsoft Learn product-documentation URL already cited for `actions`. The actions button links to it as Microsoft Learn guidance; it is omitted when no suitable page has been reviewed. Subsequent batches retain the selection unless explicitly changed or set to null.
+- Optional `excludedReferences` records confirmed nonexistent source or resource URLs with `url`, UTC `checkedOn`, and `httpStatus` (404 or 410). They are omitted from References while preserving the original evidence. Recheck exclusions during review; do not treat access restrictions or temporary failures as proof a page is gone.
+- `resourceChecks` accounts for every distinct original announcement resource, with `read`, `partial`, `unavailable`, or `not-evidence`, nullable `resolvedUrl`, and a reason. Known support/community links can be classified without claiming they were read. Reading a page does not mean every statement in it was confirmed.
+- `originalAnnouncement` and `originalDeadline` preserve the initial feed evidence. Professional summaries replace the displayed raw scrape, not the retained source text.
+- When an announcement's retirement date is unclear, missing, or conflicting, check relevant Microsoft Learn product documentation for the same retirement, scope, and lifecycle milestone. An explicit applicable Learn date takes precedence over the announcement; explain conflicting announcement dates. A new or changed exact deadline requires that Learn evidence in `deadlineSource`, also cited under the `deadline` answer. If suitable Learn evidence is unavailable or conflicting, keep the date unconfirmed and explain the uncertainty. Historical deadlines and migration instructions are labeled as historical, not presented as still-available actions.
+
+Inspect coverage and a resumable batch without network access or file changes:
+
+```shell
+python -m scripts.review_data --limit 10
+```
+
+The report includes a whole-catalog SHA-256 guard, reviewed/enriched/unreviewed counts, unresolved issues, and candidate IDs. Approximately one fifth of a batch rechecks the oldest reviews; the rest advances unreviewed records in catalog order. Existing manual enrichments without `sourceReview` are counted separately and excluded from automated edits.
+
+Prepare a temporary JSON object with `catalogSha256` from the report and a `reviews` array. Each entry contains `id`, `summary`, `questions` (all five section keys, with changed answer fields only), and `sourceReview` (review date/status/issues, sources, resource checks, and nullable `deadlineSource`). Do not supply the two original-evidence fields; the command captures them automatically and preserves them on subsequent reviews. Apply and rebuild:
+
+```shell
+python -m scripts.review_data --apply <review-batch.json>
+python -m unittest discover -s tests -q
+python site/build.py
+python -m scripts.check_site
+```
+
+The application command is a guarded editor, **not an autonomous web crawler or summarizer**. It validates every update before publishing any, rejects stale batches and concurrent edits, preserves unrelated records/feed timestamps, and sets `manuallyEnriched: true`. It cannot prove the semantic accuracy of a citation; actual page reading and human review remain necessary. Changes to checked-in `docs` must accompany catalog changes.
+
+### Weekly Copilot cloud automation
+
+The reusable task is [`.github/prompts/retirement-enrichment.prompt.md`](.github/prompts/retirement-enrichment.prompt.md). It specifies a bounded evidence-first review, per-question citations, source-failure handling, preservation rules, validation, and an honest coverage report. Its draft batch size is ten records; it does not promise a full-catalog review every week.
+
+**No cloud automation has been created or enabled.** The repository capability check reported cloud automations disabled and management unavailable to the current account. The prompt does not schedule work, grant tools, or bypass that restriction; the existing daily GitHub Actions feed refresh remains unchanged.
+
+Once cloud automation access is available, review a single personal automation for this repository. Discover the service's supported tools/triggers and grant only public-document retrieval, repository reading/editing, and required execution capabilities. Choose the weekly day/time in UTC through the service's structured schedule fields; do not embed schedule/permissions in the task prompt. Creation, activation, and any initial run require separate approval. Publication behavior is also pending approval: the draft leaves a reviewable diff and does not authorize pushing, opening PRs, or merging.
+
+Daily feed refresh preserves these complete reviewed records, so weekly reviews must revisit current documentation and check current announcements separately. The feed refresh alone cannot detect or apply changes inside a protected record. Before any approved publication, reconcile with the latest main-branch feed snapshot and regenerate `docs`; never force-push over a concurrent refresh.
 
 ### Official source
 
@@ -223,6 +273,6 @@ The source is Microsoft's public [Azure Updates JSON feed](https://www.microsoft
 
 This is the complete tagged announcement collection returned by that feed, **not a guarantee that every Azure lifecycle obligation is represented**. Announcements may overlap, and endpoint changes cause refresh to fail rather than silently publishing an incomplete directory.
 
-The structured feed supplies a retirement **month**, not an exact day. Exact dates are extracted conservatively from current announcement **titles** only when a single distinct, valid date appears. ISO dates require explicit deadline wording to distinguish deadlines from API versions. Publication dates, IDs, URL slugs, and body dates are never used as deadlines. Month-only or ambiguous deadlines remain **Date to confirm** and do not count as upcoming or retired. **Within 90 days** includes today and day 90 UTC; **Upcoming** includes that group.
+The structured feed supplies a retirement **month**, not an exact day. For unreviewed records, exact dates are extracted conservatively from current announcement **titles** only when a single distinct, valid date appears. ISO dates require explicit deadline wording to distinguish deadlines from API versions. Publication dates, IDs, URL slugs, and body dates are never used to infer deadlines. Explicit retirement-specific Learn evidence may supply a reviewed deadline through the guarded evidence-review process above. Month-only, ambiguous, or conflicting deadlines remain **Date to confirm** and do not count as upcoming or retired. **Within 90 days** includes today and day 90 UTC; **Upcoming** includes that group.
 
 Announcement HTML is parsed into plain text, with related HTTPS links retained separately. The app escapes source text instead of rendering source HTML. Each page links to the official announcement; verify tenant-specific impact, pricing, support, and phased deadlines with Microsoft.

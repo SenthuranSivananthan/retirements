@@ -2,49 +2,52 @@
 {% block content %}
 {% set record = view.record %}
 {% set questions = record.questions %}
+{% set reading = further_reading(record) %}
 <div class="crumbs"><a href="{{ '/' | relative_url }}" data-back>Retirement explorer</a><span>/</span>{{ record.service }}</div>
 <a class="back-link" href="{{ '/' | relative_url }}" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">{{ record.service }}</span><span class="badge {{ view.status }}" data-deadline="{{ questions.deadline.date or '' }}"><span></span>{{ view.label }}</span></div>
   <h1>{{ record.title }}</h1><p>{{ record.summary }}</p>
+  {% if record.get('sourceReview') and record.sourceReview.status == 'needs-review' %}<div class="notice content-review"><strong>Source review needs verification</strong><p>Content reviewed <time datetime="{{ record.sourceReview.reviewedOn }}">{{ record.sourceReview.reviewedOn }}</time>. This is separate from the announcement’s last-updated date.</p>{% if record.sourceReview.issues %}<ul>{% for issue in record.sourceReview.issues %}<li>{{ issue }}</li>{% endfor %}</ul>{% endif %}</div>{% endif %}
   <div class="retirement-countdown {{ view.status }}" data-countdown data-deadline="{{ questions.deadline.date or '' }}"><strong>{{ view.countdown }}</strong>{% if questions.deadline.date %}<span>Retirement date: <time datetime="{{ questions.deadline.date }}">{{ view.deadline }}</time></span>{% endif %}</div>
 </div>
 <div class="detail-layout">
   <article class="detail-content">
-    <section id="what"><h2><span class="section-number">1</span>{{ questions.what.question }}</h2>
+    <section id="deadline"><h2><span class="section-number">1</span>{{ questions.deadline.question }}</h2>
+      <p class="section-intro">{{ questions.deadline.introduction }}</p>
+      <p class="deadline-date">{{ view.deadline }}</p><p>{{ questions.deadline.dateGuidance }}</p>
+      <p>{{ questions.deadline.consequences }}</p>
+    </section>
+    <section id="what"><h2><span class="section-number">2</span>{{ questions.what.question }}</h2>
       <p class="section-intro">{{ questions.what.introduction }}</p>
       <p>{{ questions.what.announcement | nl2br }}</p>
       <div class="notice">{{ questions.what.financialConsiderations }}</div>
     </section>
-    <section id="actions"><h2><span class="section-number">2</span>{{ questions.actions.question }}</h2>
+    <section id="actions"><h2><span class="section-number">3</span>{{ questions.actions.question }}</h2>
       <p class="section-intro">{{ questions.actions.introduction }}</p>
       {% if questions.actions.recommendedAction %}<h3>Microsoft’s recommended action</h3><p>{{ questions.actions.recommendedAction | nl2br }}</p>{% endif %}
       <p>{{ questions.actions.guidance }}</p>
-      {{ source_link(view, 'Open Microsoft migration guidance') }}
-      {% if view.resources %}<h3>Resources from the announcement</h3><ul class="resource-links">{% for resource in view.resources %}<li>{{ external_link(resource) }}</li>{% endfor %}</ul>{% endif %}
+      {% if view.get('guidanceSource') %}<a class="button primary" href="{{ view.guidanceSource }}" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance {{ icon('external') }}</a>{% endif %}
       <p>{{ questions.actions.supportGuidance }} {{ external_link(view.support) }}</p>
     </section>
-    <section id="impact"><h2><span class="section-number">3</span>{{ questions.impact.question }}</h2>
+    <section id="impact"><h2><span class="section-number">4</span>{{ questions.impact.question }}</h2>
       <p class="section-intro">{{ questions.impact.introduction }}</p>
       <p>{{ questions.impact.guidance }}</p>
       <ul>{% for step in questions.impact.checklist %}<li>{{ step }}</li>{% endfor %}</ul>
       <div class="notice">{{ questions.impact.notice }} {{ external_link(view.advisor) }}</div>
     </section>
-    <section id="deadline"><h2><span class="section-number">4</span>{{ questions.deadline.question }}</h2>
-      <p class="section-intro">{{ questions.deadline.introduction }}</p>
-      <p class="deadline-date">{{ view.deadline }}</p><p>{{ questions.deadline.dateGuidance }}</p>
-      <p>{{ questions.deadline.consequences }}</p>
-      {{ source_link(view, 'Verify dates and consequences') }}
-    </section>
     <section id="progress"><h2><span class="section-number">5</span>{{ questions.progress.question }}</h2>
-      <p class="section-intro">{{ questions.progress.introduction }}</p><p>{{ questions.progress.guidance }}</p>
-      <div class="progress-summary" id="progress-summary" role="status" aria-live="polite">0 of {{ questions.progress.checklist | length }} planning steps complete</div>
-      <div class="checklist">{% for step in questions.progress.checklist %}<label><input type="checkbox" data-step="{{ loop.index0 }}" disabled><span>{{ step }}</span></label>{% endfor %}</div>
-      <p class="storage-note" id="storage-note">{{ questions.progress.storageNote }}</p>
+      {% if questions.progress.get('tracking') %}<p>{{ questions.progress.tracking.guidance }}</p>
+      <p><a href="{{ questions.progress.tracking.sourceUrl }}" target="_blank" rel="noopener noreferrer">Read the tracking guidance {{ icon('external') }}</a></p>
+      {% else %}<p>Tracking guidance is not available for this retirement.</p>{% endif %}
     </section>
+    {% if reading %}<div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
+      <h3 id="further-reading-heading">References</h3>
+      <ul class="resource-links">{% for reference in reading %}<li>{{ external_link(reference) }}</li>{% endfor %}</ul>
+    </div>{% endif %}
   </article>
   <aside class="detail-rail" aria-label="Retirement facts">
-    <nav class="article-nav" aria-label="In this article"><h2>In this article</h2>{% for section in view.sections %}<a href="#{{ section.id }}">{{ section.question }}</a>{% endfor %}</nav>
+    <nav class="article-nav" aria-label="In this article"><h2>In this article</h2>{% for section in view.sections %}<a href="#{{ section.id }}">{{ section.question }}</a>{% endfor %}{% if reading %}<a href="#further-reading">References</a>{% endif %}</nav>
     <div class="fact-card"><span class="eyebrow">RETIREMENT AT A GLANCE</span><dl>
       <dt>Retirement date</dt><dd>{% if questions.deadline.date %}<time datetime="{{ questions.deadline.date }}">{{ view.deadline }}</time>{% else %}Not specified as an exact date{% endif %}</dd>
       <dt>Service</dt><dd>{{ record.service }}</dd><dt>Announced</dt><dd>{{ view.announced }}</dd>

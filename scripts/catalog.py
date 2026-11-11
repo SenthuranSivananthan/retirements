@@ -9,6 +9,7 @@ from pathlib import Path
 from urllib.parse import quote, urlsplit
 
 QUESTIONS = ("what", "actions", "impact", "deadline", "progress")
+DETAIL_QUESTIONS = ("deadline", "what", "actions", "impact", "progress")
 MONTHS = ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -66,6 +67,111 @@ def valid_questions(value):
     )
 
 
+def learn_documentation_url(value):
+    if not safe_url(value):
+        return False
+    parsed = urlsplit(value)
+    return (
+        parsed.hostname == "learn.microsoft.com" and parsed.username is None
+        and not re.match(r"^/(?:[a-z]{2}-[a-z]{2}/)?(?:answers|users|training)(?:/|$)", parsed.path, re.I)
+    )
+
+
+def valid_source_review(record):
+    tracking = record["questions"]["progress"].get("tracking")
+    if "sourceReview" not in record:
+        return tracking is None
+    review = record["sourceReview"]
+    if not isinstance(review, dict) or not record["manuallyEnriched"]:
+        return False
+    if (
+        review.get("status") not in ("enriched", "needs-review")
+        or review.get("reviewedOn") is None or not valid_date(review.get("reviewedOn"))
+        or not isinstance(review.get("originalAnnouncement"), str) or not review["originalAnnouncement"].strip()
+        or not isinstance(review.get("issues"), list)
+        or not all(isinstance(issue, str) and issue.strip() for issue in review["issues"])
+        or (review["status"] == "needs-review" and not review["issues"])
+    ):
+        return False
+    original = review.get("originalDeadline")
+    if (
+        not isinstance(original, dict) or "date" not in original or not valid_date(original["date"])
+        or "month" not in original or (original["month"] is not None and not isinstance(original["month"], str))
+    ):
+        return False
+    sources = review.get("sources")
+    if not isinstance(sources, list) or not sources:
+        return False
+    covered = set()
+    for source in sources:
+        if (
+            not strings(source, ("title", "url", "note")) or not source["title"].strip() or not source["note"].strip()
+            or not safe_url(source["url"]) or not checklist(source.get("sections"))
+            or any(section not in QUESTIONS for section in source["sections"])
+        ):
+            return False
+        covered.update(source["sections"])
+    if covered != set(QUESTIONS):
+        return False
+    if review["status"] == "enriched" and not any(learn_documentation_url(source["url"]) for source in sources):
+        return False
+    if tracking is not None and (
+        not isinstance(tracking, dict) or set(tracking) != {"guidance", "sourceUrl"}
+        or not strings(tracking, ("guidance", "sourceUrl")) or not tracking["guidance"].strip()
+        or not learn_documentation_url(tracking["sourceUrl"])
+        or not any(source["url"] == tracking["sourceUrl"] and "progress" in source["sections"] for source in sources)
+    ):
+        return False
+    guidance = review.get("guidanceSource")
+    if guidance is not None and (
+        not learn_documentation_url(guidance)
+        or not any(source["url"] == guidance and "actions" in source["sections"] for source in sources)
+    ):
+        return False
+    if "deadlineSource" not in review:
+        return False
+    deadline_source = review["deadlineSource"]
+    if deadline_source is not None and (
+        not learn_documentation_url(deadline_source)
+        or not any(source["url"] == deadline_source and "deadline" in source["sections"] for source in sources)
+    ):
+        return False
+    deadline = record["questions"]["deadline"]["date"]
+    if deadline is not None and deadline != original["date"] and deadline_source is None:
+        return False
+    checks = review.get("resourceChecks")
+    resources = {resource["url"] for resource in record["questions"]["actions"]["resources"]}
+    if not isinstance(checks, list):
+        return False
+    checked = set()
+    for check in checks:
+        if (
+            not strings(check, ("url", "detail")) or not check["detail"].strip()
+            or check.get("status") not in ("read", "partial", "unavailable", "not-evidence")
+            or "resolvedUrl" not in check
+            or (check["resolvedUrl"] is not None and not safe_url(check["resolvedUrl"]))
+            or (check["status"] == "read" and check["resolvedUrl"] is None)
+            or check["url"] not in resources or check["url"] in checked
+        ):
+            return False
+        checked.add(check["url"])
+    exclusions = review.get("excludedReferences", [])
+    eligible = resources | {source["url"] for source in sources} | {
+        check["resolvedUrl"] for check in checks if check["resolvedUrl"] is not None
+    }
+    if not isinstance(exclusions, list):
+        return False
+    excluded = set()
+    for item in exclusions:
+        if (not isinstance(item, dict) or set(item) != {"url", "checkedOn", "httpStatus"}
+                or not isinstance(item["url"], str) or item["url"] not in eligible or item["url"] in excluded
+                or not isinstance(item["checkedOn"], str) or not valid_date(item["checkedOn"])
+                or type(item["httpStatus"]) is not int or item["httpStatus"] not in (404, 410)):
+            return False
+        excluded.add(item["url"])
+    return checked == resources
+
+
 def parse_catalog(value):
     try:
         if not isinstance(value, dict) or value.get("schemaVersion") != 2 or not isinstance(value.get("source"), str):
@@ -84,6 +190,8 @@ def parse_catalog(value):
             ids.add(identifier)
             if type(record.get("manuallyEnriched")) is not bool:
                 raise ValueError("enrichment flag")
+            if "hidden" in record and type(record["hidden"]) is not bool:
+                raise ValueError("hidden flag")
             if any(field not in record or not valid_date(record[field]) for field in ("announcedOn", "lastUpdatedOn")):
                 raise ValueError("record dates")
             if not isinstance(record.get("services"), list) or not all(isinstance(service, str) for service in record["services"]):
@@ -95,6 +203,8 @@ def parse_catalog(value):
                 raise ValueError("categories")
             if not valid_questions(record.get("questions")):
                 raise ValueError("questions")
+            if not valid_source_review(record):
+                raise ValueError(f"source review for {identifier}")
     except (ValueError, TypeError) as error:
         raise ValueError(f"Invalid retirement catalog: {error}") from error
     if not records:
@@ -259,15 +369,17 @@ def prepare_site(root=ROOT, today=None):
         status = status_of(questions["deadline"], today)
         by_id[record["id"]] = {
             "record": record, "status": status, "label": labels[status], "countdown": countdown(questions["deadline"], today),
-            "sections": [{"id": key, "question": questions[key]["question"]} for key in QUESTIONS],
+            "sections": [{"id": key, "question": questions[key]["question"]} for key in DETAIL_QUESTIONS],
             "year": retirement_year(record), "categories": sorted(categories_of(record), key=str.casefold),
             "url": record_url(record), "deadline": format_date(questions["deadline"]["date"]),
             "announced": format_date(record["announcedOn"]),
             "updated": format_date(record["lastUpdatedOn"]) if record["lastUpdatedOn"] else "Not provided by source",
             "sourceUrl": safe_url(record["sourceUrl"]),
+            "guidanceSource": (record.get("sourceReview") or {}).get("guidanceSource"),
             "resources": [link(value) for value in questions["actions"]["resources"] if safe_url(value["url"])],
             "support": link(questions["actions"]["support"]), "advisor": link(questions["impact"]["advisor"]),
         }
+    visible = [record for record in catalog["records"] if not record.get("hidden", False)]
     navigation = [{
         "year": group["year"], "label": "Unconfirmed year" if group["year"] == "unknown" else group["year"],
         "count": len(group["records"]),
@@ -275,16 +387,16 @@ def prepare_site(root=ROOT, today=None):
             "name": category["name"], "count": len(category["records"]),
             "records": [{"id": record["id"], "title": record["title"], "url": by_id[record["id"]]["url"]} for record in category["records"]],
         } for category in group["categories"]],
-    } for group in group_retirements(catalog["records"])]
+    } for group in group_retirements(visible)]
     metadata = {
         "byId": by_id, "navigation": navigation, "buildDate": today,
-        "categories": sorted({category for record in catalog["records"] for category in categories_of(record)}, key=str.casefold),
-        "services": sorted({service for record in catalog["records"] for service in services_of(record)}, key=str.casefold),
-        "initialIds": [record["id"] for record in sort_timeline(catalog["records"])[:24]], "count": len(by_id),
+        "categories": sorted({category for record in visible for category in categories_of(record)}, key=str.casefold),
+        "services": sorted({service for record in visible for service in services_of(record)}, key=str.casefold),
+        "initialIds": [record["id"] for record in sort_timeline(visible)[:24]], "count": len(visible),
         "refreshed": format_date(timestamp(catalog["retrievedAt"]).date().isoformat()),
-        "upcoming": sum(view["status"] in {"upcoming", "soon"} for view in by_id.values()),
-        "soon": sum(view["status"] == "soon" for view in by_id.values()),
-        "outlook": retirement_outlook(catalog["records"], today),
+        "upcoming": sum(by_id[record["id"]]["status"] in {"upcoming", "soon"} for record in visible),
+        "soon": sum(by_id[record["id"]]["status"] == "soon" for record in visible),
+        "outlook": retirement_outlook(visible, today),
     }
     output = root / "site" / "_data" / "site.json"
     output.parent.mkdir(parents=True, exist_ok=True)

@@ -33,7 +33,7 @@
       {% for record in service.records %}
       {% set view = site.byId[record.id] %}
       <li class="timeline-entry" data-record="{{ record.id }}">
-        <div class="timeline-date">{% if record.questions.deadline.date %}<time datetime="{{ record.questions.deadline.date }}">{{ view.deadline }}</time>{% else %}<span>Date to confirm</span>{% endif %}</div>
+        <div class="timeline-date"><span class="timeline-date-label">Retirement date</span>{% if record.questions.deadline.date %}<time datetime="{{ record.questions.deadline.date }}">{{ view.deadline }}</time>{% else %}<span>Date to confirm</span>{% endif %}</div>
         <article class="timeline-content">
           <span class="badge {{ view.status }}" data-deadline="{{ record.questions.deadline.date or '' }}"><span></span>{{ view.label }}</span>
           <h5><a href="{{ view.url | relative_url }}">{{ record.title }}</a></h5>
