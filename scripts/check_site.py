@@ -8,7 +8,7 @@ from urllib.parse import urljoin, urlsplit
 
 from html5lib import parse
 
-from .catalog import DETAIL_QUESTIONS, ROOT, categories_of, group_timeline, parse_catalog, record_url, retirement_outlook, sort_timeline, valid_date
+from .catalog import DETAIL_QUESTIONS, ROOT, categories_of, group_timeline, parse_catalog, record_urls, retirement_outlook, sort_timeline, valid_date
 
 
 class Elements(HTMLParser):
@@ -75,8 +75,9 @@ def check_site(root=ROOT):
             target = destination / path
             require((target / "index.html" if path.endswith("/") or not path else target).is_file(), f"Missing local target: {href}")
     expected = set()
+    urls = record_urls(catalog["records"])
     for record in catalog["records"]:
-        path = record_url(record).lstrip("/") + "index.html"
+        path = urls[record["id"]].lstrip("/") + "index.html"
         expected.add(path)
         html = (destination / path).read_text(encoding="utf-8")
         heading = re.search(r"<h1>(.*?)</h1>", html, re.S)

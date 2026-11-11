@@ -3,17 +3,21 @@
 import json
 import re
 import shutil
+import unicodedata
 from calendar import monthrange
+from collections import Counter
 from datetime import date, datetime, timezone
 from html import escape as escape_html
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import quote, urlsplit
+from urllib.parse import urlsplit
 
 QUESTIONS = ("what", "actions", "impact", "deadline", "progress")
 DETAIL_QUESTIONS = ("deadline", "what", "actions", "impact", "progress")
 QUESTION_HTML_TAGS = frozenset(("br", "code", "em", "h3", "li", "ol", "p", "pre", "strong", "ul"))
 QUESTION_HTML_VOID_TAGS = frozenset(("br",))
+TITLE_SLUG_MAX_LENGTH = 80
+DETAIL_SLUG_MAX_LENGTH = 130
 MONTHS = ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -460,11 +464,50 @@ def safe_url(value):
         return None
 
 
-def record_url(record):
+def title_slug(title):
+    normalized = unicodedata.normalize("NFKD", title)
+    normalized = "".join(char for char in normalized if not unicodedata.category(char).startswith("M"))
+    slug = re.sub(r"[^a-z0-9]+", "-", normalized.lower()).strip("-")[:TITLE_SLUG_MAX_LENGTH].rstrip("-") or "retirement"
+    if re.fullmatch(r"(?:con|prn|aux|nul|com[1-9]|lpt[1-9])", slug):
+        slug = "retirement-" + slug
+    return slug
+
+
+def identifier_slug(identifier):
+    return "".join(
+        chr(byte) if 97 <= byte <= 122 or 48 <= byte <= 57 or byte == 45 else f"_{byte:02x}"
+        for byte in identifier.encode("utf-8")
+    )
+
+
+def record_url(record, duplicate_slug=False):
     deadline = record["questions"]["deadline"]["date"]
     if not valid_date(deadline):
         raise ValueError(f"Invalid retirement date for {record['id']!r}: {deadline!r}")
-    return "/retirements/" + (deadline or "unknown-date") + "/" + quote(record["id"], safe="!~*'()") + "/"
+    slug = title_slug(record["title"])
+    if duplicate_slug:
+        suffix = identifier_slug(record["id"])
+        available = DETAIL_SLUG_MAX_LENGTH - len(suffix) - 2
+        if available < 1:
+            raise ValueError(f"Record ID is too long to disambiguate title slug: {record['id']!r}")
+        slug = slug[:available].rstrip("-") + "--" + suffix
+    return "/retirements/" + (deadline or "unknown-date") + "/" + slug + "/"
+
+
+def record_urls(records):
+    counts = Counter(title_slug(record["title"]) for record in records)
+    urls = {}
+    seen = set()
+    for record in records:
+        identifier = record["id"]
+        if identifier in urls:
+            raise ValueError(f"Duplicate record ID: {identifier!r}")
+        url = record_url(record, counts[title_slug(record["title"])] > 1)
+        if url.casefold() in seen:
+            raise ValueError(f"Duplicate retirement route: {url}")
+        seen.add(url.casefold())
+        urls[identifier] = url
+    return urls
 
 
 def prepare_site(root=ROOT, today=None):
@@ -472,6 +515,7 @@ def prepare_site(root=ROOT, today=None):
     today = today or utc_today()
     source = root / "data" / "retirements.json"
     catalog = parse_catalog(json.loads(source.read_text(encoding="utf-8")))
+    urls = record_urls(catalog["records"])
     labels = {"soon": "Within 90 days", "upcoming": "Upcoming", "retired": "Retired", "unknown": "Date to confirm"}
 
     def link(value):
@@ -485,7 +529,7 @@ def prepare_site(root=ROOT, today=None):
             "record": record, "status": status, "label": labels[status], "countdown": countdown(questions["deadline"], today),
             "sections": [{"id": key, "question": questions[key]["question"]} for key in DETAIL_QUESTIONS],
             "year": retirement_year(record), "categories": sorted(categories_of(record), key=str.casefold),
-            "url": record_url(record), "deadline": format_date(questions["deadline"]["date"]),
+            "url": urls[record["id"]], "deadline": format_date(questions["deadline"]["date"]),
             "announced": format_date(record["announcedOn"]),
             "customerLeadTime": customer_lead_time(record["announcedOn"], questions["deadline"]["date"]),
             "updated": format_date(record["lastUpdatedOn"]) if record["lastUpdatedOn"] else "Not provided by source",

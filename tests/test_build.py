@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 from pathlib import Path
-from scripts.catalog import DETAIL_QUESTIONS, format_date, record_url, retirement_outlook
+from scripts.catalog import DETAIL_QUESTIONS, format_date, record_url, record_urls, retirement_outlook
 from html5lib import parse
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -70,10 +70,13 @@ class StaticSiteTests(unittest.TestCase):
         directory.mkdir(exist_ok=True)
         (directory / "site.json").write_text(json.dumps(self.metadata), encoding="utf-8")
 
+    def detail_path(self):
+        return self.root / "docs" / self.view["url"].lstrip("/") / "index.html"
+
     def test_complete_static_content_relative_links_and_escaping(self):
         self.assertEqual(builder.build_site(self.root), 1)
         destination = self.root / "docs"
-        html = (destination / "retirements" / "unknown-date" / "example" / "index.html").read_text(encoding="utf-8")
+        html = self.detail_path().read_text(encoding="utf-8")
         self.assertIn('data-home="../../../"', html)
         self.assertIn('src="../../../assets/js/main.js"', html)
         positions = [html.index(f'<section id="{key}">') for key in DETAIL_QUESTIONS]
@@ -140,7 +143,7 @@ class StaticSiteTests(unittest.TestCase):
         self.view["record"]["questions"]["what"]["html"] = markup
         self.save()
         builder.build_site(self.root)
-        html = (self.root / "docs" / "retirements" / "unknown-date" / "example" / "index.html").read_text(encoding="utf-8")
+        html = self.detail_path().read_text(encoding="utf-8")
         document = parse(html, namespaceHTMLElements=False)
         content = document.find(".//section[@id='what']/div[@class='rich-content']")
         self.assertIsNotNone(content)
@@ -200,7 +203,7 @@ class StaticSiteTests(unittest.TestCase):
         }
         self.save()
         builder.build_site(self.root)
-        html = (self.root / "docs" / "retirements" / "unknown-date" / "example" / "index.html").read_text(encoding="utf-8")
+        html = self.detail_path().read_text(encoding="utf-8")
         document = parse(html, namespaceHTMLElements=False)
         article = document.find(".//article[@class='detail-content']")
         self.assertEqual([section.attrib["id"] for section in article.findall("section")],
@@ -236,7 +239,7 @@ class StaticSiteTests(unittest.TestCase):
         record["sourceReview"]["status"] = "enriched"
         self.save()
         builder.build_site(self.root)
-        html = (self.root / "docs" / "retirements" / "unknown-date" / "example" / "index.html").read_text(encoding="utf-8")
+        html = self.detail_path().read_text(encoding="utf-8")
         self.assertNotIn("Source-enriched content", html)
         self.assertNotIn("Source review needs verification", html)
         self.assertNotIn("Microsoft Update", html)
@@ -296,7 +299,7 @@ class StaticSiteTests(unittest.TestCase):
         }]
         self.save()
         builder.build_site(self.root)
-        path = self.root / "docs" / "retirements" / "unknown-date" / "example" / "index.html"
+        path = self.detail_path()
         document = parse(path.read_text(encoding="utf-8"), namespaceHTMLElements=False)
         link = document.find(".//article[@class='detail-content']/div[@id='further-reading']//a")
         self.assertEqual(link.attrib["href"], "https://learn.microsoft.com/en-us/azure/guide")
@@ -313,7 +316,7 @@ class StaticSiteTests(unittest.TestCase):
         record = self.view["record"]
         self.save()
         builder.build_site(self.root)
-        path = self.root / "docs" / "retirements" / "unknown-date" / "example" / "index.html"
+        path = self.detail_path()
         document = parse(path.read_text(encoding="utf-8"), namespaceHTMLElements=False)
         progress = document.find(".//section[@id='progress']")
         self.assertIn("Tracking guidance is not available for this retirement.", "".join(progress.itertext()))
@@ -343,7 +346,7 @@ class StaticSiteTests(unittest.TestCase):
     def test_all_retirement_details_are_recreated_and_unrelated_files_are_preserved(self):
         builder.build_site(self.root)
         destination = self.root / "docs"
-        detail = destination / "retirements" / "unknown-date" / "example" / "index.html"
+        detail = self.detail_path()
         detail.write_text("stale detail page", encoding="utf-8")
         notes = detail.parent / "notes.txt"
         notes.write_text("Preserve this file.", encoding="utf-8")
@@ -379,15 +382,44 @@ class StaticSiteTests(unittest.TestCase):
             self.save()
             self.assertEqual(builder.build_site(self.root), 1)
             self.assertFalse((retirement_root / previous).exists())
-            target = retirement_root / (deadline or "unknown-date") / "example" / "index.html"
+            target = self.detail_path()
             self.assertTrue(target.is_file())
             document = parse(target.read_text(encoding="utf-8"), namespaceHTMLElements=False)
             self.assertEqual(document.find(".//body").attrib["data-home"], "../../../")
             home = (self.root / "docs" / "index.html").read_text(encoding="utf-8")
-            self.assertIn(f'href="./retirements/{deadline or "unknown-date"}/example/"', home)
+            self.assertIn(f'href=".{self.view["url"]}"', home)
         self.assertFalse((legacy / "index.html").exists())
         self.assertFalse(legacy.exists())
         self.assertEqual(len(list(retirement_root.rglob("index.html"))), 1)
+
+    def test_title_changes_move_pages_and_remove_the_old_slug(self):
+        builder.build_site(self.root)
+        old = self.detail_path()
+        self.view["record"]["title"] = "Updated: retirement title"
+        self.view["url"] = record_url(self.view["record"])
+        self.save()
+        builder.build_site(self.root)
+        self.assertFalse(old.exists())
+        self.assertTrue(self.detail_path().is_file())
+        self.assertIn("/updated-retirement-title/", self.view["url"])
+
+    def test_duplicate_title_slugs_generate_distinct_pages(self):
+        self.view["record"]["title"] = "Same retirement"
+        other = copy.deepcopy(self.view)
+        other["record"]["id"] = "second"
+        self.metadata["byId"]["second"] = other
+        self.metadata["initialIds"].append("second")
+        self.metadata["count"] = 2
+        urls = record_urls([self.view["record"], other["record"]])
+        for identifier, view in self.metadata["byId"].items():
+            view["url"] = urls[identifier]
+        self.save()
+        self.assertEqual(builder.build_site(self.root), 2)
+        home = (self.root / "docs" / "index.html").read_text(encoding="utf-8")
+        for identifier, url in urls.items():
+            self.assertTrue((self.root / "docs" / url.lstrip("/") / "index.html").is_file())
+            self.assertIn(f'href=".{url}"', home)
+            self.assertIn(f"same-retirement--{identifier}", url)
 
     def test_invalid_deadline_folder_cannot_escape_the_output_directory(self):
         for deadline in ("../../outside", "2026-02-30", ""):

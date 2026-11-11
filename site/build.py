@@ -15,7 +15,7 @@ from markupsafe import Markup, escape
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from scripts.catalog import group_timeline, prepare_site, record_url, safe_url, sanitize_question_html
+from scripts.catalog import group_timeline, prepare_site, record_urls, safe_url, sanitize_question_html
 from scripts.check_site import check_site
 
 
@@ -71,7 +71,10 @@ def build_site(root=ROOT):
     for identifier, view in metadata["byId"].items():
         if not identifier or identifier in {".", ".."} or view["record"]["id"] != identifier:
             raise ValueError(f"Invalid retirement ID in prepared metadata: {identifier!r}")
-        record_url(view["record"])
+    urls = record_urls([view["record"] for view in metadata["byId"].values()])
+    for identifier, view in metadata["byId"].items():
+        if view["url"] != urls[identifier]:
+            raise ValueError(f"Stale retirement URL in prepared metadata: {identifier!r}")
     environment = Environment(
         loader=FileSystemLoader(source / "templates"),
         autoescape=True,
@@ -115,7 +118,7 @@ def build_site(root=ROOT):
     with tempfile.TemporaryDirectory(prefix=".r-", dir=tempfile.gettempdir()) as staging:
         for view in metadata["byId"].values():
             record = view["record"]
-            path = Path(record_url(record).lstrip("/")) / "index.html"
+            path = Path(urls[record["id"]].lstrip("/")) / "index.html"
             expected.add(path)
             render(
                 "retirement.html", Path(*path.parts[1:]), record["title"], "retirement", view,

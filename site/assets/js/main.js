@@ -1,5 +1,5 @@
 import catalog from './data.js';
-import { RETIREMENT_WINDOWS, announcedYears, categoriesOf, customerLeadTime, directoryUrl, escapeHtml as e, filterRecords, formatDate, groupRetirements, groupTimeline, inRetirementWindow, recordUrl, retirementCountdown, retirementWindow, retirementYear, servicesForCategory, statusOf } from './catalog.js';
+import { RETIREMENT_WINDOWS, announcedYears, categoriesOf, customerLeadTime, directoryUrl, escapeHtml as e, filterRecords, findDetailRecord, formatDate, groupRetirements, groupTimeline, inRetirementWindow, recordUrls, retirementCountdown, retirementWindow, retirementYear, servicesForCategory, statusOf } from './catalog.js';
 function element(selector) {
     const node = document.querySelector(selector);
     if (!node)
@@ -12,6 +12,7 @@ if (!home)
 const homeUrl = new URL(home, location.href);
 const isDirectory = document.body.dataset.page === 'home';
 const activeRecord = catalog.records.find(record => record.id === document.body.dataset.record);
+const recordPaths = recordUrls(catalog.records);
 const visibleRecords = catalog.records.filter(record => !record.hidden);
 const categories = new Set(visibleRecords.flatMap(categoriesOf));
 const years = new Set(groupRetirements(visibleRecords).map(group => group.year));
@@ -20,7 +21,10 @@ const yearLabel = (year) => year === 'unknown' ? 'Unconfirmed year' : year;
 const directoryLink = (filters) => directoryUrl(filters, homeUrl.pathname);
 const icon = (name) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${name === 'clock' ? '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>' : '<path d="M5 12h14m-5-5 5 5-5 5"/>'}</svg>`;
 function detailLink(record, context = {}) {
-    const url = new URL(recordUrl(record).slice(1), homeUrl);
+    const path = recordPaths.get(record.id);
+    if (!path)
+        throw new Error(`Missing retirement route: ${record.id}`);
+    const url = new URL(path.slice(1), homeUrl);
     url.search = new URLSearchParams(Object.entries(context).filter(([, value]) => value)).toString();
     return `${url.pathname}${url.search}`;
 }
@@ -82,14 +86,7 @@ function redirectMovedDetail() {
     const match = /^retirements\/(?:(?:\d{4}-\d{2}-\d{2}|unknown-date)\/)?([^/]+)\/?$/.exec(path);
     if (!match)
         return false;
-    let id;
-    try {
-        id = decodeURIComponent(match[1]);
-    }
-    catch {
-        return false;
-    }
-    const record = catalog.records.find(record => record.id === id);
+    const record = findDetailRecord(catalog.records, recordPaths, match[1]);
     if (!record)
         return false;
     const target = new URL(detailLink(record), location.origin);

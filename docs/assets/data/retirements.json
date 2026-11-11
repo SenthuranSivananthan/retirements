@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "https://www.microsoft.com/releasecommunications/api/v2/azure",
-  "retrievedAt": "2026-11-11T21:55:10.003348Z",
+  "retrievedAt": "2026-11-11T22:41:10.401908Z",
   "records": [
     {
       "id": "466774",
@@ -16,35 +16,33 @@
       "service": "Azure Stream Analytics",
       "announcedOn": "2024-11-01",
       "lastUpdatedOn": "2024-11-01",
-      "manuallyEnriched": true,
+      "manuallyEnriched": false,
       "hidden": false,
-      "summary": "Azure Stream Analytics jobs using the Power BI output connector must move to another streaming and visualization path before October 31, 2027.",
+      "summary": "Azure stream analytics PowerBI output connector will be retired on Oct 31, 2027.\n\nWhat is changing for Azure Stream Analytics Power BI output connector?\nDateWhat happens\nBeginning October 31st, 2024New customers will not be able to…",
       "sourceUrl": "https://azure.microsoft.com/updates?id=466774",
       "questions": {
         "what": {
           "question": "What is changing?",
           "introduction": "The change and what it means, including technical and financial considerations.",
-          "announcement": "The Azure Stream Analytics Power BI output connector is being retired. Microsoft Learn says new Stream Analytics jobs cannot use the connector and existing jobs using it stop on October 31, 2027; the preserved announcement separately says new customers were already blocked from creating such jobs beginning October 31, 2024. The connector retirement is distinct from the lifecycle of Power BI real-time semantic models.",
-          "financialConsiderations": "The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating.",
-          "html": "<p>The Azure Stream Analytics <strong>Power BI output connector</strong> is being retired.</p><h3>Key dates</h3><ul><li><strong>October 31, 2024:</strong> New customers could no longer create Stream Analytics jobs with this connector.</li><li><strong>October 31, 2027:</strong> New jobs cannot use the connector, and existing jobs using it stop.</li></ul><p>This change applies to the connector, not all Stream Analytics output connectors.</p>"
+          "announcement": "Azure stream analytics PowerBI output connector will be retired on Oct 31, 2027.\n\nWhat is changing for Azure Stream Analytics Power BI output connector?\nDateWhat happens\nBeginning October 31st, 2024New customers will not be able to create new Azure Stream Analytics jobs with Power BI as output connector\n\nBeginning Oct 31 31st, 2027Existing customers will not be able to create new Azure Stream Analytics jobs with Power BI as output connector\n\nBeginning Oct 31 31st, 2027Existing Azure Stream Analytic jobs with Power BI output connector will be stopped\n\nReason for retirement: Power BI has announced retirement of real time streaming. Find out more details about Power BI Streaming Datasets retirement: real time streaming in Power BI.\nWe encourage you to transition to Fabric real time intelligence prior to the retirement date to experience the new capabilities of Fabric Real Time Intelligence including:\nEventstream\nKQL Database\nDataActivator\nReal Time Dashboards\nFrom now to 10/31/2027 existing customers can continue to use Azure stream analytics PowerBI output connector without disruption. On 10/31/2027 stream analytics jobs running with PowerBI output connector will be stopped. Resources to aid in your migration can be found below.\nRequired action\nTo avoid service disruptions, please follow these instructions to migrate to real time intelligence by 10/31/2027.\nLearn more.",
+          "financialConsiderations": "The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating."
         },
         "actions": {
           "question": "What do I need to do?",
           "introduction": "Required actions, options, and available support.",
-          "recommendedAction": "Migrate affected outputs before October 31, 2027; evaluate Fabric Real-Time Intelligence or another supported output and reporting pattern.",
-          "guidance": "Microsoft’s migration article describes routing Stream Analytics output into Fabric Eventstream through a custom endpoint and Event Hub, or using another Stream Analytics or Eventstream destination with Power BI DirectQuery. Eventhouse is one documented real-time analytics option; validate the architecture and report behavior for your workload rather than assuming feature parity.",
-          "html": "<p><strong>Plan and validate your replacement before October 31, 2027.</strong></p><ol><li>Find Stream Analytics jobs that write through the Power BI output connector and identify the reports that depend on them.</li><li>Evaluate a Fabric Real-Time Intelligence path, such as routing events to Eventstream through a custom endpoint and Event Hub, or choose another supported output and reporting pattern.</li><li>Test event delivery, report queries, and operational requirements in a nonproduction environment.</li><li>Compare pricing and feature requirements before cutover; do not assume feature parity.</li></ol>",
+          "recommendedAction": "To avoid service disruptions, please follow these instructions to migrate to real time intelligence by 10/31/2027.\nLearn more.",
+          "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
           "resources": [
             {
-              "title": "Announcing the retirement of real-time streaming in Power BI",
+              "title": "real time streaming in Power BI",
               "url": "https://go.microsoft.com/fwlink/?linkid=2295913"
             },
             {
-              "title": "Simplifying Migration to Fabric Real-Time Intelligence for Power BI Real Time Reports",
+              "title": "instructions",
               "url": "https://go.microsoft.com/fwlink/?linkid=2296200"
             },
             {
-              "title": "Fabric Real-Time Intelligence documentation - Microsoft Fabric | Microsoft Learn",
+              "title": "Learn more",
               "url": "https://go.microsoft.com/fwlink/?linkid=2295529"
             }
           ],
@@ -57,13 +55,12 @@
         "impact": {
           "question": "Where, and how much, am I impacted?",
           "introduction": "Your affected environments, resources, and users.",
-          "guidance": "The affected component is the Azure Stream Analytics Power BI output connector, not every Stream Analytics output or every Power BI real-time model.",
+          "guidance": "This announcement concerns Azure Stream Analytics. Compare the versions, regions, configurations, and exceptions in the announcement with your inventory.",
           "checklist": [
-            "Find Stream Analytics jobs that write through the Power BI output connector.",
-            "Map those outputs to dashboards, owners, and downstream consumers.",
-            "Test the selected Fabric or alternative connector path with representative events and report queries."
+            "Check every subscription and environment, including development, test, and production.",
+            "Identify dependent applications, users, and resource owners.",
+            "Estimate migration effort, downtime risk, and replacement-service costs."
           ],
-          "html": "<p>This retirement applies to Stream Analytics jobs configured with the Power BI output connector.</p><ul><li>Identify jobs using the connector across your environments.</li><li>Map each job to its dashboards, owners, and downstream consumers.</li><li>Test the selected replacement with representative events and report queries.</li></ul>",
           "notice": "No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service.",
           "advisor": {
             "title": "Azure Advisor service retirements",
@@ -73,104 +70,22 @@
         "deadline": {
           "question": "What is the deadline?",
           "introduction": "Key dates and the consequences of not acting.",
-          "date": "2027-10-31",
+          "date": null,
           "month": "October 2027",
-          "dateGuidance": "Microsoft Learn gives October 31, 2027 as the date when new Stream Analytics jobs can no longer use the connector and existing jobs using it stop. The preserved announcement also records an earlier restriction for new customers beginning October 31, 2024.",
-          "consequences": "Existing Stream Analytics jobs using this connector stop after October 31, 2027, and new jobs cannot use it. Complete and validate a replacement before that date.",
-          "html": "<p><strong>October 31, 2027</strong> is the cutoff for the Power BI output connector.</p><ul><li>New Stream Analytics jobs cannot be created with this output.</li><li>Existing jobs using the connector are stopped.</li></ul><p>Complete and validate a replacement before the cutoff.</p>"
+          "dateGuidance": "An unambiguous exact date could not be extracted from the announcement title. The source lists October 2027 as the retirement month. Review the official announcement for all applicable dates.",
+          "consequences": "After the applicable deadline, support or service availability may change. The exact consequences are service-specific; verify them in the announcement and plan to finish your migration ahead of time."
         },
         "progress": {
           "question": "How can I track progress?",
           "introduction": "What work remains, and what needs attention.",
-          "guidance": "Use Azure Advisor’s Service Retirement workbook to filter by subscription, resource group, and location, then export listed resources for team tracking. Confirm this retirement is included because resource-level coverage is available only for a subset of retirements.",
+          "guidance": "Use this planning checklist as a starting point. Record resource-level owners, target dates, blockers, and evidence in your team’s tracking system.",
           "checklist": [
             "Identify affected resources, subscriptions, and owners",
             "Review the official migration guidance and estimate cost changes",
             "Test the replacement and agree a migration plan",
             "Complete migration and validate production workloads"
           ],
-          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it.",
-          "tracking": {
-            "guidance": "Use Azure Advisor’s Service Retirement workbook to filter by subscription, resource group, and location, then export listed resources for team tracking. Confirm this retirement is included because resource-level coverage is available only for a subset of retirements.",
-            "sourceUrl": "https://learn.microsoft.com/azure/advisor/advisor-workbook-service-retirement"
-          },
-          "html": "<p>Track migration at the job level so owners can see which outputs have been replaced and validated.</p><ol><li>Assign an owner and target date for each affected job.</li><li>Record the chosen output and report path.</li><li>Track testing and production validation before the cutoff.</li></ol><p>Azure Advisor’s Service Retirement workbook can filter by subscription, resource group, and location, but resource-level coverage is available only for a subset of retirements. Verify that this retirement appears before relying on it.</p>"
-        }
-      },
-      "sourceReview": {
-        "reviewedOn": "2026-11-11",
-        "status": "enriched",
-        "issues": [
-          "The preserved announcement’s October 31, 2024 restriction applies to new Azure Stream Analytics connector customers, while the Power BI retirement article discusses Power BI semantic models; these are different scopes. The current Learn connector article confirms the October 31, 2027 milestone but does not repeat the earlier customer restriction."
-        ],
-        "sources": [
-          {
-            "title": "Azure Updates announcement (preserved catalog snapshot)",
-            "url": "https://azure.microsoft.com/updates?id=466774",
-            "sections": [
-              "what",
-              "actions",
-              "impact",
-              "deadline"
-            ],
-            "note": "The preserved announcement snapshot records the 2024 new-customer restriction and 2027 stop date. The live ID URL currently opens the general Azure Updates page, so the snapshot is used for the earlier phase."
-          },
-          {
-            "title": "Power BI output from Azure Stream Analytics",
-            "url": "https://learn.microsoft.com/azure/stream-analytics/power-bi-output",
-            "sections": [
-              "what",
-              "actions",
-              "impact",
-              "deadline"
-            ],
-            "note": "Documents the connector retirement, the October 31, 2027 creation and stop date, and Microsoft’s recommendation to explore Fabric Real-Time Intelligence."
-          },
-          {
-            "title": "Simplifying Migration to Fabric Real-Time Intelligence for Power BI Real Time Reports",
-            "url": "https://techcommunity.microsoft.com/blog/analyticsonazure/simplifying-migration-to-fabric-real-time-intelligence-for-power-bi-real-time-re/4283180",
-            "sections": [
-              "what",
-              "actions",
-              "impact"
-            ],
-            "note": "Microsoft-authored Analytics on Azure post, published October 31, 2024 and updated November 13, 2024; describes Eventstream/Eventhouse migration patterns and alternative Stream Analytics output connectors."
-          },
-          {
-            "title": "Service Retirement workbook",
-            "url": "https://learn.microsoft.com/azure/advisor/advisor-workbook-service-retirement",
-            "sections": [
-              "progress"
-            ],
-            "note": "The workbook can filter retirement impact by subscription, resource group, and location and export results for team planning; its resource-level coverage is only a subset of retirements."
-          }
-        ],
-        "resourceChecks": [
-          {
-            "url": "https://go.microsoft.com/fwlink/?linkid=2295913",
-            "resolvedUrl": "https://community.fabric.microsoft.com/blog/fbc_pbiupdatesblog/announcing-the-retirement-of-real-time-streaming-in-power-bi/5174368",
-            "status": "read",
-            "detail": "Resolved to the Power BI Updates Blog retirement announcement; it covers Power BI real-time semantic models, a distinct scope from the Azure Stream Analytics connector."
-          },
-          {
-            "url": "https://go.microsoft.com/fwlink/?linkid=2296200",
-            "resolvedUrl": "https://techcommunity.microsoft.com/blog/analyticsonazure/simplifying-migration-to-fabric-real-time-intelligence-for-power-bi-real-time-re/4283180",
-            "status": "read",
-            "detail": "Resolved to the Microsoft-authored Analytics on Azure migration article and read in full."
-          },
-          {
-            "url": "https://go.microsoft.com/fwlink/?linkid=2295529",
-            "resolvedUrl": "https://learn.microsoft.com/en-us/fabric/real-time-intelligence/",
-            "status": "read",
-            "detail": "Resolved to the Fabric Real-Time Intelligence documentation landing page."
-          }
-        ],
-        "guidanceSource": "https://learn.microsoft.com/azure/stream-analytics/power-bi-output",
-        "deadlineSource": "https://learn.microsoft.com/azure/stream-analytics/power-bi-output",
-        "originalAnnouncement": "Azure stream analytics PowerBI output connector will be retired on Oct 31, 2027.\n\nWhat is changing for Azure Stream Analytics Power BI output connector?\nDateWhat happens\nBeginning October 31st, 2024New customers will not be able to create new Azure Stream Analytics jobs with Power BI as output connector\n\nBeginning Oct 31 31st, 2027Existing customers will not be able to create new Azure Stream Analytics jobs with Power BI as output connector\n\nBeginning Oct 31 31st, 2027Existing Azure Stream Analytic jobs with Power BI output connector will be stopped\n\nReason for retirement: Power BI has announced retirement of real time streaming. Find out more details about Power BI Streaming Datasets retirement: real time streaming in Power BI.\nWe encourage you to transition to Fabric real time intelligence prior to the retirement date to experience the new capabilities of Fabric Real Time Intelligence including:\nEventstream\nKQL Database\nDataActivator\nReal Time Dashboards\nFrom now to 10/31/2027 existing customers can continue to use Azure stream analytics PowerBI output connector without disruption. On 10/31/2027 stream analytics jobs running with PowerBI output connector will be stopped. Resources to aid in your migration can be found below.\nRequired action\nTo avoid service disruptions, please follow these instructions to migrate to real time intelligence by 10/31/2027.\nLearn more.",
-        "originalDeadline": {
-          "date": null,
-          "month": "October 2027"
+          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it."
         }
       }
     },
@@ -186,25 +101,25 @@
       "service": "Azure platform",
       "announcedOn": "2024-11-01",
       "lastUpdatedOn": "2024-11-13",
-      "manuallyEnriched": true,
+      "manuallyEnriched": false,
       "hidden": false,
-      "summary": "Azure Health Data Services in Qatar Central was announced for retirement, but the preserved notice conflicts on its date and current Learn documentation still lists FHIR service in the region.",
+      "summary": "Because we're consolidating resources and there is low usage in the region, we'll be retiring Azure Health Data Services the Qatar Central region on October 31, 2025. Please ensure that you migrate to another available Azure Health Data…",
       "sourceUrl": "https://azure.microsoft.com/updates?id=466779",
       "questions": {
         "what": {
           "question": "What is changing?",
           "introduction": "The change and what it means, including technical and financial considerations.",
-          "announcement": "The preserved Azure Updates text says Azure Health Data Services in Qatar Central would be retired and all workloads there would be deleted, with associated application data lost. The text gives October 31, 2025 as the deadline but ends with a conflicting October 31, 2024 date. The current Microsoft Learn regional table still lists the FHIR service in Qatar Central and does not explain whether this is a different offering or a later availability change.",
+          "announcement": "Because we're consolidating resources and there is low usage in the region, we'll be retiring Azure Health Data Services the Qatar Central region on October 31, 2025. Please ensure that you migrate to another available Azure Health Data Services region by that date.\nUntil October 31, 2025, you can continue to use Azure Health Data Services without disruption. However, on October 31, 2025, all workloads running Azure Health Data Services in the Qatar Central region will be deleted, and associated application data will be lost. Below are resources to assist you with your migration.\nRequired action\nPlease transition your workloads to another Azure Health Data Services region before October 31, 2025.\nView the regions where Azure Health Data Services are available here.\nHelp and support\nIf you have questions, you can get answers from community experts in Microsoft Q&A. If you have a support plan and need technical assistance, please create a support request.\nAzure Health Data Services from the Qatar Central region is retiring as of October 31, 2024. We are asking customers to utilize one of our other regions or remove/backup data they wish to retain before retirement.\nCustomers may use one of our other regions.",
           "financialConsiderations": "The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating."
         },
         "actions": {
           "question": "What do I need to do?",
           "introduction": "Required actions, options, and available support.",
-          "recommendedAction": "Confirm the current status of each Qatar Central workload and required data with Microsoft before relying on the historic retirement notice.",
-          "guidance": "If workloads remain active, identify the Azure Health Data Services components and dependencies, confirm that a destination region supports the required services and features, and establish the applicable export or migration procedure with Microsoft. The reviewed regional availability page describes service availability, not a complete cross-region migration procedure.",
+          "recommendedAction": "Please transition your workloads to another Azure Health Data Services region before October 31, 2025.\nView the regions where Azure Health Data Services are available here.",
+          "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
           "resources": [
             {
-              "title": "Products available by region",
+              "title": "here",
               "url": "https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?msockid=103ee06b480d6d021ebff08749be6c9f"
             },
             {
@@ -212,7 +127,7 @@
               "url": "https://go.microsoft.com/fwlink/?linkid=2296900"
             },
             {
-              "title": "Azure support request",
+              "title": "support request",
               "url": "https://go.microsoft.com/fwlink/?linkid=2290031"
             }
           ],
@@ -225,11 +140,11 @@
         "impact": {
           "question": "Where, and how much, am I impacted?",
           "introduction": "Your affected environments, resources, and users.",
-          "guidance": "The preserved notice says the retirement covers Azure Health Data Services workloads in Qatar Central and warns of workload deletion and associated application-data loss; current Learn documentation still lists FHIR service availability in that region, so verify the affected product and current state.",
+          "guidance": "This announcement concerns Azure platform. Compare the versions, regions, configurations, and exceptions in the announcement with your inventory.",
           "checklist": [
-            "Inventory FHIR, DICOM, MedTech, and other Azure Health Data Services components deployed in Qatar Central.",
-            "Compare required services and features with the destination region because availability varies by region.",
-            "Confirm with service owners and Microsoft whether the announced retirement affected each workload and its data."
+            "Check every subscription and environment, including development, test, and production.",
+            "Identify dependent applications, users, and resource owners.",
+            "Estimate migration effort, downtime risk, and replacement-service costs."
           ],
           "notice": "No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service.",
           "advisor": {
@@ -242,91 +157,20 @@
           "introduction": "Key dates and the consequences of not acting.",
           "date": "2025-10-31",
           "month": "October 2025",
-          "dateGuidance": "The preserved announcement’s main notice gives October 31, 2025, while its closing sentence says October 31, 2024. The date has passed, and the current Learn regional table still lists FHIR service in Qatar Central; the reviewed sources do not resolve the discrepancy or explain current retirement status.",
-          "consequences": "The announcement warned that Qatar Central workloads and associated application data would be deleted. Because the stated date has passed and current documentation does not reconcile the notice with regional availability, verify whether any workload or data was affected before planning further action."
+          "dateGuidance": "This date is extracted from the announcement title. Check the full announcement for phased deadlines, extensions, and exceptions.",
+          "consequences": "After the applicable deadline, support or service availability may change. The exact consequences are service-specific; verify them in the announcement and plan to finish your migration ahead of time."
         },
         "progress": {
           "question": "How can I track progress?",
           "introduction": "What work remains, and what needs attention.",
-          "guidance": "Use Azure Advisor’s Service Retirement workbook to filter by subscription, resource group, and location, then export listed resources for team tracking. Confirm this retirement is included because resource-level coverage is available only for a subset of retirements.",
+          "guidance": "Use this planning checklist as a starting point. Record resource-level owners, target dates, blockers, and evidence in your team’s tracking system.",
           "checklist": [
             "Identify affected resources, subscriptions, and owners",
             "Review the official migration guidance and estimate cost changes",
             "Test the replacement and agree a migration plan",
             "Complete migration and validate production workloads"
           ],
-          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it.",
-          "tracking": {
-            "guidance": "Use Azure Advisor’s Service Retirement workbook to filter by subscription, resource group, and location, then export listed resources for team tracking. Confirm this retirement is included because resource-level coverage is available only for a subset of retirements.",
-            "sourceUrl": "https://learn.microsoft.com/azure/advisor/advisor-workbook-service-retirement"
-          }
-        }
-      },
-      "sourceReview": {
-        "reviewedOn": "2026-11-11",
-        "status": "enriched",
-        "issues": [
-          "The preserved announcement gives October 31, 2025 in its main notice and October 31, 2024 in its closing paragraph; no reviewed source resolves the internal date conflict.",
-          "The current English Learn regional-availability page lists FHIR service in Qatar Central, while the preserved announcement says Azure Health Data Services workloads in the region would retire. The reviewed documentation does not clarify whether the entries refer to distinct offerings or a later availability change.",
-          "The live Azure Updates ID URL currently opens a general updates index; the retirement wording is retained from the catalog snapshot. The product-region resource also opens a general availability page without rendering product-level regional data in the fetched content."
-        ],
-        "sources": [
-          {
-            "title": "Azure Updates announcement (preserved catalog snapshot)",
-            "url": "https://azure.microsoft.com/updates?id=466779",
-            "sections": [
-              "what",
-              "actions",
-              "impact",
-              "deadline"
-            ],
-            "note": "The preserved catalog announcement says Qatar Central workloads would retire and data would be lost, but its text contains conflicting dates. The live ID URL currently opens the general Azure Updates page."
-          },
-          {
-            "title": "Regional availability of services and features",
-            "url": "https://learn.microsoft.com/azure/healthcare-apis/services-features-regional-availability",
-            "sections": [
-              "what",
-              "actions",
-              "impact"
-            ],
-            "note": "Lists Azure Health Data Services components by region and shows FHIR service in Qatar Central; service and feature availability differs by region. It does not explain the historic region-retirement notice."
-          },
-          {
-            "title": "Service Retirement workbook",
-            "url": "https://learn.microsoft.com/azure/advisor/advisor-workbook-service-retirement",
-            "sections": [
-              "progress"
-            ],
-            "note": "The workbook can filter retirement impact by subscription, resource group, and location and export results for team planning; its resource-level coverage is only a subset of retirements."
-          }
-        ],
-        "resourceChecks": [
-          {
-            "url": "https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?msockid=103ee06b480d6d021ebff08749be6c9f",
-            "resolvedUrl": "https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/?msockid=103ee06b480d6d021ebff08749be6c9f",
-            "status": "partial",
-            "detail": "Opened the general Products available by region page, but the fetched content did not include Azure Health Data Services product-level regional results."
-          },
-          {
-            "url": "https://go.microsoft.com/fwlink/?linkid=2296900",
-            "resolvedUrl": null,
-            "status": "not-evidence",
-            "detail": "Microsoft Q&A is a community support destination, not authoritative retirement documentation; it was not treated as evidence."
-          },
-          {
-            "url": "https://go.microsoft.com/fwlink/?linkid=2290031",
-            "resolvedUrl": null,
-            "status": "not-evidence",
-            "detail": "The support-request link is a customer-support route, not product retirement evidence; it was not followed as evidence."
-          }
-        ],
-        "guidanceSource": null,
-        "deadlineSource": null,
-        "originalAnnouncement": "Because we're consolidating resources and there is low usage in the region, we'll be retiring Azure Health Data Services the Qatar Central region on October 31, 2025. Please ensure that you migrate to another available Azure Health Data Services region by that date.\nUntil October 31, 2025, you can continue to use Azure Health Data Services without disruption. However, on October 31, 2025, all workloads running Azure Health Data Services in the Qatar Central region will be deleted, and associated application data will be lost. Below are resources to assist you with your migration.\nRequired action\nPlease transition your workloads to another Azure Health Data Services region before October 31, 2025.\nView the regions where Azure Health Data Services are available here.\nHelp and support\nIf you have questions, you can get answers from community experts in Microsoft Q&A. If you have a support plan and need technical assistance, please create a support request.\nAzure Health Data Services from the Qatar Central region is retiring as of October 31, 2024. We are asking customers to utilize one of our other regions or remove/backup data they wish to retain before retirement.\nCustomers may use one of our other regions.",
-        "originalDeadline": {
-          "date": "2025-10-31",
-          "month": "October 2025"
+          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it."
         }
       }
     },
@@ -343,25 +187,25 @@
       "service": "Azure Monitor",
       "announcedOn": "2024-11-01",
       "lastUpdatedOn": "2024-11-01",
-      "manuallyEnriched": true,
+      "manuallyEnriched": false,
       "hidden": false,
-      "summary": "Change Analysis (classic) in Azure Monitor was announced for retirement in October 2025; migrate or verify current status, and keep the exact date unconfirmed because current documentation does not corroborate the classic API deadline.",
+      "summary": "On October 31st, 2025, Change Analysis (classic) API in Azure Monitor will be retired. As a result, any workloads using Change Analysis (classic) API in Azure Monitor will be deleted and the associated application data will be lost.…",
       "sourceUrl": "https://azure.microsoft.com/updates?id=466784",
       "questions": {
         "what": {
           "question": "What is changing?",
           "introduction": "The change and what it means, including technical and financial considerations.",
-          "announcement": "The preserved retirement notice applies to Change Analysis (classic) in Azure Monitor and directs customers to Change Analysis powered by Azure Resource Graph (ARG). Current Learn documentation describes the ARG-powered experience, but does not confirm the current status of the classic API retirement.",
+          "announcement": "On October 31st, 2025, Change Analysis (classic) API in Azure Monitor will be retired. As a result, any workloads using Change Analysis (classic) API in Azure Monitor will be deleted and the associated application data will be lost.\nBefore the retirement date, you'll need to migrate to Change Analysis powered by Azure Resource Graph (ARG), which provides the same monitoring capabilities plus additional benefits, including:\nReal-time insights\nGranular filtering\nGrouping capabilities\nChange-actor identification\nCross-query\nAlerting\nRequired action\nTo avoid service disruptions, migrate to Change Analysis powered by ARG before October 31st, 2025.\nLearn more.",
           "financialConsiderations": "The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating."
         },
         "actions": {
           "question": "What do I need to do?",
           "introduction": "Required actions, options, and available support.",
-          "recommendedAction": "Inventory tools and applications that use Change Analysis (classic), verify their current status, and test the Azure Resource Graph-powered experience for the queries you require.",
-          "guidance": "The Learn article describes querying Change Analysis through Microsoft.ResourceGraph/resources and notes that change history is queryable for 14 days. Export needed history for longer retention and validate the documented control-plane scope and unsupported data-plane or App Service file changes before migrating.",
+          "recommendedAction": "To avoid service disruptions, migrate to Change Analysis powered by ARG before October 31st, 2025.\nLearn more.",
+          "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
           "resources": [
             {
-              "title": "Analyze changes to your Azure resources with Change Analysis - Azure Resource Graph | Microsoft Learn",
+              "title": "Learn more",
               "url": "https://go.microsoft.com/fwlink/?linkid=2296008"
             }
           ],
@@ -374,11 +218,11 @@
         "impact": {
           "question": "Where, and how much, am I impacted?",
           "introduction": "Your affected environments, resources, and users.",
-          "guidance": "The preserved announcement warns that classic API workloads and associated data would be deleted. The current Azure Resource Graph documentation covers control-plane changes, not data-plane changes or App Service file/configuration changes, and says query history is available for 14 days.",
+          "guidance": "This announcement concerns Azure Monitor. Compare the versions, regions, configurations, and exceptions in the announcement with your inventory.",
           "checklist": [
-            "Identify scripts, applications, and operators that call Change Analysis (classic).",
-            "Check whether required queries depend on data-plane or App Service file/configuration changes.",
-            "Export history that must remain available longer than the documented 14-day query window."
+            "Check every subscription and environment, including development, test, and production.",
+            "Identify dependent applications, users, and resource owners.",
+            "Estimate migration effort, downtime risk, and replacement-service costs."
           ],
           "notice": "No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service.",
           "advisor": {
@@ -391,77 +235,20 @@
           "introduction": "Key dates and the consequences of not acting.",
           "date": null,
           "month": "October 2025",
-          "dateGuidance": "The preserved announcement specifies October 31, 2025, but the current Learn documentation covers Azure Resource Graph-powered Change Analysis and does not confirm the classic API deadline or its current status. Keep the exact structured date unconfirmed; the stated month has passed.",
-          "consequences": "The preserved notice warned that classic API workloads and associated application data would be deleted. No reviewed current source confirms whether that occurred or whether exceptions were made; verify current service and data status."
+          "dateGuidance": "An unambiguous exact date could not be extracted from the announcement title. The source lists October 2025 as the retirement month. Review the official announcement for all applicable dates.",
+          "consequences": "After the applicable deadline, support or service availability may change. The exact consequences are service-specific; verify them in the announcement and plan to finish your migration ahead of time."
         },
         "progress": {
           "question": "How can I track progress?",
           "introduction": "What work remains, and what needs attention.",
-          "guidance": "Use Azure Advisor’s Service Retirement workbook to filter by subscription, resource group, and location, then export listed resources for team tracking. Confirm this retirement is included because resource-level coverage is available only for a subset of retirements.",
+          "guidance": "Use this planning checklist as a starting point. Record resource-level owners, target dates, blockers, and evidence in your team’s tracking system.",
           "checklist": [
             "Identify affected resources, subscriptions, and owners",
             "Review the official migration guidance and estimate cost changes",
             "Test the replacement and agree a migration plan",
             "Complete migration and validate production workloads"
           ],
-          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it.",
-          "tracking": {
-            "guidance": "Use Azure Advisor’s Service Retirement workbook to filter by subscription, resource group, and location, then export listed resources for team tracking. Confirm this retirement is included because resource-level coverage is available only for a subset of retirements.",
-            "sourceUrl": "https://learn.microsoft.com/azure/advisor/advisor-workbook-service-retirement"
-          }
-        }
-      },
-      "sourceReview": {
-        "reviewedOn": "2026-11-11",
-        "status": "enriched",
-        "issues": [
-          "The preserved announcement specifies October 31, 2025, but the exact structured deadline remains null because the current Learn page does not corroborate a classic API retirement date. The date has passed; the reviewed current documentation does not confirm the shutdown or data-deletion outcome."
-        ],
-        "sources": [
-          {
-            "title": "Azure Updates announcement (preserved catalog snapshot)",
-            "url": "https://azure.microsoft.com/updates?id=466784",
-            "sections": [
-              "what",
-              "actions",
-              "impact",
-              "deadline"
-            ],
-            "note": "The preserved Azure Updates snapshot specifies October 31, 2025 and warns that classic API workloads and associated data would be deleted. The live ID URL currently opens the general Azure Updates page."
-          },
-          {
-            "title": "Analyze changes to your Azure resources with Change Analysis - Azure Resource Graph | Microsoft Learn",
-            "url": "https://learn.microsoft.com/en-us/azure/governance/resource-graph/changes/resource-graph-changes",
-            "sections": [
-              "what",
-              "actions",
-              "impact"
-            ],
-            "note": "Describes the Azure Resource Graph Change Analysis experience, the Microsoft.ResourceGraph/resources query API, control-plane scope, 14-day queryable history, and export options for longer retention; it does not confirm the classic API retirement date."
-          },
-          {
-            "title": "Service Retirement workbook",
-            "url": "https://learn.microsoft.com/azure/advisor/advisor-workbook-service-retirement",
-            "sections": [
-              "progress"
-            ],
-            "note": "The workbook can filter retirement impact by subscription, resource group, and location and export results for team planning; its resource-level coverage is only a subset of retirements."
-          }
-        ],
-        "resourceChecks": [
-          {
-            "url": "https://go.microsoft.com/fwlink/?linkid=2296008",
-            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/governance/resource-graph/changes/resource-graph-changes",
-            "status": "read",
-            "detail": "Resolved to the current Azure Resource Graph Change Analysis documentation and read in full; the page describes the replacement experience, not the classic API retirement."
-          }
-        ],
-        "guidanceSource": "https://learn.microsoft.com/en-us/azure/governance/resource-graph/changes/resource-graph-changes",
-        "deadlineSource": null,
-        "originalAnnouncement": "On October 31st, 2025, Change Analysis (classic) API in Azure Monitor will be retired. As a result, any workloads using Change Analysis (classic) API in Azure Monitor will be deleted and the associated application data will be lost.\nBefore the retirement date, you'll need to migrate to Change Analysis powered by Azure Resource Graph (ARG), which provides the same monitoring capabilities plus additional benefits, including:\nReal-time insights\nGranular filtering\nGrouping capabilities\nChange-actor identification\nCross-query\nAlerting\nRequired action\nTo avoid service disruptions, migrate to Change Analysis powered by ARG before October 31st, 2025.\nLearn more.",
-        "originalDeadline": {
-          "date": null,
-          "month": "October 2025"
+          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it."
         }
       }
     },
@@ -478,25 +265,25 @@
       "service": "Azure Monitor",
       "announcedOn": "2024-11-06",
       "lastUpdatedOn": "2024-11-06",
-      "manuallyEnriched": true,
+      "manuallyEnriched": false,
       "hidden": false,
-      "summary": "Change Analysis (classic) in Azure Monitor was announced for retirement in October 2025; migrate or verify current status, and keep the exact date unconfirmed because current documentation does not corroborate the classic API deadline.",
+      "summary": "On October 31st, 2025, Change Analysis (classic) API in Azure Monitor will be retired. As a result, any workloads using Change Analysis (classic) API in Azure Monitor will be deleted and the associated application data will be lost.…",
       "sourceUrl": "https://azure.microsoft.com/updates?id=467340",
       "questions": {
         "what": {
           "question": "What is changing?",
           "introduction": "The change and what it means, including technical and financial considerations.",
-          "announcement": "The preserved retirement notice applies to Change Analysis (classic) in Azure Monitor and directs customers to Change Analysis powered by Azure Resource Graph (ARG). Current Learn documentation describes the ARG-powered experience, but does not confirm the current status of the classic API retirement.",
+          "announcement": "On October 31st, 2025, Change Analysis (classic) API in Azure Monitor will be retired. As a result, any workloads using Change Analysis (classic) API in Azure Monitor will be deleted and the associated application data will be lost.\nBefore the retirement date, you'll need to migrate to Change Analysis powered by Azure Resource Graph (ARG), which provides the same monitoring capabilities plus additional benefits, including:\nReal-time insights\nGranular filtering\nGrouping capabilities\nChange-actor identification\nCross-query\nAlerting\nRequired action\nTo avoid service disruptions, migrate to Change Analysis powered by ARG before October 31st 2025.\nLearn more.",
           "financialConsiderations": "The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating."
         },
         "actions": {
           "question": "What do I need to do?",
           "introduction": "Required actions, options, and available support.",
-          "recommendedAction": "Inventory tools and applications that use Change Analysis (classic), verify their current status, and test the Azure Resource Graph-powered experience for the queries you require.",
-          "guidance": "The Learn article describes querying Change Analysis through Microsoft.ResourceGraph/resources and notes that change history is queryable for 14 days. Export needed history for longer retention and validate the documented control-plane scope and unsupported data-plane or App Service file changes before migrating.",
+          "recommendedAction": "To avoid service disruptions, migrate to Change Analysis powered by ARG before October 31st 2025.\nLearn more.",
+          "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
           "resources": [
             {
-              "title": "Analyze changes to your Azure resources with Change Analysis - Azure Resource Graph | Microsoft Learn",
+              "title": "Learn more",
               "url": "https://go.microsoft.com/fwlink/?linkid=2296008"
             }
           ],
@@ -509,11 +296,11 @@
         "impact": {
           "question": "Where, and how much, am I impacted?",
           "introduction": "Your affected environments, resources, and users.",
-          "guidance": "The preserved announcement warns that classic API workloads and associated data would be deleted. The current Azure Resource Graph documentation covers control-plane changes, not data-plane changes or App Service file/configuration changes, and says query history is available for 14 days.",
+          "guidance": "This announcement concerns Azure Monitor. Compare the versions, regions, configurations, and exceptions in the announcement with your inventory.",
           "checklist": [
-            "Identify scripts, applications, and operators that call Change Analysis (classic).",
-            "Check whether required queries depend on data-plane or App Service file/configuration changes.",
-            "Export history that must remain available longer than the documented 14-day query window."
+            "Check every subscription and environment, including development, test, and production.",
+            "Identify dependent applications, users, and resource owners.",
+            "Estimate migration effort, downtime risk, and replacement-service costs."
           ],
           "notice": "No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service.",
           "advisor": {
@@ -526,77 +313,20 @@
           "introduction": "Key dates and the consequences of not acting.",
           "date": null,
           "month": "October 2025",
-          "dateGuidance": "The preserved announcement specifies October 31, 2025, but the current Learn documentation covers Azure Resource Graph-powered Change Analysis and does not confirm the classic API deadline or its current status. Keep the exact structured date unconfirmed; the stated month has passed.",
-          "consequences": "The preserved notice warned that classic API workloads and associated application data would be deleted. No reviewed current source confirms whether that occurred or whether exceptions were made; verify current service and data status."
+          "dateGuidance": "An unambiguous exact date could not be extracted from the announcement title. The source lists October 2025 as the retirement month. Review the official announcement for all applicable dates.",
+          "consequences": "After the applicable deadline, support or service availability may change. The exact consequences are service-specific; verify them in the announcement and plan to finish your migration ahead of time."
         },
         "progress": {
           "question": "How can I track progress?",
           "introduction": "What work remains, and what needs attention.",
-          "guidance": "Use Azure Advisor’s Service Retirement workbook to filter by subscription, resource group, and location, then export listed resources for team tracking. Confirm this retirement is included because resource-level coverage is available only for a subset of retirements.",
+          "guidance": "Use this planning checklist as a starting point. Record resource-level owners, target dates, blockers, and evidence in your team’s tracking system.",
           "checklist": [
             "Identify affected resources, subscriptions, and owners",
             "Review the official migration guidance and estimate cost changes",
             "Test the replacement and agree a migration plan",
             "Complete migration and validate production workloads"
           ],
-          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it.",
-          "tracking": {
-            "guidance": "Use Azure Advisor’s Service Retirement workbook to filter by subscription, resource group, and location, then export listed resources for team tracking. Confirm this retirement is included because resource-level coverage is available only for a subset of retirements.",
-            "sourceUrl": "https://learn.microsoft.com/azure/advisor/advisor-workbook-service-retirement"
-          }
-        }
-      },
-      "sourceReview": {
-        "reviewedOn": "2026-11-11",
-        "status": "enriched",
-        "issues": [
-          "The preserved announcement specifies October 31, 2025, but the exact structured deadline remains null because the current Learn page does not corroborate a classic API retirement date. The date has passed; the reviewed current documentation does not confirm the shutdown or data-deletion outcome."
-        ],
-        "sources": [
-          {
-            "title": "Azure Updates announcement (preserved catalog snapshot)",
-            "url": "https://azure.microsoft.com/updates?id=467340",
-            "sections": [
-              "what",
-              "actions",
-              "impact",
-              "deadline"
-            ],
-            "note": "The preserved Azure Updates snapshot specifies October 31, 2025 and warns that classic API workloads and associated data would be deleted. The live ID URL currently opens the general Azure Updates page."
-          },
-          {
-            "title": "Analyze changes to your Azure resources with Change Analysis - Azure Resource Graph | Microsoft Learn",
-            "url": "https://learn.microsoft.com/en-us/azure/governance/resource-graph/changes/resource-graph-changes",
-            "sections": [
-              "what",
-              "actions",
-              "impact"
-            ],
-            "note": "Describes the Azure Resource Graph Change Analysis experience, the Microsoft.ResourceGraph/resources query API, control-plane scope, 14-day queryable history, and export options for longer retention; it does not confirm the classic API retirement date."
-          },
-          {
-            "title": "Service Retirement workbook",
-            "url": "https://learn.microsoft.com/azure/advisor/advisor-workbook-service-retirement",
-            "sections": [
-              "progress"
-            ],
-            "note": "The workbook can filter retirement impact by subscription, resource group, and location and export results for team planning; its resource-level coverage is only a subset of retirements."
-          }
-        ],
-        "resourceChecks": [
-          {
-            "url": "https://go.microsoft.com/fwlink/?linkid=2296008",
-            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/governance/resource-graph/changes/resource-graph-changes",
-            "status": "read",
-            "detail": "Resolved to the current Azure Resource Graph Change Analysis documentation and read in full; the page describes the replacement experience, not the classic API retirement."
-          }
-        ],
-        "guidanceSource": "https://learn.microsoft.com/en-us/azure/governance/resource-graph/changes/resource-graph-changes",
-        "deadlineSource": null,
-        "originalAnnouncement": "On October 31st, 2025, Change Analysis (classic) API in Azure Monitor will be retired. As a result, any workloads using Change Analysis (classic) API in Azure Monitor will be deleted and the associated application data will be lost.\nBefore the retirement date, you'll need to migrate to Change Analysis powered by Azure Resource Graph (ARG), which provides the same monitoring capabilities plus additional benefits, including:\nReal-time insights\nGranular filtering\nGrouping capabilities\nChange-actor identification\nCross-query\nAlerting\nRequired action\nTo avoid service disruptions, migrate to Change Analysis powered by ARG before October 31st 2025.\nLearn more.",
-        "originalDeadline": {
-          "date": null,
-          "month": "October 2025"
+          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it."
         }
       }
     },
@@ -613,41 +343,41 @@
       "service": "Azure Monitor",
       "announcedOn": "2024-11-07",
       "lastUpdatedOn": "2024-11-21",
-      "manuallyEnriched": true,
+      "manuallyEnriched": false,
       "hidden": false,
-      "summary": "Application Insights Availability Tests stopped supporting specified legacy TLS configurations on May 1, 2025; tests without a compatible TLS handshake can fail.",
+      "summary": "On May 1, 2025, in alignment with the Azure-wide legacy TLS retirement announcement, TLS 1.0/1.1 protocol versions and TLS 1.2/1.3 Legacy Cipher Suites and Elliptical Curves will be retired for Application Insights Availability Tests.…",
       "sourceUrl": "https://azure.microsoft.com/updates?id=467600",
       "questions": {
         "what": {
           "question": "What is changing?",
           "introduction": "The change and what it means, including technical and financial considerations.",
-          "announcement": "The preserved notice says Application Insights Availability Tests would stop supporting TLS 1.0/1.1 and listed legacy TLS 1.2/1.3 cipher suites and elliptic curves on May 1, 2025. Current Learn documentation confirms that legacy TLS 1.2/1.3 cipher suites and curves are blocked from that date and lists supported combinations; the current product page does not repeat the notice’s TLS 1.0/1.1 wording.",
+          "announcement": "On May 1, 2025, in alignment with the Azure-wide legacy TLS retirement announcement, TLS 1.0/1.1 protocol versions and TLS 1.2/1.3 Legacy Cipher Suites and Elliptical Curves will be retired for Application Insights Availability Tests. If you’re using any of the listed TLS Configurations, your tests may stop working after May 1, 2025.\nRequired action\nTo ensure your Availability Tests continue to work after May 1, 2025, we recommend ensuring that any remote endpoint your Availability Test is configured to interact with supports at least one of the supported TLS combinations.\nFor information on how to find out what TLS combinations your servers currently support, please visit here. If you have questions about common issues, please visit the FAQ for answers.",
           "financialConsiderations": "The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating."
         },
         "actions": {
           "question": "What do I need to do?",
           "introduction": "Required actions, options, and available support.",
-          "recommendedAction": "Check every remote endpoint used by an Availability Test, including dependent requests, and ensure it supports at least one TLS combination still supported by the test service.",
-          "guidance": "The Learn guidance explains that a test succeeds only when the remote endpoint and Availability Test client share a TLS protocol, cipher suite, and elliptic curve; otherwise the handshake fails. Test private endpoints from a machine that can reach them, and work with the server owner to enable a supported combination. The negotiated configuration is not exposed by the test service.",
+          "recommendedAction": "To ensure your Availability Tests continue to work after May 1, 2025, we recommend ensuring that any remote endpoint your Availability Test is configured to interact with supports at least one of the supported TLS combinations.\nFor information on how to find out what TLS combinations your servers currently support, please visit here. If you have questions about common issues, please visit the FAQ for answers.",
+          "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
           "resources": [
             {
-              "title": "Azure Updates",
+              "title": "Azure-wide legacy TLS retirement announcement",
               "url": "https://azure.microsoft.com/updates/azure-support-tls-will-end-by-31-october-2024-2/"
             },
             {
-              "title": "Application Insights availability tests",
+              "title": "TLS Configurations",
               "url": "https://go.microsoft.com/fwlink/?linkid=2296087"
             },
             {
-              "title": "Application Insights availability tests",
+              "title": "supported TLS combinations",
               "url": "https://go.microsoft.com/fwlink/?linkid=2295972"
             },
             {
-              "title": "Application Insights availability tests",
+              "title": "here",
               "url": "https://go.microsoft.com/fwlink/?linkid=2295973"
             },
             {
-              "title": "Application Insights availability tests",
+              "title": "FAQ",
               "url": "https://go.microsoft.com/fwlink/?linkid=2296175"
             }
           ],
@@ -660,11 +390,11 @@
         "impact": {
           "question": "Where, and how much, am I impacted?",
           "introduction": "Your affected environments, resources, and users.",
-          "guidance": "Availability Tests act as clients to their configured endpoints; tests without a shared supported TLS combination fail the TLS handshake. The current product guidance lists the combinations that remain supported after the deprecation.",
+          "guidance": "This announcement concerns Azure Monitor. Compare the versions, regions, configurations, and exceptions in the announcement with your inventory.",
           "checklist": [
-            "List the endpoints and dependent requests configured in each Application Insights Availability Test.",
-            "Check each endpoint for a supported protocol, cipher suite, and elliptic curve combination.",
-            "Review test results for TLS handshake failures and retest after endpoint configuration changes."
+            "Check every subscription and environment, including development, test, and production.",
+            "Identify dependent applications, users, and resource owners.",
+            "Estimate migration effort, downtime risk, and replacement-service costs."
           ],
           "notice": "No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service.",
           "advisor": {
@@ -675,125 +405,22 @@
         "deadline": {
           "question": "What is the deadline?",
           "introduction": "Key dates and the consequences of not acting.",
-          "date": "2025-05-01",
+          "date": null,
           "month": "May 2025",
-          "dateGuidance": "Microsoft Learn states that Azure blocks the listed legacy TLS configurations for Application Insights on May 1, 2025. This deadline has passed.",
-          "consequences": "After May 1, 2025, an Availability Test whose endpoint has no supported TLS combination can fail its TLS handshake. Verify current test results and update affected endpoints."
+          "dateGuidance": "An unambiguous exact date could not be extracted from the announcement title. The source lists May 2025 as the retirement month. Review the official announcement for all applicable dates.",
+          "consequences": "After the applicable deadline, support or service availability may change. The exact consequences are service-specific; verify them in the announcement and plan to finish your migration ahead of time."
         },
         "progress": {
           "question": "How can I track progress?",
           "introduction": "What work remains, and what needs attention.",
-          "guidance": "Use Azure Advisor’s Service Retirement workbook to filter by subscription, resource group, and location, then export listed resources for team tracking. Confirm this retirement is included because resource-level coverage is available only for a subset of retirements.",
+          "guidance": "Use this planning checklist as a starting point. Record resource-level owners, target dates, blockers, and evidence in your team’s tracking system.",
           "checklist": [
             "Identify affected resources, subscriptions, and owners",
             "Review the official migration guidance and estimate cost changes",
             "Test the replacement and agree a migration plan",
             "Complete migration and validate production workloads"
           ],
-          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it.",
-          "tracking": {
-            "guidance": "Use Azure Advisor’s Service Retirement workbook to filter by subscription, resource group, and location, then export listed resources for team tracking. Confirm this retirement is included because resource-level coverage is available only for a subset of retirements.",
-            "sourceUrl": "https://learn.microsoft.com/azure/advisor/advisor-workbook-service-retirement"
-          }
-        }
-      },
-      "sourceReview": {
-        "reviewedOn": "2026-11-11",
-        "status": "enriched",
-        "issues": [
-          "The preserved announcement includes TLS 1.0/1.1, while the current Application Insights availability page’s specific deprecation section lists legacy TLS 1.2/1.3 cipher suites and elliptic curves. The record retains the broader announcement wording with this distinction explicit.",
-          "The Microsoft Security Community Blog post lists Application Insights availability tests among Azure offerings covered by the legacy TLS transition, but it does not state this test-specific May 1, 2025 deadline; the Learn page supplies that date.",
-          "The original Azure-wide Azure Updates link now opens a general Azure Updates index rather than the specific retirement entry."
-        ],
-        "sources": [
-          {
-            "title": "Azure Updates announcement (preserved catalog snapshot)",
-            "url": "https://azure.microsoft.com/updates?id=467600",
-            "sections": [
-              "what",
-              "actions",
-              "impact",
-              "deadline"
-            ],
-            "note": "The preserved announcement identifies the Application Insights Availability Tests TLS change and May 1, 2025 date. Its live ID URL currently opens the general Azure Updates page."
-          },
-          {
-            "title": "Application Insights availability tests",
-            "url": "https://learn.microsoft.com/azure/azure-monitor/app/availability",
-            "sections": [
-              "what",
-              "actions",
-              "impact",
-              "deadline"
-            ],
-            "note": "States that Azure blocks the specified legacy TLS 1.2/1.3 cipher suites and elliptic curves for Application Insights on May 1, 2025, lists supported combinations, and describes endpoint TLS handshakes."
-          },
-          {
-            "title": "Application Insights FAQ - Frequently Asked Questions",
-            "url": "https://learn.microsoft.com/azure/azure-monitor/app/application-insights-faq",
-            "sections": [
-              "what",
-              "actions",
-              "impact"
-            ],
-            "note": "Explains how Application Insights availability tests negotiate TLS with configured endpoints, that mismatched configurations fail the handshake, and how to validate endpoints."
-          },
-          {
-            "title": "Support for legacy TLS protocols and cipher suites in Azure Offerings",
-            "url": "https://techcommunity.microsoft.com/blog/microsoft-security-blog/support-for-legacy-tls-protocols-and-cipher-suites-in-azure-offerings/3952099",
-            "sections": [
-              "what",
-              "impact"
-            ],
-            "note": "Microsoft Security Community Blog post, originally published October 23, 2023 and updated October 25, 2024; its service list includes Application Insights availability tests and links to the product documentation, but it does not specify the test-specific deadline."
-          },
-          {
-            "title": "Service Retirement workbook",
-            "url": "https://learn.microsoft.com/azure/advisor/advisor-workbook-service-retirement",
-            "sections": [
-              "progress"
-            ],
-            "note": "The workbook can filter retirement impact by subscription, resource group, and location and export results for team planning; its resource-level coverage is only a subset of retirements."
-          }
-        ],
-        "resourceChecks": [
-          {
-            "url": "https://azure.microsoft.com/updates/azure-support-tls-will-end-by-31-october-2024-2/",
-            "resolvedUrl": "https://azure.microsoft.com/en-us/updates?id=update-retirement-tls1-0-tls1-1-versions-azure-services",
-            "status": "partial",
-            "detail": "Redirects to the general Azure Updates index; the specific announcement was not present in the fetched page."
-          },
-          {
-            "url": "https://go.microsoft.com/fwlink/?linkid=2296087",
-            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/availability?tabs=standard#deprecating-tls-configuration",
-            "status": "read",
-            "detail": "Resolved to the Application Insights availability tests Learn page; read the TLS deprecation and supported-configuration sections."
-          },
-          {
-            "url": "https://go.microsoft.com/fwlink/?linkid=2295972",
-            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/availability?tabs=standard#supported-tls-configurations",
-            "status": "read",
-            "detail": "Resolved to the supported TLS configurations section of the Application Insights availability tests Learn page."
-          },
-          {
-            "url": "https://go.microsoft.com/fwlink/?linkid=2295973",
-            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/availability#how-do-i-validate-what-tls-configuration-a-remote-endpoint-supports",
-            "status": "read",
-            "detail": "Resolved to the Learn section describing how to validate TLS support on a remote endpoint."
-          },
-          {
-            "url": "https://go.microsoft.com/fwlink/?linkid=2296175",
-            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/availability?tabs=standard#tls-support",
-            "status": "read",
-            "detail": "Resolved to the TLS support FAQ section for Application Insights availability tests."
-          }
-        ],
-        "guidanceSource": "https://learn.microsoft.com/azure/azure-monitor/app/availability",
-        "deadlineSource": "https://learn.microsoft.com/azure/azure-monitor/app/availability",
-        "originalAnnouncement": "On May 1, 2025, in alignment with the Azure-wide legacy TLS retirement announcement, TLS 1.0/1.1 protocol versions and TLS 1.2/1.3 Legacy Cipher Suites and Elliptical Curves will be retired for Application Insights Availability Tests. If you’re using any of the listed TLS Configurations, your tests may stop working after May 1, 2025.\nRequired action\nTo ensure your Availability Tests continue to work after May 1, 2025, we recommend ensuring that any remote endpoint your Availability Test is configured to interact with supports at least one of the supported TLS combinations.\nFor information on how to find out what TLS combinations your servers currently support, please visit here. If you have questions about common issues, please visit the FAQ for answers.",
-        "originalDeadline": {
-          "date": null,
-          "month": "May 2025"
+          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it."
         }
       }
     },
@@ -8871,23 +8498,22 @@
       "service": "Azure AI Custom Vision",
       "announcedOn": "2025-10-13",
       "lastUpdatedOn": "2025-10-13",
-      "manuallyEnriched": true,
+      "manuallyEnriched": false,
       "hidden": false,
-      "summary": "Azure Custom Vision Service will retire on September 25, 2028. Microsoft says full support continues until then and calls to the service will fail afterward. Customers should select and validate a replacement based on their image-classification or object-detection needs.",
+      "summary": "Microsoft is announcing the planned retirement of the Azure Custom Vision service.\nMicrosoft will provide full support for all existing Azure Custom Vision customers until 9/25/2028. During this support window, customers are encouraged…",
       "sourceUrl": "https://azure.microsoft.com/updates?id=502914",
       "questions": {
         "what": {
           "question": "What is changing?",
           "introduction": "The change and what it means, including technical and financial considerations.",
-          "announcement": "Azure Custom Vision Service is scheduled to retire on September 25, 2028. Microsoft says full support will continue for existing customers until then; after retirement, calls to the service will fail. The migration guide lists Azure Machine Learning AutoML for traditional custom image classification and object detection, Microsoft Foundry models for flexible generative vision solutions, and Azure Content Understanding in Foundry Tools (preview) for managed generative image-classification workflows.",
-          "financialConsiderations": "Compare the selected alternative's pricing and required capabilities with your workload. Microsoft does not specify a universal cost change or guarantee feature parity.",
-          "html": "<p><strong>Azure Custom Vision Service retires on September 25, 2028.</strong> Full support for existing customers continues until then; calls to the service will fail after retirement.</p><h3>Options in Microsoft's migration guide</h3><ul><li>Azure Machine Learning AutoML for traditional custom image classification and object detection.</li><li>Microsoft Foundry models for flexible generative vision solutions.</li><li>Azure Content Understanding in Foundry Tools (preview) for managed generative image-classification workflows.</li></ul>"
+          "announcement": "Microsoft is announcing the planned retirement of the Azure Custom Vision service.\nMicrosoft will provide full support for all existing Azure Custom Vision customers until 9/25/2028. During this support window, customers are encouraged to begin planning and executing their transition to alternative solutions. Depending on your use case, we recommend the following paths for transition:\n\nFor creating custom models for both image classification and object detection, Azure Machine Learning AutoML offers the ability to train both custom model types using classic machine learning techniques\n\nMicrosoft is also investing in Generative AI-based solutions that increase accuracy in custom scenarios using prompt engineering and other techniques.\n\nTo use generative models, you can use one of models available in the Azure AI Foundry model catalog and create your own solution for customized vision.\n\nFor a managed generative solution for image classification, Azure AI Content Understanding (currently in public preview) offers the ability to create custom classification workflows. It also supports processing unstructured data of any type (image, documents, audio, video) and extract structured insights based on pre-defined or user-defined formats.\n\nFor additional context on alternative options, see the Azure Custom Vision documentation.",
+          "financialConsiderations": "The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating."
         },
         "actions": {
           "question": "What do I need to do?",
           "introduction": "Required actions, options, and available support.",
-          "recommendedAction": "Plan and validate migration from Azure Custom Vision before September 25, 2028.",
-          "guidance": "Inventory current usage and dependencies, identify image-classification and object-detection requirements, and choose an alternative based on scenario, integration, cost, and support. Export labeled datasets and model metadata, convert them as the selected service requires, test the replacement in staging, then update production workflows and retrain stakeholders. The migration guide's separate plan-by milestone of September 25, 2026 has already passed.",
+          "recommendedAction": null,
+          "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
           "resources": [
             {
               "title": "Azure AI Foundry model catalog",
@@ -8898,160 +8524,50 @@
               "url": "https://aka.ms/cu-foundry"
             },
             {
-              "title": "Migrate from Custom Vision Service",
+              "title": "Azure Custom Vision documentation.",
               "url": "https://aka.ms/custom-vision-migration"
-            },
-            {
-              "title": "Set up AutoML to train computer vision models",
-              "url": "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models"
-            },
-            {
-              "title": "Azure Content Understanding in Foundry Tools image solutions",
-              "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/image/overview"
             }
           ],
           "supportGuidance": "For help with your specific environment, contact your Microsoft account team or Azure support.",
           "support": {
             "title": "Azure support",
             "url": "https://azure.microsoft.com/support/create-ticket/"
-          },
-          "html": "<p><strong>Plan and validate migration before September 25, 2028.</strong></p><ol><li>Inventory Custom Vision projects, dependencies, and image-classification or object-detection requirements.</li><li>Choose an alternative based on the scenario: AutoML for traditional custom models, Foundry models for flexible generative solutions, or Content Understanding (preview) for managed generative image classification.</li><li>Export labeled datasets and model metadata; check the target service's formats and convert data as needed. Do not assume projects or trained models transfer unchanged.</li><li>Test the selected solution in staging, update production workflows, and retrain stakeholders.</li></ol><p>The Learn guide's separate planning milestone of September 25, 2026 has passed; the stated service retirement date remains September 25, 2028.</p>"
+          }
         },
         "impact": {
           "question": "Where, and how much, am I impacted?",
           "introduction": "Your affected environments, resources, and users.",
-          "guidance": "The retirement affects workloads that use Azure Custom Vision Service. Inventory projects, endpoints, calling applications, owners, and downstream workflows to determine your exposure; the public announcement cannot identify tenant-specific resources.",
+          "guidance": "This announcement concerns Azure AI Custom Vision. Compare the versions, regions, configurations, and exceptions in the announcement with your inventory.",
           "checklist": [
-            "Inventory Custom Vision projects and endpoints across subscriptions and environments.",
-            "Map each project to its image-classification or object-detection use case, owners, applications, and downstream workflows.",
-            "Check Azure Advisor's retirement views and manually verify Custom Vision projects that aren't listed."
+            "Check every subscription and environment, including development, test, and production.",
+            "Identify dependent applications, users, and resource owners.",
+            "Estimate migration effort, downtime risk, and replacement-service costs."
           ],
-          "notice": "Azure Advisor's Service Retirement workbook provides resource-level analysis for only a subset of retirements. A missing resource listing does not establish that a Custom Vision workload is unaffected.",
+          "notice": "No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service.",
           "advisor": {
             "title": "Azure Advisor service retirements",
             "url": "https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement"
-          },
-          "html": "<p>The retirement affects workloads that use Azure Custom Vision Service. The exact resources and user impact depend on your tenant and cannot be determined from the public announcement.</p><ul><li>Inventory Custom Vision projects and endpoints across subscriptions and environments.</li><li>Map projects to image-classification or object-detection use cases, owners, applications, and downstream workflows.</li><li>Check Azure Advisor's retirement views and manually verify projects that aren't listed.</li></ul>"
+          }
         },
         "deadline": {
           "question": "What is the deadline?",
           "introduction": "Key dates and the consequences of not acting.",
           "date": "2028-09-25",
           "month": "September 2028",
-          "dateGuidance": "Azure Updates and the Microsoft Learn migration guide identify September 25, 2028 as the service retirement date.",
-          "consequences": "Microsoft says full support for existing customers continues until September 25, 2028, after which calls to Custom Vision will fail. The migration guide also names September 25, 2026 as a separate plan-by milestone; that planning date has passed and is not the service cutoff. Complete and validate your transition before the 2028 retirement date.",
-          "html": "<p><strong>September 25, 2028</strong> is the service retirement date. Microsoft says full support continues until then and calls to Custom Vision fail afterward.</p><h3>Separate planning milestone</h3><p>The migration guide also says to make a transition plan by September 25, 2026. That planning milestone has passed; it is not the service cutoff.</p>"
+          "dateGuidance": "This date is extracted from the announcement title. Check the full announcement for phased deadlines, extensions, and exceptions.",
+          "consequences": "After the applicable deadline, support or service availability may change. The exact consequences are service-specific; verify them in the announcement and plan to finish your migration ahead of time."
         },
         "progress": {
           "question": "How can I track progress?",
           "introduction": "What work remains, and what needs attention.",
-          "guidance": "Use Azure Advisor's Service Retirement workbook to check whether this retirement has resource-level coverage. Where available, filter by subscription, resource group, and location, then export results for the team. Track each Custom Vision project, owner, selected alternative, data export, testing, cutover, and validation status in a team system. Manually inventory projects that the workbook does not list.",
+          "guidance": "Use this planning checklist as a starting point. Record resource-level owners, target dates, blockers, and evidence in your team’s tracking system.",
           "checklist": [
-            "Record each Custom Vision project, owner, and dependent application.",
-            "Track the selected alternative and dataset/model export or conversion status.",
-            "Record staging test results, production cutover, and final validation before September 25, 2028."
+            "Identify affected resources, subscriptions, and owners",
+            "Review the official migration guidance and estimate cost changes",
+            "Test the replacement and agree a migration plan",
+            "Complete migration and validate production workloads"
           ],
-          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it.",
-          "tracking": {
-            "guidance": "Use the Service Retirement workbook's All Services view to find the retirement and check whether resource-level data appears in Impacted Services. Where available, filter by subscription, resource group, and location, and export the results for migration tracking. The workbook provides resource-level analysis for only a subset of retirements, so inventory Custom Vision projects manually if they're not listed.",
-            "sourceUrl": "https://learn.microsoft.com/en-us/azure/advisor/advisor-workbook-service-retirement"
-          },
-          "html": "<p>Use Azure Advisor's Service Retirement workbook to check for resource-level coverage; filter and export available results for the team. Track project owners, the selected alternative, data export, testing, cutover, and validation in your team's system.</p><ol><li>Record each Custom Vision project, owner, and dependent application.</li><li>Track the replacement and dataset/model export or conversion.</li><li>Record staging tests, production cutover, and validation before September 25, 2028.</li></ol><p><strong>Coverage limitation:</strong> the workbook provides resource-level analysis for only a subset of retirements. Manually inventory Custom Vision projects that aren't listed.</p>"
-        }
-      },
-      "sourceReview": {
-        "reviewedOn": "2026-11-11",
-        "status": "enriched",
-        "issues": [
-          "The Learn migration guide also sets a September 25, 2026 plan-by milestone, which had passed on the review date. The same guide separately confirms September 25, 2028 as the service retirement date; these are distinct milestones."
-        ],
-        "guidanceSource": "https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/migration-options",
-        "deadlineSource": "https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/migration-options",
-        "sources": [
-          {
-            "title": "Retirement: Azure Custom Vision will be retired on September 25, 2028",
-            "url": "https://azure.microsoft.com/updates?id=502914",
-            "sections": [
-              "what",
-              "actions",
-              "impact",
-              "deadline"
-            ],
-            "note": "The official Azure Updates announcement gives the September 25, 2028 retirement date, support period, and scenario-based alternatives; its original text is preserved in the catalog."
-          },
-          {
-            "title": "Migrate from Custom Vision Service",
-            "url": "https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/migration-options",
-            "sections": [
-              "what",
-              "actions",
-              "impact",
-              "deadline"
-            ],
-            "note": "Microsoft Learn says calls fail after September 25, 2028, full support continues until then, and lists alternatives by scenario. It instructs customers to export labeled datasets and model metadata, convert data as needed, and test and update production workflows. It also contains a separate September 25, 2026 plan-by milestone."
-          },
-          {
-            "title": "Service Retirement workbook",
-            "url": "https://learn.microsoft.com/en-us/azure/advisor/advisor-workbook-service-retirement",
-            "sections": [
-              "impact",
-              "progress"
-            ],
-            "note": "The workbook supports subscription, resource-group, and location filters and exporting results. Microsoft documents that resource-level analysis is available only for a subset of retirements."
-          },
-          {
-            "title": "Set up AutoML to train computer vision models",
-            "url": "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models",
-            "sections": [
-              "actions"
-            ],
-            "note": "Microsoft Learn describes the AutoML computer-vision training workflow; the Custom Vision migration guide identifies AutoML as an option for traditional custom image classification and object detection."
-          },
-          {
-            "title": "Azure Content Understanding in Foundry Tools image solutions",
-            "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/image/overview",
-            "sections": [
-              "actions"
-            ],
-            "note": "The image-solutions page describes schema-based image analysis and structured extraction. The Custom Vision migration guide identifies Content Understanding in Foundry Tools, currently in preview, as a managed generative option for image-classification workflows."
-          }
-        ],
-        "resourceChecks": [
-          {
-            "url": "https://ai.azure.com/catalog/models",
-            "resolvedUrl": "https://ai.azure.com/catalog/models",
-            "status": "read",
-            "detail": "The public Microsoft Foundry model catalog loads and lists models; it is not retirement-specific migration guidance."
-          },
-          {
-            "url": "https://aka.ms/cu-foundry",
-            "resolvedUrl": "https://ai.azure.com/explore/aiservices/vision/contentunderstanding",
-            "status": "partial",
-            "detail": "The shortlink opens a Microsoft Foundry Content Understanding app shell. Its public HTML is a JavaScript client shell rather than readable migration documentation; the specific Learn guide is linked separately."
-          },
-          {
-            "url": "https://aka.ms/custom-vision-migration",
-            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/migration-options",
-            "status": "read",
-            "detail": "The shortlink resolves to the public Microsoft Learn migration guide, which was read in full."
-          },
-          {
-            "url": "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models",
-            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models",
-            "status": "read",
-            "detail": "Public Microsoft Learn computer-vision AutoML setup guidance was retrieved; migration suitability is described in the Custom Vision migration guide."
-          },
-          {
-            "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/image/overview",
-            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/ai-services/content-understanding/image/overview",
-            "status": "read",
-            "detail": "Public Microsoft Learn image-solutions guidance was retrieved; the migration guide marks Content Understanding as a preview alternative."
-          }
-        ],
-        "originalAnnouncement": "Microsoft is announcing the planned retirement of the Azure Custom Vision service.\nMicrosoft will provide full support for all existing Azure Custom Vision customers until 9/25/2028. During this support window, customers are encouraged to begin planning and executing their transition to alternative solutions. Depending on your use case, we recommend the following paths for transition:\n\nFor creating custom models for both image classification and object detection, Azure Machine Learning AutoML offers the ability to train both custom model types using classic machine learning techniques\n\nMicrosoft is also investing in Generative AI-based solutions that increase accuracy in custom scenarios using prompt engineering and other techniques.\n\nTo use generative models, you can use one of models available in the Azure AI Foundry model catalog and create your own solution for customized vision.\n\nFor a managed generative solution for image classification, Azure AI Content Understanding (currently in public preview) offers the ability to create custom classification workflows. It also supports processing unstructured data of any type (image, documents, audio, video) and extract structured insights based on pre-defined or user-defined formats.\n\nFor additional context on alternative options, see the Azure Custom Vision documentation.",
-        "originalDeadline": {
-          "date": "2028-09-25",
-          "month": "September 2028"
+          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it."
         }
       }
     },

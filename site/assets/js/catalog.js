@@ -154,8 +154,73 @@ export function directoryUrl(filters, base = '/') {
     const query = new URLSearchParams(Object.entries(filters).filter(([, value]) => value));
     return query.size ? `${base}?${query}` : base;
 }
-export function recordUrl(record) {
-    return `/retirements/${record.questions.deadline.date || 'unknown-date'}/${encodeURIComponent(record.id)}/`;
+const TITLE_SLUG_MAX_LENGTH = 80;
+const DETAIL_SLUG_MAX_LENGTH = 130;
+export function titleSlug(title) {
+    let slug = title.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, TITLE_SLUG_MAX_LENGTH).replace(/-+$/, '') || 'retirement';
+    if (/^(?:con|prn|aux|nul|com[1-9]|lpt[1-9])$/.test(slug))
+        slug = `retirement-${slug}`;
+    return slug;
+}
+function identifierSlug(identifier) {
+    return [...new TextEncoder().encode(identifier)].map(byte =>
+        (byte >= 97 && byte <= 122) || (byte >= 48 && byte <= 57) || byte === 45
+            ? String.fromCharCode(byte) : `_${byte.toString(16).padStart(2, '0')}`).join('');
+}
+export function recordUrl(record, duplicateSlug = false) {
+    const deadline = record.questions.deadline.date;
+    if (!isCatalogDate(deadline))
+        throw new Error(`Invalid retirement date for ${record.id}: ${deadline}`);
+    let slug = titleSlug(record.title);
+    if (duplicateSlug) {
+        const suffix = identifierSlug(record.id);
+        const available = DETAIL_SLUG_MAX_LENGTH - suffix.length - 2;
+        if (available < 1)
+            throw new Error(`Record ID is too long to disambiguate title slug: ${record.id}`);
+        slug = `${slug.slice(0, available).replace(/-+$/, '')}--${suffix}`;
+    }
+    return `/retirements/${deadline || 'unknown-date'}/${slug}/`;
+}
+export function recordUrls(records) {
+    const slugs = records.map(record => titleSlug(record.title));
+    const counts = new Map();
+    for (const slug of slugs)
+        counts.set(slug, (counts.get(slug) || 0) + 1);
+    const urls = new Map();
+    const seen = new Set();
+    records.forEach((record, index) => {
+        if (urls.has(record.id))
+            throw new Error(`Duplicate record ID: ${record.id}`);
+        const url = recordUrl(record, counts.get(slugs[index]) > 1);
+        if (seen.has(url.toLowerCase()))
+            throw new Error(`Duplicate retirement route: ${url}`);
+        seen.add(url.toLowerCase());
+        urls.set(record.id, url);
+    });
+    return urls;
+}
+export function findDetailRecord(records, urls, encodedSegment) {
+    let segment;
+    try {
+        segment = decodeURIComponent(encodedSegment);
+    }
+    catch (error) {
+        if (error instanceof URIError)
+            return null;
+        throw error;
+    }
+    const separator = segment.indexOf('--');
+    const suffix = separator < 0 ? null : segment.slice(separator + 2);
+    const matches = records.filter(record => {
+        const url = urls.get(record.id);
+        if (!url)
+            throw new Error(`Missing retirement route: ${record.id}`);
+        const slug = url.slice(0, -1).split('/').pop();
+        return record.id === segment || slug === segment
+            || (suffix !== null && identifierSlug(record.id) === suffix);
+    });
+    return matches.length === 1 ? matches[0] : null;
 }
 export function filterRecords(records, filters, today = new Date().toISOString().slice(0, 10)) {
     const terms = (filters.q || '').toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);

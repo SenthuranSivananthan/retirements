@@ -1,5 +1,7 @@
 import copy
 import json
+import shutil
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -7,7 +9,7 @@ from pathlib import Path
 from fixtures import ITEM, catalog
 from scripts.catalog import (
     ROOT, QUESTIONS, DETAIL_QUESTIONS, categories_of, countdown, customer_lead_time, days_until, format_date, group_retirements,
-    parse_catalog, prepare_site, record_url, retirement_year, safe_url, status_of,
+    parse_catalog, prepare_site, record_url, record_urls, retirement_year, safe_url, status_of, title_slug,
     group_timeline, in_retirement_window, retirement_outlook, retirement_window, sanitize_question_html, services_of, sort_timeline,
 )
 from scripts.feed import normalize, title_date
@@ -107,8 +109,9 @@ class CatalogTests(unittest.TestCase):
             metadata = prepare_site(root, "2026-11-10")
             self.assertEqual(metadata["initialIds"], ["latest", "middle", "earliest", "unknown"])
 
-    def test_detail_urls_use_exact_deadlines_or_unknown_date_and_keep_unique_ids(self):
+    def test_detail_urls_use_title_slugs_and_exact_or_unknown_deadlines(self):
         record = catalog()["records"][0]
+        record["title"] = "Retirement: Café & API Management!"
         for deadline, month, folder in (
             ("2026-05-12", None, "2026-05-12"),
             ("2028-02-29", None, "2028-02-29"),
@@ -117,9 +120,72 @@ class CatalogTests(unittest.TestCase):
         ):
             record["questions"]["deadline"].update({"date": deadline, "month": month})
             with self.subTest(deadline=deadline, month=month):
-                self.assertEqual(record_url(record), f"/retirements/{folder}/a/")
-        record["id"] = "record /?#"
-        self.assertEqual(record_url(record), "/retirements/unknown-date/record%20%2F%3F%23/")
+                self.assertEqual(record_url(record), f"/retirements/{folder}/retirement-cafe-api-management/")
+        self.assertEqual(title_slug("CON"), "retirement-con")
+        self.assertEqual(title_slug("退休"), "retirement")
+        self.assertLessEqual(len(title_slug("Long title " * 20)), 80)
+
+    def test_duplicate_title_slugs_are_disambiguated_with_record_ids(self):
+        first = copy.deepcopy(catalog()["records"][0])
+        first.update({"id": "A", "title": "Shared: Café!"})
+        first["questions"]["deadline"]["date"] = "2026-05-12"
+        second = copy.deepcopy(first)
+        second.update({"id": "record /?#", "title": "Shared Cafe"})
+        second["questions"]["deadline"]["date"] = None
+        urls = record_urls([first, second])
+        self.assertEqual(urls["A"], "/retirements/2026-05-12/shared-cafe--_41/")
+        self.assertEqual(urls["record /?#"], "/retirements/unknown-date/shared-cafe--record_20_2f_3f_23/")
+        self.assertEqual(record_urls([second, first]), urls)
+        second["id"] = "x" * 129
+        with self.assertRaisesRegex(ValueError, "too long"):
+            record_urls([first, second])
+
+    @unittest.skipUnless(shutil.which("node"), "Node.js is optional")
+    def test_browser_routes_and_legacy_lookup_match_static_routes(self):
+        def record(identifier, title, deadline=None):
+            return {"id": identifier, "title": title, "questions": {"deadline": {"date": deadline}}}
+
+        records = [
+            record("123", "Café: What's next?", "2027-01-02"),
+            record("old-id", "Same title"),
+            record("record /?#", "Same title", "2028-03-04"),
+            record("A", "Another"),
+            record("a", "Another"),
+            record("reserved", "CON"),
+            record("nonlatin", "退休"),
+            record("unique-name", "Other title"),
+            record("someone", "Unique name"),
+        ]
+        segments = [
+            "old-id", "record%20%2F%3F%23", "same-title--record_20_2f_3f_23",
+            "previous-title--record_20_2f_3f_23", "cafe-what-s-next", "%zz", "missing", "unique-name",
+        ]
+        module = (ROOT / "site" / "assets" / "js" / "catalog.js").as_uri()
+        program = f"""
+            import {{ readFile }} from 'node:fs/promises';
+            const source = await readFile(new URL({json.dumps(module)}), 'utf8');
+            const {{ recordUrls, findDetailRecord }} = await import(
+                `data:text/javascript;base64,${{Buffer.from(source).toString('base64')}}`
+            );
+            let input = '';
+            for await (const chunk of process.stdin) input += chunk;
+            const {{ records, segments }} = JSON.parse(input);
+            const urls = recordUrls(records);
+            console.log(JSON.stringify({{
+                urls: Object.fromEntries(urls),
+                resolved: segments.map(segment => findDetailRecord(records, urls, segment)?.id ?? null),
+            }}));
+        """
+        result = subprocess.run(
+            [shutil.which("node"), "--input-type=module", "-e", program],
+            input=json.dumps({"records": records, "segments": segments}), text=True, capture_output=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        actual = json.loads(result.stdout)
+        self.assertEqual(actual["urls"], record_urls(records))
+        self.assertEqual(actual["resolved"], [
+            "old-id", "record /?#", "record /?#", "record /?#", "123", None, None, None,
+        ])
 
     def test_calendar_windows_cover_whole_months_and_leap_years(self):
         for today, window, expected in (

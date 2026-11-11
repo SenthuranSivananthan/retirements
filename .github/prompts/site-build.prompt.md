@@ -27,7 +27,7 @@ Use this prompt to change or rebuild the website. For evidence-based catalog enr
 - The outlook uses exact retirement dates only. Cumulative 6/12/18-month windows include the full current UTC month through the last day of the target month. The retired-this-year window is January 1 through yesterday. Unknown and month-only dates are excluded from exact-date windows.
 - Customer lead time is retirement date minus announcement date, displayed as calendar years, months, and days. Clamp dates to the last valid day when adding calendar months; preserve negative durations, omit zero units, and show `Not calculable` when either exact date is missing. Show it below the retirement date in the main timeline, in the detail facts, and in a yellow pill in the detail countdown banner.
 - Keep core pages, five answers, sidebar navigation, and the initial timeline available without JavaScript. Treat search, filtering, countdown updates, and theme controls as progressive enhancements. Escape catalog content and preserve safe URL handling.
-- Detail URLs use the exact deadline as `retirements/YYYY-MM-DD/<id>/`; unknown or month-only dates use `retirements/unknown-date/<id>/`. Do not infer an exact date from an announcement date or title.
+- Detail URLs use `retirements/YYYY-MM-DD/<title-slug>/`, or `retirements/unknown-date/<title-slug>/` for unknown or month-only dates. Derive matching safe, length-limited slugs from titles in Python and JavaScript; append `--<record-id>` only for duplicate title slugs across the full catalog, including hidden records. Preserve unambiguous redirects from legacy ID URLs and outdated date folders, including query strings and anchors. Do not infer an exact date from an announcement date or title.
 
 ## Build and verification
 
