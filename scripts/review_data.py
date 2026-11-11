@@ -17,14 +17,15 @@ def review_report(catalog, limit=10):
     records = catalog["records"]
     reviewed = [record for record in records if "sourceReview" in record]
     unreviewed = [record for record in records if "sourceReview" not in record]
-    eligible = [record for record in unreviewed if not record["manuallyEnriched"]]
+    eligible = unreviewed
+    manual_only = [record for record in unreviewed if record["manuallyEnriched"]]
     rechecks = sorted(reviewed, key=lambda record: (record["sourceReview"]["reviewedOn"], record["id"]))
     recheck_count = min(len(rechecks), max(1, limit // 5)) if reviewed else 0
     selected = rechecks[:recheck_count] + eligible[:limit - recheck_count]
     selected += rechecks[recheck_count:recheck_count + max(0, limit - len(selected))]
     return {
         "total": len(records), "reviewed": len(reviewed), "unreviewed": len(unreviewed),
-        "manualOnly": len(unreviewed) - len(eligible),
+        "manualOnly": len(manual_only),
         "enriched": sum(record["sourceReview"]["status"] == "enriched" for record in reviewed),
         "needsReview": [
             {"id": record["id"], "issues": record["sourceReview"]["issues"]} for record in reviewed
@@ -56,11 +57,12 @@ def apply_reviews(batch, output=ROOT / "data" / "retirements.json"):
             raise ValueError("Unknown or duplicate review ID")
         seen.add(identifier)
         record = by_id[identifier]
-        if record["manuallyEnriched"] and "sourceReview" not in record:
-            raise ValueError(f"Existing manual enrichment for {identifier} requires explicit human reconciliation")
+        manual_only = record["manuallyEnriched"] and "sourceReview" not in record
         questions = update["questions"]
         if not isinstance(questions, dict) or set(questions) != set(QUESTIONS):
             raise ValueError("Each review must address exactly five questions")
+        if manual_only and update["summary"] != record["summary"]:
+            raise ValueError(f"Manual-only record {identifier} can receive review metadata only; preserve its summary")
         review = copy.deepcopy(update["sourceReview"])
         if not isinstance(review, dict) or "originalAnnouncement" in review or "originalDeadline" in review:
             raise ValueError("Original source evidence is captured automatically, not supplied by the review")
@@ -78,6 +80,8 @@ def apply_reviews(batch, output=ROOT / "data" / "retirements.json"):
             allowed = (set(record["questions"][section]) - {"question"}) | ({"tracking"} if section == "progress" else set())
             if not isinstance(changes, dict) or set(changes) - allowed:
                 raise ValueError(f"Invalid answer fields for {identifier}/{section}")
+            if manual_only and changes:
+                raise ValueError(f"Manual-only record {identifier} can receive review metadata only; preserve its answers")
             record["questions"][section].update(copy.deepcopy(changes))
         record.update({"summary": update["summary"], "sourceReview": review, "manuallyEnriched": True})
     parse_catalog(catalog)

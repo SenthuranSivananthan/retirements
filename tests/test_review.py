@@ -266,20 +266,36 @@ class ReviewTests(unittest.TestCase):
         record = copy.deepcopy(value["records"][0])
         record["id"] = "manual"
         record["manuallyEnriched"] = True
+        record["customNotes"] = {"owner": "Platform team"}
         value["records"].append(record)
         self.output.write_text(json.dumps(value), encoding="utf-8")
         report = review_report(value, 10)
         self.assertEqual(report["manualOnly"], 1)
-        self.assertNotIn("manual", [item["id"] for item in report["next"]])
+        self.assertIn("manual", [item["id"] for item in report["next"]])
         batch = self.batch()
         batch["reviews"][0]["id"] = "manual"
-        with self.assertRaisesRegex(ValueError, "human reconciliation"):
-            apply_reviews(batch, self.output)
-        reviewed = apply_reviews(self.batch(), self.output)
+        batch["reviews"][0]["summary"] = record["summary"]
+        batch["reviews"][0]["questions"] = {section: {} for section in QUESTIONS}
+        unsafe_batch = copy.deepcopy(batch)
+        unsafe_batch["reviews"][0]["summary"] = "Overwrite custom summary."
+        with self.assertRaisesRegex(ValueError, "preserve its summary"):
+            apply_reviews(unsafe_batch, self.output)
+        unsafe_batch = copy.deepcopy(batch)
+        unsafe_batch["reviews"][0]["questions"]["what"]["announcement"] = "Overwrite manual answer."
+        with self.assertRaisesRegex(ValueError, "preserve its answers"):
+            apply_reviews(unsafe_batch, self.output)
+        # Apply the metadata-only batch to the manual record without replacing its content.
+        reviewed = apply_reviews(batch, self.output)
+        manual = next(item for item in reviewed["records"] if item["id"] == "manual")
+        self.assertEqual(manual["summary"], record["summary"])
+        self.assertEqual(manual["questions"], record["questions"])
+        self.assertEqual(manual["customNotes"], record["customNotes"])
+        self.assertEqual(manual["sourceReview"]["status"], "enriched")
         report = review_report(reviewed, 10)
         self.assertEqual(report["reviewed"], 1)
         self.assertEqual(report["enriched"], 1)
-        self.assertEqual(report["next"][0]["id"], reviewed["records"][0]["id"])
+        self.assertEqual(report["manualOnly"], 0)
+        self.assertEqual({item["id"] for item in report["next"]}, {"a", "manual"})
         for limit in (0, -1, True):
             with self.assertRaises(ValueError):
                 review_report(reviewed, limit)
