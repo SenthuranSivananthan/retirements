@@ -1454,36 +1454,36 @@
       "service": "Automation",
       "announcedOn": "2025-01-23",
       "lastUpdatedOn": "2025-01-23",
-      "manuallyEnriched": false,
-      "summary": "Starting April 1, 2025, all jobs running on agent-based User Hybrid Runbook Worker will be stopped.\n\nAzure Automation Agent-based User Hybrid Worker (Windows & Linux) retired on August 31, 2024, and is no longer supported. It poses a…",
+      "manuallyEnriched": true,
+      "summary": "Agent-based Azure Automation User Hybrid Workers retired in August 2024, and jobs on them stopped on April 1, 2025. Extension-based User Hybrid Workers are the supported platform.",
       "sourceUrl": "https://azure.microsoft.com/updates?id=477734",
       "questions": {
         "what": {
           "question": "What is changing?",
-          "introduction": "The change and what it means, including technical and financial considerations.",
-          "announcement": "Starting April 1, 2025, all jobs running on agent-based User Hybrid Runbook Worker will be stopped.\n\nAzure Automation Agent-based User Hybrid Worker (Windows & Linux) retired on August 31, 2024, and is no longer supported. It poses a potential Security risk since Agent-based Hybrid Worker has not been getting any Security fixes post-retirement. Hence, it is strongly recommended that you move to extension-based User Hybrid Runbook Worker (Windows & Linux) for executing Hybrid jobs.\n\nKey benefits of new approach:\n- Enhanced security posture for your VMs through access control using system-assigned managed identities, instead of self-managed certificates\n- Improved operational productivity for keeping the workers up to date, using automatic upgrades and at-scale management of the VMs\n- Simplified installation of extension while eliminating the need to install Log Analytics agent.\n\nFollow the instructions to migrate your agent-based User Hybrid Runbook Workers to extension-based Hybrid Workers before April 1, 2025.",
-          "financialConsiderations": "The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating."
+          "introduction": "This retirement applies to agent-based User Hybrid Runbook Workers, not every Azure Automation worker.",
+          "announcement": "Azure Automation retired agent-based User Hybrid Runbook Workers on August 31, 2024. Starting April 1, 2025, jobs running on agent-based workers are stopped. Microsoft identifies extension-based User Hybrid Workers as the supported platform.",
+          "financialConsiderations": "The reviewed sources do not quantify migration costs or compare pricing."
         },
         "actions": {
           "question": "What do I need to do?",
-          "introduction": "Required actions, options, and available support.",
-          "recommendedAction": null,
-          "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
+          "introduction": "Move applicable User Hybrid Workers to the supported extension-based platform.",
+          "recommendedAction": "If you still depend on agent-based User Hybrid Workers, follow the current Learn deployment guidance to onboard extension-based workers and migrate the associated runbooks. The announced job-stop date has passed.",
+          "guidance": "Microsoft Learn describes extension-based workers as the supported platform and explains how they can coexist with agent-based workers during migration. The old migration URL now redirects to the current extension-based deployment article.",
           "resources": [
             {
-              "title": "Windows",
+              "title": "Deploy an extension-based Windows or Linux User Hybrid Runbook Worker in Azure Automation",
               "url": "https://docs.microsoft.com/en-us/azure/automation/automation-windows-hrw-install"
             },
             {
-              "title": "Linux",
+              "title": "Deploy an extension-based Windows or Linux User Hybrid Runbook Worker in Azure Automation",
               "url": "https://docs.microsoft.com/en-us/azure/automation/automation-linux-hrw-install"
             },
             {
-              "title": "extension-based User Hybrid Runbook Worker (Windows & Linux)",
+              "title": "Deploy an extension-based Windows or Linux User Hybrid Runbook Worker in Azure Automation",
               "url": "https://docs.microsoft.com/en-us/azure/automation/extension-based-hybrid-runbook-worker-install?tabs=windows"
             },
             {
-              "title": "instructions",
+              "title": "Deploy an extension-based Windows or Linux User Hybrid Runbook Worker in Azure Automation",
               "url": "https://learn.microsoft.com/en-us/azure/automation/migrate-existing-agent-based-hybrid-worker-to-extension-based-workers?tabs=bicep-template%2Cwin-hrw"
             }
           ],
@@ -1495,14 +1495,14 @@
         },
         "impact": {
           "question": "Where, and how much, am I impacted?",
-          "introduction": "Your affected environments, resources, and users.",
-          "guidance": "This announcement concerns Automation. Compare the versions, regions, configurations, and exceptions in the announcement with your inventory.",
+          "introduction": "The affected workloads are runbooks executing on agent-based User Hybrid Workers.",
+          "guidance": "The announcement limits the job-stop change to agent-based User Hybrid Workers. It does not say that extension-based workers or every Azure Automation job is affected.",
           "checklist": [
             "Check every subscription and environment, including development, test, and production.",
             "Identify dependent applications, users, and resource owners.",
             "Estimate migration effort, downtime risk, and replacement-service costs."
           ],
-          "notice": "No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service.",
+          "notice": "This catalog cannot inspect Automation accounts, worker groups, or runbook execution in your tenant.",
           "advisor": {
             "title": "Azure Advisor service retirements",
             "url": "https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement"
@@ -1510,26 +1510,101 @@
         },
         "deadline": {
           "question": "What is the deadline?",
-          "introduction": "Key dates and the consequences of not acting.",
+          "introduction": "The announced job-stop date was April 1, 2025.",
           "date": "2025-04-01",
           "month": "April 2025",
-          "dateGuidance": "This date is extracted from the announcement title. Check the full announcement for phased deadlines, extensions, and exceptions.",
-          "consequences": "After the applicable deadline, support or service availability may change. The exact consequences are service-specific; verify them in the announcement and plan to finish your migration ahead of time."
+          "dateGuidance": "Microsoft Learn states that jobs running on agent-based Hybrid Workers stop starting April 1, 2025, and that agent-based User Hybrid Runbook Workers retired on August 31, 2024.",
+          "consequences": "Jobs running on agent-based Hybrid Workers are stopped from April 1, 2025. The agent-based User Hybrid Runbook Worker is no longer supported."
         },
         "progress": {
           "question": "How can I track progress?",
-          "introduction": "What work remains, and what needs attention.",
-          "guidance": "Use this planning checklist as a starting point. Record resource-level owners, target dates, blockers, and evidence in your team’s tracking system.",
+          "introduction": "Use the worker platform information to identify groups still using the retired worker type.",
+          "guidance": "The Hybrid Runbook Worker overview shows a Platform field for distinguishing agent-based (V1) from extension-based (V2) workers. Use it to identify affected groups; it does not report whether your migration is complete.",
           "checklist": [
             "Identify affected resources, subscriptions, and owners",
             "Review the official migration guidance and estimate cost changes",
             "Test the replacement and agree a migration plan",
             "Complete migration and validate production workloads"
           ],
-          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it."
+          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it.",
+          "tracking": {
+            "guidance": "In the Azure portal's Hybrid Worker group view, use the Platform field described in the Learn overview to identify agent-based (V1) groups that need attention. This identifies the worker platform, not migration completion.",
+            "sourceUrl": "https://learn.microsoft.com/en-us/azure/automation/automation-hybrid-runbook-worker"
+          }
         }
       },
-      "hidden": false
+      "hidden": false,
+      "sourceReview": {
+        "reviewedOn": "2026-11-11",
+        "status": "enriched",
+        "deadlineSource": "https://learn.microsoft.com/en-us/azure/automation/automation-hybrid-runbook-worker",
+        "guidanceSource": "https://learn.microsoft.com/en-us/azure/automation/extension-based-hybrid-runbook-worker-install",
+        "issues": [],
+        "sources": [
+          {
+            "title": "Retirement: All Azure Automation jobs running on Agent-based Hybrid Worker will be stopped from 1 April 2025",
+            "url": "https://azure.microsoft.com/updates?id=477734",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline"
+            ],
+            "note": "The current Microsoft Release Communications feed entry specifies the affected worker type, April 1, 2025 job stop, August 31, 2024 retirement, and migration recommendation."
+          },
+          {
+            "title": "Azure Automation Hybrid Runbook Worker Overview",
+            "url": "https://learn.microsoft.com/en-us/azure/automation/automation-hybrid-runbook-worker",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline",
+              "progress"
+            ],
+            "note": "Identifies agent-based V1 as retired, extension-based V2 as supported, the job-stop date, and a Hybrid Worker group Platform field."
+          },
+          {
+            "title": "Deploy an extension-based Windows or Linux User Hybrid Runbook Worker in Azure Automation",
+            "url": "https://learn.microsoft.com/en-us/azure/automation/extension-based-hybrid-runbook-worker-install",
+            "sections": [
+              "actions"
+            ],
+            "note": "Current deployment guidance for extension-based User Hybrid Runbook Workers; the older migration URL redirects here."
+          }
+        ],
+        "resourceChecks": [
+          {
+            "url": "https://docs.microsoft.com/en-us/azure/automation/automation-windows-hrw-install",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/automation/extension-based-hybrid-runbook-worker-install",
+            "status": "read",
+            "detail": "The legacy Windows installation URL redirects to current extension-based User Hybrid Worker deployment guidance; it no longer presents the old agent-based installation procedure."
+          },
+          {
+            "url": "https://docs.microsoft.com/en-us/azure/automation/automation-linux-hrw-install",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/automation/extension-based-hybrid-runbook-worker-install",
+            "status": "read",
+            "detail": "The legacy Linux installation URL redirects to current extension-based User Hybrid Worker deployment guidance; it no longer presents the old agent-based installation procedure."
+          },
+          {
+            "url": "https://docs.microsoft.com/en-us/azure/automation/extension-based-hybrid-runbook-worker-install?tabs=windows",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/automation/extension-based-hybrid-runbook-worker-install",
+            "status": "read",
+            "detail": "Reviewed current Learn deployment guidance and its supported User Hybrid Worker scope."
+          },
+          {
+            "url": "https://learn.microsoft.com/en-us/azure/automation/migrate-existing-agent-based-hybrid-worker-to-extension-based-workers?tabs=bicep-template%2Cwin-hrw",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/automation/extension-based-hybrid-runbook-worker-install",
+            "status": "read",
+            "detail": "The migration URL redirects to the current extension-based deployment article."
+          }
+        ],
+        "originalAnnouncement": "Starting April 1, 2025, all jobs running on agent-based User Hybrid Runbook Worker will be stopped.\n\nAzure Automation Agent-based User Hybrid Worker (Windows & Linux) retired on August 31, 2024, and is no longer supported. It poses a potential Security risk since Agent-based Hybrid Worker has not been getting any Security fixes post-retirement. Hence, it is strongly recommended that you move to extension-based User Hybrid Runbook Worker (Windows & Linux) for executing Hybrid jobs.\n\nKey benefits of new approach:\n- Enhanced security posture for your VMs through access control using system-assigned managed identities, instead of self-managed certificates\n- Improved operational productivity for keeping the workers up to date, using automatic upgrades and at-scale management of the VMs\n- Simplified installation of extension while eliminating the need to install Log Analytics agent.\n\nFollow the instructions to migrate your agent-based User Hybrid Runbook Workers to extension-based Hybrid Workers before April 1, 2025.",
+        "originalDeadline": {
+          "date": "2025-04-01",
+          "month": "April 2025"
+        }
+      }
     },
     {
       "id": "478939",
@@ -1633,28 +1708,28 @@
       "service": "Azure Cosmos DB · Azure Database for PostgreSQL · Azure SQL · Azure SQL Database · Azure SQL Edge · Azure SQL Managed Instance · SQL Server on Azure Virtual Machines",
       "announcedOn": "2025-02-06",
       "lastUpdatedOn": "2025-02-06",
-      "manuallyEnriched": false,
-      "summary": "Azure Data Studio (ADS) will be officially retired on February 28, 2026, to streamline development efforts and improve the user experience in Visual Studio Code (VS Code). VS Code will become the recommended cross-platform tool for…",
+      "manuallyEnriched": true,
+      "summary": "Azure Data Studio retired on February 28, 2026. Microsoft recommends Visual Studio Code with the MSSQL extension for continued SQL development.",
       "sourceUrl": "https://azure.microsoft.com/updates?id=479933",
       "questions": {
         "what": {
           "question": "What is changing?",
-          "introduction": "The change and what it means, including technical and financial considerations.",
-          "announcement": "Azure Data Studio (ADS) will be officially retired on February 28, 2026, to streamline development efforts and improve the user experience in Visual Studio Code (VS Code). VS Code will become the recommended cross-platform tool for developers building backend databases.\nADS will be supported until February 28, 2026, to ensure users have sufficient time to transition. Any files or database projects available locally in ADS will remain accessible through February 28, 2026.\nDatabase projects created in ADS can be opened and continued in VS Code without any migration steps. Most extensions in ADS are also available in VS Code, though some SQL-based exceptions exist. In those cases, customers should consider SQL Server Management Studio 21 (SSMS 21) as an alternative to VS Code.\nLearn more.",
-          "financialConsiderations": "The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating."
+          "introduction": "Azure Data Studio is a retired development tool; this is not a retirement of Azure SQL or SQL Server.",
+          "announcement": "Microsoft Learn says Azure Data Studio retired on February 28, 2026 and no longer receives updates or security fixes. Visual Studio Code with the MSSQL extension is the recommended replacement for supported SQL development workflows.",
+          "financialConsiderations": "The reviewed sources do not quantify migration costs or establish pricing equivalence between the tools."
         },
         "actions": {
           "question": "What do I need to do?",
-          "introduction": "Required actions, options, and available support.",
-          "recommendedAction": null,
-          "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
+          "introduction": "Move supported development workflows to Visual Studio Code and its MSSQL extension.",
+          "recommendedAction": "Use Visual Studio Code with the MSSQL extension for supported SQL development tasks. Review the Learn feature comparison for capabilities that require another tool; SQL Server Management Studio remains the documented option for classic administration tasks.",
+          "guidance": "Existing queries, scripts, and SQL database projects can be opened in Visual Studio Code without conversion. Replace Azure Data Studio extensions with supported equivalents and validate any workflow that depends on a capability not covered by the MSSQL extension.",
           "resources": [
             {
-              "title": "SQL Server Management Studio",
-              "url": "https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16"
+              "title": "Install SQL Server Management Studio",
+              "url": "https://learn.microsoft.com/en-us/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16"
             },
             {
-              "title": "Learn more",
+              "title": "What's Happening with Azure Data Studio - SQL Server | Microsoft Learn",
               "url": "https://aka.ms/ads-retirement"
             }
           ],
@@ -1666,14 +1741,14 @@
         },
         "impact": {
           "question": "Where, and how much, am I impacted?",
-          "introduction": "Your affected environments, resources, and users.",
-          "guidance": "This announcement concerns Azure Cosmos DB · Azure Database for PostgreSQL · Azure SQL · Azure SQL Database · Azure SQL Edge · Azure SQL Managed Instance · SQL Server on Azure Virtual Machines. Compare the versions, regions, configurations, and exceptions in the announcement with your inventory.",
+          "introduction": "The affected users are those who use Azure Data Studio for development or database administration.",
+          "guidance": "The retirement applies to the Azure Data Studio application. Microsoft Learn says existing queries, scripts, and SQL database projects work in Visual Studio Code without conversion; some extension-specific workflows require a different replacement.",
           "checklist": [
             "Check every subscription and environment, including development, test, and production.",
             "Identify dependent applications, users, and resource owners.",
             "Estimate migration effort, downtime risk, and replacement-service costs."
           ],
-          "notice": "No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service.",
+          "notice": "This catalog cannot identify Azure Data Studio installations or determine which extensions your organization uses.",
           "advisor": {
             "title": "Azure Advisor service retirements",
             "url": "https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement"
@@ -1681,26 +1756,86 @@
         },
         "deadline": {
           "question": "What is the deadline?",
-          "introduction": "Key dates and the consequences of not acting.",
-          "date": null,
+          "introduction": "Azure Data Studio retired on February 28, 2026.",
+          "date": "2026-02-28",
           "month": "February 2026",
-          "dateGuidance": "An unambiguous exact date could not be extracted from the announcement title. The source lists February 2026 as the retirement month. Review the official announcement for all applicable dates.",
-          "consequences": "After the applicable deadline, support or service availability may change. The exact consequences are service-specific; verify them in the announcement and plan to finish your migration ahead of time."
+          "dateGuidance": "The current Microsoft Learn retirement article gives February 28, 2026 as the retirement date and says the application no longer receives updates or security fixes.",
+          "consequences": "After February 28, 2026, Azure Data Studio is retired and no longer receives updates or security fixes."
         },
         "progress": {
           "question": "How can I track progress?",
-          "introduction": "What work remains, and what needs attention.",
-          "guidance": "Use this planning checklist as a starting point. Record resource-level owners, target dates, blockers, and evidence in your team’s tracking system.",
+          "introduction": "This catalog cannot track workstation migration progress.",
+          "guidance": "Tracking guidance is not available for this retirement.",
           "checklist": [
             "Identify affected resources, subscriptions, and owners",
             "Review the official migration guidance and estimate cost changes",
             "Test the replacement and agree a migration plan",
             "Complete migration and validate production workloads"
           ],
-          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it."
+          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it.",
+          "tracking": null
         }
       },
-      "hidden": false
+      "hidden": false,
+      "sourceReview": {
+        "reviewedOn": "2026-11-11",
+        "status": "enriched",
+        "deadlineSource": "https://learn.microsoft.com/en-us/sql/tools/whats-happening-azure-data-studio?view=sql-server-ver17",
+        "guidanceSource": "https://learn.microsoft.com/en-us/sql/tools/whats-happening-azure-data-studio?view=sql-server-ver17",
+        "issues": [],
+        "sources": [
+          {
+            "title": "Retirement: Transition from Azure Data Studio to Visual Studio Code",
+            "url": "https://azure.microsoft.com/updates?id=479933",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline"
+            ],
+            "note": "The current Microsoft Release Communications feed describes Azure Data Studio retirement, supported time, preserved local projects, and transition options."
+          },
+          {
+            "title": "What's Happening with Azure Data Studio - SQL Server | Microsoft Learn",
+            "url": "https://learn.microsoft.com/en-us/sql/tools/whats-happening-azure-data-studio?view=sql-server-ver17",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline",
+              "progress"
+            ],
+            "note": "The current article states the February 28, 2026 retirement, explains that queries, scripts, and SQL projects work without conversion, and describes replacement options. It does not provide tenant-specific progress tracking."
+          },
+          {
+            "title": "Install SQL Server Management Studio",
+            "url": "https://learn.microsoft.com/en-us/ssms/install/install",
+            "sections": [
+              "actions"
+            ],
+            "note": "The referenced SSMS installation guide supports the separate administration-tool option described in the retirement article."
+          }
+        ],
+        "resourceChecks": [
+          {
+            "url": "https://learn.microsoft.com/en-us/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/ssms/install/install",
+            "status": "read",
+            "detail": "Reviewed the current SSMS installation documentation; it is an alternative for administration workflows, not a replacement for every Azure Data Studio feature."
+          },
+          {
+            "url": "https://aka.ms/ads-retirement",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/sql/tools/whats-happening-azure-data-studio?view=sql-server-ver17",
+            "status": "read",
+            "detail": "Reviewed the current Azure Data Studio retirement and replacement guidance."
+          }
+        ],
+        "originalAnnouncement": "Azure Data Studio (ADS) will be officially retired on February 28, 2026, to streamline development efforts and improve the user experience in Visual Studio Code (VS Code). VS Code will become the recommended cross-platform tool for developers building backend databases.\nADS will be supported until February 28, 2026, to ensure users have sufficient time to transition. Any files or database projects available locally in ADS will remain accessible through February 28, 2026.\nDatabase projects created in ADS can be opened and continued in VS Code without any migration steps. Most extensions in ADS are also available in VS Code, though some SQL-based exceptions exist. In those cases, customers should consider SQL Server Management Studio 21 (SSMS 21) as an alternative to VS Code.\nLearn more.",
+        "originalDeadline": {
+          "date": null,
+          "month": "February 2026"
+        }
+      }
     },
     {
       "id": "482409",
@@ -1805,24 +1940,24 @@
       "service": "Bing Search",
       "announcedOn": "2025-03-04",
       "lastUpdatedOn": "2025-03-04",
-      "manuallyEnriched": false,
-      "summary": "Bing Search APIs, with your LLM is retired on March 6th 2025. Any existing instances of Bing Search APIs, with your LLM will be decommissioned completely, and the product will no longer be available for usage or new customer signups.…",
+      "manuallyEnriched": true,
+      "summary": "The announcement concerns Bing Search APIs with LLM for partner S15-S18 resources, not every Bing Search API. Its March 6, 2025 date remains tied to that announcement; the linked classic-agent guidance is now superseded.",
       "sourceUrl": "https://azure.microsoft.com/updates?id=483570",
       "questions": {
         "what": {
           "question": "What is changing?",
-          "introduction": "The change and what it means, including technical and financial considerations.",
-          "announcement": "Bing Search APIs, with your LLM is retired on March 6th 2025. Any existing instances of Bing Search APIs, with your LLM will be decommissioned completely, and the product will no longer be available for usage or new customer signups.\n\nNote that this retirement will apply to partners who are using the S15, S16, S17, or S18 resource.\n\nWe recommend transitioning to Grounding with Bing Search as part of Azure AI Agents.\n\nGrounding with Bing Search allows your Azure AI Agents to incorporate real-time public web data when generating responses with an LLM.\n\nHelp and support\nIf you have questions, contact support by creating a support ticket.\nLearn more about service retirements that may impact your resources in the Azure Retirement Workbook. Please note that retirements may not be visible in the workbook for up to two weeks after being announced.",
-          "financialConsiderations": "The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating."
+          "introduction": "This announcement has a partner-resource scope that must not be conflated with other Bing Search API retirements.",
+          "announcement": "The announcement says Bing Search APIs with LLM were decommissioned on March 6, 2025 for partners using S15, S16, S17, or S18 resources. It is not evidence that every Bing Search API or Grounding with Bing Search deployment had the same retirement date.",
+          "financialConsiderations": "The reviewed announcement and Learn guidance do not provide a cost comparison for replacement architectures."
         },
         "actions": {
           "question": "What do I need to do?",
-          "introduction": "Required actions, options, and available support.",
-          "recommendedAction": null,
-          "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
+          "introduction": "Check the retired partner-resource scope and use current, not classic-only, agent documentation.",
+          "recommendedAction": "The announcement recommended Grounding with Bing Search in Azure AI Agents. The linked classic-agent article now directs readers to the current Microsoft Foundry Agents Service documentation; confirm that the current service supports your specific replacement scenario before relying on it.",
+          "guidance": "The current Learn article documents Grounding with Bing Search tools for the agents API. The older linked article applies to Foundry classic agents and says those agents retire on March 31, 2027, so it should not be treated as current deployment guidance.",
           "resources": [
             {
-              "title": "Grounding with Bing Search as part of Azure AI Agents",
+              "title": "How to use Grounding with Bing Search in Foundry Agent Service (classic) - Microsoft Foundry (classic) portal | Microsoft Learn",
               "url": "https://aka.ms/AgentsBingDoc"
             },
             {
@@ -1842,14 +1977,14 @@
         },
         "impact": {
           "question": "Where, and how much, am I impacted?",
-          "introduction": "Your affected environments, resources, and users.",
-          "guidance": "This announcement concerns Bing Search. Compare the versions, regions, configurations, and exceptions in the announcement with your inventory.",
+          "introduction": "The announcement specifically identifies partners using S15, S16, S17, or S18 resources.",
+          "guidance": "Only the partner/resource scope named in the announcement is established here. The general Bing Search APIs retirement dated August 11, 2025 is a separate lifecycle notice and is not substituted for this record's March 6, 2025 event.",
           "checklist": [
             "Check every subscription and environment, including development, test, and production.",
             "Identify dependent applications, users, and resource owners.",
             "Estimate migration effort, downtime risk, and replacement-service costs."
           ],
-          "notice": "No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service.",
+          "notice": "This catalog cannot inspect partner resources, subscriptions, or deployment configuration.",
           "advisor": {
             "title": "Azure Advisor service retirements",
             "url": "https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement"
@@ -1857,26 +1992,83 @@
         },
         "deadline": {
           "question": "What is the deadline?",
-          "introduction": "Key dates and the consequences of not acting.",
+          "introduction": "The announcement gives March 6, 2025 for the S15-S18 partner-resource retirement.",
           "date": "2025-03-06",
           "month": "March 2025",
-          "dateGuidance": "This date is extracted from the announcement title. Check the full announcement for phased deadlines, extensions, and exceptions.",
-          "consequences": "After the applicable deadline, support or service availability may change. The exact consequences are service-specific; verify them in the announcement and plan to finish your migration ahead of time."
+          "dateGuidance": "The exact date is explicit in the announcement. No matching Learn retirement notice for the same partner-resource scope was located; the separate general Bing Search APIs lifecycle date is not used to change this record.",
+          "consequences": "The announcement says affected existing instances were decommissioned and the product was no longer available for use or new customer signups."
         },
         "progress": {
           "question": "How can I track progress?",
-          "introduction": "What work remains, and what needs attention.",
-          "guidance": "Use this planning checklist as a starting point. Record resource-level owners, target dates, blockers, and evidence in your team’s tracking system.",
+          "introduction": "This catalog cannot inspect partner resources or track a migration.",
+          "guidance": "Tracking guidance is not available for this retirement.",
           "checklist": [
             "Identify affected resources, subscriptions, and owners",
             "Review the official migration guidance and estimate cost changes",
             "Test the replacement and agree a migration plan",
             "Complete migration and validate production workloads"
           ],
-          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it."
+          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it.",
+          "tracking": null
         }
       },
-      "hidden": false
+      "hidden": false,
+      "sourceReview": {
+        "reviewedOn": "2026-11-11",
+        "status": "needs-review",
+        "deadlineSource": null,
+        "guidanceSource": "https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/bing-tools",
+        "issues": [
+          "No Learn retirement notice matching the partner-specific S15-S18 scope and March 6, 2025 date was located. The general Bing Search APIs Learn lifecycle notice gives August 11, 2025 for a different scope and is not used to overwrite this record."
+        ],
+        "sources": [
+          {
+            "title": "Retirement: Bing Search APIs with Your LLM on March 6, 2025",
+            "url": "https://azure.microsoft.com/updates?id=483570",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline",
+              "progress"
+            ],
+            "note": "The current Microsoft Release Communications entry specifies the March 6, 2025 decommissioning, partner resources S15-S18, and original Grounding with Bing Search recommendation; it gives no resource-level tracking procedure."
+          },
+          {
+            "title": "Use Grounding with Bing Search tools with the agents API - Microsoft Foundry | Microsoft Learn",
+            "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/bing-tools",
+            "sections": [
+              "actions"
+            ],
+            "note": "Current Learn documentation for Grounding with Bing Search tools in the agents API; it supports current guidance but does not verify the partner-specific retirement date."
+          }
+        ],
+        "resourceChecks": [
+          {
+            "url": "https://aka.ms/AgentsBingDoc",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/foundry-classic/agents/how-to/tools-classic/bing-grounding?view=azure-python-preview&tabs=python&pivots=overview",
+            "status": "read",
+            "detail": "The short link resolves to a Foundry classic article. It says classic agents are deprecated, directs readers to new agent documentation, and gives March 31, 2027 as the classic-agent retirement date."
+          },
+          {
+            "url": "https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest",
+            "resolvedUrl": null,
+            "status": "not-evidence",
+            "detail": "Sign-in-required support request portal; it is not public retirement evidence and was not accessed."
+          },
+          {
+            "url": "https://aka.ms/ServicesRetirementWorkbook",
+            "resolvedUrl": "https://portal.azure.com/#view/AppInsightsExtension/UsageNotebookBlade/ComponentId/Azure%20Advisor/ConfigurationId/community-Workbooks%2FAzure%20Advisor%2FAzureServiceRetirement/Type/workbook/WorkbookTemplateName/Service%20Retirement",
+            "status": "not-evidence",
+            "detail": "Resolves to the sign-in-required Azure portal retirement workbook. No tenant data was accessed."
+          }
+        ],
+        "originalAnnouncement": "Bing Search APIs, with your LLM is retired on March 6th 2025. Any existing instances of Bing Search APIs, with your LLM will be decommissioned completely, and the product will no longer be available for usage or new customer signups.\n\nNote that this retirement will apply to partners who are using the S15, S16, S17, or S18 resource.\n\nWe recommend transitioning to Grounding with Bing Search as part of Azure AI Agents.\n\nGrounding with Bing Search allows your Azure AI Agents to incorporate real-time public web data when generating responses with an LLM.\n\nHelp and support\nIf you have questions, contact support by creating a support ticket.\nLearn more about service retirements that may impact your resources in the Azure Retirement Workbook. Please note that retirements may not be visible in the workbook for up to two weeks after being announced.",
+        "originalDeadline": {
+          "date": "2025-03-06",
+          "month": "March 2025"
+        }
+      }
     },
     {
       "id": "484097",
@@ -2074,21 +2266,21 @@
       "service": "Azure platform",
       "announcedOn": "2025-04-09",
       "lastUpdatedOn": "2025-05-01",
-      "manuallyEnriched": false,
-      "summary": "We’re announcing the upcoming end of standard support for Ubuntu 20.04 LTS on May 31, 2025, as we focus on delivering a more secure and optimized Linux experience. You can continue using your existing virtual machines, but after this…",
+      "manuallyEnriched": true,
+      "summary": "Ubuntu 20.04 LTS reached the end of standard support in May 2025. Existing VMs can continue running, but standard Canonical security and maintenance updates stop; migration or Ubuntu Pro are the documented options.",
       "sourceUrl": "https://azure.microsoft.com/updates?id=484714",
       "questions": {
         "what": {
           "question": "What is changing?",
-          "introduction": "The change and what it means, including technical and financial considerations.",
-          "announcement": "We’re announcing the upcoming end of standard support for Ubuntu 20.04 LTS on May 31, 2025, as we focus on delivering a more secure and optimized Linux experience. You can continue using your existing virtual machines, but after this date, security feature, and maintenance updates will no longer be provided by Canonical, which may impact system security and reliability\n\nRecommended action\nTake action before May 31, 2025, to stay on a supported operating system. Microsoft recommends migrating to the next Ubuntu LTS release or upgrading to Ubuntu Pro for extended security and maintenance from Canonical.\n\nUpgrading to Ubuntu 22.04 LTS or Ubuntu 24.04 LTS\nWhile there’s no direct upgrade path from Ubuntu 20.04 LTS to Ubuntu 24.04 LTS, you can directly upgrade to Ubuntu 22.04 LTS, and then to Ubuntu 24.04 LTS, or directly install Ubuntu 24.04 LTS.\n\nPlease refer to the Ubuntu Server upgrade guide for detailed, step-by-step instructions.\n\nUbuntu Pro – Extended Security Maintenance to 2030\nNew virtual machines can be deployed with Ubuntu Pro from the Azure Marketplace. You can also upgrade existing virtual machines to Ubuntu Pro by purchasing directly from Canonical.\nLearn more:\nRead the blog.\nRefer to the documentation",
-          "financialConsiderations": "The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating."
+          "introduction": "This is the end of standard support for Canonical Ubuntu 20.04 LTS, not a shutdown of Azure virtual machines.",
+          "announcement": "Ubuntu 20.04 LTS reached the end of standard support on May 31, 2025. Existing VMs can continue running, but Canonical no longer provides standard security, feature, and maintenance updates after that date. Ubuntu Pro provides a separate extended-maintenance option.",
+          "financialConsiderations": "The sources do not provide a tenant-specific migration estimate or Ubuntu Pro price; review the applicable Canonical and Azure terms."
         },
         "actions": {
           "question": "What do I need to do?",
-          "introduction": "Required actions, options, and available support.",
-          "recommendedAction": "Take action before May 31, 2025, to stay on a supported operating system. Microsoft recommends migrating to the next Ubuntu LTS release or upgrading to Ubuntu Pro for extended security and maintenance from Canonical.\n\nUpgrading to Ubuntu 22.04 LTS or Ubuntu 24.04 LTS\nWhile there’s no direct upgrade path from Ubuntu 20.04 LTS to Ubuntu 24.04 LTS, you can directly upgrade to Ubuntu 22.04 LTS, and then to Ubuntu 24.04 LTS, or directly install Ubuntu 24.04 LTS.\n\nPlease refer to the Ubuntu Server upgrade guide for detailed, step-by-step instructions.\n\nUbuntu Pro – Extended Security Maintenance to 2030\nNew virtual machines can be deployed with Ubuntu Pro from the Azure Marketplace. You can also upgrade existing virtual machines to Ubuntu Pro by purchasing directly from Canonical.",
-          "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
+          "introduction": "Choose a currently supported Ubuntu release or an applicable extended-maintenance option.",
+          "recommendedAction": "Migrate to a supported Ubuntu LTS release or evaluate Ubuntu Pro for extended security maintenance. Test the upgrade path against the workload before changing production VMs.",
+          "guidance": "Microsoft Learn says a direct in-place upgrade from Ubuntu 20.04 to 24.04 is not available; the Microsoft announcement describes upgrading through 22.04 or installing 24.04 directly. The Learn guidance also describes Ubuntu Pro as an option for extended maintenance.",
           "resources": [
             {
               "title": "Ubuntu Server upgrade guide",
@@ -2119,14 +2311,14 @@
         },
         "impact": {
           "question": "Where, and how much, am I impacted?",
-          "introduction": "Your affected environments, resources, and users.",
-          "guidance": "This announcement concerns Azure platform. Compare the versions, regions, configurations, and exceptions in the announcement with your inventory.",
+          "introduction": "The affected systems are Azure VMs running Canonical Ubuntu 20.04 LTS under standard support.",
+          "guidance": "After standard support ends, existing VMs can continue running, but Canonical no longer provides standard security, feature, and maintenance updates. Ubuntu Pro provides an extended-security option through May 2030 for Ubuntu 20.04 LTS.",
           "checklist": [
             "Check every subscription and environment, including development, test, and production.",
             "Identify dependent applications, users, and resource owners.",
             "Estimate migration effort, downtime risk, and replacement-service costs."
           ],
-          "notice": "No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service.",
+          "notice": "This catalog cannot identify your Ubuntu VM inventory, support subscription, or patch status.",
           "advisor": {
             "title": "Azure Advisor service retirements",
             "url": "https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement"
@@ -2134,26 +2326,105 @@
         },
         "deadline": {
           "question": "What is the deadline?",
-          "introduction": "Key dates and the consequences of not acting.",
+          "introduction": "The announcement gives May 31, 2025 as the end of standard support.",
           "date": "2025-05-31",
           "month": "May 2025",
-          "dateGuidance": "This date is extracted from the announcement title. Check the full announcement for phased deadlines, extensions, and exceptions.",
-          "consequences": "After the applicable deadline, support or service availability may change. The exact consequences are service-specific; verify them in the announcement and plan to finish your migration ahead of time."
+          "dateGuidance": "The Microsoft announcement specifies May 31, 2025. The current Microsoft Learn lifecycle table confirms May 2025 but does not independently state the day; the announcement's exact date is preserved.",
+          "consequences": "After the standard-support date, Canonical standard security, feature, and maintenance updates are no longer provided. Existing VMs can continue running; Ubuntu Pro is a separate extended-maintenance option."
         },
         "progress": {
           "question": "How can I track progress?",
-          "introduction": "What work remains, and what needs attention.",
-          "guidance": "Use this planning checklist as a starting point. Record resource-level owners, target dates, blockers, and evidence in your team’s tracking system.",
+          "introduction": "This catalog cannot identify or track Ubuntu VM upgrades.",
+          "guidance": "Tracking guidance is not available for this retirement.",
           "checklist": [
             "Identify affected resources, subscriptions, and owners",
             "Review the official migration guidance and estimate cost changes",
             "Test the replacement and agree a migration plan",
             "Complete migration and validate production workloads"
           ],
-          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it."
+          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it.",
+          "tracking": null
         }
       },
-      "hidden": false
+      "hidden": false,
+      "sourceReview": {
+        "reviewedOn": "2026-11-11",
+        "status": "enriched",
+        "deadlineSource": null,
+        "guidanceSource": "https://learn.microsoft.com/en-us/azure/virtual-machines/workloads/canonical/ubuntu-els-guidance",
+        "issues": [],
+        "sources": [
+          {
+            "title": "Retirement: Canonical Ubuntu 20.04 LTS Reaching End of Standard Support on May 31, 2025",
+            "url": "https://azure.microsoft.com/updates?id=484714",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline"
+            ],
+            "note": "The current Microsoft Release Communications entry gives May 31, 2025, recommends migration or Ubuntu Pro, and describes upgrade options."
+          },
+          {
+            "title": "Canonical Ubuntu LTS end of standard support guidance - Azure Virtual Machines | Microsoft Learn",
+            "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/workloads/canonical/ubuntu-els-guidance",
+            "sections": [
+              "what",
+              "actions",
+              "impact",
+              "deadline",
+              "progress"
+            ],
+            "note": "Current Learn guidance confirms Ubuntu 20.04 standard support ended in May 2025, explains the effect on existing VMs, and describes migration or Ubuntu Pro. It does not provide VM-specific tracking instructions or an exact day."
+          },
+          {
+            "title": "Canonical Ubuntu 20.04 LTS Reaching End of Standard Support",
+            "url": "https://techcommunity.microsoft.com/blog/linuxandopensourceblog/canonical-ubuntu-20-04-lts-reaching-end-of-standard-support/4392463",
+            "sections": [
+              "actions",
+              "deadline"
+            ],
+            "note": "Microsoft's supplementary blog specifies May 31, 2025 and describes the staged 20.04-to-22.04-to-24.04 upgrade path."
+          }
+        ],
+        "resourceChecks": [
+          {
+            "url": "https://ubuntu.com/server/docs/upgrade-introduction",
+            "resolvedUrl": null,
+            "status": "unavailable",
+            "detail": "The page could not be fetched because of a transient hostname-resolution failure. This does not establish that the page is gone."
+          },
+          {
+            "url": "https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.ubuntu-24_04-lts?tab=Overview",
+            "resolvedUrl": null,
+            "status": "unavailable",
+            "detail": "The page could not be fetched because of a transport-level DNS, connection, or TLS failure. This does not establish that the page is gone."
+          },
+          {
+            "url": "https://ubuntu.com/pro",
+            "resolvedUrl": null,
+            "status": "unavailable",
+            "detail": "The page could not be fetched because of a transient hostname-resolution failure. This does not establish that the page is gone."
+          },
+          {
+            "url": "https://aka.ms/Ubuntu20.04EOL_blog",
+            "resolvedUrl": "https://techcommunity.microsoft.com/blog/linuxandopensourceblog/canonical-ubuntu-20-04-lts-reaching-end-of-standard-support/4392463",
+            "status": "read",
+            "detail": "Reviewed the Microsoft blog for the exact date and Ubuntu LTS upgrade options."
+          },
+          {
+            "url": "https://aka.ms/Ubuntu20.04EOL_docs",
+            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/virtual-machines/workloads/canonical/ubuntu-els-guidance",
+            "status": "read",
+            "detail": "Reviewed current Learn guidance for Ubuntu LTS standard-support effects and Ubuntu Pro."
+          }
+        ],
+        "originalAnnouncement": "We’re announcing the upcoming end of standard support for Ubuntu 20.04 LTS on May 31, 2025, as we focus on delivering a more secure and optimized Linux experience. You can continue using your existing virtual machines, but after this date, security feature, and maintenance updates will no longer be provided by Canonical, which may impact system security and reliability\n\nRecommended action\nTake action before May 31, 2025, to stay on a supported operating system. Microsoft recommends migrating to the next Ubuntu LTS release or upgrading to Ubuntu Pro for extended security and maintenance from Canonical.\n\nUpgrading to Ubuntu 22.04 LTS or Ubuntu 24.04 LTS\nWhile there’s no direct upgrade path from Ubuntu 20.04 LTS to Ubuntu 24.04 LTS, you can directly upgrade to Ubuntu 22.04 LTS, and then to Ubuntu 24.04 LTS, or directly install Ubuntu 24.04 LTS.\n\nPlease refer to the Ubuntu Server upgrade guide for detailed, step-by-step instructions.\n\nUbuntu Pro – Extended Security Maintenance to 2030\nNew virtual machines can be deployed with Ubuntu Pro from the Azure Marketplace. You can also upgrade existing virtual machines to Ubuntu Pro by purchasing directly from Canonical.\nLearn more:\nRead the blog.\nRefer to the documentation",
+        "originalDeadline": {
+          "date": "2025-05-31",
+          "month": "May 2025"
+        }
+      }
     },
     {
       "id": "484943",
