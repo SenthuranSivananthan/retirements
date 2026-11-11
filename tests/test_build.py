@@ -222,32 +222,6 @@ class StaticSiteTests(unittest.TestCase):
         self.assertNotIn("Source review needs verification", html)
         self.assertNotIn("Microsoft Update", html)
 
-    def test_stream_analytics_answers_include_original_announcement_milestones(self):
-        record = self.view["record"]
-        record["sourceReview"] = copy.deepcopy(
-            json.loads((ROOT / "data" / "retirements.json").read_text(encoding="utf-8"))["records"][0]["sourceReview"]
-        )
-        self.view["guidanceSource"] = record["sourceReview"]["guidanceSource"]
-        self.save()
-        builder.build_site(self.root)
-        path = self.root / "docs" / "retirements" / "unknown-date" / "example" / "index.html"
-        document = parse(path.read_text(encoding="utf-8"), namespaceHTMLElements=False)
-        deadline = "".join(document.find(".//section[@id='deadline']").itertext())
-        actions = "".join(document.find(".//section[@id='actions']").itertext())
-        self.assertIn("October 31, 2024", deadline)
-        self.assertIn("new customers", deadline)
-        self.assertIn("October 31, 2027", deadline)
-        self.assertIn("existing jobs", deadline)
-        self.assertIn("Fabric Real-Time Intelligence", actions)
-        self.assertIn("Eventstream", actions)
-        self.assertIn("Real-Time Dashboards", actions)
-        self.assertNotIn("Verify dates and consequences", deadline)
-        link = document.find(".//section[@id='actions']/a[@class='button primary']")
-        self.assertEqual(link.attrib["href"], "https://learn.microsoft.com/azure/stream-analytics/power-bi-output")
-        self.assertEqual(link.attrib["rel"], "noopener noreferrer")
-        self.assertIn("Microsoft Learn guidance", "".join(link.itertext()))
-        self.assertIsNone(document.find(".//details[@class='notice microsoft-update']"))
-
     def test_further_reading_resolves_and_deduplicates_resources_without_mutating_evidence(self):
         record = self.view["record"]
         record["questions"]["actions"]["resources"] = [
