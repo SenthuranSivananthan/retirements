@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "https://www.microsoft.com/releasecommunications/api/v2/azure",
-  "retrievedAt": "2026-11-10T16:31:45.231Z",
+  "retrievedAt": "2026-11-11T14:35:58.259231Z",
   "records": [
     {
       "id": "466774",
@@ -872,10 +872,6 @@
               "url": "https://docs.microsoft.com/en-us/azure/automation/extension-based-hybrid-runbook-worker-install?tabs=windows"
             },
             {
-              "title": "",
-              "url": "https://azure.microsoft.com/undefined"
-            },
-            {
               "title": "instructions",
               "url": "https://learn.microsoft.com/en-us/azure/automation/migrate-existing-agent-based-hybrid-worker-to-extension-based-workers?tabs=bicep-template%2Cwin-hrw"
             }
@@ -1040,10 +1036,6 @@
           "recommendedAction": null,
           "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
           "resources": [
-            {
-              "title": "",
-              "url": "https://azure.microsoft.com/undefined"
-            },
             {
               "title": "SQL Server Management Studio",
               "url": "https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16"
@@ -2164,10 +2156,6 @@
           "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
           "resources": [
             {
-              "title": "docker compose web applications will be supported through March 31, 2027.",
-              "url": "https://azure.microsoft.com/undefined"
-            },
-            {
               "title": "Learn more",
               "url": "https://techcommunity.microsoft.com/blog/appsonazureblog/announcing-the-general-availability-of-sidecar-extensibility-in-azure-app-servic/4267985"
             }
@@ -2711,10 +2699,6 @@
               "url": "https://discourse.ubuntu.com/t/jammy-jellyfish-release-notes/24668"
             },
             {
-              "title": "",
-              "url": "https://azure.microsoft.com/undefined"
-            },
-            {
               "title": "upgrade",
               "url": "https://learn.microsoft.com/azure/aks/upgrade-aks-cluster?tabs=azure-cli"
             },
@@ -2814,10 +2798,6 @@
             {
               "title": "newer supported versions",
               "url": "https://aka.ms/aks/supported-ubuntu-versions"
-            },
-            {
-              "title": "More Information:",
-              "url": "https://azure.microsoft.com/undefined"
             },
             {
               "title": "Confidential VM (CVM)",
@@ -4714,10 +4694,6 @@
           "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
           "resources": [
             {
-              "title": "these",
-              "url": "https://azure.microsoft.com/undefined"
-            },
-            {
               "title": "support",
               "url": "https://support.azure.cn/support/support-azure/"
             }
@@ -5319,10 +5295,6 @@
           "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
           "resources": [
             {
-              "title": "",
-              "url": "https://azure.microsoft.com/undefined"
-            },
-            {
               "title": "Configure HTTPS for your custom domain",
               "url": "https://learn.microsoft.com/azure/frontdoor/front-door-custom-domain-https?tabs=powershell"
             },
@@ -5492,10 +5464,6 @@
           "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
           "resources": [
             {
-              "title": "",
-              "url": "https://azure.microsoft.com/undefined"
-            },
-            {
               "title": "Microsoft Azure operated by 21Vianet",
               "url": "https://learn.microsoft.com/en-us/azure/china/overview-operations"
             },
@@ -5579,10 +5547,6 @@
             {
               "title": "Microsoft Azure operated by 21Vianet,",
               "url": "https://learn.microsoft.com/en-us/azure/china/overview-operations"
-            },
-            {
-              "title": "documentation page.",
-              "url": "https://azure.microsoft.com/undefined"
             }
           ],
           "supportGuidance": "For help with your specific environment, contact your Microsoft account team or Azure support.",
@@ -6918,10 +6882,6 @@
               "url": "https://learn.microsoft.com/en-us/azure/azure-linux/intro-azure-linux#whats-new-with-azure-linux-30"
             },
             {
-              "title": "See documentation",
-              "url": "https://azure.microsoft.com/undefined"
-            },
-            {
               "title": "instructions",
               "url": "https://learn.microsoft.com/en-us/azure/azure-linux/how-to-enable-azure-linux-3"
             },
@@ -7798,10 +7758,6 @@
           "recommendedAction": "To avoid service disruption:\n\nPlease migrate to Azure Front Door or an alternative CDN provider in China before November 15, 2025. Learn more in Azure CDN and Front Door comparison, and Migration from Azure CDN to Azure Front Door. After validation successfully, please delete the CDN resources before November 15, 2025.\nIf you don’t migrate by November 15, 2025, Azure Front Door team will migrate eligible Azure CDN profiles to Azure Front Door in China. However, if your Azure CDN profile is disabled or has no active request in the past 3 months, or your Azure CDN profile isn’t compatible for migration based on the gap mentioned in Migration from Azure CDN to Azure Front Door, Azure Front Door can’t and won’t migrate your profile and your service will experience service disruption starting December 1, 2025. In this case, please migrate to an alternative CDN solution before November 15, 2025.",
           "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
           "resources": [
-            {
-              "title": "If you don’t migrate by November 15, 2025, Azure Front Door team will migrate eligible Azure CDN profiles to Azure Front Door in China.",
-              "url": "https://azure.microsoft.com/undefined"
-            },
             {
               "title": "Azure CDN and Front Door comparison",
               "url": "https://docs.azure.cn/en-us/azure-china-cdn-and-afd-comparison"
@@ -10266,10 +10222,6 @@
           "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
           "resources": [
             {
-              "title": "Why is this happening?",
-              "url": "https://azure.microsoft.com/undefined"
-            },
-            {
               "title": "Microsoft Support",
               "url": "https://support.microsoft.com/"
             },
@@ -12101,10 +12053,6 @@
           "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
           "resources": [
             {
-              "title": "AV36",
-              "url": "https://azure.microsoft.com/undefined"
-            },
-            {
               "title": "Azure Product by Region",
               "url": "https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/table"
             },
@@ -13633,7 +13581,7 @@
       "announcedOn": "2026-10-06",
       "lastUpdatedOn": "2026-10-06",
       "manuallyEnriched": false,
-      "summary": "Beginning September 30, 2027, support for the pod name dimension on the following Azure Monitor platform metrics is retiring, and these metrics are transitioning to aggregate pod counters:\nNumber of pods by phase (kube_pod_status_phase)…",
+      "summary": "Beginning September 30, 2027, support for the pod name dimension on the following Azure Monitor platform metrics is retiring, and these metrics are transitioning to aggregate pod counters:\nNumber of pods by phase…",
       "sourceUrl": "https://azure.microsoft.com/updates?id=570232",
       "questions": {
         "what": {
@@ -13659,10 +13607,6 @@
             {
               "title": "Kubernetes-native pod metrics",
               "url": "https://learn.microsoft.com/azure/azure-monitor/containers/prometheus-metrics-scrape-default#kube-state"
-            },
-            {
-              "title": "",
-              "url": "https://azure.microsoft.com/undefined"
             },
             {
               "title": "Microsoft Q&A",
@@ -16846,10 +16790,6 @@
           "recommendedAction": null,
           "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
           "resources": [
-            {
-              "title": "Azure Monitor",
-              "url": "https://azure.microsoft.com/undefined"
-            },
             {
               "title": "Azure Monitor - Azure Monitor | Microsoft Learn",
               "url": "https://learn.microsoft.com/azure/azure-monitor/logs/kql-machine-learning-azure-monito"
@@ -24737,7 +24677,7 @@
             },
             {
               "title": "contact us",
-              "url": "https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade"
+              "url": "https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade"
             }
           ],
           "supportGuidance": "For help with your specific environment, contact your Microsoft account team or Azure support.",
@@ -25061,10 +25001,6 @@
           "recommendedAction": null,
           "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
           "resources": [
-            {
-              "title": "",
-              "url": "https://azure.microsoft.com/undefined"
-            },
             {
               "title": "step-by-step migration guide",
               "url": "https://go.microsoft.com/fwlink/?linkid=2286686"
@@ -27414,8 +27350,12 @@
               "url": "https://docs.microsoft.com/en-us/azure/active-directory/authentication/concept-authentication-operator-assistance"
             },
             {
-              "title": ".",
+              "title": "Microsoft Q&A",
               "url": "https://aka.ms/opassistqa"
+            },
+            {
+              "title": ".",
+              "url": "https://Aka.ms/opassistqa"
             },
             {
               "title": "support request",
@@ -27781,10 +27721,6 @@
             {
               "title": "support request",
               "url": "https://go.microsoft.com/fwlink/?linkid=2286243"
-            },
-            {
-              "title": "",
-              "url": "https://azure.microsoft.com/undefined"
             },
             {
               "title": "Azure Retirement Workbook",
@@ -29008,7 +28944,7 @@
       "announcedOn": "2024-09-19",
       "lastUpdatedOn": "2024-09-19",
       "manuallyEnriched": false,
-      "summary": "Beginning September 30th, 2025 Azure SQL edge service will be retired. This change reflects valuable customer feedback, allowing us to focus on enhancing our other offerings to ensure you receive the most advanced and reliable services.…",
+      "summary": "Beginning September 30th, 2025 Azure SQL edge service will be retired. This change reflects valuable customer feedback, allowing us to focus on enhancing our other offerings to ensure you receive the most advanced and reliable…",
       "sourceUrl": "https://azure.microsoft.com/updates?id=azure-sql-edge-retirement",
       "questions": {
         "what": {
@@ -31798,10 +31734,6 @@
               "url": "https://azure.microsoft.com/updates/vmware-dr-ga-with-asr/"
             },
             {
-              "title": "",
-              "url": "https://azure.microsoft.com/undefined"
-            },
-            {
               "title": "migration guide",
               "url": "https://aka.ms/Move-to-modernized-VMware-DR"
             },
@@ -32666,7 +32598,7 @@
       "announcedOn": "2022-12-02",
       "lastUpdatedOn": "2022-12-02",
       "manuallyEnriched": false,
-      "summary": "Azure API Management is Microsoft’s solution to securely create and manage modern APIs at scale. It also provides advanced tools for building and maintaining APIs such as OpenAPI integration, rate limiting and exhaustive policy support.…",
+      "summary": "Azure API Management is Microsoft’s solution to securely create and manage modern APIs at scale. It also provides advanced tools for building and maintaining APIs such as OpenAPI integration, rate limiting and exhaustive policy…",
       "sourceUrl": "https://azure.microsoft.com/updates?id=community-support-for-azure-functions-proxies-will-end-on-30-september-2025",
       "questions": {
         "what": {
@@ -36308,7 +36240,7 @@
           "resources": [
             {
               "title": "Learn more.",
-              "url": "https://azure.microsoft.com/%22https://go.microsoft.com/fwlink/?linkid=2280106\\%22"
+              "url": "https://azure.microsoft.com/\\\"https:/go.microsoft.com/fwlink/?linkid=2280106\\\""
             }
           ],
           "supportGuidance": "For help with your specific environment, contact your Microsoft account team or Azure support.",
@@ -39335,10 +39267,6 @@
             {
               "title": "APIOps tooling",
               "url": "https://learn.microsoft.com/en-us/azure/architecture/example-scenario/devops/automated-api-deployments-apiops"
-            },
-            {
-              "title": "Microsoft Q&A",
-              "url": "https://azure.microsoft.com/undefined"
             }
           ],
           "supportGuidance": "For help with your specific environment, contact your Microsoft account team or Azure support.",
@@ -43208,7 +43136,7 @@
           "resources": [
             {
               "title": "Azure SQL migration for Azure Data Studio",
-              "url": "https://learn.microsoft.com/sql/azure-data-studio/extensions/azure-sql-migration-extension?"
+              "url": "https://learn.microsoft.com/sql/azure-data-studio/extensions/azure-sql-migration-extension"
             }
           ],
           "supportGuidance": "For help with your specific environment, contact your Microsoft account team or Azure support.",
@@ -44335,10 +44263,6 @@
             {
               "title": "Microsoft Q&A",
               "url": "https://aka.ms/AzStorageAccountQA"
-            },
-            {
-              "title": ",",
-              "url": "https://azure.microsoft.com/undefined"
             },
             {
               "title": "support request",
@@ -51893,10 +51817,6 @@
             {
               "title": "https://aka.ms/dotnet/t2/migration",
               "url": "https://aka.ms/dotnet/t2/migration"
-            },
-            {
-              "title": "",
-              "url": "https://azure.microsoft.com/undefined"
             },
             {
               "title": "https://aka.ms/azsdk/golang/t2/migration",
