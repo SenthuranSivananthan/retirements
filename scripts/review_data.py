@@ -76,7 +76,7 @@ def apply_reviews(batch, output=ROOT / "data" / "retirements.json"):
         for section in QUESTIONS:
             changes = questions[section]
             allowed = (set(record["questions"][section]) - {"question"}) | ({"tracking"} if section == "progress" else set())
-            if not isinstance(changes, dict) or not changes or set(changes) - allowed:
+            if not isinstance(changes, dict) or set(changes) - allowed:
                 raise ValueError(f"Invalid answer fields for {identifier}/{section}")
             record["questions"][section].update(copy.deepcopy(changes))
         record.update({"summary": update["summary"], "sourceReview": review, "manuallyEnriched": True})

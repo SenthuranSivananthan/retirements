@@ -8,7 +8,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from fixtures import catalog
-from scripts.catalog import QUESTIONS, learn_documentation_url, parse_catalog
+from scripts.catalog import QUESTIONS, learn_documentation_url, microsoft_techcommunity_url, parse_catalog
 from scripts.feed import merge_retirements
 from scripts.refresh_data import read_snapshot
 from scripts.review_data import apply_reviews, main, review_report
@@ -105,7 +105,7 @@ class ReviewTests(unittest.TestCase):
                 apply_reviews(value, self.output)
             self.assertEqual(self.output.read_bytes(), original)
 
-    def test_review_validation_requires_evidence_and_rejects_community_authority(self):
+    def test_review_validation_requires_evidence_and_rejects_untrusted_sources(self):
         value = apply_reviews(self.batch(), self.output)
         cases = [
             {"reviewedOn": None}, {"reviewedOn": "2026-02-30"}, {"status": "verified"},
@@ -115,6 +115,7 @@ class ReviewTests(unittest.TestCase):
             {"guidanceSource": "https://azure.microsoft.com/updates"},
             {"guidanceSource": "https://learn.microsoft.com/en-us/azure/other"},
             {"guidanceSource": "https://learn.microsoft.com/en-us/answers/questions/1"},
+            {"guidanceSource": "https://techcommunity.microsoft.com/blog/azure/retirement"},
         ]
         for changes in cases:
             invalid = copy.deepcopy(value)
@@ -140,8 +141,29 @@ class ReviewTests(unittest.TestCase):
                     "https://name@learn.microsoft.com/azure/", "http://learn.microsoft.com/azure/"):
             self.assertFalse(learn_documentation_url(url))
         self.assertTrue(learn_documentation_url(self.url))
+        for url in (
+            "https://techcommunity.microsoft.com.evil.test/blog/azure/retirement",
+            "https://name@techcommunity.microsoft.com/blog/azure/retirement",
+            "http://techcommunity.microsoft.com/blog/azure/retirement",
+        ):
+            self.assertFalse(microsoft_techcommunity_url(url))
+        self.assertTrue(microsoft_techcommunity_url("https://techcommunity.microsoft.com/blog/azure/retirement"))
 
-    def test_tracking_requires_a_cited_learn_source_covering_progress_and_can_be_cleared(self):
+    def test_verified_techcommunity_article_can_support_retirement_and_deadline(self):
+        techcommunity_url = "https://techcommunity.microsoft.com/blog/azure/retirement"
+        batch = self.batch()
+        batch["reviews"][0]["questions"]["deadline"]["date"] = "2029-01-02"
+        batch["reviews"][0]["sourceReview"]["deadlineSource"] = techcommunity_url
+        batch["reviews"][0]["sourceReview"]["sources"] = [{
+            "title": "Azure retirement announcement",
+            "url": techcommunity_url,
+            "sections": list(QUESTIONS),
+            "note": "The Microsoft product-team post describes the affected scope, deadline, and migration guidance.",
+        }]
+        result = apply_reviews(batch, self.output)
+        self.assertEqual(result["records"][0]["sourceReview"]["deadlineSource"], techcommunity_url)
+
+    def test_tracking_requires_a_cited_authoritative_source_covering_progress_and_can_be_cleared(self):
         batch = self.batch()
         batch["reviews"][0]["questions"]["progress"]["tracking"] = {
             "guidance": "Inspect the affected resources.", "sourceUrl": self.url,
@@ -168,6 +190,20 @@ class ReviewTests(unittest.TestCase):
         })
         with self.assertRaises(ValueError):
             parse_catalog(invalid)
+        techcommunity_url = "https://techcommunity.microsoft.com/blog/azure/retirement"
+        batch = self.batch()
+        batch["reviews"][0]["questions"]["progress"]["tracking"] = {
+            "guidance": "Inventory the affected resources.", "sourceUrl": techcommunity_url,
+        }
+        batch["reviews"][0]["sourceReview"]["sources"] = [{
+            "title": "Azure retirement announcement",
+            "url": techcommunity_url,
+            "sections": list(QUESTIONS),
+            "note": "The Microsoft product-team post gives resource inventory and migration guidance.",
+        }]
+        batch["reviews"][0]["sourceReview"]["deadlineSource"] = techcommunity_url
+        tracked = apply_reviews(batch, self.output)
+        self.assertEqual(tracked["records"][0]["questions"]["progress"]["tracking"]["sourceUrl"], techcommunity_url)
         invalid = copy.deepcopy(value)
         del invalid["records"][0]["sourceReview"]
         with self.assertRaises(ValueError):
