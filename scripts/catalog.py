@@ -293,8 +293,14 @@ def parse_catalog(value):
             if not identifier or identifier in {".", ".."} or identifier in ids:
                 raise ValueError("duplicate or invalid record ID")
             ids.add(identifier)
-            if type(record.get("manuallyEnriched")) is not bool:
-                raise ValueError("enrichment flag")
+            if "manuallyEnriched" in record:
+                raise ValueError("Deprecated manuallyEnriched field; migrate to the manual database")
+            manual = record.get("manualEnrichment")
+            if "manualEnrichment" in record and (
+                not isinstance(manual, dict) or set(manual) != {"fields"} or not checklist(manual["fields"])
+                or not all(path.strip() for path in manual["fields"])
+            ):
+                raise ValueError("manual field provenance")
             if "hidden" in record and type(record["hidden"]) is not bool:
                 raise ValueError("hidden flag")
             if any(field not in record or not valid_date(record[field]) for field in ("announcedOn", "lastUpdatedOn")):

@@ -18,14 +18,12 @@ def review_report(catalog, limit=10):
     reviewed = [record for record in records if "sourceReview" in record]
     unreviewed = [record for record in records if "sourceReview" not in record]
     eligible = unreviewed
-    manual_only = [record for record in unreviewed if record["manuallyEnriched"]]
     rechecks = sorted(reviewed, key=lambda record: (record["sourceReview"]["reviewedOn"], record["id"]))
     recheck_count = min(len(rechecks), max(1, limit // 5)) if reviewed else 0
     selected = rechecks[:recheck_count] + eligible[:limit - recheck_count]
     selected += rechecks[recheck_count:recheck_count + max(0, limit - len(selected))]
     return {
         "total": len(records), "reviewed": len(reviewed), "unreviewed": len(unreviewed),
-        "manualOnly": len(manual_only),
         "enriched": sum(record["sourceReview"]["status"] == "enriched" for record in reviewed),
         "needsReview": [
             {"id": record["id"], "issues": record["sourceReview"]["issues"]} for record in reviewed
@@ -56,12 +54,9 @@ def review_snapshot(batch, original):
             raise ValueError("Unknown or duplicate review ID")
         seen.add(identifier)
         record = by_id[identifier]
-        manual_only = record["manuallyEnriched"] and "sourceReview" not in record
         questions = update["questions"]
         if not isinstance(questions, dict) or set(questions) != set(QUESTIONS):
             raise ValueError("Each review must address exactly five questions")
-        if manual_only and update["summary"] != record["summary"]:
-            raise ValueError(f"Manual-only record {identifier} can receive review metadata only; preserve its summary")
         review = copy.deepcopy(update["sourceReview"])
         if not isinstance(review, dict) or "originalAnnouncement" in review or "originalDeadline" in review:
             raise ValueError("Original source evidence is captured automatically, not supplied by the review")
@@ -81,8 +76,6 @@ def review_snapshot(batch, original):
                 allowed.add("tracking")
             if not isinstance(changes, dict) or set(changes) - allowed:
                 raise ValueError(f"Invalid answer fields for {identifier}/{section}")
-            if manual_only and changes:
-                raise ValueError(f"Manual-only record {identifier} can receive review metadata only; preserve its answers")
             record["questions"][section].update(copy.deepcopy(changes))
         record.update({"summary": update["summary"], "sourceReview": review})
     parse_catalog(catalog)
@@ -92,6 +85,11 @@ def review_snapshot(batch, original):
 def apply_reviews(batch, output=ROOT / "data" / "retirements.json"):
     output = Path(output)
     original = read_snapshot(output)
+    if original is not None:
+        catalog = json.loads(original)
+        parse_catalog(catalog)
+        if any("manualEnrichment" in record for record in catalog["records"]):
+            raise ValueError("Review automatic research through scripts.pipeline review, not the composed manual catalog")
     catalog = review_snapshot(batch, original)
     write_snapshot(catalog, output, original, operation="content review")
     return catalog
