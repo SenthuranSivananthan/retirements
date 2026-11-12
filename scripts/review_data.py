@@ -36,14 +36,13 @@ def review_report(catalog, limit=10):
     }
 
 
-def apply_reviews(batch, output=ROOT / "data" / "retirements.json"):
-    output = Path(output)
-    original = read_snapshot(output)
+def review_snapshot(batch, original):
     if original is None:
         raise ValueError("Cannot review a missing catalog")
     if not isinstance(batch, dict) or batch.get("catalogSha256") != hashlib.sha256(original).hexdigest():
         raise ValueError("Catalog changed since review preparation; existing snapshot preserved")
-    catalog = parse_catalog(json.loads(original))
+    catalog = json.loads(original)
+    parse_catalog(catalog)
     updates = batch.get("reviews")
     if not isinstance(updates, list) or not updates:
         raise ValueError("A nonempty review batch is required")
@@ -87,6 +86,13 @@ def apply_reviews(batch, output=ROOT / "data" / "retirements.json"):
             record["questions"][section].update(copy.deepcopy(changes))
         record.update({"summary": update["summary"], "sourceReview": review})
     parse_catalog(catalog)
+    return catalog
+
+
+def apply_reviews(batch, output=ROOT / "data" / "retirements.json"):
+    output = Path(output)
+    original = read_snapshot(output)
+    catalog = review_snapshot(batch, original)
     write_snapshot(catalog, output, original, operation="content review")
     return catalog
 

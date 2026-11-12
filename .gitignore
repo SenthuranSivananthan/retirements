@@ -12,6 +12,12 @@ __pycache__/
 # Temporary catalog writes
 /data/*.tmp
 
+# Transient SQLite state; the four database files themselves are versioned
+/data/pipeline/.lock
+/data/pipeline/*.sqlite-journal
+/data/pipeline/*.sqlite-wal
+/data/pipeline/*.sqlite-shm
+
 # Local configuration and logs
 *.local
 logs/
