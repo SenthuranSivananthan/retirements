@@ -299,7 +299,16 @@ python -m scripts.pipeline @pipeline links --id $id
 python -m scripts.pipeline @pipeline canonical --id $id
 ```
 
-Inspect the extracted observations, cached pages, canonical record and the reported `inputSha256`/`recordSha256`. After actually reviewing those exact inputs, approve them using both reported fingerprints:
+Inspect the observations, cached pages and automatic record. If it is unreviewed or needs answer changes, prepare the [review batch](#evidence-based-content-reviews) with `status.automaticCatalogSha256` as its `catalogSha256` and evidence-backed `sourceReview.status: enriched`. Apply it before approval, refresh any changed references, then reassemble:
+
+```powershell
+python -m scripts.pipeline @pipeline status
+python -m scripts.pipeline @pipeline review --batch <review-batch.json>
+python -m scripts.pipeline @pipeline links --id $id
+python -m scripts.pipeline @pipeline canonical --id $id
+```
+
+Approval requires an enriched automatic record; fingerprints alone do not enrich it. After reviewing the current answers and exact inputs, approve using the latest assembly's `inputSha256`/`recordSha256`, not pre-review fingerprints:
 
 ```powershell
 python -m scripts.pipeline @pipeline canonical --id $id --accept-review --input-sha256 <reviewed-input-hash> --record-sha256 <reviewed-record-hash>
@@ -307,7 +316,7 @@ python -m scripts.pipeline @pipeline export
 python -m scripts.pipeline @pipeline status
 ```
 
-These commands export isolated test JSON only; approved source-catalog export must immediately build. Automatic review uses `status.automaticCatalogSha256` as the batch's `catalogSha256` with `python -m scripts.pipeline @pipeline review --batch <batch.json>`; manual uses the composed hash and `manual --batch`. Refresh changed references, reassemble/approve research and export. Neither editing stage downloads/exports. Reconcile external JSON changes, never overwrite.
+These commands export isolated test JSON only; approved source-catalog export must immediately build. Manual batches use the composed hash and `manual --batch`, not the automatic review hash. Neither editing stage downloads/exports. Reconcile external JSON changes, never overwrite.
 
 **Cache:** `links --id ...` still names the refresh command; its database is now `web_cache.sqlite`. ETag takes precedence over Last-Modified; 304 reuses bodies without writes. Identical 200 bodies retain review validity; absent validators require full download/hash comparison. Ingested source responses are reused. Real dynamic-HTML changes require renewed review; Content-Length/URL age and cached bytes prove neither freshness nor factual/MCP review.
 
