@@ -90,7 +90,7 @@ python -m unittest discover -s tests -v
 python site/build.py
 ```
 
-Edit curated content in **`data/retirements.json`**, not its generated copies. Set `manuallyEnriched: true` only when the record must be protected from refresh. See [Protecting manual enrichments](#protecting-manual-enrichments).
+Keep automatic research in the canonical database and user-provided content in `manual.sqlite`; export their composition to **`data/retirements.json`**, never edit generated copies. See [Protecting manual enrichments](#protecting-manual-enrichments).
 
 After changing source or data, rebuild and commit **both the source changes and the resulting `docs` changes**. A build does not refresh the source or change the canonical catalog. If a refresh fails, the previous snapshot stays intact; resolve the reported error before retrying.
 
@@ -121,11 +121,13 @@ retirements
     assets\                 Published CSS, JavaScript, and catalog download
   data\
     retirements.json        Canonical, manually enrichable source catalog
+    pipeline\               Versioned raw.sqlite, extracted.sqlite, web_cache.sqlite, canonical.sqlite, manual.sqlite
   scripts\
     catalog.py              Validation, dates, countdowns, grouping, and preparation
     feed.py                 Source parsing, normalization, pagination, and merging
     refresh_data.py         Refresh entry point and guarded atomic snapshot writer
     review_data.py          Review coverage, source-evidence checks, and guarded batch edits
+    pipeline.py             Independent SQLite stages, conditional web cache, guarded JSON export
     check_site.py           Generated page, question, link, and catalog checks
   tests\                    Python unittest suite and offline fixtures
   requirements.txt          Python dependencies
@@ -196,7 +198,7 @@ The progress section shows specific Microsoft Learn or verified first-party Tech
 
 ### Question-organized JSON
 
-The canonical catalog and download use `schemaVersion: 2`. Each record keeps its ID, title, services, Azure categories, announcement date (`announcedOn`), last-updated date (`lastUpdatedOn`), summary, source URL, and enrichment flag as metadata. Answers live under exactly five `questions` keys:
+Catalog/download retain `schemaVersion: 2`, ID/title/services/categories, announcement/update dates, summary and source URL. The obsolete `manuallyEnriched` flag is removed; optional `manualEnrichment.fields` lists supplied override paths. Answers use exactly five `questions` keys:
 
 | Key | Organized content |
 | --- | --- |
@@ -216,34 +218,32 @@ Navigation uses the exact deadline's year, otherwise the stated year of a valid 
 
 ### Protecting manual enrichments
 
-Every retirement has a boolean `manuallyEnriched`, initially `false`. To protect answers or custom information from refresh, set **`"manuallyEnriched": true`** and commit the JSON. Both automated and local refreshes preserve the entire protected record, including custom fields and its recorded `lastUpdatedOn`, even if the source removes that ID.
+Provide the retirement and manual content; resolve its unique existing ID and store supplied fields separately in **`data\pipeline\manual.sqlite`**. Manual values override only matching fields at export; automatic research remains available underneath. Objects merge recursively, arrays replace, explicit nulls remain null. Whole-record protection via `manuallyEnriched` is no longer used.
 
 Each record also has a `hidden` boolean, initially `false`. Set it to `true` to exclude that retirement from search, navigation, filters, and visible counts; the direct detail page and public JSON download remain accessible, so this is not an access-control feature. Feed refresh preserves the flag for matching records. Older records without the field are treated as visible.
 
 
-Unflagged records continue to refresh; new announcements use `false`. Set the flag back to `false` to resume source updates, replacing custom content on the next successful refresh. Keep all five sections and valid field types when enriching records.
+Manual batches use `catalogSha256` from `python -m scripts.pipeline status`:
 
-Review metadata is independent of refresh protection: a reviewed record can have either flag value. A successful feed refresh replaces an unprotected record, including its review metadata and curated answers, or removes it if it is absent from the feed.
+```json
+{"catalogSha256":"<reported composed hash>","overrides":[{"id":"<existing-id>","fields":{"questions":{"impact":{"guidance":"<user-provided content>"}}}}]}
+```
 
-The refresh reads the existing snapshot after fetching, incorporating edits saved during the fetch. Invalid flags, duplicate IDs, malformed snapshots, and detected concurrent publishing edits fail instead of overwriting local data. Publishing uses a temporary file and atomic replacement. Changes made only to generated output are not durable.
+Apply with `python -m scripts.pipeline manual --batch <manual-batch.json>`, then `export` and `python site/build.py`. Use the same `--db-dir`/`--output` options as the target pipeline. `fields: null` removes an override and restores automatic values. Identity/timestamps/visibility use their normal workflows, not content overrides. Custom content and citation fields are supported; HTML/resources/dates must pass existing validation. A plain answer change without matching HTML discards stale HTML and uses the plain fallback.
+
+Automatic reviews use `status.automaticCatalogSha256`, never composed manual data. Export records supplied field paths as provenance; it does not claim user content was independently researched. Refresh reapplies overrides and retains their baseline for feed-absent records. Manual edits/research remain separate and neither silently overwrites the other.
+
+`python -m scripts.pipeline migrate` removes legacy flags offline, preserving flagged content as manual overrides. The checked-in migration changed no retirement facts. JSON-only review refuses composed output. External JSON refreshes can still conflict with the canonical DB's export guard and need reconciliation; invalid data and concurrent edits fail without overwriting snapshots.
 
 ### Evidence-based content reviews
 
-The [enrichment prompt](.github/prompts/retirement-enrichment.prompt.md#pipeline-entry-point) defines the repeatable 12-stage pipeline, including files read/written at each stage: baseline and mode selection, discovery/merging, batch planning, source reading, evidence mapping, deadline reconciliation, five-question synthesis, readable HTML, factual review, guarded integration, full-output validation, and an authorized publication handoff. Design-only, full enrichment, date-only corrections, and readability-only passes have distinct mutation and research limits. A single integrator applies guarded batches. The current implementation adds the [incremental SQLite stages](#incremental-sqlite-stages) and a single Azure Front Door (classic) pilot; whole-feed discovery, hash-ID migration and automation remain outside that pilot.
+The [enrichment prompt](.github/prompts/retirement-enrichment.prompt.md#pipeline-entry-point) is the authoritative 12-stage design, with per-stage inputs/outputs and four modes: design/testing, full enrichment, date-only corrections and readability-only. SQLite stages are implemented for selected records; whole-feed discovery, parallel orchestration and hash-ID migration remain proposed.
 
-Source reviews keep all answers under the existing five questions and add record-level **`sourceReview`** metadata. Integrate relevant announcement details into those answers and state verified facts directly instead of repeatedly saying that Microsoft Learn confirms them; retain attribution where needed to explain conflicts or uncertainty. Detail pages collect answer sources and announcement resources in **References** after the five questions, with duplicate destinations listed once. Evidence notes and per-question source mappings remain in the JSON. Reviewed redirects are used for reference links without changing the original resource URLs in the catalog. State uncertainty and conflicts in the answers and retain them in review metadata; the UTC content-review day is visible. The original announcement remains in the catalog as preserved evidence. The review day does not change `lastUpdatedOn` or catalog `retrievedAt`.
+Reviews organize automatic answers under five questions and add **`sourceReview`**: actual UTC day, `enriched` status, issues, sources and checks. This means reviewed/organized, not proof of every claim. Preserve uncertainty, original evidence and timestamps. Hidden content is untouched; automatic workers cannot write manual overrides.
 
-For reviewed resources, visit the public destination and use its actual page title instead of labels such as "Learn more", "here", or "instructions"; publisher branding may be omitted. Before removing a locale segment from a `learn.microsoft.com` URL, verify that the locale-free URL reaches the same intended public documentation. If it is inaccessible but the locale-based URL works, keep the locale-based URL. Apply a successful replacement consistently to the resource URL, its `resourceChecks.url` and `resolvedUrl`, and source/guidance/deadline/tracking URLs; preserve query parameters, fragments, and API-version selectors, and leave the original announcement snapshot unchanged. If normalization makes multiple resource URLs identical, retain one descriptive resource and one matching check while preserving distinct evidence details. Preserve URLs from other hosts. Do not invent titles from URL slugs or treat error/sign-in page titles as documentation titles. Keep a descriptive support label for sign-in-only resources and report unavailable destinations in `resourceChecks`. Unreviewed announcements may retain feed-provided labels until reviewed.
+Use the [evidence rules](.github/prompts/retirement-enrichment.prompt.md#authoritative-sources-and-evidence) and [review contract](.github/prompts/retirement-enrichment.prompt.md#apply-validate-and-report) for full field/URL requirements: read actual destinations, use real titles, verify Learn locale normalization, preserve selectors/original snapshots, account for every resource, and exclude references only after confirmed 404/410. `guidanceSource` selects Learn documentation cited for actions; `deadlineSource` must match cited applicable deadline evidence. References deduplicate reviewed sources/resources and use reviewed redirects; citation details remain in JSON.
 
-- `status` is `enriched` for every completed review of a visible record, including when some source questions remain unresolved. It means the five-question record was reviewed and organized, not that every fact was independently verified; explain uncertainty and conflicts in the answers and preserve supporting details in review metadata. Do not use `needs-review`. Hidden records are skipped and left unchanged.
-- Visible manual-only records are included in the review queue. Their batches may add `sourceReview` metadata but must leave the existing summary, answers, and custom fields unchanged.
-- `sources` records descriptive titles, resolved HTTPS URLs, supported question keys in `sections`, and factual evidence notes. The record's official Azure Updates announcement is authoritative for what it explicitly announces. Microsoft Learn product documentation is authoritative for product behavior, API details, and applicable retirement dates. Microsoft Tech Community blog posts authored by Microsoft or the responsible product team are authoritative for retirement-specific facts they directly cover. Community Q&A, training, generic directories, personal or third-party posts, and authenticated portals are not substitutes.
-- Optional `guidanceSource` selects a relevant Microsoft Learn product-documentation URL already cited for `actions`. The actions button links to it as Microsoft Learn guidance; it is omitted when no suitable page has been reviewed. Subsequent batches retain the selection unless explicitly changed or set to null.
-- Optional `excludedReferences` records confirmed nonexistent source or resource URLs with `url`, UTC `checkedOn`, and `httpStatus` (404 or 410). They are omitted from References while preserving the original evidence. Recheck exclusions during review; do not treat access restrictions or temporary failures as proof a page is gone.
-- `resourceChecks` accounts for every distinct original announcement resource, with `read`, `partial`, `unavailable`, or `not-evidence`, nullable `resolvedUrl`, and a reason. Known support/community links can be classified without claiming they were read. Reading a page does not mean every statement in it was confirmed.
-- `originalAnnouncement` and `originalDeadline` preserve the initial feed evidence. Professional summaries replace the displayed raw scrape, not the retained source text.
-- Review the announcement's title and description and relevant Microsoft Learn documentation for explicit retirement dates for the same product, scope, and lifecycle milestone; verified first-party Tech Community posts can also provide dates. If conflicting explicit dates for that same scope and milestone span strictly less than 7 calendar days (1-6 days from earliest to latest), choose the earliest, even when another applicable Learn page gives a later date. Keep the alternative dates, stated times/time zones, and citations in the deadline explanation and review metadata, explaining this as a conservative selection rather than a source-reconciled date. For example, August 31, 2024 versus September 1, 2024 selects August 31, 2024, with the exact date and any month set consistently. The tolerance does not apply to month-only dates, different scopes or milestones, or a chain of nearby dates spanning 7 days or more.
-- Otherwise, use an unambiguous, current Learn retirement date as authoritative when it differs from the announcement, and explain the discrepancy without claiming an extension unless explicitly documented. Unresolved conflicts between Learn dates and unclear scope or milestones remain unconfirmed; when no applicable Learn date exists, unresolved conflicts among non-Learn sources also remain unconfirmed. Exactly 7 days is outside the tolerance. Cite the chosen exact date in `sourceReview.sources` for `deadline` and set `deadlineSource` to the same Learn, verified Tech Community, or record-matching official Azure Updates URL; the latter accepts the original or locale-prefixed announcement URL. Historical deadlines and migration instructions are labeled as historical, not presented as still-available actions.
+The [seven ordered date rules](.github/prompts/retirement-enrichment.prompt.md#retirement-date-decision-rules) require matching event/scope/milestone and explicit first-party evidence. Exclude superseded dates only with documented extensions. A full conflict span of **1-6 days selects the earliest**, even over later Learn evidence; exactly seven days and longer chains do not qualify. Otherwise prefer an unambiguous current applicable Learn deadline; unresolved conflicts stay unconfirmed. Preserve month-only precision, alternatives, times/time zones and rationale; never claim Microsoft reconciled a conservative selection. Keep structured date/month, answers and citations consistent.
 
 Inspect coverage and a resumable batch without network access or file changes:
 
@@ -251,7 +251,7 @@ Inspect coverage and a resumable batch without network access or file changes:
 python -m scripts.review_data --limit 20
 ```
 
-The report includes a whole-catalog SHA-256 guard, reviewed/enriched/unreviewed counts, unresolved issues, and candidate IDs. Approximately one fifth of a batch rechecks the oldest reviews; the rest advances unreviewed records in catalog order. Existing manual enrichments without `sourceReview` are counted separately and excluded from automated edits.
+The report includes a catalog SHA-256 guard, review counts/issues and candidate IDs. About one fifth rechecks oldest reviews; the rest advances unreviewed records. Database reviews use the automatic hash from pipeline status; manual overlays are not research.
 
 Prepare a temporary JSON object with `catalogSha256` from the report and a `reviews` array. Each entry contains `id`, `summary`, `questions` (all five section keys, with changed answer fields only), and `sourceReview` (review date/status/issues, sources, resource checks, and nullable `deadlineSource`). Do not supply the two original-evidence fields; the command captures them automatically and preserves them on subsequent reviews. Apply and rebuild:
 
@@ -262,67 +262,95 @@ python site/build.py
 python -m scripts.check_site
 ```
 
-The application command is a guarded editor, **not an autonomous web crawler or summarizer**. It validates every update before publishing any, rejects stale batches and concurrent edits, and preserves unrelated records, feed timestamps, and the existing `manuallyEnriched` flag. It cannot prove the semantic accuracy of a citation; actual page reading and human review remain necessary. Changes to checked-in `docs` must accompany catalog changes.
+The editor validates batches atomically, rejects stale/concurrent changes and preserves unrelated records/timestamps. It is not a crawler or proof of citation accuracy. JSON-only review is for catalogs without composed overrides; use pipeline review/manual/export when databases own the catalog. Keep checked-in `docs` synchronized.
 
 ### Incremental SQLite stages
 
-Four local databases under `data\pipeline` are versioned in Git. SQLite is self-contained and queryable with Python or SQLite tools, but its Git diffs are binary. The fifth stage exports the existing application JSON schema:
+Five Git-versioned SQLite stores under `data\pipeline` support incremental stages; their diffs are binary. JSON is the composed output:
 
 ```text
 Public sources -> raw.sqlite -> extracted.sqlite --+
-                     |                            |
-                     +-> links.sqlite ------------+-> canonical.sqlite -> retirements.json -> site build
-                            cached evidence             reviewed answers
+                     +-> web_cache.sqlite --------+-> canonical.sqlite --+
+User-provided fields -----------------------------> manual.sqlite -------+-> JSON -> build
 ```
 
 | Database | Stored data |
 | --- | --- |
 | `raw.sqlite` | Exact Azure Updates item-response bytes and the selected Lifecycle index, source IDs/URLs/hashes, and associations to retirement IDs. |
 | `extracted.sqlite` | Per-source observations and original identities, announcement text/resources, provisional dates, source-body hashes and extractor version. |
-| `links.sqlite` | Original link references, skipped portal reasons, cached public bodies, actual destinations, content hashes, HTTP validators and visible failure state. |
+| `web_cache.sqlite` | Downloaded public bodies, original references/destinations, content hashes, HTTP validators, portal skips and failures. |
 | `canonical.sqlite` | Complete catalog baseline/order/metadata, unchanged curated five-question records, joined source/link provenance and reviewed input fingerprints. |
+| `manual.sqlite` | User-provided partial overrides and baseline snapshots; export combines them with automatic records without modifying the research store. |
 
-`seed` imports the current complete catalog unchanged, without network access. The scoped stages process only the requested retirement, so the current pilot has one two-source observation set and one approved canonical target; the other 633 canonical records are baseline copies, not newly enriched records. Existing IDs, manual/hidden flags, custom fields, original evidence and feed timestamps are retained. The raw/extracted data does not silently replace reviewed answers or adjudicate dates.
+`seed` imports the complete catalog unchanged offline. Per-record stages preserve IDs, flags, custom fields, original evidence and feed timestamps; raw observations do not replace answers or adjudicate dates. The checked-in pilot has one tracked record; other rows are baseline copies, not newly enriched records.
 
-Run stages independently from the repository root. This PowerShell example uses the same Front Door retirement:
+Design/testing uses **one runtime-selected visible, editable record**, never a named prompt example; test writes use isolated copies unless local migration/promotion is approved. **Full enrichment covers all records without sampling**, including prior reviews, preserving hidden content/manual overrides. Batch/page limits affect throughput, not coverage; pending/blocked IDs mean incomplete work. The CLI is not a full-run orchestrator.
 
-```powershell
-$id = 'azure-front-door-classic-will-be-retired-on-31-march-2027'
-python -m scripts.pipeline seed
-python -m scripts.pipeline ingest --id $id --lifecycle-url https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2027
-python -m scripts.pipeline extract --id $id
-python -m scripts.pipeline links --id $id
-python -m scripts.pipeline canonical --id $id
-```
-
-Inspect the extracted observations, cached pages, canonical record and the reported `inputSha256`/`recordSha256`. After actually reviewing those exact inputs, approve them using both reported fingerprints:
+Run stages independently from the repository root. This PowerShell example uses placeholders for the selected retirement and its verified, applicable Lifecycle index; for testing, copy the existing catalog to `<test-directory>\retirements.json` first:
 
 ```powershell
-python -m scripts.pipeline canonical --id $id --accept-review --input-sha256 <reviewed-input-hash> --record-sha256 <reviewed-record-hash>
-python -m scripts.pipeline export
-python site\build.py
-python -m scripts.pipeline status
+$id = '<existing-retirement-id>'
+$lifecycleUrl = '<verified-applicable-Lifecycle-index-url>'
+$pipeline = @('--db-dir', '<test-directory>\databases', '--output', '<test-directory>\retirements.json')
+python -m scripts.pipeline @pipeline seed
+python -m scripts.pipeline @pipeline ingest --id $id --lifecycle-url $lifecycleUrl
+python -m scripts.pipeline @pipeline extract --id $id
+python -m scripts.pipeline @pipeline links --id $id
+python -m scripts.pipeline @pipeline canonical --id $id
 ```
 
-For new answer edits, use the existing review-batch shape with the canonical catalog hash from `status`, but run `python -m scripts.pipeline review --batch <batch.json>`. This reuses the guarded review editor against the database, preserving original evidence. Refresh links if references changed, then reassemble, review/approve and export. Database review does not itself export, download evidence or invent answers. Existing JSON-only review commands remain supported outside this workflow; external JSON edits or daily feed refreshes after seeding can conflict with the database and must be reconciled, never overwritten automatically.
+Inspect the observations, cached pages and automatic record. If it is unreviewed or needs answer changes, prepare the [review batch](#evidence-based-content-reviews) with `status.automaticCatalogSha256` as its `catalogSha256` and evidence-backed `sourceReview.status: enriched`. Apply it before approval, refresh any changed references, then reassemble:
 
-Link refresh uses conditional GET: ETag takes precedence, otherwise Last-Modified. It reuses raw-source responses already acquired by `ingest`, rather than downloading them again; use ingest to refresh those sources. A 304 reuses the cached body and makes no database write; identical 200 responses retain bodies without invalidating downstream stages. When a server supplies no usable validator, a full GET and content-hash comparison is unavoidable. Dynamic HTML can change even when visible article text appears unchanged; changed bodies conservatively require review. Response headers alone, Content-Length and URL age do not establish that content is unchanged. The cache stores public bytes, not proof that evidence has been read or verified through Microsoft Learn MCP.
+```powershell
+python -m scripts.pipeline @pipeline status
+python -m scripts.pipeline @pipeline review --batch <review-batch.json>
+python -m scripts.pipeline @pipeline links --id $id
+python -m scripts.pipeline @pipeline canonical --id $id
+```
 
-Extraction skips unchanged source hashes and extractor versions. Changed body hashes invalidate canonical approval; metadata-only validator changes do not. Failed checks preserve last-known-good bodies but remain visible and block promotion. Missing stages, changed references, stale approvals and concurrent JSON edits stop export. Repeated unchanged runs leave database and JSON bytes unchanged. The full catalog is exported deterministically from the canonical database, not rebuilt from raw snippets; a missing JSON can be recreated from it.
+Approval requires an enriched automatic record; fingerprints alone do not enrich it. After reviewing the current answers and exact inputs, approve using the latest assembly's `inputSha256`/`recordSha256`, not pre-review fingerprints:
 
-Only approved public Microsoft HTTPS endpoints are downloaded, with public-address/redirect checks, bounded size/time/retries, and no credentials, tenant access or recursive crawling. Support and Advisor portals are classified without downloading. A directory `.lock` serializes writers; a crashed process can leave a lock that must be inspected before explicitly removing it. SQLite uses DELETE journaling and connections are closed before Git operations. The databases are tracked; lock/journal/WAL/SHM sidecars are ignored. Do not text-merge binary database conflicts or automatically discard either side.
+```powershell
+python -m scripts.pipeline @pipeline canonical --id $id --accept-review --input-sha256 <reviewed-input-hash> --record-sha256 <reviewed-record-hash>
+python -m scripts.pipeline @pipeline export
+python -m scripts.pipeline @pipeline status
+```
 
-The pilot does not implement full Lifecycle navigation discovery, arbitrary-source ingestion, automatic cross-source consolidation, hash-ID allocation, scheduling or publication. Those remain the separately gated design below. The legacy `scripts.refresh_data` command/workflow is unchanged and does not use these databases.
+These commands export isolated test JSON only; approved source-catalog export must immediately build. Manual batches use the composed hash and `manual --batch`, not the automatic review hash. Neither editing stage downloads/exports. Reconcile external JSON changes, never overwrite.
+
+**Cache:** `links --id ...` still names the refresh command; its database is now `web_cache.sqlite`. ETag takes precedence over Last-Modified; 304 reuses bodies without writes. Identical 200 bodies retain review validity; absent validators require full download/hash comparison. Ingested source responses are reused. Real dynamic-HTML changes require renewed review; Content-Length/URL age and cached bytes prove neither freshness nor factual/MCP review.
+
+**Guards:** extraction skips matching source hash/version; changed bodies invalidate approval, validator-only changes do not. Failures retain last-good bodies but block promotion. Missing/stale dependencies, approvals or concurrent JSON edits stop export. Offline no-ops preserve DB/JSON bytes; export uses the complete canonical catalog and can recreate missing JSON.
+
+**Storage/safety:** public Microsoft HTTPS only, redirect/address checks, bounded size/time/retries, no credentials/tenant access/crawling; portals are classified without fetching. `.lock` serializes writers: inspect the owning PID before removing a crash-left lock. Close DELETE-journal SQLite connections before Git; ignore only lock/sidecars, never text-merge binary DB conflicts.
+
+**Renaming old caches:** with connections closed, rename `links.sqlite` to `web_cache.sqlite`. If both exist, reconcile without overwriting either; the CLI refuses legacy names rather than creating an empty replacement. The tracked rename preserves cached bytes.
+
+Full Lifecycle discovery, automatic matching/hash IDs, parallel orchestration, scheduling and publication remain unimplemented/gated. Legacy refresh reads the manual store but does not refresh the other databases.
+
+### Parallel enrichment design (not implemented)
+
+The [parallel enrichment contract](.github/prompts/retirement-enrichment.prompt.md#parallel-enrichment-design-not-implemented) separates concurrent research from serialized publication:
+
+```text
+Complete baseline -> coordinator queue -> bounded workers on disjoint record IDs
+                            |                         |
+                     shared fetch/cache        private guarded proposals
+                            |                         |
+                            +--> one integrator -> canonical.sqlite -> JSON -> build/audit
+```
+
+Workers get disjoint leased IDs, immutable inputs and private proposal paths. The coordinator owns deduplicated shared fetching, host/retry/page limits and all shared writes; proposals carry attempt tokens, original record/evidence hashes, citations and validation. Changed targets/evidence require renewed review; unrelated changes can be reconciled only after verifying the target/dependencies, retaining original guards. Durable outcomes allow safe restart without duplicate application or lost coverage.
+
+All eligible records, prior reviews and protected outcomes remain accounted for; tests use one live example plus synthetic concurrency fixtures. See the linked contract for lease expiry, late results, stale guards and interrupted export recovery. Scheduler/leases/proposal reconciliation and concurrency tests remain implementation gates. **Do not run the current CLI concurrently against one `--db-dir` or merge worker database binaries.**
 
 ### Weekly Copilot cloud automation
 
-The reusable task is [`.github/prompts/retirement-enrichment.prompt.md`](.github/prompts/retirement-enrichment.prompt.md). Its proposed full-run design discovers Azure-related retirements from Azure Updates and Microsoft Lifecycle independently, merges a common baseline once, then reviews every visible retirement across evidence-first batches of at most 80 distinct public documentation pages. Whole-feed multi-source discovery and its data pull remain deferred and require separate authorization; the SQLite pilot ingests only selected existing records, and the legacy refresh command remains Azure Updates-only. Resuming a run must not repeat discovery. Date-only and readability-only passes reuse reviewed evidence without a feed refresh or new source research. The prompt specifies per-question citations, bounded retries, preservation rules, validation, and source/merged coverage reporting. Azure Updates `created` timestamps populate `announcedOn`; Lifecycle-only records must not invent an announcement date.
+**No cloud automation is created/enabled.** The last capability check reported it disabled/unavailable; the prompt grants neither tools nor schedules, and daily GitHub Actions refresh is unchanged.
 
-**No cloud automation has been created or enabled.** The repository capability check reported cloud automations disabled and management unavailable to the current account. The prompt does not schedule work, grant tools, or bypass that restriction; the existing daily GitHub Actions feed refresh remains unchanged.
+When access is available, obtain separate approval for one personal automation, its activation/initial run and publication. Discover supported tools/triggers; grant only public-document retrieval, repository access and required execution. Set weekly day/time in UTC through structured schedule fields, not prompt text. Leave a reviewable diff unless publication is authorized.
 
-Once cloud automation access is available, review a single personal automation for this repository. Discover the service's supported tools/triggers and grant only public-document retrieval, repository reading/editing, and required execution capabilities. Choose the weekly day/time in UTC through the service's structured schedule fields; do not embed schedule/permissions in the task prompt. Creation, activation, and any initial run require separate approval. Publication behavior is also pending approval: the draft leaves a reviewable diff and does not authorize pushing, opening PRs, or merging.
-
-Daily feed refresh replaces unprotected reviewed records with feed content; protected records remain unchanged and require separate checks of current documentation and announcements. Before any approved publication, reconcile with the latest main-branch feed snapshot and regenerate `docs`; never force-push over a concurrent refresh.
+Use the prompt's modes/budgets/coverage/resume rules. Before publication reconcile with main and rebuild; legacy refresh replaces automatic reviews but reapplies manual fields. Never overwrite/force-push over concurrent refreshes.
 
 ### Parallel discovery design (not implemented)
 
@@ -333,17 +361,15 @@ The [proposed common-baseline contract](.github/prompts/retirement-enrichment.pr
 | Azure Updates | [Official JSON collection](https://www.microsoft.com/releasecommunications/api/v2/azure) filtered to `Retirements` | Every validated page, preserving official source IDs and timestamps. |
 | Microsoft Lifecycle | [Lifecycle hub](https://learn.microsoft.com/lifecycle/) and [official navigation index](https://learn.microsoft.com/en-us/lifecycle/toc.json) | Dynamically discovered annual retirement/end-of-support indexes, including Additional Azure Changes; Azure-related entries only, with product/version/scope/milestone retained. Published years are not hard-coded. |
 
-Other Microsoft Learn documentation and verified Microsoft/product-team Tech Community posts may support enrichment, including deadlines, migration, impact, and tracking. They cannot introduce a retirement, establish its discovery eligibility, or prove a cross-source match. Linked or redirected guides do not expand the two-source restriction; Microsoft Lifecycle means Lifecycle pages, not the whole Learn host.
+Other Learn docs and verified Microsoft/product-team Tech Community posts support enrichment only, not discovery/eligibility/matching; redirects do not expand that boundary. Lifecycle means `/lifecycle/`, not the whole Learn host.
 
-The [identity-matching rules](.github/prompts/retirement-enrichment.prompt.md#retirement-identity-and-matching) compare product/component, SKU/version, region/cloud, affected population, and milestone using evidence from the two allowed sources. Different titles and URLs can describe one retirement; identical titles or dates can describe different events. Missing scope is not a wildcard, and partial overlap is not equivalence. Record each comparison as confirmed-match, distinct, or unresolved with its source evidence. Confirmed observations share a canonical retirement ID while retaining all original source IDs, titles, and URLs; unresolved matches stay separate. A retirement need not appear in both sources.
+The [matching contract](.github/prompts/retirement-enrichment.prompt.md#retirement-identity-and-matching) compares product/component, SKU/version, region/cloud, population and milestone. Titles/URLs/dates alone never prove identity; missing scope and partial overlap are not equivalence. Record confirmed/distinct/unresolved outcomes, preserve source identities, keep unresolved observations separate, and allow single-source retirements.
 
-The [hash-ID design](.github/prompts/retirement-enrichment.prompt.md#hash-based-retirement-ids) assigns every canonical retirement `ret-` plus a full 64-character SHA-256 digest of a versioned, canonical identity seed, not its titles, URLs, or dates. For a true digest collision between different seeds, keep the existing ID and append the first unused numeric suffix to the new one: `ret-<hash>-2`, `ret-<hash>-3`, and so on. Persist frozen seeds, full allocated IDs, and reservations in a proposed catalog-level `identityRegistry`; reuse assignments and never recycle suffixes when records disappear. Keep original source identities and old catalog IDs as aliases. SHA-256 is collision-resistant, not mathematically collision-free; unresolved event identity is still a review blocker, not a reason to append a suffix or falsely merge. Exact serialization, suffix allocation, atomic registry updates, and alias/route compatibility require implementation and offline validation before use.
+The [ID contract](.github/prompts/retirement-enrichment.prompt.md#hash-based-retirement-ids) uses `ret-` plus full SHA-256 of a frozen versioned canonical event identity. True digest collisions append persisted first-unused `-2`, `-3`, etc.; never recycle assignments or use suffixes to hide uncertain identity. Registry, serialization and alias/route compatibility need implementation/tests. Current IDs change only under separately approved migration, preserving old aliases and protected content.
 
-The first combined baseline must preserve all existing enriched answers, dates, review metadata, flags, and custom fields while adding new discoveries and non-destructive provenance. Existing IDs stay unchanged until an explicitly approved hash-ID migration; stage proposed mappings in run-local `id-map.json` first. Migration may change only approved identity/alias metadata, including on protected records, while retaining old IDs as working aliases. Otherwise protected records remain unchanged in full; existing curated duplicates are flagged for review rather than automatically consolidated. Assigned hash IDs remain stable when dates change or Azure Updates later discovers the event. A mainstream-to-extended-support transition is not a retirement, and an index's update date is not an item's announcement date.
+First combined discovery preserves all existing records/content/metadata while staging provenance and `id-map.json`; curated duplicates are not auto-merged. `discoverySources` retains source URLs/identities/dates/coverage separately from reviewed citations. New records have five valid questions; provisional dates follow the ordered review rules, and Lifecycle-only entries never invent announcement timestamps.
 
-Stage 6 follows the ordered [retirement-date decision rules](.github/prompts/retirement-enrichment.prompt.md#retirement-date-decision-rules): match the exact event, read explicit first-party evidence, account for documented extensions, select the earliest applicable date for conflicts spanning 1-6 days, otherwise prefer an unambiguous current Learn deadline, preserve unknown/month-only precision, and keep the result consistent and cited. Discovery dates are provisional; stages 9 and 11 verify the decision, including the exactly-seven-day boundary and unresolved conflicts.
-
-Proposed catalog/record `discoverySources` metadata will retain per-source URLs, observations, dates, identities, and coverage separately from reviewed `sourceReview.sources`. All new records still use the existing five question objects. Both required sources must complete before a guarded, atomic baseline replacement; failures leave the canonical snapshot intact. Python/browser validators, provenance round trips, review handling, accurate source labels, and offline fixtures must be implemented before an approved whole-feed combined run. The selected-record SQLite extractor is not a full Lifecycle discovery adapter and does not change legacy refresh behavior or enable a schedule.
+Both sources must complete before guarded atomic integration; malformed/partial inputs preserve the current catalog. Dynamic years, Azure scope, non-retirement support phases, matching, IDs, provenance/schema/consumer round trips and preservation must pass the prompt's offline gates before a live combined run. The selected-record extractor is not a whole-feed Lifecycle adapter.
 
 ### Official source (current implementation)
 
@@ -353,6 +379,6 @@ This is the complete tagged announcement collection returned by that feed, **not
 
 The structured feed supplies a retirement **month**, not an exact day. For unreviewed records, exact dates are extracted conservatively from current announcement **titles** only when a single distinct, valid date appears. ISO dates require explicit deadline wording to distinguish deadlines from API versions. Automatic refresh does not infer deadlines from publication dates, IDs, URL slugs, or announcement descriptions. Reviewed deadlines may instead use explicit retirement-specific dates from the announcement's title or description, Microsoft Learn, or a verified first-party Tech Community article as described above. Month-only and unresolved deadlines remain **Date to confirm** and do not count as upcoming or retired. **Within 90 days** includes today and day 90 UTC; **Upcoming** includes that group.
 
-Announcement HTML is parsed into plain text, with related HTTPS links retained separately. The app escapes source text instead of rendering source HTML. When answers are content-enriched, authors add an `html` fragment in each of the five question objects; legacy and protected manual-only records may omit it and use the plain-text fallback. The builder allows only semantic formatting tags (`p`, `h3`, `ul`, `ol`, `li`, `strong`, `em`, `code`, `pre`, and `br`), rejects attributes and active content, and escapes text nodes. Lead with the main point, use short single-topic paragraphs, meaningful subheadings for complex answers, unordered lists for independent points, and ordered lists only for sequences. Preserve substantive facts and limitations without repeating separately rendered dates, notices, support, or tracking messages. Convert line breaks or literal newline escapes to paragraph boundaries or `<br>`. Each page links to the official announcement; verify tenant-specific impact, pricing, support, and phased deadlines with Microsoft.
+Source HTML becomes escaped plain text plus separate HTTPS references. Automatic enrichment supplies safe HTML for all five answers; manual plain edits may use the escaped fallback. Allowed tags: `p`, `h3`, `ul`, `ol`, `li`, `strong`, `em`, `code`, `pre`, `br`; reject attributes/active content and escape text. Preserve facts/limits, use concise semantic paragraphs/lists, convert newline escapes, and avoid duplicated dates/notices/support/tracking. Verify tenant impact, pricing, support and phased deadlines with Microsoft.
 
 Site-wide typography uses four primary sizes: .875rem body text and controls (14px at the default browser size), 1rem subheadings (16px), 1.125rem section headings and summary counts (18px), and 1.375rem page titles (22px). Navigation, filters, cards, notices, metadata, and footers use the same body size and 1.6 line spacing on desktop and mobile. The only caption-size exception is the main timeline's customer lead-time label and duration at .75rem (12px); retirement dates and detail-page lead times retain the body size. Relative units respect browser font preferences. Headings retain their hierarchy, and semantic emphasis, code fonts, and notice colors remain distinct.

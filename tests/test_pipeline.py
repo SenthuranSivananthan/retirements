@@ -54,8 +54,8 @@ class PipelineTests(unittest.TestCase):
         for question in record["questions"].values():
             question["html"] = "<p>A reviewed answer.</p>"
         other = copy.deepcopy(record)
-        other.update({"id": "b", "title": "Unrelated manual retirement", "hidden": True,
-                      "manuallyEnriched": True, "custom": {"retained": [1, 2, 3]}})
+        other.update({"id": "b", "title": "Unrelated hidden retirement", "hidden": True,
+                      "custom": {"retained": [1, 2, 3]}})
         self.original["records"].append(other)
         self.output.write_bytes(catalog_bytes(self.original))
         self.pipeline = Pipeline(self.directory / "databases", self.output)
@@ -99,6 +99,139 @@ class PipelineTests(unittest.TestCase):
 
     def snapshots(self):
         return {path.name: path.read_bytes() for path in self.pipeline.directory.glob("*.sqlite")}
+
+    def manual_batch(self, fields):
+        return {"catalogSha256": self.pipeline.status()["catalogSha256"],
+                "overrides": [{"id": "a", "fields": fields}]}
+
+    def test_manual_fields_override_research_without_changing_it_and_can_be_removed(self):
+        self.prepare()
+        self.approve()
+        automatic = self.pipeline.catalog(automatic=True)
+        patch_fields = {"summary": "User-provided summary.",
+                        "questions": {"impact": {"guidance": "User-provided impact."}}}
+        batch = self.manual_batch(patch_fields)
+        self.assertEqual(self.pipeline.manual(batch)["changed"], 1)
+        self.assertEqual(self.pipeline.catalog(automatic=True), automatic)
+        self.assertFalse(self.pipeline.status()["targets"][0]["reviewRequired"])
+        self.pipeline.export()
+        record = json.loads(self.output.read_bytes())["records"][0]
+        self.assertEqual(record["summary"], patch_fields["summary"])
+        self.assertEqual(record["questions"]["impact"]["guidance"], "User-provided impact.")
+        self.assertNotIn("html", record["questions"]["impact"])
+        self.assertEqual(record["questions"]["actions"], automatic["records"][0]["questions"]["actions"])
+        self.assertIn("questions.impact.guidance", record["manualEnrichment"]["fields"])
+        with self.assertRaisesRegex(ValueError, "Catalog changed"):
+            self.pipeline.manual(batch)
+        before = self.snapshots()
+        self.assertEqual(self.pipeline.manual(self.manual_batch(patch_fields))["changed"], 0)
+        self.assertEqual(self.snapshots(), before)
+        self.assertEqual(self.pipeline.seed()["seeded"], 0)
+        self.pipeline.manual(self.manual_batch({"questions": {"impact": {
+            "guidance": "First manual revision.", "html": "<p>First manual revision.</p>",
+        }}}))
+        self.pipeline.manual(self.manual_batch({"questions": {"impact": {"guidance": "Second manual revision."}}}))
+        self.assertNotIn("html", self.pipeline.catalog()["records"][0]["questions"]["impact"])
+        self.pipeline.manual(self.manual_batch(None))
+        self.pipeline.export()
+        self.assertEqual(json.loads(self.output.read_bytes()), automatic)
+
+    def test_automatic_reviews_do_not_modify_or_absorb_manual_overrides(self):
+        self.prepare()
+        self.approve()
+        self.pipeline.manual(self.manual_batch({"summary": "Manual summary."}))
+        before = self.snapshots()["manual.sqlite"]
+        record = self.original["records"][0]
+        batch = {
+            "catalogSha256": self.pipeline.status()["automaticCatalogSha256"],
+            "reviews": [{"id": "a", "summary": "New automatic summary.",
+                         "questions": {key: {} for key in record["questions"]},
+                         "sourceReview": {key: value for key, value in record["sourceReview"].items()
+                                          if key not in ("originalAnnouncement", "originalDeadline")}}],
+        }
+        self.pipeline.review(batch)
+        self.approve()
+        self.pipeline.export()
+        self.assertEqual(self.pipeline.catalog()["records"][0]["summary"], "Manual summary.")
+        self.assertEqual(self.pipeline.catalog(automatic=True)["records"][0]["summary"], "New automatic summary.")
+        self.assertEqual(self.snapshots()["manual.sqlite"], before)
+
+    def test_missing_manual_store_cannot_silently_discard_exported_content(self):
+        self.pipeline.manual(self.manual_batch({"summary": "Manual summary."}))
+        self.pipeline.export()
+        directory = self.pipeline.directory
+        self.pipeline.close()
+        manual = directory / "manual.sqlite"
+        manual.rename(directory / "manual.sqlite.backup")
+        before, output = self.snapshots(), self.output.read_bytes()
+        with self.assertRaisesRegex(ValueError, "Missing manual.sqlite"):
+            with Pipeline(directory, self.output):
+                pass
+        self.assertEqual(self.snapshots(), before)
+        self.assertEqual(self.output.read_bytes(), output)
+        self.assertFalse(manual.exists())
+        self.assertFalse((directory / ".lock").exists())
+
+    def test_manual_batches_are_validated_atomically_and_preserve_unrelated_records(self):
+        before = self.snapshots()
+        for fields in ({"id": "replacement"}, {"questions": {"impact": {"question": "New heading"}}},
+                       {"questions": {"impact": {"html": "<script>unsafe</script>"}}}, {"summary": None}):
+            with self.subTest(fields=fields), self.assertRaises(ValueError):
+                self.pipeline.manual(self.manual_batch(fields))
+            self.assertEqual(self.snapshots(), before)
+        batch = self.manual_batch({"summary": "Valid first entry."})
+        batch["overrides"].append({"id": "unknown", "fields": {"summary": "Invalid second entry."}})
+        with self.assertRaisesRegex(ValueError, "Unknown retirement"):
+            self.pipeline.manual(batch)
+        self.assertEqual(self.snapshots(), before)
+
+    def test_offline_migration_removes_flags_and_preserves_legacy_manual_content(self):
+        legacy = copy.deepcopy(self.original)
+        for record in legacy["records"]:
+            record["manuallyEnriched"] = record["id"] == "a"
+        legacy["records"][0]["customNotes"] = {"migration": "retained"}
+        self.output.write_bytes(catalog_bytes(legacy))
+        with self.pipeline.connections["canonical"] as connection:
+            for record in legacy["records"]:
+                connection.execute("UPDATE retirements SET record_json=? WHERE id=?",
+                                   (json.dumps(record), record["id"]))
+            connection.execute("UPDATE metadata SET value=? WHERE key='export_sha256'",
+                               (digest(self.output.read_bytes()),))
+        with patch("scripts.pipeline.open_public", side_effect=AssertionError("Migration attempted a download")):
+            result = self.pipeline.migrate()
+        self.assertEqual(result["migratedRecords"], 2)
+        self.assertEqual(result["manualRecords"], 1)
+        migrated = self.pipeline.catalog()
+        self.assertFalse(any("manuallyEnriched" in record for record in migrated["records"]))
+        self.assertEqual(migrated["records"][0]["questions"], self.original["records"][0]["questions"])
+        self.assertEqual(migrated["records"][0]["customNotes"], {"migration": "retained"})
+        self.assertEqual(migrated["records"][1], self.original["records"][1])
+        before = self.snapshots()
+        self.assertEqual(self.pipeline.migrate()["migratedRecords"], 0)
+        self.assertEqual(self.snapshots(), before)
+
+    def test_legacy_cache_names_fail_without_overwriting_either_file(self):
+        self.prepare()
+        self.approve()
+        directory = self.pipeline.directory
+        self.pipeline.close()
+        cache = directory / "web_cache.sqlite"
+        legacy = directory / "links.sqlite"
+        cache.rename(legacy)
+        for both_exist in (False, True):
+            with self.subTest(both_exist=both_exist):
+                if both_exist:
+                    cache.write_bytes(legacy.read_bytes())
+                before = self.snapshots()
+                with self.assertRaisesRegex(ValueError, "Legacy links.sqlite"):
+                    with Pipeline(directory, self.output):
+                        pass
+                self.assertEqual(self.snapshots(), before)
+                self.assertFalse((directory / ".lock").exists())
+        legacy.unlink()
+        with Pipeline(directory, self.output) as reopened:
+            self.assertIsNotNone(reopened.page(LIFECYCLE)["body"])
+            self.assertFalse(reopened.export()["changed"])
 
     def test_full_pilot_preserves_all_records_and_noop_is_byte_identical(self):
         self.prepare()

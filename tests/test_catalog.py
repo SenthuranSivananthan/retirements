@@ -235,10 +235,9 @@ class CatalogTests(unittest.TestCase):
         self.assertTrue(in_retirement_window({"date": "2027-01-01"}, "retired-year", "2027-01-02"))
         self.assertFalse(in_retirement_window({"date": "2026-12-31"}, "retired-year", "2027-01-02"))
 
-    def test_nullable_fields_and_protected_older_categories(self):
+    def test_nullable_fields_and_older_categories(self):
         value = catalog()
         self.assertEqual(parse_catalog(value), value)
-        value["records"][0]["manuallyEnriched"] = True
         del value["records"][0]["categories"]
         self.assertEqual(parse_catalog(value), value)
         self.assertEqual(categories_of(value["records"][0]), ["Uncategorized"])
@@ -261,7 +260,7 @@ class CatalogTests(unittest.TestCase):
             value["records"][0].update(change)
             with self.subTest(change=change), self.assertRaises(ValueError):
                 parse_catalog(value)
-        for key in ("announcedOn", "lastUpdatedOn", "manuallyEnriched"):
+        for key in ("announcedOn", "lastUpdatedOn"):
             value = catalog()
             del value["records"][0][key]
             with self.subTest(key=key), self.assertRaises(ValueError):
@@ -375,7 +374,6 @@ class CatalogTests(unittest.TestCase):
             source.parent.mkdir()
             value = catalog()
             record = value["records"][0]
-            record["manuallyEnriched"] = True
             record["customNotes"] = {"owner": "Example team"}
             del record["categories"]
             original = json.dumps(value, indent=2).encode()
@@ -411,7 +409,7 @@ class CatalogTests(unittest.TestCase):
         for record in value["records"]:
             with self.subTest(identifier=record["id"]):
                 self.assertEqual(list(record["questions"]), list(QUESTIONS))
-                if not record["manuallyEnriched"] and "sourceReview" not in record:
+                if "sourceReview" not in record and "manualEnrichment" not in record:
                     self.assertEqual(record["questions"]["deadline"]["date"], title_date(record["title"]))
                     self.assertTrue(record["categories"])
                 for link in record["questions"]["actions"]["resources"] + [record["questions"]["actions"]["support"], record["questions"]["impact"]["advisor"]]:
