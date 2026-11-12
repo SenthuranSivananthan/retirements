@@ -203,12 +203,13 @@ function bindShell() {
     });
 }
 function updateNav() {
-    const matches = new Map(filterRecords(visibleRecords, filters).map(record => [record.id, record]));
+    const navigationFilters = isDirectory ? filters : {};
+    const matches = new Map(filterRecords(visibleRecords, navigationFilters).map(record => [record.id, record]));
     element('#year-navigation-count').textContent = String(matches.size);
     for (const yearGroup of document.querySelectorAll('#navigation .year-group')) {
         const year = yearGroup.dataset.yearGroup;
         const yearIds = new Set();
-        const yearContext = { ...filters, year };
+        const yearContext = { ...navigationFilters, year };
         yearGroup.querySelector(':scope > a[data-year]').href = `${directoryLink(yearContext)}#catalog`;
         for (const categoryGroup of yearGroup.querySelectorAll('.category-group')) {
             const category = categoryGroup.dataset.categoryGroup;
@@ -217,7 +218,7 @@ function updateNav() {
             categoryGroup.querySelector('.category-all').href = `${directoryLink(context)}#catalog`;
             for (const link of categoryGroup.querySelectorAll('.nav-record')) {
                 const record = matches.get(link.dataset.record);
-                link.hidden = !record || Boolean(filters.category && category !== filters.category);
+                link.hidden = !record || Boolean(navigationFilters.category && category !== navigationFilters.category);
                 if (!link.hidden) {
                     categoryIds.add(record.id);
                     yearIds.add(record.id);
