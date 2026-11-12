@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">The announced date has passed.</p>
       <p class="deadline-date">30 Apr 2025</p>
-<div class="rich-content"><p>The announcement's deadline applied to its Node.js 18 extended-support notice; current runtime availability must be checked separately.</p><p>Apps using the affected runtime can continue to run, but they no longer receive its security updates.</p></div>
+<div class="rich-content"><p>The announced deadline applied to Node.js 18 extended support; check current runtime availability separately. Apps can continue running on the affected runtime, but it no longer receives security updates.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The announcement covered Node.js 18 on Azure App Service and recommended moving to Node.js 20.</p>
-<div class="rich-content"><p>The announced extended support for Node.js 18 ended; affected apps continue to run, but no further security updates are provided for that runtime. Node.js 20 was the notice's target, not a current recommendation.</p></div>
+<div class="rich-content"><p>Extended support for Node.js 18 on App Service ended. Apps continue to run, but the runtime no longer receives security updates.</p><p>Node.js 20 was the historical target in the notice, not a current recommendation.</p></div>
       <div class="notice">The announcement does not specify a billing change.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Choose a currently supported Node.js stack for your App Service platform.</p>
-<div class="rich-content"><p>Inventory your App Service apps by operating system and configured Node.js version, then move affected apps to a version currently offered for that platform.</p><p>Use the App Service language support policy and Node.js runtime list to choose a currently supported version. Do not assume the historical Node.js 20 target remains available.</p></div>
+<div class="rich-content"><p>Inventory App Service apps by operating system and configured Node.js version. Move affected apps to a version currently offered for that platform.</p><p>Consult the App Service language support policy and runtime list; do not assume the historical Node.js 20 target is still available.</p></div>
 <a class="button primary" href="https://learn.microsoft.com/azure/app-service/language-support-policy" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>If a required runtime is unavailable or the app fails after a stack change, use Azure support for environment-specific help. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">The impact is limited to apps that use an affected Node.js runtime.</p>
-<div class="rich-content"><p>The App Service platform can continue running an app configured for an end-of-life Node.js runtime, but that runtime no longer receives security updates. Supported stacks and settings differ between Windows and Linux.</p><ul><li>Find App Service apps configured for Node.js 18 or another end-of-life version.</li><li>Check the supported runtime list for each operating system and hosting configuration.</li><li>Test the selected runtime and validate the app before completing the update.</li></ul></div>
+<div class="rich-content"><p>App Service can continue running an app configured for an end-of-life Node.js runtime, but that runtime no longer receives security updates. Supported stacks and settings differ between Windows and Linux.</p><ul><li>Find apps configured for Node.js 18 or another end-of-life version.</li><li>Check the supported runtime list for each operating system and hosting configuration.</li><li>Test the selected runtime and validate the app before completing the update.</li></ul></div>
       <div class="notice">The historical Node.js 20 target is not evidence that Node.js 20 is currently supported. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>Local planning:</p><ul><li>Record each app, operating system, configured Node.js version, and owner.</li><li>Track the selected supported runtime and test results.</li><li>Confirm the application after the planned restart.</li></ul></div>
+<div class="rich-content"><p>For local planning, record each app, operating system, configured Node.js version and owner. Track the selected supported runtime and test results, then confirm the application after the planned restart.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

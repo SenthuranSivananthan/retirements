@@ -411,7 +411,7 @@ class CatalogTests(unittest.TestCase):
         for record in value["records"]:
             with self.subTest(identifier=record["id"]):
                 self.assertEqual(list(record["questions"]), list(QUESTIONS))
-                if not record["manuallyEnriched"]:
+                if not record["manuallyEnriched"] and "sourceReview" not in record:
                     self.assertEqual(record["questions"]["deadline"]["date"], title_date(record["title"]))
                     self.assertTrue(record["categories"])
                 for link in record["questions"]["actions"]["resources"] + [record["questions"]["actions"]["support"], record["questions"]["impact"]["advisor"]]:

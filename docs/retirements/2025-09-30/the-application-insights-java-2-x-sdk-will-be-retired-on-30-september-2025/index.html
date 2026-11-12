@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">The announced retirement date has passed.</p>
       <p class="deadline-date">30 Sep 2025</p>
-<div class="rich-content"><p>The date is taken from the record's official Azure Updates announcement.</p><p>Java 2.x telemetry continues according to the announcement, but support cases and new features are unavailable.</p></div>
+<div class="rich-content"><p>The cutoff comes from the official Azure Updates announcement. According to the announcement, Java 2.x telemetry continues, but support cases and new features are unavailable.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The retirement applies to Application Insights Java 2.x instrumentation.</p>
-<div class="rich-content"><p>The Java 2.x SDK retired. The announcement says telemetry continues to flow, but support cases and new features are no longer available for 2.x.</p></div>
+<div class="rich-content"><p>The Application Insights Java 2.x SDK retired. The announcement says telemetry continues to flow, but support cases and new features are no longer available for 2.x.</p></div>
       <div class="notice">The announcement does not specify a cost or billing change.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Move Java applications to the current Application Insights Java 3.x agent.</p>
-<div class="rich-content"><p>Replace the 2.x JVM agent configuration with the current 3.x agent and connection-string configuration, then test telemetry before rolling it out.</p><p>Review the migration guide for dependency and JVM argument changes. Java 2.x TelemetryInitializers and TelemetryProcessors do not run with the 3.x agent; configure equivalent supported behavior, such as custom dimensions or sampling overrides, where needed.</p></div>
+<div class="rich-content"><p>Replace the 2.x JVM agent configuration with the current 3.x agent and connection-string configuration, then test telemetry before rollout. Review the migration guide for dependency and JVM argument changes.</p><p>Java 2.x <code>TelemetryInitializers</code> and <code>TelemetryProcessors</code> do not run with the 3.x agent. Configure equivalent supported behavior, such as custom dimensions or sampling overrides, where needed.</p></div>
 <a class="button primary" href="https://learn.microsoft.com/en-us/azure/azure-monitor/app/migrate-to-opentelemetry" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>Use the current Azure Monitor documentation for migration details and contact Azure support for environment-specific issues. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Unsupported instrumentation and migration behavior changes are the main concerns.</p>
-<div class="rich-content"><p>The announcement says telemetry continues after retirement, but 2.x users cannot open support cases or receive new features. The 3.x agent has different behavior for 2.x telemetry initializers and processors.</p><ul><li>Find Java services that load the Application Insights 2.x agent or SDK.</li><li>Review custom telemetry initializers, processors, and duplicate-telemetry handling.</li><li>Validate requests, dependencies, logs, metrics, and sampling after migration.</li></ul></div>
+<div class="rich-content"><p>The announcement says telemetry continues after retirement, but 2.x users cannot open support cases or receive new features. The 3.x agent handles 2.x telemetry initializers and processors differently.</p><ul><li>Find Java services loading the Application Insights 2.x agent or SDK.</li><li>Review custom initializers, processors and duplicate-telemetry handling.</li><li>Validate requests, dependencies, logs, metrics and sampling after migration.</li></ul></div>
       <div class="notice">Do not assume all 2.x customization behavior carries over unchanged to the 3.x agent. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>Local planning:</p><ul><li>Record each Java service and its instrumentation version.</li><li>Assign an owner to review custom telemetry behavior.</li><li>Compare telemetry before and after the 3.x deployment.</li></ul></div>
+<div class="rich-content"><p>For local planning, record each Java service and instrumentation version, assign an owner to review custom telemetry behavior, and compare telemetry before and after the 3.x deployment.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

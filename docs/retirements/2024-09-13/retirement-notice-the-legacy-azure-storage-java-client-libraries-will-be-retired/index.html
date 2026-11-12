@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">13 Sep 2024</p>
-<div class="rich-content"><p>The retirement ends associated Microsoft updates for the legacy libraries; the notice does not say that the libraries or Storage service stop working.</p></div>
+<div class="rich-content"><p>Microsoft no longer issues associated updates for the legacy libraries. The notice does not say that the libraries or Storage service stop working.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>This is a retirement of legacy Azure Storage Java client libraries, not a shutdown of Azure Storage accounts or data. The notice explicitly says older libraries can still be used but no associated updates will be issued.</p></div>
+<div class="rich-content"><p>The legacy Azure Storage Java client libraries retired, not Storage accounts or data. The notice says older libraries can still be used, but Microsoft no longer issues associated updates.</p></div>
       <div class="notice">The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>The current Learn overview lists Version 12 packages by service, while its legacy page identifies the old <code>com.microsoft.azure:azure-storage</code> dependency. The announcement's linked migration guides resolve to GitHub files; no retirement-specific code mapping is asserted here.</p><ol><li>Inventory Maven dependencies and usages by Blob, Queue, File, or Table service.</li><li>Select the supported service-specific Azure SDK for Java package.</li><li>Refactor and test authentication, data operations, retries, and error handling before release.</li></ol></div>
+<div class="rich-content"><p>Learn identifies the legacy <code>com.microsoft.azure:azure-storage</code> dependency and lists v12 libraries by service. The linked GitHub migration guides were not used as retirement authority, so no specific code mapping is asserted.</p><ol><li>Inventory dependencies and usages by Blob, Queue, File, or Table service.</li><li>Choose a supported service-specific Azure SDK for Java package.</li><li>Refactor and regression-test authentication, requests, data operations, retries, and error handling.</li></ol></div>
 <a class="button primary" href="https://learn.microsoft.com/en-us/java/api/overview/azure/storage?view=azure-java-stable" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><ul><li>Separate client-library support from the availability of the underlying Storage service.</li><li>Check package use across all modules and build files.</li><li>Test representative reads, writes, authentication, and error handling.</li></ul></div>
+<div class="rich-content"><ul><li>Separate client-library support from the underlying Storage service's availability.</li><li>Check legacy coordinates across modules and build files.</li><li>Review current service-specific packages and test representative reads, writes, authentication, and errors.</li></ul></div>
       <div class="notice">The library retirement does not mean Storage data or service endpoints are retired. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>Keep a local dependency inventory across parent POMs, modules, and build files. Record package coordinates, the Storage services used, and migration test results; the reviewed Learn overview does not provide a customer-wide legacy-library detector.</p></div>
+<div class="rich-content"><p>For local planning, inventory legacy dependencies across parent POMs, modules, and build files. Record package coordinates, services used, and migration test results; the reviewed Learn overview provides no customer-wide legacy-library detector.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

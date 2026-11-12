@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2022</p>
-<div class="rich-content"><p>The announcement says version 1.x requests continue to be served, but the SDK no longer receives fixes, features, or support.</p></div>
+<div class="rich-content"><p>After support ended, version 1.x requests continue to be served according to the announcement. The SDK no longer receives bug fixes, new features, or support.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>The Azure Cosmos DB .NET and .NET Core SDKs version 1.x for the SQL API no longer receive bug fixes, new features, or support; the announcement says requests from these versions continue to be served.</p></div>
+<div class="rich-content"><p>Azure Cosmos DB .NET and .NET Core SDKs version 1.x for the SQL API no longer receive bug fixes, new features, or support. The announcement says requests from these versions continue to be served.</p></div>
       <div class="notice">Review workload-specific pricing and agreements when planning changes.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Move affected applications to the .NET SDK v3. The historical announcement also offered v2, but v2 has since retired; review the v1-to-v2 and v2-to-v3 migration guides, framework requirements, session-token and API changes, then test and deploy the updated applications.</p></div>
+<div class="rich-content"><p>Move affected applications to the .NET SDK v3. The historical announcement also offered v2, but v2 has since retired.</p><ol><li>Review the v1-to-v2 and v2-to-v3 migration guides, framework requirements, session-token and API changes.</li><li>Test the updated applications before deployment.</li></ol></div>
 <a class="button primary" href="https://learn.microsoft.com/azure/cosmos-db/migrate-dotnet-v2" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Applications using either version 1.x SDK for the SQL API are affected; inventory dependencies and owners across environments.</p><ul><li>Identify applications using the .NET or .NET Core SQL API SDK version 1.x.</li><li>Test SDK and application changes before deployment.</li></ul></div>
+<div class="rich-content"><p>Applications using either .NET or .NET Core SDK 1.x for the SQL API are affected.</p><ul><li>Inventory dependencies and owners across environments.</li><li>Test SDK and application changes before deployment.</li></ul></div>
       <div class="notice">No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>For local planning, record owners, migration decisions, and verification results in your team's own tracking system.</p></div>
+<div class="rich-content"><p>For local planning, record affected applications and owners, migration decisions, testing, and production verification in your team's tracker.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

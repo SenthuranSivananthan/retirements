@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">12 Nov 2024</p>
-<div class="rich-content"><p>There is no current .NET 8 target to use for a new upgrade: in-process .NET 8 support ended on 10 November 2026, and the supported-languages page identifies .NET 10 in the isolated worker model.</p></div>
+<div class="rich-content"><p>The .NET 6 support milestone is separate from the later .NET 8 in-process end of support on November 10, 2026. Current Functions guidance lists .NET 10 in the isolated model.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>This support retirement concerns the .NET runtime used by Azure Functions, not the availability of the Functions service. The preserved recommendation to upgrade to .NET 8 is historical.</p></div>
+<div class="rich-content"><p>The notice concerns the .NET runtime used by Azure Functions, not the Functions service itself. The preserved notice says .NET 6 apps continue to run without security updates or customer service; its .NET 8 recommendation is historical.</p></div>
       <div class="notice">The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>The old .NET 8 recommendation is no longer current. The Functions support page lists .NET 10 for the isolated worker model, while .NET 8 in-process support ended on 10 November 2026; later .NET versions require the isolated worker model.</p><ol><li>Inventory runtime, worker model, bindings, and package versions.</li><li>Choose a currently supported target and migrate to isolated worker if needed.</li><li>Build, test triggers and bindings, deploy to a validation slot, and verify executions.</li></ol></div>
+<div class="rich-content"><p>Choose a currently supported .NET version and use the isolated worker model where required. Current guidance lists .NET 10 for isolated workers; .NET 8 in-process support ended on November 10, 2026.</p><ol><li>Inventory runtime, worker model, triggers, bindings, and packages.</li><li>Update the target and migrate to isolated worker if needed.</li><li>Build, test triggers and bindings, deploy to a validation slot, and verify executions and monitoring.</li></ol></div>
 <a class="button primary" href="https://learn.microsoft.com/en-us/azure/azure-functions/supported-languages" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><ul><li>Check the app's runtime and hosting model.</li><li>Test triggers, bindings, extensions, and downstream integrations.</li><li>Verify execution, monitoring, and rollback readiness after deployment.</li></ul></div>
+<div class="rich-content"><ul><li>Check runtime and worker model for each function app.</li><li>Review triggers, bindings, extensions, packages, and integrations.</li><li>Verify execution, monitoring, and rollback readiness after deployment.</li></ul><p>Unsupported .NET 6 apps continue running without security updates or customer service.</p></div>
       <div class="notice">The historical .NET 8 recommendation is not a current supported target for in-process Functions. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>Keep a local inventory of function apps, runtime versions, worker models, triggers, and bindings. Record build, deployment, execution, and monitoring checks; the reviewed support page does not provide a tenant-wide detector for apps still using .NET 6.</p></div>
+<div class="rich-content"><p>For local planning, inventory function apps, runtime versions, worker models, triggers, and bindings. Record build, deployment, execution, and monitoring checks; the reviewed support page provides no tenant-wide detector for .NET 6 apps.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

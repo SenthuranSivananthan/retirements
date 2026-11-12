@@ -62,7 +62,7 @@ class ReviewTests(unittest.TestCase):
         result = apply_reviews(batch, self.output)
         record = result["records"][0]
         old = self.original["records"][0]
-        self.assertTrue(record["manuallyEnriched"])
+        self.assertFalse(record["manuallyEnriched"])
         self.assertEqual(record["questions"]["deadline"]["date"], "2029-01-02")
         self.assertEqual(record["sourceReview"]["deadlineSource"], self.url)
         self.assertEqual(record["sourceReview"]["originalAnnouncement"], old["questions"]["what"]["announcement"])
@@ -71,7 +71,7 @@ class ReviewTests(unittest.TestCase):
             self.assertEqual(record[field], old[field])
         self.assertEqual(result["retrievedAt"], self.original["retrievedAt"])
         self.assertEqual(result["records"][1:], self.original["records"][1:])
-        self.assertEqual(merge_retirements(self.original["records"], result["records"])[0], record)
+        self.assertEqual(merge_retirements(self.original["records"], result["records"])[0], old)
         self.assertEqual(json.loads(self.output.read_bytes()), result)
         self.assertEqual(list(self.output.parent.glob("*.tmp")), [])
 
@@ -446,6 +446,9 @@ class ReviewTests(unittest.TestCase):
         self.assertEqual(manual["summary"], record["summary"])
         self.assertEqual(manual["questions"], record["questions"])
         self.assertEqual(manual["customNotes"], record["customNotes"])
+        self.assertTrue(manual["manuallyEnriched"])
+        self.assertEqual(next(item for item in merge_retirements(value["records"], reviewed["records"])
+                              if item["id"] == "manual"), manual)
         self.assertEqual(manual["sourceReview"]["status"], "enriched")
         report = review_report(reviewed, 10)
         self.assertEqual(report["reviewed"], 1)

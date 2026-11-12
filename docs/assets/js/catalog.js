@@ -336,7 +336,7 @@ function isSourceReview(record) {
         return tracking === undefined || tracking === null;
     const review = record.sourceReview;
     const sections = ['what', 'actions', 'impact', 'deadline', 'progress'];
-    if (!isObject(review) || !record.manuallyEnriched
+    if (!isObject(review)
         || !['enriched', 'needs-review'].includes(review.status)
         || review.reviewedOn === null || !isCatalogDate(review.reviewedOn)
         || typeof review.originalAnnouncement !== 'string' || !review.originalAnnouncement.trim()

@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Sep 2027</p>
-<div class="rich-content"><p>The preserved announcement states that support for Java 8, 11, and 17 on App Service ends on the date shown above. The App Service language runtime support policy lists these versions as supported but gives no end date.</p><p>After that date, apps keep running without security updates or customer service for Java 8, 11, and 17.</p></div>
+<div class="rich-content"><p>The preserved announcement supplies the cutoff above. The App Service runtime policy lists these versions as supported but gives no end date.</p><p>After support ends, apps continue to run without security updates or customer service for Java 8, 11 and 17.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Support for Java 8, 11 and 17 on Azure App Service ends on September 1, 2027.</p><p>Apps keep running after that date, but security updates and customer service are no longer provided for those Java versions. The announcement recommends upgrading to Java 25.</p></div>
+<div class="rich-content"><p>Azure App Service is ending support for Java 8, 11 and 17. Apps can continue running, but those versions will no longer receive security updates or customer service.</p><p>The announcement recommends Java 25.</p></div>
       <div class="notice">The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Upgrade apps to Java 25 before the end of support.</p><ul><li>App Service documents how to target a different Java version in the Azure portal.</li><li>Changing stack settings restarts the app, so test first.</li></ul><p>The App Service language runtime support policy lists Java 8, 11, 17, 21 and 25 as currently supported and links guidance on modernizing to Java 21 and moving to Java 25.</p></div>
+<div class="rich-content"><p>Upgrade affected apps to Java 25 before support ends. App Service documents how to change the Java version in the Azure portal.</p><p><strong>Test first:</strong> changing stack settings restarts the app.</p><p>The App Service runtime policy lists Java 8, 11, 17, 21 and 25 as currently supported and links to guidance on modernizing to Java 21 and moving to Java 25.</p></div>
       <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Apps on Java 8, 11 or 17 keep running after September 1, 2027 without security updates or customer service for those versions. The runtime support policy says reminder notifications go to subscription owners and that Java runtime deprecations come with at least six months of notice.</p><ul><li>Identify App Service apps that use Java 8, 11 or 17</li><li>Check each app's container, build and library compatibility with Java 25</li><li>Test the app on Java 25 before changing the production stack</li><li>Plan a restart window for the stack change</li></ul></div>
+<div class="rich-content"><p>Apps on Java 8, 11 or 17 can still run after support ends, but without security updates or customer service for those versions. The runtime policy says subscription owners receive reminders and Java runtime deprecations have at least six months' notice.</p><h3>Check your apps</h3><ul><li>Identify affected App Service apps.</li><li>Check container, build and library compatibility with Java 25.</li><li>Test on Java 25 before changing the production stack.</li><li>Plan a restart window for the stack change.</li></ul></div>
       <div class="notice">No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>For your own planning, list each app and slot on Java 8, 11 or 17, its owner, the Java 25 test result, and the planned cutover date.</p></div>
+<div class="rich-content"><p>For team planning, record each app and slot using Java 8, 11 or 17, its owner, Java 25 test result and planned cutover date.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

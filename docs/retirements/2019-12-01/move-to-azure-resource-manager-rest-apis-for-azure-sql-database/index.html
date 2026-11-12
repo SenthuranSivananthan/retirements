@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Dec 2019</p>
-<div class="rich-content"><p>The announcement set the migration target one day before the Service Management API retirement.</p></div>
+<div class="rich-content"><p>The announcement set the migration target <strong>one day before</strong> the Service Management API retirement.</p><p>The preserved announcement requested migration by November 30, 2019, before Service Management API support retired the next day.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>The retirement concerns the legacy Service Management control-plane API for Azure SQL Database.</p><p>It does not retire the database service or its data-plane connections; Resource Manager APIs are the management-plane replacement.</p></div>
+<div class="rich-content"><p>The retirement concerns the <strong>legacy Service Management control-plane API</strong> for Azure SQL Database.</p><p>It does not retire the database service or its data-plane connections; Resource Manager APIs are the management-plane replacement.</p></div>
       <div class="notice">The reviewed sources do not identify a retirement-related pricing change.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Review management automation and replace Service Management API requests with the corresponding Azure SQL Database Resource Manager API operations.</p><ol><li>Identify requests using the legacy Service Management endpoint or API reference.</li><li>Map each operation to the current SQL Resource Manager REST API.</li><li>Update authentication and request URIs, then test deployment and management operations.</li></ol><p>This change is about the control plane, not application connections to the database.</p></div>
+<div class="rich-content"><p>Review management automation and replace Service Management API requests with the corresponding Azure SQL Database <strong>Resource Manager API operations</strong>.</p><h3>Map and test control-plane calls</h3><ol><li>Identify requests using the legacy Service Management endpoint or API reference.</li><li>Map each operation to the current SQL Resource Manager REST API.</li><li>Update authentication and request URIs, then test deployment and management operations.</li></ol><p>This change is about the control plane, not application connections to the database.</p></div>
 <a class="button primary" href="https://learn.microsoft.com/azure/azure-resource-manager/management/overview" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Management scripts or applications that depend on the legacy API require changes. Azure SQL Database itself and application data-plane connectivity are outside the stated retirement scope.</p></div>
+<div class="rich-content"><p>Management scripts or applications that depend on the legacy API require changes. Azure SQL Database itself and application data-plane connectivity are <strong>outside the stated retirement scope</strong>.</p></div>
       <div class="notice">Only the legacy management REST API is affected. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>Search repositories, scripts, and deployment tools for legacy Service Management endpoints and record the corresponding ARM API operation for each caller.</p><p>Track code owners and test results in your team's planning system; this page is reference guidance only.</p></div>
+<div class="rich-content"><p>Search repositories, scripts, and deployment tools for legacy Service Management endpoints and record the <strong>corresponding ARM API operation</strong> for each caller.</p><p>Track code owners and test results in your team's planning system; this page is reference guidance only.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

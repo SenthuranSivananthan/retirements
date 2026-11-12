@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2025</p>
-<div class="rich-content"><p>The Batch announcement says new pools cannot be created with NCv3, existing pools cannot scale out, and they may be forcibly resized to zero.</p><p>The VM guide lists regional NCv3 VM extensions to December 31, 2026 in US Gov Virginia and US Gov Arizona, and June 30, 2027 in Jio India West and China North 3. Whether those extensions apply to Batch pools is not established by the reviewed sources.</p></div>
+<div class="rich-content"><p>The Batch announcement says new pools cannot be created with NCv3, existing pools cannot scale out, and they may be forcibly resized to zero.</p><h3>Regional VM extensions may not apply to Batch</h3><p>The VM guide lists regional NCv3 VM extensions to December 31, 2026 in US Gov Virginia and US Gov Arizona, and June 30, 2027 in Jio India West and China North 3. Whether those extensions apply to Batch pools is <strong>not established</strong> by the reviewed sources.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Batch follows the NCv3-series VM retirement for pools using that family.</p></div>
+<div class="rich-content"><p>Azure Batch follows the <strong>NCv3-series</strong> VM retirement for pools using that family.</p></div>
       <div class="notice">Replacement VM pricing and Batch account quotas depend on the target size and region.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Move affected Batch workloads to a supported VM size.</p><ol><li>Inventory NCv3 pools and choose a Batch-supported size in the relevant region.</li><li>Check quotas, validate images, drivers and workload behavior, then plan migration and cutover.</li></ol></div>
+<div class="rich-content"><p>Move affected Batch workloads to a supported VM size.</p><ol><li>Inventory NCv3 pools and choose a <strong>Batch-supported size</strong> in the relevant region.</li><li>Check quotas, validate images, drivers and workload behavior, then plan migration and cutover.</li></ol></div>
 <a class="button primary" href="https://learn.microsoft.com/azure/batch/batch-pool-vm-sizes" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Batch pools using NCv3 sizes, including Standard_NC24rs_v3, Standard_NC6s_v3, Standard_NC12s_v3 and Standard_NC24s_v3, are affected.</p><ul><li>NCv3 Batch pools and nodes</li><li>GPU applications, images, drivers and dependent jobs</li></ul></div>
+<div class="rich-content"><p>Batch pools using <strong>NCv3</strong> sizes, including <code>Standard_NC24rs_v3</code>, <code>Standard_NC6s_v3</code>, <code>Standard_NC12s_v3</code> and <code>Standard_NC24s_v3</code>, are affected.</p><ul><li>NCv3 Batch pools and nodes</li><li>GPU applications, images, drivers and dependent jobs</li></ul></div>
       <div class="notice">No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>For local planning, record each pool, owner, target size, and workload validation.</p></div>
+<div class="rich-content"><p>For local planning, record each pool, owner, target size, and <strong>workload validation</strong>.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

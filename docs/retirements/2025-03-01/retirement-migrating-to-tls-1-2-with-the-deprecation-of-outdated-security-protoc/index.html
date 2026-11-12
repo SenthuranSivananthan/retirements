@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Mar 2025</p>
-<div class="rich-content"><p>The notice set an earlier preparation milestone for 1 March 2024. The retirement itself affects Azure Resource Manager requests that still negotiate TLS 1.0 or 1.1.</p></div>
+<div class="rich-content"><p>The notice set an earlier preparation milestone of 1 March 2024. Calls still negotiating TLS 1.0 or 1.1 fail after support ends.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>This change applies to incoming Azure Resource Manager calls that negotiate TLS 1.0 or TLS 1.1, not to every TLS connection to every Azure service.</p></div>
+<div class="rich-content"><p>Azure Resource Manager stopped supporting TLS 1.0 and 1.1 for incoming calls. This does not apply to every TLS connection to every Azure service.</p><p>The preserved notice asked customers to update clients by an earlier preparation milestone.</p></div>
       <div class="notice">The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Review operating systems, development libraries, and automation clients that call Azure Resource Manager. Update protocol settings where required, then test each client against the management APIs.</p><ol><li>Inventory clients and identify negotiated TLS versions.</li><li>Update unsupported libraries, operating systems, and protocol defaults.</li><li>Test deployment and management operations using TLS 1.2 or later.</li></ol></div>
+<div class="rich-content"><ol><li>Inventory Azure Resource Manager callers and identify negotiated TLS versions.</li><li>Update unsupported operating systems, development libraries, HTTP clients, automation, and protocol defaults.</li><li>Test deployment and management operations using TLS 1.2 or later.</li></ol></div>
 <a class="button primary" href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tls-support" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><ul><li>Scope checks to clients that call Azure Resource Manager.</li><li>Verify operating-system and library TLS support.</li><li>Test deployment and resource-management operations with TLS 1.2 or later.</li></ul></div>
+<div class="rich-content"><p>Incoming Azure Resource Manager calls using TLS 1.0 or 1.1 fail after support ends.</p><ul><li>Scope checks to clients that call Azure Resource Manager.</li><li>Verify operating-system and library TLS support and dependency versions.</li><li>Test deployment and resource-management operations after updating.</li></ul></div>
       <div class="notice">The change is specific to Azure Resource Manager management requests; the notice does not imply a universal change to unrelated Azure data-plane endpoints. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>Keep a local inventory of management clients, operating systems, TLS settings, and dependency versions. Record test evidence for each deployment or management workflow.</p></div>
+<div class="rich-content"><p>For local planning, inventory management clients, operating systems, negotiated TLS versions, settings, and dependencies. Record test evidence for each deployment or management workflow and track remaining legacy dependencies.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

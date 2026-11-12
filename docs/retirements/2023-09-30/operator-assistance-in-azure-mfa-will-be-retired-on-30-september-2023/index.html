@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2023</p>
-<div class="rich-content"><p>Operator Assistance retired and was disabled for all tenants. The announcement says calls automatically dial the user's extension when connected.</p></div>
+<div class="rich-content"><p>Operator Assistance was disabled for all tenants. The announcement says the system automatically dials the user's extension when the call connects.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Operator Assistance in Azure multifactor authentication retired on September 30, 2023 and was disabled for all Azure AD tenants. The announcement says Azure AD automatically dials the user's extension when the call connects. Tenants created after March 1, 2022 did not have access to Operator Assistance.</p></div>
+<div class="rich-content"><p><strong>Operator Assistance</strong> in Azure multifactor authentication retired and was disabled for all Azure AD tenants. The announcement says Azure AD automatically dials the user's extension when the call connects.</p><p>Tenants created after March 1, 2022 did not have access to the feature.</p></div>
       <div class="notice">The announcement does not describe a price change for using an automated attendant.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Use your phone system's automated attendant to route voice MFA calls to the user's extension. Verify the call flow with your telephony administrator. The original linked Learn procedure now leads to a general MFA overview rather than Operator Assistance-specific setup instructions.</p></div>
+<div class="rich-content"><p>Use your phone system's automated attendant to route voice MFA calls to the user's extension, and verify the call flow with your telephony administrator.</p><p>The original Learn procedure now leads to a general Microsoft Entra MFA overview, not Operator Assistance-specific configuration instructions.</p></div>
       <p>Use the preserved Azure support link if you have a support plan; the community links are not Operator Assistance configuration guidance. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>This change concerns Operator Assistance in voice-call MFA, not MFA as a whole. Calls now automatically dial the user's extension according to the preserved announcement.</p><ul><li>Check voice-call routing and user-extension data.</li><li>Validate the automated-attendant path with representative calls.</li><li>The sources do not identify individual tenant phone-system configurations.</li></ul></div>
+<div class="rich-content"><p>This change concerns Operator Assistance in voice-call MFA, not multifactor authentication as a whole. The announcement says calls automatically dial the configured user extension.</p><ul><li>Review voice-call flows that previously involved a human operator.</li><li>Check user extensions and automated-attendant routing.</li><li>Test representative calls with your telephony administrator.</li></ul></div>
       <div class="notice">The cited procedure link no longer provides Operator Assistance-specific steps; confirm phone-system routing with your telephony administrator. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>For local planning, record telephony owners, user-extension checks, call tests, and routing decisions in your team's own tracking system. This page does not save checklist progress.</p></div>
+<div class="rich-content"><p>For local planning, record voice MFA and telephony owners, extension checks, automated-attendant tests, and routing decisions in your team's own tracking system.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

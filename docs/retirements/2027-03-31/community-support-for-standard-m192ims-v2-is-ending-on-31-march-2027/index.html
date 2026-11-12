@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2027</p>
-<div class="rich-content"><p>Any remaining VM with an affected size is deallocated and stops running. Deallocated VMs are not billed.</p></div>
+<div class="rich-content"><p>Any remaining VM with an affected size will be deallocated and stop running. Deallocated VMs are not billed.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>The affected scope is limited to the Msv2 and Mdsv2 Medium Memory SKUs listed in the retirement article, including Standard_M192ims_v2. It does not apply to every Msv2 or Mdsv2 size.</p></div>
+<div class="rich-content"><p>The retirement affects only the Msv2 and Mdsv2 Medium Memory SKUs listed in the retirement article, including <code>Standard_M192ims_v2</code>. It does not apply to every size in those VM families.</p></div>
       <div class="notice">The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Use the documented migration branch for the VM's Availability Set and Proximity Placement Group placement; a direct resize is not available in every configuration.</p><ol><li>Confirm the exact affected SKU and its placement constraints.</li><li>Request quota for the selected Mv3 replacement and choose an available size.</li><li>Resize or recreate the VM as appropriate, then validate the workload.</li></ol></div>
+<div class="rich-content"><p>Migrate affected VMs to a suitable Mv3 Medium Memory size. Use the documented branch for each VM's Availability Set and Proximity Placement Group: direct resize is not available in every configuration.</p><ol><li>Confirm the exact SKU and placement constraints.</li><li>Choose an available replacement size and request quota.</li><li>Resize or recreate the VM as appropriate, then validate the workload.</li></ol></div>
 <a class="button primary" href="https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/lifecycle/retirement/msv2-mdsv2-retirement" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><ul><li>Compare each VM's actual SKU with the affected-size list.</li><li>Check target quota and availability before resizing.</li><li>Test application, storage, and network behavior on the replacement.</li></ul></div>
+<div class="rich-content"><p>Only the listed Medium Memory sizes are affected.</p><ul><li>Compare actual VM SKUs with the affected-size list.</li><li>Check target quota and regional availability.</li><li>Test application, storage, and network behavior on the replacement.</li></ul></div>
       <div class="notice">The retirement article says remaining affected VMs will be stopped and deallocated and will not be billed while deallocated. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>Keep a local inventory of affected VM names, exact SKUs, placement constraints, and selected replacements. Record quota requests, resize or recreation results, and workload validation in your team's change records.</p></div>
+<div class="rich-content"><p>For team planning, inventory affected VM names, exact SKUs, placement constraints, and selected replacements. Record quota requests, resize or recreation results, and workload validation in team change records.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

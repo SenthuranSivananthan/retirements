@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">5 May 2023</p>
-<div class="rich-content"><p>Calls to the retired Elevation APIs fail after the cutoff; the preserved announcement says other Azure Maps APIs and tile IDs are unaffected.</p></div>
+<div class="rich-content"><p>Calls to the retired services fail after the cutoff. The preserved announcement says other Azure Maps APIs, services and tile IDs are unaffected.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>These Azure Maps services retire on May 5, 2023, after which calls fail:</p><ul><li>Elevation APIs: Get Data For Bounding Box, Get Data For Points, Get Data For Polyline, Post Data For Points and Post Data For Polyline.</li><li>Render V2 DEM tiles: <code>microsoft.dem</code> and <code>microsoft.dem.contours</code>.</li></ul><p>All other Azure Maps APIs, services and tileset IDs are unaffected.</p></div>
+<div class="rich-content"><p>The Azure Maps Elevation APIs and Render V2 DEM tiles retire; calls to the retired services fail after the cutoff.</p><ul><li>Elevation APIs: Get Data For Bounding Box, Get Data For Points, Get Data For Polyline, Post Data For Points and Post Data For Polyline.</li><li>Render V2 DEM tiles: <code>microsoft.dem</code> and <code>microsoft.dem.contours</code>.</li></ul><p>All other Azure Maps APIs, services and tileset IDs are unaffected.</p></div>
       <div class="notice">The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><ul><li>Elevation APIs: use the Bing Maps Get Elevations service and review Bing Maps licensing for pricing.</li><li>DEM tiles: build tiles from free Shuttle Radar Topography Mission data on Azure.</li></ul></div>
+<div class="rich-content"><ul><li>For Elevation APIs, the announcement recommends Bing Maps Get Elevations and reviewing Bing Maps licensing for pricing.</li><li>For DEM tiles, it recommends building tiles on Azure from free Shuttle Radar Topography Mission data.</li></ul></div>
       <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><ul><li>Applications calling the listed Elevation APIs are affected.</li><li>Applications using the <code>microsoft.dem</code> and <code>microsoft.dem.contours</code> tile IDs are affected.</li><li>The Bing Maps option has its own licensing and pricing.</li></ul></div>
+<div class="rich-content"><p>Applications calling the listed Elevation APIs or using <code>microsoft.dem</code> and <code>microsoft.dem.contours</code> are affected. The Bing Maps option has its own licensing and pricing.</p></div>
       <div class="notice">No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>List each application that calls the Elevation APIs or DEM tiles, with owners and replacement status, in your own tracking system.</p></div>
+<div class="rich-content"><p>For team planning, list each application calling the Elevation APIs or DEM tiles, its owner and replacement status.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

@@ -90,7 +90,7 @@ python -m unittest discover -s tests -v
 python site/build.py
 ```
 
-Edit curated content in **`data/retirements.json`**, not its generated copies. Set `manuallyEnriched: true` when adding answers or custom information. See [Protecting manual enrichments](#protecting-manual-enrichments).
+Edit curated content in **`data/retirements.json`**, not its generated copies. Set `manuallyEnriched: true` only when the record must be protected from refresh. See [Protecting manual enrichments](#protecting-manual-enrichments).
 
 After changing source or data, rebuild and commit **both the source changes and the resulting `docs` changes**. A build does not refresh the source or change the canonical catalog. If a refresh fails, the previous snapshot stays intact; resolve the reported error before retrying.
 
@@ -214,14 +214,14 @@ Navigation uses the exact deadline's year, otherwise the stated year of a valid 
 
 ### Protecting manual enrichments
 
-Every retirement has a boolean `manuallyEnriched`, initially `false`. When editing answers or adding custom information, set **`"manuallyEnriched": true`** and commit the JSON. Both automated and local refreshes preserve the entire protected record, including custom fields and its recorded `lastUpdatedOn`, even if the source removes that ID.
+Every retirement has a boolean `manuallyEnriched`, initially `false`. To protect answers or custom information from refresh, set **`"manuallyEnriched": true`** and commit the JSON. Both automated and local refreshes preserve the entire protected record, including custom fields and its recorded `lastUpdatedOn`, even if the source removes that ID.
 
 Each record also has a `hidden` boolean, initially `false`. Set it to `true` to exclude that retirement from search, navigation, filters, and visible counts; the direct detail page and public JSON download remain accessible, so this is not an access-control feature. Feed refresh preserves the flag for matching records. Older records without the field are treated as visible.
 
 
 Unflagged records continue to refresh; new announcements use `false`. Set the flag back to `false` to resume source updates, replacing custom content on the next successful refresh. Keep all five sections and valid field types when enriching records.
 
-For source-reviewed records, remove `sourceReview` as well when deliberately returning to feed-only content. The validator rejects review evidence without refresh protection.
+Review metadata is independent of refresh protection: a reviewed record can have either flag value. A successful feed refresh replaces an unprotected record, including its review metadata and curated answers, or removes it if it is absent from the feed.
 
 The refresh reads the existing snapshot after fetching, incorporating edits saved during the fetch. Invalid flags, duplicate IDs, malformed snapshots, and detected concurrent publishing edits fail instead of overwriting local data. Publishing uses a temporary file and atomic replacement. Changes made only to generated output are not durable.
 
@@ -257,7 +257,7 @@ python site/build.py
 python -m scripts.check_site
 ```
 
-The application command is a guarded editor, **not an autonomous web crawler or summarizer**. It validates every update before publishing any, rejects stale batches and concurrent edits, preserves unrelated records/feed timestamps, and sets `manuallyEnriched: true`. It cannot prove the semantic accuracy of a citation; actual page reading and human review remain necessary. Changes to checked-in `docs` must accompany catalog changes.
+The application command is a guarded editor, **not an autonomous web crawler or summarizer**. It validates every update before publishing any, rejects stale batches and concurrent edits, and preserves unrelated records, feed timestamps, and the existing `manuallyEnriched` flag. It cannot prove the semantic accuracy of a citation; actual page reading and human review remain necessary. Changes to checked-in `docs` must accompany catalog changes.
 
 ### Weekly Copilot cloud automation
 
@@ -267,7 +267,7 @@ The reusable task is [`.github/prompts/retirement-enrichment.prompt.md`](.github
 
 Once cloud automation access is available, review a single personal automation for this repository. Discover the service's supported tools/triggers and grant only public-document retrieval, repository reading/editing, and required execution capabilities. Choose the weekly day/time in UTC through the service's structured schedule fields; do not embed schedule/permissions in the task prompt. Creation, activation, and any initial run require separate approval. Publication behavior is also pending approval: the draft leaves a reviewable diff and does not authorize pushing, opening PRs, or merging.
 
-Daily feed refresh preserves these complete reviewed records, so weekly reviews must revisit current documentation and check current announcements separately. The feed refresh alone cannot detect or apply changes inside a protected record. Before any approved publication, reconcile with the latest main-branch feed snapshot and regenerate `docs`; never force-push over a concurrent refresh.
+Daily feed refresh replaces unprotected reviewed records with feed content; protected records remain unchanged and require separate checks of current documentation and announcements. Before any approved publication, reconcile with the latest main-branch feed snapshot and regenerate `docs`; never force-push over a concurrent refresh.
 
 ### Official source
 
@@ -277,4 +277,4 @@ This is the complete tagged announcement collection returned by that feed, **not
 
 The structured feed supplies a retirement **month**, not an exact day. For unreviewed records, exact dates are extracted conservatively from current announcement **titles** only when a single distinct, valid date appears. ISO dates require explicit deadline wording to distinguish deadlines from API versions. Automatic refresh does not infer deadlines from publication dates, IDs, URL slugs, or announcement descriptions. Reviewed deadlines may instead use explicit retirement-specific dates from the announcement's title or description, Microsoft Learn, or a verified first-party Tech Community article as described above. Month-only and unresolved deadlines remain **Date to confirm** and do not count as upcoming or retired. **Within 90 days** includes today and day 90 UTC; **Upcoming** includes that group.
 
-Announcement HTML is parsed into plain text, with related HTTPS links retained separately. The app escapes source text instead of rendering source HTML. When answers are content-enriched, authors add an `html` fragment in each of the five question objects; legacy and protected manual-only records may omit it and use the plain-text fallback. The builder allows only semantic formatting tags (`p`, `h3`, `ul`, `ol`, `li`, `strong`, `em`, `code`, `pre`, and `br`), rejects attributes and active content, and escapes text nodes. Use paragraphs and lists for structure and convert line breaks or literal newline escapes to paragraph boundaries or `<br>`. Each page links to the official announcement; verify tenant-specific impact, pricing, support, and phased deadlines with Microsoft.
+Announcement HTML is parsed into plain text, with related HTTPS links retained separately. The app escapes source text instead of rendering source HTML. When answers are content-enriched, authors add an `html` fragment in each of the five question objects; legacy and protected manual-only records may omit it and use the plain-text fallback. The builder allows only semantic formatting tags (`p`, `h3`, `ul`, `ol`, `li`, `strong`, `em`, `code`, `pre`, and `br`), rejects attributes and active content, and escapes text nodes. Lead with the main point, use short single-topic paragraphs, meaningful subheadings for complex answers, unordered lists for independent points, and ordered lists only for sequences. Preserve substantive facts and limitations without repeating separately rendered dates, notices, support, or tracking messages. Convert line breaks or literal newline escapes to paragraph boundaries or `<br>`. Each page links to the official announcement; verify tenant-specific impact, pricing, support, and phased deadlines with Microsoft.

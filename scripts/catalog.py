@@ -184,7 +184,7 @@ def valid_source_review(record):
     if "sourceReview" not in record:
         return tracking is None
     review = record["sourceReview"]
-    if not isinstance(review, dict) or not record["manuallyEnriched"]:
+    if not isinstance(review, dict):
         return False
     if (
         review.get("status") not in ("enriched", "needs-review")

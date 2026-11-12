@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">6 Dec 2021</p>
-<div class="rich-content"><p>Applications continue to run but no longer receive PHP 7.3 patches or runtime support.</p></div>
+<div class="rich-content"><p>Applications continue to run but <strong>no longer receive</strong> PHP 7.3 patches or runtime support.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>PHP 7.3 reached end of support for App Service on Linux and Windows; applications continue to run but no longer receive runtime patches.</p></div>
+<div class="rich-content"><p>PHP 7.3 reached end of support for App Service on Linux and Windows; applications <strong>continue to run</strong> but no longer receive runtime patches.</p></div>
       <div class="notice">Evaluate migration, testing, and target hosting costs for your workload.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Move affected applications to a currently supported PHP runtime and hosting configuration.</p><ol><li>Inventory apps and dependencies and choose a supported target.</li><li>Test compatibility, configure or migrate hosting, deploy, and validate.</li></ol><p>PHP on Windows App Service is no longer supported; the original recommendation of PHP 7.4 is historical.</p></div>
+<div class="rich-content"><p>Move affected applications to a currently supported PHP runtime and hosting configuration.</p><ol><li>Inventory apps and dependencies and choose a supported target.</li><li>Test compatibility, configure or migrate hosting, deploy, and validate.</li></ol><p>PHP on Windows App Service is no longer supported; the original recommendation of PHP 7.4 is <strong>historical</strong>.</p></div>
 <a class="button primary" href="https://learn.microsoft.com/azure/app-service/configure-language-php" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>App Service applications using PHP 7.3 on Linux or Windows are affected.</p><ul><li>PHP 7.3 applications</li><li>Runtime, deployment, and application dependencies</li></ul></div>
+<div class="rich-content"><p>App Service applications using PHP 7.3 on <strong>Linux or Windows</strong> are affected.</p><ul><li>PHP 7.3 applications</li><li>Runtime, deployment, and application dependencies</li></ul></div>
       <div class="notice">No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>Use <code>az webapp config show</code> to inspect the configured PHP version for each app, including deployment slots.</p><p>For local planning, record each app, owner, hosting target, and validation status.</p></div>
+<div class="rich-content"><p>Use <code>az webapp config show</code> to inspect the configured PHP version for each app, including <strong>deployment slots</strong>.</p><p>For local planning, record each app, owner, hosting target, and validation status.</p></div>
 <p><a href="https://learn.microsoft.com/azure/app-service/configure-language-php" target="_blank" rel="noopener noreferrer">Read the tracking guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">

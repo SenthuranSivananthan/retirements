@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Learn gives the exact removal date for all four preview API versions.</p>
       <p class="deadline-date">10 Sep 2023</p>
-<div class="rich-content"><p>The historical removal date has passed. Learn says requests using removed preview versions fail; update any remaining callers to supported API versions.</p></div>
+<div class="rich-content"><p>The historical removal date has passed. Learn says requests using removed <strong>preview</strong> versions fail; update any remaining callers to supported API versions.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The retirement removed four Azure Load Testing preview API versions across Resource Manager and the data plane.</p>
-<div class="rich-content"><p>The retirement covered four Azure Load Testing preview APIs: Resource Manager 2021-12-01-preview and 2022-04-15-preview, and data-plane 2022-06-01-preview and 2021-07-01-preview.</p><p>The Learn API lifecycle page identifies Resource Manager 2022-12-01 and data-plane 2022-11-01 as stable versions available after the preview versions were removed.</p></div>
+<div class="rich-content"><p>The retirement covered four Azure Load Testing <strong>preview</strong> APIs: Resource Manager <code>2021-12-01-preview</code> and <code>2022-04-15-preview</code>, and <strong>data-plane</strong> <code>2022-06-01-preview</code> and 2021-07-01-preview.</p><p>The Learn API lifecycle page identifies <strong>Resource Manager</strong> <code>2022-12-01</code> and data-plane <code>2022-11-01</code> as stable versions available after the preview versions were removed.</p></div>
       <div class="notice"></div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Update Resource Manager templates and data-plane clients to supported stable API versions.</p>
-<div class="rich-content"><ol><li>Find the four preview versions in templates, scripts, SDK settings, and direct API requests.</li><li>Change Resource Manager calls to 2022-12-01 and data-plane operations to 2022-11-01 using the current API documentation.</li><li>Test resource deployment, test administration, and test-run operations before cutover; the lifecycle page does not guarantee data-plane backward compatibility.</li></ol></div>
+<div class="rich-content"><ol><li>Find the four <strong>preview</strong> versions in templates, scripts, SDK settings, and direct API requests.</li><li>Change <strong>Resource Manager</strong> calls to <code>2022-12-01</code> and <strong>data-plane</strong> operations to <code>2022-11-01</code> using the current API documentation.</li><li>Test resource deployment, test administration, and test-run operations before cutover; the lifecycle page does not guarantee data-plane backward compatibility.</li></ol></div>
 <a class="button primary" href="https://learn.microsoft.com/rest/api/apptesting/loadtest/load-testing-api-status" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Requests using the removed preview versions fail after removal.</p>
-<div class="rich-content"><ul><li>Requests that continue to use a removed preview version fail.</li><li>Deployment templates and test-management clients may need separate updates for Resource Manager and data-plane APIs.</li><li>The reviewed sources do not establish that existing test definitions or results were deleted.</li></ul></div>
+<div class="rich-content"><ul><li>Requests that continue to use a removed <strong>preview</strong> version fail.</li><li>Deployment templates and test-management clients may need separate updates for <strong>Resource Manager</strong> and data-plane APIs.</li><li>The reviewed sources do not establish that existing test definitions or results were deleted.</li></ul></div>
       <div class="notice">The notice is about API versions, not a retirement of Azure Load Testing as a service. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>Use your team's change plan or work tracker to record affected callers, updated versions, validation results, owners, and completion evidence.</p></div>
+<div class="rich-content"><p>Use your <strong>team's change plan</strong> or work tracker to record affected callers, updated versions, validation results, owners, and completion evidence.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

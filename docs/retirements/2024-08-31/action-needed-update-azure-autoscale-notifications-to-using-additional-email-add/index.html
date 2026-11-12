@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2024</p>
-<div class="rich-content"><p>After the cutoff, Autoscale no longer sends notifications to administrator or co-administrator recipients.</p></div>
+<div class="rich-content"><p>After the cutoff, notifications relying on administrator or co-administrator recipients are no longer delivered.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure classic administrator roles retire on August 31, 2024, so after that date Azure Autoscale sends scaling notifications only to the addresses in the additional email addresses field.</p><p>Autoscale can no longer notify administrators or co-administrators.</p></div>
+<div class="rich-content"><p>Azure classic administrator roles are retiring. After the cutoff, Autoscale sends scaling notifications only to addresses in the additional email addresses field; it can no longer notify administrators or co-administrators.</p></div>
       <div class="notice">The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><ol><li>Remove administrator and co-administrator selections from the Autoscale email notification settings.</li><li>Add the addresses that should receive notifications to the additional email addresses field.</li></ol><p>If no administrator or co-administrator emails are configured, no action is needed.</p></div>
+<div class="rich-content"><ol><li>Remove administrator and co-administrator selections from Autoscale email notification settings.</li><li>Add the intended recipient addresses to the additional email addresses field.</li></ol><p>If no administrator or co-administrator emails are configured, no action is needed.</p></div>
 <a class="button primary" href="https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-webhook-email" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><ul><li>Autoscale settings that notify administrators or co-administrators are affected.</li><li>Since April 3, 2024 new co-administrators cannot be added to Autoscale notifications.</li></ul></div>
+<div class="rich-content"><p>Autoscale settings that notify administrators or co-administrators are affected. Since April 3, 2024, new co-administrators cannot be added to Autoscale notifications.</p></div>
       <div class="notice">No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>List each Autoscale setting that emails administrators or co-administrators, with its owner and the replacement addresses, in your own tracking system.</p></div>
+<div class="rich-content"><p>For team planning, list each Autoscale setting that emails administrators or co-administrators, its owner and the replacement addresses.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

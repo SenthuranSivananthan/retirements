@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2023</p>
-<div class="rich-content"><p>The preserved announcement says TLS 1.0/1.1 workflows break and client applications stop working until upgraded.</p></div>
+<div class="rich-content"><p>According to the preserved announcement, workflows using TLS 1.0 or 1.1 break, and client applications stop working until upgraded.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Batch stopped supporting TLS 1.0 and 1.1 on March 31, 2023. Affected workflows can break, and client applications may not work until they use TLS 1.2 or later.</p><p>The preserved announcement does not identify a specific affected SDK version or provide a currently valid Batch-specific migration procedure.</p></div>
+<div class="rich-content"><p>Azure Batch retired TLS 1.0 and 1.1. The announcement says affected workflows break and client applications stop working until upgraded to TLS 1.2 or later.</p><p>The preserved announcement does not identify a specific affected SDK version or provide a currently valid Batch-specific migration procedure.</p></div>
       <div class="notice">The announcement does not quantify upgrade costs or price changes. Assess any client or library changes against your own environment.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Configure all affected Batch clients and automation to negotiate TLS 1.2 or later. The original migration shortlink no longer provides Batch instructions, so verify settings for your specific client library against current documentation or support.</p><ol><li>Inventory Batch applications, scripts, and their network libraries.</li><li>Update TLS settings or dependencies as needed.</li><li>Test representative account, job, and task operations before rollout.</li></ol><p>The source does not identify a universal SDK version or tenant-specific impact detector.</p></div>
+<div class="rich-content"><p>Configure affected Batch clients and automation to negotiate TLS 1.2 or later. The original migration shortlink now leads to a generic Bing page, so verify library-specific settings using current documentation or Microsoft support.</p><ol><li>Inventory Batch applications, scripts and network libraries.</li><li>Update TLS settings or dependencies as needed.</li><li>Test representative account, job and task operations before rollout.</li></ol><p>The source does not identify a universal SDK version or tenant-specific impact detector.</p></div>
       <p>Use the preserved support link if you have an Azure support plan; the linked community Q&amp;A is not retirement-specific migration guidance. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Only workflows that depend on the retired TLS versions are identified as affected. The announcement does not name particular SDK versions or provide an account-level inventory.</p><ul><li>Identify Batch clients and their TLS configuration.</li><li>Verify TLS 1.2 or later is negotiated in representative tests.</li><li>Include job submission and task operations in validation.</li></ul></div>
+<div class="rich-content"><p>Client workflows depending on TLS 1.0 or 1.1 to connect to Azure Batch are affected. The announcement names no specific SDK versions and does not identify individual affected accounts or applications.</p><ul><li>Find Batch applications, scripts and libraries and check their negotiated TLS version.</li><li>Verify TLS 1.2 or later in representative tests, including job submission and task operations.</li></ul></div>
       <div class="notice">The announcement describes workflow and client-application failures for TLS 1.0/1.1 clients; it does not identify affected tenants or SDK versions. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>For local planning, record each client owner, observed TLS version, test result, and rollout status in your team's own tracking system. This page does not save checklist progress.</p></div>
+<div class="rich-content"><p>For local planning, record each client owner, observed TLS version, test result and rollout status in your team's tracker.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

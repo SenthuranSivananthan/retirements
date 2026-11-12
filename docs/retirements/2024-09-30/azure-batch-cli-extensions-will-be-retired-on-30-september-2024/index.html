@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2024</p>
-<div class="rich-content"><p>The extensions are unsupported, and new installations are unavailable. Uninstall them with <code>az extension remove --name azure-batch-cli-extensions</code>.</p></div>
+<div class="rich-content"><p>The extensions are unsupported after retirement, and new installations are unavailable. Uninstall them with <code>az extension remove --name azure-batch-cli-extensions</code>.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>The Azure Batch CLI extensions, a public preview that adds functionality to <code>az batch</code>, retired on September 30, 2024.</p><p>Core <code>az batch</code> features in Azure CLI are unaffected.</p></div>
+<div class="rich-content"><p>The Azure Batch CLI extensions were a public preview adding functionality to <code>az batch</code>. They are retired; core <code>az batch</code> features in Azure CLI are unaffected.</p></div>
       <div class="notice">The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Stop using the extensions and uninstall them.</p><pre>az extension remove --name azure-batch-cli-extensions</pre></div>
+<div class="rich-content"><p>Stop using the extensions and uninstall them:</p><pre>az extension remove --name azure-batch-cli-extensions</pre></div>
 <a class="button primary" href="https://learn.microsoft.com/en-us/azure/batch/batch-cli-templates" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><ul><li>Existing installations may keep working for a period but are unsupported.</li><li>New installations are not possible.</li></ul></div>
+<div class="rich-content"><p>According to the announcement, existing installations may keep working for a period but are unsupported, and new installations are not possible.</p></div>
       <div class="notice">No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>List the machines and pipelines that have the extension installed, with owners, in your own tracking system.</p></div>
+<div class="rich-content"><p>For team planning, list machines and pipelines with the extension installed and their owners.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

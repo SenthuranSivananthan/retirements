@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">14 Aug 2025</p>
-<div class="rich-content"><p>The retired tag can no longer be used to provision GPU node pools while skipping automatic driver installation.</p></div>
+<div class="rich-content"><p>The <strong>retired tag</strong> can no longer be used to provision GPU node pools while skipping automatic driver installation.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>From August 14, 2025, the skip-gpu-driver-install node pool tag is no longer supported for provisioning GPU-enabled AKS node pools without automatic driver installation.</p><p>Use the gpu-driver API field to skip automatic installation instead.</p></div>
+<div class="rich-content"><p>From August 14, 2025, the <code>skip-gpu-driver-install</code> <strong>node pool tag</strong> is no longer supported for provisioning GPU-enabled AKS node pools without automatic driver installation.</p><p>Use the <code>gpu-driver</code> API field to skip automatic installation instead.</p></div>
       <div class="notice">Costs depend on the node pools and driver management approach used.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Use the gpu-driver API field set to none when you need to skip automatic GPU driver installation.</p><ol><li>Update node pool provisioning configurations to use the supported field.</li><li>Install and manage the required driver and device plugin, or use the NVIDIA GPU Operator as appropriate.</li><li>Check GPU scheduling and test the workload.</li></ol><p>Microsoft does not manage the maintenance or compatibility of self-managed NVIDIA drivers.</p></div>
+<div class="rich-content"><p>Use the <code>gpu-driver</code> API field set to <code>none</code> when you need to skip automatic GPU driver installation.</p><ol><li>Update node pool provisioning configurations to use the supported field.</li><li>Install and manage the required driver and device plugin, or use the NVIDIA GPU Operator as appropriate.</li><li>Check GPU scheduling and test the workload.</li></ol><p>Microsoft does not manage the maintenance or compatibility of <strong>self-managed NVIDIA drivers</strong>.</p></div>
 <a class="button primary" href="https://learn.microsoft.com/azure/aks/use-nvidia-gpu#skip-gpu-driver-installation" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>The retirement affects provisioning workflows that use the old tag to bypass GPU driver installation.</p><ul><li>GPU node pool provisioning that uses the retired tag</li><li>Custom driver or GPU Operator deployment workflows</li></ul></div>
+<div class="rich-content"><p>The retirement affects <strong>provisioning workflows</strong> that use the old tag to bypass GPU driver installation.</p><ul><li>GPU node pool provisioning that uses the retired tag</li><li>Custom driver or GPU Operator deployment workflows</li></ul></div>
       <div class="notice">No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>For local planning, record affected provisioning definitions, owners, and validation results.</p></div>
+<div class="rich-content"><p>For local planning, record affected <strong>provisioning definitions</strong>, owners, and validation results.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

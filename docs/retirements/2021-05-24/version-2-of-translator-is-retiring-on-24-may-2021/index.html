@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">24 May 2021</p>
-<div class="rich-content"><p>Applications using the retired version risk service disruption; version 3 does not support every version 2 method.</p></div>
+<div class="rich-content"><p>Applications still using version 2 risk service disruption. Plan for method changes as well: version 3 does not support every version 2 method.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Translator Text API version 2 retired. Version 3 uses JSON rather than XML, and some version 2 methods have no version 3 equivalent.</p></div>
+<div class="rich-content"><p>Translator Text API version 2 is retired. Its replacement, version 3, uses JSON instead of XML; some version 2 methods have no equivalent.</p></div>
       <div class="notice">Review workload-specific pricing and agreements when planning changes.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Update the endpoint and API calls to version 3, convert XML requests and responses to JSON, map methods using the migration guide, and test the application. The existing version 2 key is accepted by version 3; text-to-speech functionality is available through Speech Service.</p></div>
+<div class="rich-content"><ol><li>Update endpoints and API calls to version 3 and convert XML requests and responses to JSON.</li><li>Map methods using the migration guide and test the application.</li></ol><p>The existing version 2 key is accepted by version 3; text-to-speech functionality is available through Speech Service.</p></div>
 <a class="button primary" href="https://learn.microsoft.com/azure/ai-services/translator/text-translation/how-to/migrate-to-v3" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Applications calling the version 2 Translator endpoint or relying on discontinued methods need changes.</p><ul><li>Identify applications using the version 2 endpoint and methods.</li><li>Review translation customization and text-to-speech dependencies.</li></ul></div>
+<div class="rich-content"><p>Applications calling the version 2 endpoint or relying on discontinued methods need changes.</p><ul><li>Identify applications, endpoints, and methods.</li><li>Review translation customization and text-to-speech dependencies.</li></ul></div>
       <div class="notice">No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>Check application endpoints: the migration guide identifies api.microsofttranslator.com as version 2 and api.cognitive.microsofttranslator.com as version 3. Check methods and deployed configurations as well; endpoint inspection alone may not find every dependency.</p><p>Record owners, migration decisions, and verification results in your team's own tracking system.</p></div>
+<div class="rich-content"><p>Check application endpoints: the migration guide identifies <code>api.microsofttranslator.com</code> as version 2 and <code>api.cognitive.microsofttranslator.com</code> as version 3. Also check methods and deployed configurations; endpoint inspection alone may not find every dependency.</p><p>Record owners, migration decisions, and verification results in your team's tracker.</p></div>
 <p><a href="https://learn.microsoft.com/azure/ai-services/translator/text-translation/how-to/migrate-to-v3" target="_blank" rel="noopener noreferrer">Read the tracking guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">

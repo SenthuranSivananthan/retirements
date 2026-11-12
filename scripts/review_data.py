@@ -85,7 +85,7 @@ def apply_reviews(batch, output=ROOT / "data" / "retirements.json"):
             if manual_only and changes:
                 raise ValueError(f"Manual-only record {identifier} can receive review metadata only; preserve its answers")
             record["questions"][section].update(copy.deepcopy(changes))
-        record.update({"summary": update["summary"], "sourceReview": review, "manuallyEnriched": True})
+        record.update({"summary": update["summary"], "sourceReview": review})
     parse_catalog(catalog)
     write_snapshot(catalog, output, original, operation="content review")
     return catalog

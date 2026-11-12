@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2026</p>
-<div class="rich-content"><p>Requests using the beta API version reached their cutoff; update affected clients to the v1 standard request and response format. Batch operations follow a separate later milestone.</p></div>
+<div class="rich-content"><p>Requests using the <strong>beta API</strong> version reached their cutoff; update affected clients to the <code>v1</code> standard request and response format.</p><p><strong>Separate batch milestone:</strong> <strong>Batch operations</strong> have a March 31, 2028 cutoff. This is not an extension of the beta API deadline.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>The Log Analytics beta API cutoff is distinct from the later batch-operation cutoff. Microsoft Learn directs clients using beta paths to change to the v1 standard request and response format.</p><p>Batch operations have a separate retirement milestone; assess that API separately.</p></div>
+<div class="rich-content"><p>The Log Analytics <strong>beta API</strong> cutoff is distinct from the later batch-operation cutoff. Microsoft Learn directs clients using beta paths to change to the <code>v1</code> standard request and response format.</p><p><strong>Batch operations</strong> have a separate retirement milestone; assess that API separately.</p></div>
       <div class="notice">The announcement does not identify a price change or quantify workload-specific financial effects. Review the impact on your own applications and agreements.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Change beta API request paths to v1 and update clients for the standard request and response format. Validate queries and applications after the change.</p><p>Inventory batch-operation API use separately; its cutoff is a different milestone.</p></div>
+<div class="rich-content"><p>Change <strong>beta API</strong> request paths to <code>v1</code> and update clients for the standard request and response format. Validate queries and applications after the change.</p><p>Inventory batch-operation API use separately; its cutoff is a different milestone.</p></div>
 <a class="button primary" href="https://learn.microsoft.com/azure/azure-monitor/logs/api/migrate-batch-and-beta" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Applications that continue sending requests to beta API paths are affected by the beta cutoff. Batch operations have a separate later cutoff and should be assessed independently.</p><ul><li>Identify clients and queries using beta paths.</li><li>Inventory batch-operation API use separately.</li><li>Validate v1 requests and responses in dependent applications.</li></ul></div>
+<div class="rich-content"><p>Applications that continue sending requests to <strong>beta API</strong> paths are affected by the beta cutoff. Batch operations have a separate later cutoff and should be assessed independently.</p><ul><li>Identify clients and queries using beta paths.</li><li>Inventory batch-operation API use separately.</li><li>Validate <code>v1</code> requests and responses in dependent applications.</li></ul></div>
       <div class="notice">No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>As local planning only, record beta API usage checks, affected owners, client updates, and query-validation results.</p></div>
+<div class="rich-content"><p>Track client remediation in your team's own system.</p><ul><li>Record <strong>beta API</strong> usage checks and affected owners.</li><li>Track client updates.</li><li>Save query-validation results.</li></ul></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

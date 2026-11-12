@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">13 Sep 2024</p>
-<div class="rich-content"><p>The legacy libraries can still be used according to the announcement, but associated Microsoft updates have ended.</p></div>
+<div class="rich-content"><p>The <strong>legacy</strong> libraries can still be used according to the announcement, but associated Microsoft updates have ended.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Legacy Azure Storage Python client libraries have retired.</p><p>The announcement says existing libraries can still be used, but Microsoft no longer issues associated updates.</p></div>
+<div class="rich-content"><p>Legacy Azure Storage <strong>Python</strong> client libraries have retired.</p><p>The announcement says existing libraries <strong>can still be used</strong>, but Microsoft no longer issues associated updates.</p></div>
       <div class="notice">The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Move each application to the appropriate current Azure Storage Python client library.</p><ol><li>Inventory installed packages and the application operations that use them.</li><li>Update dependencies and adapt client construction and API calls for Blob, Queue, or File Share.</li><li>Test authentication, data operations, error handling, and deployment against your own workloads.</li></ol><p>The 12.x APIs are not a drop-in package replacement.</p></div>
+<div class="rich-content"><p>Move each application to the appropriate current Azure Storage <strong>Python</strong> client library.</p><ol><li>Inventory installed packages and the application operations that use them.</li><li>Update dependencies and adapt client construction and API calls for Blob, Queue, or File Share.</li><li>Test authentication, data operations, error handling, and deployment against your own workloads.</li></ol><p>The 12.x APIs are not a drop-in package replacement.</p></div>
 <a class="button primary" href="https://learn.microsoft.com/python/api/overview/azure/storage?view=azure-python" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Applications using legacy Storage Python libraries are affected, not storage accounts as a whole.</p><ul><li>Existing code can continue to use the old libraries according to the announcement.</li><li>Microsoft no longer issues associated updates for those libraries.</li><li>Migration requires application-level compatibility testing.</li></ul></div>
+<div class="rich-content"><p>Applications using <strong>legacy</strong> Storage Python libraries are affected, not storage accounts as a whole.</p><ul><li>Existing code can continue to use the old libraries according to the announcement.</li><li>Microsoft no longer issues associated updates for those libraries.</li><li>Migration requires application-level compatibility testing.</li></ul></div>
       <div class="notice">No tenant or application inventory was inspected; continued use does not imply continued updates. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>As local planning, inventory package versions and affected application code, then record migration and test results in your team tracker.</p></div>
+<div class="rich-content"><p>Use your team tracker for local migration planning.</p><ul><li>Inventory package versions and affected application code.</li><li>Record migration and test results.</li></ul></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

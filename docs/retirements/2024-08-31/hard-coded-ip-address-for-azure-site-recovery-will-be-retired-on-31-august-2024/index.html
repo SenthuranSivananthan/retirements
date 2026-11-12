@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2024</p>
-<div class="rich-content"><p>Net-new hard-coded IP addresses were unsupported beginning September 1, 2024. Changing service IPs can disrupt replication when rules depend on fixed addresses.</p></div>
+<div class="rich-content"><p>Net-new hard-coded IP addresses were unsupported beginning September 1, 2024. Changing service IPs can <strong>disrupt replication</strong> when rules depend on fixed addresses.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Hard-coded IP addresses for Azure Site Recovery service connectivity were retired; service tags reduce dependencies on changing service IP addresses.</p></div>
+<div class="rich-content"><p>Hard-coded IP addresses for Azure Site Recovery service connectivity were retired; <strong>service tags</strong> reduce dependencies on changing service IP addresses.</p></div>
       <div class="notice">Review network configuration, migration effort and related service costs for your environment.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Review network rules and replace affected hard-coded service IP rules with the documented connectivity approach.</p><p>For Azure-to-Azure replication using network security groups, allow the documented outbound HTTPS service tags for the source and target regions, including Storage, Microsoft Entra, Event Hubs and Azure Site Recovery; include conditional tags where applicable. Test rules before production deployment and verify replication health.</p></div>
+<div class="rich-content"><p>Review network rules and replace affected hard-coded service IP rules with the documented connectivity approach.</p><p>For Azure-to-Azure replication using network security groups, allow the documented outbound HTTPS service tags for the source and target regions, including:</p><ul><li>Storage.</li><li>Microsoft Entra.</li><li>Event Hubs</li><li>Azure Site Recovery.</li></ul><p>Include conditional tags where applicable.</p><p>Test rules before production deployment and <strong>verify replication health</strong>.</p></div>
 <a class="button primary" href="https://learn.microsoft.com/azure/site-recovery/azure-to-azure-about-networking" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Site Recovery replication environments that depend on hard-coded service IP addresses are affected.</p><ul><li>Site Recovery replication configurations</li><li>Network security groups and outbound connectivity rules</li></ul></div>
+<div class="rich-content"><p>Site Recovery replication environments that depend on <strong>hard-coded service IP addresses</strong> are affected.</p><ul><li>Site Recovery replication configurations</li><li>Network security groups and outbound connectivity rules</li></ul></div>
       <div class="notice">No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>For local planning, record each affected rule, owner, test result, and replication health check.</p></div>
+<div class="rich-content"><p>For local planning, record each affected rule, owner, test result, and <strong>replication health check</strong>.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

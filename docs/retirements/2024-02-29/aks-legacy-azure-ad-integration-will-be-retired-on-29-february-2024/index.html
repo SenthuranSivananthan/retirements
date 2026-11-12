@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">29 Feb 2024</p>
-<div class="rich-content"><p>Clusters using legacy integration are unsupported after that date.</p></div>
+<div class="rich-content"><p>Clusters using legacy integration are <strong>unsupported</strong> after that date.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Legacy Azure Active Directory integration for Azure Kubernetes Service (AKS) is unsupported; AKS-managed Microsoft Entra integration replaces it.</p></div>
+<div class="rich-content"><p>Legacy Azure Active Directory integration for Azure Kubernetes Service (AKS) is unsupported; <strong>AKS-managed Microsoft Entra integration</strong> replaces it.</p></div>
       <div class="notice">Consider operational and migration costs for your environment.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Upgrade affected clusters to AKS-managed Microsoft Entra integration and validate access.</p><ol><li>Prepare the Microsoft Entra administrator group and supported Azure CLI and Kubernetes client tools.</li><li>Use <code>az aks update</code> to enable managed integration.</li><li>Refresh kubeconfig credentials and validate administrator and user access.</li></ol><p>Free-tier clusters might experience API server downtime during the upgrade. Microsoft Entra integration cannot be disabled once enabled.</p></div>
+<div class="rich-content"><p>Upgrade affected clusters to AKS-managed Microsoft Entra integration and validate access.</p><ol><li>Prepare the Microsoft Entra administrator group and supported Azure CLI and Kubernetes client tools.</li><li>Use <code>az aks update</code> to enable managed integration.</li><li>Refresh kubeconfig credentials and validate administrator and user access.</li></ol><p>Free-tier clusters might experience API server downtime during the upgrade. Microsoft Entra integration <strong>cannot be disabled</strong> once enabled.</p></div>
 <a class="button primary" href="https://learn.microsoft.com/azure/aks/entra-id-control-plane-authentication" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>AKS clusters configured with legacy Azure Active Directory integration are affected.</p><ul><li>AKS clusters using legacy Azure Active Directory integration</li><li>Cluster users and automation relying on affected authentication settings</li></ul></div>
+<div class="rich-content"><p>AKS clusters configured with <strong>legacy Azure Active Directory integration</strong> are affected.</p><ul><li>AKS clusters using legacy Azure Active Directory integration</li><li>Cluster users and automation relying on affected authentication settings</li></ul></div>
       <div class="notice">No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>For local planning, record affected clusters, owners, migration status, and access validation.</p></div>
+<div class="rich-content"><p>For local planning, record affected clusters, owners, migration status, and <strong>access validation</strong>.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

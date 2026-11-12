@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2025</p>
-<div class="rich-content"><p>The change retires the portal gallery feature. It does not retire ARM templates or Template Specs; migrate the specific gallery items you still need.</p></div>
+<div class="rich-content"><p>The notice warns that access to gallery templates may be lost unless needed items are converted to Template Specs. ARM templates and Template Specs are not themselves retired.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>This concerns the Azure portal's public-preview template gallery, not Azure Resource Manager templates generally or Template Specs.</p></div>
+<div class="rich-content"><p>The Azure portal's public-preview template gallery was retired. The preserved notice recommends converting needed templates to Template Specs; it does not retire ARM templates generally or Template Specs.</p></div>
       <div class="notice">The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>The Learn conversion guide identifies portal-gallery resources as Microsoft.Gallery/myareas/galleryitems and documents a manual conversion to Template Specs.</p><ol><li>Review the portal template gallery and identify templates still needed.</li><li>Convert each required template to a Template Spec and validate the result.</li><li>Assign access to the users or groups that need to manage or deploy the Template Spec.</li></ol></div>
+<div class="rich-content"><p>The Learn guide identifies gallery items as <code>Microsoft.Gallery/myareas/galleryitems</code> and describes manual conversion.</p><ol><li>Review the gallery and identify templates still needed.</li><li>Convert each required template to a Template Spec and validate it.</li><li>Assign access to the users or groups that must manage or deploy it.</li></ol></div>
 <a class="button primary" href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/template-spec-convert" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><ul><li>Scope the review to portal gallery items, not all ARM templates.</li><li>Check each needed Template Spec's access and deployment.</li><li>Keep copies or source definitions needed for local review.</li></ul></div>
+<div class="rich-content"><ul><li>Scope the review to portal gallery items, not all ARM templates.</li><li>Keep copies or source definitions needed for local review.</li><li>Verify each needed Template Spec's access and deployment.</li></ul></div>
       <div class="notice">No automatic conversion of portal gallery items is claimed; convert templates you still need. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>Review the Azure portal template gallery and identify items with resource type <code>Microsoft.Gallery/myareas/galleryitems</code>. Record the templates still needed and their conversion status. This checks the gallery you inspect; it does not find copies or templates stored elsewhere.</p></div>
+<div class="rich-content"><p>Review the Azure portal template gallery and identify resources of type <code>Microsoft.Gallery/myareas/galleryitems</code>. Record needed templates, conversion status, access, and deployment validation. This covers the gallery inspected, not copies or templates stored elsewhere.</p></div>
 <p><a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/template-spec-convert" target="_blank" rel="noopener noreferrer">Read the tracking guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">

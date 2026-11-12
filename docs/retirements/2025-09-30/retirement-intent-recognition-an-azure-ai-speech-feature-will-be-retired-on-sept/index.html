@@ -1922,25 +1922,25 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2025</p>
-<div class="rich-content"><p>Speech intent recognition is no longer available. Other Speech capabilities, including speech to text and speaker diarization, are unaffected.</p><p>The preserved announcement said the intent API would be removed from new Speech SDK versions after November 30, 2024.</p></div>
+<div class="rich-content"><p>Speech intent recognition is <strong>no longer available</strong>. Other Speech capabilities, including speech to text and speaker diarization, are unaffected.</p><p>The preserved announcement said the intent API would be removed from new Speech SDK versions after November 30, 2024.</p></div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Speech intent recognition and its IntentRecognizer family retired; speech to text, speech translation, and speaker diarization are unaffected.</p></div>
+<div class="rich-content"><p>Azure Speech intent recognition and its <code>IntentRecognizer</code> family retired; speech to text, speech translation, and speaker diarization are <strong>unaffected</strong>.</p></div>
       <div class="notice">Review pricing and usage for the speech and language services or models you select.</div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Replace Speech SDK intent recognition with a supported alternative and validate your application's behavior.</p><p>Transcribe audio with Speech, then classify text with a suitable language service or model; remove retired intent and pattern-matching dependencies, test output against representative utterances, and update monitoring. The original recommendation, Conversational Language Understanding, itself retires on March 31, 2029; direct new projects to Microsoft Foundry as its current documentation advises.</p></div>
+<div class="rich-content"><p>Replace Speech SDK intent recognition with a supported alternative and validate your application's behavior.</p><ol><li>Transcribe audio with Speech, then classify text with a suitable language service or model.</li><li>Remove retired intent and pattern-matching dependencies.</li><li>Test output against representative utterances.</li><li>Update monitoring.</li></ol><h3>The original recommendation also has a retirement</h3><p>The original recommendation, Conversational Language Understanding, itself retires on March 31, 2029; direct new projects to <strong>Microsoft Foundry</strong> as its current documentation advises.</p></div>
 <a class="button primary" href="https://learn.microsoft.com/azure/ai-services/speech-service/migrate-intent-recognition" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a>      <p>For help with your specific environment, contact your Microsoft account team or Azure support. <a href="https://azure.microsoft.com/support/create-ticket/" target="_blank" rel="noopener noreferrer">Azure support <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Applications using the Speech SDK IntentRecognizer family, LUIS integration, or Speech pattern-matching intents and entities are affected.</p><ul><li>Applications using Speech intent-recognition APIs</li><li>Intent and entity models, configuration, and downstream integrations</li></ul></div>
+<div class="rich-content"><p>Applications using the Speech SDK <code>IntentRecognizer</code> family, <strong>LUIS integration</strong>, or Speech pattern-matching intents and entities are affected.</p><ul><li>Applications using Speech intent-recognition APIs</li><li>Intent and entity models, configuration, and downstream integrations</li></ul></div>
       <div class="notice">No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service. <a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement" target="_blank" rel="noopener noreferrer">Azure Advisor service retirements <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7m0-7L10 14"/><path d="M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/></svg></a></div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>For local planning, record affected applications, owners, replacement choices, and test results.</p></div>
+<div class="rich-content"><p>For local planning, record affected applications, owners, replacement choices, and <strong>test results</strong>.</p></div>
 <p>Tracking guidance is not available for this retirement.</p>    </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>
