@@ -32,8 +32,8 @@
       {% if questions.actions.recommendedAction %}<h3>Microsoft’s recommended action</h3><p>{{ questions.actions.recommendedAction | nl2br }}</p>{% endif %}
       <p>{{ questions.actions.guidance }}</p>
       {% endif %}
-      {% if view.get('guidanceSource') %}<a class="button primary" href="{{ view.guidanceSource }}" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance {{ icon('external') }}</a>{% endif %}
       <p>{{ questions.actions.supportGuidance }} {{ external_link(view.support) }}</p>
+      {% if view.get('guidanceSource') %}<a class="button primary" href="{{ view.guidanceSource }}" target="_blank" rel="noopener noreferrer">Open Microsoft Learn guidance {{ icon('external') }}</a>{% endif %}
     </section>
     <section id="impact"><h2><span class="section-number">4</span>{{ questions.impact.question }}</h2>
       <p class="section-intro">{{ questions.impact.introduction }}</p>

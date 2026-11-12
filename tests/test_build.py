@@ -2,6 +2,7 @@ import copy
 import importlib.util
 import json
 import shutil
+import subprocess
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -161,6 +162,35 @@ class StaticSiteTests(unittest.TestCase):
                 self.assertEqual(content.find("./ol/li").text, "Step")
         self.assertIn("&lt;script&gt;", html)
         self.assertNotIn("<script> text.", html)
+
+    def test_learn_guidance_button_follows_all_actions_content(self):
+        actions = self.view["record"]["questions"]["actions"]
+        actions["supportGuidance"] = "Contact your support team."
+        self.view["support"] = {"url": "https://azure.microsoft.com/support/", "title": "Support options"}
+        guidance = "https://learn.microsoft.com/azure/example/migrate"
+        for rich in (False, True):
+            for source in (None, guidance):
+                with self.subTest(rich=rich, source=source):
+                    if rich:
+                        actions["html"] = "<p>Migration steps and cautions.</p>"
+                    else:
+                        actions.pop("html", None)
+                    self.view["guidanceSource"] = source
+                    self.save()
+                    builder.build_site(self.root)
+                    document = parse(self.detail_path().read_text(encoding="utf-8"), namespaceHTMLElements=False)
+                    section = document.find(".//section[@id='actions']")
+                    support = section.find("p/a[@href='https://azure.microsoft.com/support/']")
+                    self.assertIsNotNone(support)
+                    self.assertIn("Contact your support team.", "".join(section.itertext()))
+                    button = section.find(f"a[@href='{guidance}']")
+                    if source:
+                        self.assertEqual(section[-1], button)
+                        self.assertIn("Open Microsoft Learn guidance", "".join(button.itertext()))
+                        self.assertEqual(section[-2].find("a"), support)
+                    else:
+                        self.assertIsNone(button)
+                        self.assertEqual(section[-1].find("a"), support)
 
     def test_static_timeline_groups_categories_services_and_orders_deadlines_descending(self):
         self.metadata["byId"] = {}
@@ -452,6 +482,90 @@ class StaticSiteTests(unittest.TestCase):
             ["", "retired-year", "6", "12", "18", "2029", "2028", "2020"],
         )
         self.assertEqual([option.text for option in options[-3:]], ["2029", "2028", "2020"])
+
+    @unittest.skipUnless(shutil.which("node"), "Node.js is optional")
+    def test_detail_sidebar_ignores_directory_filters_but_directory_sidebar_retains_them(self):
+        program = r"""
+            import assert from 'node:assert/strict';
+            import { readFile } from 'node:fs/promises';
+            const catalogSource = await readFile('site/assets/js/catalog.js', 'utf8');
+            const { filterRecords, groupRetirements, retirementYear, categoriesOf } = await import(
+                `data:text/javascript;base64,${Buffer.from(catalogSource).toString('base64')}`
+            );
+            const source = await readFile('site/assets/js/main.js', 'utf8');
+            const updateNav = source.slice(source.indexOf('function updateNav()'),
+                source.indexOf('function renderTimelineEntry('));
+            const visibleRecords = [
+                { id: 'current', title: 'Matching retirement', year: '2030', category: 'Compute' },
+                { id: 'neighbor', title: 'Another retirement', year: '2030', category: 'Compute' },
+                { id: 'other-year', title: 'Different retirement', year: '2031', category: 'Storage' },
+            ].map(record => ({
+                ...record, categories: [record.category], services: ['Example'], service: 'Example',
+                summary: '', announcedOn: '2026-01-01',
+                questions: { what: { announcement: '' }, deadline: { date: `${record.year}-01-01`, month: null } },
+            }));
+            const filters = { q: 'Matching', year: '2030', category: 'Compute', status: 'all' };
+            const directoryLink = context => '/?' + new URLSearchParams(context);
+            const detailLink = (record, context) => `/retirements/${record.id}/?` + new URLSearchParams(context);
+            const node = (dataset = {}, parent = null) => ({
+                dataset, hidden: false, attributes: {}, parentElement: parent,
+                closest() { return dataset.yearGroup || dataset.categoryGroup ? this : parent; },
+                setAttribute(key, value) { this.attributes[key] = value; },
+                removeAttribute(key) { delete this.attributes[key]; },
+            });
+            for (const isDirectory of [true, false]) {
+                const activeRecord = isDirectory ? null : visibleRecords[0];
+                const links = [];
+                const yearGroups = groupRetirements(visibleRecords).map(year => {
+                    const group = node({ yearGroup: year.year });
+                    const count = node(), all = node({ year: year.year, category: '' });
+                    links.push(all);
+                    const categories = year.categories.map(category => {
+                        const branch = node({ categoryGroup: category.name }, group);
+                        const count = node(), all = node({ year: year.year, category: category.name }, branch);
+                        links.push(all);
+                        const records = category.records.map(record => node({
+                            record: record.id, year: year.year, category: category.name,
+                        }, branch));
+                        links.push(...records);
+                        branch.querySelector = selector => selector === '.category-all' ? all : count;
+                        branch.querySelectorAll = () => records;
+                        return branch;
+                    });
+                    group.querySelector = selector => selector.includes('summary') ? count : all;
+                    group.querySelectorAll = () => categories;
+                    return group;
+                });
+                const total = node(), empty = node();
+                const element = selector => selector === '#year-navigation-count' ? total : empty;
+                const document = { querySelectorAll: selector => selector.includes('.year-group') ? yearGroups : links };
+                eval(updateNav + '\nupdateNav();');
+                assert.equal(total.textContent, isDirectory ? '1' : '3');
+                assert.equal(empty.hidden, true);
+                assert.deepEqual(links.filter(link => link.dataset.record && !link.hidden)
+                    .map(link => link.dataset.record).sort(),
+                    isDirectory ? ['current'] : ['current', 'neighbor', 'other-year']);
+                assert.equal(yearGroups.find(group => group.dataset.yearGroup === '2031').hidden, isDirectory);
+                if (!isDirectory) {
+                    const current = links.find(link => link.dataset.record === 'current');
+                    assert.equal(current.attributes['aria-current'], 'page');
+                    assert.equal(current.parentElement.open, true);
+                    assert.equal(current.parentElement.parentElement.open, true);
+                    for (const link of links) {
+                        assert.equal(new URL(link.href, 'https://example.test').searchParams.has('q'), false);
+                    }
+                    for (const group of yearGroups) {
+                        const count = group.querySelector(':scope > summary .nav-count');
+                        assert.equal(count.textContent, group.dataset.yearGroup === '2030' ? '2' : '1');
+                    }
+                }
+            }
+        """
+        result = subprocess.run(
+            [shutil.which("node"), "--input-type=module", "-e", program],
+            cwd=ROOT, capture_output=True, text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     def test_dot_segments_cannot_overwrite_the_homepage(self):
         self.view["record"]["id"] = ".."
