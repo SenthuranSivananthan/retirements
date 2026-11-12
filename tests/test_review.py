@@ -62,7 +62,7 @@ class ReviewTests(unittest.TestCase):
         result = apply_reviews(batch, self.output)
         record = result["records"][0]
         old = self.original["records"][0]
-        self.assertFalse(record["manuallyEnriched"])
+        self.assertNotIn("manuallyEnriched", record)
         self.assertEqual(record["questions"]["deadline"]["date"], "2029-01-02")
         self.assertEqual(record["sourceReview"]["deadlineSource"], self.url)
         self.assertEqual(record["sourceReview"]["originalAnnouncement"], old["questions"]["what"]["announcement"])
@@ -417,43 +417,30 @@ class ReviewTests(unittest.TestCase):
         self.assertEqual(self.output.read_bytes(), external)
         self.assertEqual(list(self.output.parent.glob("*.tmp")), [])
 
-    def test_report_resumes_and_preserves_manual_only_records(self):
+    def test_report_resumes_and_reviews_custom_records(self):
         value = self.original
         record = copy.deepcopy(value["records"][0])
         record["id"] = "manual"
-        record["manuallyEnriched"] = True
         record["customNotes"] = {"owner": "Platform team"}
         value["records"].append(record)
         self.output.write_text(json.dumps(value), encoding="utf-8")
         report = review_report(value, 10)
-        self.assertEqual(report["manualOnly"], 1)
         self.assertIn("manual", [item["id"] for item in report["next"]])
         batch = self.batch()
         batch["reviews"][0]["id"] = "manual"
         batch["reviews"][0]["summary"] = record["summary"]
         batch["reviews"][0]["questions"] = {section: {} for section in QUESTIONS}
-        unsafe_batch = copy.deepcopy(batch)
-        unsafe_batch["reviews"][0]["summary"] = "Overwrite custom summary."
-        with self.assertRaisesRegex(ValueError, "preserve its summary"):
-            apply_reviews(unsafe_batch, self.output)
-        unsafe_batch = copy.deepcopy(batch)
-        unsafe_batch["reviews"][0]["questions"]["what"]["announcement"] = "Overwrite manual answer."
-        with self.assertRaisesRegex(ValueError, "preserve its answers"):
-            apply_reviews(unsafe_batch, self.output)
-        # Apply the metadata-only batch to the manual record without replacing its content.
         reviewed = apply_reviews(batch, self.output)
         manual = next(item for item in reviewed["records"] if item["id"] == "manual")
         self.assertEqual(manual["summary"], record["summary"])
         self.assertEqual(manual["questions"], record["questions"])
         self.assertEqual(manual["customNotes"], record["customNotes"])
-        self.assertTrue(manual["manuallyEnriched"])
         self.assertEqual(next(item for item in merge_retirements(value["records"], reviewed["records"])
-                              if item["id"] == "manual"), manual)
+                              if item["id"] == "manual"), record)
         self.assertEqual(manual["sourceReview"]["status"], "enriched")
         report = review_report(reviewed, 10)
         self.assertEqual(report["reviewed"], 1)
         self.assertEqual(report["enriched"], 1)
-        self.assertEqual(report["manualOnly"], 0)
         self.assertEqual({item["id"] for item in report["next"]}, {"a", "manual"})
         for limit in (0, -1, True):
             with self.assertRaises(ValueError):

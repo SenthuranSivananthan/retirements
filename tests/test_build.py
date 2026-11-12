@@ -45,7 +45,6 @@ class StaticSiteTests(unittest.TestCase):
             question.pop("html", None)
         record["questions"]["progress"].pop("tracking", None)
         record.pop("sourceReview", None)
-        record["manuallyEnriched"] = False
         record["id"] = "example"
         record["questions"]["deadline"].update({"date": None, "month": None})
         record["title"] = 'Retirement <script>alert("unsafe")</script>'

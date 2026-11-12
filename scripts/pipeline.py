@@ -1,4 +1,4 @@
-"""Incremental, record-scoped retirement stages backed by four Git-versioned SQLite stores."""
+"""Incremental retirement stages backed by five Git-versioned SQLite stores."""
 
 import argparse
 import hashlib
@@ -21,6 +21,7 @@ import html5lib
 
 from .catalog import ROOT, parse_catalog
 from .feed import ENDPOINT, normalize, title_date
+from .manual_data import IDENTITY_FIELDS, MANUAL_SCHEMA, compose_catalog, merge_fields
 from .refresh_data import read_snapshot, write_snapshot
 from .review_data import review_snapshot
 
@@ -31,6 +32,7 @@ HOSTS = {
     "techcommunity.microsoft.com", "aka.ms", "go.microsoft.com",
 }
 SCHEMAS = {
+    "manual": MANUAL_SCHEMA,
     "raw": """
         CREATE TABLE documents (
             source TEXT, source_key TEXT, url TEXT NOT NULL, sha256 TEXT NOT NULL,
@@ -46,7 +48,7 @@ SCHEMAS = {
             extractor_version INTEGER NOT NULL, observation_json TEXT NOT NULL,
             PRIMARY KEY (retirement_id, source));
     """,
-    "links": """
+    "web_cache": """
         CREATE TABLE pages (
             url TEXT PRIMARY KEY, resolved_url TEXT, sha256 TEXT, body BLOB,
             etag TEXT, last_modified TEXT, content_type TEXT, fetched_at TEXT, error TEXT);
@@ -195,6 +197,19 @@ class Pipeline:
         try:
             with os.fdopen(descriptor, "w") as handle:
                 handle.write(str(os.getpid()))
+            if (self.directory / "links.sqlite").exists():
+                raise ValueError(
+                    "Legacy links.sqlite found: close all database connections and rename it to web_cache.sqlite. "
+                    "If both files exist, reconcile them without overwriting either cache."
+                )
+            if not (self.directory / "manual.sqlite").exists():
+                snapshot = read_snapshot(self.output)
+                catalog = json.loads(snapshot) if snapshot is not None else {}
+                if isinstance(catalog, dict) and isinstance(catalog.get("records"), list) and any(
+                    isinstance(record, dict) and "manualEnrichment" in record
+                    for record in catalog.get("records", [])
+                ):
+                    raise ValueError("Missing manual.sqlite for composed content; restore the manual database")
             for name, schema in SCHEMAS.items():
                 connection = sqlite3.connect(self.directory / f"{name}.sqlite")
                 self.connections[name] = connection
@@ -237,6 +252,8 @@ class Pipeline:
             if self.metadata("export_sha256") != digest(raw):
                 raise ValueError("Existing JSON changed outside the pipeline; reconcile it before reseeding/export")
             return {"seeded": 0, "unchanged": len(catalog["records"])}
+        if any("manualEnrichment" in record for record in catalog["records"]):
+            raise ValueError("Cannot seed automatic research from composed manual content; preserve the existing databases")
         with connection:
             connection.executemany("INSERT INTO metadata VALUES (?,?)", [
                 ("catalog", packed({key: value for key, value in catalog.items() if key != "records"})),
@@ -254,7 +271,7 @@ class Pipeline:
         return dict(row)
 
     def page(self, url):
-        row = self.connections["links"].execute("SELECT * FROM pages WHERE url=?", (urldefrag(url)[0],)).fetchone()
+        row = self.connections["web_cache"].execute("SELECT * FROM pages WHERE url=?", (urldefrag(url)[0],)).fetchone()
         return dict(row) if row is not None else None
 
     def download(self, url):
@@ -288,8 +305,8 @@ class Pipeline:
                         }
                     same = old and all(old[field] == value for field, value in values.items() if field != "fetched_at")
                     values["fetched_at"] = old["fetched_at"] if same else datetime.now(timezone.utc).isoformat()
-                    with self.connections["links"]:
-                        changed = put(self.connections["links"], "pages", ("url",), values)
+                    with self.connections["web_cache"]:
+                        changed = put(self.connections["web_cache"], "pages", ("url",), values)
                     return {"url": key, "outcome": "downloaded" if not old or old["sha256"] != values["sha256"] else "identical",
                             "databaseChanged": changed, "validator": bool(values["etag"] or values["last_modified"])}
                 except HTTPError as error:
@@ -303,8 +320,8 @@ class Pipeline:
                                 raise ValueError("Redirect destination changed; retry without old validators") from error
                             continue
                         if old["error"]:
-                            with self.connections["links"]:
-                                put(self.connections["links"], "pages", ("url",), {**old, "error": None})
+                            with self.connections["web_cache"]:
+                                put(self.connections["web_cache"], "pages", ("url",), {**old, "error": None})
                         return {"url": key, "outcome": "not-modified", "databaseChanged": bool(old["error"]), "validator": True}
                     if attempt == 4 or error.code not in (408, 429) and error.code < 500:
                         raise
@@ -318,8 +335,8 @@ class Pipeline:
                 "resolved_url", "sha256", "body", "etag", "last_modified", "content_type", "fetched_at",
             )}
             values = {**values, "url": key, "error": f"{type(error).__name__}: {error}"}
-            with self.connections["links"]:
-                put(self.connections["links"], "pages", ("url",), values)
+            with self.connections["web_cache"]:
+                put(self.connections["web_cache"], "pages", ("url",), values)
             raise
 
     def ingest(self, identifier, lifecycle_url):
@@ -419,7 +436,7 @@ class Pipeline:
                 "retirement_id": identifier, "url": url, "role": role,
                 "cache_key": urldefrag(url)[0] if reason is None else None, "skipped_reason": reason,
             })
-        connection = self.connections["links"]
+        connection = self.connections["web_cache"]
         old = [dict(row) for row in connection.execute(
             "SELECT * FROM record_links WHERE retirement_id=? ORDER BY url,role", (identifier,),
         )]
@@ -459,7 +476,7 @@ class Pipeline:
                     or row["extractor_version"] != EXTRACTOR_VERSION or row["source_key"] != document["source_key"]):
                 raise ValueError("Missing or stale extracted input; rerun extract")
             observations.append(dict(row))
-        links = [dict(row) for row in self.connections["links"].execute(
+        links = [dict(row) for row in self.connections["web_cache"].execute(
             "SELECT * FROM record_links WHERE retirement_id=? ORDER BY url,role", (identifier,),
         )]
         if {(row["url"], row["role"]) for row in links} != set(self.references(identifier)):
@@ -477,8 +494,8 @@ class Pipeline:
         sha = fingerprint(inputs)
         row = self.row(identifier)
         record = json.loads(row["record_json"])
-        if record.get("hidden", False) or record["manuallyEnriched"] and "sourceReview" not in record:
-            raise ValueError("Protected records cannot be promoted by automatic assembly")
+        if record.get("hidden", False):
+            raise ValueError("Hidden records cannot be promoted by automatic assembly")
         if accept_review and record.get("sourceReview", {}).get("status") != "enriched":
             raise ValueError("Accept only an evidence-reviewed five-question record")
         if accept_review and (input_sha256 != sha or record_sha256 != fingerprint(record)):
@@ -494,16 +511,109 @@ class Pipeline:
         return {"id": identifier, "inputSha256": sha, "recordSha256": fingerprint(record),
                 "changed": changed, "reviewRequired": row["approved_sha256"] != sha}
 
-    def catalog(self):
+    def catalog(self, automatic=False):
         catalog = json.loads(self.metadata("catalog"))
         catalog["records"] = [json.loads(row[0]) for row in self.connections["canonical"].execute(
             "SELECT record_json FROM retirements ORDER BY position",
         )]
         parse_catalog(catalog)
-        return catalog
+        return catalog if automatic else compose_catalog(catalog, self.manual_rows())
+
+    def manual_rows(self):
+        return [dict(row) for row in self.connections["manual"].execute(
+            "SELECT * FROM overrides ORDER BY retirement_id",
+        )]
+
+    def manual(self, batch):
+        if not isinstance(batch, dict) or batch.get("catalogSha256") != digest(catalog_bytes(self.catalog())):
+            raise ValueError("Catalog changed since manual preparation; existing manual content preserved")
+        updates = batch.get("overrides")
+        if not isinstance(updates, list) or not updates:
+            raise ValueError("A nonempty manual override batch is required")
+        rows = {row["retirement_id"]: row for row in self.manual_rows()}
+        seen = set()
+        for update in updates:
+            if not isinstance(update, dict) or set(update) != {"id", "fields"}:
+                raise ValueError("Manual updates require exactly id and fields")
+            identifier = update["id"]
+            if not isinstance(identifier, str) or identifier in seen:
+                raise ValueError("Invalid or duplicate manual retirement ID")
+            seen.add(identifier)
+            existing = rows.get(identifier)
+            if update["fields"] is None:
+                if existing is None:
+                    raise ValueError(f"No manual content to remove for {identifier}")
+                del rows[identifier]
+                continue
+            if not isinstance(update["fields"], dict) or not update["fields"]:
+                raise ValueError("Manual fields must be a nonempty object, or null to remove an override")
+            base = existing["base_record_json"] if existing else self.row(identifier)["record_json"]
+            current = self.connections["canonical"].execute(
+                "SELECT record_json FROM retirements WHERE id=?", (identifier,),
+            ).fetchone()
+            if json.loads(current[0] if current else base).get("hidden", False):
+                raise ValueError("Hidden records cannot receive manual content")
+            fields = merge_fields(json.loads(existing["fields_json"]) if existing else {}, update["fields"])
+            questions = update["fields"].get("questions", {})
+            if isinstance(questions, dict):
+                for section, changes in questions.items():
+                    if isinstance(changes, dict) and changes and "html" not in changes:
+                        fields["questions"][section].pop("html", None)
+            rows[identifier] = {
+                "retirement_id": identifier, "fields_json": packed(fields), "base_record_json": base,
+            }
+        compose_catalog(self.catalog(automatic=True), rows.values())
+        changed = 0
+        connection = self.connections["manual"]
+        with connection:
+            for identifier in seen:
+                if identifier in rows:
+                    changed += put(connection, "overrides", ("retirement_id",), rows[identifier])
+                else:
+                    changed += connection.execute(
+                        "DELETE FROM overrides WHERE retirement_id=?", (identifier,),
+                    ).rowcount
+        return {"changed": changed, "manualRecords": len(rows), "next": "export, then rebuild the site"}
+
+    def migrate(self):
+        original = self.output.read_bytes()
+        if digest(original) != self.metadata("export_sha256"):
+            raise ValueError("JSON changed outside the canonical database; reconcile before migration")
+        records, overrides = [], {row["retirement_id"]: row for row in self.manual_rows()}
+        for row in self.connections["canonical"].execute("SELECT * FROM retirements ORDER BY position"):
+            record = json.loads(row["record_json"])
+            if "manuallyEnriched" not in record:
+                continue
+            flag = record.pop("manuallyEnriched")
+            if type(flag) is not bool:
+                raise ValueError("Invalid legacy manual flag; migration preserved existing data")
+            if flag:
+                fields = {key: value for key, value in record.items() if key not in IDENTITY_FIELDS}
+                fields["questions"] = {
+                    section: {key: value for key, value in answer.items() if key != "question"}
+                    for section, answer in fields["questions"].items()
+                }
+                previous = overrides.get(record["id"])
+                overrides[record["id"]] = {
+                    "retirement_id": record["id"], "base_record_json": packed(record),
+                    "fields_json": packed(merge_fields(fields, json.loads(previous["fields_json"]) if previous else {})),
+                }
+            records.append({**dict(row), "record_json": packed(record)})
+        proposed = json.loads(self.metadata("catalog"))
+        changes = {row["id"]: row["record_json"] for row in records}
+        proposed["records"] = [json.loads(changes.get(row["id"], row["record_json"]))
+                               for row in self.connections["canonical"].execute("SELECT * FROM retirements ORDER BY position")]
+        compose_catalog(proposed, overrides.values())
+        with self.connections["manual"]:
+            for row in overrides.values():
+                put(self.connections["manual"], "overrides", ("retirement_id",), row)
+        with self.connections["canonical"]:
+            for row in records:
+                put(self.connections["canonical"], "retirements", ("id",), row)
+        return {"migratedRecords": len(records), "manualRecords": len(overrides), "export": self.export()}
 
     def review(self, batch):
-        original = self.catalog()
+        original = self.catalog(automatic=True)
         reviewed = review_snapshot(batch, catalog_bytes(original))
         changed = []
         connection = self.connections["canonical"]
@@ -559,12 +669,14 @@ class Pipeline:
             "databases": {name: str(self.directory / f"{name}.sqlite") for name in SCHEMAS},
             "records": self.connections["canonical"].execute("SELECT COUNT(*) FROM retirements").fetchone()[0],
             "catalogSha256": digest(catalog_bytes(self.catalog())),
+            "automaticCatalogSha256": digest(catalog_bytes(self.catalog(automatic=True))),
+            "manualRecords": len(self.manual_rows()),
             "rawDocuments": self.connections["raw"].execute("SELECT COUNT(*) FROM documents").fetchone()[0],
             "extractedObservations": self.connections["extracted"].execute("SELECT COUNT(*) FROM observations").fetchone()[0],
-            "cachedPages": self.connections["links"].execute("SELECT COUNT(*) FROM pages WHERE body IS NOT NULL").fetchone()[0],
-            "linkReferences": self.connections["links"].execute("SELECT COUNT(*) FROM record_links").fetchone()[0],
+            "cachedPages": self.connections["web_cache"].execute("SELECT COUNT(*) FROM pages WHERE body IS NOT NULL").fetchone()[0],
+            "linkReferences": self.connections["web_cache"].execute("SELECT COUNT(*) FROM record_links").fetchone()[0],
             "targets": targets,
-            "failedLinks": [dict(row) for row in self.connections["links"].execute(
+            "failedLinks": [dict(row) for row in self.connections["web_cache"].execute(
                 "SELECT url,error FROM pages WHERE error IS NOT NULL ORDER BY url",
             )],
         }
@@ -575,7 +687,7 @@ def main():
     parser.add_argument("--db-dir", type=Path, default=ROOT / "data" / "pipeline")
     parser.add_argument("--output", type=Path, default=ROOT / "data" / "retirements.json")
     commands = parser.add_subparsers(dest="stage", required=True)
-    for name in ("seed", "export", "status"):
+    for name in ("seed", "export", "status", "migrate"):
         commands.add_parser(name)
     for name in ("ingest", "extract", "links", "canonical"):
         command = commands.add_parser(name)
@@ -587,14 +699,15 @@ def main():
             command.add_argument("--input-sha256")
             command.add_argument("--record-sha256")
     commands.add_parser("review").add_argument("--batch", required=True, type=Path)
+    commands.add_parser("manual").add_argument("--batch", required=True, type=Path)
     args = parser.parse_args()
     with Pipeline(args.db_dir, args.output) as pipeline:
         if args.stage == "ingest":
             result = pipeline.ingest(args.id, args.lifecycle_url)
         elif args.stage == "canonical":
             result = pipeline.canonical(args.id, args.accept_review, args.input_sha256, args.record_sha256)
-        elif args.stage == "review":
-            result = pipeline.review(json.loads(args.batch.read_text(encoding="utf-8")))
+        elif args.stage in ("review", "manual"):
+            result = getattr(pipeline, args.stage)(json.loads(args.batch.read_text(encoding="utf-8")))
         elif args.stage in ("extract", "links"):
             result = getattr(pipeline, args.stage)(args.id)
         else:
