@@ -15,6 +15,7 @@ Use this prompt to change or rebuild the website. For evidence-based catalog enr
 ## Product and interface requirements
 
 - Keep the Azure-blue palette, Segoe typography, navigation, hero, and light/dark theme consistent with [Multi-region platform](https://azure.github.io/multi-region-platform/). Preserve responsive desktop and mobile layouts.
+- Use the four primary typography tokens in `site/assets/css/style.css`: .875rem body and controls (14px by default), 1rem subheadings (16px), 1.125rem section headings and summary counts (18px), and 1.375rem page titles (22px). Keep relative units to respect browser font preferences. Navigation, labels, metadata, cards, notices, code, and footers share the body size and 1.6 line spacing. The only caption-size exception is the main timeline's customer lead-time label and duration, using `--text-caption` at .75rem (12px); keep retirement dates and detail-page lead times at body size. Do not introduce other small-print or mobile font-size overrides. Use weight, spacing, and color for supporting hierarchy, keep code monospace, and let controls and labels wrap or reflow rather than shrinking text.
 - The home page browser title and main heading are **Azure Retirement Catalog**.
 - Every record uses the five-question catalog schema validated in `scripts/catalog.py`. Detail pages display the deadline question first, followed by what changes, required actions, impact, and progress. Keep the question content grouped under those schema keys and preserve source citations and uncertainty.
 - Keep Python and browser review validation aligned: deadline evidence may cite the record's matching Azure Updates announcement, Microsoft Learn, or a verified first-party Tech Community article, while Learn guidance and progress tracking retain their stricter source rules.
@@ -43,6 +44,8 @@ python -m scripts.check_site
 `site/build.py` prepares metadata from the canonical catalog, renders the home page, 404 page, and every detail page, copies public assets, and validates the result. It stages detail pages outside `docs`, then recreates the complete `docs/retirements` tree to prevent stale or orphaned routes; unrelated files elsewhere in `docs` must be preserved. Commit generated `docs` changes with their source changes.
 
 Add focused tests for new behavior in the existing suite. Cover rich HTML and plain-text fallbacks, including rejection of unsafe markup, when changing question rendering. Test client-side behavior at its JavaScript source and static fallbacks through generated markup; keep corresponding server-rendered and browser behavior consistent. Ensure the build completes with the expected detail pages and local links. Do not claim validation that did not run.
+
+For typography or layout changes, inspect the home, detail, and 404 pages in light and dark themes at desktop and mobile widths. Check computed sizes against the shared scale, readable labels and menus, wrapping, and horizontal overflow, including enlarged browser text. Rebuild to synchronize the generated stylesheet with its source.
 
 ## Scope and completion
 
