@@ -229,7 +229,7 @@ The refresh reads the existing snapshot after fetching, incorporating edits save
 
 ### Evidence-based content reviews
 
-The [enrichment prompt](.github/prompts/retirement-enrichment.prompt.md#pipeline-entry-point) defines the repeatable 12-stage pipeline, including files read/written at each stage: baseline and mode selection, discovery/merging, batch planning, source reading, evidence mapping, deadline reconciliation, five-question synthesis, readable HTML, factual review, guarded integration, full-output validation, and an authorized publication handoff. Design-only, full enrichment, date-only corrections, and readability-only passes have distinct mutation and research limits. A single integrator applies guarded batches. The current implementation adds the [incremental SQLite stages](#incremental-sqlite-stages) and a single Azure Front Door (classic) pilot; whole-feed discovery, hash-ID migration and automation remain outside that pilot.
+The [enrichment prompt](.github/prompts/retirement-enrichment.prompt.md#pipeline-entry-point) defines the repeatable 12-stage pipeline, including files read/written at each stage: baseline and mode selection, discovery/merging, batch planning, source reading, evidence mapping, deadline reconciliation, five-question synthesis, readable HTML, factual review, guarded integration, full-output validation, and an authorized publication handoff. Design/testing, full enrichment, date-only corrections, and readability-only passes have distinct mutation and research limits. The parallel enrichment design assigns disjoint IDs to workers; a single integrator applies guarded batches. The current implementation adds the [incremental SQLite stages](#incremental-sqlite-stages) and a single Azure Front Door (classic) pilot; whole-feed discovery, parallel worker orchestration, hash-ID migration and automation remain outside that pilot.
 
 Source reviews keep all answers under the existing five questions and add record-level **`sourceReview`** metadata. Integrate relevant announcement details into those answers and state verified facts directly instead of repeatedly saying that Microsoft Learn confirms them; retain attribution where needed to explain conflicts or uncertainty. Detail pages collect answer sources and announcement resources in **References** after the five questions, with duplicate destinations listed once. Evidence notes and per-question source mappings remain in the JSON. Reviewed redirects are used for reference links without changing the original resource URLs in the catalog. State uncertainty and conflicts in the answers and retain them in review metadata; the UTC content-review day is visible. The original announcement remains in the catalog as preserved evidence. The review day does not change `lastUpdatedOn` or catalog `retrievedAt`.
 
@@ -284,27 +284,30 @@ Public sources -> raw.sqlite -> extracted.sqlite --+
 
 `seed` imports the current complete catalog unchanged, without network access. The scoped stages process only the requested retirement, so the current pilot has one two-source observation set and one approved canonical target; the other 633 canonical records are baseline copies, not newly enriched records. Existing IDs, manual/hidden flags, custom fields, original evidence and feed timestamps are retained. The raw/extracted data does not silently replace reviewed answers or adjudicate dates.
 
-Run stages independently from the repository root. This PowerShell example uses the same Front Door retirement:
+Design/testing uses exactly one existing visible, editable retirement selected at run time; no service or record is prescribed by the prompt. Use isolated database/JSON copies for test writes unless promotion is separately authorized. The example is not a sampled full-enrichment run: full enrichment always accounts for all records, including prior reviews, while preserving hidden/manual-only records under the protection rules. Batch/page limits control processing size, not total coverage; pending or blocked targets mean the full run is incomplete. The current per-record SQLite commands are not a full-enrichment runner.
+
+Run stages independently from the repository root. This PowerShell example uses placeholders for the selected retirement and its verified, applicable Lifecycle index; for testing, copy the existing catalog to `<test-directory>\retirements.json` first:
 
 ```powershell
-$id = 'azure-front-door-classic-will-be-retired-on-31-march-2027'
-python -m scripts.pipeline seed
-python -m scripts.pipeline ingest --id $id --lifecycle-url https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2027
-python -m scripts.pipeline extract --id $id
-python -m scripts.pipeline links --id $id
-python -m scripts.pipeline canonical --id $id
+$id = '<existing-retirement-id>'
+$lifecycleUrl = '<verified-applicable-Lifecycle-index-url>'
+$pipeline = @('--db-dir', '<test-directory>\databases', '--output', '<test-directory>\retirements.json')
+python -m scripts.pipeline @pipeline seed
+python -m scripts.pipeline @pipeline ingest --id $id --lifecycle-url $lifecycleUrl
+python -m scripts.pipeline @pipeline extract --id $id
+python -m scripts.pipeline @pipeline links --id $id
+python -m scripts.pipeline @pipeline canonical --id $id
 ```
 
 Inspect the extracted observations, cached pages, canonical record and the reported `inputSha256`/`recordSha256`. After actually reviewing those exact inputs, approve them using both reported fingerprints:
 
 ```powershell
-python -m scripts.pipeline canonical --id $id --accept-review --input-sha256 <reviewed-input-hash> --record-sha256 <reviewed-record-hash>
-python -m scripts.pipeline export
-python site\build.py
-python -m scripts.pipeline status
+python -m scripts.pipeline @pipeline canonical --id $id --accept-review --input-sha256 <reviewed-input-hash> --record-sha256 <reviewed-record-hash>
+python -m scripts.pipeline @pipeline export
+python -m scripts.pipeline @pipeline status
 ```
 
-For new answer edits, use the existing review-batch shape with the canonical catalog hash from `status`, but run `python -m scripts.pipeline review --batch <batch.json>`. This reuses the guarded review editor against the database, preserving original evidence. Refresh links if references changed, then reassemble, review/approve and export. Database review does not itself export, download evidence or invent answers. Existing JSON-only review commands remain supported outside this workflow; external JSON edits or daily feed refreshes after seeding can conflict with the database and must be reconciled, never overwritten automatically.
+These commands export only the isolated test JSON, not the site's source catalog. A source-catalog export and immediate `python site/build.py` require separate promotion authorization. For new answer edits, use the existing review-batch shape with the canonical catalog hash from `status`, but run `python -m scripts.pipeline @pipeline review --batch <batch.json>`. This reuses the guarded review editor against the database, preserving original evidence. Refresh links if references changed, then reassemble, review/approve and export. Database review does not itself export, download evidence or invent answers. Existing JSON-only review commands remain supported outside this workflow; external JSON edits or daily feed refreshes after seeding can conflict with the database and must be reconciled, never overwritten automatically.
 
 Link refresh uses conditional GET: ETag takes precedence, otherwise Last-Modified. It reuses raw-source responses already acquired by `ingest`, rather than downloading them again; use ingest to refresh those sources. A 304 reuses the cached body and makes no database write; identical 200 responses retain bodies without invalidating downstream stages. When a server supplies no usable validator, a full GET and content-hash comparison is unavoidable. Dynamic HTML can change even when visible article text appears unchanged; changed bodies conservatively require review. Response headers alone, Content-Length and URL age do not establish that content is unchanged. The cache stores public bytes, not proof that evidence has been read or verified through Microsoft Learn MCP.
 
@@ -312,7 +315,29 @@ Extraction skips unchanged source hashes and extractor versions. Changed body ha
 
 Only approved public Microsoft HTTPS endpoints are downloaded, with public-address/redirect checks, bounded size/time/retries, and no credentials, tenant access or recursive crawling. Support and Advisor portals are classified without downloading. A directory `.lock` serializes writers; a crashed process can leave a lock that must be inspected before explicitly removing it. SQLite uses DELETE journaling and connections are closed before Git operations. The databases are tracked; lock/journal/WAL/SHM sidecars are ignored. Do not text-merge binary database conflicts or automatically discard either side.
 
-The pilot does not implement full Lifecycle navigation discovery, arbitrary-source ingestion, automatic cross-source consolidation, hash-ID allocation, scheduling or publication. Those remain the separately gated design below. The legacy `scripts.refresh_data` command/workflow is unchanged and does not use these databases.
+The pilot does not implement full Lifecycle navigation discovery, arbitrary-source ingestion, automatic cross-source consolidation, hash-ID allocation, parallel worker orchestration, scheduling or publication. Those remain the separately gated design below. The legacy `scripts.refresh_data` command/workflow is unchanged and does not use these databases.
+
+### Parallel enrichment design (not implemented)
+
+The [parallel enrichment contract](.github/prompts/retirement-enrichment.prompt.md#parallel-enrichment-design-not-implemented) separates concurrent research from serialized publication:
+
+```text
+Complete baseline -> coordinator queue -> bounded workers on disjoint record IDs
+                            |                         |
+                     shared fetch/cache        private guarded proposals
+                            |                         |
+                            +--> one integrator -> canonical.sqlite -> JSON -> build/audit
+```
+
+Full enrichment queues every eligible record, including already-reviewed ones; worker counts and batch limits never sample the catalog. Design/testing still selects only one example at run time, with synthetic fixtures for multi-record concurrency checks.
+
+The coordinator leases IDs with attempt tokens, original record hashes and exact evidence fingerprints. Workers use immutable input snapshots or disposable private database copies, read evidence and draft the five answers concurrently, and return record-scoped proposals or audited no-change outcomes. They never write the shared databases, catalog or generated pages, approve their own shared inputs, or expand their assignments.
+
+Shared fetches are deduplicated per cache key and subject to global host/retry limits and the per-batch page budget. Only the coordinator writes the raw/extracted/link stores. Changed or failed evidence invalidates dependent work without discarding unrelated results.
+
+One integrator checks current leases, target preimages, evidence fingerprints and preservation rules before applying each result. An unrelated accepted record can change the catalog hash; the coordinator may construct a fresh guarded batch only after proving the target and its dependencies are unchanged, retaining the original worker guards. Changed targets require renewed review, not blind hash replacement. Export/build completion and interrupted writes are reconciled before replay; protected records and every pending/blocked ID remain visible in coverage reports.
+
+This is a design, not an available parallel command. The current per-directory lock still serializes the CLI: do not run it concurrently against one `--db-dir` or merge worker database binaries. A scheduler, durable leases, safe proposal reconciliation and concurrency/recovery tests must be implemented before parallel execution.
 
 ### Weekly Copilot cloud automation
 
