@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "source": "https://www.microsoft.com/releasecommunications/api/v2/azure",
-  "retrievedAt": "2026-11-12T15:27:21.019137Z",
+  "retrievedAt": "2026-11-13T14:44:53.951441Z",
   "records": [
     {
       "id": "466774",
@@ -23261,284 +23261,82 @@
       "announcedOn": "2024-03-27",
       "lastUpdatedOn": "2024-03-27",
       "hidden": false,
-      "summary": "Azure Front Door (classic) retires on 31 March 2027; migrate profiles to Standard or Premium and complete the separate legacy-endpoint cutover by 31 March 2028.",
+      "summary": "On 31 March 2027, Azure Front Door (classic) will be retired for the public cloud, and you’ll need to migrate to Front Door Standard or Premium by that date.\nBeginning 1 April 2025, you’ll no longer be able to create new Front Door…",
       "sourceUrl": "https://azure.microsoft.com/updates?id=azure-front-door-classic-will-be-retired-on-31-march-2027",
       "questions": {
         "what": {
           "question": "What is changing?",
-          "introduction": "The classic tier is retiring, while Standard and Premium are the migration targets.",
-          "announcement": "Azure Front Door (classic) retires on 31 March 2027. The original announcement covers the public cloud; the current retirement FAQ also lists Azure Government in Arizona and Texas. Classic no longer supports new profiles, new domain onboarding or managed certificates. This is separate from the Azure CDN Standard from Microsoft (classic) retirement. Migration changes the management provider from Microsoft.Network to Microsoft.Cdn, creates a new endpoint hostname and does not transfer diagnostic logs or metrics.",
-          "financialConsiderations": "Standard and Premium introduce a per-profile base fee and request/transfer meters. Costs can increase for request-heavy workloads or many separate profiles; savings are not guaranteed. Compare existing invoices, Request Count, WAF Request Count and Billable Response Size with the applicable tier and pricing zone. Documentation prices are illustrative, not a quote for your agreement; Standard/Premium service charges start when migration completes.",
-          "html": "<p>Existing Azure Front Door (classic) profiles must move to <strong>Standard or Premium</strong>. Classic no longer supports new profiles, new domain onboarding or managed certificates.</p><p>The original announcement covers the public cloud. The current retirement FAQ also lists <strong>Azure Government in Arizona and Texas</strong>. This is not the separate Azure CDN Standard from Microsoft (classic) retirement.</p><h3>Technical changes</h3><ul><li>Management changes from <code>Microsoft.Network</code> to <code>Microsoft.Cdn</code>; update deployment scripts, APIs and command-line tooling.</li><li>The target receives a new endpoint hostname. Existing DNS records and direct references to the classic hostname need a separate post-migration cutover.</li><li>Diagnostic logs and metrics do not migrate. Enable diagnostics on the new profile and review dependent monitoring.</li><li>Managed WAF rules require Premium. Custom WAF rules are supported in both target tiers; exceeding Standard quotas can also select Premium during migration.</li></ul>"
+          "introduction": "The change and what it means, including technical and financial considerations.",
+          "announcement": "On 31 March 2027, Azure Front Door (classic) will be retired for the public cloud, and you’ll need to migrate to Front Door Standard or Premium by that date.\nBeginning 1 April 2025, you’ll no longer be able to create new Front Door (classic) resources via the Azure portal, Terraform, or any command line tools. However, you can continue to make modifications to existing resources until Front Door (classic) is fully retired.\nAzure Front Door Standard and Premium combine the capabilities of static and dynamic content delivery with turnkey security, enhanced DevOps experiences, simplified pricing, and better Azure integrations. Learn more about what’s included with Front Door Standard and Premium and review the pricing of each tier.\nRequired action\nTo avoid potential disruptions in service, migrate to Azure Front Door Standard or Premium by 31 March 2027. Additionally, we recommend that you start creating new resources on Front Door Standard or Premium, and that you use Standard or Premium API and command line tools in your DevOps workflow.\nHelp and support\nIf you have questions, get answers from community experts in Microsoft Q&A. If you have a support plan and you need technical help, open the Azure portal and select the question mark icon at the top of the page.",
+          "financialConsiderations": "The text above is from Microsoft’s announcement. Pricing and financial impact are workload-specific; review replacement-service pricing and your agreements before migrating."
         },
         "actions": {
           "question": "What do I need to do?",
-          "introduction": "Validate and migrate each classic profile, then verify production traffic and complete endpoint cutover.",
-          "recommendedAction": "Migrate Azure Front Door (classic) profiles to Standard or Premium by 31 March 2027 and use the corresponding APIs and tooling for new deployments.",
-          "guidance": "Inventory profiles and dependencies, validate compatibility in the portal, prepare the target and WAF policies, configure managed identity and Key Vault access for your own certificates, and commit the migration. Preparation freezes classic configuration and commitment has no rollback. After migration, enable diagnostics, update automation, validate HTTPS and traffic, and complete custom-domain DNS and direct-hostname cutover by 31 March 2028. Delete the old disabled classic resource only after validating the replacement; never delete the production Standard/Premium profile as cleanup.",
+          "introduction": "Required actions, options, and available support.",
+          "recommendedAction": "To avoid potential disruptions in service, migrate to Azure Front Door Standard or Premium by 31 March 2027. Additionally, we recommend that you start creating new resources on Front Door Standard or Premium, and that you use Standard or Premium API and command line tools in your DevOps workflow.",
+          "guidance": "Use the official announcement for service-specific migration instructions and replacement options. Inventory dependencies, test the recommended replacement, and plan a validated rollout.",
           "resources": [
             {
-              "title": "Comparison between Azure Front Door and Azure Content Delivery Network",
+              "title": "what’s included with Front Door Standard and Premium",
               "url": "https://learn.microsoft.com/azure/frontdoor/front-door-cdn-comparison#service-comparison"
             },
             {
-              "title": "Compare pricing between Azure Front Door tiers",
+              "title": "pricing",
               "url": "https://learn.microsoft.com/azure/frontdoor/understanding-pricing"
             },
             {
-              "title": "Migrate Azure Front Door (classic) to Standard or Premium tier",
+              "title": "migrate to Azure Front Door Standard or Premium",
               "url": "https://learn.microsoft.com/azure/frontdoor/migrate-tier"
             },
             {
-              "title": "Retirement Announcement - Azure Front Door (classic) will be retired on March 31, 2027 (Microsoft Q&A discussion)",
+              "title": "Microsoft Q&A",
               "url": "https://aka.ms/azurefrontdoorqa"
             },
             {
-              "title": "Azure portal support request (sign-in required)",
+              "title": "Azure portal",
               "url": "https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest"
-            },
-            {
-              "title": "Azure Front Door (classic) to Standard or Premium tier migration",
-              "url": "https://learn.microsoft.com/azure/frontdoor/tier-migration"
-            },
-            {
-              "title": "Azure Front Door (classic) retirement FAQ",
-              "url": "https://learn.microsoft.com/azure/frontdoor/classic-retirement-faq"
-            },
-            {
-              "title": "Get-AzFrontDoor",
-              "url": "https://learn.microsoft.com/powershell/module/az.frontdoor/get-azfrontdoor?view=azps-16.5.0"
-            },
-            {
-              "title": "Azure Front Door Migration Tool General Available",
-              "url": "https://techcommunity.microsoft.com/blog/azurenetworkingblog/azure-front-door-migration-tool-general-available/3826836"
             }
           ],
-          "supportGuidance": "For migration issues, eligible support-plan customers can create a technical request for Front Door Service and select Migrating Front Door (classic) to Front Door Standard or Premium; Microsoft Q&A is a community discussion option.",
+          "supportGuidance": "For help with your specific environment, contact your Microsoft account team or Azure support.",
           "support": {
             "title": "Azure support",
             "url": "https://azure.microsoft.com/support/create-ticket/"
-          },
-          "html": "<ol><li><strong>Inventory and choose a tier.</strong> Review classic profiles, custom domains, backend pools, routes, WAF policies, certificates and deployment automation. Preserve required security features: managed WAF rules need Premium, and Standard quotas can affect eligibility.</li><li><strong>Validate compatibility.</strong> In the classic resource, open Settings, then Migration, and select Validate. Resolve the reported errors. Custom domains must use HTTPS; domains sharing a backend pool must have consistent session-affinity settings.</li><li><strong>Prepare and inspect the target.</strong> Review the generated Standard/Premium configuration and copied or existing compatible WAF policies. Preparation freezes changes to the classic profile. If using your own certificates, enable managed identity and grant access to the relevant Key Vaults. The current guide requires your own certificate in Azure Government because managed certificates are not supported there.</li><li><strong>Commit the migration.</strong> Microsoft provides a zero-downtime migration capability, but committing cannot be aborted or rolled back to classic. Confirm the new profile is active, review production traffic and verify HTTPS, routing and WAF behavior.</li><li><strong>Restore operational coverage.</strong> Enable diagnostics on the target because old logs and metrics do not migrate. Update scripts and tooling for the new provider namespace, and review monitoring against the new resource. If managed certificates already expired, follow the FAQ's revalidation and validation-token guidance rather than assuming migration immediately restores HTTPS.</li><li><strong>Finish endpoint cutover and cleanup.</strong> By <strong>31 March 2028</strong>, point custom-domain DNS records to the new endpoint and replace direct classic-hostname references in applications, clients and integrations. Validate the changes, then delete the old disabled classic resource. <strong>Deleting the new Standard/Premium profile deletes the production environment and is irreversible.</strong></li></ol>"
+          }
         },
         "impact": {
           "question": "Where, and how much, am I impacted?",
-          "introduction": "Assess classic profiles, their application dependencies and the cost of the selected target tier.",
-          "guidance": "Get-AzFrontDoor lists classic Front Door resources in the current subscription; use its SubscriptionId parameter for each authorized subscription in scope. Review each resource's migration and enabled states because a disabled migrated classic resource can remain after a successful migration. The current FAQ covers the public cloud and Azure Government in Arizona and Texas. Inspect domains, certificates, backend pools, routing, WAF, automation, monitoring and direct classic endpoint references; Standard/Premium profiles are migration targets, not the retiring classic SKU.",
+          "introduction": "Your affected environments, resources, and users.",
+          "guidance": "This announcement concerns Azure Front Door. Compare the versions, regions, configurations, and exceptions in the announcement with your inventory.",
           "checklist": [
-            "List classic resources in every authorized subscription and distinguish unmigrated profiles from disabled migrated resources.",
-            "Map custom domains, certificates, backend pools, routes, WAF policies and direct classic-hostname dependencies to owners.",
-            "Check HTTPS and session-affinity compatibility, target-tier quotas, certificate access and managed WAF requirements.",
-            "Estimate per-profile base fees, request charges and transfer costs from actual usage and the applicable pricing agreement.",
-            "Plan for the configuration freeze, irreversible commitment, new diagnostics and post-migration endpoint cutover."
+            "Check every subscription and environment, including development, test, and production.",
+            "Identify dependent applications, users, and resource owners.",
+            "Estimate migration effort, downtime risk, and replacement-service costs."
           ],
-          "notice": "This catalog has no tenant access and cannot establish whether your resources are affected. Check every authorized subscription and application dependency; the Advisor link is supplemental, not proof of complete inventory or migration coverage.",
+          "notice": "No tenant access. This directory cannot determine whether your resources are affected. Use Azure Advisor service retirements alongside your inventory and the official guidance. Advisor coverage may vary by service.",
           "advisor": {
             "title": "Azure Advisor service retirements",
             "url": "https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/serviceRetirement"
-          },
-          "html": "<p>Start with resources returned by <code>Get-AzFrontDoor</code> in each subscription you are authorized to assess. The command defaults to the current subscription; use <code>-SubscriptionId</code> to select another. Inspect migration state as well as resource existence: a migrated, disabled classic resource can remain until cleanup.</p><ul><li><strong>Scope:</strong> the current retirement FAQ lists the public cloud and Azure Government in Arizona and Texas. Standard/Premium are the replacement tiers; Azure CDN Standard from Microsoft (classic) has a separate retirement.</li><li><strong>Application dependencies:</strong> identify domains, certificate expiry, backend pools, routing rules, WAF policies and clients that use the classic default hostname. A successful profile migration does not prove DNS or client references have been updated.</li><li><strong>Operational risk:</strong> preparation freezes classic configuration, commitment has no rollback, and logs and metrics do not transfer. Validate the replacement and establish its monitoring before closing the work.</li><li><strong>Financial impact:</strong> estimate the target tier from current invoices and request/transfer metrics, including its per-profile base fee. Retaining many separate profiles or a request-heavy workload can increase costs.</li></ul>"
+          }
         },
         "deadline": {
           "question": "What is the deadline?",
-          "introduction": "Complete the profile migration in 2027, then finish the separate endpoint cutover in 2028.",
+          "introduction": "Key dates and the consequences of not acting.",
           "date": "2027-03-31",
           "month": "March 2027",
-          "dateGuidance": "Azure Updates, the specific Microsoft Lifecycle row and the current Front Door retirement FAQ agree on 31 March 2027 for classic profile retirement. No exact time or time zone is specified. The separate 31 March 2028 deadline applies only to cutting over legacy endpoint references after profile migration; it is not an extension of the profile-retirement deadline.",
-          "consequences": "After 31 March 2027, the FAQ says classic resources can no longer be created or managed, data cannot be accessed through the portal or APIs/SDKs/client tools, and classic updates and support end. For migrated profiles, complete custom-domain DNS and direct classic-hostname cutover by 31 March 2028; from 1 April 2028 classic endpoints are unsupported and might stop functioning. Historical new-profile/domain and certificate cutoffs are different milestones.",
-          "html": "<p>Complete the move to Standard or Premium before classic profile retirement. Azure Updates, the specific Microsoft Lifecycle row and the current product FAQ agree on this date; no exact retirement time or time zone is specified.</p><p>After retirement, the FAQ says you lose classic resource creation and management, data access through the Azure portal or APIs/SDKs/client tools, service updates and support.</p><h3>Separate endpoint cutover</h3><p>For profiles already migrated, finish custom-domain DNS updates and replace direct classic-hostname references by <strong>31 March 2028</strong>. From <strong>1 April 2028</strong>, classic endpoints are unsupported and might stop functioning. This is a follow-up cutover deadline, <strong>not an extension</strong> of the 2027 profile migration deadline.</p><p>Earlier profile/domain-creation and certificate cutoffs are separate milestones. Sources differ on some historical creation dates; they do not conflict on the 2027 retirement date.</p>"
+          "dateGuidance": "This date is extracted from the announcement title. Check the full announcement for phased deadlines, extensions, and exceptions.",
+          "consequences": "After the applicable deadline, support or service availability may change. The exact consequences are service-specific; verify them in the announcement and plan to finish your migration ahead of time."
         },
         "progress": {
           "question": "How can I track progress?",
-          "introduction": "Use documented inventory and migration states, and retain completion evidence in your team's tracker.",
-          "guidance": "Use Get-AzFrontDoor for each authorized subscription, record resource IDs and migration/enabled states, and use Settings then Migration in each classic resource to validate compatibility and inspect errors. Confirm the classic resource is migrated or disabled and the Standard/Premium target is active. Separately verify HTTPS, traffic, diagnostics and endpoint cutover; the migration state does not prove completion of that follow-up work. Maintain owners, blockers and evidence in a team-owned tracker.",
+          "introduction": "What work remains, and what needs attention.",
+          "guidance": "Use this planning checklist as a starting point. Record resource-level owners, target dates, blockers, and evidence in your team’s tracking system.",
           "checklist": [
-            "Record classic resource IDs, subscription scope, owners and migration/enabled states.",
-            "Capture compatibility results and resolve the portal's migration validation errors.",
-            "Confirm the Standard/Premium target is active and validate production HTTPS, routing and WAF.",
-            "Record diagnostics, automation updates, endpoint cutover and safe cleanup as separate completion evidence."
+            "Identify affected resources, subscriptions, and owners",
+            "Review the official migration guidance and estimate cost changes",
+            "Test the replacement and agree a migration plan",
+            "Complete migration and validate production workloads"
           ],
-          "storageNote": "Maintain owners, dates, blockers and completion evidence in your team's tracking system or local planning file; this site does not save checklist progress.",
-          "tracking": {
-            "guidance": "The documented migration state table distinguishes validation, preparation, commitment, migration and abort states for the classic and target resources. Combine those states with Get-AzFrontDoor inventory and portal validation results; separately track DNS/client cutover, tests and cleanup in your own system.",
-            "sourceUrl": "https://learn.microsoft.com/azure/frontdoor/tier-migration"
-          },
-          "html": "<ol><li><strong>Establish the inventory.</strong> Run <code>Get-AzFrontDoor</code> in the current subscription or specify <code>-SubscriptionId</code>. Record resource IDs and the migration/enabled states for every authorized subscription in scope; a remaining classic resource may already be migrated and disabled.</li><li><strong>Track the documented migration states.</strong> In each classic resource, open Settings, then Migration. Run Validate, review View errors when validation fails, and record preparation and migration outcomes. The state table distinguishes validating, preparing, committing, migrated and aborted resources.</li><li><strong>Verify completion beyond the state label.</strong> Confirm the target is active, validate production HTTPS, routing and WAF, enable target diagnostics, and check updated automation. Record DNS and direct-hostname cutover separately; profile migration does not prove those dependencies have moved.</li></ol><p><strong>Coverage limits:</strong> subscription scope and permissions limit inventory visibility. Resource migration states do not provide a complete application-dependency or owner-work tracker, and an Advisor reminder is not proof every affected resource has been identified.</p><p><strong>Team-owned planning:</strong> maintain owners, target dates, blockers, test evidence, endpoint cutover and cleanup in your team's tracker or local planning file. This page does not store checklist progress.</p>"
-        }
-      },
-      "sourceReview": {
-        "status": "enriched",
-        "reviewedOn": "2026-11-12",
-        "issues": [
-          "No tenant access: affected resource counts, workload-specific costs and successful migration cannot be verified by this catalog.",
-          "The Azure Updates web URL returned a listing shell rather than article text. The exact matching announcement was read from the official Azure Updates API with an ID filter; exactly one item matched.",
-          "Historical new-profile/domain cutoff statements differ: the announcement and FAQ describe 1 April 2025, while the comparison page includes 15 August 2025 and a table entry of 31 March 2025. These are not treated as conflicting 2027 retirement dates or silently reconciled.",
-          "Current Learn guidance adds a separate 31 March 2028 endpoint-cutover deadline after migration, with classic endpoint support ending from 1 April 2028; this does not extend the 31 March 2027 profile-retirement deadline.",
-          "Microsoft's 2023 migration-tool blog is historical corroboration, not authority for later dates, current certificate behavior or then-preview features.",
-          "Combined-feed ingestion and hash-ID allocation remain proposed; this review only updates the existing selected record and retains its current ID."
-        ],
-        "sources": [
-          {
-            "title": "Azure Front Door (classic) will be retired on 31 March 2027",
-            "url": "https://www.microsoft.com/releasecommunications/api/v2/azure?%24filter=id+eq+%27azure-front-door-classic-will-be-retired-on-31-march-2027%27&%24top=2&%24count=true",
-            "sections": [
-              "what",
-              "actions",
-              "impact",
-              "deadline"
-            ],
-            "note": "Read the full description of the one exact-ID Azure Updates API item, not the web listing shell. It establishes the public-cloud classic retirement on 31 March 2027, migration to Standard/Premium and the original planned 1 April 2025 creation cutoff. It does not establish a tenant inventory or a 2028 extension."
-          },
-          {
-            "title": "Ending Support in 2027",
-            "url": "https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2027",
-            "sections": [
-              "what",
-              "impact",
-              "deadline"
-            ],
-            "note": "Read through Microsoft Learn MCP. The Additional Azure Changes row names Azure Front Door (classic) SKU, gives 31 March 2027 and explicitly links the exact original announcement. This corroborates the same retirement identity; neighboring products in the cell are separate entries, not additional Front Door scope."
-          },
-          {
-            "title": "Migrate Azure Front Door (classic) to Standard or Premium tier",
-            "url": "https://learn.microsoft.com/azure/frontdoor/migrate-tier",
-            "sections": [
-              "what",
-              "actions",
-              "impact",
-              "deadline",
-              "progress"
-            ],
-            "note": "Read the full current guide through Microsoft Learn MCP, including compatibility validation, WAF configuration, preparation freeze, BYOC identity/Key Vault steps, migration outcomes, irreversible target deletion and post-migration endpoint cutover by 31 March 2028."
-          },
-          {
-            "title": "Azure Front Door (classic) to Standard or Premium tier migration",
-            "url": "https://learn.microsoft.com/azure/frontdoor/tier-migration",
-            "sections": [
-              "what",
-              "actions",
-              "impact",
-              "deadline",
-              "progress"
-            ],
-            "note": "Read the full current guide through Microsoft Learn MCP. Supports the resource-state table, no abort/rollback after commitment, Standard/Premium selection and quota effects, Microsoft.Cdn tooling changes, diagnostics not transferring, service charges beginning on completion and the separate endpoint-cutover milestone. Azure Government currently requires BYOC."
-          },
-          {
-            "title": "Azure Front Door (classic) retirement FAQ",
-            "url": "https://learn.microsoft.com/azure/frontdoor/classic-retirement-faq",
-            "sections": [
-              "what",
-              "actions",
-              "impact",
-              "deadline",
-              "progress"
-            ],
-            "note": "Read the full FAQ through Microsoft Learn MCP. Confirms 31 March 2027, lists public-cloud and Azure Government Arizona/Texas impact, details post-retirement access/management/support loss, certificate revalidation limits, no rollback, cleanup and support-request options. Supplemental cloud information is enrichment, not third-source identity matching."
-          },
-          {
-            "title": "Comparison between Azure Front Door and Azure Content Delivery Network",
-            "url": "https://learn.microsoft.com/azure/frontdoor/front-door-cdn-comparison#service-comparison",
-            "sections": [
-              "what",
-              "actions",
-              "impact",
-              "deadline"
-            ],
-            "note": "Read the full comparison through Microsoft Learn MCP. Distinguishes Front Door classic retirement from CDN Standard from Microsoft classic, identifies target-tier features and managed WAF requirements, and lists separate domain/profile/certificate milestones. Conflicting historical creation-cutoff statements are retained as an issue, not used to change the retirement."
-          },
-          {
-            "title": "Compare pricing between Azure Front Door tiers",
-            "url": "https://learn.microsoft.com/azure/frontdoor/understanding-pricing",
-            "sections": [
-              "what",
-              "actions",
-              "impact"
-            ],
-            "note": "Read the full pricing-model comparison and examples through Microsoft Learn MCP. Supports per-profile base fees, request and transfer meters, invoice/Request Count/WAF Request Count/Billable Response Size cost assessment and scenarios with higher target-tier costs. All published example amounts are explicitly illustrative; no contracted cost or savings is asserted."
-          },
-          {
-            "title": "Get-AzFrontDoor",
-            "url": "https://learn.microsoft.com/powershell/module/az.frontdoor/get-azfrontdoor?view=azps-16.5.0",
-            "sections": [
-              "impact",
-              "progress"
-            ],
-            "note": "Read the complete cmdlet reference through Microsoft Learn MCP. The default example lists classic Front Doors in the current subscription; SubscriptionId selects target subscriptions. The resource example includes Id, Microsoft.Network/frontdoors, ResourceState Migrated, EnabledState Disabled and a MigratedTo reference, preventing resource existence from being mistaken for incomplete migration."
-          },
-          {
-            "title": "Azure Front Door Migration Tool General Available",
-            "url": "https://techcommunity.microsoft.com/blog/azurenetworkingblog/azure-front-door-migration-tool-general-available/3826836",
-            "sections": [
-              "what",
-              "actions",
-              "impact",
-              "progress"
-            ],
-            "note": "Read the full Azure Networking Blog post, published 12 June 2023 and updated 13 June 2023. Author JessieJia is visibly identified as Microsoft. Historical corroboration for migration-tool availability, WAF policy handling, BYOC managed identity, provider/diagnostic changes and pricing assessment only; current Learn guides take precedence over its older endpoint and preview-feature advice. Comments are not evidence."
-          }
-        ],
-        "guidanceSource": "https://learn.microsoft.com/azure/frontdoor/migrate-tier",
-        "deadlineSource": "https://learn.microsoft.com/azure/frontdoor/classic-retirement-faq",
-        "resourceChecks": [
-          {
-            "url": "https://learn.microsoft.com/azure/frontdoor/front-door-cdn-comparison#service-comparison",
-            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/frontdoor/front-door-cdn-comparison",
-            "status": "read",
-            "detail": "Read the full comparison through Microsoft Learn MCP and verified the locale-free URL redirects to the matching English page. The fragment selects the actual service-comparison section. Historical creation-cutoff inconsistencies are recorded."
-          },
-          {
-            "url": "https://learn.microsoft.com/azure/frontdoor/understanding-pricing",
-            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/frontdoor/understanding-pricing",
-            "status": "read",
-            "detail": "Read the full pricing comparison, cost-assessment procedure and scenarios through Microsoft Learn MCP; separately verified the actual locale redirect. Example rates are not treated as a current quote."
-          },
-          {
-            "url": "https://learn.microsoft.com/azure/frontdoor/migrate-tier",
-            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/frontdoor/migrate-tier",
-            "status": "read",
-            "detail": "Read the full current migration procedure through Microsoft Learn MCP and verified the locale redirect, including validation, WAF/BYOC, irreversible cleanup warning and the distinct 2028 endpoint cutover."
-          },
-          {
-            "url": "https://aka.ms/azurefrontdoorqa",
-            "resolvedUrl": "https://learn.microsoft.com/en-us/answers/questions/1634630/retirement-announcement-azure-front-door-classic-w",
-            "status": "not-evidence",
-            "detail": "Resolved the original shortlink and read the complete public retirement Q&A thread. Preserve it as a support/discussion reference; community Q&A is not used as product-documentation, deadline or identity evidence even though the thread shows Microsoft-employee moderators."
-          },
-          {
-            "url": "https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest",
-            "resolvedUrl": null,
-            "status": "not-evidence",
-            "detail": "Known authenticated Azure support-request portal, classified without signing in or inspecting tenant data. The current public retirement FAQ supports the described support-request fields; this portal is not public product evidence."
-          },
-          {
-            "url": "https://learn.microsoft.com/azure/frontdoor/tier-migration",
-            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/frontdoor/tier-migration",
-            "status": "read",
-            "detail": "Read the full migration overview and resource-state table through Microsoft Learn MCP and verified the locale redirect. Supports state-based progress checks and their distinction from post-migration endpoint work."
-          },
-          {
-            "url": "https://learn.microsoft.com/azure/frontdoor/classic-retirement-faq",
-            "resolvedUrl": "https://learn.microsoft.com/en-us/azure/frontdoor/classic-retirement-faq",
-            "status": "read",
-            "detail": "Read the full FAQ through Microsoft Learn MCP and verified the locale redirect. Covers date, clouds, consequences, expired-certificate revalidation, rollback, cleanup and support."
-          },
-          {
-            "url": "https://learn.microsoft.com/powershell/module/az.frontdoor/get-azfrontdoor?view=azps-16.5.0",
-            "resolvedUrl": "https://learn.microsoft.com/en-us/powershell/module/az.frontdoor/get-azfrontdoor?view=azps-16.5.0",
-            "status": "read",
-            "detail": "Read the complete syntax, subscription parameter and examples through Microsoft Learn MCP; verified the locale redirect while preserving the explicit module-version selector."
-          },
-          {
-            "url": "https://techcommunity.microsoft.com/blog/azurenetworkingblog/azure-front-door-migration-tool-general-available/3826836",
-            "resolvedUrl": "https://techcommunity.microsoft.com/blog/azurenetworkingblog/azure-front-door-migration-tool-general-available/3826836",
-            "status": "read",
-            "detail": "Read the full 2023 Azure Networking Blog article and verified the author's Microsoft label and publication/update dates. Used only for applicable historical migration context, not later deadlines or current preview status."
-          }
-        ],
-        "originalAnnouncement": "On 31 March 2027, Azure Front Door (classic) will be retired for the public cloud, and you’ll need to migrate to Front Door Standard or Premium by that date.\nBeginning 1 April 2025, you’ll no longer be able to create new Front Door (classic) resources via the Azure portal, Terraform, or any command line tools. However, you can continue to make modifications to existing resources until Front Door (classic) is fully retired.\nAzure Front Door Standard and Premium combine the capabilities of static and dynamic content delivery with turnkey security, enhanced DevOps experiences, simplified pricing, and better Azure integrations. Learn more about what’s included with Front Door Standard and Premium and review the pricing of each tier.\nRequired action\nTo avoid potential disruptions in service, migrate to Azure Front Door Standard or Premium by 31 March 2027. Additionally, we recommend that you start creating new resources on Front Door Standard or Premium, and that you use Standard or Premium API and command line tools in your DevOps workflow.\nHelp and support\nIf you have questions, get answers from community experts in Microsoft Q&A. If you have a support plan and you need technical help, open the Azure portal and select the question mark icon at the top of the page.",
-        "originalDeadline": {
-          "date": "2027-03-31",
-          "month": "March 2027"
+          "storageNote": "Checklist progress is saved only in this browser, not in Azure or a shared team system. Clearing browser data removes it."
         }
       }
     },
