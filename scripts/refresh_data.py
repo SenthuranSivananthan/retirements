@@ -20,6 +20,15 @@ def read_snapshot(output):
 
 def refresh_catalog(fetcher=fetch_page, output=ROOT / "data" / "retirements.json", db_dir=None):
     output = Path(output)
+    if output.exists():
+        initial_catalog = json.loads(output.read_text(encoding="utf-8"))
+        if isinstance(initial_catalog, dict) and (
+            initial_catalog.get("enrichmentPipeline") == "json-v1" or any(
+                isinstance(record, dict) and "enrichment" in record
+                for record in initial_catalog.get("records", [])
+            )
+        ):
+            raise ValueError("This catalog uses JSON enrichment; use scripts.enrichment instead of legacy refresh")
     fetched = fetch_retirements(fetcher)
     original = read_snapshot(output)
     previous = json.loads(original) if original is not None else None
@@ -27,6 +36,8 @@ def refresh_catalog(fetcher=fetch_page, output=ROOT / "data" / "retirements.json
         raise ValueError("Unsupported catalog schema; existing snapshot preserved")
     if previous is not None:
         parse_catalog(previous)
+        if previous.get("enrichmentPipeline") == "json-v1" or any("enrichment" in record for record in previous["records"]):
+            raise ValueError("This catalog uses JSON enrichment; use scripts.enrichment instead of legacy refresh")
     records = merge_retirements(fetched, previous.get("records") if previous is not None else [])
     catalog = {
         "schemaVersion": 2, "source": ENDPOINT,

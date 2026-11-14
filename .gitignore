@@ -11,6 +11,7 @@ __pycache__/
 
 # Temporary catalog writes
 /data/*.tmp
+/data/.enrichment-work/
 
 # Transient SQLite state; the five database files themselves are versioned
 /data/pipeline/.lock

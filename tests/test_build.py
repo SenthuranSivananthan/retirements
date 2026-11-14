@@ -7,7 +7,8 @@ import tempfile
 import unittest
 from unittest.mock import patch
 from pathlib import Path
-from scripts.catalog import DETAIL_QUESTIONS, format_date, record_url, record_urls, retirement_outlook
+from scripts.catalog import DETAIL_QUESTIONS, format_date, prepare_site, record_url, record_urls, retirement_outlook
+from scripts.check_site import check_site
 from html5lib import parse
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -190,6 +191,52 @@ class StaticSiteTests(unittest.TestCase):
                     else:
                         self.assertIsNone(button)
                         self.assertEqual(section[-1].find("a"), support)
+
+    def test_json_enrichment_displays_manual_source_and_progress_without_extra_fallback(self):
+        record = self.view["record"]
+        record["sourceLabel"] = "User-provided retirement"
+        record["enrichment"] = {"automaticRevision": "current"}
+        record["questions"]["progress"]["html"] = "<p>Use the documented inventory query; record results locally.</p>"
+        self.save()
+        builder.build_site(self.root)
+        document = parse(self.detail_path().read_text(encoding="utf-8"), namespaceHTMLElements=False)
+        facts = document.find(".//div[@class='fact-card']/dl")
+        self.assertIn("User-provided retirement", "".join(facts.itertext()))
+        progress = "".join(document.find(".//section[@id='progress']").itertext())
+        self.assertIn("Use the documented inventory query", progress)
+        self.assertNotIn("Tracking guidance is not available", progress)
+        data = self.root / "data"
+        data.mkdir()
+        (data / "retirements.json").write_text(json.dumps({
+            "schemaVersion": 2, "source": "https://example.com/retirements",
+            "retrievedAt": "2026-11-10T00:00:00Z", "enrichmentPipeline": "json-v1", "records": [record],
+        }), encoding="utf-8")
+        shutil.copytree(ROOT / "site" / "assets" / "js", self.root / "site" / "assets" / "js", dirs_exist_ok=True)
+        prepare_site(self.root)
+        builder.build_site(self.root)
+        check_site(self.root)
+
+    def test_rich_enrichment_html_renders_headings_lists_and_code(self):
+        markup = (
+            "<h3>Migration steps</h3><p>Review the <strong>affected</strong> SKU.</p>"
+            "<ul><li>Inventory <code>sku</code>.</li></ul>"
+            "<ol><li>Assign an owner.</li><li>Validate the replacement.</li></ol>"
+            "<pre><code>az resource list</code></pre><p>Keep <em>exceptions</em> visible.<br>Track results.</p>"
+        )
+        for section in DETAIL_QUESTIONS:
+            self.view["record"]["questions"][section]["html"] = markup
+        self.view["record"]["enrichment"] = {"automaticRevision": "current"}
+        self.save()
+        builder.build_site(self.root)
+        document = parse(self.detail_path().read_text(encoding="utf-8"), namespaceHTMLElements=False)
+        content = document.find(".//section[@id='actions']/div[@class='rich-content']")
+        self.assertIsNotNone(content.find("./h3"))
+        self.assertIsNotNone(content.find("./ul/li/code"))
+        self.assertEqual(len(content.findall("./ol/li")), 2)
+        self.assertEqual(content.find("./p/strong").text, "affected")
+        self.assertEqual(content.find("./p/em").text, "exceptions")
+        self.assertEqual(content.find("./pre/code").text, "az resource list")
+        self.assertIsNotNone(content.find("./p/br"))
 
     def test_static_timeline_groups_categories_services_and_orders_deadlines_descending(self):
         self.metadata["byId"] = {}

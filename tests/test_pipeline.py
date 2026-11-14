@@ -104,6 +104,50 @@ class PipelineTests(unittest.TestCase):
         return {"catalogSha256": self.pipeline.status()["catalogSha256"],
                 "overrides": [{"id": "a", "fields": fields}]}
 
+    def test_optional_unavailable_and_authenticated_references_are_preserved_without_fetching(self):
+        self.pipeline.ingest("a", LIFECYCLE)
+        self.pipeline.extract("a")
+        row = self.pipeline.row("a")
+        record = json.loads(row["record_json"])
+        optional = "https://techcommunity.microsoft.com/blog/example/historical-post/123456"
+        portal = "https://ms.portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest"
+        workbook = "https://aka.ms/ServicesRetirementWorkbook"
+        for url in (optional, portal, workbook):
+            record["questions"]["actions"]["resources"].append({"title": "Retained reference", "url": url})
+            record["sourceReview"]["resourceChecks"].append({
+                "url": url, "resolvedUrl": None,
+                "status": "unavailable" if url == optional else "not-evidence",
+                "detail": "Historical article unavailable." if url == optional else "Authenticated planning portal.",
+            })
+        self.pipeline.connections["canonical"].execute(
+            "UPDATE retirements SET record_json=? WHERE id='a'", (json.dumps(record),),
+        )
+        self.pipeline.connections["canonical"].commit()
+        self.failures[optional] = HTTPError(optional, 503, "Unavailable", {}, None)
+        result = self.pipeline.links("a")
+        self.assertEqual(result["skipped"], 5)
+        self.assertFalse(any(request.full_url in (optional, portal, workbook) for request in self.requests))
+        self.assertEqual(json.loads(self.pipeline.row("a")["record_json"]), record)
+        self.assertFalse(self.approve()["reviewRequired"])
+
+    def test_required_citations_fail_closed_even_when_a_resource_check_says_unavailable(self):
+        self.prepare()
+        row = self.pipeline.row("a")
+        record = json.loads(row["record_json"])
+        record["sourceReview"]["resourceChecks"][0].update({
+            "status": "unavailable", "detail": "Required evidence could not be refreshed.",
+        })
+        self.pipeline.connections["canonical"].execute(
+            "UPDATE retirements SET record_json=? WHERE id='a'", (json.dumps(record),),
+        )
+        self.pipeline.connections["canonical"].commit()
+        url = record["sourceReview"]["sources"][0]["url"]
+        self.failures[url] = HTTPError(url, 404, "Not found", {}, None)
+        with self.assertRaisesRegex(ValueError, "Link refresh failed"):
+            self.pipeline.links("a")
+        with self.assertRaisesRegex(ValueError, "Missing/failed link check"):
+            self.pipeline.canonical("a")
+
     def test_manual_fields_override_research_without_changing_it_and_can_be_removed(self):
         self.prepare()
         self.approve()

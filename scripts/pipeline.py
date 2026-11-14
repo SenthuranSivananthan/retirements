@@ -425,12 +425,25 @@ class Pipeline:
         return sorted(values)
 
     def links(self, identifier):
+        record = json.loads(self.row(identifier)["record_json"])
+        review = record.get("sourceReview", {})
+        checks = {check["url"]: check for check in review.get("resourceChecks", [])}
+        required = {record["sourceUrl"]} | {source["url"] for source in review.get("sources", [])}
         references = []
         for url, role in self.references(identifier):
             reason = None
             if role in ("support", "advisor") or urlsplit(url).hostname == "portal.azure.com":
                 reason = "Support/Advisor or authenticated portal; not downloaded and not product evidence."
-            else:
+            elif urlsplit(url).hostname == "ms.portal.azure.com":
+                reason = "Authenticated support portal; not downloaded and not product evidence."
+            elif role == "resource" and url not in required and checks.get(url, {}).get("status") in (
+                "not-evidence", "unavailable",
+            ):
+                check = checks[url]
+                reason = f"Optional reference classified {check['status']}: {check['detail']}"
+            if reason and url in required:
+                raise ValueError(f"Required citation cannot be classified as a skipped reference: {url}")
+            if reason is None:
                 public_url(url)
             references.append({
                 "retirement_id": identifier, "url": url, "role": role,

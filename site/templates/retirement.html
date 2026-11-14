@@ -48,7 +48,7 @@
       {% if questions.progress.get('html') %}<div class="rich-content">{{ questions.progress.html | question_html }}</div>
       {% elif questions.progress.get('tracking') %}<p>{{ questions.progress.tracking.guidance }}</p>{% endif %}
       {% if questions.progress.get('tracking') %}<p><a href="{{ questions.progress.tracking.sourceUrl }}" target="_blank" rel="noopener noreferrer">Read the tracking guidance {{ icon('external') }}</a></p>
-      {% else %}<p>Tracking guidance is not available for this retirement.</p>{% endif %}
+      {% elif not record.get('enrichment') %}<p>Tracking guidance is not available for this retirement.</p>{% endif %}
     </section>
     {% if reading %}<div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>
@@ -62,7 +62,7 @@
       <dt>Customer lead time</dt><dd>{{ view.customerLeadTime }}</dd>
       <dt>Service</dt><dd>{{ record.service }}</dd><dt>Announced</dt><dd>{{ view.announced }}</dd>
       <dt>Last updated</dt><dd>{% if record.lastUpdatedOn %}<time datetime="{{ record.lastUpdatedOn }}">{{ view.updated }}</time>{% else %}{{ view.updated }}{% endif %}</dd>
-      <dt>Source</dt><dd>Microsoft Azure Updates</dd>
+      <dt>Source</dt><dd>{{ record.get('sourceLabel', 'Microsoft Azure Updates') }}</dd>
     </dl>{{ source_link(view) }}</div>
     <div class="notice">Dates may be revised. Always verify the latest information with Microsoft.</div>
   </aside>

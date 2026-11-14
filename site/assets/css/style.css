@@ -225,6 +225,9 @@ footer p { margin: 5px 0 0; max-width: 850px; }
 .detail-content .rich-content > :last-child { margin-bottom: 0; }
 .detail-content .rich-content h3 { margin: 20px 0 8px; }
 .detail-content .rich-content ul, .detail-content .rich-content ol { padding-left: 22px; }
+.detail-content .rich-content code { padding: 1px 4px; border-radius: 4px; background: var(--soft); }
+.detail-content .rich-content pre { overflow-x: auto; padding: 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--soft); }
+.detail-content .rich-content pre code { padding: 0; background: transparent; }
 .notice { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 15px; margin: 20px 0; }
 .fact-card { background: var(--soft); border: 1px solid var(--line); border-radius: 9px; padding: 23px; }
 .fact-card .eyebrow { color: var(--muted); }
