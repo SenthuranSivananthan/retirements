@@ -21,10 +21,37 @@ from .manual_data import compose_catalog
 from .pipeline import announcement_id
 
 DATABASES = ("raw", "extracted", "web_cache", "canonical", "manual")
+SQLITE_SIDECARS = ("-wal", "-shm", "-journal")
 KNOWN_TABLES = {
     "raw": {"documents", "targets"}, "extracted": {"observations"},
     "web_cache": {"pages", "record_links"}, "canonical": {"metadata", "retirements", "provenance"},
     "manual": {"overrides"},
+}
+SUPPORTED_VERSIONS = {name: {1} for name in DATABASES} | {"raw": {1, 2}}
+AUXILIARY_SCHEMAS = {
+    "raw": {
+        "discovery_runs": (
+            ("run_id", "TEXT", 1), ("status", "TEXT", 0), ("started_at", "TEXT", 0),
+            ("completed_at", "TEXT", 0), ("manifest_json", "TEXT", 0), ("error", "TEXT", 0),
+        ),
+    },
+    "extracted": {
+        "source_observation_heads": (
+            ("kind", "TEXT", 1), ("source_key", "TEXT", 2),
+            ("input_version", "TEXT", 0), ("extractor_version", "INTEGER", 0),
+        ),
+        "source_observation_markers": (
+            ("request_sha256", "TEXT", 1), ("extractor_version", "INTEGER", 2),
+            ("marker_sha256", "TEXT", 0), ("request_json", "TEXT", 0),
+            ("ticket_json", "TEXT", 0), ("kind", "TEXT", 0),
+            ("source_key", "TEXT", 0), ("input_version", "TEXT", 0),
+        ),
+        "source_observation_versions": (
+            ("kind", "TEXT", 1), ("source_key", "TEXT", 2),
+            ("input_version", "TEXT", 3), ("extractor_version", "INTEGER", 4),
+            ("inputs_json", "TEXT", 0), ("observation_json", "TEXT", 0),
+        ),
+    },
 }
 
 
@@ -49,6 +76,70 @@ def compact_metadata(value):
     if isinstance(value, list):
         return [compact_metadata(item) for item in value]
     return value
+
+
+def evidence_inventory(roots):
+    """Reference retained evidence in place; do not copy bodies or replay journals."""
+    def fail_walk(error):
+        raise error
+
+    def redirected(path):
+        return path.is_symlink() or (hasattr(path, "is_junction") and path.is_junction())
+
+    inventory = []
+    for root in roots:
+        root = Path(root).absolute()
+        if redirected(root) or not root.is_dir():
+            raise ValueError(f"Evidence root must be an existing nonsymlink directory: {root}")
+        files = []
+        for directory, subdirectories, names in os.walk(root, onerror=fail_walk):
+            for name in sorted(subdirectories + names):
+                path = Path(directory) / name
+                if redirected(path):
+                    raise ValueError(f"Evidence inventory refuses symlinks: {path}")
+            for name in sorted(names):
+                path = Path(directory) / name
+                if name.endswith((".sqlite-wal", ".sqlite-shm", ".sqlite-journal")):
+                    raise ValueError(f"Close/checkpoint evidence journals before conversion: {path}")
+                files.append({
+                    "path": str(path.relative_to(root)), "bytes": path.stat().st_size,
+                    "sha256": file_hash(path),
+                })
+            subdirectories.sort()
+        if not files:
+            raise ValueError(f"Evidence root is empty: {root}")
+        inventory.append({"root": str(root), "files": files})
+    return inventory
+
+
+def auxiliary_metadata(connections):
+    mapped, unmapped = {}, {}
+    for name, connection in connections.items():
+        for row in connection.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name"):
+            table = row[0]
+            if table in KNOWN_TABLES[name] or table.startswith("sqlite_"):
+                continue
+            quoted = '"' + table.replace('"', '""') + '"'
+            columns = connection.execute(f"PRAGMA table_info({quoted})").fetchall()
+            shape = tuple((column["name"], column["type"].upper(), column["pk"]) for column in columns)
+            expected = AUXILIARY_SCHEMAS.get(name, {}).get(table)
+            if expected is not None and shape == expected:
+                entries = []
+                ordering = ", ".join('"' + column["name"] + '"' for column in columns if column["pk"])
+                for entry in connection.execute(f"SELECT * FROM {quoted} ORDER BY {ordering}"):
+                    value = {}
+                    for column in entry.keys():
+                        item = entry[column]
+                        if column.endswith("_json") and item is not None:
+                            item = compact_metadata(json.loads(item))
+                        value[column] = item
+                    entries.append(value)
+                mapped[f"{name}.{table}"] = entries
+            else:
+                count = connection.execute(f"SELECT COUNT(*) FROM {quoted}").fetchone()[0]
+                if count:
+                    unmapped[f"{name}.{table}"] = count
+    return mapped, unmapped
 
 
 def imported_summary(record):
@@ -99,7 +190,7 @@ def snapshot_stores(directory, stack):
     for path in paths.values():
         if not path.is_file():
             raise ValueError(f"Missing SQLite store: {path.name}")
-        if any(Path(str(path) + suffix).exists() for suffix in ("-wal", "-journal")):
+        if any(Path(str(path) + suffix).exists() for suffix in SQLITE_SIDECARS):
             raise ValueError(f"Close/checkpoint all SQLite writers before converting {path.name}")
     before = {name: file_hash(path) for name, path in paths.items()}
     connections = {}
@@ -109,7 +200,7 @@ def snapshot_stores(directory, stack):
         connection.row_factory = sqlite3.Row
         connection.execute("PRAGMA query_only=ON")
         connection.execute("PRAGMA busy_timeout=250")
-        if connection.execute("PRAGMA user_version").fetchone()[0] != 1:
+        if connection.execute("PRAGMA user_version").fetchone()[0] not in SUPPORTED_VERSIONS[name]:
             raise ValueError(f"Unsupported SQLite schema version in {path.name}")
         connection.execute("BEGIN")
         if connection.execute("PRAGMA quick_check").fetchall()[0][0] != "ok":
@@ -118,22 +209,27 @@ def snapshot_stores(directory, stack):
     return connections, paths, before
 
 
-def convert(db_dir, destination, catalog_path=None, dry_run=False, allow_unmapped=False):
+def convert(db_dir, destination, catalog_path=None, dry_run=False, allow_unmapped=False, evidence_roots=()):
     """Produce JSON stage files and website projection without modifying SQLite."""
     destination = Path(destination)
     if destination.exists():
         raise ValueError("Conversion destination already exists; choose a new directory (nothing is overwritten)")
     with ExitStack() as stack:
         connections, paths, before = snapshot_stores(db_dir, stack)
-        unmapped = {}
-        for name, connection in connections.items():
-            for row in connection.execute("SELECT name FROM sqlite_master WHERE type='table'"):
-                table = row[0]
-                if table not in KNOWN_TABLES[name] and not table.startswith("sqlite_"):
-                    quoted = '"' + table.replace('"', '""') + '"'
-                    count = connection.execute(f"SELECT COUNT(*) FROM {quoted}").fetchone()[0]
-                    if count:
-                        unmapped[f"{name}.{table}"] = count
+        mapped, unmapped = auxiliary_metadata(connections)
+        versions = {name: connection.execute("PRAGMA user_version").fetchone()[0]
+                    for name, connection in connections.items()}
+        if versions["raw"] == 2 and "raw.discovery_runs" not in mapped:
+            raise ValueError("Unsupported discovery_runs schema in raw.sqlite v2")
+        evidence = evidence_inventory(evidence_roots)
+        evidence_required = versions["raw"] == 2 or any(
+            name.startswith("extracted.source_observation_") and entries for name, entries in mapped.items()
+        )
+        if evidence_required and not evidence and not dry_run:
+            raise ValueError(
+                "Enrichment recovery data requires retained journals/evidence; supply --evidence-root "
+                "for the complete closed traceability root and any separate pilot artifacts"
+            )
         if unmapped and not (dry_run or allow_unmapped):
             raise ValueError(
                 f"Unmapped auxiliary tables: {unmapped}. Inspect --dry-run; --allow-unmapped explicitly "
@@ -243,6 +339,14 @@ def convert(db_dir, destination, catalog_path=None, dry_run=False, allow_unmappe
                     }
                 enrichment["sqliteImport"] = {
                     "databaseSha256": before, "rawDocuments": raw_documents, "rawTargets": raw_targets,
+                    "databaseSchemaVersions": versions, "auxiliaryMetadata": mapped,
+                    "retainedEvidence": evidence,
+                    "traceabilityNote": (
+                        "Evidence files and replay journals remain at the recorded roots, not in JSON. "
+                        "Auxiliary JSON fields are metadata-only projections; source SQLite stores "
+                        "remain authoritative for omitted body fields. No approvals were reverified "
+                        "and no pending workflow was migrated."
+                    ),
                     "extractedInputs": observations, "recordLinks": links,
                     "storedApprovals": {
                         row["id"]: {"inputSha256": row["input_sha256"], "approvedSha256": row["approved_sha256"]}
@@ -277,17 +381,26 @@ def convert(db_dir, destination, catalog_path=None, dry_run=False, allow_unmappe
                 store.save(CANONICAL)
                 write_json(Path(temporary) / "retirements.json", projection, None)
             after = {name: file_hash(path) for name, path in paths.items()}
-            if before != after or (Path(db_dir) / ".lock").exists():
+            if (before != after or (Path(db_dir) / ".lock").exists()
+                    or any(Path(str(path) + suffix).exists()
+                           for path in paths.values() for suffix in SQLITE_SIDECARS)):
                 raise ValueError("SQLite stores changed during conversion; staged output discarded")
             if catalog_path is not None and read_bytes(catalog_path) != baseline_bytes:
                 raise ValueError("Website catalog changed during conversion; staged output discarded")
+            if evidence_inventory(evidence_roots) != evidence:
+                raise ValueError("Retained evidence changed during conversion; staged output discarded")
             report = {
                 "dryRun": dry_run, "records": len(composed["records"]),
                 "automaticSources": len(sources), "manualOverrides": len(overrides),
                 "retainedOutsideDiscovery": retained, "cachedPages": len(cache),
                 "storedApprovalsNotRevalidated": sum(row["approved_sha256"] is not None for row in canonical_rows),
                 "unmappedAuxiliaryTables": unmapped,
-                "readyToPublish": not unmapped or allow_unmapped,
+                "mappedAuxiliaryTables": {name: len(entries) for name, entries in mapped.items()},
+                "databaseSchemaVersions": versions,
+                "retainedEvidenceRoots": [entry["root"] for entry in evidence],
+                "retainedEvidenceFiles": sum(len(entry["files"]) for entry in evidence),
+                "missingEvidenceRoots": evidence_required and not evidence,
+                "readyToPublish": (not unmapped or allow_unmapped) and (not evidence_required or bool(evidence)),
                 "databaseSha256": before, "destination": str(destination),
                 "note": "Freshness metadata preserved; no refetch or page-body copies. Source stores unchanged.",
             }
@@ -310,9 +423,12 @@ def main(argv=None):
     parser.add_argument("--dry-run", action="store_true", help="Validate and report without publishing output files")
     parser.add_argument("--allow-unmapped", action="store_true",
                         help="Explicitly leave reported auxiliary tables only in the retained SQLite databases")
+    parser.add_argument("--evidence-root", type=Path, action="append", default=[],
+                        help="Closed retained evidence/journal directory to hash-reference in place; repeat for pilot artifacts")
     args = parser.parse_args(argv)
     try:
-        report = convert(args.db_dir, args.output_dir, args.catalog, args.dry_run, args.allow_unmapped)
+        report = convert(args.db_dir, args.output_dir, args.catalog, args.dry_run,
+                         args.allow_unmapped, args.evidence_root)
         print(json.dumps(report, indent=2))
         return 0
     except (ValueError, OSError, sqlite3.Error) as error:

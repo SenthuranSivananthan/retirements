@@ -369,6 +369,40 @@ report before using `--allow-unmapped`, which explicitly leaves those auxiliary
 tables (for example, unfinished research journals) only in the retained databases.
 It does not claim that pending workflow work was migrated.
 
+The converter also supports **raw-store schema v2** with the recognized
+`discovery_runs` table and the v1 extracted store's `source_observation_heads`,
+`source_observation_markers` and `source_observation_versions` additions. Their
+structured metadata is retained under `retirement_enrichment_automatic.json` →
+`sqliteImport.auxiliaryMetadata`; embedded body fields are excluded. Download times,
+input versions, marker hashes and table identities are preserved, not reinterpreted
+as new acquisition or approval.
+
+These enriched stores require retained evidence/journal directories, because the
+five SQLite stores alone cannot replay recovery and approval lineage. Supply the
+complete closed traceability directory and any separately retained pilot artifacts:
+
+```powershell
+$EvidenceArgs = @(
+  "--evidence-root", "<closed-enrichment-workspace>\.full-enrichment\continuation-research",
+  "--evidence-root", "<preserved-pilot-artifact-directory>"
+)
+python -m scripts.convert_enrichment --db-dir $DbDir --catalog $SourceCatalog --output-dir $StageDir @EvidenceArgs --dry-run
+# Only after the final readiness handoff and a successful dry-run:
+python -m scripts.convert_enrichment --db-dir $DbDir --catalog $SourceCatalog --output-dir $StageDir @EvidenceArgs
+```
+
+Replace the placeholders with the final handoff's actual paths. Repeat
+`--evidence-root` for every required external artifact directory. Each file is
+referenced **in place** by relative path, byte count and SHA-256, with its containing
+root recorded; the directories are not copied into JSON and must remain intact.
+The inventory is checked again before publication. Open SQLite sidecars, changed
+files and redirected filesystem entries block conversion. A missing root makes the
+dry-run report `missingEvidenceRoots: true` and prevents publication even with
+`--allow-unmapped`. The converter cannot infer whether a supplied directory contains
+all required lineage: confirm that against the final handoff, including pilot
+baselines and receipts. `readyToPublish` describes conversion checks only, **not**
+semantic enrichment completion, approval validity or live-audit readiness.
+
 The converter never modifies or deletes the SQLite files and never overwrites an
 existing destination. Source-file hashes are reported and verified before publication.
 `--dry-run` validates in temporary staging without publishing a destination. Review

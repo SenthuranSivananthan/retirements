@@ -10,6 +10,8 @@ Initialize five JSON stages with `init`, acquire the complete Azure Updates feed
 
 For an explicitly requested SQLite conversion, use `python -m scripts.convert_enrichment --db-dir <closed-sqlite-stores> --output-dir <new-directory>`; run with `--dry-run` first and optionally `--catalog` to guard the existing JSON. Keep source databases intact. Conversion preserves canonical answers and manual `recordOverrides` separately, carrying download times, validators, approvals and provenance without page bodies. Label the data `imported`/`sqlite-import`, not legacy or stale: it was freshly downloaded, and conversion changes its format rather than its age. Unchanged imported answers merge offline without refetching; conversion itself is not a new fetch or review. Never silently classify existing non-Azure discoveries as manual user inputs or replace the live website catalog.
 
+For raw SQLite v2/recovery stores, supply repeated `--evidence-root` arguments for the complete closed traceability root and separate pilot baselines/receipts listed in the readiness handoff. Recognized discovery/source-observation metadata is projected into `sqliteImport.auxiliaryMetadata`; body fields remain only in the retained stores. External journals/evidence are hash-inventoried in place, not copied or migrated into JSON execution state. Preserve those roots and the source databases as a unit. Conversion checks never substitute for completed semantic review or a live approval audit; missing/changed evidence, active sidecars and unsupported schemas must block publication.
+
 ## Inputs and outputs
 
 Persist each stage as a small, human-readable UTF-8 JSON file under `data`, using these exact names:

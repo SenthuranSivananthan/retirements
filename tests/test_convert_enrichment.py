@@ -3,6 +3,7 @@ import json
 import sqlite3
 import tempfile
 import unittest
+from contextlib import closing
 from pathlib import Path
 from unittest.mock import patch
 
@@ -50,6 +51,125 @@ class ConversionTests(unittest.TestCase):
 
     def hashes(self):
         return {name: file_hash(self.db / f"{name}.sqlite") for name in DATABASES}
+
+    def recovery_stores(self):
+        with closing(sqlite3.connect(self.db / "raw.sqlite")) as connection:
+            connection.executescript("""
+                PRAGMA user_version=2;
+                CREATE TABLE discovery_runs (
+                    run_id TEXT PRIMARY KEY, status TEXT NOT NULL, started_at TEXT NOT NULL,
+                    completed_at TEXT, manifest_json TEXT, error TEXT);
+                INSERT INTO discovery_runs VALUES (
+                    'discovery-1', 'complete', '2026-11-10T09:00:00Z',
+                    '2026-11-10T10:00:00Z', '{"ids":["a"]}', NULL);
+            """)
+        with closing(sqlite3.connect(self.db / "extracted.sqlite")) as connection:
+            connection.executescript("""
+                CREATE TABLE source_observation_heads (
+                    kind TEXT NOT NULL, source_key TEXT NOT NULL, input_version TEXT NOT NULL,
+                    extractor_version INTEGER NOT NULL, PRIMARY KEY(kind, source_key));
+                CREATE TABLE source_observation_markers (
+                    request_sha256 TEXT NOT NULL, extractor_version INTEGER NOT NULL,
+                    marker_sha256 TEXT NOT NULL, request_json TEXT NOT NULL,
+                    ticket_json TEXT NOT NULL, kind TEXT NOT NULL, source_key TEXT NOT NULL,
+                    input_version TEXT NOT NULL, PRIMARY KEY(request_sha256, extractor_version));
+                CREATE TABLE source_observation_versions (
+                    kind TEXT NOT NULL, source_key TEXT NOT NULL, input_version TEXT NOT NULL,
+                    extractor_version INTEGER NOT NULL, inputs_json TEXT NOT NULL,
+                    observation_json TEXT NOT NULL,
+                    PRIMARY KEY(kind, source_key, input_version, extractor_version));
+                INSERT INTO source_observation_heads VALUES ('record','a','input-1',1);
+                INSERT INTO source_observation_markers VALUES (
+                    'request-1', 1, 'marker-1', '{"id":"a"}', '{"path":"evidence/marker.json"}',
+                    'record', 'a', 'input-1');
+                INSERT INTO source_observation_versions VALUES (
+                    'record', 'a', 'input-1', 1, '{"sha256":"source-hash"}',
+                    '{"status":"acquired","bodyBase64":"NOT_A_MIGRATED_BODY"}');
+            """)
+        root = self.root / "retained-evidence"
+        root.mkdir()
+        (root / "manifest.json").write_text('{"originalIds":["a"]}', encoding="utf-8")
+        return root
+
+    def test_raw_v2_and_observation_metadata_preserve_retained_evidence_references(self):
+        evidence = self.recovery_stores()
+        before = self.hashes()
+        evidence_bytes = (evidence / "manifest.json").read_bytes()
+        report = convert(self.db, self.destination, self.output, evidence_roots=[evidence])
+        self.assertEqual(self.hashes(), before)
+        self.assertEqual((evidence / "manifest.json").read_bytes(), evidence_bytes)
+        self.assertEqual(report["databaseSchemaVersions"]["raw"], 2)
+        self.assertEqual(report["unmappedAuxiliaryTables"], {})
+        self.assertEqual(report["mappedAuxiliaryTables"]["extracted.source_observation_versions"], 1)
+        self.assertTrue(report["readyToPublish"])
+        self.assertEqual(report["retainedEvidenceFiles"], 1)
+        automatic = json.loads((self.destination / f"{ENRICH_AUTO}.json").read_text(encoding="utf-8"))
+        imported = automatic["sqliteImport"]
+        rows = imported["auxiliaryMetadata"]["raw.discovery_runs"]
+        self.assertEqual(rows[0]["completed_at"], "2026-11-10T10:00:00Z")
+        self.assertEqual(rows[0]["manifest_json"], {"ids": ["a"]})
+        marker = imported["auxiliaryMetadata"]["extracted.source_observation_markers"][0]
+        self.assertEqual(marker["request_json"], {"id": "a"})
+        self.assertEqual(marker["marker_sha256"], "marker-1")
+        reference = imported["retainedEvidence"][0]["files"][0]
+        self.assertEqual(reference["sha256"], file_hash(evidence / "manifest.json"))
+        self.assertNotIn("NOT_A_MIGRATED_BODY", json.dumps(automatic))
+        with Stages(self.destination) as stages:
+            website = self.destination / "retirements.json"
+            original = website.read_bytes()
+            merge(stages, website)
+            self.assertEqual(website.read_bytes(), original)
+
+    def test_recovery_conversion_requires_evidence_roots_even_with_allow_unmapped(self):
+        self.recovery_stores()
+        report = convert(self.db, self.destination, dry_run=True)
+        self.assertTrue(report["missingEvidenceRoots"])
+        self.assertFalse(report["readyToPublish"])
+        self.assertFalse(self.destination.exists())
+        with self.assertRaisesRegex(ValueError, "requires retained journals/evidence"):
+            convert(self.db, self.destination, allow_unmapped=True)
+
+    def test_changed_evidence_discards_conversion(self):
+        evidence = self.recovery_stores()
+        original_hash = file_hash
+        evidence_hashes = 0
+
+        def mutate_evidence(path):
+            nonlocal evidence_hashes
+            if Path(path) == evidence / "manifest.json":
+                evidence_hashes += 1
+                if evidence_hashes == 2:
+                    Path(path).write_text('{"changed":true}', encoding="utf-8")
+            return original_hash(path)
+
+        with patch("scripts.convert_enrichment.file_hash", side_effect=mutate_evidence):
+            with self.assertRaisesRegex(ValueError, "Retained evidence changed"):
+                convert(self.db, self.destination, evidence_roots=[evidence])
+        self.assertFalse(self.destination.exists())
+        self.assertFalse(list(self.root.glob("converted.convert-*")))
+
+    def test_open_evidence_journal_and_unknown_database_version_are_rejected(self):
+        evidence = self.recovery_stores()
+        journal = evidence / "journal.sqlite-wal"
+        journal.touch()
+        with self.assertRaisesRegex(ValueError, "Close/checkpoint evidence journals"):
+            convert(self.db, self.destination, evidence_roots=[evidence])
+        journal.unlink()
+        with closing(sqlite3.connect(self.db / "raw.sqlite")) as connection:
+            connection.execute("PRAGMA user_version=3")
+        with self.assertRaisesRegex(ValueError, "Unsupported SQLite schema"):
+            convert(self.db, self.destination, evidence_roots=[evidence])
+
+    def test_raw_v2_requires_recognized_discovery_table_schema(self):
+        with closing(sqlite3.connect(self.db / "raw.sqlite")) as connection:
+            connection.executescript("""
+                PRAGMA user_version=2;
+                CREATE TABLE discovery_runs (id TEXT);
+                INSERT INTO discovery_runs VALUES ('unknown');
+            """)
+        with self.assertRaisesRegex(ValueError, "Unsupported discovery_runs schema"):
+            convert(self.db, self.destination, allow_unmapped=True)
+        self.assertFalse(self.destination.exists())
 
     def test_lossless_read_only_conversion_and_merge_noop(self):
         before = self.hashes()
@@ -250,6 +370,25 @@ class ConversionTests(unittest.TestCase):
         with patch("scripts.convert_enrichment.file_hash", side_effect=changed):
             with self.assertRaisesRegex(ValueError, "changed during conversion"):
                 convert(self.db, self.destination)
+        self.assertFalse(self.destination.exists())
+        self.assertFalse(list(self.root.glob("converted.convert-*")))
+
+    def test_sidecar_appearing_during_conversion_blocks_publication(self):
+        real_hash = file_hash
+        count = 0
+        sidecar = self.db / "canonical.sqlite-shm"
+
+        def writer_started(path):
+            nonlocal count
+            count += 1
+            if count == 6:
+                sidecar.touch()
+            return real_hash(path)
+
+        with patch("scripts.convert_enrichment.file_hash", side_effect=writer_started):
+            with self.assertRaisesRegex(ValueError, "changed during conversion"):
+                convert(self.db, self.destination)
+        self.assertTrue(sidecar.exists())
         self.assertFalse(self.destination.exists())
         self.assertFalse(list(self.root.glob("converted.convert-*")))
 
