@@ -2,9 +2,23 @@
 
 A static website for Microsoft Azure retirement announcements. Its Azure-blue palette, Segoe typography, navigation, full-width hero, and light/dark themes follow [Multi-region platform](https://azure.github.io/multi-region-platform/).
 
-Like the [reference project's build](https://github.com/SenthuranSivananthan/multi-region-platform/blob/main/guides/building.md), this project uses a **Python static-site generator** and commits the public website in **`docs`** for GitHub Pages. Python handles building, data refresh, validation, and tests. Browser enhancements use ordinary JavaScript modules; **Node.js, npm, TypeScript, Ruby, Bundler, and Jekyll are not required**.
+The application is a **Python/Jinja static site** with maintained CSS and browser JavaScript modules. The generated website is committed in **`docs`** for GitHub Pages. There is no TypeScript compilation, Node.js/npm build, backend or Jekyll dependency.
 
 Every retirement has a complete HTML page with all five planning questions. Content and sidebar navigation work without JavaScript; search, filters, live countdowns, and themes are progressive enhancements.
+
+## Current architecture
+
+| Area | Implemented behavior |
+| --- | --- |
+| Website | `site\build.py` reads `data\retirements.json`, renders `docs`, and validates the output. Builds do not fetch announcements or run synthesis. |
+| JSON enrichment | Opt-in `scripts.enrichment` commands acquire sources, synthesize five answers, reconcile `retirements_canonical.json`, and project website JSON. A real synthesis adapter is required. |
+| Existing data | The retained SQLite workflow remains available until an explicitly reviewed conversion/adoption. Conversion does not switch the website or schedule. |
+| Automation | `.github\workflows\pages.yml` validates changes and runs a daily/manual `scripts.refresh_data` feed refresh, **not** JSON synthesis or SQLite research stages. |
+
+Use the [preview and development commands](#quick-preview) for site work, the
+[JSON enrichment pipeline](#json-enrichment-pipeline) for the new data workflow,
+and [conversion instructions](#convert-existing-sqlite-data) only for a completed,
+closed SQLite handoff. Do not mix catalog writers.
 
 ## Quick preview
 
@@ -73,18 +87,18 @@ The examples below use `python` for an interpreter with the dependencies install
 | Command | Purpose |
 | --- | --- |
 | `python -m pip install -r requirements.txt` | Install all build and refresh dependencies |
-| `python site\build.py` | Prepare `data\retirements.json`, render every page into `docs`, copy public assets, and verify the result |
+| `python site\build.py` | Read `data\retirements.json`, prepare view metadata, render `docs`, and verify the result |
 | `python site\build.py --serve` | Rebuild, verify, then serve at `http://localhost:8000/` |
 | `python -m http.server 8000 --bind 127.0.0.1 --directory docs` | Preview the existing output without installing dependencies or rebuilding |
 | `python -m unittest discover -s tests -v` | Run offline schema, date, source, refresh-protection, and renderer tests |
-| `python -m scripts.check_site` | Verify an existing `docs` build against the canonical catalog |
+| `python -m scripts.check_site` | Verify an existing `docs` build against `data\retirements.json` |
 | `python -m scripts.enrichment init` | Create the five JSON stage files without changing the website catalog |
 | `python -m scripts.enrichment discover` | Crawl the complete Azure Updates retirement feed |
 | `python -m scripts.enrichment download --workers 4` | Download automatic and manually supplied retirement source links |
 | `python -m scripts.enrichment enrich --summarizer-command '["python","my_summarizer.py"]'` | Summarize acquired pages, depth-one references and manual context using your adapter |
 | `python -m scripts.enrichment merge` | Reconcile sources and enrichment into `retirements_canonical.json`, then project the website catalog |
 | `python -m scripts.enrichment status` | Inspect source, summary and failure counts without fetching content |
-| `python -m scripts.enrichment reprocess --retirement-id <id>` | Force-refresh one existing record through projection without global discovery |
+| `python -m scripts.enrichment reprocess --retirement-id <id> --summarizer-command '["python","my_summarizer.py"]'` | Force-refresh one existing record through projection without global discovery |
 | `python -m scripts.convert_enrichment --help` | Show read-only SQLite-to-JSON conversion options |
 
 These are PowerShell examples. On Linux, use `site/build.py` and `/` in filesystem
@@ -92,7 +106,7 @@ paths. JSON commands default to `data`; after conversion to another stage direct
 pass `--data-dir` consistently as described below. `my_summarizer.py` is a supplied
 adapter, not a file bundled with this repository.
 
-### JSON enrichment pipeline
+## JSON enrichment pipeline
 
 The replacement pipeline is `python -m scripts.enrichment`. It uses readable JSON
 instead of SQLite for its stage state. It does **not** migrate, delete or reuse the
@@ -103,7 +117,7 @@ Existing hidden, feed-absent and manual-protected records are preserved.
 If projection is interrupted, a pending marker permits retry only while the output
 still matches its pre-write snapshot; a concurrent edit is preserved and blocks retry.
 
-#### Process and starting point
+### Process and starting point
 
 1. **Acquire sources:** crawl Azure Updates and read the user-provided retirement
    list, then download their retirement pages.
@@ -115,7 +129,7 @@ still matches its pre-write snapshot; a concurrent edit is preserved and blocks 
 4. **Project and build:** generate website-schema `retirements.json` from the canonical
    view, then build and verify `docs`.
 
-For **existing, freshly downloaded SQLite data**, finish the current enrichment and
+For **existing SQLite data**, finish its enrichment and audits and
 close its writers first, then follow [Convert existing SQLite data](#convert-existing-sqlite-data)
 and [Build from the converted catalog](#build-from-the-converted-catalog).
 Conversion preserves that data's freshness and does not run discovery or redownload it.
@@ -237,7 +251,47 @@ the merged catalog destination. No network is used by `init`, `merge`, or `statu
 No model API key is required by the pipeline itself; authentication/configuration for
 an actual model belongs to the adapter and must not be stored in stage files.
 
-#### Synthesis and Microsoft Learn MCP adapters
+### Retirement writing style
+
+Apply this writing style to each of the five question answers in both automatic
+and manual synthesis, not just the overview. Write for customers deciding whether
+they are affected and what to do next. Use a calm, direct, factual tone, active
+voice and short paragraphs. Address the reader as "you" for actions; name Microsoft
+or the service for provider commitments,
+rather than speaking as the provider. Lead with the change, applicable date and
+practical consequence. Avoid marketing, apologies, alarmist language, vague
+reassurance and repeated introductory text.
+
+Keep the existing five questions and deadline-first navigation; organize useful
+announcement and migration guidance within them rather than adding new sections:
+
+- **Deadline:** Distinguish announcement, new-customer restrictions, deprecation,
+  end of support and service shutdown. Label each applicable phase and population;
+  never treat end of support as proof that workloads stop. Preserve date precision,
+  conflicts and uncertainty rather than inventing a typical notice period.
+- **What changes:** Explain affected features, versions, regions and customers,
+  what remains available before the deadline, and what changes afterward. Mention
+  maintenance, support or security-update commitments only when documented.
+- **Actions:** Give ordered, practical steps to identify usage, choose a documented
+  alternative by use case, migrate and validate. Include prerequisites, capability
+  gaps and documented export/backup, cutover or cleanup steps where relevant;
+  distinguish required work from optional recommendations.
+- **Impact:** Explain the consequences of taking no action, separating workload
+  continuity from loss of console/API access, integrations, deployment tooling,
+  support or data access. Cover retention/deletion and cost implications only when
+  supported, and state documented unaffected cases explicitly.
+- **Progress:** Describe supported identification and completion checks, their scope
+  and limitations, and team-owned evidence of migration. Include documented help or
+  escalation routes when available. Do not imply this site inspects resources or
+  stores checklist progress.
+
+Apply these as content checks, not boilerplate that every source must satisfy.
+Use only permitted retirement inputs; missing essential details remain explicitly
+unavailable or unconfirmed, not inferred from another service's announcement.
+Keep source links in References, preserve manual content, and apply this style on
+the next authorized synthesis rather than rewriting imported answers on conversion.
+
+### Synthesis and Microsoft Learn MCP adapters
 
 The pipeline owns acquisition, depth limits, refresh state, checkpoints and merging.
 Semantic synthesis is supplied by a local command (or the Python
@@ -265,8 +319,10 @@ The required response is:
 The overview is limited to 2,000 characters, each answer to 12,000. No missing
 question or malformed date is accepted. Schema validation cannot establish factual
 accuracy: the adapter must follow the [enrichment prompt](.github/prompts/retirement-enrichment.prompt.md)
-and content review remains required. There is deliberately no heuristic fallback
-that claims to have performed semantic synthesis.
+and content review remains required. The CLI supplies built-in `instructions`;
+it does not load the repository prompt automatically. Configure your adapter to
+apply that prompt, including the five-question writing guidance. There is no
+bundled model, summarizer script or heuristic synthesis fallback.
 
 Question strings support a safe Markdown subset: paragraphs, subheadings, bullet
 and numbered lists (including nested lists), bold/emphasis, inline code, fenced or
@@ -292,7 +348,7 @@ offline merge of unchanged imported records does not trigger those downloads.
 
 For Microsoft Learn, optionally pass
 `--learn-mcp-command '["python","my_learn_mcp_bridge.py"]'` to `download`, `enrich`,
-or `run`. This bridge must use your configured Microsoft Learn MCP
+`run` or `reprocess`. This bridge must use your configured Microsoft Learn MCP
 `microsoft_docs_fetch`, receiving `{"url":"https://learn.microsoft.com/..."}` and
 returning `{"content":"complete Markdown","url":"the actual page URL","title":"optional title"}`.
 The CLI cannot directly access tools in an agent's conversation, so it does not
@@ -301,6 +357,14 @@ pretend that an MCP bridge exists when none is configured. With the Python API,
 an unavailable/failed bridge falls back to public HTTP and records the reason.
 Search snippets are not full-page retrieval. MCP Markdown hashes are separate from
 HTTP body hashes, and absent HTTP validators are never invented.
+
+Agent tools and automation capabilities depend on the execution environment.
+Discover and authenticate available tools there; a prompt does not install an MCP
+server, grant access or create a schedule. An agent's available fetch tool is not
+automatically available to a subprocess or an unattended GitHub Actions runner.
+Keep adapter credentials outside tracked files and stage JSON.
+
+### Refresh and recovery
 
 Downloads use ETag first, then Last-Modified; unchanged content reuses summaries.
 References are checked independently, and changed user context invalidates only
@@ -311,128 +375,105 @@ Failures retain last-good metadata but remain explicitly failed; essential sourc
 and manual-link failures block dependent summaries/export, while unavailable
 automatic references are supplied to synthesis as limitations.
 
-Only active workers retain bodies (at most eight, default four, each response capped
-at 8 MiB). Global outcomes and lookahead do not hold page bodies. Full text is staged
-temporarily in `.enrichment-work` under the selected stage directory because all source links are downloaded
-before synthesis; it is hash-verified on read and removed after successful enrichment.
-The five JSON stages keep summaries, references, hashes and refresh metadata, not
-base64 archives. One OS lease guards JSON writers, each page/retirement is saved
-atomically, and batches of 5-10 targets checkpoint remaining work. Create
-`$StageDir\.enrichment-work\stop` to request a safe stop; remove that explicit stop signal
-before resuming the same stages. Repeated commands validate/reuse completed input
-revisions rather than regenerate their summaries. Concurrent manual edits cause a
-guard failure rather than being overwritten.
+`--workers` controls bounded page acquisition (1-8, default 4), not parallel model
+agents; retirement synthesis is serial. Responses are capped at 8 MiB. Acquired
+text is staged temporarily in `$StageDir\.enrichment-work`, hash-verified on read
+and removed after successful enrichment. Stage JSON retains summaries and refresh
+metadata, not page-body archives.
 
-The new path is opt-in. The existing scheduled workflow still calls the SQLite
-refresh command below; that command refuses to overwrite a catalog already exported
-by the new JSON pipeline. Switching scheduled synthesis requires separately configuring
-the adapters and workflow rather than silently publishing feed-only replacements.
+One OS lease guards writers. Page/retirement revisions are saved atomically;
+`--batch-size` (5-10, default 10) controls batch checkpoints in
+`.enrichment-work\checkpoint.json`. These checkpoints describe stage outcomes,
+not an external workflow runtime. After a failure, resolve the reported blocker
+and rerun the affected stage against the **same directory**; saved valid summaries
+are reused. `run` also refreshes discovery, while `reprocess` intentionally forces
+the selected record's acquisition and synthesis.
 
-#### Convert existing SQLite data
+Create `$StageDir\.enrichment-work\stop` to request a safe stop at a work boundary;
+remove that signal before continuing. Do not remove an active lease or start
+competing writers. Canonical/projection fingerprints reject out-of-band edits;
+`pendingProjection` permits an interrupted merge to finish only if the destination
+still matches its pre-write snapshot or already equals the canonical projection.
+Concurrent edits are preserved and must be reconciled, not overwritten.
 
-The read-only converter publishes a **new directory** containing five JSON stages
-plus the website projection (six JSON files total):
+The [existing schedule](#automated-refresh) still runs `scripts.refresh_data`, not
+JSON synthesis. That command refuses to overwrite a JSON-pipeline catalog.
+
+## Convert existing SQLite data
+
+The converter is **read-only** and writes a new directory containing five JSON
+stages plus the website projection. It never switches the live catalog or copies
+page bodies. Convert only after enrichment, conflict dispositions and live audits
+are complete and the readiness handoff identifies a closed, consistent snapshot.
+
+All five stores must exist and remain unchanged. Drain writers first; `.lock` and
+SQLite WAL/SHM/journal sidecars block conversion rather than being removed.
+`--catalog` checks that the matching website JSON agrees with the composed stores;
+reconcile differences before proceeding. Use the completed handoff's paths, even
+when the data resides in another worktree, rather than an older local snapshot.
+
+Schema v1 is supported for all stores; raw v2 additionally requires the recognized
+`discovery_runs` table. Recognized extracted-store `source_observation_heads`,
+`source_observation_markers` and `source_observation_versions` metadata is preserved
+under `sqliteImport.auxiliaryMetadata`, excluding embedded bodies.
+
+Raw v2 or populated observation-recovery metadata requires `--evidence-root`.
+Include the **entire closed traceability root** and every separate pilot
+baseline/receipt directory named in the handoff. The five stores alone cannot
+replay those approvals. Replace all placeholders below with actual retained paths:
 
 ```powershell
-$DbDir = "data\pipeline"
-$SourceCatalog = "data\retirements.json"
+$DbDir = "<closed-store-directory>"
+$SourceCatalog = "<matching-catalog-path>"
 $StageDir = "data\converted" # Must not already exist.
-python -m scripts.convert_enrichment --db-dir $DbDir --catalog $SourceCatalog --output-dir $StageDir --dry-run
+$EvidenceArgs = @(
+  "--evidence-root", "<closed-enrichment-workspace>\.full-enrichment\continuation-research",
+  "--evidence-root", "<preserved-pilot-artifact-directory>"
+)
+python -m scripts.convert_enrichment --db-dir $DbDir --catalog $SourceCatalog --output-dir $StageDir @EvidenceArgs --dry-run
+if ($LASTEXITCODE -ne 0) { throw "Dry-run failed; resolve blockers before conversion." }
 ```
 
-Use the **completed enrichment's** database directory and matching catalog if it
-ran in another worktree; the paths above are defaults, not instructions to convert
-an older snapshot instead. Inspect the dry-run report, resolve blockers, then run:
+For original v1 stores without recovery metadata or external evidence obligations,
+`$EvidenceArgs = @()` is valid. Otherwise retain all required roots. Inspect the
+dry-run report before running the publication step:
 
 ```powershell
-python -m scripts.convert_enrichment --db-dir $DbDir --catalog $SourceCatalog --output-dir $StageDir
+python -m scripts.convert_enrichment --db-dir $DbDir --catalog $SourceCatalog --output-dir $StageDir @EvidenceArgs
 if ($LASTEXITCODE -ne 0) { throw "Conversion failed; leave the live catalog unchanged." }
 python -m scripts.enrichment merge --data-dir $StageDir
 if ($LASTEXITCODE -ne 0) { throw "Merge failed; leave the live catalog unchanged." }
 python -m scripts.enrichment status --data-dir $StageDir
 ```
 
-This merge is offline and retains unchanged imported answers. Do not run
-`discover`, `download`, `enrich` or `run` merely to complete the conversion.
-Inspect `retirements_canonical.json` as the reconciled review view; the converter
-also writes the website projection from that view.
+The merge is offline; do not run discovery or synthesis merely to convert.
+Inspect `retirements_canonical.json` and the projection before adoption.
 
-Drain the SQLite writer first. All five stores must exist, pass read-only checks,
-and stay unchanged throughout conversion; `.lock`, hot journals and WAL files block
-conversion rather than being removed. The optional `--catalog` checks that the current
-website catalog agrees with the database composition. If it differs, reconcile that
-content first. Omitting it converts the stores, not external JSON edits.
+| Report field | Meaning |
+| --- | --- |
+| `unmappedAuxiliaryTables` | Populated tables not mapped into JSON. Publication blocks by default; `--allow-unmapped` explicitly leaves them in the retained stores, not migrated. |
+| `missingEvidenceRoots` | Required evidence roots were not supplied. Blocks publication even with `--allow-unmapped`. A supplied nonexistent/empty root fails validation. |
+| `retainedEvidenceRoots` / `retainedEvidenceFiles` | Files hash-inventoried **in place** by root, relative path, size and SHA-256; no journal execution state is migrated. |
+| `readyToPublish` | Conversion checks only, **not** semantic completeness, approval validity or live-audit certification. |
 
-Schema-version-1 stores with extra populated workflow tables report them under
-`unmappedAuxiliaryTables`; publication is blocked by default. Inspect the dry-run
-report before using `--allow-unmapped`, which explicitly leaves those auxiliary
-tables (for example, unfinished research journals) only in the retained databases.
-It does not claim that pending workflow work was migrated.
+Database hashes and evidence inventories are rechecked before publication; changes
+or redirected evidence entries block it. Keep the original databases and every
+evidence root intact. The converter cannot establish that the supplied roots are
+complete: verify their membership against the readiness handoff.
 
-The converter also supports **raw-store schema v2** with the recognized
-`discovery_runs` table and the v1 extracted store's `source_observation_heads`,
-`source_observation_markers` and `source_observation_versions` additions. Their
-structured metadata is retained under `retirement_enrichment_automatic.json` →
-`sqliteImport.auxiliaryMetadata`; embedded body fields are excluded. Download times,
-input versions, marker hashes and table identities are preserved, not reinterpreted
-as new acquisition or approval.
+Conversion preserves IDs, hidden/feed-absent records, custom fields, curated
+answers, timestamps, validators, approvals and provenance without a new fetch or
+review. Imported pages are labelled `imported`, summaries `origin: "sqlite-import"`;
+this is a format change, not a claim that data is stale. Manual fields remain
+separate in `recordOverrides` and compose field-by-field. Imported long answers and
+HTML are not reformatted or shortened; unchanged records merge offline.
+`enrichmentPipeline: "json-v1"` prevents accidental old-style refresh.
 
-These enriched stores require retained evidence/journal directories, because the
-five SQLite stores alone cannot replay recovery and approval lineage. Supply the
-complete closed traceability directory and any separately retained pilot artifacts:
+Existing non-Azure discoveries remain in the catalog and appear in
+`retainedOutsideDiscovery`, not as invented manual sources. Add any intended future
+source explicitly. Changed acquisition inputs require processing before merge.
 
-```powershell
-$EvidenceArgs = @(
-  "--evidence-root", "<closed-enrichment-workspace>\.full-enrichment\continuation-research",
-  "--evidence-root", "<preserved-pilot-artifact-directory>"
-)
-python -m scripts.convert_enrichment --db-dir $DbDir --catalog $SourceCatalog --output-dir $StageDir @EvidenceArgs --dry-run
-# Only after the final readiness handoff and a successful dry-run:
-python -m scripts.convert_enrichment --db-dir $DbDir --catalog $SourceCatalog --output-dir $StageDir @EvidenceArgs
-```
-
-Replace the placeholders with the final handoff's actual paths. Repeat
-`--evidence-root` for every required external artifact directory. Each file is
-referenced **in place** by relative path, byte count and SHA-256, with its containing
-root recorded; the directories are not copied into JSON and must remain intact.
-The inventory is checked again before publication. Open SQLite sidecars, changed
-files and redirected filesystem entries block conversion. A missing root makes the
-dry-run report `missingEvidenceRoots: true` and prevents publication even with
-`--allow-unmapped`. The converter cannot infer whether a supplied directory contains
-all required lineage: confirm that against the final handoff, including pilot
-baselines and receipts. `readyToPublish` describes conversion checks only, **not**
-semantic enrichment completion, approval validity or live-audit readiness.
-
-The converter never modifies or deletes the SQLite files and never overwrites an
-existing destination. Source-file hashes are reported and verified before publication.
-`--dry-run` validates in temporary staging without publishing a destination. Review
-the converted directory before choosing whether to point the website at its
-`retirements.json`; the live catalog is not switched automatically.
-
-Canonical records, IDs, hidden/absent records, curated answers and unknown record
-fields are preserved. Manual database fields remain separate under
-`retirement_enrichment_manual.json` → `recordOverrides`, then are composed using the
-same field-level rules. These raw field patches are for preserving existing manual
-data, unlike `inputs` which holds new links/context to synthesize. Untouched imported
-records can be merged offline without rewriting their answers. A small compatible
-`enrichmentPipeline: "json-v1"` catalog marker prevents accidental SQLite refresh.
-
-Imported page metadata retains URLs, ETags, Last-Modified, raw hashes and failures,
-but **no downloaded bodies or base64 page archives are copied**. Canonical answer
-snapshots are retained for lossless conversion, so existing long answers are not
-silently shortened. On subsequent enrichment they can be replaced by properly
-synthesized summaries. Conversion is a format change, **not an indication that the
-data is old**: recorded download times, source update times, validators, approvals
-and provenance are carried forward. Imported pages are labelled `imported` with
-`origin: "sqlite-import"` on retirement summaries. They can be merged offline
-without downloading again; conversion itself performs no new fetch or review.
-If acquisition inputs later change, process those changes before merging.
-
-Non-Azure discoveries already present stay in the converted website catalog and are listed
-in `retainedOutsideDiscovery`. They are **not** silently relabelled as user-provided
-source links. Add any intended future sources explicitly to the manual source JSON.
-
-#### Build from the converted catalog
+### Build from the converted catalog
 
 After conversion and offline merge succeed, review `$StageDir\retirements.json`.
 Keep all catalog writers stopped and reconcile any local catalog edits before
@@ -460,74 +501,49 @@ changes, also run `python -m unittest discover -s tests -q`. Do not run
 `scripts.refresh_data` on the converted catalog; use the JSON stages above for
 future refreshes and keep `$StageDir` pointed at the same stage files.
 
-### Existing SQLite refresh and enrichment
-
-The following commands describe the retained SQLite pipeline. Refreshing is optional for local development:
-
-```sh
-python -m scripts.refresh_data
-python -m unittest discover -s tests -v
-python site/build.py
-```
-
-Keep automatic research in the canonical database and user-provided content in `manual.sqlite`; export their composition to **`data/retirements.json`**, never edit generated copies. See [Protecting manual enrichments](#protecting-manual-enrichments).
-
-After changing source or data, rebuild and commit **both the source changes and the resulting `docs` changes**. A build does not refresh the source or change the canonical catalog. If a refresh fails, the previous snapshot stays intact; resolve the reported error before retrying.
-
 ## Project structure
 
 ```text
 retirements
-  .github\
-    workflows\pages.yml     Python validation and scheduled/manual catalog refresh
-    prompts\retirement-enrichment.prompt.md  Reusable evidence-review task; not a schedule
-    prompts\site-build.prompt.md             Reusable site development and build instructions
+  .github\workflows\pages.yml   Validation and existing daily/manual feed refresh
+  .github\prompts\              Enrichment and site-build instructions; not schedules
   site\                     Website source, separate from shared data and tooling
     build.py                Python/Jinja static-site generator and optional server
     config.json             Title, description, production URL, and project base URL
     templates\              Home, retirement, 404, shared layout, macros, and partials
-    assets\
-      css\style.css         Themes, layout, and responsive styles
-      js\                   Maintained browser JavaScript; no compilation required
-      data\                 Prepared catalog copy; ignored by Git
+    assets\css\style.css     Themes, layout, and responsive styles
+    assets\js\              Maintained browser JavaScript; no compilation required
+    assets\data\            Prepared catalog copy; ignored by Git
     _data\site.json          Prepared view metadata; ignored by Git
   docs\                     Generated public website; intentionally checked in
-    .nojekyll               Tells GitHub Pages to serve generated files directly
-    index.html
-    404.html
-    retirements\
-      YYYY-MM-DD\<title-slug>\   Detail pages grouped by exact retirement deadline
-      unknown-date\<title-slug>\ Detail pages without an exact retirement deadline
-    assets\                 Published CSS, JavaScript, and catalog download
   data\
-    retirements.json        Website-schema projection generated from the canonical view
-    retirement_source_automatic.json     Azure Updates sources (default JSON stage location)
-    retirement_source_manual.json        Explicitly supplied retirement sources
-    retirement_enrichment_automatic.json Five-question automatic summaries and refresh metadata
-    retirement_enrichment_manual.json    Manual links/context, summaries and field overrides
-    retirements_canonical.json           Composed records, source/input revisions, catalog metadata
-    converted\              Optional converted five-file stage directory; use --data-dir consistently
-    pipeline\               Existing raw.sqlite, extracted.sqlite, web_cache.sqlite, canonical.sqlite, manual.sqlite
+    retirements.json        Current website input and public download
+    pipeline\               Retained five-store SQLite data
   scripts\
-    enrichment.py           JSON discovery, acquisition, synthesis, merge and status commands
+    enrichment.py           Opt-in JSON pipeline and single-record reprocessing
     enrichment_json.py      Guarded JSON writes, writer lease and transient text handling
     enrichment_http.py      Bounded page retrieval and content/reference extraction
     convert_enrichment.py   Read-only SQLite-to-JSON conversion into a new directory
     catalog.py              Validation, dates, countdowns, grouping, and preparation
-    feed.py                 Source parsing, normalization, pagination, and merging
-    refresh_data.py         Refresh entry point and guarded atomic snapshot writer
-    review_data.py          Review coverage, source-evidence checks, and guarded batch edits
-    pipeline.py             Independent SQLite stages, conditional web cache, guarded JSON export
+    feed.py                 Azure Updates parsing, pagination, and normalization
+    refresh_data.py         Existing feed refresh and manual-override composition
+    pipeline.py             Retained SQLite stages and guarded export
+    manual_data.py          Field-level manual composition
+    review_data.py          Retained review reporting and guarded batch edits
     check_site.py           Generated page, question, link, and catalog checks
   tests\                    Python unittest suite and offline fixtures
   requirements.txt          Python dependencies
-  .gitignore                Dependencies, caches, intermediate files, and local files
-  .gitattributes            Marks docs as generated for GitHub review
 ```
 
-For markup changes, edit `site/templates`; for appearance, edit `site/assets/css/style.css`. Interactive behavior lives in `site/assets/js/main.js`, with browser catalog helpers in `catalog.js` and loading/error reporting in `data.js`. These JavaScript files are maintained source, not generated bundles.
+The [five JSON stages](#process-and-starting-point) are created by `init` or conversion
+in the selected directory; they are not a preconfigured replacement catalog.
 
-Git ignores `.venv`, Python caches, intermediate metadata, the prepared catalog copy, and temporary refresh files. Recreate them with pip installation and the Python build. Keep the website source, `requirements.txt`, canonical JSON, and generated **`docs`** checked in. `docs` is the deliberate exception to ignoring generated files: it is the GitHub Pages publishing source. Text files use LF line endings for consistent output on Windows and Linux.
+Edit templates for markup, `style.css` for appearance, and browser modules for
+interaction (`main.js`, `catalog.js`, `data.js`). Never hand-edit `docs` or prepared
+metadata. Rebuild when rendering or catalog changes require new output, and include
+that output when publishing the change. Documentation-only edits do not need a
+website rebuild. Keep credentials, virtual environments and temporary processing
+files out of Git; retain adopted stage data and existing evidence deliberately.
 
 ## Publish on github.io
 
@@ -539,7 +555,11 @@ The `docs/.nojekyll` file disables Jekyll processing. GitHub serves the already-
 
 `site/config.json` sets `url` to `https://senthuransivananthan.github.io` and `baseurl` to `/retirements`. Update them for another repository or custom domain, using an empty `baseurl` for a domain-root site. Normal pages use page-relative assets and navigation, supporting both root-level local preview and project-path publishing. The 404 page uses the configured production base path so it works for arbitrary missing URLs.
 
-Each detail has a real static URL shaped like `/retirements/retirements/YYYY-MM-DD/<title-slug>/` on the project site. The first `retirements` is the repository's base path; the date folder is the exact retirement deadline, not the announcement date. Unknown or month-only deadlines use `unknown-date/<title-slug>/` without inventing a day. Slugs use normalized, lowercase title text, capped at 80 characters. When multiple records have the same title slug, each gets a `--<record-id>` suffix; the title portion may be shortened further for filesystem limits. IDs remain unchanged in the catalog. Every build recreates the entire generated `docs/retirements` tree from the catalog, removing stale pages, renamed folders, and orphaned files while preserving unrelated files elsewhere in `docs`.
+Detail URLs use `/retirements/retirements/YYYY-MM-DD/<title-slug>/` on the project
+site: the first segment is the repository base path, the second is the detail
+directory. The date is the exact deadline; month-only/unknown dates use
+`unknown-date`. Duplicate title slugs receive an ID suffix. Each build replaces the
+generated detail tree to remove stale routes while preserving unrelated output.
 
 Filters use ordinary query strings. Existing `#/retirements/<id>` and `#/?...` links redirect to their current static or query-string equivalents, retaining navigation context. On GitHub Pages, the custom 404 page also redirects old ID-based detail URLs and outdated date folders when the record can be identified unambiguously, preserving query strings and section anchors. These redirects require JavaScript; current detail pages and navigation remain usable without it. Python's basic local HTTP server does not serve the custom 404 page for missing paths.
 
@@ -550,7 +570,7 @@ Pull requests and pushes to `main` install Python dependencies, run offline test
 Daily at **06:23 UTC**, or through **Actions > Validate site and refresh GitHub Pages > Run workflow**, the main-branch refresh job:
 
 1. Confirms Pages is configured for **main /docs**.
-2. Fetches the complete feed, preserving checked-in manual enrichments.
+2. Fetches the complete Azure Updates retirement feed and composes retained manual overrides.
 3. Runs tests, rebuilds, and validates the website.
 4. Commits changes to `data/retirements.json` and `docs`, then pushes to `main`.
 5. Explicitly requests a native Pages build, because pushes made using `GITHUB_TOKEN` do not trigger Pages builds automatically.
@@ -565,18 +585,31 @@ conversion does not switch the schedule automatically.
 
 ## Explore and plan
 
-- The home page's blue header banner contains the **Retirement outlook**, showing deadlines already passed this calendar year and cumulative **next 6, 12, and 18 calendar months**. Click a card to view its retirements, or use the **Retirement window** dropdown: rolling windows come first, followed by every known retirement year, newest first. Year options include month-only deadlines with a confirmed year. The separate **Announcement year** filter offers this calendar year and the previous three, matching `announcedOn`. Retirement-window and announcement-year filters can be combined and are preserved in shareable URLs and detail-page return links.
-- Outlook counts and date ranges update on page load, at UTC date changes, and when returning to the tab. The cumulative 6/12/18-month windows start on the first day of the current UTC month and end on the last day of the month 6/12/18 months ahead, including both endpoints and dates already passed earlier this month. For example, in November 2026 the 6-month window is November 1, 2026 through May 31, 2027. These ranges roll forward when the current month changes. The retired view includes January 1 through yesterday of the current UTC year. Only exact source-backed deadlines count; unknown or month-only dates are excluded. “Retired” describes the deadline, not completion of a migration. Without JavaScript, the outlook reflects the last build.
-- The directory is a vertical timeline grouped by **service category > individual service > retirements**. Categories and services are alphabetical; entries within each service are ordered by exact retirement deadline descending (furthest future first), with unknown or month-only dates last. Equal dates are ordered by title. Records with multiple categories or services appear in each applicable group, while result counts and pagination count unique retirements.
-- Search titles and announcement text; combine **Category**, **Service**, **Retirement window**, and **Announcement year** filters. Each retirement shows customer lead time directly below its retirement date in the timeline, calculated from the exact retirement and announcement dates and displayed in calendar years, months, and days; missing exact dates are shown as not calculable. Detail pages repeat the value in a yellow pill in the countdown banner and in the retirement facts. Category includes every catalog category and an **All categories** option. Service choices narrow to the selected category; changing categories keeps a compatible service selection or resets it to **All services**. Selecting **All categories** restores the full service list. Selected category and service filters also restrict the timeline headings and persist in shared URLs, browser history, and detail-page return links. Status views remain available through sidebar shortcuts, with a visible status label and clear link instead of a Status dropdown. Load more results without changing the timeline's descending deadline order. The initial timeline is rendered in HTML and remains available without JavaScript.
-- Expand the sidebar by **retirement year > Azure service category > retirement**. Years appear newest first, then **Unconfirmed year**. On the directory page, the tree follows all active filters, including category, service, retirement window, announcement year, status, and search; empty branches disappear. The **By retirement year** heading shows the unique filtered retirement count; year and category counts also reflect all matching retirements, independent of timeline pagination. Directory sidebar links retain the active filter context. Detail pages always show the complete visible catalog tree, highlight and expand the current retirement, and let you browse other retirements without inheriting directory filters. Their return-to-directory link still preserves the incoming filters. The complete tree remains available without JavaScript.
-- Use **Reset filters** to clear search, category, service, retirement year/window, announcement year, and shortcut status filters, remove filter query parameters, restore all service options and sidebar branches, and return to the initial timeline results.
-- On desktop, the sidebar starts directly beneath the top toolbar, beside the blue header banner, and stays pinned while the page scrolls.
-- Share filtered URLs, download the complete JSON catalog, or use header search from any page (`Ctrl+K` or `Cmd+K`).
-- On small screens, use the navigation button. Click the backdrop or press Escape to close the menu.
-- Jump between the five detail sections using **In this article**. Theme preferences are saved only in the current browser; the app has no analytics.
+- **Outlook:** retired-this-year and cumulative next 6/12/18-month views use exact
+  deadlines. Rolling windows include the current UTC month through the last day of
+  the target month; retired-this-year ends yesterday. Month-only/unknown deadlines
+  do not count. "Retired" describes a deadline, not a completed migration.
+- **Directory:** category > service > retirement, with alphabetical groups and
+  descending exact deadlines (unknown last, title ties). Counts and pagination are
+  unique even when an announcement belongs to several groups.
+- **Search and filters:** combine category, service, retirement window, announcement
+  year and sidebar status shortcuts. Announcement year uses the current UTC year
+  and previous three; retirement years include confirmed month-only years. Shareable
+  URLs, history and return links preserve filters; **Reset filters** clears them.
+- **Sidebar:** retirement year > category > retirement. Directory branches/counts
+  reflect all matches, not just loaded results. Detail pages show the complete
+  visible tree with the current item expanded; only the return link keeps filters.
+- **Details:** customer lead time uses exact announcement/deadline dates in calendar
+  years, months and days; missing dates are not calculable. Use **In this article**
+  to navigate the five answers, References for sources, and the JSON download for data.
+- **Access:** desktop pinned sidebar, mobile navigation menu (Escape/backdrop to
+  close), header search (`Ctrl+K`/`Cmd+K`) and light/dark themes. Only theme preferences
+  are saved by the current UI; there is no tenant connection or analytics.
 
-Each detail shows whole days remaining until an exact retirement date using UTC calendar days. Deadlines today say **Retires today (0 days remaining)**; past dates say **Retired**. Unknown or month-only deadlines show **Retirement date to confirm** without inventing a countdown. Python renders the build-time value; JavaScript updates it on page load and when the UTC date changes.
+Countdowns use UTC calendar days: **Retires today (0 days remaining)**,
+**Retired**, or **Retirement date to confirm** for unknown/month-only dates.
+JavaScript updates countdowns/outlook on load and UTC date changes; without it,
+static content reflects the build.
 
 Every retirement detail keeps these sections in order:
 
@@ -588,7 +621,10 @@ Every retirement detail keeps these sections in order:
 
 When available, **Open Microsoft Learn guidance** is the final element in **What do I need to do?**, after all migration content, support guidance, and support links. The shared detail template applies this order to every retirement page.
 
-The progress section shows specific Microsoft Learn or verified first-party Tech Community guidance for identifying or tracking affected resources when available; otherwise it says tracking guidance is unavailable in the catalog. It does not assess a tenant or track migrations. Previously saved browser checklists are not displayed or deleted.
+The progress section renders answer HTML and an optional tracking-source link,
+not an interactive checklist. Identification methods and their limits must be in
+the rendered answer, not only auxiliary JSON fields. Missing methods are reported
+explicitly. Team-owned/local planning is not progress saved by this site.
 
 ## Data provenance and limitations
 
@@ -674,114 +710,37 @@ python -m scripts.check_site
 
 The editor validates batches atomically, rejects stale/concurrent changes and preserves unrelated records/timestamps. It is not a crawler or proof of citation accuracy. JSON-only review is for catalogs without composed overrides; use pipeline review/manual/export when databases own the catalog. Keep checked-in `docs` synchronized.
 
-### Incremental SQLite stages
+### Retained SQLite tools
 
-Five Git-versioned SQLite stores under `data\pipeline` support incremental stages; their diffs are binary. JSON is the composed output:
-
-```text
-Public sources -> raw.sqlite -> extracted.sqlite --+
-                     +-> web_cache.sqlite --------+-> canonical.sqlite --+
-User-provided fields -----------------------------> manual.sqlite -------+-> JSON -> build
-```
-
-| Database | Stored data |
-| --- | --- |
-| `raw.sqlite` | Exact Azure Updates item-response bytes and the selected Lifecycle index, source IDs/URLs/hashes, and associations to retirement IDs. |
-| `extracted.sqlite` | Per-source observations and original identities, announcement text/resources, provisional dates, source-body hashes and extractor version. |
-| `web_cache.sqlite` | Downloaded public bodies, original references/destinations, content hashes, HTTP validators, portal skips and failures. |
-| `canonical.sqlite` | Complete catalog baseline/order/metadata, unchanged curated five-question records, joined source/link provenance and reviewed input fingerprints. |
-| `manual.sqlite` | User-provided partial overrides and baseline snapshots; export combines them with automatic records without modifying the research store. |
-
-`seed` imports the complete catalog unchanged offline. Per-record stages preserve IDs, flags, custom fields, original evidence and feed timestamps; raw observations do not replace answers or adjudicate dates. The checked-in pilot has one tracked record; other rows are baseline copies, not newly enriched records.
-
-Design/testing uses **one runtime-selected visible, editable record**, never a named prompt example; test writes use isolated copies unless local migration/promotion is approved. An explicit request to refresh feeds and enrich everything selects **full enrichment**, not a test or the previous subset. Full enrichment refreshes both complete discovery feeds, freezes the complete target manifest, orchestrates every eligible record (including prior reviews) at maximum available runtime parallelism within host/page limits, then serially integrates database results and exports composed JSON. It must finish with `python -m unittest discover -s tests -q`, `python site\build.py` and `python -m scripts.check_site` to update the site; no separate rebuild request is needed. Hidden content/manual overrides remain protected. Batch/page limits affect throughput, not coverage; pending/blocked IDs mean incomplete work, with regular coverage reports and resumable accepted results. The selected-record CLI is not a full-run orchestrator; the implementation gates below still apply.
-
-Run stages independently from the repository root. This PowerShell example uses placeholders for the selected retirement and its verified, applicable Lifecycle index; for testing, copy the existing catalog to `<test-directory>\retirements.json` first:
+`scripts.pipeline` remains available for existing SQLite-owned catalogs; it is not
+the new JSON workflow or a full-run research orchestrator. Inspect its actual CLI
+before operating on a store:
 
 ```powershell
-$id = '<existing-retirement-id>'
-$lifecycleUrl = '<verified-applicable-Lifecycle-index-url>'
-$pipeline = @('--db-dir', '<test-directory>\databases', '--output', '<test-directory>\retirements.json')
-python -m scripts.pipeline @pipeline seed
-python -m scripts.pipeline @pipeline ingest --id $id --lifecycle-url $lifecycleUrl
-python -m scripts.pipeline @pipeline extract --id $id
-python -m scripts.pipeline @pipeline links --id $id
-python -m scripts.pipeline @pipeline canonical --id $id
+python -m scripts.pipeline --help
+python -m scripts.pipeline canonical --help
+python -m scripts.pipeline status
 ```
 
-Inspect the observations, cached pages and automatic record. If it is unreviewed or needs answer changes, prepare the [review batch](#evidence-based-content-reviews) with `status.automaticCatalogSha256` as its `catalogSha256` and evidence-backed `sourceReview.status: enriched`. Apply it before approval, refresh any changed references, then reassemble:
+Its stages are `seed`, `ingest`, `extract`, `links`, `canonical`, `review`, `manual`,
+`export` and `migrate`. The five stores hold raw source bytes (`raw.sqlite`),
+observations (`extracted.sqlite`), cached pages (`web_cache.sqlite`), automatic
+records/provenance (`canonical.sqlite`) and partial user overrides (`manual.sqlite`).
+`ingest --id` requires an explicitly selected `--lifecycle-url`; this is not
+permission to introduce Lifecycle discovery into the JSON workflow.
 
-```powershell
-python -m scripts.pipeline @pipeline status
-python -m scripts.pipeline @pipeline review --batch <review-batch.json>
-python -m scripts.pipeline @pipeline links --id $id
-python -m scripts.pipeline @pipeline canonical --id $id
-```
+Review against `status.automaticCatalogSha256`, apply the evidence-backed batch
+with `review --batch`, then reassemble using `canonical --id`. Approval requires an
+enriched record and explicit attestation of the current `inputSha256` and
+`recordSha256` using `--accept-review`, `--input-sha256` and `--record-sha256`.
+Downloaded pages, fingerprints or approval-field counts alone do not prove
+semantic completeness. Missing/stale dependencies and concurrent JSON edits block
+export. Keep all existing evidence and external review journals for the final
+audited handoff and conversion.
 
-Approval requires an enriched automatic record; fingerprints alone do not enrich it. After reviewing the current answers and exact inputs, approve using the latest assembly's `inputSha256`/`recordSha256`, not pre-review fingerprints:
-
-```powershell
-python -m scripts.pipeline @pipeline canonical --id $id --accept-review --input-sha256 <reviewed-input-hash> --record-sha256 <reviewed-record-hash>
-python -m scripts.pipeline @pipeline export
-python -m scripts.pipeline @pipeline status
-```
-
-These commands export isolated test JSON only; approved source-catalog export must immediately build. Manual batches use the composed hash and `manual --batch`, not the automatic review hash. Neither editing stage downloads/exports. Reconcile external JSON changes, never overwrite.
-
-**Cache:** `links --id ...` still names the refresh command; its database is now `web_cache.sqlite`. ETag takes precedence over Last-Modified; 304 reuses bodies without writes. Identical 200 bodies retain review validity; absent validators require full download/hash comparison. Ingested source responses are reused. Real dynamic-HTML changes require renewed review; Content-Length/URL age and cached bytes prove neither freshness nor factual/MCP review.
-
-**Guards:** extraction skips matching source hash/version; changed bodies invalidate approval, validator-only changes do not. Required-source failures retain last-good bodies but block promotion. Authenticated portals and uncited resources explicitly checked as `not-evidence` or `unavailable` remain in the catalog with skip reasons, without fetching or claiming freshness; required citations cannot use this exemption. Missing/stale dependencies, approvals or concurrent JSON edits stop export. Offline no-ops preserve DB/JSON bytes; export uses the complete composed catalog and can recreate missing JSON.
-
-**Storage/safety:** public Microsoft HTTPS only, redirect/address checks, bounded size/time/retries, no credentials/tenant access/crawling; portals are classified without fetching. `.lock` serializes writers: inspect the owning PID before removing a crash-left lock. Close DELETE-journal SQLite connections before Git; ignore only lock/sidecars, never text-merge binary DB conflicts.
-
-**Renaming old caches:** with connections closed, rename `links.sqlite` to `web_cache.sqlite`. If both exist, reconcile without overwriting either; the CLI refuses legacy names rather than creating an empty replacement. The tracked rename preserves cached bytes.
-
-Full Lifecycle discovery, automatic matching/hash IDs, parallel orchestration, scheduling and publication remain unimplemented/gated. Legacy refresh reads the manual store but does not refresh the other databases.
-
-### Parallel enrichment design (not implemented)
-
-This earlier SQLite orchestration proposal separates concurrent research from
-serialized publication; it is not the new JSON CLI's bounded download pool:
-
-```text
-Complete baseline -> coordinator queue -> bounded workers on disjoint record IDs
-                            |                         |
-                     shared fetch/cache        private guarded proposals
-                            |                         |
-                            +--> one integrator -> canonical.sqlite -> JSON -> build/audit
-```
-
-Workers get disjoint leased IDs, immutable inputs and private proposal paths. The coordinator owns deduplicated shared fetching, host/retry/page limits and all shared writes; proposals carry attempt tokens, original record/evidence hashes, citations and validation. Changed targets/evidence require renewed review; unrelated changes can be reconciled only after verifying the target/dependencies, retaining original guards. Durable outcomes allow safe restart without duplicate application or lost coverage.
-
-All eligible records, prior reviews and protected outcomes remain accounted for; tests use one live example plus synthetic concurrency fixtures. Lease expiry, late results, stale guards, interrupted export recovery, scheduler/proposal reconciliation and concurrency tests remain implementation gates for this SQLite proposal. **Do not run the SQLite CLI concurrently against one `--db-dir` or merge worker database binaries.**
-
-### Weekly Copilot cloud automation
-
-**No cloud automation is created/enabled.** The last capability check reported it disabled/unavailable; the prompt grants neither tools nor schedules, and daily GitHub Actions refresh is unchanged.
-
-When access is available, obtain separate approval for one personal automation, its activation/initial run and publication. Discover supported tools/triggers; grant only public-document retrieval, repository access and required execution. Set weekly day/time in UTC through structured schedule fields, not prompt text. Leave a reviewable diff unless publication is authorized.
-
-Follow the current prompt's input, depth, refresh, coverage and recovery rules.
-Before publication reconcile with main and rebuild. The SQLite refresh command is
-not a JSON-stage refresh. Never overwrite/force-push over concurrent refreshes.
-
-### Retirement discovery scope
-
-The JSON workflow has exactly two discovery inputs:
-
-| Stage | Discovery input | Coverage |
-| --- | --- | --- |
-| `retirement_source_automatic` | [Azure Updates JSON collection](https://www.microsoft.com/releasecommunications/api/v2/azure) filtered to `Retirements` | Every validated feed page, preserving official IDs and timestamps. |
-| `retirement_source_manual` | Retirement links explicitly supplied by the user | Every supplied record/link, preserving its ID and source association. |
-
-There is no independent Microsoft Lifecycle crawl, search-driven discovery, combined
-feed requirement or automatic hash-ID migration in the new process. Lifecycle,
-Learn and other pages may be processed when explicitly supplied or reached through
-permitted depth-one references; references do not automatically create retirements.
-
-Conversion preserves existing non-Azure records without inventing user input.
-Existing IDs and manual content remain intact; similar titles or dates alone never
-authorize combining events. See [the workflow](#json-enrichment-pipeline) for commands.
+Do not run this CLI concurrently against one `--db-dir`, merge database binaries,
+or remove a lock without checking its owner. The scheduled `scripts.refresh_data`
+command reads manual overrides but does not refresh the research databases.
 
 ### Azure Updates feed and website output
 
@@ -791,6 +750,11 @@ This is the complete tagged announcement collection returned by that feed, **not
 
 The structured feed supplies a retirement **month**, not an exact day. Before enrichment, feed normalization extracts exact dates conservatively from current announcement **titles** only when a single distinct, valid date appears; ISO dates require explicit deadline wording to distinguish deadlines from API versions. Enrichment may instead use explicit retirement-specific dates in the permitted announcement/reference content. Neither path infers deadlines from publication dates, IDs or URL slugs. Month-only and unresolved deadlines remain **Date to confirm** and do not count as upcoming or retired. **Within 90 days** includes today and day 90 UTC; **Upcoming** includes that group.
 
-Source HTML becomes escaped plain text plus separate HTTPS references. Automatic enrichment supplies safe HTML for all five answers; manual plain edits may use the escaped fallback. Allowed tags: `p`, `h3`, `ul`, `ol`, `li`, `strong`, `em`, `code`, `pre`, `br`; reject attributes/active content and escape text. Preserve facts/limits, use concise semantic paragraphs/lists, convert newline escapes, and avoid duplicated dates/notices/support/tracking. Verify tenant impact, pricing, support and phased deadlines with Microsoft.
+Source HTML becomes escaped plain text plus separate HTTPS references. JSON merge
+renders the five Markdown answers through the safe HTML rules above; retained plain
+answers may use the escaped fallback. Preserve facts and limits without duplicating
+dates, support notices or tracking guidance. Verify impact, pricing, support and
+phased deadlines against permitted source evidence, never assumed tenant access.
 
-Site-wide typography uses four primary sizes: .875rem body text and controls (14px at the default browser size), 1rem subheadings (16px), 1.125rem section headings and summary counts (18px), and 1.375rem page titles (22px). Navigation, filters, cards, notices, metadata, and footers use the same body size and 1.6 line spacing on desktop and mobile. The only caption-size exception is the main timeline's customer lead-time label and duration at .75rem (12px); retirement dates and detail-page lead times retain the body size. Relative units respect browser font preferences. Headings retain their hierarchy, and semantic emphasis, code fonts, and notice colors remain distinct.
+For detailed interface invariants, typography and rendering checks, see the
+[site-build prompt](.github/prompts/site-build.prompt.md).
