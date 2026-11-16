@@ -389,6 +389,15 @@ and rerun the affected stage against the **same directory**; saved valid summari
 are reused. `run` also refreshes discovery, while `reprocess` intentionally forces
 the selected record's acquisition and synthesis.
 
+For long-running full-catalog work, continue through routine batches and resume
+from durable checkpoints if a turn ends. When an approved recurring session
+wake-up is available, use it to resume the same session rather than creating a
+replacement workflow. At **150 MB available memory**, pause at a safe checkpoint
+without cancelling the task; resume when memory recovers. Report completed/total
+and remaining counts with timestamps, distinguishing approval hashes from audited
+coverage. Never convert or rebuild until the required reviews, conflict decisions,
+audits and closed-snapshot checks are complete.
+
 Create `$StageDir\.enrichment-work\stop` to request a safe stop at a work boundary;
 remove that signal before continuing. Do not remove an active lease or start
 competing writers. Canonical/projection fingerprints reject out-of-band edits;
