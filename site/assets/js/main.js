@@ -16,6 +16,9 @@ const recordPaths = recordUrls(catalog.records);
 const visibleRecords = catalog.records.filter(record => !record.hidden);
 const categories = new Set(visibleRecords.flatMap(categoriesOf));
 const years = new Set(groupRetirements(visibleRecords).map(group => group.year));
+function isKnownRetirementYear(year) {
+    return years.has(year) || year === new Date().toISOString().slice(0, 4);
+}
 const labels = { upcoming: 'Upcoming', soon: 'Within 90 days', retired: 'Retired', unknown: 'Date to confirm' };
 const yearLabel = (year) => year === 'unknown' ? 'Unconfirmed year' : year;
 const directoryLink = (filters) => directoryUrl(filters, homeUrl.pathname);
@@ -53,7 +56,7 @@ function readFilters() {
     const category = categories.has(requestedCategory) ? requestedCategory : '';
     return {
         q: params.get('q') || '', service: servicesForCategory(visibleRecords, category).includes(service) ? service : '',
-        year: years.has(year) ? year : '', category,
+        year: isKnownRetirementYear(year) ? year : '', category,
         status: statusFilter(params.get('status')), sort: 'date-desc',
         window: windowFilter(params.get('window')),
         period: retirementPeriodFilter(params.get('period')),
@@ -216,6 +219,10 @@ function updateNav() {
     const navigationFilters = isDirectory ? filters : {};
     const matches = new Map(filterRecords(visibleRecords, navigationFilters).map(record => [record.id, record]));
     element('#year-navigation-count').textContent = String(matches.size);
+    for (const link of document.querySelectorAll('#navigation a[data-period]')) {
+        const context = { ...navigationFilters, year: link.dataset.year, period: link.dataset.period };
+        link.href = directoryLink(context);
+    }
     for (const yearGroup of document.querySelectorAll('#navigation .year-group')) {
         const year = yearGroup.dataset.yearGroup;
         const yearIds = new Set();
@@ -372,7 +379,7 @@ function bindDirectory() {
         control.addEventListener(event, () => {
             if (key === 'window') {
                 filters.window = windowFilter(control.value);
-                filters.year = years.has(control.value) ? control.value : '';
+                filters.year = isKnownRetirementYear(control.value) ? control.value : '';
                 filters.period = '';
                 filters.status = 'all';
             }

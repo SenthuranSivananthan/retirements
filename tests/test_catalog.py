@@ -108,6 +108,9 @@ class CatalogTests(unittest.TestCase):
             source.write_text(json.dumps(value), encoding="utf-8")
             metadata = prepare_site(root, "2026-11-10")
             self.assertEqual(metadata["initialIds"], ["latest", "middle", "earliest", "unknown"])
+            current_year = next(group for group in metadata["navigation"] if group["year"] == "2026")
+            self.assertEqual(current_year["count"], 0)
+            self.assertEqual(current_year["categories"], [])
 
     def test_detail_urls_use_title_slugs_and_exact_or_unknown_deadlines(self):
         record = catalog()["records"][0]

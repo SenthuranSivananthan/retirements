@@ -610,6 +610,16 @@ def prepare_site(root=ROOT, today=None):
             "support": link(questions["actions"]["support"]), "advisor": link(questions["impact"]["advisor"]),
         }
     visible = [record for record in catalog["records"] if not record.get("hidden", False)]
+    navigation_groups = group_retirements(visible)
+    current_year = today[:4]
+    if not any(group["year"] == current_year for group in navigation_groups):
+        navigation_groups.append({"year": current_year, "records": [], "categories": []})
+        navigation_groups.sort(
+            key=lambda group: (
+                group["year"] == "unknown",
+                -int(group["year"]) if group["year"] != "unknown" else 0,
+            )
+        )
     navigation = [{
         "year": group["year"], "label": "Unconfirmed year" if group["year"] == "unknown" else group["year"],
         "count": len(group["records"]),
@@ -617,7 +627,7 @@ def prepare_site(root=ROOT, today=None):
             "name": category["name"], "count": len(category["records"]),
             "records": [{"id": record["id"], "title": record["title"], "url": by_id[record["id"]]["url"]} for record in category["records"]],
         } for category in group["categories"]],
-    } for group in group_retirements(visible)]
+    } for group in navigation_groups]
     metadata = {
         "byId": by_id, "navigation": navigation, "buildDate": today,
         "retirementPeriods": RETIREMENT_PERIODS, "announcementPeriods": announcement_period_options(today),

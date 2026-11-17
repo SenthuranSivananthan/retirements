@@ -595,9 +595,13 @@ class StaticSiteTests(unittest.TestCase):
                 summary: '', announcedOn: '2026-01-01',
                 questions: { what: { announcement: '' }, deadline: { date: `${record.year}-01-01`, month: null } },
             }));
-            const filters = { q: 'Matching', year: '2030', category: 'Compute', status: 'all' };
+            const filters = {
+                q: 'Matching', year: '2030', category: 'Compute', service: 'Example',
+                status: 'all', announcedYear: '2026',
+            };
             const directoryLink = context => '/?' + new URLSearchParams(context);
             const detailLink = (record, context) => `/retirements/${record.id}/?` + new URLSearchParams(context);
+            const currentYear = new Date().toISOString().slice(0, 4);
             const node = (dataset = {}, parent = null) => ({
                 dataset, hidden: false, attributes: {}, parentElement: parent,
                 closest() { return dataset.yearGroup || dataset.categoryGroup ? this : parent; },
@@ -607,6 +611,9 @@ class StaticSiteTests(unittest.TestCase):
             for (const isDirectory of [true, false]) {
                 const activeRecord = isDirectory ? null : visibleRecords[0];
                 const links = [];
+                const periodLinks = ['this-week', 'this-month', 'last-month', 'this-quarter', 'last-quarter']
+                    .map(period => node({ period, year: currentYear, category: '' }));
+                links.push(...periodLinks);
                 const yearGroups = groupRetirements(visibleRecords).map(year => {
                     const group = node({ yearGroup: year.year });
                     const count = node(), all = node({ year: year.year, category: '' });
@@ -629,13 +636,27 @@ class StaticSiteTests(unittest.TestCase):
                 });
                 const total = node(), empty = node();
                 const element = selector => selector === '#year-navigation-count' ? total : empty;
-                const document = { querySelectorAll: selector => selector.includes('.year-group') ? yearGroups : links };
+                const document = { querySelectorAll: selector => selector.includes('.year-group')
+                    ? yearGroups : selector.includes('[data-period]') ? periodLinks : links };
+                const knownYear = source.slice(source.indexOf('function isKnownRetirementYear('),
+                    source.indexOf('const labels ='));
+                eval(`const years = new Set(['2030']); ${knownYear}
+                    assert.equal(isKnownRetirementYear(currentYear), true);
+                    assert.equal(isKnownRetirementYear('2024'), false);`);
                 eval(updateNav + '\nupdateNav();');
                 assert.equal(total.textContent, isDirectory ? '1' : '3');
                 assert.equal(empty.hidden, true);
                 assert.deepEqual(links.filter(link => link.dataset.record && !link.hidden)
                     .map(link => link.dataset.record).sort(),
                     isDirectory ? ['current'] : ['current', 'neighbor', 'other-year']);
+                const monthLink = periodLinks.find(link => link.dataset.period === 'this-month');
+                const monthUrl = new URL(monthLink.href, 'https://example.test');
+                assert.equal(monthUrl.searchParams.get('year'), currentYear);
+                assert.equal(monthUrl.searchParams.get('period'), 'this-month');
+                assert.equal(monthUrl.searchParams.has('q'), isDirectory);
+                assert.equal(monthUrl.searchParams.has('category'), isDirectory);
+                assert.equal(monthUrl.searchParams.has('service'), isDirectory);
+                assert.equal(monthUrl.searchParams.has('announcedYear'), isDirectory);
                 assert.equal(yearGroups.find(group => group.dataset.yearGroup === '2031').hidden, isDirectory);
                 if (!isDirectory) {
                     const current = links.find(link => link.dataset.record === 'current');
