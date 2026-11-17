@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">App Service · Azure Stack Hub</span><span class="badge upcoming" data-deadline="2029-09-30"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure App Service on Azure Stack Hub</h1><p>Azure App Service on Azure Stack Hub retires on 2029-09-30. Migrate affected applications before that date to avoid remaining on an unsupported deployment. Since 2026-09-30, new installations are unsupported and no new product releases, features or enhancements are provided. Existing supported deployments can continue running and upgrade to the latest available release until retirement. The sources do not establish automatic workload shutdown or data deletion. This retirement does not apply to Azure Stack Hub as a whole.</p>
+  <h1>Retirement: Azure App Service on Azure Stack Hub</h1><p>Azure App Service on Azure Stack Hub retires on September 30, 2029. Migrate affected applications before that date to avoid remaining on an unsupported deployment. Since September 30, 2026, new installations are unsupported and no new product releases, features or enhancements are provided. Existing supported deployments can continue running and upgrade to the latest available release until retirement. The sources do not establish automatic workload shutdown or data deletion. This retirement does not apply to Azure Stack Hub as a whole.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2029-09-30"><strong>1048 days remaining</strong><span>Retirement date: <time datetime="2029-09-30">30 Sep 2029</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 24 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,22 +1916,22 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2029</p>
-<div class="rich-content"><p>Azure App Service on Azure Stack Hub retires on <strong>2029-09-30</strong>. Complete migration before that date. The announcement describes Microsoft support as ending on that date; the linked guidance says support ends afterward. All supplied sources identify the same retirement date.</p>
-<p>Since <strong>2026-09-30</strong>, new installations are unsupported and no new product releases, features or enhancements are provided. This is a separate restriction, not the retirement milestone.</p>
+<div class="rich-content"><p>Azure App Service on Azure Stack Hub retires on <strong>September 30, 2029</strong>. Complete migration before that date. The announcement describes Microsoft support as ending on that date; the linked guidance says support ends afterward. All supplied sources identify the same retirement date.</p>
+<p>Since <strong>September 30, 2026</strong>, new installations are unsupported and no new product releases, features or enhancements are provided. This is a separate restriction, not the retirement milestone.</p>
 <p>The sources do not specify an automatic workload shutdown or data-deletion date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure App Service on Azure Stack Hub retires on <strong>2029-09-30</strong>, ending Microsoft support. Existing supported deployments can continue running and upgrade to the latest available release until retirement.</p>
-<p>Since <strong>2026-09-30</strong>, new installations are unsupported and no new product releases, features or enhancements are provided. The sources do not document a security-update commitment for the retiring service.</p>
+<div class="rich-content"><p>Azure App Service on Azure Stack Hub retires on <strong>September 30, 2029</strong>, ending Microsoft support. Existing supported deployments can continue running and upgrade to the latest available release until retirement.</p>
+<p>Since <strong>September 30, 2026</strong>, new installations are unsupported and no new product releases, features or enhancements are provided. The sources do not document a security-update commitment for the retiring service.</p>
 <p>Microsoft recommends Azure App Service in Azure as the migration destination. This notice does not retire Azure Stack Hub as a whole or Azure App Service in Azure. The sources identify no version-specific or regional exceptions.</p>
 </div>
       <div class="notice"></div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Complete migration before <strong>2029-09-30</strong>.</p>
+<div class="rich-content"><p>Complete migration before <strong>September 30, 2029</strong>.</p>
 <ol>
 <li>Inventory your applications, owners, runtimes, dependencies and business requirements. Assess compatibility, compliance and data residency. Decide which supporting services will move, remain on-premises or on Azure Stack Hub, or be replaced; retained dependencies may require hybrid connectivity.</li>
 <li>Select hosting by application requirements. Standard Azure App Service suits cloud-ready applications that fit its sandbox constraints. Use Windows for existing ASP.NET Framework applications; ASP.NET Core can use Windows or Linux. The guidance lists Linux for Java, Node.js, Python and PHP. Assess Managed Instance on Azure App Service for complex Windows dependencies such as registry access, COM components or custom runtimes. Container options include App Service Containers, Azure Container Apps and AKS; App Service Environment is listed for single-tenant isolation. Modernization is not required for every workload.</li>
@@ -1947,7 +1947,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you host applications on <strong>Azure App Service on Azure Stack Hub</strong>. Use an application inventory, dependency assessment and compatibility review to establish your scope. The supplied guidance provides no automated discovery command or report, and this summary does not inspect your environment.</p>
-<p>New installations have been unsupported since <strong>2026-09-30</strong>. Existing supported deployments can continue running and upgrade to the latest available release until <strong>2029-09-30</strong>, but no new releases, features or enhancements are provided. Without migration, your deployment reaches the end of Microsoft support; the sources do not establish that running workloads automatically stop.</p>
+<p>New installations have been unsupported since <strong>September 30, 2026</strong>. Existing supported deployments can continue running and upgrade to the latest available release until <strong>September 30, 2029</strong>, but no new releases, features or enhancements are provided. Without migration, your deployment reaches the end of Microsoft support; the sources do not establish that running workloads automatically stop.</p>
 <p>Migration may require changes to operating-system dependencies, databases, file shares, authentication, certificates, networking, integrations and deployment tooling. Standard App Service has sandbox constraints; assess Managed Instance for the documented complex Windows requirements. Supporting services may remain on-premises or on Azure Stack Hub with suitable connectivity.</p>
 <p>The sources do not specify post-retirement console or API availability, data retention or deletion, or quantified migration and operating costs. They do not announce retirement of Azure Stack Hub as a whole.</p>
 </div>

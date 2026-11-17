@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Analysis Services</span><span class="badge retired" data-deadline="2021-06-30"><span></span>Retired</span></div>
-  <h1>Earlier versions of Analysis Services client libraries will retire on 30 June 2021</h1><p>Applications using Analysis Services client libraries earlier than MSOLAP product version 15.1.37.40 or AMO/ADOMD product version 18.7.0.1 are unsupported after 2021-06-30. Microsoft directs you to update before that date to the documented versions, which include security enhancements. The notice does not announce workload shutdown. The separate 2024-12-31 cutoff concerns AMO/TOM and ADOMD Windows Installer downloads, not an extension of this support deadline.</p>
+  <h1>Earlier versions of Analysis Services client libraries will retire on 30 June 2021</h1><p>Applications using Analysis Services client libraries earlier than MSOLAP product version 15.1.37.40 or AMO/ADOMD product version 18.7.0.1 are unsupported after June 30, 2021. Microsoft directs you to update before that date to the documented versions, which include security enhancements. The notice does not announce workload shutdown. The separate December 31, 2024 cutoff concerns AMO/TOM and ADOMD Windows Installer downloads, not an extension of this support deadline.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2021-06-30"><strong>Retired</strong><span>Retirement date: <time datetime="2021-06-30">30 Jun 2021</time></span><span class="badge amber customer-lead-time-pill">Lead time: 4 months, 8 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Jun 2021</p>
-<div class="rich-content"><p>Applications using the affected earlier Analysis Services client libraries will not be supported after <strong>2021-06-30</strong>. Microsoft directs you to update before that date.</p>
+<div class="rich-content"><p>Applications using the affected earlier Analysis Services client libraries will not be supported after <strong>June 30, 2021</strong>. Microsoft directs you to update before that date.</p>
 <p>This is an end-of-support milestone, not a documented workload shutdown date.</p>
-<p>The client-library reference separately states that AMO/TOM and ADOMD Windows Installer downloads will not be available after <strong>2024-12-31</strong>. That distribution-channel milestone does not replace or extend the 2021 support deadline. The reference retains installer links and instructions that conflict with its download-availability notice; it documents no extension.</p>
+<p>The client-library reference separately states that AMO/TOM and ADOMD Windows Installer downloads will not be available after <strong>December 31, 2024</strong>. That distribution-channel milestone does not replace or extend the 2021 support deadline. The reference retains installer links and instructions that conflict with its download-availability notice; it documents no extension.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Support ends after <strong>2021-06-30</strong> for applications using Analysis Services client libraries earlier than these product versions:</p>
+<div class="rich-content"><p>Support ends after <strong>June 30, 2021</strong> for applications using Analysis Services client libraries earlier than these product versions:</p>
 <ul>
 <li><strong>MSOLAP 15.1.37.40</strong>, corresponding to file version 2018.151.37.40.</li>
 <li><strong>AMO and ADOMD 18.7.0.1</strong>, corresponding to file version 15.1.37.40.</li>
@@ -1937,7 +1937,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify applications using MSOLAP, AMO or ADOMD and determine which library versions they actually load. Compare product versions and file versions carefully; they differ.</li>
-<li>Update affected libraries before <strong>2021-06-30</strong> to the versions specified by the notice: MSOLAP product version <strong>15.1.37.40</strong> and AMO/ADOMD product version <strong>18.7.0.1</strong>.</li>
+<li>Update affected libraries before <strong>June 30, 2021</strong> to the versions specified by the notice: MSOLAP product version <strong>15.1.37.40</strong> and AMO/ADOMD product version <strong>18.7.0.1</strong>.</li>
 <li>As a team-owned completion check, record the versions each application uses and validate its connections and relevant operations after updating. The retirement notice does not provide validation steps, compatibility prerequisites, or a cutover and cleanup procedure.</li>
 </ol>
 <p>The linked reference documents GAC-installed version checks for AMO and ADOMD, but NuGet references can load a different version. Do not treat the installed GAC version alone as proof of the version an application uses.</p>
@@ -1947,7 +1947,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your applications are affected if they use Analysis Services client libraries earlier than MSOLAP product version <strong>15.1.37.40</strong> or AMO/ADOMD product version <strong>18.7.0.1</strong>. Without an update, those applications will not be supported after <strong>2021-06-30</strong>. Microsoft also identifies potential security vulnerabilities as a reason to update.</p>
+<div class="rich-content"><p>Your applications are affected if they use Analysis Services client libraries earlier than MSOLAP product version <strong>15.1.37.40</strong> or AMO/ADOMD product version <strong>18.7.0.1</strong>. Without an update, those applications will not be supported after <strong>June 30, 2021</strong>. Microsoft also identifies potential security vulnerabilities as a reason to update.</p>
 <p>The notice does not state that applications will stop running, workloads will shut down, or data will be deleted. It does not document separate console/API restrictions, regional exceptions or cost effects.</p>
 <p>The linked reference notes that Microsoft applications update bundled libraries through application updates, though older versions may remain installed. It also cautions that NuGet references can load a different version from the GAC-installed copy. These details limit what an installed-library inventory can establish; they do not establish your application's exposure.</p>
 </div>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Batch</span><span class="badge retired" data-deadline="2026-03-31"><span></span>Retired</span></div>
-  <h1>Azure Batch classic compute node communication model will be retired on 31 March 2026</h1><p>Azure Batch retires classic compute node communication on 2026-03-31; after that date, Batch no longer honors the classic option. Transition affected pools to simplified communication. Pools without user-specified virtual networks are generally unaffected. Check private endpoint, DNS and outbound connectivity requirements before migrating: missing a required nodeManagement private endpoint can leave nodes unusable.</p>
+  <h1>Azure Batch classic compute node communication model will be retired on 31 March 2026</h1><p>Azure Batch retires classic compute node communication on March 31, 2026; after that date, Batch no longer honors the classic option. Transition affected pools to simplified communication. Pools without user-specified virtual networks are generally unaffected. Check private endpoint, DNS and outbound connectivity requirements before migrating: missing a required nodeManagement private endpoint can leave nodes unusable.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-03-31"><strong>Retired</strong><span>Retirement date: <time datetime="2026-03-31">31 Mar 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 14 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2026</p>
-<div class="rich-content"><p>The retirement date is <strong>2026-03-31</strong>. Microsoft states that Azure Batch no longer honors the classic compute node communication option after that date. The documented action target is to transition affected pools before 2026-03-31.</p>
-<p>A separate default-setting change occurred after <strong>2024-09-30</strong>: newly created pools with virtual networks default to simplified communication. That change is not the retirement milestone.</p>
+<div class="rich-content"><p>The retirement date is <strong>March 31, 2026</strong>. Microsoft states that Azure Batch no longer honors the classic compute node communication option after that date. The documented action target is to transition affected pools before March 31, 2026.</p>
+<p>A separate default-setting change occurred after <strong>September 30, 2024</strong>: newly created pools with virtual networks default to simplified communication. That change is not the retirement milestone.</p>
 <p>The supplied retirement announcement and migration guidance agree on the retirement date. They do not describe it as a blanket workload shutdown.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Batch is replacing classic compute node communication with simplified communication. After <strong>2026-03-31</strong>, Batch no longer honors the classic option.</p>
+<div class="rich-content"><p>Azure Batch is replacing classic compute node communication with simplified communication. After <strong>March 31, 2026</strong>, Batch no longer honors the classic option.</p>
 <p>Classic mode uses service-initiated connections to compute nodes and requires node access to Azure Storage for baseline operations. Simplified mode requires only outbound access to Batch for baseline operations; workload-specific Storage connections remain necessary. Simplified mode also invokes an additional agent on Linux and Windows nodes.</p>
 <p>Pools without user-specified virtual networks are generally unaffected; Azure Batch controls their default communication mode.</p>
 </div>
@@ -1934,7 +1934,7 @@
 <div class="rich-content"><ol>
 <li>Identify pools using classic communication. Review their virtual networks, public IP configuration and the Batch account's publicNetworkAccess setting. The supplied guidance does not provide a specific inventory method for identifying classic mode.</li>
 <li>Before migrating, create a <strong>nodeManagement private endpoint</strong> if publicNetworkAccess is Disabled or the pool has no public IP addresses. If account public access is disabled, configure DNS in the pool's virtual network. Missing a required endpoint prevents nodes from registering and leaves them unusable.</li>
-<li>Review the referenced classic-to-simplified impact guidance, then update existing pools or create new pools using simplified communication. The documented transition target is before 2026-03-31.</li>
+<li>Review the referenced classic-to-simplified impact guidance, then update existing pools or create new pools using simplified communication. The documented transition target is before March 31, 2026.</li>
 <li>Allow outbound node connectivity to Batch. Preserve Storage access for resource files, output files and application packages. Public IP addresses remain necessary by default; pools without them require the separately referenced configuration guidance.</li>
 <li>As team-owned validation, confirm that migrated nodes register successfully and workloads retain the Storage access they need.</li>
 </ol>
@@ -1944,7 +1944,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>The change affects Azure Batch pools using classic communication, particularly those with user-specified virtual networks. Pools without user-specified virtual networks are generally unaffected. No resources in your tenant have been inspected.</p>
-<p>After <strong>2026-03-31</strong>, Batch no longer honors classic mode. The supplied guidance does not fully explain the resulting behavior of existing classic-configured pools or establish a blanket workload shutdown. It does explicitly warn that missing a required nodeManagement private endpoint prevents node registration and leaves nodes unusable.</p>
+<p>After <strong>March 31, 2026</strong>, Batch no longer honors classic mode. The supplied guidance does not fully explain the resulting behavior of existing classic-configured pools or establish a blanket workload shutdown. It does explicitly warn that missing a required nodeManagement private endpoint prevents node registration and leaves nodes unusable.</p>
 <ul>
 <li>RDP and SSH connectivity remain unaffected when nodes have public IP addresses and associated load balancers.</li>
 <li>Workload Storage access remains direct from compute nodes, so required network flows must remain available.</li>

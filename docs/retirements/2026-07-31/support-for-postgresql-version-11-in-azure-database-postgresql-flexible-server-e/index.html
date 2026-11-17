@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Database for PostgreSQL</span><span class="badge retired" data-deadline="2026-07-31"><span></span>Retired</span></div>
-  <h1>Support for PostgreSQL version 11 in Azure Database PostgreSQL Flexible Server ends on 9 November 2024</h1><p>The supplied Azure version policy lists 2026-07-31 as the end of Standard Support for PostgreSQL 11 on Azure Database for PostgreSQL Flexible Server. This date takes precedence over the retirement announcement’s 2024-11-09 support-end date, but the sources do not explicitly reconcile the difference or document a further extension. End of support is not an automatic workload shutdown. Identify affected servers and evaluate a supported major version or the referenced Extended Support guidance; its terms are not supplied.</p>
+  <h1>Support for PostgreSQL version 11 in Azure Database PostgreSQL Flexible Server ends on 9 November 2024</h1><p>The supplied Azure version policy lists July 31, 2026 as the end of Standard Support for PostgreSQL 11 on Azure Database for PostgreSQL Flexible Server. This date takes precedence over the retirement announcement’s November 9, 2024 support-end date, but the sources do not explicitly reconcile the difference or document a further extension. End of support is not an automatic workload shutdown. Identify affected servers and evaluate a supported major version or the referenced Extended Support guidance; its terms are not supplied.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-07-31"><strong>Retired</strong><span>Retirement date: <time datetime="2026-07-31">31 Jul 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 10 months, 8 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Jul 2026</p>
-<div class="rich-content"><p>The supplied Azure product policy lists <strong>2026-07-31</strong> as the end of Standard Support for PostgreSQL 11 on Azure Database for PostgreSQL Flexible Server. This is the selected deadline because applicable product guidance takes precedence over the announcement.</p>
-<p>The retirement announcement instead states <strong>2024-11-09</strong>, explicitly extending Azure support beyond PostgreSQL 11 community support ending on <strong>2023-11-09</strong>. The supplied sources do not explicitly reconcile 2024-11-09 with 2026-07-31 or document a further extension. Both service-support dates remain relevant source alternatives; their relationship is unconfirmed.</p>
+<div class="rich-content"><p>The supplied Azure product policy lists <strong>July 31, 2026</strong> as the end of Standard Support for PostgreSQL 11 on Azure Database for PostgreSQL Flexible Server. This is the selected deadline because applicable product guidance takes precedence over the announcement.</p>
+<p>The retirement announcement instead states <strong>November 9, 2024</strong>, explicitly extending Azure support beyond PostgreSQL 11 community support ending on <strong>November 9, 2023</strong>. The supplied sources do not explicitly reconcile November 9, 2024 with July 31, 2026 or document a further extension. Both service-support dates remain relevant source alternatives; their relationship is unconfirmed.</p>
 <p>The policy separately ties engine-patch cessation and retired-version restrictions to community retirement. It does not fully establish how those restrictions relate to Standard Support or Extended Support. None of these dates establishes an automatic workload shutdown.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Database for PostgreSQL Flexible Server lists <strong>2026-07-31</strong> as the end of Standard Support for PostgreSQL 11, while the earlier announcement gives <strong>2024-11-09</strong> as its support-retirement date. The sources do not explain the difference.</p>
+<div class="rich-content"><p>Azure Database for PostgreSQL Flexible Server lists <strong>July 31, 2026</strong> as the end of Standard Support for PostgreSQL 11, while the earlier announcement gives <strong>November 9, 2024</strong> as its support-retirement date. The sources do not explain the difference.</p>
 <p>Under the supplied version policy, existing servers on community-retired engines can continue running with restrictions. Microsoft stops engine bug and security patches after community retirement but continues maintaining and patching underlying service components. Engine-related support may require an upgrade.</p>
 <p>The policy references Extended Support without supplying its eligibility, coverage or exceptions. The separate PostgreSQL 10 announcement does not establish requirements for this PostgreSQL 11 retirement.</p>
 </div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your Azure Database for PostgreSQL Flexible Server instances running PostgreSQL 11. The supplied sources provide no inventory command or discovery procedure.</li>
-<li>Evaluate a supported target major version against Azure support guidance and upstream support status. The original announcement recommended PostgreSQL 13 or higher before 2024-11-09, but the supplied upstream policy now marks PostgreSQL 13 and earlier unsupported. Do not treat version 13 as a currently supported destination solely because the announcement named it.</li>
+<li>Evaluate a supported target major version against Azure support guidance and upstream support status. The original announcement recommended PostgreSQL 13 or higher before November 9, 2024, but the supplied upstream policy now marks PostgreSQL 13 and earlier unsupported. Do not treat version 13 as a currently supported destination solely because the announcement named it.</li>
 <li>Review the referenced Extended Support guidance if considering that option. Its terms and eligibility are not supplied.</li>
 <li>Review the target version’s upgrade documentation and release notes for intervening major versions. Upstream guidance describes dump/reload or <code>pg_upgrade</code>, but the supplied content does not establish an Azure-specific execution procedure. Major upgrades can require application changes. The supplied upgrade reference resolves to a Bing homepage and provides no usable instructions.</li>
 <li>As team-owned planning, define compatibility checks, backup and recovery arrangements, cutover steps and application-validation evidence before execution. These procedures are not documented in the supplied content.</li>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Automation</span><span class="badge retired" data-deadline="2020-01-30"><span></span>Retired</span></div>
-  <h1>Azure Automation Service Management REST APIs are being retired January 30, 2020</h1><p>Microsoft explicitly extended retirement of Azure Automation Service Management (ASM) REST APIs to 2020-01-30. Migrate affected classic Automation REST calls and PowerShell cmdlets to Resource Manager equivalents to avoid service disruptions. Other Azure-module cmdlets are outside this announcement&#39;s scope. The notice states that affected APIs become unsupported; it does not establish that Automation workloads shut down.</p>
+  <h1>Azure Automation Service Management REST APIs are being retired January 30, 2020</h1><p>Microsoft explicitly extended retirement of Azure Automation Service Management (ASM) REST APIs to January 30, 2020. Migrate affected classic Automation REST calls and PowerShell cmdlets to Resource Manager equivalents to avoid service disruptions. Other Azure-module cmdlets are outside this announcement&#39;s scope. The notice states that affected APIs become unsupported; it does not establish that Automation workloads shut down.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2020-01-30"><strong>Retired</strong><span>Retirement date: <time datetime="2020-01-30">30 Jan 2020</time></span><span class="badge amber customer-lead-time-pill">Lead time: 5 months, 16 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Jan 2020</p>
-<div class="rich-content"><p>Microsoft explicitly extended the retirement deadline to <strong>2020-01-30</strong>. The notice requires migration by that date and states that Azure Automation Service Management REST APIs are retired and unsupported afterward.</p>
+<div class="rich-content"><p>Microsoft explicitly extended the retirement deadline to <strong>January 30, 2020</strong>. The notice requires migration by that date and states that Azure Automation Service Management REST APIs are retired and unsupported afterward.</p>
 <p>Microsoft warns of service disruptions but does not specify shutdown behavior. The previous deadline is not established by the supplied content; the URL is not evidence of it. The API reference pages do not independently establish a retirement date, and the Resource Manager TLS milestone concerns a separate change.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring Azure Automation's Azure Service Management (ASM) REST APIs and affected classic Automation PowerShell cmdlets, with a deadline of <strong>2020-01-30</strong>. Azure Resource Manager provides the replacement APIs.</p>
+<div class="rich-content"><p>Microsoft is retiring Azure Automation's Azure Service Management (ASM) REST APIs and affected classic Automation PowerShell cmdlets, with a deadline of <strong>January 30, 2020</strong>. Azure Resource Manager provides the replacement APIs.</p>
 <p>The scope covers REST APIs listed under “Operations on Automation (classic)” and PowerShell cmdlets with “AzureAutomation” in their names. Other cmdlets in the Azure module are not affected by this announcement.</p>
 <p>The notice does not document pre-retirement maintenance or security-update commitments.</p>
 </div>
@@ -1933,7 +1933,7 @@
 <div class="rich-content"><ol>
 <li>Identify your Azure Automation code and services that call the management.core.windows.net endpoint; the notice identifies these as Service Management REST API calls.</li>
 <li>Identify classic Automation PowerShell cmdlets containing “AzureAutomation” in their names. The notice distinguishes these from Resource Manager cmdlets containing “AzureRM” or “Az”.</li>
-<li>Migrate affected REST calls to Resource Manager REST APIs and affected PowerShell usage to Resource Manager or the latest PowerShell cmdlets by <strong>2020-01-30</strong>.</li>
+<li>Migrate affected REST calls to Resource Manager REST APIs and affected PowerShell usage to Resource Manager or the latest PowerShell cmdlets by <strong>January 30, 2020</strong>.</li>
 </ol>
 <p>The supplied content does not provide detailed prerequisites, capability comparisons, cutover steps or validation procedures. Several referenced PowerShell documentation pages were unavailable, limiting the supplied migration detail.</p>
 </div>
@@ -1942,7 +1942,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your integrations or scripts use Azure Automation's classic Service Management REST APIs or classic Automation PowerShell cmdlets.</p>
-<p>After <strong>2020-01-30</strong>, the affected APIs are retired and unsupported. Microsoft warns that not migrating can cause service disruptions, but the notice does not establish that Automation workloads themselves shut down or describe precise API failure behavior.</p>
+<p>After <strong>January 30, 2020</strong>, the affected APIs are retired and unsupported. Microsoft warns that not migrating can cause service disruptions, but the notice does not establish that Automation workloads themselves shut down or describe precise API failure behavior.</p>
 <p>Other Azure-module cmdlets are outside this announcement's scope. The supplied content does not establish your environment's exposure or document data deletion, retention changes or cost impacts.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

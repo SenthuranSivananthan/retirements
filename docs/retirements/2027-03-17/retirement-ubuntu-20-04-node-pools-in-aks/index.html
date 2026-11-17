@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge upcoming" data-deadline="2027-03-17"><span></span>Upcoming</span></div>
-  <h1>Retirement: Ubuntu 20.04 Node Pools in AKS</h1><p>AKS retires Ubuntu 20.04 node pools on 2027-03-17. Microsoft will stop producing Ubuntu 20.04 node images and security updates, delete existing node images and leave affected pools unsupported and unable to scale. No automatic workload shutdown date is documented. Migrate to a supported OS before that date. Product guidance specifies Kubernetes 1.35 or later; the announcement instead recommends 1.34 or later overall and gives a CVM-specific 1.33 threshold. These differing upgrade instructions do not change the retirement date. Check FIPS and CVM compatibility before choosing a replacement: Ubuntu 24.04 or later is listed as unsupported for Ubuntu FIPS images, while Ubuntu 22.04 has a separate support deadline of 2027-06-30.</p>
+  <h1>Retirement: Ubuntu 20.04 Node Pools in AKS</h1><p>AKS retires Ubuntu 20.04 node pools on March 17, 2027. Microsoft will stop producing Ubuntu 20.04 node images and security updates, delete existing node images and leave affected pools unsupported and unable to scale. No automatic workload shutdown date is documented. Migrate to a supported OS before that date. Product guidance specifies Kubernetes 1.35 or later; the announcement instead recommends 1.34 or later overall and gives a CVM-specific 1.33 threshold. These differing upgrade instructions do not change the retirement date. Check FIPS and CVM compatibility before choosing a replacement: Ubuntu 24.04 or later is listed as unsupported for Ubuntu FIPS images, while Ubuntu 22.04 has a separate support deadline of June 30, 2027.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-03-17"><strong>120 days remaining</strong><span>Retirement date: <time datetime="2027-03-17">17 Mar 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 11 months, 17 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">17 Mar 2027</p>
-<div class="rich-content"><p>AKS retires Ubuntu 20.04 on <strong>2027-03-17</strong>. Complete your migration before that date.</p>
+<div class="rich-content"><p>AKS retires Ubuntu 20.04 on <strong>March 17, 2027</strong>. Complete your migration before that date.</p>
 <p>On that date, Microsoft ends support, new Ubuntu 20.04 node image production and security updates, deletes existing node images and prevents affected node pools from scaling. The supplied retirement notice and applicable product guidance agree on this date.</p>
-<p>No separate automatic shutdown date for running workloads is documented. Ubuntu 22.04 has a separate support deadline of 2027-06-30; it is not an extension for Ubuntu 20.04.</p>
+<p>No separate automatic shutdown date for running workloads is documented. Ubuntu 22.04 has a separate support deadline of June 30, 2027; it is not an extension for Ubuntu 20.04.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>AKS is retiring <strong>Ubuntu 20.04 node pools on 2027-03-17</strong>, including the CVM and FIPS configurations addressed by the notice. After retirement, affected pools lose support, security updates, node images and scaling capability.</p>
+<div class="rich-content"><p>AKS is retiring <strong>Ubuntu 20.04 node pools on March 17, 2027</strong>, including the CVM and FIPS configurations addressed by the notice. After retirement, affected pools lose support, security updates, node images and scaling capability.</p>
 <p>This is not a retirement of all Ubuntu images, Confidential VMs or FIPS functionality. The sources do not specify regional exceptions or pre-retirement maintenance commitments.</p>
 <p>The announcement lists Ubuntu 22.04 and Ubuntu 24.04 as replacements, but feature compatibility and the separate Ubuntu 22.04 retirement constrain your choice.</p>
 </div>
@@ -1934,9 +1934,9 @@
 <div class="rich-content"><ol>
 <li>Identify your Ubuntu 20.04 node pools, OS SKUs, Kubernetes versions and FIPS or CVM requirements. The supplied sources provide no Ubuntu-specific inventory procedure.</li>
 <li>Use the applicable product guidance: upgrade affected node pools to <strong>Kubernetes 1.35 or later</strong> to migrate to a supported Ubuntu version. The announcement instead recommends 1.34 or later overall, identifies 1.33 or later as the Ubuntu 24.04 default threshold for CVM, and identifies 1.34 or later as the Ubuntu 22.04 default threshold for FIPS. These are differing upgrade instructions, not different retirement deadlines; prefer the explicit product migration guidance rather than treating a default-image threshold as proof of migration.</li>
-<li>Confirm target compatibility before upgrading. Ubuntu 24.04 or later is listed as unsupported for Ubuntu FIPS images. Ubuntu 22.04 supports FIPS but loses support on 2027-06-30; the supplied guidance gives no longer-term Ubuntu FIPS migration solution. CVM supports Ubuntu 24.04, not Ubuntu 22.04, and cannot combine with FIPS, Arm64 or Trusted Launch. Resolve an unsupported target path before cutover, using technical support if you have a support plan.</li>
+<li>Confirm target compatibility before upgrading. Ubuntu 24.04 or later is listed as unsupported for Ubuntu FIPS images. Ubuntu 22.04 supports FIPS but loses support on June 30, 2027; the supplied guidance gives no longer-term Ubuntu FIPS migration solution. CVM supports Ubuntu 24.04, not Ubuntu 22.04, and cannot combine with FIPS, Arm64 or Trusted Launch. Resolve an unsupported target path before cutover, using technical support if you have a support plan.</li>
 <li>Check available upgrade targets, deprecated APIs, permissions and compute quota. Supported non-LTS clusters cannot skip minor versions. Upgrade the control plane before node pools; a control-plane-only upgrade does not migrate node pools. Unsupported-cluster recovery requires a full-cluster upgrade to an eligible supported target, or workload migration to a new supported cluster if no target is available.</li>
-<li>Complete migration before <strong>2027-03-17</strong>. As team-owned validation, confirm the resulting node OS and Kubernetes versions and validate your workloads.</li>
+<li>Complete migration before <strong>March 17, 2027</strong>. As team-owned validation, confirm the resulting node OS and Kubernetes versions and validate your workloads.</li>
 </ol>
 <p>The supplied sources do not provide a complete retirement-specific backup, cutover, rollback or cleanup procedure. Automatic node image upgrades are not documented as a substitute for OS migration.</p>
 </div>
@@ -1945,9 +1945,9 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your AKS node pools run <strong>Ubuntu 20.04</strong>. This synthesis has not inspected your resources.</p>
-<p>Without migration, affected pools become unsupported and unable to scale on <strong>2027-03-17</strong>. Microsoft stops providing Ubuntu 20.04 node images and security updates and deletes existing node images. The notice warns of service disruptions but does not state that running workloads automatically shut down.</p>
+<p>Without migration, affected pools become unsupported and unable to scale on <strong>March 17, 2027</strong>. Microsoft stops providing Ubuntu 20.04 node images and security updates and deletes existing node images. The notice warns of service disruptions but does not state that running workloads automatically shut down.</p>
 <p>Image deletion does not establish deletion of your application data. Retirement-specific console or API removal, retention changes and cost effects are not documented.</p>
-<p>Migration targets require separate checks. Ubuntu 24.04 does not currently support Ubuntu FIPS images in the supplied guidance, and Ubuntu 22.04 is not a supported CVM target. Ubuntu 22.04 support ends separately on 2027-06-30; its image and code removal on 2028-04-30 causes scaling and remediation failures. Neither milestone changes the Ubuntu 20.04 deadline.</p>
+<p>Migration targets require separate checks. Ubuntu 24.04 does not currently support Ubuntu FIPS images in the supplied guidance, and Ubuntu 22.04 is not a supported CVM target. Ubuntu 22.04 support ends separately on June 30, 2027; its image and code removal on April 30, 2028 causes scaling and remediation failures. Neither milestone changes the Ubuntu 20.04 deadline.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>
     </section>

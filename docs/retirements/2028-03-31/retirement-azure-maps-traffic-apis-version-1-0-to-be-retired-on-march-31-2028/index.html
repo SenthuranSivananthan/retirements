@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Maps</span><span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure Maps Traffic APIs Version 1.0 to Be Retired on March 31, 2028</h1><p>Azure Maps Traffic APIs version 1.0 retire on 2028-03-31. Microsoft states they remain usable without disruption until that date; afterward, API calls will fail. Migrate incident details to Traffic Incident API version 2025-01-01 and traffic tiles to Get Map Tile API version 2024-04-01 before retirement. Traffic Flow Segment has no direct replacement for segment speeds or travel times. Traffic Incident Viewport is unnecessary with the newer APIs. All other Azure Maps services are unaffected by this announcement.</p>
+  <h1>Retirement: Azure Maps Traffic APIs Version 1.0 to Be Retired on March 31, 2028</h1><p>Azure Maps Traffic APIs version 1.0 retire on March 31, 2028. Microsoft states they remain usable without disruption until that date; afterward, API calls will fail. Migrate incident details to Traffic Incident API version 2025-01-01 and traffic tiles to Get Map Tile API version 2024-04-01 before retirement. Traffic Flow Segment has no direct replacement for segment speeds or travel times. Traffic Incident Viewport is unnecessary with the newer APIs. All other Azure Maps services are unaffected by this announcement.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-03-31"><strong>500 days remaining</strong><span>Retirement date: <time datetime="2028-03-31">31 Mar 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 3 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2028</p>
-<div class="rich-content"><p>Azure Maps Traffic APIs version 1.0 retire on <strong>2028-03-31</strong>. Complete your transition before retirement and stop calling version 1.0 by that date.</p>
+<div class="rich-content"><p>Azure Maps Traffic APIs version 1.0 retire on <strong>March 31, 2028</strong>. Complete your transition before retirement and stop calling version 1.0 by that date.</p>
 <p>Microsoft states you can use the affected APIs without disruption until that date. Afterward, they will no longer be available and/or supported, and API calls will fail.</p>
 <p>The retirement announcement establishes this deadline; the supplied API references and migration guide do not independently establish a retirement date. The replacement version identifiers 2025-01-01 and 2024-04-01 are not retirement deadlines.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring these Azure Maps Traffic APIs version 1.0 on <strong>2028-03-31</strong>:</p>
+<div class="rich-content"><p>Microsoft is retiring these Azure Maps Traffic APIs version 1.0 on <strong>March 31, 2028</strong>:</p>
 <ul>
 <li>Get Traffic Flow Segment</li>
 <li>Get Traffic Flow Tile</li>
@@ -1945,7 +1945,7 @@
 <li>Replace flow and incident tile calls with Render Get Map Tile version 2024-04-01. Select the appropriate tileset and format: documented flow tiles offer vector and raster options; the listed incident tileset is vector. Call Get Map Attribution and display the returned attribution wherever retrieved tiles are rendered, including third-party controls and custom renderers. Set the map view appropriately for users' locations and comply with applicable mapping laws.</li>
 <li>Remove reliance on Traffic Incident Viewport and its traffic model ID when moving to the newer APIs.</li>
 <li>Resolve dependencies on segment speeds or travel times separately. The guide provides no direct replacement; traffic visualization tiles do not supply those values.</li>
-<li>Complete your transition before <strong>2028-03-31</strong> and stop calling version 1.0 by that date.</li>
+<li>Complete your transition before <strong>March 31, 2028</strong> and stop calling version 1.0 by that date.</li>
 </ol>
 <p>As optional team-owned validation, check coordinate handling, incident parsing, icons, attribution and tile rendering. The supplied content provides no cutover, backup or rollback procedure and no quantified cost comparison.</p>
 </div>
@@ -1953,7 +1953,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Applications calling the five affected Traffic APIs version 1.0 face API-call failures after <strong>2028-03-31</strong>, disrupting functionality that still depends on them. Microsoft states those calls can continue without disruption until that date.</p>
+<div class="rich-content"><p>Applications calling the five affected Traffic APIs version 1.0 face API-call failures after <strong>March 31, 2028</strong>, disrupting functionality that still depends on them. Microsoft states those calls can continue without disruption until that date.</p>
 <p>Migration affects integration behavior:</p>
 <ul>
 <li>Incident-detail integrations must adapt bounding-box inputs, GeoJSON responses and incidentType-based icon categories.</li>

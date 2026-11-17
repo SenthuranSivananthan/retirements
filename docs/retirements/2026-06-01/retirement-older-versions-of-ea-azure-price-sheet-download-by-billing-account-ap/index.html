@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2026-06-01"><span></span>Retired</span></div>
-  <h1>Retirement: Older versions of EA Azure Price Sheet – Download by Billing Account API</h1><p>Microsoft scheduled retirement of older EA Azure Price Sheet – Download by Billing Account APIs for 2026-06-01. The announcement covers versions earlier than 2023-09-01; the reference page covers all Microsoft.Consumption versions and states that support ends afterward. Migrate affected integrations to Microsoft.CostManagement version 2023-11-01. Neither source confirms endpoint shutdown or that retirement has occurred.</p>
+  <h1>Retirement: Older versions of EA Azure Price Sheet – Download by Billing Account API</h1><p>Microsoft scheduled retirement of older EA Azure Price Sheet – Download by Billing Account APIs for June 1, 2026. The announcement covers versions earlier than 2023-09-01; the reference page covers all Microsoft.Consumption versions and states that support ends afterward. Migrate affected integrations to Microsoft.CostManagement version 2023-11-01. Neither source confirms endpoint shutdown or that retirement has occurred.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-06-01"><strong>Retired</strong><span>Retirement date: <time datetime="2026-06-01">1 Jun 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 7 months, 22 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,7 +1916,7 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Jun 2026</p>
-<div class="rich-content"><p>Microsoft lists <strong>2026-06-01</strong> as the retirement milestone and directs you to migrate by that date.</p>
+<div class="rich-content"><p>Microsoft lists <strong>June 1, 2026</strong> as the retirement milestone and directs you to migrate by that date.</p>
 <ul>
 <li>The announcement covers EA Azure Price Sheet – Download by Billing Account API versions earlier than 2023-09-01.</li>
 <li>The reference page covers all versions of Microsoft.Consumption Azure Price Sheet – Download by Billing Account and states that they will no longer be supported afterward.</li>
@@ -1926,7 +1926,7 @@
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft scheduled retirement of the affected Enterprise Agreement (EA) Azure Price Sheet – Download by Billing Account APIs for <strong>2026-06-01</strong>. The replacement is <strong>Microsoft.CostManagement API version 2023-11-01</strong>.</p>
+<div class="rich-content"><p>Microsoft scheduled retirement of the affected Enterprise Agreement (EA) Azure Price Sheet – Download by Billing Account APIs for <strong>June 1, 2026</strong>. The replacement is <strong>Microsoft.CostManagement API version 2023-11-01</strong>.</p>
 <p>The announcement identifies versions earlier than 2023-09-01, including 2022-06-01, 2021-10-01, 2020-01-01-preview, 2019-10-01 and 2019-05-01. Version 2023-09-01 is outside that announcement's stated range, but is not its migration target. Separately, the reference page states that all Microsoft.Consumption versions are retiring; it does not establish that the Microsoft.CostManagement replacement is retiring.</p>
 <p>The replacement uses a new URI, HTTP POST, asynchronous generation and a revised schema. Downloads change from one CSV to a ZIP containing multiple CSV files, each no larger than 75 MB. It adds current-billing-period Reserved Instance pricing and additional pricing metadata; Reserved Instance base prices are unavailable.</p>
 <p>The reference page states that support ends after retirement. The sources do not document regional exceptions, pre-retirement availability guarantees, maintenance commitments or security-update commitments.</p>
@@ -1937,7 +1937,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your EA price-sheet integrations and check both the API provider namespace and version. Include all Microsoft.Consumption Download by Billing Account calls, not just the listed examples.</li>
-<li>Migrate affected integrations to Microsoft.CostManagement version 2023-11-01. The announcement's migration deadline was <strong>2026-06-01</strong>. Use the documented download endpoint with HTTP POST, the billing account ID and billing period name. The documented authentication uses Azure Active Directory OAuth2 with the user_impersonation scope.</li>
+<li>Migrate affected integrations to Microsoft.CostManagement version 2023-11-01. The announcement's migration deadline was <strong>June 1, 2026</strong>. Use the documented download endpoint with HTTP POST, the billing account ID and billing period name. The documented authentication uses Azure Active Directory OAuth2 with the user_impersonation scope.</li>
 <li>Adapt processing for asynchronous generation, ZIP extraction, multiple CSV files and the revised schema. Replace the removed Unit field with the unit-of-measure field documented in the replacement schema.</li>
 <li>Check that generation completes, download the result within the link's one-hour validity window, and verify that downstream processing handles the files and pricing fields correctly.</li>
 </ol>
@@ -1949,7 +1949,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>Your EA price-sheet integrations are in scope if they use versions earlier than 2023-09-01 under the announcement, or any Microsoft.Consumption Download by Billing Account version under the reference page. The supplied sources do not inspect your environment or quantify your exposure.</p>
-<p>Microsoft states that the retiring Microsoft.Consumption API versions are unsupported after <strong>2026-06-01</strong>. Neither source confirms that requests stop working, that Azure workloads shut down, or that portal access changes if you do not migrate.</p>
+<p>Microsoft states that the retiring Microsoft.Consumption API versions are unsupported after <strong>June 1, 2026</strong>. Neither source confirms that requests stop working, that Azure workloads shut down, or that portal access changes if you do not migrate.</p>
 <p>Migration affects request routing, the HTTP method, asynchronous handling, file extraction and schema-dependent consumers. Each CSV in the ZIP can be up to 75 MB. Reserved Instance base prices are unavailable, and unit price is not the same as the blended effective price in usage details for tiered services.</p>
 <p>The Microsoft.CostManagement version 2023-11-01 replacement is not identified as retiring. The 13-month price-sheet availability window is not a documented deletion policy; older billing periods require a support request. The sources do not document cost consequences.</p>
 </div>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Container Apps</span><span class="badge upcoming" data-deadline="2027-09-29"><span></span>Upcoming</span></div>
-  <h1>Retirement: Functions on Azure Container Apps V1</h1><p>Functions on Azure Container Apps V1 retires on 2027-09-29. Microsoft states that existing V1 apps will stop running and processing requests or event-driven triggers after that date. Migrate to the native V2 hosting model and validate production behavior before retirement. You can reuse your container image without function-code changes, but you must transfer configuration, validate identities and integrations, and redirect production traffic. The migration assistant supports inventory and health checks; workload validation and cutover remain your responsibility. The retirement date and shutdown consequence come from the Azure retirement notice, not the supporting migration guides or portal page.</p>
+  <h1>Retirement: Functions on Azure Container Apps V1</h1><p>Functions on Azure Container Apps V1 retires on September 29, 2027. Microsoft states that existing V1 apps will stop running and processing requests or event-driven triggers after that date. Migrate to the native V2 hosting model and validate production behavior before retirement. You can reuse your container image without function-code changes, but you must transfer configuration, validate identities and integrations, and redirect production traffic. The migration assistant supports inventory and health checks; workload validation and cutover remain your responsibility. The retirement date and shutdown consequence come from the Azure retirement notice, not the supporting migration guides or portal page.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-09-29"><strong>316 days remaining</strong><span>Retirement date: <time datetime="2027-09-29">29 Sep 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">29 Sep 2027</p>
-<div class="rich-content"><p>Functions on Azure Container Apps V1 retires on <strong>2027-09-29</strong>. Microsoft's retirement notice states that existing V1 apps will stop running after that date and will no longer process requests or event-driven triggers.</p>
-<p>Complete migration before 2027-09-29. Microsoft recommends completing migration and production validation well before retirement.</p>
+<div class="rich-content"><p>Functions on Azure Container Apps V1 retires on <strong>September 29, 2027</strong>. Microsoft's retirement notice states that existing V1 apps will stop running after that date and will no longer process requests or event-driven triggers.</p>
+<p>Complete migration before September 29, 2027. Microsoft recommends completing migration and production validation well before retirement.</p>
 <p>The supporting migration guide and migration-assistant repository do not independently establish a retirement date or shutdown consequence. Their lack of a deadline does not conflict with the retirement notice. No separate new-customer restriction or end-of-support date is supplied.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring the Functions on Azure Container Apps V1 hosting model on <strong>2027-09-29</strong>. Existing V1 apps will stop running after that date.</p>
+<div class="rich-content"><p>Microsoft is retiring the Functions on Azure Container Apps V1 hosting model on <strong>September 29, 2027</strong>. Existing V1 apps will stop running after that date.</p>
 <p>V1 uses a Function App proxy under Microsoft.Web paired with a hidden, platform-managed container app. V2 replaces that arrangement with one native Microsoft.App container app configured with kind=functionapp. You can reuse your existing container image without function-code changes, but migration requires configuration transfer and production cutover.</p>
 <p>The migration guide describes function listing, keys and invocation counts as planned V2 features, not established current capabilities. It separately identifies running a Functions image in a standard container app without kind=functionapp as unsupported; that configuration is not the V1 retirement population.</p>
 <p>The supplied notice does not specify regional exceptions or maintenance, support or security-update commitments before retirement.</p>
@@ -1932,7 +1932,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Migrate affected V1 apps to V2 before <strong>2027-09-29</strong>.</p>
+<div class="rich-content"><p>Migrate affected V1 apps to V2 before <strong>September 29, 2027</strong>.</p>
 <ol>
 <li>Identify V1 deployments. The migration assistant inventories legacy Microsoft.Web/sites resources whose kind contains azurecontainerapps. Review eligibility, blocked reasons and required customer input. Its all-subscriptions scan covers only subscriptions you can access.</li>
 <li>Prepare your migration route. The assistant requires Python 3.10 or later and Azure CLI sign-in. For manual migration, the guide requires resource-creation permissions, the latest Azure CLI, the containerapp extension and the functionapp extension if applicable. Confirm image access and review CPU, memory and maximum-instance quotas.</li>
@@ -1947,7 +1947,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if you use the Functions on Azure Container Apps <strong>V1 proxy hosting model</strong>. Without migration, existing V1 apps will stop running after <strong>2027-09-29</strong>, including request processing and event-driven triggers.</p>
+<div class="rich-content"><p>You are affected if you use the Functions on Azure Container Apps <strong>V1 proxy hosting model</strong>. Without migration, existing V1 apps will stop running after <strong>September 29, 2027</strong>, including request processing and event-driven triggers.</p>
 <p>The migration assistant identifies legacy Microsoft.Web/sites resources whose kind contains azurecontainerapps and resolves their backing Container Apps through managedBy. Inventory reports eligible apps, blocked apps and apps needing customer input. This summary does not assess your subscriptions.</p>
 <p>Migration creates a native V2 destination. Although you can reuse application code and the container image, you must transfer configuration and redirect production traffic. System-assigned identities receive new principals, requiring RBAC validation. The guide lists function listing, keys and invocation counts as planned V2 features, so do not assume those capabilities are currently available.</p>
 <p>Standard container apps manually running a Functions image without kind=functionapp are a separately documented unsupported configuration, not evidence of additional V1 retirement scope.</p>

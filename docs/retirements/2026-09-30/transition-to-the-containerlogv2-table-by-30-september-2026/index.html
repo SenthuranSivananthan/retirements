@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Monitor</span><span class="badge retired" data-deadline="2026-09-30"><span></span>Retired</span></div>
-  <h1>Transition to the ContainerLogV2 table by 30 September 2026</h1><p>Support for the legacy ContainerLog table in Azure Monitor Container insights retires on 2026-09-30. Migrate to ContainerLogV2 before that date and update dependent alerts and dashboards. Microsoft might temporarily accept legacy data afterward, but continued ingestion is not guaranteed. The retired experience receives no support, bug fixes or new investment; no final ingestion shutdown date is documented.</p>
+  <h1>Transition to the ContainerLogV2 table by 30 September 2026</h1><p>Support for the legacy ContainerLog table in Azure Monitor Container insights retires on September 30, 2026. Migrate to ContainerLogV2 before that date and update dependent alerts and dashboards. Microsoft might temporarily accept legacy data afterward, but continued ingestion is not guaranteed. The retired experience receives no support, bug fixes or new investment; no final ingestion shutdown date is documented.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-30">30 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 1 day</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2026</p>
-<div class="rich-content"><p>Support for the legacy ContainerLog table retires on <strong>2026-09-30</strong>. The announcement says to transition by that date; the migration guidance directs you to migrate before it.</p>
+<div class="rich-content"><p>Support for the legacy ContainerLog table retires on <strong>September 30, 2026</strong>. The announcement says to transition by that date; the migration guidance directs you to migrate before it.</p>
 <p>Microsoft might accept legacy data for a limited transition period afterward, but this is not guaranteed or an extension of support. The retired experience receives no support, bug fixes or new investment. Neither source specifies a final ingestion shutdown date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Monitor Container insights is retiring support for ContainerLog on <strong>2026-09-30</strong>. ContainerLogV2 replaces it in your Log Analytics workspace, providing ContainerLog functionality plus additional pod and container metadata, optional multiline logging, and support for Analytics Logs and Basic Logs.</p>
+<div class="rich-content"><p>Azure Monitor Container insights is retiring support for ContainerLog on <strong>September 30, 2026</strong>. ContainerLogV2 replaces it in your Log Analytics workspace, providing ContainerLog functionality plus additional pod and container metadata, optional multiline logging, and support for Analytics Logs and Basic Logs.</p>
 <p>ContainerLogV2 is the default for CLI version 2.54.0 and later and for customers onboarding with managed identity authentication. Explicit enablement through CLI data collection settings requires version 2.51.0 or later. Changing the schema selects the destination table; it does not enable or disable log collection.</p>
 <p>No regional exceptions are documented. Continued legacy ingestion after retirement is uncertain, not a supported operating commitment.</p>
 </div>
@@ -1930,7 +1930,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Migrate to ContainerLogV2 before <strong>2026-09-30</strong>; do not rely on continued legacy ingestion afterward.</p>
+<div class="rich-content"><p>Migrate to ContainerLogV2 before <strong>September 30, 2026</strong>; do not rely on continued legacy ingestion afterward.</p>
 <ol>
 <li>Review your clusters' log profile and ConfigMap settings. ConfigMap takes precedence when both are configured; ContainerLog is used only when both settings are explicitly off.</li>
 <li>Identify dependent alerts and dashboards. Use the migration page's Azure Resource Graph query to find candidate alert rules, then confirm their dependencies. Its coverage is limited, as described under progress.</li>
@@ -1949,7 +1949,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your Container insights configuration sends logs to ContainerLog or your alerts and dashboards depend on it. Configurations already using ContainerLogV2 do not require this table migration. The supplied sources do not establish which of your resources are affected.</p>
-<p>From <strong>2026-09-30</strong>, the legacy experience loses support, bug fixes and new investment. Continued ingestion is not guaranteed. The sources do not document workload shutdown, a final ingestion cutoff, post-retirement access guarantees, or retention and deletion commitments. Switching the schema changes the destination table, not whether logs are collected.</p>
+<p>From <strong>September 30, 2026</strong>, the legacy experience loses support, bug fixes and new investment. Continued ingestion is not guaranteed. The sources do not document workload shutdown, a final ingestion cutoff, post-retirement access guarantees, or retention and deletion commitments. Switching the schema changes the destination table, not whether logs are collected.</p>
 <h3>Relevant limits</h3>
 <ul>
 <li>Log messages larger than 16 KB are truncated by default; enabling multiline logging raises the supported limit to 64 KB.</li>

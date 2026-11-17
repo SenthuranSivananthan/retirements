@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Virtual Machines</span><span class="badge upcoming" data-deadline="2028-05-01"><span></span>Upcoming</span></div>
-  <h1>Retirement: D, Ds, Dv2, Dsv2, and Ls Series Virtual Machines to Be Retired on May 1, 2028</h1><p>Microsoft will retire Azure D, Ds, Dv2, Dsv2 and Ls series VMs on 2028-05-01. Migrate to supported sizes before that date to avoid deallocation and workload interruption. Three-year reservation purchases and renewals ended on 2025-05-01; one-year purchases and renewals ended on 2026-07-01. Existing reservations retain their original terms, but do not permit VM use after retirement.</p>
+  <h1>Retirement: D, Ds, Dv2, Dsv2, and Ls Series Virtual Machines to Be Retired on May 1, 2028</h1><p>Microsoft will retire Azure D, Ds, Dv2, Dsv2 and Ls series VMs on May 1, 2028. Migrate to supported sizes before that date to avoid deallocation and workload interruption. Three-year reservation purchases and renewals ended on May 1, 2025; one-year purchases and renewals ended on July 1, 2026. Existing reservations retain their original terms, but do not permit VM use after retirement.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-05-01"><strong>531 days remaining</strong><span>Retirement date: <time datetime="2028-05-01">1 May 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 1 month, 1 day</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,19 +1916,19 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 May 2028</p>
-<div class="rich-content"><p>Azure D, Ds, Dv2, Dsv2 and Ls series VMs retire on <strong>2028-05-01</strong>. After retirement, Microsoft deallocates affected VMs; you cannot use or purchase them.</p>
+<div class="rich-content"><p>Azure D, Ds, Dv2, Dsv2 and Ls series VMs retire on <strong>May 1, 2028</strong>. After retirement, Microsoft deallocates affected VMs; you cannot use or purchase them.</p>
 <p>Separate reservation purchase and renewal restrictions apply:</p>
 <ul>
-<li><strong>2025-05-01:</strong> Three-year reservations became unavailable.</li>
-<li><strong>2026-07-01:</strong> One-year reservations became unavailable. The notice explicitly replaces the previously stated <strong>2027-05-01</strong> date with this earlier restriction; this is not an extension.</li>
+<li><strong>May 1, 2025:</strong> Three-year reservations became unavailable.</li>
+<li><strong>July 1, 2026:</strong> One-year reservations became unavailable. The notice explicitly replaces the previously stated <strong>May 1, 2027</strong> date with this earlier restriction; this is not an extension.</li>
 </ul>
 <p>The migration guide labels these reservation milestones as expiration dates, but its narrative confirms that existing reservations remain valid through their original terms. They are not universal reservation-cancellation dates and do not authorize VM use after retirement.</p>
-<p>The guide's 2027-05-31 deadline applies to other VM series, not this retirement.</p>
+<p>The guide's May 31, 2027 deadline applies to other VM series, not this retirement.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft will retire Azure <strong>D, Ds, Dv2, Dsv2 and Ls series VMs</strong> on <strong>2028-05-01</strong>. You must move affected workloads to supported sizes before retirement to keep them operating.</p>
+<div class="rich-content"><p>Microsoft will retire Azure <strong>D, Ds, Dv2, Dsv2 and Ls series VMs</strong> on <strong>May 1, 2028</strong>. You must move affected workloads to supported sizes before retirement to keep them operating.</p>
 <p>The notice does not establish an earlier end to VM use; reservation purchase and renewal restrictions are separate. After retirement, affected VMs are deallocated and lose support and SLA coverage.</p>
 <p>The supplied guidance does not document regional exceptions for these five series or maintenance and security-update commitments before retirement. Exceptions stated for other VM series do not establish exceptions here.</p>
 </div>
@@ -1940,7 +1940,7 @@
 <li>Identify workloads using D, Ds, Dv2, Dsv2 or Ls series VMs against the referenced retired-and-retiring size documentation. Review active reservations and their end dates in Azure Reservation Management. Reservation orders alone are not a complete VM inventory; reservation management requires appropriate reservation permissions.</li>
 <li>Select a supported target based on CPU, memory, storage, regional and zone capacity, and workload compatibility. The guide lists Lsv3/Lasv3 and Lsv4/Lasv4 options for older storage-optimized families, but does not establish a single replacement for every affected size.</li>
 <li>Check target availability, subscription quota, operating-system, disk-controller and networking requirements. If selecting v6, confirm Generation 2, NVMe support and a MANA-supported operating system. Request quota increases through the Azure portal if needed.</li>
-<li>Migrate before <strong>2028-05-01</strong>. Follow the referenced resizing guide: stop and deallocate the VM, resize to a compatible supported target, then start it. Plan for interruption and loss of in-memory and temporary-disk data. The supplied guidance does not provide detailed backup, application-cutover or cleanup procedures.</li>
+<li>Migrate before <strong>May 1, 2028</strong>. Follow the referenced resizing guide: stop and deallocate the VM, resize to a compatible supported target, then start it. Plan for interruption and loss of in-memory and temporary-disk data. The supplied guidance does not provide detailed backup, application-cutover or cleanup procedures.</li>
 <li>As team-owned validation, record the resulting size, successful restart and workload-validation results. These records are local evidence, not a documented automated completion check.</li>
 </ol>
 <p>If you hold affected reservations, review their expiration dates to avoid unexpected pay-as-you-go billing. Eligible reservation exchanges or trade-ins for an Azure savings plan for compute are optional and subject to eligibility and limitations.</p>
@@ -1949,7 +1949,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your workloads use Azure D, Ds, Dv2, Dsv2 or Ls series VMs. Without migration before <strong>2028-05-01</strong>, Microsoft deallocates those VMs, stopping workloads and ending support and SLA coverage. This synthesis does not inspect your subscription.</p>
+<div class="rich-content"><p>You are affected if your workloads use Azure D, Ds, Dv2, Dsv2 or Ls series VMs. Without migration before <strong>May 1, 2028</strong>, Microsoft deallocates those VMs, stopping workloads and ending support and SLA coverage. This synthesis does not inspect your subscription.</p>
 <p>At retirement deallocation, in-memory and temporary-disk data is lost; managed disk data is preserved. Service can resume after resizing to a supported size and restarting, subject to workload compatibility. Migration itself requires a stop/deallocate/start cycle.</p>
 <p>Existing reservations retain their original terms. After an affected reservation expires, continued eligible VM use moves to pay-as-you-go unless you select another cost option; reservation benefits do not override retirement. The guide says retired VMs stop incurring VM charges, not that every associated resource charge ends. No quantified cost estimate is supplied.</p>
 <p>Target capacity, quota and compatibility can constrain migration. No separate console, API or deployment-tooling retirement is documented for these series.</p>

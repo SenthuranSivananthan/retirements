@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Resource Manager</span><span class="badge retired" data-deadline="2019-12-01"><span></span>Retired</span></div>
-  <h1>Move to Azure Resource Manager REST APIs for Azure SQL Database</h1><p>Support for Azure Service Manager REST APIs for Azure SQL Database retires on 2019-12-01. Microsoft directs you to migrate affected integrations to Azure Resource Manager APIs by 2019-11-30. The classic API reference also schedules deprecation for 2019-12-01 and explicitly states that SQL Database itself does not change. The supplied material does not establish API shutdown or database workload shutdown.</p>
+  <h1>Move to Azure Resource Manager REST APIs for Azure SQL Database</h1><p>Support for Azure Service Manager REST APIs for Azure SQL Database retires on December 1, 2019. Microsoft directs you to migrate affected integrations to Azure Resource Manager APIs by November 30, 2019. The classic API reference also schedules deprecation for December 1, 2019 and explicitly states that SQL Database itself does not change. The supplied material does not establish API shutdown or database workload shutdown.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2019-12-01"><strong>Retired</strong><span>Retirement date: <time datetime="2019-12-01">1 Dec 2019</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 1 day</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Dec 2019</p>
-<div class="rich-content"><p>Support for Azure Service Manager REST APIs for Azure SQL Database retires on <strong>2019-12-01</strong>. The classic API reference schedules deprecation of its listed commands for the same date.</p>
-<p>Microsoft directs you to migrate by <strong>2019-11-30</strong>. This is a separate migration target, not a conflicting retirement date.</p>
-<p>The supplied material does not establish when classic API requests stop working or indicate database workload shutdown. The Resource Manager overview's <strong>2025-03-01</strong> deadline concerns older TLS protocols, not this retirement.</p>
+<div class="rich-content"><p>Support for Azure Service Manager REST APIs for Azure SQL Database retires on <strong>December 1, 2019</strong>. The classic API reference schedules deprecation of its listed commands for the same date.</p>
+<p>Microsoft directs you to migrate by <strong>November 30, 2019</strong>. This is a separate migration target, not a conflicting retirement date.</p>
+<p>The supplied material does not establish when classic API requests stop working or indicate database workload shutdown. The Resource Manager overview's <strong>March 1, 2025</strong> deadline concerns older TLS protocols, not this retirement.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring support for Azure Service Manager REST APIs for Azure SQL Database on <strong>2019-12-01</strong> and directs affected customers to Azure Resource Manager REST APIs.</p>
+<div class="rich-content"><p>Microsoft is retiring support for Azure Service Manager REST APIs for Azure SQL Database on <strong>December 1, 2019</strong> and directs affected customers to Azure Resource Manager REST APIs.</p>
 <p>The classic reference describes its listed commands as supported for backward compatibility only. It explicitly states that SQL Database itself does not change, while many new SQL Database features require Resource Manager.</p>
 <p>The supplied material does not specify affected API versions, regional exceptions, maintenance or security-update commitments, or post-deprecation API availability.</p>
 </div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify management integrations that use Azure Service Manager REST APIs or the listed classic Azure SQL Database commands. The supplied material provides no inventory method.</li>
-<li>Replace those calls with Azure Resource Manager APIs by <strong>2019-11-30</strong>. Use the classic reference's operation mappings to select replacements, including Create or Update Database, Move Resources and Activity Logs where applicable.</li>
+<li>Replace those calls with Azure Resource Manager APIs by <strong>November 30, 2019</strong>. Use the classic reference's operation mappings to select replacements, including Create or Update Database, Move Resources and Activity Logs where applicable.</li>
 <li>Adapt authentication and response handling: Resource Manager uses Azure Active Directory rather than classic certificate authorization, and JSON rather than XML.</li>
 <li>As a team-owned validation step, verify that the replacement integrations perform the operations you use before cutting over.</li>
 </ol>
@@ -1944,7 +1944,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your management tooling or integrations use the classic Azure SQL Database REST APIs. Listed operations include server and database administration, firewall rules, copy and recovery, import/export, and status or metadata retrieval.</p>
-<p>Support retires on <strong>2019-12-01</strong>, but the supplied material does not establish whether requests fail afterward. The classic reference explicitly states that SQL Database itself does not change; this is not a documented database workload shutdown.</p>
+<p>Support retires on <strong>December 1, 2019</strong>, but the supplied material does not establish whether requests fail afterward. The classic reference explicitly states that SQL Database itself does not change; this is not a documented database workload shutdown.</p>
 <p>The material identifies no required change for integrations already using Resource Manager APIs and documents no data deletion, retention changes or cost effects. Your actual API usage has not been assessed.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

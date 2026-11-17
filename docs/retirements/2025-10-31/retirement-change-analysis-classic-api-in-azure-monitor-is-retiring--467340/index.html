@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Monitor</span><span class="badge retired" data-deadline="2025-10-31"><span></span>Retired</span></div>
-  <h1>Retirement: Change Analysis (classic) API in Azure Monitor is retiring</h1><p>Microsoft’s notice set 2025-10-31 as the retirement date for the Change Analysis (classic) API in Azure Monitor and required migration to Change Analysis powered by Azure Resource Graph (ARG) before that date. It warned that workloads using the classic API would be deleted and associated application data lost; the supplied material does not confirm whether this occurred. ARG guidance documents coverage exclusions and a 14-day change-history query window, but does not independently establish a retirement date.</p>
+  <h1>Retirement: Change Analysis (classic) API in Azure Monitor is retiring</h1><p>Microsoft’s notice set October 31, 2025 as the retirement date for the Change Analysis (classic) API in Azure Monitor and required migration to Change Analysis powered by Azure Resource Graph (ARG) before that date. It warned that workloads using the classic API would be deleted and associated application data lost; the supplied material does not confirm whether this occurred. ARG guidance documents coverage exclusions and a 14-day change-history query window, but does not independently establish a retirement date.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-10-31"><strong>Retired</strong><span>Retirement date: <time datetime="2025-10-31">31 Oct 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 25 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,7 +1916,7 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Oct 2025</p>
-<div class="rich-content"><p>The notice set <strong>2025-10-31</strong> as the retirement date for the Change Analysis (classic) API in Azure Monitor. You were required to migrate before that date to avoid service disruptions.</p>
+<div class="rich-content"><p>The notice set <strong>October 31, 2025</strong> as the retirement date for the Change Analysis (classic) API in Azure Monitor. You were required to migrate before that date to avoid service disruptions.</p>
 <p>The notice states that workloads using the classic API would be deleted and associated application data lost. The supplied material does not confirm whether retirement or deletion occurred.</p>
 <p>The ARG guidance establishes no separate retirement milestone. Its last-updated date is not a deadline, and its 14-day change-history query window is a retention limit.</p>
 </div>
@@ -1934,7 +1934,7 @@
 <div class="rich-content"><ol>
 <li>Identify workloads that use the Change Analysis (classic) API. The supplied material provides no discovery method.</li>
 <li>Assess ARG against your use cases, particularly its exclusion of data-plane changes and App Service file and configuration changes.</li>
-<li>Migrate affected workloads to Change Analysis powered by ARG. The notice required migration before 2025-10-31; the supplied material does not provide migration procedures, prerequisites, cutover steps or recovery guidance if you have not migrated.</li>
+<li>Migrate affected workloads to Change Analysis powered by ARG. The notice required migration before October 31, 2025; the supplied material does not provide migration procedures, prerequisites, cutover steps or recovery guidance if you have not migrated.</li>
 <li>As a team-owned validation step, confirm that migrated integrations meet your monitoring needs. No documented migration completion check is supplied.</li>
 </ol>
 <p>If you need ARG change history beyond 14 days, the guidance describes integrating Resource Graph queries with Azure Logic Apps and manually exporting results to an Azure data store such as Log Analytics. This is a retention option, not a documented retirement requirement.</p>

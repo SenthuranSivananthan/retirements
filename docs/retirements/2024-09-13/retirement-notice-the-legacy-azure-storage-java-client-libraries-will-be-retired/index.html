@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">SDKs · Storage Accounts</span><span class="badge retired" data-deadline="2024-09-13"><span></span>Retired</span></div>
-  <h1>Retirement notice: The legacy Azure Storage Java client libraries will be retired on 13 September 2024</h1><p>The legacy Azure Storage Java client libraries retired on 2024-09-13. Microsoft stopped issuing updates after that date, but the libraries remain usable; the notice does not announce workload shutdown or blocked data access. Transition to the latest Azure Storage Java client libraries for blobs, file shares and queues. The repository recommends Java Storage SDK v12 rather than adopting Blob Storage SDK v11. Exact affected versions and detailed migration procedures are not supplied.</p>
+  <h1>Retirement notice: The legacy Azure Storage Java client libraries will be retired on 13 September 2024</h1><p>The legacy Azure Storage Java client libraries retired on September 13, 2024. Microsoft stopped issuing updates after that date, but the libraries remain usable; the notice does not announce workload shutdown or blocked data access. Transition to the latest Azure Storage Java client libraries for blobs, file shares and queues. The repository recommends Java Storage SDK v12 rather than adopting Blob Storage SDK v11. Exact affected versions and detailed migration procedures are not supplied.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-09-13"><strong>Retired</strong><span>Retirement date: <time datetime="2024-09-13">13 Sep 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 15 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">13 Sep 2024</p>
-<div class="rich-content"><p>The legacy Azure Storage Java client libraries retired on <strong>2024-09-13</strong>. The notice directed you to transition to the latest libraries by that date.</p>
+<div class="rich-content"><p>The legacy Azure Storage Java client libraries retired on <strong>September 13, 2024</strong>. The notice directed you to transition to the latest libraries by that date.</p>
 <p>Microsoft no longer issues updates for the legacy libraries after that date, but explicitly permits continued use. This is not a documented workload-shutdown deadline.</p>
-<p>The legacy repository was archived on <strong>2024-07-19</strong>. That is a separate repository milestone, not a conflicting SDK retirement date. The reference pages do not independently establish another retirement deadline.</p>
+<p>The legacy repository was archived on <strong>July 19, 2024</strong>. That is a separate repository milestone, not a conflicting SDK retirement date. The reference pages do not independently establish another retirement deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>The legacy Azure Storage Java client libraries retired on <strong>2024-09-13</strong> and no longer receive Microsoft updates. They remain usable, and their source code remains available on GitHub in an archived, read-only repository.</p>
+<div class="rich-content"><p>The legacy Azure Storage Java client libraries retired on <strong>September 13, 2024</strong> and no longer receive Microsoft updates. They remain usable, and their source code remains available on GitHub in an archived, read-only repository.</p>
 <p>The notice points to replacement libraries for blobs, file shares and queues. The repository recommends Java Storage SDK v12, with separate artifacts for those services and synchronous and asynchronous I/O. It describes v8 as legacy and synchronous-only, and does not recommend adopting Blob Storage SDK v11.</p>
 <p>The notice does not specify exact affected versions or regional exceptions. The replacement-library examples and migration-guide filenames do not establish additional retirement scope or security-update commitments.</p>
 </div>
@@ -1934,7 +1934,7 @@
 <div class="rich-content"><ol>
 <li>Identify applications using the legacy Azure Storage Java client libraries and which storage services they access. The notice supplies no inventory method or exact affected-version list.</li>
 <li>Select the applicable v12 libraries for blobs, file shares or queues. The repository recommends v12 rather than adopting Blob Storage SDK v11.</li>
-<li>Follow the relevant migration guides. The supplied listings identify V8-to-V12 and V10-to-V12 guides for blobs, and V8-to-V12 guides for file shares and queues, but do not include their contents. The notice's migration target was <strong>2024-09-13</strong>.</li>
+<li>Follow the relevant migration guides. The supplied listings identify V8-to-V12 and V10-to-V12 guides for blobs, and V8-to-V12 guides for file shares and queues, but do not include their contents. The notice's migration target was <strong>September 13, 2024</strong>.</li>
 </ol>
 <p>The replacement-library setup pages require JDK 8 or later, an Azure subscription and a storage account. They describe using the Azure SDK BOM for GA dependencies or specifying versions directly; example beta versions are not documented mandatory migration targets.</p>
 <p>Detailed compatibility constraints, validation, cutover and cleanup procedures are not supplied. Continued legacy-library use is permitted, but Microsoft no longer issues updates.</p>
@@ -1944,7 +1944,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>This affects applications using the legacy Azure Storage Java client libraries. The supplied notice does not identify exact affected versions or provide an automated discovery method, so your application's exposure cannot be determined from these sources alone.</p>
-<p>If you do not migrate, the libraries remain usable without further Microsoft updates after <strong>2024-09-13</strong>. The notice does not state that retirement shuts down workloads, blocks storage-account data access or changes Azure Storage service APIs.</p>
+<p>If you do not migrate, the libraries remain usable without further Microsoft updates after <strong>September 13, 2024</strong>. The notice does not state that retirement shuts down workloads, blocks storage-account data access or changes Azure Storage service APIs.</p>
 <p>Separately, the legacy GitHub repository is archived and read-only. Its older statement about continued issue responses conflicts operationally with that status; continued issue handling there is unconfirmed. The repository prefers issues in the v12 repository.</p>
 <p>No retirement-specific data retention, deletion or cost consequences are documented.</p>
 </div>

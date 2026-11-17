@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Static Web Apps</span><span class="badge retired" data-deadline="2022-12-03"><span></span>Retired</span></div>
-  <h1>Azure Static Web Apps extended support for .NET Core 3.1 ends on 3 December 2022</h1><p>Azure Static Web Apps extended support for .NET Core 3.1 in apps using Azure Functions ended on 2022-12-03. Existing apps continue to run, but Microsoft no longer provides .NET Core 3.1 security patches or customer service in this scope. The Static Web Apps configuration reference confirms this date. A separate Azure Functions notice gives 2022-12-13 for its broader .NET Core 3.1 support milestone; it does not establish an extension for Static Web Apps. Migrate affected APIs to a supported runtime. The original recommendation of Functions 4.x with .NET 6 is historical: the supplied Static Web Apps reference lists .NET 6 support as ending on 2025-04-30.</p>
+  <h1>Azure Static Web Apps extended support for .NET Core 3.1 ends on 3 December 2022</h1><p>Azure Static Web Apps extended support for .NET Core 3.1 in apps using Azure Functions ended on December 3, 2022. Existing apps continue to run, but Microsoft no longer provides .NET Core 3.1 security patches or customer service in this scope. The Static Web Apps configuration reference confirms this date. A separate Azure Functions notice gives December 13, 2022 for its broader .NET Core 3.1 support milestone; it does not establish an extension for Static Web Apps. Migrate affected APIs to a supported runtime. The original recommendation of Functions 4.x with .NET 6 is historical: the supplied Static Web Apps reference lists .NET 6 support as ending on April 30, 2025.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-12-03"><strong>Retired</strong><span>Retirement date: <time datetime="2022-12-03">3 Dec 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 month, 26 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,16 +1916,16 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">3 Dec 2022</p>
-<div class="rich-content"><p>Azure Static Web Apps extended support for .NET Core 3.1 in apps using Azure Functions ended on <strong>2022-12-03</strong>. The notice directed you to update before that date, and the Static Web Apps API runtime reference confirms the same support deadline.</p>
+<div class="rich-content"><p>Azure Static Web Apps extended support for .NET Core 3.1 in apps using Azure Functions ended on <strong>December 3, 2022</strong>. The notice directed you to update before that date, and the Static Web Apps API runtime reference confirms the same support deadline.</p>
 <p>Existing apps continue to run afterward, but Microsoft no longer provides .NET Core 3.1 security patches or customer service in this scope. This is an end-of-support milestone, not a workload shutdown.</p>
-<p>The separate Azure Functions notice gives <strong>2022-12-13</strong> for its broader .NET Core 3.1 support milestone. That date does not establish an extension of the Static Web Apps deadline. The supplied content does not explain the difference between these scoped dates.</p>
+<p>The separate Azure Functions notice gives <strong>December 13, 2022</strong> for its broader .NET Core 3.1 support milestone. That date does not establish an extension of the Static Web Apps deadline. The supplied content does not explain the difference between these scoped dates.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Static Web Apps ended extended support for .NET Core 3.1 on <strong>2022-12-03</strong> for apps using Azure Functions, including managed functions hosted by Static Web Apps.</p>
+<div class="rich-content"><p>Azure Static Web Apps ended extended support for .NET Core 3.1 on <strong>December 3, 2022</strong> for apps using Azure Functions, including managed functions hosted by Static Web Apps.</p>
 <p>Existing apps continue to work, but Microsoft no longer provides .NET Core 3.1 security patches or customer service. This does not establish retirement of Azure Static Web Apps or its static content hosting.</p>
-<p>The original notice recommended Functions runtime 4.x with .NET 6. That recommendation is historical: the supplied Static Web Apps reference lists .NET 6 API runtime support as ending on 2025-04-30.</p>
+<p>The original notice recommended Functions runtime 4.x with .NET 6. That recommendation is historical: the supplied Static Web Apps reference lists .NET 6 API runtime support as ending on April 30, 2025.</p>
 </div>
       <div class="notice"></div>
     </section>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your Static Web Apps APIs using .NET Core 3.1. Review platform.apiRuntime in staticwebapp.config.json and TargetFramework in the API project's csproj file. These checks require access to your application configuration; the supplied content provides no fleet-wide discovery method.</li>
-<li>Select a supported replacement rather than treating the original .NET 6 recommendation as current. The supplied Static Web Apps reference lists .NET 10.0 isolated, and the general .NET policy lists .NET 10 LTS as supported through 2028-11-14. The Static Web Apps reference itself supplies no end-of-support date for that API runtime.</li>
+<li>Select a supported replacement rather than treating the original .NET 6 recommendation as current. The supplied Static Web Apps reference lists .NET 10.0 isolated, and the general .NET policy lists .NET 10 LTS as supported through November 14, 2028. The Static Web Apps reference itself supplies no end-of-support date for that API runtime.</li>
 <li>Follow the isolated-worker migration guidance for required packages and project settings. .NET 10.0 supports only the isolated worker model, so an in-process API needs an execution-model migration, not just a version change. Set TargetFramework and platform.apiRuntime to matching versions and use Functions runtime 4.x.</li>
 <li>Ensure the build places staticwebapp.config.json at the root of output_location.</li>
 <li>As team-owned validation, confirm the deployed configuration and test API behavior.</li>
@@ -1945,7 +1945,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your Azure Static Web Apps APIs use Azure Functions with .NET Core 3.1. Review platform.apiRuntime and the API project's TargetFramework to identify that configuration; this summary has not inspected your resources.</p>
-<p>If you remain on that version, existing apps continue to run after <strong>2022-12-03</strong>, but without Microsoft's .NET Core 3.1 security patches or customer service. The notice warns of potential service disruptions or security vulnerabilities; it does not announce workload shutdown.</p>
+<p>If you remain on that version, existing apps continue to run after <strong>December 3, 2022</strong>, but without Microsoft's .NET Core 3.1 security patches or customer service. The notice warns of potential service disruptions or security vulnerabilities; it does not announce workload shutdown.</p>
 <p>Moving an in-process API to .NET 10.0 requires an isolated-worker migration. Updating only to the original .NET 6 destination would leave you on another API runtime whose listed support date has passed.</p>
 <p>The supplied content does not establish an impact from this retirement on other runtimes or static content hosting. It documents no retirement-related data deletion, retention change or cost estimate.</p>
 </div>

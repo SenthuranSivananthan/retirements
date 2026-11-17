@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">App Service</span><span class="badge retired" data-deadline="2023-04-30"><span></span>Retired</span></div>
-  <h1>Community support for Node 14 LTS is ending on 30 April 2023</h1><p>Node 14 LTS support on Azure App Service ends on 2023-04-30. Microsoft will stop providing patches and customer service for that version, but existing applications will continue to run. The notice directs you to upgrade to Node 16 LTS before that date; it does not establish that Node 16 remains supported today. General App Service guidance provides runtime-identification methods and warns that changing runtime settings restarts your app.</p>
+  <h1>Community support for Node 14 LTS is ending on 30 April 2023</h1><p>Node 14 LTS support on Azure App Service ends on April 30, 2023. Microsoft will stop providing patches and customer service for that version, but existing applications will continue to run. The notice directs you to upgrade to Node 16 LTS before that date; it does not establish that Node 16 remains supported today. General App Service guidance provides runtime-identification methods and warns that changing runtime settings restarts your app.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2023-04-30"><strong>Retired</strong><span>Retirement date: <time datetime="2023-04-30">30 Apr 2023</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 1 month, 9 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Apr 2023</p>
-<div class="rich-content"><p>Node 14 LTS support on Azure App Service ends on <strong>2023-04-30</strong>. The notice directs you to update to Node 16 LTS before that date.</p>
+<div class="rich-content"><p>Node 14 LTS support on Azure App Service ends on <strong>April 30, 2023</strong>. The notice directs you to update to Node 16 LTS before that date.</p>
 <p>This is an end-of-support milestone, not a workload shutdown. The title calls it the end of community support; the body calls it the end of extended support and states that Microsoft will stop providing patches and customer service. Both descriptions identify the same date.</p>
 <p>The general runtime guidance supplies no alternative Node 14 retirement date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>After 2023-04-30, Microsoft will no longer provide patches or customer service for Node 14 LTS on Azure App Service. The notice states that existing applications will continue to run.</p>
+<div class="rich-content"><p>After April 30, 2023, Microsoft will no longer provide patches or customer service for Node 14 LTS on Azure App Service. The notice states that existing applications will continue to run.</p>
 <p>General App Service guidance covers Windows and Linux and says end-of-life Node.js versions are removed from the Runtime Stack dropdown without affecting existing applications targeting them. This guidance does not independently establish a Node 14 retirement date or promise updates after end of life.</p>
 <p>The notice names Node 16 LTS as its upgrade target. It documents no regional exceptions or support commitments for other versions.</p>
 </div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your App Service apps using Node 14 LTS. General runtime guidance identifies <code>WEBSITE_NODE_DEFAULT_VERSION</code> for Windows and <code>linux-fx-version</code> for Linux as the configured-runtime settings.</li>
-<li>Check available supported runtimes with <code>az webapp list-runtimes --os-type windows</code> or <code>az webapp list-runtimes --os-type linux</code>. The retirement notice directed an upgrade to Node 16 LTS before 2023-04-30; its recommendation and the reference page's examples do not establish Node 16's current support status.</li>
+<li>Check available supported runtimes with <code>az webapp list-runtimes --os-type windows</code> or <code>az webapp list-runtimes --os-type linux</code>. The retirement notice directed an upgrade to Node 16 LTS before April 30, 2023; its recommendation and the reference page's examples do not establish Node 16's current support status.</li>
 <li>Update affected apps. For Windows, change the runtime app setting through the portal or Azure CLI. For Linux, use Azure CLI or the portal's Configuration → General settings → Stack Settings → Major version, then save. <strong>Changing runtime settings restarts the app.</strong></li>
 </ol>
 <p>For Windows, the runtime guidance recommends tilde syntax rather than pinning a specific minor or patch version, whose availability is not guaranteed. The supplied content does not document compatibility prerequisites, backup requirements or post-change validation procedures.</p>
@@ -1943,7 +1943,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your Azure App Service applications use Node 14 LTS. The supplied general guidance explains how to identify configured runtimes on Windows and Linux; no tenant resources have been inspected.</p>
-<p>If you remain on Node 14 LTS after 2023-04-30, Microsoft will no longer provide patches or customer service for that version. The notice states that existing applications will continue to run and existing workloads will not be impacted by support ending, while warning of potential service disruption and security vulnerabilities as reasons to upgrade.</p>
+<p>If you remain on Node 14 LTS after April 30, 2023, Microsoft will no longer provide patches or customer service for that version. The notice states that existing applications will continue to run and existing workloads will not be impacted by support ending, while warning of potential service disruption and security vulnerabilities as reasons to upgrade.</p>
 <p>Separately, general runtime guidance says end-of-life versions disappear from the Runtime Stack dropdown. It does not document workload shutdown, API restrictions, data deletion or cost changes. Changing your runtime settings causes an application restart.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

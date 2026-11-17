@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Virtual Machines</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h1>H-series Azure Virtual Machines will be retired by 31 August 2022</h1><p>Microsoft is retiring original Azure H-series VM sizes and their Promo equivalents. The announcement specifies 2022-08-31, but the migration guide contains both 2022-08-31 and September 2022 retirement statements. The retirement timing remains unconfirmed; no extension is documented. The stated migration and deallocation target was 2022-08-31. Migrate workloads you need to keep running, check replacement-family quota and InfiniBand compatibility, and review reservations separately.</p>
+  <h1>H-series Azure Virtual Machines will be retired by 31 August 2022</h1><p>Microsoft is retiring original Azure H-series VM sizes and their Promo equivalents. The announcement specifies August 31, 2022, but the migration guide contains both August 31, 2022 and September 2022 retirement statements. The retirement timing remains unconfirmed; no extension is documented. The stated migration and deallocation target was August 31, 2022. Migrate workloads you need to keep running, check replacement-family quota and InfiniBand compatibility, and review reservations separately.</p>
   <div class="retirement-countdown unknown" data-countdown data-deadline=""><strong>Retirement date to confirm</strong><span class="badge amber customer-lead-time-pill">Lead time: Not calculable</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,8 +1916,8 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">Date not specified</p>
-<div class="rich-content"><p>The announcement gives <strong>2022-08-31</strong> as the retirement deadline for the affected H-series and H-series Promo VMs. The migration guide repeats that date but also says these VMs would not retire until <strong>September 2022</strong>, without specifying a day.</p>
-<p>The supplied sources do not resolve this conflict or document an extension, so the structured retirement date and month remain unset. The stated migration and deallocation target was <strong>2022-08-31</strong>. Both the announcement and migration guide say remaining affected VMs would be deallocated after that date and stop working.</p>
+<div class="rich-content"><p>The announcement gives <strong>August 31, 2022</strong> as the retirement deadline for the affected H-series and H-series Promo VMs. The migration guide repeats that date but also says these VMs would not retire until <strong>September 2022</strong>, without specifying a day.</p>
+<p>The supplied sources do not resolve this conflict or document an extension, so the structured retirement date and month remain unset. The stated migration and deallocation target was <strong>August 31, 2022</strong>. Both the announcement and migration guide say remaining affected VMs would be deallocated after that date and stop working.</p>
 <p>The migration guide also says 1-year and 3-year reserved instance offerings are no longer available, while PAYGO remains available until decommissioning. It supplies no separate date for the reservation restriction.</p>
 </div>
     </section>
@@ -1928,7 +1928,7 @@
 <li>H8, H8m, H16, H16r, H16m and H16mr.</li>
 <li>H8 Promo, H8m Promo, H16 Promo, H16r Promo, H16m Promo and H16mr Promo.</li>
 </ul>
-<p>The announcement specifies 2022-08-31; the migration guide also contains conflicting September 2022 retirement wording. Remaining affected VMs would be deallocated and stop working under the notices' stated post-2022-08-31 schedule.</p>
+<p>The announcement specifies August 31, 2022; the migration guide also contains conflicting September 2022 retirement wording. Remaining affected VMs would be deallocated and stop working under the notices' stated post-August 31, 2022 schedule.</p>
 <p>The pricing page says H-series promotional VMs are no longer available and existing promotional VMs can run until their series decommission date, but it supplies no date. This retirement's stated scope excludes other VM series. The supplied content does not document pre-retirement maintenance, support or security-update commitments.</p>
 </div>
       <div class="notice"></div>
@@ -1938,7 +1938,7 @@
 <div class="rich-content"><ol>
 <li>Identify VMs using the affected H-series or H-series Promo sizes. The supplied sources do not provide an inventory procedure.</li>
 <li>Select a replacement for workloads you need to keep running: HC, HBv2 or HBv3 for HPC; Dv4, Dav4 or Dv5 for general-purpose workloads; or Ev4, Eav4 or Ev5 for memory-optimized workloads.</li>
-<li>Obtain sufficient vCPU quota for the target VM family, then resize your VMs. Deallocate affected VMs you do not need. The stated migration and deallocation target was 2022-08-31, although retirement timing remains conflicted.</li>
+<li>Obtain sufficient vCPU quota for the target VM family, then resize your VMs. Deallocate affected VMs you do not need. The stated migration and deallocation target was August 31, 2022, although retirement timing remains conflicted.</li>
 <li>If you require InfiniBand, check the replacement's supported software stack. Legacy images with built-in InfiniBand drivers—CentOS 7.4 and earlier or Windows Server 2012—cannot be used for that migration. The guide directs you to modern supported images and standard OFED drivers.</li>
 <li>Review existing reservations and consider exchange or refund. If you need a replacement reservation, choose an offering with reservation availability.</li>
 </ol>
@@ -1949,7 +1949,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you use one of the listed original H-series sizes or its Promo equivalent. The supplied content does not establish whether your environment contains affected VMs; other VM series are outside this retirement's stated scope.</p>
-<p>The notices say affected VMs remaining after 2022-08-31 would be deallocated, stop working and no longer incur VM billing charges. The migration guide's conflicting September 2022 wording leaves retirement timing unconfirmed. The sources do not establish data retention, deletion or charges for associated resources.</p>
+<p>The notices say affected VMs remaining after August 31, 2022 would be deallocated, stop working and no longer incur VM billing charges. The migration guide's conflicting September 2022 wording leaves retirement timing unconfirmed. The sources do not establish data retention, deletion or charges for associated resources.</p>
 <p>Existing reservations need separate attention: the migration guide warns that you can continue paying after hardware retirement without receiving reservation benefits unless you exchange or refund them.</p>
 <p>InfiniBand workloads may require an OS-image and driver change when moving to replacement sizes.</p>
 </div>

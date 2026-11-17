@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2024-08-31"><span></span>Retired</span></div>
-  <h1>Microsoft HPC Pack Burst to Cloud Services will be retired on 31 August 2024</h1><p>Microsoft HPC Pack Burst to Cloud Services retires on 2024-08-31 because its dependent Cloud Service (classic) deployment model is retiring. Microsoft directs you to transition to HPC Pack Burst to Azure IaaS VM or Burst to Azure Batch before that date to maintain workload continuity. After retirement, you cannot create or manage Azure Cloud service worker role instances with HPC Pack. The notice does not explicitly say whether existing workloads stop running on that date. The supplied replacement deployment guides provide prerequisites and operational checks, but not a complete retirement migration procedure.</p>
+  <h1>Microsoft HPC Pack Burst to Cloud Services will be retired on 31 August 2024</h1><p>Microsoft HPC Pack Burst to Cloud Services retires on August 31, 2024 because its dependent Cloud Service (classic) deployment model is retiring. Microsoft directs you to transition to HPC Pack Burst to Azure IaaS VM or Burst to Azure Batch before that date to maintain workload continuity. After retirement, you cannot create or manage Azure Cloud service worker role instances with HPC Pack. The notice does not explicitly say whether existing workloads stop running on that date. The supplied replacement deployment guides provide prerequisites and operational checks, but not a complete retirement migration procedure.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-08-31">31 Aug 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 10 months, 24 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2024</p>
-<div class="rich-content"><p>Microsoft HPC Pack Burst to Cloud Services retires on <strong>2024-08-31</strong>. Microsoft directs you to transition before that date to maintain workload continuity.</p>
+<div class="rich-content"><p>Microsoft HPC Pack Burst to Cloud Services retires on <strong>August 31, 2024</strong>. Microsoft directs you to transition before that date to maintain workload continuity.</p>
 <p>After retirement, you cannot create or manage Azure Cloud service worker role instances with HPC Pack. The notice does not explicitly state whether existing workloads stop running on that date.</p>
 <p>The replacement deployment guides establish no separate retirement dates. Their last-updated dates are not retirement milestones.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring <strong>HPC Pack Burst to Cloud Services</strong> on <strong>2024-08-31</strong> because it depends on the retiring Cloud Service (classic) deployment model. After retirement, HPC Pack cannot create or manage Azure Cloud service worker role instances.</p>
+<div class="rich-content"><p>Microsoft is retiring <strong>HPC Pack Burst to Cloud Services</strong> on <strong>August 31, 2024</strong> because it depends on the retiring Cloud Service (classic) deployment model. After retirement, HPC Pack cannot create or manage Azure Cloud service worker role instances.</p>
 <p>The notice names HPC Pack Burst to Azure IaaS VM and Burst to Azure Batch as alternatives. It does not specify affected HPC Pack versions, regional exceptions, or interim support and security-update commitments. The supplied replacement guides describe deployment capabilities; they do not independently announce retirements or establish future availability commitments.</p>
 </div>
       <div class="notice"></div>
@@ -1938,7 +1938,7 @@
 <li><strong>Azure Batch:</strong> The supplied guide documents support starting with HPC Pack 2012 R2 Update 3, with additional options from HPC Pack 2016 Update 1. Configure the head node, Azure subscription and Batch account. User Subscription allocation requires Azure AD authentication and does not support Low Priority VMs in the guide's comparison. Custom images or virtual networks require an explicit Contributor role assignment for the Batch client application on the resource. Configure task-output retrieval if needed; output does not return to HPC Pack by default.</li>
 </ul>
 </li>
-<li>Transition before <strong>2024-08-31</strong>, as directed by Microsoft. The supplied material does not provide a complete retirement migration procedure, export or backup instructions, or a cutover sequence. The supplied migration short-link returned unrelated Bing content.</li>
+<li>Transition before <strong>August 31, 2024</strong>, as directed by Microsoft. The supplied material does not provide a complete retirement migration procedure, export or backup instructions, or a cutover sequence. The supplied migration short-link returned unrelated Bing content.</li>
 <li>Check replacement readiness before submitting jobs. For IaaS nodes, wait for deployment completion and Node Health to become OK. For Batch, inspect individual compute-node readiness; pool provisioning alone is insufficient.</li>
 </ol>
 <p>For Batch operations, the guide recommends stopping unused pools to deprovision compute nodes and reduce costs; this is operating guidance, not a retirement cleanup requirement.</p>
@@ -1947,7 +1947,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if you use <strong>HPC Pack Burst to Cloud Services</strong>. After <strong>2024-08-31</strong>, you cannot create or manage Azure Cloud service worker role instances with HPC Pack. Microsoft directs you to transition to maintain workload continuity, but the notice does not explicitly establish a shutdown of existing workloads on that date.</p>
+<div class="rich-content"><p>You are affected if you use <strong>HPC Pack Burst to Cloud Services</strong>. After <strong>August 31, 2024</strong>, you cannot create or manage Azure Cloud service worker role instances with HPC Pack. Microsoft directs you to transition to maintain workload continuity, but the notice does not explicitly establish a shutdown of existing workloads on that date.</p>
 <p>Replacement choices have documented operating constraints:</p>
 <ul>
 <li><strong>Azure IaaS VM:</strong> Regional total and VM-series core quotas apply separately. Spot VMs have no SLA, may lack capacity and can be evicted; interrupted tasks are requeued, but evicted VMs are not automatically redeployed. HPC Auto Update can interrupt tasks and cause job failures, so the guide recommends leaving it disabled. Stopping nodes deallocates their VMs; deleting nodes also deletes their VMs.</li>

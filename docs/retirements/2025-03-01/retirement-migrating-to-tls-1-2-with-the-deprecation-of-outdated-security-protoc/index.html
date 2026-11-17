@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Resource Manager</span><span class="badge retired" data-deadline="2025-03-01"><span></span>Retired</span></div>
-  <h1>Retirement: Migrating to TLS 1.2+ with the Deprecation of Outdated Security Protocols</h1><p>Azure Resource Manager&#39;s published retirement date for TLS 1.0 and TLS 1.1 is 2025-03-01. Clients must use TLS 1.2 or later for deployment and management operations. Applicable product guidance supports this date over the broader Azure announcement&#39;s 2024-10-31 deadline. The original notice separately requires migration by 2024-03-01 without explaining the gap; this does not establish an extension. Actual enforcement status is not confirmed.</p>
+  <h1>Retirement: Migrating to TLS 1.2+ with the Deprecation of Outdated Security Protocols</h1><p>Azure Resource Manager&#39;s published retirement date for TLS 1.0 and TLS 1.1 is March 1, 2025. Clients must use TLS 1.2 or later for deployment and management operations. Applicable product guidance supports this date over the broader Azure announcement&#39;s October 31, 2024 deadline. The original notice separately requires migration by March 1, 2024 without explaining the gap; this does not establish an extension. Actual enforcement status is not confirmed.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-03-01"><strong>Retired</strong><span>Retirement date: <time datetime="2025-03-01">1 Mar 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 6 months, 1 day</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,19 +1916,19 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Mar 2025</p>
-<div class="rich-content"><p>Azure Resource Manager's published end-of-support date for TLS 1.0 and TLS 1.1 is <strong>2025-03-01</strong>. Clients must use TLS 1.2 or later to continue deployment and management operations. The retirement notice says older-protocol calls will fail afterward; the supplied guidance does not confirm actual enforcement status.</p>
+<div class="rich-content"><p>Azure Resource Manager's published end-of-support date for TLS 1.0 and TLS 1.1 is <strong>March 1, 2025</strong>. Clients must use TLS 1.2 or later to continue deployment and management operations. The retirement notice says older-protocol calls will fail afterward; the supplied guidance does not confirm actual enforcement status.</p>
 <p>The sources contain distinct dates:</p>
 <ul>
-<li><strong>2024-03-01:</strong> the original Azure Resource Manager notice's required migration target, not its retirement date. The notice does not explain the one-year gap.</li>
-<li><strong>2024-10-31:</strong> the broader Azure announcement's end-of-support date and TLS 1.2+ requirement.</li>
-<li><strong>2025-03-01:</strong> the Azure Resource Manager retirement date stated in both the original notice and applicable product guidance.</li>
+<li><strong>March 1, 2024:</strong> the original Azure Resource Manager notice's required migration target, not its retirement date. The notice does not explain the one-year gap.</li>
+<li><strong>October 31, 2024:</strong> the broader Azure announcement's end-of-support date and TLS 1.2+ requirement.</li>
+<li><strong>March 1, 2025:</strong> the Azure Resource Manager retirement date stated in both the original notice and applicable product guidance.</li>
 </ul>
-<p>For Azure Resource Manager, the service-specific product guidance establishes the applicable published date. The inputs do not explicitly document an extension or explain the discrepancy with the broader announcement. The guidance's 2025-09-15 update timestamp is not another deadline.</p>
+<p>For Azure Resource Manager, the service-specific product guidance establishes the applicable published date. The inputs do not explicitly document an extension or explain the discrepancy with the broader announcement. The guidance's September 15, 2025 update timestamp is not another deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Resource Manager is retiring TLS 1.0 and TLS 1.1, with a published cutoff of <strong>2025-03-01</strong>. Clients must use TLS 1.2 or later afterward.</p>
+<div class="rich-content"><p>Azure Resource Manager is retiring TLS 1.0 and TLS 1.1, with a published cutoff of <strong>March 1, 2025</strong>. Clients must use TLS 1.2 or later afterward.</p>
 <p>This change affects connections to Azure Resource Manager, Azure's resource deployment and management service. The guidance describes older protocols as available for backward compatibility before the cutoff. It identifies no regional or customer exceptions and makes no maintenance or security-update commitments.</p>
 <p>The separate Azure-wide announcement does not establish identical enforcement behavior or retirement dates for every Azure service. The general TLS migration reference provides preparation guidance, not an independent universal retirement deadline.</p>
 </div>
@@ -1936,7 +1936,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Update clients that call Azure Resource Manager to <strong>TLS 1.2 or later</strong>. The original notice separately specifies 2024-03-01 as its migration target; the published retirement milestone is 2025-03-01.</p>
+<div class="rich-content"><p>Update clients that call Azure Resource Manager to <strong>TLS 1.2 or later</strong>. The original notice separately specifies March 1, 2024 as its migration target; the published retirement milestone is March 1, 2025.</p>
 <ol>
 <li>Identify applications, integrations and deployment tools that call Azure Resource Manager. Inspect outgoing HTTPS requests with Fiddler to determine their TLS versions; review code and configuration for hardcoded older protocols.</li>
 <li>Update affected operating systems, development libraries and frameworks. The guidance recommends upgrading applications targeting .NET Framework 4.5 or earlier to 4.7 or later, and replacing Visual Studio 2013 with at least the latest release of Visual Studio 2017.</li>
@@ -1951,7 +1951,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your clients, applications or deployment tools use TLS 1.0 or TLS 1.1 to call Azure Resource Manager. The notice says those calls will fail after <strong>2025-03-01</strong>, affecting resource creation, updates and deletion through those clients. Actual enforcement in individual environments is not confirmed by the supplied content.</p>
+<div class="rich-content"><p>You are affected if your clients, applications or deployment tools use TLS 1.0 or TLS 1.1 to call Azure Resource Manager. The notice says those calls will fail after <strong>March 1, 2025</strong>, affecting resource creation, updates and deletion through those clients. Actual enforcement in individual environments is not confirmed by the supplied content.</p>
 <p>Clients already using TLS 1.2 or later meet the stated protocol requirement. Operating-system support alone does not establish readiness: application hardcoding and framework defaults can prevent TLS 1.2 use.</p>
 <p>If you disable older protocols system-wide, older clients may lose connectivity. Mutual TLS applications and third-party integrations can require additional changes and interoperability testing.</p>
 <p>The documented Azure Resource Manager consequence concerns deployment and management calls, not an announced shutdown of existing workloads or deletion of stored data. The sources do not establish tenant-specific exposure, additional charges, or identical effects across all Azure service endpoints.</p>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">App Service · Static Web Apps</span><span class="badge retired" data-deadline="2023-09-11"><span></span>Retired</span></div>
-  <h1>Community support for Node 16 LTS is ending on 11 September 2023</h1><p>Node 16 LTS support ended on 2023-09-11. The notice states that Azure App Service applications using Node 16 LTS continue running unchanged afterward, but are unsupported and receive no patches. It recommended upgrading to Node 18 LTS before that date. Check currently supported runtimes before selecting a replacement; changing runtime settings restarts your application.</p>
+  <h1>Community support for Node 16 LTS is ending on 11 September 2023</h1><p>Node 16 LTS support ended on September 11, 2023. The notice states that Azure App Service applications using Node 16 LTS continue running unchanged afterward, but are unsupported and receive no patches. It recommended upgrading to Node 18 LTS before that date. Check currently supported runtimes before selecting a replacement; changing runtime settings restarts your application.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2023-09-11"><strong>Retired</strong><span>Retirement date: <time datetime="2023-09-11">11 Sep 2023</time></span><span class="badge amber customer-lead-time-pill">Lead time: 10 months, 21 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">11 Sep 2023</p>
-<div class="rich-content"><p>Node 16 LTS support ended on <strong>2023-09-11</strong>. The notice recommended updating applications before that date.</p>
+<div class="rich-content"><p>Node 16 LTS support ended on <strong>September 11, 2023</strong>. The notice recommended updating applications before that date.</p>
 <p>This is an end-of-support milestone, not a workload shutdown: affected Azure App Service applications continue running unchanged, but are unsupported and receive no patches.</p>
 <p>The general App Service runtime-policy page provides no separate Node 16 retirement date and does not independently confirm this deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Node 16 LTS support ended on 2023-09-11. Azure App Service applications still using that version continue running unchanged, but no longer receive support or patches. The notice identifies no regional exceptions.</p>
+<div class="rich-content"><p>Node 16 LTS support ended on September 11, 2023. Azure App Service applications still using that version continue running unchanged, but no longer receive support or patches. The notice identifies no regional exceptions.</p>
 <p>The general App Service policy covers Windows and Linux. It says end-of-life versions are removed from the Runtime Stack dropdown, while existing applications targeting them should not be affected. That policy does not promise continued support or security updates after end of life.</p>
 </div>
       <div class="notice"></div>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your Azure App Service applications using Node 16 LTS. Check <code>WEBSITE_NODE_DEFAULT_VERSION</code> for Windows apps or <code>linux-fx-version</code> for Linux apps.</li>
-<li>Check available supported replacements using <code>az webapp list-runtimes --os-type windows</code> or <code>az webapp list-runtimes --os-type linux</code>. The retirement notice recommended Node 18 LTS before 2023-09-11; the supplied content does not establish that Node 18 remains supported now.</li>
+<li>Check available supported replacements using <code>az webapp list-runtimes --os-type windows</code> or <code>az webapp list-runtimes --os-type linux</code>. The retirement notice recommended Node 18 LTS before September 11, 2023; the supplied content does not establish that Node 18 remains supported now.</li>
 <li>Update the runtime through the portal or Azure CLI. For Linux in the portal, select your app, then Configuration → General settings → Stack Settings → Major version, and save. For Windows, the runtime-policy page recommends tilde syntax rather than pinning a specific minor or patch version, whose availability is not guaranteed.</li>
 </ol>
 <p>Changing runtime settings restarts your application. The supplied content does not document migration prerequisites, compatibility checks or post-change validation procedures.</p>
@@ -1941,7 +1941,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your Azure App Service applications use Node 16 LTS. After 2023-09-11, those applications continue running unchanged, but are unsupported and receive no patches. The notice recommends upgrading to reduce risk and potential security vulnerabilities.</p>
+<div class="rich-content"><p>You are affected if your Azure App Service applications use Node 16 LTS. After September 11, 2023, those applications continue running unchanged, but are unsupported and receive no patches. The notice recommends upgrading to reduce risk and potential security vulnerabilities.</p>
 <p>Separately, the general runtime policy says end-of-life versions disappear from the Runtime Stack dropdown. This selection change is not a documented shutdown of existing applications. Changing an application's runtime settings causes a restart.</p>
 <p>No tenant resources have been inspected. The supplied content does not document data deletion, cost changes or API restrictions.</p>
 </div>

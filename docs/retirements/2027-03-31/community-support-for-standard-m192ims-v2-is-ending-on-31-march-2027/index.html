@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge upcoming" data-deadline="2027-03-31"><span></span>Upcoming</span></div>
-  <h1>Community support for Standard_M192ims_v2 is ending on 31 March 2027</h1><p>Microsoft will retire Standard_M192ims_v2 on 2027-03-31. Migrate by that date; the announcement names Standard_M176s_4_v3, while current migration guidance covers Msv3 and Mdsv3 Medium Memory replacements. Microsoft says affected VMs remain usable without disruption until retirement. Current product guidance says remaining VMs will be stopped and deallocated; the announcement instead says workloads will be deleted and associated application data lost. These consequences conflict, so data deletion remains unconfirmed. Migration requirements depend on Availability Set membership, Proximity Placement Group membership and cluster pinning.</p>
+  <h1>Community support for Standard_M192ims_v2 is ending on 31 March 2027</h1><p>Microsoft will retire Standard_M192ims_v2 on March 31, 2027. Migrate by that date; the announcement names Standard_M176s_4_v3, while current migration guidance covers Msv3 and Mdsv3 Medium Memory replacements. Microsoft says affected VMs remain usable without disruption until retirement. Current product guidance says remaining VMs will be stopped and deallocated; the announcement instead says workloads will be deleted and associated application data lost. These consequences conflict, so data deletion remains unconfirmed. Migration requirements depend on Availability Set membership, Proximity Placement Group membership and cluster pinning.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-03-31"><strong>134 days remaining</strong><span>Retirement date: <time datetime="2027-03-31">31 Mar 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 9 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2027</p>
-<div class="rich-content"><p>Standard_M192ims_v2 retires on <strong>2027-03-31</strong>. Migrate by the same date to avoid disruption. Microsoft says you can continue using it without disruption until retirement; no cutoff time or time zone is specified.</p>
+<div class="rich-content"><p>Standard_M192ims_v2 retires on <strong>March 31, 2027</strong>. Migrate by the same date to avoid disruption. Microsoft says you can continue using it without disruption until retirement; no cutoff time or time zone is specified.</p>
 <p>Current product migration guidance says Microsoft will stop and deallocate remaining affected VMs that day. The announcement instead says remaining workloads will be deleted and associated application data lost. Use the current product guidance for the documented shutdown behavior, but the conflicting deletion claim remains unresolved; data retention is not confirmed.</p>
 <p>Despite the announcement title referring to community support ending, the supplied retirement guidance describes VM retirement, not merely an end to support.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring <strong>Standard_M192ims_v2 on 2027-03-31</strong> because its underlying hardware generation has been replaced. The size is being retired entirely, not merely losing physical isolation.</p>
+<div class="rich-content"><p>Microsoft is retiring <strong>Standard_M192ims_v2 on March 31, 2027</strong> because its underlying hardware generation has been replaced. The size is being retired entirely, not merely losing physical isolation.</p>
 <p>The announcement names Standard_M176s_4_v3 as the replacement. Current migration guidance offers Msv3 or Mdsv3 Medium Memory replacements, selected for your workload.</p>
 <p>The broader retirement also covers Standard_M192is_v2, Standard_M192ids_v2 and Standard_M192idms_v2; it does not announce retirement of every Msv2 or Mdsv2 size. No regional exceptions or separate maintenance and security-update commitments are documented.</p>
 <p>The Msv3 specifications page provides replacement configuration information; it does not independently establish a retirement.</p>
@@ -1932,7 +1932,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Migrate your Standard_M192ims_v2 workloads by <strong>2027-03-31</strong>.</p>
+<div class="rich-content"><p>Migrate your Standard_M192ims_v2 workloads by <strong>March 31, 2027</strong>.</p>
 <ol>
 <li>Identify affected VMs. The supplied guidance does not provide an automated inventory method. Select a replacement: the announcement names Standard_M176s_4_v3, while migration guidance covers Msv3 and Mdsv3 Medium Memory options. Check pricing and obtain quota for the target series.</li>
 <li>Check replacement capabilities. The supplied Msv3 Medium Memory reference specifies Generation 2 VMs only and no local temporary storage. For SQL Server with more than 64 vCores per NUMA node, it says to disable SMT. These are configuration constraints, not additional retirement milestones.</li>
@@ -1949,7 +1949,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you run <strong>Standard_M192ims_v2</strong>. The supplied content does not establish whether your environment contains these VMs. The isolation reference covers Linux and Windows VMs and Flexible and Uniform scale sets.</p>
-<p>Without migration, current product guidance says Microsoft will stop and deallocate remaining affected VMs on <strong>2027-03-31</strong>, interrupting workloads. It says these VMs will not be billed while deallocated, but does not establish that all associated resource charges end.</p>
+<p>Without migration, current product guidance says Microsoft will stop and deallocate remaining affected VMs on <strong>March 31, 2027</strong>, interrupting workloads. It says these VMs will not be billed while deallocated, but does not establish that all associated resource charges end.</p>
 <p>The announcement instead describes workload deletion and loss of associated application data. This conflicts with the current guidance's stated consequence; deletion and retention remain unconfirmed. Do not treat deallocation as a documented data-retention guarantee.</p>
 <p>Migration can require downtime for other VMs in the same Availability Set or PPG. Cluster pinning can require Azure Support assistance. No separate console, API, integration or deployment-tooling effects are documented.</p>
 <p>The isolation page's no-action and no-downtime guidance for sizes losing only isolation does <strong>not</strong> apply to Standard_M192ims_v2, which is retiring entirely.</p>

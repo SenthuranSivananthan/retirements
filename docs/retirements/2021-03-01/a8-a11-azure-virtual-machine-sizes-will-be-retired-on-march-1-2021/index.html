@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Virtual Machines</span><span class="badge retired" data-deadline="2021-03-01"><span></span>Retired</span></div>
-  <h1>A8 – A11 Azure Virtual Machine sizes will be retired on March 1, 2021</h1><p>Microsoft retired Azure A8–A11 virtual machine sizes on 2021-03-01, replacing the previously announced October 2020 retirement milestone. Customers needed to resize affected VMs before 2021-03-01; the notice states that Microsoft would stop and deallocate remaining affected VMs after that date. Microsoft recommended another HPC VM size for high performance computing workloads. The supplied resizing guidance describes deployment-specific disruption and compatibility constraints but does not establish current replacement availability.</p>
+  <h1>A8 – A11 Azure Virtual Machine sizes will be retired on March 1, 2021</h1><p>Microsoft retired Azure A8–A11 virtual machine sizes on March 1, 2021, replacing the previously announced October 2020 retirement milestone. Customers needed to resize affected VMs before March 1, 2021; the notice states that Microsoft would stop and deallocate remaining affected VMs after that date. Microsoft recommended another HPC VM size for high performance computing workloads. The supplied resizing guidance describes deployment-specific disruption and compatibility constraints but does not establish current replacement availability.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2021-03-01"><strong>Retired</strong><span>Retirement date: <time datetime="2021-03-01">1 Mar 2021</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 4 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Mar 2021</p>
-<div class="rich-content"><p>The retirement date was <strong>2021-03-01</strong>, explicitly replacing the previously announced <strong>October 2020</strong> milestone.</p>
-<p>You needed to resize affected A8–A11 VMs before 2021-03-01. The notice states that Microsoft would stop and deallocate remaining affected VMs after that date.</p>
+<div class="rich-content"><p>The retirement date was <strong>March 1, 2021</strong>, explicitly replacing the previously announced <strong>October 2020</strong> milestone.</p>
+<p>You needed to resize affected A8–A11 VMs before March 1, 2021. The notice states that Microsoft would stop and deallocate remaining affected VMs after that date.</p>
 <p>New customers lost the ability to create these sizes “starting today” in the announcement, but the supplied content does not establish that restriction's exact date. The other supplied reference pages establish no additional A8–A11 retirement deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired Azure <strong>A8–A11 virtual machine sizes</strong> on 2021-03-01.</p>
+<div class="rich-content"><p>Microsoft retired Azure <strong>A8–A11 virtual machine sizes</strong> on March 1, 2021.</p>
 <p>Before retirement, existing customers using these sizes could deploy more VMs of the same size, while new customers could no longer create them once the announcement's restriction took effect. After the retirement date, Microsoft stated that remaining affected VMs would be stopped, removed from their hosts and deallocated.</p>
 <p>The notice does not specify regional exceptions or separate maintenance, support or security-update commitments. The general End of Life reference page does not independently establish A8–A11 retirement behavior.</p>
 </div>
@@ -1934,7 +1934,7 @@
 <div class="rich-content"><ol>
 <li>Identify A8–A11 VMs in your subscriptions. The retirement notice supplies no inventory method.</li>
 <li>Select a replacement size. Microsoft recommends another HPC VM size for high performance computing workloads. Check regional availability, hardware-cluster compatibility and storage requirements; VMs using Premium Storage need a compatible target size.</li>
-<li>Resize affected VMs. The required deadline was before 2021-03-01. The supplied resizing guidance describes these paths:
+<li>Resize affected VMs. The required deadline was before March 1, 2021. The supplied resizing guidance describes these paths:
 <ul>
 <li>Within the current hardware cluster, resizing reboots the VM.</li>
 <li>For Resource Manager deployments requiring different hardware, stop and deallocate the VM and all other VMs in its availability set, resize, then restart them one by one. Companion VMs may also need compatible sizes.</li>
@@ -1949,7 +1949,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your configurations were in scope if they used A8–A11 VM sizes. VMs remaining on these sizes after 2021-03-01 would be stopped and deallocated, interrupting their workloads. The notice does not state that other sizes were affected.</p>
+<div class="rich-content"><p>Your configurations were in scope if they used A8–A11 VM sizes. VMs remaining on these sizes after March 1, 2021 would be stopped and deallocated, interrupting their workloads. The notice does not state that other sizes were affected.</p>
 <p>Resizing can also interrupt workloads: a same-cluster resize reboots the VM; a Resource Manager hardware-cluster change requires deallocating all VMs in the availability set; a Classic hardware-cluster change requires recreating the deployment and may change IP addresses.</p>
 <p>The notice states that affected VMs would no longer be billed while deallocated. It does not establish charges for associated resources, data retention or deletion behavior, or separate console/API changes. The supplied content does not assess your subscriptions.</p>
 </div>

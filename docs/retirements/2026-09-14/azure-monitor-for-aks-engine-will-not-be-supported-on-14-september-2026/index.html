@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2026-09-14"><span></span>Retired</span></div>
-  <h1>Azure Monitor for AKS-Engine will not be supported on 14 September 2026</h1><p>Azure Monitor support for applications hosted on AKS-Engine ends on 2026-09-14. The retirement notice says affected users lose access to UX support, the portal experience and the monitoring agent. Migrate your applications to managed AKS and enable Azure Monitor before that date to avoid monitoring disruption. The supplied sources do not establish that application workloads shut down.</p>
+  <h1>Azure Monitor for AKS-Engine will not be supported on 14 September 2026</h1><p>Azure Monitor support for applications hosted on AKS-Engine ends on September 14, 2026. The retirement notice says affected users lose access to UX support, the portal experience and the monitoring agent. Migrate your applications to managed AKS and enable Azure Monitor before that date to avoid monitoring disruption. The supplied sources do not establish that application workloads shut down.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-14"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-14">14 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 23 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">14 Sep 2026</p>
-<div class="rich-content"><p>The retirement notice identifies <strong>2026-09-14</strong> as the AKS-Engine retirement milestone and ties it to loss of Azure Monitor UX support, the portal experience and the monitoring agent for applications hosted on AKS-Engine.</p>
-<p>Migrate to AKS and enable Azure Monitor before 2026-09-14 to avoid monitoring disruption. The notice does not establish a workload shutdown date.</p>
-<p>The repository archival date, 2023-10-24, is a separate milestone. The AKS monitoring guide's last-updated date, 2026-08-18, is not a retirement deadline. Neither reference supplies a competing retirement date.</p>
+<div class="rich-content"><p>The retirement notice identifies <strong>September 14, 2026</strong> as the AKS-Engine retirement milestone and ties it to loss of Azure Monitor UX support, the portal experience and the monitoring agent for applications hosted on AKS-Engine.</p>
+<p>Migrate to AKS and enable Azure Monitor before September 14, 2026 to avoid monitoring disruption. The notice does not establish a workload shutdown date.</p>
+<p>The repository archival date, October 24, 2023, is a separate milestone. The AKS monitoring guide's last-updated date, August 18, 2026, is not a retirement deadline. Neither reference supplies a competing retirement date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Monitor support for applications hosted on AKS-Engine ends on <strong>2026-09-14</strong>. The notice says affected users will lose access to UX support, the portal experience and the monitoring agent.</p>
+<div class="rich-content"><p>Azure Monitor support for applications hosted on AKS-Engine ends on <strong>September 14, 2026</strong>. The notice says affected users will lose access to UX support, the portal experience and the monitoring agent.</p>
 <p>AKS Engine creates self-managed Kubernetes clusters and is distinct from managed Azure Kubernetes Service (AKS), the migration destination named in the notice. The supplied sources do not announce an AKS retirement.</p>
 <p>Separately, the AKS Engine support page says the project is deprecated, unmaintained and unsupported; its repository is archived and read-only. These project conditions are distinct from the Azure Monitor retirement milestone. The sources provide no affected-version list, regional exceptions or pre-retirement maintenance and security-update commitments.</p>
 </div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify applications hosted on AKS Engine rather than managed AKS. The FAQ distinguishes deployments made with <code>aks-engine deploy</code> or templates generated with <code>aks-engine generate</code> from managed AKS clusters created through the Azure portal or <code>az aks create</code>.</li>
-<li>Migrate affected applications to managed AKS before <strong>2026-09-14</strong>. The retirement notice names AKS as the destination, but the supplied sources provide no application-migration procedure or compatibility assessment. The <code>aks-engine</code> tool cannot create a managed AKS cluster.</li>
+<li>Migrate affected applications to managed AKS before <strong>September 14, 2026</strong>. The retirement notice names AKS as the destination, but the supplied sources provide no application-migration procedure or compatibility assessment. The <code>aks-engine</code> tool cannot create a managed AKS cluster.</li>
 <li>Enable Azure Monitor on the destination clusters before that date. Select the metrics and logs you need; Prometheus and Container insights can be enabled together or separately. Onboarding requires at least Contributor access, managed identity authentication and the resource-provider registrations required by your deployment method.</li>
 <li>Apply the relevant setup constraints. For a Log Analytics workspace in another subscription within the same Microsoft Entra tenant, use Azure CLI or an ARM template rather than the portal. Private link requires separate configuration guidance. Preserve existing Grafana workspace integrations when deploying templates. Before managing an existing cluster through Terraform, import it and inspect the plan: a mismatched definition can destroy and recreate the cluster.</li>
 <li>Verify agent deployment, workspace configuration and incoming monitoring data using the onboarding checks described under progress.</li>
@@ -1944,7 +1944,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>This retirement affects Azure Monitor users with applications hosted on AKS-Engine. On <strong>2026-09-14</strong>, the notice says those users lose access to UX support, the portal experience and the monitoring agent. Without migration to AKS and Azure Monitor enablement before that date, monitoring disruption is the documented consequence.</p>
+<div class="rich-content"><p>This retirement affects Azure Monitor users with applications hosted on AKS-Engine. On <strong>September 14, 2026</strong>, the notice says those users lose access to UX support, the portal experience and the monitoring agent. Without migration to AKS and Azure Monitor enablement before that date, monitoring disruption is the documented consequence.</p>
 <p>The sources do not establish that existing application workloads shut down or that deployment tools cease working. They also do not describe retirement-related data retention, deletion or costs. Managed AKS is a separate service and is not identified as retiring.</p>
 <p>When configuring replacement monitoring, preserve the data needed by your dashboards: default Container insights visualizations require all standard Container insights tables. Selecting ContainerLog versus ContainerLogV2 changes the destination table rather than disabling collection. Collecting both standard and high-scale ContainerLogV2 streams produces duplicate data. These are onboarding considerations, not additional retirement effects.</p>
 </div>

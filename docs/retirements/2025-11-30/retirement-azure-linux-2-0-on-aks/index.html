@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge retired" data-deadline="2025-11-30"><span></span>Retired</span></div>
-  <h1>Retirement: Azure Linux 2.0 on AKS</h1><p>Azure Linux 2.0 on AKS reached end of support on 2025-11-30. Migrate affected node pools to a supported Azure Linux version. Current AKS product guidance places node-image removal beginning 2026-10-31, after which affected pools cannot scale; the announcement instead gives 2026-03-31. The product-guidance date is preferred, but the supplied inputs do not explicitly document an extension. Neither source establishes a running-workload shutdown date.</p>
+  <h1>Retirement: Azure Linux 2.0 on AKS</h1><p>Azure Linux 2.0 on AKS reached end of support on November 30, 2025. Migrate affected node pools to a supported Azure Linux version. Current AKS product guidance places node-image removal beginning October 31, 2026, after which affected pools cannot scale; the announcement instead gives March 31, 2026. The product-guidance date is preferred, but the supplied inputs do not explicitly document an extension. Neither source establishes a running-workload shutdown date.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-11-30"><strong>Retired</strong><span>Retirement date: <time datetime="2025-11-30">30 Nov 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 months, 15 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,19 +1916,19 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Nov 2025</p>
-<div class="rich-content"><p>Azure Linux 2.0 on AKS reached end of support on <strong>2025-11-30</strong>, the announced migration deadline. The announcement also ends new Azure Linux 2.0 node-pool creation, new node images and security updates at that milestone.</p>
+<div class="rich-content"><p>Azure Linux 2.0 on AKS reached end of support on <strong>November 30, 2025</strong>, the announced migration deadline. The announcement also ends new Azure Linux 2.0 node-pool creation, new node images and security updates at that milestone.</p>
 <p><strong>Node-image removal is a separate milestone with conflicting dates:</strong></p>
 <ul>
-<li>Current AKS product guidance says removal begins on <strong>2026-10-31</strong>, preventing affected pools from scaling.</li>
-<li>The Azure Updates announcement gives <strong>2026-03-31</strong> for image removal and scaling failures.</li>
+<li>Current AKS product guidance says removal begins on <strong>October 31, 2026</strong>, preventing affected pools from scaling.</li>
+<li>The Azure Updates announcement gives <strong>March 31, 2026</strong> for image removal and scaling failures.</li>
 </ul>
-<p>Use <strong>2026-10-31</strong> as the preferred applicable product-guidance date. Both dates remain recorded here; the supplied inputs do not explicitly document an extension. Neither source specifies a shutdown date for running workloads. The general overview and quickstart establish no alternative retirement deadline.</p>
+<p>Use <strong>October 31, 2026</strong> as the preferred applicable product-guidance date. Both dates remain recorded here; the supplied inputs do not explicitly document an extension. Neither source specifies a shutdown date for running workloads. The general overview and quickstart establish no alternative retirement deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Linux 2.0 on AKS is retired. Since <strong>2025-11-30</strong>, Microsoft no longer supports it or provides security updates; the announcement also ends new node images and creation of new Azure Linux 2.0 node pools.</p>
-<p>Move affected pools to a supported Azure Linux version. Current AKS guidance says the Azure Linux 2.0 image is frozen at release 202512.06.0 and places image removal beginning <strong>2026-10-31</strong>. The announcement instead lists <strong>2026-03-31</strong>.</p>
+<div class="rich-content"><p>Azure Linux 2.0 on AKS is retired. Since <strong>November 30, 2025</strong>, Microsoft no longer supports it or provides security updates; the announcement also ends new node images and creation of new Azure Linux 2.0 node pools.</p>
+<p>Move affected pools to a supported Azure Linux version. Current AKS guidance says the Azure Linux 2.0 image is frozen at release 202512.06.0 and places image removal beginning <strong>October 31, 2026</strong>. The announcement instead lists <strong>March 31, 2026</strong>.</p>
 <p>This retirement concerns Azure Linux 2.0, not every AKS operating system. The supplied sources identify no regional exceptions. Azure Linux 4.0 preview is limited to evaluation and testing, not production, and is not established as the required replacement.</p>
 </div>
       <div class="notice"></div>
@@ -1942,14 +1942,14 @@
 <li>Perform the applicable Kubernetes upgrade or supported OS-SKU update using the documented <code>az aks nodepool update</code> command. The in-place AzureLinux3 route preserves the Kubernetes version and reimages the pool to the equivalent Azure Linux 3.0 image.</li>
 <li>As a <strong>team-owned completion check</strong>, confirm the resulting OS version and validate workloads and required scaling operations.</li>
 </ol>
-<p>The original migration deadline was <strong>2025-11-30</strong>. The supplied sources do not provide full migration commands, a retirement-specific validation procedure, or backup, cutover and cleanup requirements.</p>
+<p>The original migration deadline was <strong>November 30, 2025</strong>. The supplied sources do not provide full migration commands, a retirement-specific validation procedure, or backup, cutover and cleanup requirements.</p>
 </div>
       <p> </p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your AKS node pools run <strong>Azure Linux 2.0</strong>. No tenant inspection has been performed. Check the actual OS version rather than assuming that an AzureLinux SKU identifies the installed version.</p>
-<p>Support and security updates ended on <strong>2025-11-30</strong>. The announcement also ends new node images and new Azure Linux 2.0 node-pool creation at that date. Current product guidance places image removal beginning <strong>2026-10-31</strong>, after which affected pools cannot scale; the announcement gives <strong>2026-03-31</strong> instead.</p>
+<p>Support and security updates ended on <strong>November 30, 2025</strong>. The announcement also ends new node images and new Azure Linux 2.0 node-pool creation at that date. Current product guidance places image removal beginning <strong>October 31, 2026</strong>, after which affected pools cannot scale; the announcement gives <strong>March 31, 2026</strong> instead.</p>
 <p>End of support does not establish that existing workloads shut down. The sources document no workload-data deletion, retention period, cost change or separate console/API retirement for Azure Linux 2.0.</p>
 <p>Migration can reimage nodes. An OS-SKU update can fail if the target image does not support your Kubernetes version, VM size or FIPS configuration. Other operating-system retirements in the guidance have separate scopes and deadlines.</p>
 </div>

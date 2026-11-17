@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure AI Translator</span><span class="badge retired" data-deadline="2021-05-24"><span></span>Retired</span></div>
-  <h1>Version 2 of Translator is retiring on 24 May 2021</h1><p>Microsoft retired Translator V2 on 2021-05-24. Applications using V2 must move to V3, changing endpoints, API methods and XML payloads to JSON. Existing subscription keys remain valid, but some V2 capabilities have no V3 equivalent. The earlier 2019-04-30 end-of-support statement is a separate milestone, not evidence of an extended retirement date. The supplied guidance does not establish how V2 requests behave after retirement.</p>
+  <h1>Version 2 of Translator is retiring on 24 May 2021</h1><p>Microsoft retired Translator V2 on May 24, 2021. Applications using V2 must move to V3, changing endpoints, API methods and XML payloads to JSON. Existing subscription keys remain valid, but some V2 capabilities have no V3 equivalent. The earlier April 30, 2019 end-of-support statement is a separate milestone, not evidence of an extended retirement date. The supplied guidance does not establish how V2 requests behave after retirement.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2021-05-24"><strong>Retired</strong><span>Retirement date: <time datetime="2021-05-24">24 May 2021</time></span><span class="badge amber customer-lead-time-pill">Lead time: 8 months, 27 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,18 +1916,18 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">24 May 2021</p>
-<div class="rich-content"><p>Microsoft retired Translator V2 on <strong>2021-05-24</strong>, as stated in both the retirement notice and migration guidance. The notice directed you to migrate before that date to avoid service disruption. The supplied guidance does not specify post-retirement request behavior.</p>
+<div class="rich-content"><p>Microsoft retired Translator V2 on <strong>May 24, 2021</strong>, as stated in both the retirement notice and migration guidance. The notice directed you to migrate before that date to avoid service disruption. The supplied guidance does not specify post-retirement request behavior.</p>
 <p>Keep the earlier milestones separate:</p>
 <ul>
-<li><strong>Deprecation:</strong> the migration guidance gives <strong>2018-04-30</strong>. The V3 announcement says May 1 without explicitly stating a year; that discrepancy remains unresolved.</li>
-<li><strong>End of support:</strong> the earlier V3 announcement states <strong>2019-04-30</strong>. This is not a documented shutdown date or evidence of a retirement extension.</li>
+<li><strong>Deprecation:</strong> the migration guidance gives <strong>April 30, 2018</strong>. The V3 announcement says May 1 without explicitly stating a year; that discrepancy remains unresolved.</li>
+<li><strong>End of support:</strong> the earlier V3 announcement states <strong>April 30, 2019</strong>. This is not a documented shutdown date or evidence of a retirement extension.</li>
 <li><strong>V3 general availability:</strong> May 2018 is an announcement month, not the V2 retirement deadline.</li>
 </ul>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired Translator V2 on <strong>2021-05-24</strong> and directs V2 applications to V3, which the migration guidance describes as generally available and fully supported.</p>
+<div class="rich-content"><p>Microsoft retired Translator V2 on <strong>May 24, 2021</strong> and directs V2 applications to V3, which the migration guidance describes as generally available and fully supported.</p>
 <p>V3 changes the endpoint to <code>api.cognitive.microsofttranslator.com</code> and requires JSON requests and responses instead of XML. You can retain your existing Translator subscription and authentication key.</p>
 <p>Important capability differences include:</p>
 <ul>
@@ -1948,7 +1948,7 @@
 <li>Address capability gaps before treating migration as complete. Use Microsoft Speech Service for Speak and GetLanguagesForSpeak functionality. Assess Custom Translator for neural customization; it does not make existing Translator Hub systems directly accessible through V3. No supported V3 equivalent is listed for AddTranslation, AddTranslationArray, GetTranslations or GetTranslationsArray.</li>
 <li>As a <strong>team-owned validation step</strong>, verify translation results, JSON compatibility, method replacements, customization and billing assumptions for each application.</li>
 </ol>
-<p>The retirement notice required migration before <strong>2021-05-24</strong> to avoid disruption. The supplied material does not provide a complete cutover, rollback, export, backup or cleanup procedure. Historical guidance about mixing V2 and V3 during a migration period does not establish that V2 remains available.</p>
+<p>The retirement notice required migration before <strong>May 24, 2021</strong> to avoid disruption. The supplied material does not provide a complete cutover, rollback, export, backup or cleanup procedure. Historical guidance about mixing V2 and V3 during a migration period does not establish that V2 remains available.</p>
 </div>
       <p> </p>
     </section>
@@ -1956,7 +1956,7 @@
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>Your applications are in scope if they use Translator V2. The migration guidance identifies <code>api.microsofttranslator.com</code> as V2 and <code>api.cognitive.microsofttranslator.com</code> as V3. V3 callers are not V2 callers under that endpoint-based distinction; your environment has not been inspected.</p>
 <p>V2 integrations require endpoint and payload changes, and some require method or feature replacements. Existing subscription keys remain usable, but unsupported methods, Translator Hub custom systems and the listed standard categories cannot be carried over directly.</p>
-<p>The retirement notice warns of service disruption without migration. It does not specify exact request failures after <strong>2021-05-24</strong>. The earlier <strong>2019-04-30</strong> support deadline alone does not establish workload shutdown. No retirement-specific data-deletion schedule or regional exceptions are documented.</p>
+<p>The retirement notice warns of service disruption without migration. It does not specify exact request failures after <strong>May 24, 2021</strong>. The earlier <strong>April 30, 2019</strong> support deadline alone does not establish workload shutdown. No retirement-specific data-deletion schedule or regional exceptions are documented.</p>
 <p>The announcement says pricing tiers remain unchanged. The migration guidance retains per-character pricing, including spaces, but method usage matters: Translate counts submitted characters for each target language; Transliterate and dictionary lookup/examples count submitted characters. Languages, BreakSentence and Detect have no charge. These facts do not establish your actual cost change.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Batch</span><span class="badge retired" data-deadline="2024-01-09"><span></span>Retired</span></div>
-  <h1>Support for select marketplace images for Batch pools will be retired</h1><p>Azure Batch retired support for selected Marketplace images in three phases: Windows Server 2008 R2 on 2024-01-09, Batch Rendering images and associated pay-for-use application licensing on 2024-02-29, and the listed Linux 7 images and CentOS 7 node agent SKU on 2024-06-30. After each applicable date, you cannot create pools using the affected images, and scale-out operations may fail. Move affected pools to supported alternatives. For rendering, use custom images and standard application licenses, then delete the old pools. The notices do not establish automatic shutdown of existing workloads. The structured deadline records the earliest phase, not a shared deadline.</p>
+  <h1>Support for select marketplace images for Batch pools will be retired</h1><p>Azure Batch retired support for selected Marketplace images in three phases: Windows Server 2008 R2 on January 9, 2024, Batch Rendering images and associated pay-for-use application licensing on February 29, 2024, and the listed Linux 7 images and CentOS 7 node agent SKU on June 30, 2024. After each applicable date, you cannot create pools using the affected images, and scale-out operations may fail. Move affected pools to supported alternatives. For rendering, use custom images and standard application licenses, then delete the old pools. The notices do not establish automatic shutdown of existing workloads. The structured deadline records the earliest phase, not a shared deadline.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-01-09"><strong>Retired</strong><span>Retirement date: <time datetime="2024-01-09">9 Jan 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 months, 11 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1918,22 +1918,22 @@
       <p class="deadline-date">9 Jan 2024</p>
 <div class="rich-content"><p>Azure Batch image support retired on separate dates:</p>
 <ul>
-<li><strong>2024-01-09:</strong> Microsoft Windows Server 2008 R2 images.</li>
-<li><strong>2024-02-29:</strong> Batch Rendering images <code>rendering-windows2016</code> and <code>rendering-centos73</code>, together with associated pay-for-use application licensing.</li>
-<li><strong>2024-06-30:</strong> The listed Linux 7 images and the CentOS 7 Batch node agent SKU, including support for custom images based on CentOS 7.</li>
+<li><strong>January 9, 2024:</strong> Microsoft Windows Server 2008 R2 images.</li>
+<li><strong>February 29, 2024:</strong> Batch Rendering images <code>rendering-windows2016</code> and <code>rendering-centos73</code>, together with associated pay-for-use application licensing.</li>
+<li><strong>June 30, 2024:</strong> The listed Linux 7 images and the CentOS 7 Batch node agent SKU, including support for custom images based on CentOS 7.</li>
 </ul>
 <p>The structured deadline records the earliest milestone. These dates apply to different image groups; they are not conflicting dates or extensions.</p>
-<p>The image notice says you could use each image without disruption until its retirement date. Afterward, new pool creation using that image is unavailable, and scale-out operations may fail. The rendering notice required replacement pools before 2024-02-29. Neither notice establishes an automatic shutdown date for existing workloads.</p>
+<p>The image notice says you could use each image without disruption until its retirement date. Afterward, new pool creation using that image is unavailable, and scale-out operations may fail. The rendering notice required replacement pools before February 29, 2024. Neither notice establishes an automatic shutdown date for existing workloads.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
 <div class="rich-content"><p>Azure Batch retired support for selected images across three milestones in 2024, not for the Batch service or all Marketplace images.</p>
 <ul>
-<li><strong>Windows Server, 2024-01-09:</strong> Microsoft Windows Server 2008 R2.</li>
-<li><strong>Batch Rendering, 2024-02-29:</strong> <code>rendering-windows2016</code> and <code>rendering-centos73</code>, containing pre-installed graphics and rendering applications, and their associated pay-for-use application licensing.</li>
-<li><strong>Linux 7, 2024-06-30:</strong> OpenLogic CentOS/CentOS-HPC versions <code>7.*</code> and <code>7_*</code>; Oracle Oracle-Linux <code>7*</code>; RedHat RHEL <code>7*</code>; and Microsoft-Azure-Batch <code>centos-container</code> and <code>centos-container-rdma</code> versions <code>7-*</code>.</li>
-<li><strong>Custom CentOS 7 images, 2024-06-30:</strong> All are affected because the corresponding Batch node agent SKU also retired.</li>
+<li><strong>Windows Server, January 9, 2024:</strong> Microsoft Windows Server 2008 R2.</li>
+<li><strong>Batch Rendering, February 29, 2024:</strong> <code>rendering-windows2016</code> and <code>rendering-centos73</code>, containing pre-installed graphics and rendering applications, and their associated pay-for-use application licensing.</li>
+<li><strong>Linux 7, June 30, 2024:</strong> OpenLogic CentOS/CentOS-HPC versions <code>7.*</code> and <code>7_*</code>; Oracle Oracle-Linux <code>7*</code>; RedHat RHEL <code>7*</code>; and Microsoft-Azure-Batch <code>centos-container</code> and <code>centos-container-rdma</code> versions <code>7-*</code>.</li>
+<li><strong>Custom CentOS 7 images, June 30, 2024:</strong> All are affected because the corresponding Batch node agent SKU also retired.</li>
 </ul>
 <p>After the applicable date, you cannot create pools using those images. The notices specify no regional exceptions or continuing maintenance, support or security-update commitments for affected images.</p>
 </div>
@@ -1944,7 +1944,7 @@
 <div class="rich-content"><ol>
 <li>Identify pools using the affected image publishers, offers and versions, including custom CentOS 7 images and rendering pools using pay-for-use application licensing. The notice points to Batch best practices for querying image-support end-of-life dates but supplies no inventory command.</li>
 <li>Select a replacement for your workload. For Windows Server 2008 R2, use a newer supported Windows Server version. For CentOS 7, choose a suitable alternative Linux OS. For Batch CentOS container images, choose an image with container support and any required InfiniBand/GPU support; the notice names <code>microsoft-dsvm ubuntu-hpc 2204</code> or a custom image solution.</li>
-<li>For rendering pools, create custom VM images with the required applications and create replacement pools. Purchase standard application licenses and install them on a license server on the <strong>same virtual network</strong> as the Batch pool. The rendering notice required replacement pools before 2024-02-29 and deletion of the old pools.</li>
+<li>For rendering pools, create custom VM images with the required applications and create replacement pools. Purchase standard application licenses and install them on a license server on the <strong>same virtual network</strong> as the Batch pool. The rendering notice required replacement pools before February 29, 2024 and deletion of the old pools.</li>
 <li>If you use Azure Compute Gallery custom images, follow the supplied configuration requirements: use generalized images, Microsoft Entra ID authentication, a replica in the Batch account's region and suitable image permissions, including <code>Microsoft.Compute/disks/beginGetAccess/action</code>; Reader alone is insufficient. Cross-subscription images require the same Microsoft Entra tenant and Microsoft.Batch registration in the image subscription.</li>
 <li>Prepare custom images with a supported Batch base image, managed disks, the default temporary drive and an unencrypted OS disk. Do not preinstall Azure extensions. Match purchase-plan information where applicable and select a matching node-agent SKU. After allocation, connect through RDP or SSH to verify the node.</li>
 <li>If replacing pools, the supplied general Batch guidance says to create the new pool, update existing jobs to use it and delete the old pool only after all tasks have moved. Preserve task outputs in durable storage before removing nodes, because removal deletes their local files.</li>
@@ -1956,7 +1956,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your Batch pools use the listed images, including custom CentOS 7 images, or the retired rendering pay-for-use application licensing. The supplied content does not assess your resources.</p>
-<p>After each applicable retirement date, you cannot create new pools using the affected images, and scale-out operations may fail. Rendering pay-for-use application licensing also became unavailable on 2024-02-29; its documented replacement requires custom images and purchased standard licenses.</p>
+<p>After each applicable retirement date, you cannot create new pools using the affected images, and scale-out operations may fail. Rendering pay-for-use application licensing also became unavailable on February 29, 2024; its documented replacement requires custom images and purchased standard licenses.</p>
 <p>The notices do not say existing pools or running workloads automatically stop, and they do not establish continued support for those configurations. They do not announce retirement of all Batch images or the Batch service.</p>
 <p>For replacement pools, node removal deletes local files, so preserve required outputs in durable storage first. Custom-image authentication, permissions and node-agent compatibility requirements can affect pool creation or node startup. No retirement-specific data-retention policy, license prices or cost estimate is supplied.</p>
 </div>

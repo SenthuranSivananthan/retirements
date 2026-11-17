@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">SDKs · Storage Accounts</span><span class="badge retired" data-deadline="2024-09-13"><span></span>Retired</span></div>
-  <h1>Retirement notice: The legacy Azure Storage Go client libraries will be retired on 13 September 2024</h1><p>The legacy Azure Storage Go client libraries retired on 2024-09-13. Microsoft no longer issues updates for them, but the libraries remain usable; the notice does not announce a storage-service shutdown or loss of data access. Migrate affected applications to the latest applicable azblob, azfile or azqueue libraries. The legacy Blob SDK separately states that Community Support ended on the same date. Its repository was archived on 2026-09-01; archival does not establish a retirement extension.</p>
+  <h1>Retirement notice: The legacy Azure Storage Go client libraries will be retired on 13 September 2024</h1><p>The legacy Azure Storage Go client libraries retired on September 13, 2024. Microsoft no longer issues updates for them, but the libraries remain usable; the notice does not announce a storage-service shutdown or loss of data access. Migrate affected applications to the latest applicable azblob, azfile or azqueue libraries. The legacy Blob SDK separately states that Community Support ended on the same date. Its repository was archived on September 1, 2026; archival does not establish a retirement extension.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-09-13"><strong>Retired</strong><span>Retirement date: <time datetime="2024-09-13">13 Sep 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 22 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">13 Sep 2024</p>
-<div class="rich-content"><p>The legacy Azure Storage Go client libraries retired on <strong>2024-09-13</strong>. The notice directed you to transition before that date and also described the migration target as “by 2024-09-13.” These statements identify the same date, not separate retirement milestones.</p>
-<p>Microsoft no longer issues updates for the legacy libraries after retirement, although they remain usable. For the legacy Blob SDK, the README also identifies 2024-09-13 as the end of Community Support and permanent retirement.</p>
-<p>The Blob repository was separately archived on <strong>2026-09-01</strong> and is now read-only. This does not establish an extension. No storage-service shutdown date is announced.</p>
+<div class="rich-content"><p>The legacy Azure Storage Go client libraries retired on <strong>September 13, 2024</strong>. The notice directed you to transition before that date and also described the migration target as “by September 13, 2024.” These statements identify the same date, not separate retirement milestones.</p>
+<p>Microsoft no longer issues updates for the legacy libraries after retirement, although they remain usable. For the legacy Blob SDK, the README also identifies September 13, 2024 as the end of Community Support and permanent retirement.</p>
+<p>The Blob repository was separately archived on <strong>September 1, 2026</strong> and is now read-only. This does not establish an extension. No storage-service shutdown date is announced.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>The legacy Azure Storage Go client libraries retired on <strong>2024-09-13</strong>. Microsoft no longer issues associated updates, but you can continue using the older libraries, and their source code remains available on GitHub.</p>
+<div class="rich-content"><p>The legacy Azure Storage Go client libraries retired on <strong>September 13, 2024</strong>. Microsoft no longer issues associated updates, but you can continue using the older libraries, and their source code remains available on GitHub.</p>
 <p>The notice references replacement and migration resources for Blob, File and Queue storage: azblob, azfile and azqueue. It does not provide an exhaustive affected-version list or regional exceptions, or separately define security-update commitments. The legacy Blob SDK README explicitly states that Community Support ended at retirement; its repository is now read-only.</p>
 <p>The replacement SDK reference pages and migration guides describe SDK usage and API changes. They do not independently establish retirement dates or the replacements' current support status.</p>
 </div>
@@ -1937,14 +1937,14 @@
 <li>For Blob and File migrations, update client package references and constructors to use string URLs, credentials and client options. Replace explicit Marker-based pagination with the returned runtime pager, and move HTTP pipeline configuration into client options. Shared-key credential creation through NewSharedKeyCredential remains unchanged. Use NewClientWithNoCredential for anonymous or SAS access. For Blob OAuth code, replace NewTokenCredential usage with Azure Identity credentials from azidentity.</li>
 <li>As team-owned validation, check your application's storage operations and authentication before cutover. The supplied material provides no validation, rollback, backup or cleanup procedure. The Queue reference documents azqueue/v2 setup, but supplies no legacy-to-current migration procedure.</li>
 </ol>
-<p>The notice's migration target was 2024-09-13. Continued legacy-library use remains possible, but Microsoft no longer issues updates.</p>
+<p>The notice's migration target was September 13, 2024. Continued legacy-library use remains possible, but Microsoft no longer issues updates.</p>
 </div>
       <p> </p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your applications use the legacy Azure Storage Go client libraries. The supplied material does not establish whether your applications use them.</p>
-<p>If you do not migrate, the libraries remain usable, but Microsoft no longer issues updates after <strong>2024-09-13</strong>. The legacy Blob SDK also lost Community Support on that date, and its repository is now read-only.</p>
+<p>If you do not migrate, the libraries remain usable, but Microsoft no longer issues updates after <strong>September 13, 2024</strong>. The legacy Blob SDK also lost Community Support on that date, and its repository is now read-only.</p>
 <p>Migration can require application changes to client construction, package organization, authentication, pagination and custom HTTP pipelines. The Blob repository's version table includes SDK versions 0.2.0–0.7.0, but it is not an exhaustive retirement version list.</p>
 <p>The notice does not announce workload shutdown, blocked storage-data access or data deletion. It provides no retirement-related console restrictions, regional differences or cost impacts. SDK service-version dates in the reference pages are not retirement deadlines.</p>
 </div>

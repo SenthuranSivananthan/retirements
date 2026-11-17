@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Batch</span><span class="badge retired" data-deadline="2025-09-30"><span></span>Retired</span></div>
-  <h1>Retirement: End of life for NCv3-series VM family support in Azure Batch pools</h1><p>Microsoft retired NCv3-series VM support in Azure Batch pools on 2025-09-30. Affected sizes are Standard_NC6s_v3, Standard_NC12s_v3, Standard_NC24s_v3 and Standard_NC24rs_v3. New affected pools cannot be created; existing pools cannot scale out and are subject to forced resize to zero nodes, with timing unspecified. Migrate to a suitable newer NC-series or other Batch-supported VM size. General Batch reference guidance provides support-date checks, but does not independently establish this retirement or verify migration completion.</p>
+  <h1>Retirement: End of life for NCv3-series VM family support in Azure Batch pools</h1><p>Microsoft retired NCv3-series VM support in Azure Batch pools on September 30, 2025. Affected sizes are Standard_NC6s_v3, Standard_NC12s_v3, Standard_NC24s_v3 and Standard_NC24rs_v3. New affected pools cannot be created; existing pools cannot scale out and are subject to forced resize to zero nodes, with timing unspecified. Migrate to a suitable newer NC-series or other Batch-supported VM size. General Batch reference guidance provides support-date checks, but does not independently establish this retirement or verify migration completion.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2025-09-30">30 Sep 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 27 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2025</p>
-<div class="rich-content"><p>Microsoft retired NCv3-series VM support in Azure Batch pools on <strong>2025-09-30</strong>. The notice instructed you to complete migration by that date.</p>
+<div class="rich-content"><p>Microsoft retired NCv3-series VM support in Azure Batch pools on <strong>September 30, 2025</strong>. The notice instructed you to complete migration by that date.</p>
 <p>After retirement, new NCv3 pools cannot be created successfully. Existing affected pools cannot scale out and are subject to forced resize to zero nodes. The notice does not specify when forced resizing occurs.</p>
 <p>The general VM retirement notice confirms the same date for Standard_NC6s_v3, Standard_NC12s_v3 and Standard_NC24s_v3; the Batch-specific notice also includes Standard_NC24rs_v3. The general Batch reference page establishes no separate retirement deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired support for these NCv3-series VM sizes in Azure Batch pools on <strong>2025-09-30</strong>:</p>
+<div class="rich-content"><p>Microsoft retired support for these NCv3-series VM sizes in Azure Batch pools on <strong>September 30, 2025</strong>:</p>
 <ul>
 <li>Standard_NC6s_v3</li>
 <li>Standard_NC12s_v3</li>
@@ -1940,7 +1940,7 @@
 <div class="rich-content"><ol>
 <li>Identify your Azure Batch pools using the four affected NCv3 sizes.</li>
 <li>Select a newer VM series in the NC product line, or another Batch-supported VM size suitable for your workload. Check regional availability and core-quota requirements. The general Batch reference documents <code>az batch location list-skus --location &lt;azure-region&gt;</code> for checking supported SKUs and their support end-of-life dates.</li>
-<li>Migrate affected pools. The documented migration deadline was <strong>2025-09-30</strong>.</li>
+<li>Migrate affected pools. The documented migration deadline was <strong>September 30, 2025</strong>.</li>
 </ol>
 <p>The supplied content does not specify replacement sizes, a pool-discovery command, retirement-specific compatibility prerequisites, migration procedures, cutover steps or validation criteria.</p>
 </div>
@@ -1949,7 +1949,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>Your Azure Batch pools are affected if they use Standard_NC6s_v3, Standard_NC12s_v3, Standard_NC24s_v3 or Standard_NC24rs_v3.</p>
-<p>After <strong>2025-09-30</strong>, you cannot create new pools using these sizes. Existing affected pools cannot scale out and are subject to forced resize to zero nodes, leaving those pools without nodes to run workloads. The timing of forced resizing is unspecified.</p>
+<p>After <strong>September 30, 2025</strong>, you cannot create new pools using these sizes. Existing affected pools cannot scale out and are subject to forced resize to zero nodes, leaving those pools without nodes to run workloads. The timing of forced resizing is unspecified.</p>
 <p>The Batch notice does not establish retirement of other VM sizes or document regional exceptions, data deletion or cost consequences. The general VM notice does not independently specify shutdown behavior for standalone VMs. Your resources have not been assessed.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

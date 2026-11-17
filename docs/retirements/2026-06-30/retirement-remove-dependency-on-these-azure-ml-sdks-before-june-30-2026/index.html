@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Machine Learning</span><span class="badge retired" data-deadline="2026-06-30"><span></span>Retired</span></div>
-  <h1>Retirement: Remove dependency on these Azure ML SDKs before June 30, 2026</h1><p>Azure Machine Learning Python SDK v1 support ends on 2026-06-30, when five companion SDKs also retire. Microsoft asks you to remove companion-SDK dependencies before that date. Continued use is permitted, but the companion SDKs will be unsupported and may stop working without notice. Product guidance recommends SDK v2; the announcement instead recommends V1 while announcing its end of life, leaving that announcement&#39;s migration instruction contradictory. Separately, SDK v1 was deprecated on 2025-03-31 and CLI v1 support ended on 2025-09-30. These milestones do not establish a service or workspace shutdown.</p>
+  <h1>Retirement: Remove dependency on these Azure ML SDKs before June 30, 2026</h1><p>Azure Machine Learning Python SDK v1 support ends on June 30, 2026, when five companion SDKs also retire. Microsoft asks you to remove companion-SDK dependencies before that date. Continued use is permitted, but the companion SDKs will be unsupported and may stop working without notice. Product guidance recommends SDK v2; the announcement instead recommends V1 while announcing its end of life, leaving that announcement&#39;s migration instruction contradictory. Separately, SDK v1 was deprecated on March 31, 2025 and CLI v1 support ended on September 30, 2025. These milestones do not establish a service or workspace shutdown.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-06-30"><strong>Retired</strong><span>Retirement date: <time datetime="2026-06-30">30 Jun 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 6 months, 27 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,19 +1916,19 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Jun 2026</p>
-<div class="rich-content"><p>Python SDK v1 support ends on <strong>2026-06-30</strong>. The announcement describes this as V1 end of life and retires the five listed companion SDKs on the same date. It asks you to remove those dependencies before that date.</p>
+<div class="rich-content"><p>Python SDK v1 support ends on <strong>June 30, 2026</strong>. The announcement describes this as V1 end of life and retires the five listed companion SDKs on the same date. It asks you to remove those dependencies before that date.</p>
 <p>Separate milestones are:</p>
 <ul>
-<li><strong>2025-03-31:</strong> Python SDK v1 deprecation.</li>
-<li><strong>2025-09-30:</strong> CLI v1 end of support.</li>
-<li><strong>2026-06-30:</strong> Python SDK v1 end of support and companion-SDK retirement.</li>
+<li><strong>March 31, 2025:</strong> Python SDK v1 deprecation.</li>
+<li><strong>September 30, 2025:</strong> CLI v1 end of support.</li>
+<li><strong>June 30, 2026:</strong> Python SDK v1 end of support and companion-SDK retirement.</li>
 </ul>
 <p>These are not documented workload-shutdown dates. Product guidance says existing v1 workflows continue after support ends. The announcement permits continued companion-SDK use but warns that they will be unsupported and may stop working without notice.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Machine Learning is ending support for Python SDK v1, identified by <code>azureml-core</code>. These companion SDKs retire on <strong>2026-06-30</strong>:</p>
+<div class="rich-content"><p>Azure Machine Learning is ending support for Python SDK v1, identified by <code>azureml-core</code>. These companion SDKs retire on <strong>June 30, 2026</strong>:</p>
 <ul>
 <li><code>azureml-train-core</code></li>
 <li><code>azureml-pipeline</code></li>
@@ -1936,7 +1936,7 @@
 <li><code>azureml-pipeline-internal</code></li>
 <li><code>azureml-pipeline-steps</code></li>
 </ul>
-<p>This is a client-tooling change, not retirement of Azure Machine Learning or a required workspace upgrade. CLI v1, the <code>azure-cli-ml</code> extension, separately reached end of support on 2025-09-30; Microsoft no longer provides technical support or updates for it.</p>
+<p>This is a client-tooling change, not retirement of Azure Machine Learning or a required workspace upgrade. CLI v1, the <code>azure-cli-ml</code> extension, separately reached end of support on September 30, 2025; Microsoft no longer provides technical support or updates for it.</p>
 <p>Current product guidance recommends Python SDK v2 (<code>azure-ai-ml</code>) and CLI v2 (<code>ml</code>). The announcement's recommendation to migrate to V1 contradicts its own V1 end-of-life statement; it does not establish a supported companion-package migration mapping.</p>
 <p>Existing workspaces can support v1 and v2 clients, subject to compatibility and networking constraints. New service features are available only through v2. The supplied content specifies no regional exceptions or post-support maintenance or security-update commitment.</p>
 </div>
@@ -1951,7 +1951,7 @@
 <li>Adapt code and commands using the referenced v1-to-v2 guidance. V1 and v2 packages and CLI commands are not interchangeable. Microsoft recommends against installing both SDK versions in the same environment or mixing them in the same code. Compatible workspace resources can be reused.</li>
 <li>As a <strong>team-owned validation step</strong>, exercise migrated jobs, pipelines, data access, secrets and deployment scoring before switching dependent automation. The supplied content does not provide a complete cutover, backup or cleanup procedure.</li>
 </ol>
-<p>Microsoft recommends moving SDK v1 workflows before 2026-06-30 and CLI v1 workflows as soon as possible. For clarification, use Microsoft Q&amp;A or Azure support. Technical support requires a support plan and the documented subscription-level support permissions.</p>
+<p>Microsoft recommends moving SDK v1 workflows before June 30, 2026 and CLI v1 workflows as soon as possible. For clarification, use Microsoft Q&amp;A or Azure support. Technical support requires a support plan and the documented subscription-level support permissions.</p>
 </div>
       <p> </p>
     </section>
@@ -1959,7 +1959,7 @@
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your workloads depend on the five retiring companion SDKs or Python SDK v1. CLI v1 has a separate, earlier support milestone. Your environment has not been inspected.</p>
 <h3>Continuity and support</h3>
-<p>Existing v1 workflows, model deployments and web services continue functioning according to product guidance. Unsupported clients may face security risks or breaking changes following product architecture changes. The companion-SDK notice separately warns that those packages may stop working without notice after 2026-06-30; continuity is not guaranteed.</p>
+<p>Existing v1 workflows, model deployments and web services continue functioning according to product guidance. Unsupported clients may face security risks or breaking changes following product architecture changes. The companion-SDK notice separately warns that those packages may stop working without notice after June 30, 2026; continuity is not guaranteed.</p>
 <p>The supplied content does not announce a service, workspace or data-access shutdown, retirement-related data deletion, retention changes or cost estimates.</p>
 <h3>Migration constraints</h3>
 <ul>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Dedicated Host · Virtual Machines</span><span class="badge retired" data-deadline="2022-02-28"><span></span>Retired</span></div>
-  <h1>The E64i_v3 &amp; E64is_v3 Azure VMs will not be hardware-isolated on 28 February 2022</h1><p>After 2022-02-28, Azure E64i_v3 and E64is_v3 VMs no longer provide hardware isolation, and Microsoft no longer supports their isolation guarantee. If you require hardware isolation, the notice directs you to migrate before that date to Azure Dedicated Host or E80ids_v4 or E80is_v4 isolated VMs. No action is required if you do not need hardware isolation. This milestone does not announce VM shutdown.</p>
+  <h1>The E64i_v3 &amp; E64is_v3 Azure VMs will not be hardware-isolated on 28 February 2022</h1><p>After February 28, 2022, Azure E64i_v3 and E64is_v3 VMs no longer provide hardware isolation, and Microsoft no longer supports their isolation guarantee. If you require hardware isolation, the notice directs you to migrate before that date to Azure Dedicated Host or E80ids_v4 or E80is_v4 isolated VMs. No action is required if you do not need hardware isolation. This milestone does not announce VM shutdown.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-02-28"><strong>Retired</strong><span>Retirement date: <time datetime="2022-02-28">28 Feb 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 6 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">28 Feb 2022</p>
-<div class="rich-content"><p>After <strong>2022-02-28</strong>, E64i_v3 and E64is_v3 Azure VMs no longer provide hardware isolation, and Microsoft no longer supports their isolation guarantee.</p>
-<p>If you require isolation, the notice directs you to migrate before 2022-02-28. This is the hardware-isolation milestone, not a stated VM shutdown date.</p>
+<div class="rich-content"><p>After <strong>February 28, 2022</strong>, E64i_v3 and E64is_v3 Azure VMs no longer provide hardware isolation, and Microsoft no longer supports their isolation guarantee.</p>
+<p>If you require isolation, the notice directs you to migrate before February 28, 2022. This is the hardware-isolation milestone, not a stated VM shutdown date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure is removing hardware isolation and support for the isolation guarantee from <strong>E64i_v3 and E64is_v3 VMs</strong> after 2022-02-28. The notice does not announce their shutdown or changes to general VM support.</p>
+<div class="rich-content"><p>Azure is removing hardware isolation and support for the isolation guarantee from <strong>E64i_v3 and E64is_v3 VMs</strong> after February 28, 2022. The notice does not announce their shutdown or changes to general VM support.</p>
 <p>For workloads requiring hardware isolation, the notice recommends Azure Dedicated Host and also lists E80ids_v4 and E80is_v4 isolated VMs as alternatives. Dedicated Host runs Linux and Windows VMs on physical servers dedicated to your organization.</p>
 </div>
       <div class="notice"></div>
@@ -1932,7 +1932,7 @@
 <div class="rich-content"><ol>
 <li>Determine whether you use E64i_v3 or E64is_v3 VMs and whether those workloads require hardware isolation. No action is required if isolation is unnecessary. The notice provides no resource-discovery method.</li>
 <li>If isolation is required, choose Azure Dedicated Host or E80ids_v4 or E80is_v4 isolated VMs. Review compatibility, regional availability and pricing for your workload and operating system.</li>
-<li>Migrate before 2022-02-28. The notice identifies Azure CLI or the Azure portal for Dedicated Host migration and references Windows or Linux VM resizing guidance for the isolated VM alternatives.</li>
+<li>Migrate before February 28, 2022. The notice identifies Azure CLI or the Azure portal for Dedicated Host migration and references Windows or Linux VM resizing guidance for the isolated VM alternatives.</li>
 <li>For a resize, plan for a restart and any required deallocation. Windows direct resizing requires matching local temporary-disk configurations. If the target size is unavailable on an availability set's current cluster, all VMs in that set must be deallocated. Deallocation releases dynamic IP addresses; OS and data disks are unaffected.</li>
 <li>Confirm successful allocation after resizing. The supplied guidance warns that the portal and GET responses can show the requested size after a failed resize while the VM still runs at its previous size; it supplies no independent running-size verification procedure.</li>
 </ol>
@@ -1942,7 +1942,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>The change affects the hardware-isolation guarantee for E64i_v3 and E64is_v3 VMs. If you leave an isolation-dependent workload on either size after 2022-02-28, hardware isolation is no longer provided or guaranteed.</p>
+<div class="rich-content"><p>The change affects the hardware-isolation guarantee for E64i_v3 and E64is_v3 VMs. If you leave an isolation-dependent workload on either size after February 28, 2022, hardware isolation is no longer provided or guaranteed.</p>
 <p>If your workloads do not require hardware isolation, the notice says no action is needed. It does not announce workload shutdown, data deletion, general VM support changes or console/API restrictions. The supplied content does not establish whether you have affected resources.</p>
 <p>Migration can introduce operational and cost considerations: resizing a running VM causes a restart, and some changes require deallocation. Dedicated Host billing begins when you provision the host and continues even when it contains no VMs; software licenses are billed separately. No migration cost estimate is supplied.</p>
 </div>

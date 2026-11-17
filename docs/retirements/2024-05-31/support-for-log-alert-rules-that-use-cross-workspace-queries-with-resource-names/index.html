@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Alerts</span><span class="badge retired" data-deadline="2024-05-31"><span></span>Retired</span></div>
-  <h1>Support for log alert rules that use cross-workspace queries with resource names or qualified name identifiers will be retired on 31 May 2024</h1><p>On 2024-05-31, Azure retired support for resource-name and qualified-name identifiers in cross-workspace log alert queries within the specified portal and Scheduled Query Rules API scope. Use workspace or application GUIDs or full Azure resource IDs instead. The notice explicitly says portal rules created or updated before that date and rules using API version 2022-08-01-preview or earlier continue running; this is not a blanket shutdown of existing rules.</p>
+  <h1>Support for log alert rules that use cross-workspace queries with resource names or qualified name identifiers will be retired on 31 May 2024</h1><p>On May 31, 2024, Azure retired support for resource-name and qualified-name identifiers in cross-workspace log alert queries within the specified portal and Scheduled Query Rules API scope. Use workspace or application GUIDs or full Azure resource IDs instead. The notice explicitly says portal rules created or updated before that date and rules using API version 2022-08-01-preview or earlier continue running; this is not a blanket shutdown of existing rules.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-05-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-05-31">31 May 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 months, 30 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,16 +1916,16 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 May 2024</p>
-<div class="rich-content"><p>The retirement date is <strong>2024-05-31</strong>. Before that date, the notice said affected identifier patterns would receive warnings; from that date, those patterns would no longer be supported in the affected scope.</p>
-<p>Rules created or updated in the Azure portal before 2024-05-31, and rules using Scheduled Query Rules API version <strong>2022-08-01-preview or earlier</strong>, are explicitly documented to continue running. The retirement is not a blanket shutdown of existing log alert rules.</p>
+<div class="rich-content"><p>The retirement date is <strong>May 31, 2024</strong>. Before that date, the notice said affected identifier patterns would receive warnings; from that date, those patterns would no longer be supported in the affected scope.</p>
+<p>Rules created or updated in the Azure portal before May 31, 2024, and rules using Scheduled Query Rules API version <strong>2022-08-01-preview or earlier</strong>, are explicitly documented to continue running. The retirement is not a blanket shutdown of existing log alert rules.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure retired support on <strong>2024-05-31</strong> for resource-name and qualified-name identifiers in cross-workspace log alert queries. Qualified names include subscription-name/resource-group/workspace-name combinations.</p>
+<div class="rich-content"><p>Azure retired support on <strong>May 31, 2024</strong> for resource-name and qualified-name identifiers in cross-workspace log alert queries. Qualified names include subscription-name/resource-group/workspace-name combinations.</p>
 <p>The notice identifies rules created through the Azure portal or Scheduled Query Rules API version <strong>2023-03-15-preview</strong> as affected, with these exceptions:</p>
 <ul>
-<li>Portal rules created or updated before 2024-05-31 continue running.</li>
+<li>Portal rules created or updated before May 31, 2024 continue running.</li>
 <li>Rules using API version <strong>2022-08-01-preview or earlier</strong> continue running.</li>
 </ul>
 <p>Workspace or application GUIDs and full Azure resource IDs are the documented alternatives. This concerns query identifiers, not retirement of the entire API version.</p>
@@ -1945,14 +1945,14 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your log alert rules use resource-name or qualified-name identifiers within the specified portal or API scope and do not qualify for an exception. Those patterns are unsupported from <strong>2024-05-31</strong>; the notice does not specify their exact runtime failure behavior.</p>
+<div class="rich-content"><p>You are affected if your log alert rules use resource-name or qualified-name identifiers within the specified portal or API scope and do not qualify for an exception. Those patterns are unsupported from <strong>May 31, 2024</strong>; the notice does not specify their exact runtime failure behavior.</p>
 <p>Portal rules created or updated before that date, and rules using Scheduled Query Rules API version <strong>2022-08-01-preview or earlier</strong>, are documented to continue running without issues.</p>
 <p>The supplied content does not establish how many of your rules are affected or document data deletion, retention changes or cost effects.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>The notice documents query warnings before <strong>2024-05-31</strong>, but no post-retirement tracking tool or migration-completion check.</p>
+<div class="rich-content"><p>The notice documents query warnings before <strong>May 31, 2024</strong>, but no post-retirement tracking tool or migration-completion check.</p>
 <p>For optional, team-owned tracking, record each reviewed rule's identifier format, API version, applicable exception and replacement made. This is local planning, not a tracking capability documented by the notice.</p>
 <p>The API references list Get, List By Resource Group and List By Subscription operations for retrieving rule definitions, but do not document how to use them to identify retiring usage or verify migration completion.</p>
 <p>For questions, use Microsoft Q&amp;A. If you have a support plan and need technical help, create a support request.</p>

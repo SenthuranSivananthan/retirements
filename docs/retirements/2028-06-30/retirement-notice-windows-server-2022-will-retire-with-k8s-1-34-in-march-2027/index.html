@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge upcoming" data-deadline="2028-06-30"><span></span>Upcoming</span></div>
-  <h1>Retirement notice: Windows Server 2022 will retire with k8s 1.34 in March 2027</h1><p>AKS product migration guidance sets Windows Server 2022 node-pool end of support at 2028-06-30 and node-image removal at 2029-06-30, when scaling operations will fail. This guidance takes precedence over the supplied announcement&#39;s 2027-03-15 retirement date; the inputs do not explicitly document an extension. Migrate to a supported Windows Server version. In-place migration to Windows Server 2025 is a constrained preview; manual migration uses a new node pool. Neither milestone establishes automatic workload shutdown.</p>
+  <h1>Retirement notice: Windows Server 2022 will retire with k8s 1.34 in March 2027</h1><p>AKS product migration guidance sets Windows Server 2022 node-pool end of support at June 30, 2028 and node-image removal at June 30, 2029, when scaling operations will fail. This guidance takes precedence over the supplied announcement&#39;s March 15, 2027 retirement date; the inputs do not explicitly document an extension. Migrate to a supported Windows Server version. In-place migration to Windows Server 2025 is a constrained preview; manual migration uses a new node pool. Neither milestone establishes automatic workload shutdown.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-06-30"><strong>591 days remaining</strong><span>Retirement date: <time datetime="2028-06-30">30 Jun 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 4 years, 3 months, 1 day</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Jun 2028</p>
-<div class="rich-content"><p>AKS product migration guidance sets Windows Server 2022 node-pool end of support at <strong>2028-06-30</strong>. On <strong>2029-06-30</strong>, AKS will remove existing Windows Server 2022 node images, causing scaling operations to fail. Neither milestone establishes automatic shutdown of running workloads.</p>
-<p>The supplied retirement announcement instead identifies <strong>2027-03-15</strong>, alongside Kubernetes 1.34 end of platform support, and directs migration by that date. The applicable product migration guidance takes precedence here, but the sources conflict and do not explicitly document an extension.</p>
+<div class="rich-content"><p>AKS product migration guidance sets Windows Server 2022 node-pool end of support at <strong>June 30, 2028</strong>. On <strong>June 30, 2029</strong>, AKS will remove existing Windows Server 2022 node images, causing scaling operations to fail. Neither milestone establishes automatic shutdown of running workloads.</p>
+<p>The supplied retirement announcement instead identifies <strong>March 15, 2027</strong>, alongside Kubernetes 1.34 end of platform support, and directs migration by that date. The applicable product migration guidance takes precedence here, but the sources conflict and do not explicitly document an extension.</p>
 <p>The version restrictions also differ in scope: the announcement prohibits creating Windows Server 2022 pools on Kubernetes 1.35 or later; the migration guidance says Windows Server 2022 is unsupported on Kubernetes 1.37 or later. The supplied content does not explicitly reconcile these restrictions.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>AKS is retiring support for Windows Server 2022 node pools on <strong>2028-06-30</strong>, according to the product migration guidance. Microsoft will remove their existing node images on <strong>2029-06-30</strong>, after which scaling operations will fail.</p>
-<p>The announcement gives a conflicting retirement date of 2027-03-15. It allows continued use on Kubernetes 1.34 and earlier through 2027-03-14 and prohibits creating Windows Server 2022 pools on Kubernetes 1.35 or later. The product guidance instead documents lack of support on Kubernetes 1.37 or later; it does not explicitly resolve the announcement's creation restriction.</p>
+<div class="rich-content"><p>AKS is retiring support for Windows Server 2022 node pools on <strong>June 30, 2028</strong>, according to the product migration guidance. Microsoft will remove their existing node images on <strong>June 30, 2029</strong>, after which scaling operations will fail.</p>
+<p>The announcement gives a conflicting retirement date of March 15, 2027. It allows continued use on Kubernetes 1.34 and earlier through March 14, 2027 and prohibits creating Windows Server 2022 pools on Kubernetes 1.35 or later. The product guidance instead documents lack of support on Kubernetes 1.37 or later; it does not explicitly resolve the announcement's creation restriction.</p>
 <p>Windows Server 2025 is supported starting with Kubernetes 1.32.0. In-place migration from Windows Server 2022 to Windows Server 2025 is limited to Kubernetes 1.32–1.36 and is a preview. Other Windows Server version migrations require a new node pool.</p>
 <p>The announcement also names Windows Server Annual Channel as a replacement Microsoft planned to support before retirement. The supplied Annual Channel announcement does not confirm current availability or provide an AKS migration procedure.</p>
 </div>
@@ -1941,13 +1941,13 @@
 <li>For manual migration, update the workload YAML's OS SKU node selector and container image, then apply it using <code>kubectl apply -f &lt;filename&gt;</code>. Update pool-specific managed identity access, including gMSA access where used.</li>
 <li>Verify the target OS, pod placement and application behavior. After manually moving and validating workloads, delete the old pool.</li>
 </ol>
-<p>Complete migration before the product guidance's <strong>2028-06-30</strong> support end. The announcement instead directs migration by <strong>2027-03-15</strong>; the supplied sources do not explicitly reconcile that conflict. No backup procedure is supplied.</p>
+<p>Complete migration before the product guidance's <strong>June 30, 2028</strong> support end. The announcement instead directs migration by <strong>March 15, 2027</strong>; the supplied sources do not explicitly reconcile that conflict. No backup procedure is supplied.</p>
 </div>
       <p> </p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if you use Windows Server 2022 node pools in AKS. Product guidance sets support end at <strong>2028-06-30</strong> and image removal at <strong>2029-06-30</strong>, when scaling operations will fail. The announcement instead gives 2027-03-15 as retirement; this conflict is not explicitly explained.</p>
+<div class="rich-content"><p>You are affected if you use Windows Server 2022 node pools in AKS. Product guidance sets support end at <strong>June 30, 2028</strong> and image removal at <strong>June 30, 2029</strong>, when scaling operations will fail. The announcement instead gives March 15, 2027 as retirement; this conflict is not explicitly explained.</p>
 <p>The announcement prohibits creating Windows Server 2022 pools on Kubernetes 1.35 or later, while product guidance documents lack of support on Kubernetes 1.37 or later. These statements describe different constraints and do not establish that creation is available on Kubernetes 1.35–1.36.</p>
 <p>Migration constraints include:</p>
 <ul>

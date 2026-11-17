@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2025-10-01"><span></span>Retired</span></div>
-  <h1>On 1 October 2025, the Log Analytics alert API in Azure Monitor will be retired</h1><p>The announced retirement date for Azure Monitor&#39;s legacy Log Analytics alert API was 2025-10-01. Move affected log alert rules to the Scheduled Query Rules API. The announcement says remaining rules will be automatically transitioned; the supplied reference page does not confirm enforcement or completion. Switching is irreversible and changes rule resource IDs, but Microsoft states that alerts continue during and after the switch. Rules created using scheduledQueryRules API versions 2018-04-16 or newer are unaffected.</p>
+  <h1>On 1 October 2025, the Log Analytics alert API in Azure Monitor will be retired</h1><p>The announced retirement date for Azure Monitor&#39;s legacy Log Analytics alert API was October 1, 2025. Move affected log alert rules to the Scheduled Query Rules API. The announcement says remaining rules will be automatically transitioned; the supplied reference page does not confirm enforcement or completion. Switching is irreversible and changes rule resource IDs, but Microsoft states that alerts continue during and after the switch. Rules created using scheduledQueryRules API versions April 16, 2018 or newer are unaffected.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-10-01"><strong>Retired</strong><span>Retirement date: <time datetime="2025-10-01">1 Oct 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 15 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Oct 2025</p>
-<div class="rich-content"><p>The announced retirement date for Azure Monitor's legacy Log Analytics alert API was <strong>2025-10-01</strong>. The announcement directs you to transition affected log alerts to the Scheduled Query Rules API by that date.</p>
+<div class="rich-content"><p>The announced retirement date for Azure Monitor's legacy Log Analytics alert API was <strong>October 1, 2025</strong>. The announcement directs you to transition affected log alerts to the Scheduled Query Rules API by that date.</p>
 <p>Microsoft's announcement says remaining rules will be automatically transitioned afterward, without specifying a completion date. The supplied reference page repeats the announced retirement date but does not confirm enforcement or automatic-transition completion. Neither source establishes a separate workload shutdown date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Monitor is retiring legacy Log Analytics alert API management in favor of the Scheduled Query Rules API, with an announced retirement date of <strong>2025-10-01</strong>.</p>
-<p>Older workspaces still using legacy rule management need to switch. Workspaces created after 2019-06-01 use the Scheduled Query Rules API, and rules created using scheduledQueryRules API versions 2018-04-16 or newer are unaffected.</p>
+<div class="rich-content"><p>Azure Monitor is retiring legacy Log Analytics alert API management in favor of the Scheduled Query Rules API, with an announced retirement date of <strong>October 1, 2025</strong>.</p>
+<p>Older workspaces still using legacy rule management need to switch. Workspaces created after June 1, 2019 use the Scheduled Query Rules API, and rules created using scheduledQueryRules API versions April 16, 2018 or newer are unaffected.</p>
 <p>After switching, you must create and edit migrated rules through the current API. The switch is irreversible. Microsoft states that alert rules do not stop or stall during or after switching.</p>
 <p>The replacement supports log alerting on all Azure resources, a single rule-creation template, and dimensional, auto-resolving and one-minute log alerts. The supplied sources do not document regional exceptions or pre-retirement support commitments.</p>
 </div>
@@ -1938,20 +1938,20 @@
 <li>Check completion with Alerts Version - Get. A response containing version 2 and scheduledQueryRulesEnabled set to true confirms that the workspace has switched.</li>
 <li>Create and edit migrated rules through the current API, and update management tooling that depends on their changed resource IDs.</li>
 </ol>
-<p><strong>You cannot revert the switch.</strong> Microsoft states that alerts continue during and after switching. The announced migration deadline was 2025-10-01; although the announcement promises automatic transition for remaining rules, the supplied sources do not confirm its completion.</p>
+<p><strong>You cannot revert the switch.</strong> Microsoft states that alerts continue during and after switching. The announced migration deadline was October 1, 2025; although the announcement promises automatic transition for remaining rules, the supplied sources do not confirm its completion.</p>
 </div>
       <p> </p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>This affects legacy log search alert rule management in Log Analytics workspaces that have not switched. Rules created using scheduledQueryRules API versions 2018-04-16 or newer are unaffected.</p>
+<div class="rich-content"><p>This affects legacy log search alert rule management in Log Analytics workspaces that have not switched. Rules created using scheduledQueryRules API versions April 16, 2018 or newer are unaffected.</p>
 <p>After switching:</p>
 <ul>
 <li>You must create and edit migrated rules through the current API.</li>
 <li>Rules become Azure Resource Manager tracked resources with changed resource IDs, composed of the workspace name, saved-search ID, schedule ID and action ID separated by vertical bars. Display names remain unchanged.</li>
 <li>Microsoft states that alert rules continue without stopping or stalling during or after the switch.</li>
 </ul>
-<p>If you left rules on the legacy API after 2025-10-01, the announcement says Microsoft will automatically transition them. The supplied reference page does not establish enforcement or transition completion. The sources do not document workload shutdown, data retention or deletion changes, or cost effects.</p>
+<p>If you left rules on the legacy API after October 1, 2025, the announcement says Microsoft will automatically transition them. The supplied reference page does not establish enforcement or transition completion. The sources do not document workload shutdown, data retention or deletion changes, or cost effects.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>
     </section>

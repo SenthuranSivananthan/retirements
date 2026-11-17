@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">App Service</span><span class="badge retired" data-deadline="2022-11-28"><span></span>Retired</span></div>
-  <h1>Community support for PHP 7.4 is ending on 28 November 2022</h1><p>PHP 7.4 extended support on Windows ended on 2022-11-28, leaving Azure App Service applications using that configuration unsupported. The notice recommends updating before that date but does not announce workload shutdown. Its title refers to community support, while its body specifies extended support on Windows. The separate PHP reference provides general runtime guidance, not another retirement deadline; it states that PHP 8 requires App Service on Linux.</p>
+  <h1>Community support for PHP 7.4 is ending on 28 November 2022</h1><p>PHP 7.4 extended support on Windows ended on November 28, 2022, leaving Azure App Service applications using that configuration unsupported. The notice recommends updating before that date but does not announce workload shutdown. Its title refers to community support, while its body specifies extended support on Windows. The separate PHP reference provides general runtime guidance, not another retirement deadline; it states that PHP 8 requires App Service on Linux.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-11-28"><strong>Retired</strong><span>Retirement date: <time datetime="2022-11-28">28 Nov 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 1 month</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">28 Nov 2022</p>
-<div class="rich-content"><p>PHP 7.4 extended support on Windows ended on <strong>2022-11-28</strong>. Azure App Service applications remaining on that configuration are unsupported after that date.</p>
-<p>The notice recommends updating before 2022-11-28. It does not specify a workload shutdown date. The separate PHP reference supplies no additional retirement date.</p>
+<div class="rich-content"><p>PHP 7.4 extended support on Windows ended on <strong>November 28, 2022</strong>. Azure App Service applications remaining on that configuration are unsupported after that date.</p>
+<p>The notice recommends updating before November 28, 2022. It does not specify a workload shutdown date. The separate PHP reference supplies no additional retirement date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>PHP 7.4 extended support on Windows is ending for Azure App Service applications. Applications remaining on that configuration are unsupported after 2022-11-28.</p>
+<div class="rich-content"><p>PHP 7.4 extended support on Windows is ending for Azure App Service applications. Applications remaining on that configuration are unsupported after November 28, 2022.</p>
 <p>The notice's title describes community support ending; its body specifically identifies extended support on Windows. The supplied content does not establish the same support change for other operating systems or PHP versions.</p>
 <p>Separately, the general App Service PHP reference says EOL versions are removed from the Runtime Stack selection dropdown and existing applications targeting them should not be affected. This is general guidance, not a retirement-specific continuity guarantee or post-EOL security-update commitment.</p>
 </div>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your Azure App Service applications using PHP 7.4 on Windows. The notice does not provide an inventory method.</li>
-<li>Select a supported replacement. The notice recommends updating before 2022-11-28 but names no target version. The separate reference recommends the most recent supported PHP version and states that PHP 8 requires App Service on Linux; do not treat it as a Windows-only version change.</li>
+<li>Select a supported replacement. The notice recommends updating before November 28, 2022 but names no target version. The separate reference recommends the most recent supported PHP version and states that PHP 8 requires App Service on Linux; do not treat it as a Windows-only version change.</li>
 <li>Where applicable, use the reference's version-selection steps: open your app in the Azure portal, select Configuration &gt; General settings &gt; Stack Settings, choose a supported Minor version, then select Save. Changing stack settings restarts your application.</li>
 </ol>
 <p>The supplied content does not document a Windows-to-Linux migration procedure, compatibility-validation steps, or backup and cutover instructions.</p>
@@ -1942,7 +1942,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected by the notice if your Azure App Service applications use <strong>PHP 7.4 on Windows</strong>. Remaining on that configuration after 2022-11-28 leaves those applications unsupported; the notice highlights risk and potential security vulnerabilities.</p>
+<div class="rich-content"><p>You are affected by the notice if your Azure App Service applications use <strong>PHP 7.4 on Windows</strong>. Remaining on that configuration after November 28, 2022 leaves those applications unsupported; the notice highlights risk and potential security vulnerabilities.</p>
 <p>End of support is not a documented workload shutdown. The separate reference says existing applications targeting EOL PHP versions should not be affected by removal from the Runtime Stack dropdown, but it does not independently establish retirement-specific behavior for PHP 7.4 on Windows.</p>
 <p>Changing stack settings causes an application restart. PHP 8 requires Linux. The supplied content does not establish retirement effects on other operating systems or PHP versions, or specify changes to APIs, deployment tooling, data access, retention, deletion or costs.</p>
 </div>

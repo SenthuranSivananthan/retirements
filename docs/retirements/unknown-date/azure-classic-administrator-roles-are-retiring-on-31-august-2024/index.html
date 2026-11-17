@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h1>Azure Classic Administrator roles are retiring on 31 August 2024</h1><p>Azure Co-Administrator and Service Administrator roles were fully retired in May 2026, when Microsoft removed the Classic Administrators tab from the Azure portal. These roles had been retired and unsupported since 2024-08-31. Use Azure RBAC to manage access. Starting in December 2025, Azure automatically assigned subscription-level Owner access to remaining classic administrators in the public cloud; equivalent conversion for other clouds is not established. Review subscription access and remove unnecessary Owner assignments. The Account Administrator billing role is not being deprecated.</p>
+  <h1>Azure Classic Administrator roles are retiring on 31 August 2024</h1><p>Azure Co-Administrator and Service Administrator roles were fully retired in May 2026, when Microsoft removed the Classic Administrators tab from the Azure portal. These roles had been retired and unsupported since August 31, 2024. Use Azure RBAC to manage access. Starting in December 2025, Azure automatically assigned subscription-level Owner access to remaining classic administrators in the public cloud; equivalent conversion for other clouds is not established. Review subscription access and remove unnecessary Owner assignments. The Account Administrator billing role is not being deprecated.</p>
   <div class="retirement-countdown unknown" data-countdown data-deadline=""><strong>Retirement date to confirm</strong><span class="badge amber customer-lead-time-pill">Lead time: Not calculable</span></div>
 </div>
 <div class="detail-layout">
@@ -1919,8 +1919,8 @@
 <div class="rich-content"><p>Azure Co-Administrator and Service Administrator roles were <strong>fully retired in May 2026</strong>, when Microsoft removed the Classic Administrators tab from the Azure portal. The current product guidance does not specify an exact day, so the structured retirement deadline remains month-only.</p>
 <p>The supplied sources describe separate earlier milestones:</p>
 <ul>
-<li><strong>2024-04-03:</strong> Adding new Co-Administrator roles through the Azure portal was restricted.</li>
-<li><strong>2024-08-31:</strong> Co-Administrator and Service Administrator roles retired and became unsupported. The original announcement required transition to Azure RBAC by this date.</li>
+<li><strong>April 3, 2024:</strong> Adding new Co-Administrator roles through the Azure portal was restricted.</li>
+<li><strong>August 31, 2024:</strong> Co-Administrator and Service Administrator roles retired and became unsupported. The original announcement required transition to Azure RBAC by this date.</li>
 <li><strong>December 2025:</strong> Azure began automatically assigning subscription-level Owner access to remaining classic administrators in the public cloud.</li>
 </ul>
 <p>These are distinct milestones, not evidence that Microsoft extended the original support deadline. You must now use Azure RBAC to manage access.</p>
@@ -1948,7 +1948,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your subscriptions used Co-Administrator or Service Administrator assignments. Since full retirement in May 2026, you can no longer manage those roles through the Classic Administrators tab. The roles had already become unsupported on 2024-08-31.</p>
+<div class="rich-content"><p>You are affected if your subscriptions used Co-Administrator or Service Administrator assignments. Since full retirement in May 2026, you can no longer manage those roles through the Classic Administrators tab. The roles had already become unsupported on August 31, 2024.</p>
 <p>Azure began automatically assigning subscription-level Owner access to remaining classic administrators in the <strong>public cloud</strong> in December 2025. Review those assignments because Owner grants full access to manage Azure resources. Automatic conversion in other clouds is not established by the supplied guidance.</p>
 <p>A subscription might be orphaned if its classic administrators were removed without at least one Owner assignment. The original notice warned of potential service disruptions, but the supplied sources do not establish that this role retirement shuts down workloads or deletes data.</p>
 <p>Account Administrator billing assignments are unaffected. The supplied sources do not establish whether your subscriptions contain affected or converted assignments.</p>

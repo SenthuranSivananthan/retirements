@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2025-09-30"><span></span>Retired</span></div>
-  <h1>Migrate to Azure Monitor VM insights by 30 September 2025 when Service Map will be retired</h1><p>Microsoft scheduled Azure Monitor Service Map retirement for 2025-09-30 and stated that its UI would be unavailable afterward. Migrate process and dependency monitoring for Azure virtual machines and on-premises machines to Azure Monitor VM insights. New subscriptions could not onboard after 2024-08-31. VM insights uses Azure Monitor Agent and adds performance-counter ingestion costs; remove the Service Map solution after migration to avoid duplicate data and extra costs. The supplied sources do not confirm retirement completion or establish workload shutdown or retirement-specific data deletion.</p>
+  <h1>Migrate to Azure Monitor VM insights by 30 September 2025 when Service Map will be retired</h1><p>Microsoft scheduled Azure Monitor Service Map retirement for September 30, 2025 and stated that its UI would be unavailable afterward. Migrate process and dependency monitoring for Azure virtual machines and on-premises machines to Azure Monitor VM insights. New subscriptions could not onboard after August 31, 2024. VM insights uses Azure Monitor Agent and adds performance-counter ingestion costs; remove the Service Map solution after migration to avoid duplicate data and extra costs. The supplied sources do not confirm retirement completion or establish workload shutdown or retirement-specific data deletion.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2025-09-30">30 Sep 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 23 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2025</p>
-<div class="rich-content"><p>Microsoft set <strong>2025-09-30</strong> as the Service Map retirement date and stated that the Service Map UI would be unavailable afterward. The announcement says to migrate by that date; the migration guidance says before that date. These describe the same retirement milestone, not conflicting retirement dates.</p>
-<p>New subscriptions could not onboard after <strong>2024-08-31</strong>, a separate restriction.</p>
+<div class="rich-content"><p>Microsoft set <strong>September 30, 2025</strong> as the Service Map retirement date and stated that the Service Map UI would be unavailable afterward. The announcement says to migrate by that date; the migration guidance says before that date. These describe the same retirement milestone, not conflicting retirement dates.</p>
+<p>New subscriptions could not onboard after <strong>August 31, 2024</strong>, a separate restriction.</p>
 <p>The supplied sources do not confirm retirement completion or specify workload-shutdown or data-deletion dates. The general VM insights overview does not independently establish a retirement deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft scheduled Azure Monitor Service Map to retire on <strong>2025-09-30</strong>, replacing its process and dependency monitoring with <strong>Azure Monitor VM insights</strong>. The scope includes Azure virtual machines and on-premises machines, with Service Map dependency discovery on Windows and Linux. The sources document no regional exceptions or post-retirement support commitments.</p>
+<div class="rich-content"><p>Microsoft scheduled Azure Monitor Service Map to retire on <strong>September 30, 2025</strong>, replacing its process and dependency monitoring with <strong>Azure Monitor VM insights</strong>. The scope includes Azure virtual machines and on-premises machines, with Service Map dependency discovery on Windows and Linux. The sources document no regional exceptions or post-retirement support commitments.</p>
 <p>The retirement guidance says the Service Map UI would become unavailable after that date. The announcement describes the VM insights map experience as including all Service Map functionality; migration guidance describes similar process and dependency visibility across TCP-connected systems.</p>
 <p>VM insights uses Azure Monitor Agent instead of Service Map's Log Analytics agent and collects per-machine performance counters every minute.</p>
 </div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your Service Map workspaces. In the Azure portal, open <strong>Log Analytics workspaces</strong>, select a workspace, open <strong>Legacy solutions</strong>, and locate <strong>ServiceMap(workspace name)</strong>. Use the documented inventory query in the progress answer to identify recorded machines.</li>
-<li>Review VM insights pricing, then enable <strong>Azure Monitor VM insights using Azure Monitor Agent</strong>. Microsoft directed migration before 2025-09-30. For on-premises machines, the migration guidance recommends Azure Arc for servers; the general monitoring overview identifies Azure Arc-enabled servers and the Azure Connected Machine agent as connection requirements.</li>
+<li>Review VM insights pricing, then enable <strong>Azure Monitor VM insights using Azure Monitor Agent</strong>. Microsoft directed migration before September 30, 2025. For on-premises machines, the migration guidance recommends Azure Arc for servers; the general monitoring overview identifies Azure Arc-enabled servers and the Azure Connected Machine agent as connection requirements.</li>
 <li>As a <strong>team-owned validation step</strong>, compare your identified machines and required dependencies with what you can view in VM insights. The sources do not define retirement-specific acceptance criteria.</li>
 <li>After migration, remove the Service Map solution to avoid duplicate data and extra costs. Open the solution's <strong>Overview</strong>, select <strong>Delete</strong>, and confirm with <strong>Yes</strong>.</li>
 </ol>
@@ -1943,7 +1943,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are in scope if you use Service Map for process and dependency monitoring. Microsoft says migration to VM insights is needed to continue that monitoring and that the Service Map UI would be unavailable after <strong>2025-09-30</strong>. The sources do not state that monitored virtual machines stop running or establish post-retirement API and integration behavior.</p>
+<div class="rich-content"><p>You are in scope if you use Service Map for process and dependency monitoring. Microsoft says migration to VM insights is needed to continue that monitoring and that the Service Map UI would be unavailable after <strong>September 30, 2025</strong>. The sources do not state that monitored virtual machines stop running or establish post-retirement API and integration behavior.</p>
 <p>Workspace <strong>Legacy solutions</strong> identifies installed Service Map solutions; inventory records identify recorded machines. Neither establishes a complete tenant-wide inventory. Documented Service Map visibility limits include TCP-over-IPv4 reporting, incomplete process detail for agentless neighbors, and a Free plan limit of five unique machines.</p>
 <p>VM insights adds performance-counter ingestion every minute, increasing monitoring costs per machine. Leaving Service Map installed after migration can cause duplicate data and extra costs; the sources provide no cost estimate.</p>
 <p>The Service Map reference lists normal retention of 30 days for paid workspaces and 7 days for free workspaces. These are not retirement-specific deletion dates. Your resources and migration status have not been inspected.</p>

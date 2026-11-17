@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">App Service</span><span class="badge retired" data-deadline="2026-04-30"><span></span>Retired</span></div>
-  <h1>Retirement: Extended Support for Node 20 LTS Ends on April 30, 2026</h1><p>Extended support for Node 20 LTS on Azure App Service ended on 2026-04-30. Apps continue to run, but Microsoft no longer provides security updates or customer service for that version. Microsoft directed customers to upgrade to Node 22 LTS before that date. Changing runtime settings restarts your app.</p>
+  <h1>Retirement: Extended Support for Node 20 LTS Ends on April 30, 2026</h1><p>Extended support for Node 20 LTS on Azure App Service ended on April 30, 2026. Apps continue to run, but Microsoft no longer provides security updates or customer service for that version. Microsoft directed customers to upgrade to Node 22 LTS before that date. Changing runtime settings restarts your app.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-04-30"><strong>Retired</strong><span>Retirement date: <time datetime="2026-04-30">30 Apr 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 1 month, 10 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Apr 2026</p>
-<div class="rich-content"><p>Extended support for <strong>Node 20 LTS on Azure App Service ended on 2026-04-30</strong>. Microsoft directed you to upgrade affected apps to Node 22 LTS before that date.</p>
+<div class="rich-content"><p>Extended support for <strong>Node 20 LTS on Azure App Service ended on April 30, 2026</strong>. Microsoft directed you to upgrade affected apps to Node 22 LTS before that date.</p>
 <p>This is an end-of-support milestone, not an application shutdown. Apps continue to run, but Microsoft no longer provides security updates or customer service for Node 20 LTS. The supplied reference pages establish no conflicting Node 20 deadline or extension.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft ended extended support for <strong>Node 20 LTS on Azure App Service</strong> on 2026-04-30. Existing apps continue to run, but security updates and customer service for that version have ended.</p>
+<div class="rich-content"><p>Microsoft ended extended support for <strong>Node 20 LTS on Azure App Service</strong> on April 30, 2026. Existing apps continue to run, but security updates and customer service for that version have ended.</p>
 <p>The Node.js runtime guidance covers Windows and Linux App Service. It says end-of-life versions are removed from the Runtime Stack dropdown; this selection change does not establish a shutdown of existing apps. The retirement notice specifies no regional exceptions or additional affected versions.</p>
 </div>
       <div class="notice"></div>
@@ -1931,7 +1931,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your App Service apps using Node 20 LTS. Check <code>WEBSITE_NODE_DEFAULT_VERSION</code> for Windows apps or <code>linux-fx-version</code> for Linux apps.</li>
-<li>Upgrade affected apps to <strong>Node 22 LTS</strong>, the replacement Microsoft names in the notice. The required upgrade date was before 2026-04-30. Check platform-supported runtimes using <code>az webapp list-runtimes --os-type windows</code> or <code>az webapp list-runtimes --os-type linux</code>; these commands list runtimes, not affected apps.</li>
+<li>Upgrade affected apps to <strong>Node 22 LTS</strong>, the replacement Microsoft names in the notice. The required upgrade date was before April 30, 2026. Check platform-supported runtimes using <code>az webapp list-runtimes --os-type windows</code> or <code>az webapp list-runtimes --os-type linux</code>; these commands list runtimes, not affected apps.</li>
 <li>For Windows, update the runtime app setting through the portal or Azure CLI. For Linux, use Azure CLI or select your app in the portal, then Configuration &gt; General settings &gt; Stack Settings &gt; Major version, and save. <strong>Changing runtime settings restarts the app.</strong></li>
 </ol>
 <p>For Windows, Microsoft recommends tilde syntax rather than pinning an exact minor or patch version, whose availability is not guaranteed. The supplied guidance does not document Node 20-to-22 compatibility prerequisites or a post-upgrade validation procedure. As a team-owned check, record the resulting runtime configuration and validate your app's behavior after the restart.</p>
@@ -1940,7 +1940,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your Azure App Service apps configured for Node 20 LTS are affected. If you have not upgraded, they continue to run after 2026-04-30, but Microsoft no longer provides security updates or customer service for that version.</p>
+<div class="rich-content"><p>Your Azure App Service apps configured for Node 20 LTS are affected. If you have not upgraded, they continue to run after April 30, 2026, but Microsoft no longer provides security updates or customer service for that version.</p>
 <p>End-of-life versions are removed from the Runtime Stack dropdown. Separately, changing an app's runtime settings triggers a restart. Neither change establishes a retirement-related workload shutdown.</p>
 <p>The supplied content does not identify your resources or document retirement-specific API, deployment-tooling, data-access, retention, deletion or cost changes. It specifies no regional exceptions.</p>
 </div>

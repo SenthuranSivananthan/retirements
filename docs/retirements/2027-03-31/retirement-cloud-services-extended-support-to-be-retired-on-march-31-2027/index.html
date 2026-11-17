@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Cloud Services</span><span class="badge upcoming" data-deadline="2027-03-31"><span></span>Upcoming</span></div>
-  <h1>Retirement: Cloud Services (Extended Support) to Be Retired on March 31, 2027</h1><p>Microsoft will retire Azure Cloud Services (extended support) on 2027-03-31. Complete migration to Service Fabric managed cluster before that date to avoid service disruptions. The supplied migration guidance describes application changes but does not independently establish the retirement date or exact shutdown behavior.</p>
+  <h1>Retirement: Cloud Services (Extended Support) to Be Retired on March 31, 2027</h1><p>Microsoft will retire Azure Cloud Services (extended support) on March 31, 2027. Complete migration to Service Fabric managed cluster before that date to avoid service disruptions. The supplied migration guidance describes application changes but does not independently establish the retirement date or exact shutdown behavior.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-03-31"><strong>134 days remaining</strong><span>Retirement date: <time datetime="2027-03-31">31 Mar 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2027</p>
-<div class="rich-content"><p>Microsoft will retire Azure Cloud Services (extended support) on <strong>2027-03-31</strong>. The notice uses both “before” and “by” that date; complete migration before 2027-03-31 to avoid service disruptions.</p>
+<div class="rich-content"><p>Microsoft will retire Azure Cloud Services (extended support) on <strong>March 31, 2027</strong>. The notice uses both “before” and “by” that date; complete migration before March 31, 2027 to avoid service disruptions.</p>
 <p>No shutdown time, separate end-of-support date or new-customer restriction is specified. The migration guide does not establish a different retirement date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring the Azure Cloud Services (extended support) deployment model on 2027-03-31. The notice directs you to migrate services using this model to Service Fabric managed cluster.</p>
+<div class="rich-content"><p>Microsoft is retiring the Azure Cloud Services (extended support) deployment model on March 31, 2027. The notice directs you to migrate services using this model to Service Fabric managed cluster.</p>
 <p>The supplied migration guide describes converting Web and Worker Roles to Service Fabric stateless services when the overall application architecture will remain roughly the same. Unlike a Cloud Service deployment, a Service Fabric application deploys to an existing cluster, which can host multiple applications.</p>
 <p>The notice does not document regional exceptions, pre-retirement restrictions, or maintenance and security-update commitments. It warns of service disruptions after the migration deadline without specifying exact shutdown behavior.</p>
 </div>
@@ -1934,7 +1934,7 @@
 <li>Identify affected resources in the Azure portal under Cloud services (extended support). Review their Web and Worker Roles and dependencies on IIS, System.Web, VM lifecycle events, configuration, endpoint discovery and startup tasks.</li>
 <li>Plan migration to Service Fabric managed cluster, the destination named in the notice. The supplied conversion guide maps Worker Roles to stateless services and requires Web Roles to use a self-hosted web framework without IIS or System.Web dependencies.</li>
 <li>Provision the destination cluster and package the application for deployment to its existing VMs. Adapt processing and cancellation handling, service configuration packages, configuration updates, endpoint discovery and per-service startup tasks.</li>
-<li>Use the documented local Service Fabric runtime and Visual Studio debugging support for team-owned validation. Complete migration before 2027-03-31.</li>
+<li>Use the documented local Service Fabric runtime and Visual Studio debugging support for team-owned validation. Complete migration before March 31, 2027.</li>
 </ol>
 <p>For web conversion, the guide directs ASP.NET Web Forms applications to ASP.NET Core 1 MVC, ASP.NET MVC applications to ASP.NET Core 1 MVC, and ASP.NET Web API applications to a self-hosted server or ASP.NET Core 1. It does not establish compatibility for other versions.</p>
 <p>The supplied content does not provide a complete managed-cluster migration procedure, prerequisite checklist, export or backup process, production cutover procedure, or cleanup steps. Local validation alone does not establish production readiness or migration completion.</p>

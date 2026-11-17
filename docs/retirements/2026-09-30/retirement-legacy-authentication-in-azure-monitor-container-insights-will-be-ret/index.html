@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Monitor</span><span class="badge retired" data-deadline="2026-09-30"><span></span>Retired</span></div>
-  <h1>Retirement: Legacy Authentication in Azure Monitor - Container Insights will be retired on September 30, 2026.</h1><p>Azure Monitor Container insights legacy certificate-based authentication is being replaced by managed identity. The announcement requires migration before 2026-09-30; current migration guidance says Microsoft provides no support after that date for clusters still using legacy authentication. That guidance describes legacy authentication as already retired without giving a separate retirement date. Neither source documents an automatic workload shutdown or monitoring cutoff at the deadline. Identify affected AKS and Arc-enabled Kubernetes clusters, migrate them, and verify both authentication and monitoring data flow.</p>
+  <h1>Retirement: Legacy Authentication in Azure Monitor - Container Insights will be retired on September 30, 2026.</h1><p>Azure Monitor Container insights legacy certificate-based authentication is being replaced by managed identity. The announcement requires migration before September 30, 2026; current migration guidance says Microsoft provides no support after that date for clusters still using legacy authentication. That guidance describes legacy authentication as already retired without giving a separate retirement date. Neither source documents an automatic workload shutdown or monitoring cutoff at the deadline. Identify affected AKS and Arc-enabled Kubernetes clusters, migrate them, and verify both authentication and monitoring data flow.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-30">30 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 23 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,7 +1916,7 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2026</p>
-<div class="rich-content"><p>Migrate affected clusters to managed identity <strong>before 2026-09-30</strong>. The announcement identifies 2026-09-30 as the retirement date; current migration guidance explicitly states that Microsoft provides no support after that date for clusters still using legacy authentication unless they migrate.</p>
+<div class="rich-content"><p>Migrate affected clusters to managed identity <strong>before September 30, 2026</strong>. The announcement identifies September 30, 2026 as the retirement date; current migration guidance explicitly states that Microsoft provides no support after that date for clusters still using legacy authentication unless they migrate.</p>
 <p>The migration guidance also describes legacy authentication as already retired, without a separate retirement date. The sources therefore differ in how they describe retirement status, but agree on the dated migration/support milestone. Neither specifies an exact cutoff time, automatic monitoring cutoff, or workload shutdown.</p>
 </div>
     </section>
@@ -1936,7 +1936,7 @@
 <li>For AKS, record the configured Log Analytics workspace resource ID, disable the monitoring add-on, and upgrade service-principal clusters to system-assigned managed identity where applicable. Reenable monitoring with the recorded workspace ID.</li>
 <li>For Arc-enabled Kubernetes, retrieve the workspace configured for the Container insights extension, then enable the extension with managed identity authentication using that workspace and the documented amalogs.useAADAuth=true setting.</li>
 <li>Choose a documented migration route: the announcement offers a single-click Azure portal option and command-line options. For bulk migration, the migration page recommends its linked shell script; check cluster firewall requirements and read the script's first 30 lines before running it.</li>
-<li>Complete migration before <strong>2026-09-30</strong>. Allow a few minutes for configuration updates, rerun the applicable query, and confirm the cluster no longer appears. Also verify new logs and metrics, Container insights health, custom configurations, alerts, dashboards, and operational workflows.</li>
+<li>Complete migration before <strong>September 30, 2026</strong>. Allow a few minutes for configuration updates, rerun the applicable query, and confirm the cluster no longer appears. Also verify new logs and metrics, Container insights health, custom configurations, alerts, dashboards, and operational workflows.</li>
 </ol>
 </div>
       <p> </p>
@@ -1944,7 +1944,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your AKS or Arc-enabled Kubernetes cluster uses legacy Container insights authentication. The documented Resource Graph queries identify these configurations only within your selected Azure portal scope. Managed identity authentication is not being retired.</p>
-<p>Microsoft provides no support after 2026-09-30 for clusters that remain on legacy authentication unless they migrate. The sources do not establish that applications or monitoring automatically stop at that deadline.</p>
+<p>Microsoft provides no support after September 30, 2026 for clusters that remain on legacy authentication unless they migrate. The sources do not establish that applications or monitoring automatically stop at that deadline.</p>
 <p>Migration preserves your existing Log Analytics workspace and previously collected monitoring data, without requiring application or workload changes. Data collection might be temporarily interrupted during monitoring configuration changes. Existing dashboards, workbooks, alerts, and queries continue working provided data collection succeeds afterward.</p>
 <p>Separately, rotating Log Analytics workspace keys while a cluster still uses legacy authentication stops monitoring data flow. The documented recovery is to disable and reenable the Container insights add-on. Managed identity avoids this workspace-key dependency.</p>
 <p>The sources provide no retirement-related data deletion, retention-policy change, or cost details.</p>

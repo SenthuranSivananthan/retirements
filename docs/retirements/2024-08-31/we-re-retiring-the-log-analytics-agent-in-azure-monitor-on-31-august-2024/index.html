@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Monitor · Log Analytics</span><span class="badge retired" data-deadline="2024-08-31"><span></span>Retired</span></div>
-  <h1>We&#39;re retiring the Log Analytics agent in Azure Monitor on 31 August 2024</h1><p>The Azure Monitor Log Analytics agent (MMA/OMS) retired on 2024-08-31 and is no longer supported. Cloud ingestion is being shut down: after 2026-03-02, uploads can stop at any time without further notice. Migrate affected Windows and Linux machines to Azure Monitor Agent and data collection rules, validate monitoring and dependent services, then remove the old agent or its workspace configurations. Agents connected exclusively to on-premises SCOM are exempt.</p>
+  <h1>We&#39;re retiring the Log Analytics agent in Azure Monitor on 31 August 2024</h1><p>The Azure Monitor Log Analytics agent (MMA/OMS) retired on August 31, 2024 and is no longer supported. Cloud ingestion is being shut down: after March 2, 2026, uploads can stop at any time without further notice. Migrate affected Windows and Linux machines to Azure Monitor Agent and data collection rules, validate monitoring and dependent services, then remove the old agent or its workspace configurations. Agents connected exclusively to on-premises SCOM are exempt.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-08-31">31 Aug 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 12 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2024</p>
-<div class="rich-content"><p>The Log Analytics agent retired on <strong>2024-08-31</strong>. Microsoft instructed customers to migrate before that date and no longer supports the agent.</p>
-<p><strong>After 2026-03-02</strong>, data uploads can stop at any time without further notice as cloud ingestion services shut down. This is a separate ingestion milestone, not an extension of retirement or a guaranteed shutdown on that day.</p>
+<div class="rich-content"><p>The Log Analytics agent retired on <strong>August 31, 2024</strong>. Microsoft instructed customers to migrate before that date and no longer supports the agent.</p>
+<p><strong>After March 2, 2026</strong>, data uploads can stop at any time without further notice as cloud ingestion services shut down. This is a separate ingestion milestone, not an extension of retirement or a guaranteed shutdown on that day.</p>
 <p>The announcement and Q&amp;A do not establish post-retirement operating behavior; the supplied migration guidance provides these additional details. Agents connected exclusively to on-premises System Center Operations Manager (SCOM) are exempt.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Monitor Agent (AMA) replaces the Log Analytics agent, also called Microsoft Monitoring Agent (MMA) or Operations Management Suite (OMS), which retired on <strong>2024-08-31</strong>. This affects cloud data collection from Windows and Linux machines in Azure, on-premises and other clouds. AMA uses data collection rules (DCRs) instead of workspace-based collection configuration.</p>
-<p>Microsoft no longer supports the old agent or provides new distributions or service packs. Azure portal installation is unavailable, although offline and extension-based installation still work. Cloud uploads can stop at any time after <strong>2026-03-02</strong>.</p>
+<div class="rich-content"><p>Azure Monitor Agent (AMA) replaces the Log Analytics agent, also called Microsoft Monitoring Agent (MMA) or Operations Management Suite (OMS), which retired on <strong>August 31, 2024</strong>. This affects cloud data collection from Windows and Linux machines in Azure, on-premises and other clouds. AMA uses data collection rules (DCRs) instead of workspace-based collection configuration.</p>
+<p>Microsoft no longer supports the old agent or provides new distributions or service packs. Azure portal installation is unavailable, although offline and extension-based installation still work. Cloud uploads can stop at any time after <strong>March 2, 2026</strong>.</p>
 <p>Agents connected exclusively to on-premises SCOM are exempt. The supplied content does not establish retirement of Log Analytics workspaces or workspace-based Application Insights, or document regional exceptions or separate security-update commitments.</p>
 </div>
       <div class="notice"></div>
@@ -1947,7 +1947,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if Windows or Linux machines use the Log Analytics agent for cloud data collection, including machines outside Azure. The supplied content does not establish which resources you have.</p>
-<p>Without migration, uploads can stop at any time after <strong>2026-03-02</strong> without further notice. This is a monitoring-data ingestion risk; the guidance does not state that monitored machines or workloads shut down. Microsoft no longer supports the agent. Portal installation is unavailable, while offline and extension-based installation still work.</p>
+<p>Without migration, uploads can stop at any time after <strong>March 2, 2026</strong> without further notice. This is a monitoring-data ingestion risk; the guidance does not state that monitored machines or workloads shut down. Microsoft no longer supports the agent. Portal installation is unavailable, while offline and extension-based installation still work.</p>
 <p>Use the Migration Helper workbook to identify agents, workspaces and dependent solutions. For additional visibility, copy the Azure Monitor Workspace Auditing workbook from its repository and import it into your Log Analytics workspace. It shows data sources, heartbeats and resources sending data, including Application Insights resources; this visibility does not itself establish that every listed resource needs migration.</p>
 <p>Migration also affects dependent services and deployment automation. Concurrent collection by both agents can cause duplicate ingestion. AMA IIS collection can omit sSiteName unless you enable the corresponding logging field. SQL Assessment Solution policies require one workspace per subscription. The supplied content does not quantify costs or establish retained-data deletion or data-access consequences.</p>
 <p>Agents connected exclusively to on-premises SCOM are exempt. For SCOM-managed machines that also collect to workspaces, preserve the agent's SCOM configuration and remove workspace configurations after validating replacement collection.</p>

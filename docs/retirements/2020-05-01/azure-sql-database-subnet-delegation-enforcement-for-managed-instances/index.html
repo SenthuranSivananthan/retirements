@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure SQL Database · Azure SQL Managed Instance</span><span class="badge retired" data-deadline="2020-05-01"><span></span>Retired</span></div>
-  <h1>Azure SQL Database—Subnet delegation enforcement for managed instances</h1><p>On 2020-05-01, Azure SQL Database retired managed-instance deployment to non-delegated subnets. Subsequent deployments require delegation to Microsoft.Sql\managedInstance. Microsoft separately stated that remaining subnets containing managed instances would be automatically delegated on 2020-07-01; this was not a deadline extension. The reference pages provide deployment guidance but do not establish another deadline for this retirement.</p>
+  <h1>Azure SQL Database—Subnet delegation enforcement for managed instances</h1><p>On May 1, 2020, Azure SQL Database retired managed-instance deployment to non-delegated subnets. Subsequent deployments require delegation to Microsoft.Sql\managedInstance. Microsoft separately stated that remaining subnets containing managed instances would be automatically delegated on July 1, 2020; this was not a deadline extension. The reference pages provide deployment guidance but do not establish another deadline for this retirement.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2020-05-01"><strong>Retired</strong><span>Retirement date: <time datetime="2020-05-01">1 May 2020</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 month</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 May 2020</p>
-<div class="rich-content"><p>Deployment of Azure SQL Database managed instances to non-delegated subnets retired on <strong>2020-05-01</strong>. After that date, deployments require subnets delegated to Microsoft.Sql\managedInstance.</p>
-<p>Microsoft separately stated that remaining subnets containing managed instances would be automatically delegated on <strong>2020-07-01</strong>. This was not an extension of the deployment deadline, and the supplied content does not confirm completion of that automatic delegation.</p>
+<div class="rich-content"><p>Deployment of Azure SQL Database managed instances to non-delegated subnets retired on <strong>May 1, 2020</strong>. After that date, deployments require subnets delegated to Microsoft.Sql\managedInstance.</p>
+<p>Microsoft separately stated that remaining subnets containing managed instances would be automatically delegated on <strong>July 1, 2020</strong>. This was not an extension of the deployment deadline, and the supplied content does not confirm completion of that automatic delegation.</p>
 <p>The reference pages establish no conflicting deadline for this retirement. The undated future retirement of optional subnet rules and routes is a separate change.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure SQL Database changed the subnet requirements for managed-instance deployments on 2020-05-01: you can no longer deploy managed instances to non-delegated subnets.</p>
+<div class="rich-content"><p>Azure SQL Database changed the subnet requirements for managed-instance deployments on May 1, 2020: you can no longer deploy managed instances to non-delegated subnets.</p>
 <p>For deployments into empty subnets through the Azure portal, the announcement says configuration is already handled. PowerShell scripts, ARM templates and subnets already containing managed instances have separate configuration guidance.</p>
 <p>This change concerns subnet delegation, not retirement of Azure SQL Managed Instance. The reference page's future retirement of optional service-managed security rules and routes is separate; mandatory rules and routes remain required.</p>
 </div>
@@ -1934,7 +1934,7 @@
 <div class="rich-content"><ol>
 <li>Determine whether your target subnet is empty or already contains a managed instance, and identify whether you deploy through the Azure portal, PowerShell or ARM templates.</li>
 <li>For an empty subnet, the announcement says Azure portal deployments are already configured. For PowerShell or ARM templates, use the referenced deployment guidance to adapt your configuration for subnet delegation.</li>
-<li>For a subnet already containing a managed instance, follow the referenced delegation instructions. Microsoft stated that remaining occupied subnets would be automatically delegated on 2020-07-01, but the supplied content does not confirm your subnet's status.</li>
+<li>For a subnet already containing a managed instance, follow the referenced delegation instructions. Microsoft stated that remaining occupied subnets would be automatically delegated on July 1, 2020, but the supplied content does not confirm your subnet's status.</li>
 </ol>
 <p>The supplied content does not provide a complete delegation procedure or retirement-specific validation steps. The provisioning tutorial's optional resource-group deletion is not a retirement requirement.</p>
 </div>
@@ -1942,9 +1942,9 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>This change affects Azure SQL Database managed-instance deployments targeting non-delegated subnets. Since 2020-05-01, those subnets must be delegated to Microsoft.Sql\managedInstance before deployment.</p>
+<div class="rich-content"><p>This change affects Azure SQL Database managed-instance deployments targeting non-delegated subnets. Since May 1, 2020, those subnets must be delegated to Microsoft.Sql\managedInstance before deployment.</p>
 <p>For empty-subnet deployments through the Azure portal, the announcement says configuration is already handled. PowerShell scripts and ARM templates need to follow the referenced configuration guidance. Subnets already delegated satisfy this delegation requirement.</p>
-<p>The announcement does not state that existing managed instances would shut down or that data would be deleted. It instead describes automatic delegation of remaining occupied subnets on 2020-07-01. It documents no support termination or pricing change and provides no tenant-specific assessment.</p>
+<p>The announcement does not state that existing managed instances would shut down or that data would be deleted. It instead describes automatic delegation of remaining occupied subnets on July 1, 2020. It documents no support termination or pricing change and provides no tenant-specific assessment.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>
     </section>

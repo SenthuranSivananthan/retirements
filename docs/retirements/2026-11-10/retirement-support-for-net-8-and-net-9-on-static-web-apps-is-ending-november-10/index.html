@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Static Web Apps</span><span class="badge retired" data-deadline="2026-11-10"><span></span>Retired</span></div>
-  <h1>Retirement: Support for .NET 8 and .NET 9 on Static Web Apps is ending November 10, 2026</h1><p>Support and security updates for .NET 8 and .NET 9 on Azure Static Web Apps managed Functions APIs ended on 2026-11-10. Apps continue operating, but you need to upgrade to .NET 10 using the isolated worker model to remain supported. Microsoft separately schedules the default .NET runtime change for November 2026; no exact date is supplied. Linked, bring-your-own Function Apps require separate upgrades and deployments.</p>
+  <h1>Retirement: Support for .NET 8 and .NET 9 on Static Web Apps is ending November 10, 2026</h1><p>Support and security updates for .NET 8 and .NET 9 on Azure Static Web Apps managed Functions APIs ended on November 10, 2026. Apps continue operating, but you need to upgrade to .NET 10 using the isolated worker model to remain supported. Microsoft separately schedules the default .NET runtime change for November 2026; no exact date is supplied. Linked, bring-your-own Function Apps require separate upgrades and deployments.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-11-10"><strong>Retired</strong><span>Retirement date: <time datetime="2026-11-10">10 Nov 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 day</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">10 Nov 2026</p>
-<div class="rich-content"><p>Support and security updates for .NET 8 and .NET 9 on Azure Static Web Apps managed Functions APIs ended on <strong>2026-11-10</strong>. The notice required upgrading to .NET 10 using the isolated worker model before that date. Apps continue operating afterward; this is end of support, not workload shutdown.</p>
-<p>The runtime reference confirms the same date for .NET 8.0 in-process and isolated, and .NET 9.0 isolated. Azure Functions in-process model support also ended on 2026-11-10; that is a separate, aligned milestone.</p>
+<div class="rich-content"><p>Support and security updates for .NET 8 and .NET 9 on Azure Static Web Apps managed Functions APIs ended on <strong>November 10, 2026</strong>. The notice required upgrading to .NET 10 using the isolated worker model before that date. Apps continue operating afterward; this is end of support, not workload shutdown.</p>
+<p>The runtime reference confirms the same date for .NET 8.0 in-process and isolated, and .NET 9.0 isolated. Azure Functions in-process model support also ended on November 10, 2026; that is a separate, aligned milestone.</p>
 <p>Microsoft separately schedules the default managed API .NET runtime change to .NET 10 for <strong>November 2026</strong>. No exact date is supplied for that change.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Static Web Apps managed Functions APIs using .NET 8 or .NET 9 no longer receive support or security updates after <strong>2026-11-10</strong>, although apps continue operating.</p>
+<div class="rich-content"><p>Azure Static Web Apps managed Functions APIs using .NET 8 or .NET 9 no longer receive support or security updates after <strong>November 10, 2026</strong>, although apps continue operating.</p>
 <p>The documented upgrade is .NET 10 using the isolated worker model. In-process APIs require a worker-model migration as well as a runtime upgrade. APIs already using the isolated worker model still require the applicable runtime, project and package updates.</p>
 <p>Microsoft also schedules the default .NET runtime change for November 2026. Explicitly configure your runtime rather than relying on that default change to complete your migration.</p>
 <p>These managed API milestones do not establish retirement dates for front-end build runtimes. Linked, bring-your-own Function Apps have a separate deployment lifecycle.</p>
@@ -1937,7 +1937,7 @@
 <li>If your API uses the in-process model, follow the isolated-worker migration guidance. Review dependency and binding compatibility, then update the project, packages, startup code, function code and configuration. The guide assumes Functions runtime 4.x; earlier runtimes require the applicable host-version migration steps. Convert C# script apps to the project model first.</li>
 <li>Target net10.0 and update the Functions SDK and worker packages to meet the .NET 10 isolated-worker requirements. The detailed isolated-worker reference was unavailable in the supplied material, so exact minimum package versions cannot be confirmed here.</li>
 <li>Set platform.apiRuntime to dotnet-isolated:10.0 in staticwebapp.config.json and ensure it matches the project's TargetFramework. Build and test locally, including bindings, serialization, logging and HTTP behavior affected by a worker-model migration.</li>
-<li>Redeploy the static web app so Azure Static Web Apps rebuilds and publishes the managed API. Validate the deployed API's behavior. The notice required completion before 2026-11-10; if you have not completed it, upgrade to restore supported operation.</li>
+<li>Redeploy the static web app so Azure Static Web Apps rebuilds and publishes the managed API. Validate the deployed API's behavior. The notice required completion before November 10, 2026; if you have not completed it, upgrade to restore supported operation.</li>
 </ol>
 <p>Upgrade and deploy linked, bring-your-own Function Apps separately. Do not treat a static web app redeployment or the default-runtime change as upgrading those apps.</p>
 </div>
@@ -1946,7 +1946,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>Your managed Functions APIs are affected if they use .NET 8 or .NET 9. Review TargetFramework, the worker model and platform.apiRuntime to identify affected configurations; the supplied material does not establish which resources you use or how many are affected.</p>
-<p>Without an upgrade, apps continue operating after <strong>2026-11-10</strong>, but these versions no longer receive support or security updates. The notice warns of potential security and performance risks. It does not announce workload shutdown, data deletion, console or API access restrictions, or cost changes.</p>
+<p>Without an upgrade, apps continue operating after <strong>November 10, 2026</strong>, but these versions no longer receive support or security updates. The notice warns of potential security and performance risks. It does not announce workload shutdown, data deletion, console or API access restrictions, or cost changes.</p>
 <p>In-process migration can affect code, dependencies, startup configuration, bindings, logging and deployment tooling. The migration guide highlights serialization differences, including System.Text.Json ignoring Newtonsoft.Json attributes, and synchronous stream I/O restrictions when using ASP.NET Core HTTP integration.</p>
 <p>Already-isolated APIs avoid the worker-model conversion, but still need the .NET 10 upgrade. Front-end build runtimes are configured separately. Linked Function Apps are not upgraded through static web app deployment and need separate assessment and deployment.</p>
 </div>

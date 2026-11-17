@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2023-05-31"><span></span>Retired</span></div>
-  <h1>Action required: Support for Azure Monitor for SAP solutions (classic) resources will end by 31 May 2023</h1><p>Support for Azure Monitor for SAP solutions (classic) resources ends by 2023-05-31. Microsoft recommends migrating to version 2.0 before that date to avoid or mitigate possible workflow disruptions; the supplied sources do not establish a workload shutdown date. Documented migration automation covers SAP HANA and SAP NetWeaver providers. If you reuse the classic Log Analytics workspace, do not delete the classic resource or its managed resource group: doing so deletes the shared workspace, loses historical telemetry and stops collection. The sources describe different preview prerequisites, so their current applicability is unconfirmed.</p>
+  <h1>Action required: Support for Azure Monitor for SAP solutions (classic) resources will end by 31 May 2023</h1><p>Support for Azure Monitor for SAP solutions (classic) resources ends by May 31, 2023. Microsoft recommends migrating to version 2.0 before that date to avoid or mitigate possible workflow disruptions; the supplied sources do not establish a workload shutdown date. Documented migration automation covers SAP HANA and SAP NetWeaver providers. If you reuse the classic Log Analytics workspace, do not delete the classic resource or its managed resource group: doing so deletes the shared workspace, loses historical telemetry and stops collection. The sources describe different preview prerequisites, so their current applicability is unconfirmed.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2023-05-31"><strong>Retired</strong><span>Retirement date: <time datetime="2023-05-31">31 May 2023</time></span><span class="badge amber customer-lead-time-pill">Lead time: 7 months, 24 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 May 2023</p>
-<div class="rich-content"><p>Support for Azure Monitor for SAP solutions (classic) resources ends by <strong>2023-05-31</strong>. Microsoft recommends migrating to version 2.0 before that date to avoid or mitigate possible workflow disruptions.</p>
+<div class="rich-content"><p>Support for Azure Monitor for SAP solutions (classic) resources ends by <strong>May 31, 2023</strong>. Microsoft recommends migrating to version 2.0 before that date to avoid or mitigate possible workflow disruptions.</p>
 <p>This is an end-of-support milestone. The supplied sources do not specify a separate shutdown date or establish that SAP workloads or monitoring stop on that date.</p>
-<p>The version 2 public-preview announcement on 2022-07-19 and migration repository archive date of 2026-06-11 are separate milestones, not alternative retirement dates. The other supplied references establish no conflicting retirement deadline or extension.</p>
+<p>The version 2 public-preview announcement on July 19, 2022 and migration repository archive date of June 11, 2026 are separate milestones, not alternative retirement dates. The other supplied references establish no conflicting retirement deadline or extension.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Monitor for SAP solutions (classic), also called AMS 1.0, is retiring, with support ending by <strong>2023-05-31</strong>. Microsoft recommends moving to version 2.0 and directs new SAP monitoring investments exclusively to that version. This notice does not announce retirement of version 2 or SAP workloads.</p>
+<div class="rich-content"><p>Azure Monitor for SAP solutions (classic), also called AMS 1.0, is retiring, with support ending by <strong>May 31, 2023</strong>. Microsoft recommends moving to version 2.0 and directs new SAP monitoring investments exclusively to that version. This notice does not announce retirement of version 2 or SAP workloads.</p>
 <p>The retirement announcement describes version 2.0 as public preview, with feature parity and a similar pricing model. Version 2 uses Azure Functions rather than a virtual machine for telemetry collection, with Log Analytics for storage and Azure Workbooks for visualization.</p>
 <p>The migration README describes the newer resource as private preview requiring subscription allow-listing, unlike the public-preview announcements. The supplied material does not establish whether those README prerequisites remain current. Its automation covers SAP HANA and SAP NetWeaver providers and their alerts; high-availability cluster, SQL Server and OS provider support is described only as planned.</p>
 <p>The sources do not document retirement-specific regional exceptions, maintenance or security-update commitments, or post-deadline availability. The README instructs you to keep classic running during migration; that instruction does not establish continued support after the deadline.</p>
@@ -1932,7 +1932,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Microsoft recommends migrating classic resources to version 2.0 before <strong>2023-05-31</strong>. The supplied README documents these steps, but its private-preview prerequisites differ from the public-preview announcements and are not confirmed as current.</p>
+<div class="rich-content"><p>Microsoft recommends migrating classic resources to version 2.0 before <strong>May 31, 2023</strong>. The supplied README documents these steps, but its private-preview prerequisites differ from the public-preview announcements and are not confirmed as current.</p>
 <ol>
 <li>Identify your classic resources and provider types. Gather the subscription ID from the classic overview page, resource ARM IDs from resource properties and tenant ID from the Azure Active Directory overview page.</li>
 <li>Review version 2 regional availability, infrastructure charges and onboarding guidance. The README describes subscription allow-listing, then deploying the newer AMS resource without providers. Select <strong>Use existing log analytics workspace</strong> if you want the new resource to retain access to historical telemetry.</li>
@@ -1948,7 +1948,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>The support-ending notice applies to <strong>Azure Monitor for SAP solutions (classic) resources</strong>. Inspect your classic resource's providers and compare the old and new Log Analytics workspaces to determine which documented migration steps apply. The sources do not assess your resources or establish automated migration coverage beyond SAP HANA and SAP NetWeaver.</p>
-<p>If you do not migrate, classic support ends by 2023-05-31, and the notice warns of possible workflow disruptions. It does not establish workload shutdown or specific post-deadline portal, API, integration or data-access behavior.</p>
+<p>If you do not migrate, classic support ends by May 31, 2023, and the notice warns of possible workflow disruptions. It does not establish workload shutdown or specific post-deadline portal, API, integration or data-access behavior.</p>
 <ul>
 <li><strong>Historical telemetry:</strong> Reusing the existing workspace preserves access to previously collected telemetry. Deleting the classic resource or its managed resource group in that configuration deletes the shared workspace, loses historical telemetry and stops new collection.</li>
 <li><strong>Alerts:</strong> A shared workspace needs no alert migration. Different workspaces need scripted copying or manual recreation to carry over the relevant alert rules.</li>
@@ -1962,7 +1962,7 @@
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
 <div class="rich-content"><p>Use the migration script's execution result as evidence of provider migration. The README refers to successful output, but the supplied content does not include its exact text. After provider migration, the script checks whether the workspaces match and offers alert migration when they differ; alert coverage follows the selected provider type.</p>
 <p>For <strong>team-owned completion evidence</strong>, record the resource IDs, provider scope, script outcome, workspace choice and alert-migration decision. Verify continued telemetry before deleting migrated classic providers. This is local planning guidance, not a documented tracking dashboard or an assessment of your resources. The sources provide no retirement inventory tool or comprehensive completion check, and automated coverage beyond SAP HANA and SAP NetWeaver is unconfirmed.</p>
-<p>The version 2 announcement lists standard support through the Azure portal. The README directs cases to GitHub Issues, but the repository became read-only on 2026-06-11, so new issues cannot be assumed available. The referenced community page is also an offline, read-only view.</p>
+<p>The version 2 announcement lists standard support through the Azure portal. The README directs cases to GitHub Issues, but the repository became read-only on June 11, 2026, so new issues cannot be assumed available. The referenced community page is also an offline, read-only view.</p>
 </div>
     </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">

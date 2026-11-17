@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2026-09-30"><span></span>Retired</span></div>
-  <h1>Azure Virtual Desktop (classic) will be retired on 30 September 2026 - Please transition to Azure Virtual Desktop</h1><p>Azure Virtual Desktop (classic) retires on 2026-09-30. Microsoft states that connections to classic resources will be blocked afterward. Migrate to Azure Resource Manager-based Azure Virtual Desktop host pools before that date. Automatic migration supports US-geography service objects only and has application-group and user-assignment limits; manual migration is recommended for small, simple deployments. New classic tenant creation ended on 2023-09-30, with request-based exceptions that do not extend retirement.</p>
+  <h1>Azure Virtual Desktop (classic) will be retired on 30 September 2026 - Please transition to Azure Virtual Desktop</h1><p>Azure Virtual Desktop (classic) retires on September 30, 2026. Microsoft states that connections to classic resources will be blocked afterward. Migrate to Azure Resource Manager-based Azure Virtual Desktop host pools before that date. Automatic migration supports US-geography service objects only and has application-group and user-assignment limits; manual migration is recommended for small, simple deployments. New classic tenant creation ended on September 30, 2023, with request-based exceptions that do not extend retirement.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-30">30 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 1 day</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2026</p>
-<div class="rich-content"><p>Azure Virtual Desktop (classic) retires on <strong>2026-09-30</strong>. Microsoft states that connections to classic resources will be blocked after retirement. Migrate to Azure Resource Manager-based host pools before that date; the supplied guidance gives no cutoff time or time zone.</p>
-<p>Microsoft states that existing classic resources remain manageable, migratable and supported through 2026-09-30. The connection block does not establish automatic shutdown or deletion of underlying virtual machines or user data.</p>
-<p>New classic tenant creation ended on <strong>2023-09-30</strong>. Customers with more than 500 application groups or multi-tenant (B2B) environments can request a tenant-creation exception. This exception is not a documented retirement extension.</p>
+<div class="rich-content"><p>Azure Virtual Desktop (classic) retires on <strong>September 30, 2026</strong>. Microsoft states that connections to classic resources will be blocked after retirement. Migrate to Azure Resource Manager-based host pools before that date; the supplied guidance gives no cutoff time or time zone.</p>
+<p>Microsoft states that existing classic resources remain manageable, migratable and supported through September 30, 2026. The connection block does not establish automatic shutdown or deletion of underlying virtual machines or user data.</p>
+<p>New classic tenant creation ended on <strong>September 30, 2023</strong>. Customers with more than 500 application groups or multi-tenant (B2B) environments can request a tenant-creation exception. This exception is not a documented retirement extension.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Virtual Desktop (classic) retires on <strong>2026-09-30</strong>, after which Microsoft will block connections to classic resources. Azure Resource Manager-based Azure Virtual Desktop is the replacement, not a service being retired.</p>
+<div class="rich-content"><p>Azure Virtual Desktop (classic) retires on <strong>September 30, 2026</strong>, after which Microsoft will block connections to classic resources. Azure Resource Manager-based Azure Virtual Desktop is the replacement, not a service being retired.</p>
 <p>Migration replaces classic service objects with Azure-integrated objects managed through the Azure portal. Existing classic resources remain manageable, migratable and supported through the retirement date; the supplied material does not document security-update commitments.</p>
 <p>With automatic migration, virtual machines remain available through both existing and new host pools during migration, allowing users to connect to the same session. Completing migration deletes the classic service objects and leaves users with the new application-group feeds.</p>
 </div>
@@ -1931,7 +1931,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Migrate your remaining classic resources before <strong>2026-09-30</strong>.</p>
+<div class="rich-content"><p>Migrate your remaining classic resources before <strong>September 30, 2026</strong>.</p>
 <ol>
 <li>Identify your classic tenants, host pools, application groups and session hosts. For automatic migration, you can optionally export a destination-resource mapping with <code>Get-RdsHostPoolMigrationMapping</code>; the supplied material does not establish a tenant-wide automated discovery method.</li>
 <li>Select a migration approach. Manual migration is recommended for small test deployments, small production deployments planning to grow, and simple configurations; the guide advises against it for advanced configurations or deployments with many users. Automatic migration creates service objects only in the US geography and supports no more than 500 application groups. Above that limit, the guide requires rebuilding the environment to reduce the application-group count within your Microsoft Entra tenant.</li>
@@ -1947,7 +1947,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if you still depend on Azure Virtual Desktop (classic). Microsoft states that connections to classic resources will be blocked after <strong>2026-09-30</strong>. The supplied material does not establish whether your environment contains classic resources or document automatic deletion of virtual machines or user data.</p>
+<div class="rich-content"><p>You are affected if you still depend on Azure Virtual Desktop (classic). Microsoft states that connections to classic resources will be blocked after <strong>September 30, 2026</strong>. The supplied material does not establish whether your environment contains classic resources or document automatic deletion of virtual machines or user data.</p>
 <p>Azure Resource Manager-based host pools are the migration destination and are not identified as retiring. The automatic tool's US-geography restriction limits that migration method; it is not a regional exception to retirement.</p>
 <p>Automatic migration has these practical limits and configuration changes:</p>
 <ul>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Application Insights · Azure Monitor</span><span class="badge retired" data-deadline="2022-08-31"><span></span>Retired</span></div>
-  <h1>Transition to new work item integration in Application Insights by 31 August 2022</h1><p>Application Insights work item integration (classic) retired on 2022-08-31 and was no longer supported afterward. Creation of new classic integrations was disabled beginning 2021-11-30. Microsoft directed customers to migrate to the new work item integration. The supplied sources do not establish that existing integrations or application workloads shut down, or that data was deleted. The replacement&#39;s reference pages describe normal operation, not a separate retirement.</p>
+  <h1>Transition to new work item integration in Application Insights by 31 August 2022</h1><p>Application Insights work item integration (classic) retired on August 31, 2022 and was no longer supported afterward. Creation of new classic integrations was disabled beginning November 30, 2021. Microsoft directed customers to migrate to the new work item integration. The supplied sources do not establish that existing integrations or application workloads shut down, or that data was deleted. The replacement&#39;s reference pages describe normal operation, not a separate retirement.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2022-08-31">31 Aug 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 7 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2022</p>
-<div class="rich-content"><p>Application Insights work item integration (classic) retired on <strong>2022-08-31</strong> and was no longer supported afterward. Microsoft directed customers to migrate before that date; the Q&amp;A announcement also uses “by” 2022-08-31. These describe the same retirement milestone, not different dates.</p>
-<p>Creation of new classic integrations was disabled beginning <strong>2021-11-30</strong>, a separate restriction. The sources do not specify when existing integrations would stop functioning or establish a workload shutdown date.</p>
-<p>The reference pages' 2025-11-05 update date is not a retirement milestone.</p>
+<div class="rich-content"><p>Application Insights work item integration (classic) retired on <strong>August 31, 2022</strong> and was no longer supported afterward. Microsoft directed customers to migrate before that date; the Q&amp;A announcement also uses “by” August 31, 2022. These describe the same retirement milestone, not different dates.</p>
+<p>Creation of new classic integrations was disabled beginning <strong>November 30, 2021</strong>, a separate restriction. The sources do not specify when existing integrations would stop functioning or establish a workload shutdown date.</p>
+<p>The reference pages' November 5, 2025 update date is not a retirement milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired <strong>Application Insights work item integration (classic)</strong> on 2022-08-31 and directed customers to the new work item integration experience. This retirement concerns the classic capability, not Application Insights as a whole.</p>
+<div class="rich-content"><p>Microsoft retired <strong>Application Insights work item integration (classic)</strong> on August 31, 2022 and directed customers to the new work item integration experience. This retirement concerns the classic capability, not Application Insights as a whole.</p>
 <p>The replacement supports creating GitHub issues and Azure DevOps bugs or tasks with telemetry context. Its documented features include customizable workbook templates, deployment through Azure Resource Manager templates, and multiple configurations for repositories and work items.</p>
 <p>The sources do not document regional exceptions, maintenance or security-update commitments, or when existing classic integrations would stop functioning. The replacement's reference pages do not announce another retirement.</p>
 </div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Determine whether you use Application Insights work item integration (classic). The retirement sources do not provide an inventory procedure.</li>
-<li>If you use classic, migrate to the new work item integration. Microsoft's documented migration target was before 2022-08-31. Use the new experience for new integrations; creation through classic was disabled beginning 2021-11-30.</li>
+<li>If you use classic, migrate to the new work item integration. Microsoft's documented migration target was before August 31, 2022. Use the new experience for new integrations; creation through classic was disabled beginning November 30, 2021.</li>
 <li>For replacement configuration, open your Application Insights resource and select <strong>Configure &gt; Work Items</strong>. Choose GitHub or Azure DevOps and configure the repository and default work item properties. Creating or editing templates requires an Azure role with <code>Microsoft.Insights/workbooks/write</code>, such as Workbook Contributor or Monitoring Contributor. Creating work items also requires sufficient permissions in the target system.</li>
 <li>As a team-owned functional check, create a work item from <strong>End-to-end transaction details</strong>, complete creation in the target system, and confirm the item contains Application Insights context. This checks integration behavior, not complete retirement migration coverage.</li>
 </ol>
@@ -1944,7 +1944,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are in scope if you use <strong>Application Insights work item integration (classic)</strong>. New classic integrations could not be created beginning 2021-11-30, and classic was unsupported after 2022-08-31.</p>
+<div class="rich-content"><p>You are in scope if you use <strong>Application Insights work item integration (classic)</strong>. New classic integrations could not be created beginning November 30, 2021, and classic was unsupported after August 31, 2022.</p>
 <p>The sources do not establish that existing integrations stopped functioning, that application or telemetry workloads shut down, or that existing work items or data were deleted. They provide no retirement-specific cost information or resource-discovery method.</p>
 <p>The replacement uses Azure Monitor Workbooks saved as <code>Microsoft.Insights/workbooks</code> resources and opens GitHub or Azure DevOps in a new browser tab to complete work item creation. Its template-storage region does not change where Application Insights data is stored or queried. These are replacement characteristics, not evidence of retirement-related data movement or workload disruption.</p>
 </div>

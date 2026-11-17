@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge retired" data-deadline="2025-06-17"><span></span>Retired</span></div>
-  <h1>Retirement: Ubuntu 18.04 Node Pools in AKS</h1><p>AKS Ubuntu 18.04 node pools retired on 2025-06-17. AKS stopped producing their node images and security updates and deleted existing images, leaving affected pools unsupported and unable to scale. Migrate to a supported Ubuntu version and Kubernetes configuration. The notice names Ubuntu 22.04 as a replacement, but supplied product guidance separately ends its support on 2027-06-30. No workload shutdown date is specified.</p>
+  <h1>Retirement: Ubuntu 18.04 Node Pools in AKS</h1><p>AKS Ubuntu 18.04 node pools retired on June 17, 2025. AKS stopped producing their node images and security updates and deleted existing images, leaving affected pools unsupported and unable to scale. Migrate to a supported Ubuntu version and Kubernetes configuration. The notice names Ubuntu 22.04 as a replacement, but supplied product guidance separately ends its support on June 30, 2027. No workload shutdown date is specified.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-06-17"><strong>Retired</strong><span>Retirement date: <time datetime="2025-06-17">17 Jun 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 months, 22 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">17 Jun 2025</p>
-<div class="rich-content"><p>The Ubuntu 18.04 retirement deadline was <strong>2025-06-17</strong>. From that date, AKS stops creating Ubuntu 18.04 node images and providing security updates, deletes existing node images, and leaves affected pools unsupported and unable to scale.</p>
+<div class="rich-content"><p>The Ubuntu 18.04 retirement deadline was <strong>June 17, 2025</strong>. From that date, AKS stops creating Ubuntu 18.04 node images and providing security updates, deletes existing node images, and leaves affected pools unsupported and unable to scale.</p>
 <p>The notice does not specify a workload shutdown date.</p>
-<p>The reference pages' Ubuntu 20.04 deadline of 2027-03-17 and Ubuntu 22.04 support deadline of 2027-06-30 concern different versions. They do not extend or conflict with the Ubuntu 18.04 deadline.</p>
+<p>The reference pages' Ubuntu 20.04 deadline of March 17, 2027 and Ubuntu 22.04 support deadline of June 30, 2027 concern different versions. They do not extend or conflict with the Ubuntu 18.04 deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>AKS retired <strong>Ubuntu 18.04 node pools on 2025-06-17</strong>. Affected pools no longer receive support, new node images or security updates, and image deletion prevents scaling.</p>
-<p>The retirement notice names Ubuntu 22.04 as a supported replacement. However, the supplied product guidance separately ends Ubuntu 22.04 support on 2027-06-30 and removes its images and code on 2028-04-30. That guidance identifies Ubuntu 24.04 or later as its replacement; it does not establish a direct Ubuntu 18.04 migration path.</p>
+<div class="rich-content"><p>AKS retired <strong>Ubuntu 18.04 node pools on June 17, 2025</strong>. Affected pools no longer receive support, new node images or security updates, and image deletion prevents scaling.</p>
+<p>The retirement notice names Ubuntu 22.04 as a supported replacement. However, the supplied product guidance separately ends Ubuntu 22.04 support on June 30, 2027 and removes its images and code on April 30, 2028. That guidance identifies Ubuntu 24.04 or later as its replacement; it does not establish a direct Ubuntu 18.04 migration path.</p>
 <p>The notice documents no regional exceptions and does not announce retirement of all Ubuntu node pools or AKS itself.</p>
 </div>
       <div class="notice"></div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your AKS node pools running Ubuntu 18.04 and record their Kubernetes versions, OS SKUs and enabled features. The supplied content provides no Ubuntu-specific inventory procedure.</li>
-<li>Select a supported target before migrating. The original notice recommends Ubuntu 22.04, but its support ends on 2027-06-30. Assess Ubuntu 24.04 or later against applicable upgrade guidance rather than assuming a direct migration path. The supplied guidance lists Ubuntu FIPS images as unsupported on Ubuntu 24.04 or later and supplies no FIPS-specific replacement path.</li>
+<li>Select a supported target before migrating. The original notice recommends Ubuntu 22.04, but its support ends on June 30, 2027. Assess Ubuntu 24.04 or later against applicable upgrade guidance rather than assuming a direct migration path. The supplied guidance lists Ubuntu FIPS images as unsupported on Ubuntu 24.04 or later and supplies no FIPS-specific replacement path.</li>
 <li>Check available Kubernetes upgrade targets with <code>az aks get-upgrades</code>. Follow the referenced cluster upgrade instructions, checking permissions, compute quota, deprecated APIs and version compatibility. Supported non-LTS clusters cannot skip minor versions. Unsupported-cluster recovery requires a full-cluster upgrade to an eligible supported target; if none is available, create a supported cluster and migrate workloads.</li>
 <li>As team-owned validation, confirm the resulting node-pool OS and Kubernetes versions and validate your workloads. A successful Kubernetes upgrade alone does not establish that Ubuntu 18.04 has been replaced.</li>
 </ol>
@@ -1944,7 +1944,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your AKS node pools run <strong>Ubuntu 18.04</strong>. This summary does not inspect your resources or establish how many pools you have.</p>
-<p>From 2025-06-17, affected pools are unsupported, receive no Ubuntu 18.04 node images or security updates, and cannot scale because existing node images are deleted. The notice warns of service disruptions but does not state that running workloads automatically shut down on that date.</p>
+<p>From June 17, 2025, affected pools are unsupported, receive no Ubuntu 18.04 node images or security updates, and cannot scale because existing node images are deleted. The notice warns of service disruptions but does not state that running workloads automatically shut down on that date.</p>
 <p>The retirement notice does not establish that other Ubuntu versions are affected by this milestone. It documents no retirement-specific console/API removal, workload-data deletion, retention changes or cost effects.</p>
 <p>Migration compatibility requires separate assessment, especially if you use FIPS images. Kubernetes upgrade completion does not by itself confirm OS migration.</p>
 </div>

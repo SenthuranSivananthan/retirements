@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Automanage</span><span class="badge upcoming" data-deadline="2027-09-30"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure Automange Best Practices Migrating to Azure Policy</h1><p>Microsoft will retire Azure Automanage Best Practices on 2027-09-30. Migrate your configuration profiles and VM governance to Azure Policy before that date. Some settings require custom policies or other configuration. Separate, earlier changes affect MMA-dependent services and Automation Update Management. The supplied guidance does not establish that retirement shuts down VMs or deletes data. Services enabled through Automanage can incur their own charges.</p>
+  <h1>Retirement: Azure Automange Best Practices Migrating to Azure Policy</h1><p>Microsoft will retire Azure Automanage Best Practices on September 30, 2027. Migrate your configuration profiles and VM governance to Azure Policy before that date. Some settings require custom policies or other configuration. Separate, earlier changes affect MMA-dependent services and Automation Update Management. The supplied guidance does not establish that retirement shuts down VMs or deletes data. Services enabled through Automanage can incur their own charges.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-09-30"><strong>317 days remaining</strong><span>Retirement date: <time datetime="2027-09-30">30 Sep 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 4 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,18 +1916,18 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2027</p>
-<div class="rich-content"><p>Azure Automanage Best Practices retires on <strong>2027-09-30</strong>. Microsoft directs you to migrate to Azure Policy before that date. The supplied product guidance provides this date; the announcement and pricing pages provide no competing retirement date.</p>
+<div class="rich-content"><p>Azure Automanage Best Practices retires on <strong>September 30, 2027</strong>. Microsoft directs you to migrate to Azure Policy before that date. The supplied product guidance provides this date; the announcement and pricing pages provide no competing retirement date.</p>
 <p>Separate milestones affect dependent capabilities:</p>
 <ul>
-<li><strong>2025-02-01:</strong> Automanage began rolling out withdrawal of support and enforcement for Microsoft Monitoring Agent (MMA)-dependent services. This is a rollout start, not the Best Practices retirement date; no completion date is supplied.</li>
-<li><strong>2024-08-31:</strong> Automation Update Management and its Log Analytics agent retired. Automation Update Management is no longer supported in Automanage; Microsoft directs remaining users to Azure Update Manager.</li>
+<li><strong>February 1, 2025:</strong> Automanage began rolling out withdrawal of support and enforcement for Microsoft Monitoring Agent (MMA)-dependent services. This is a rollout start, not the Best Practices retirement date; no completion date is supplied.</li>
+<li><strong>August 31, 2024:</strong> Automation Update Management and its Log Analytics agent retired. Automation Update Management is no longer supported in Automanage; Microsoft directs remaining users to Azure Update Manager.</li>
 </ul>
 <p>The guidance does not specify whether Best Practices retirement stops existing workloads or deletes data.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft will retire Azure Automanage Best Practices on <strong>2027-09-30</strong>. Its configuration profiles onboarded VMs to management, monitoring, security and resiliency services and monitored and corrected configuration drift. Move those settings to Azure Policy policies and initiatives.</p>
+<div class="rich-content"><p>Microsoft will retire Azure Automanage Best Practices on <strong>September 30, 2027</strong>. Its configuration profiles onboarded VMs to management, monitoring, security and resiliency services and monitored and corrected configuration drift. Move those settings to Azure Policy policies and initiatives.</p>
 <p>Microsoft describes Azure Policy as providing feature parity, but some settings require custom policies, REST API configuration or ARM templates. Azure Monitor Agent (AMA) is not supported in Automanage; Azure Policy can configure it at scale.</p>
 <p>Do not assume every profile capability remains supported until retirement: MMA-dependent services and Automation Update Management have separate, earlier milestones. The supplied pages do not document regional retirement exceptions, general maintenance or security-update commitments through retirement, or detailed post-retirement behavior.</p>
 </div>
@@ -1935,7 +1935,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Migrate to Azure Policy before <strong>2027-09-30</strong>.</p>
+<div class="rich-content"><p>Migrate to Azure Policy before <strong>September 30, 2027</strong>.</p>
 <ol>
 <li>Review the Azure Policy conceptual overview. Identify your Automanage configuration profiles, assigned VMs and enabled services, and map each service and setting to Azure Policy content before offboarding subscriptions.</li>
 <li>Select policies and initiatives for the services you use, such as monitoring, Backup, antimalware, Change Tracking and Inventory, Defender for Cloud and Azure Update Manager. Check parameters, assignment scopes and regional availability. Backup scheduling and retention, custom antimalware settings and Windows Admin Center configuration can require custom policies, REST API configuration or ARM templates.</li>
@@ -1950,8 +1950,8 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you use Azure Automanage Best Practices configuration profiles to onboard and govern VMs. Review those profiles, their VM assignments and enabled services to establish your scope. This summary has not inspected your environment.</p>
-<p>Without migration, you will still depend on a service retiring on <strong>2027-09-30</strong>. The guidance does not establish that retirement shuts down VMs, stops every configured service, removes console or API access, or deletes data. It does not document unaffected retirement populations.</p>
-<p>MMA-dependent services have a separate support and enforcement withdrawal rollout starting <strong>2025-02-01</strong>. Automation Update Management and its Log Analytics agent retired on <strong>2024-08-31</strong>; that feature is no longer supported in Automanage.</p>
+<p>Without migration, you will still depend on a service retiring on <strong>September 30, 2027</strong>. The guidance does not establish that retirement shuts down VMs, stops every configured service, removes console or API access, or deletes data. It does not document unaffected retirement populations.</p>
+<p>MMA-dependent services have a separate support and enforcement withdrawal rollout starting <strong>February 1, 2025</strong>. Automation Update Management and its Log Analytics agent retired on <strong>August 31, 2024</strong>; that feature is no longer supported in Automanage.</p>
 <p>Automanage Best Practices itself is free, but onboarded services can bill you directly for usage. Do not assume those charges stop at retirement. No migration cost estimate or retirement-related pricing change is documented.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

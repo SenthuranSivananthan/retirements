@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Cosmos DB</span><span class="badge retired" data-deadline="2024-02-29"><span></span>Retired</span></div>
-  <h1>Update the Azure Cosmos DB Java SDK by 29 February 2024</h1><p>Azure Cosmos DB Java SDK Sync 2.x for SQL API retired on 2024-02-29. Microsoft no longer provides bug fixes, new features or support for this version, but Azure Cosmos DB continues serving its requests. Migrate affected applications to Java SDK v4. Async 2.x and Java SDK 3.x have a separate retirement date of 2024-08-31.</p>
+  <h1>Update the Azure Cosmos DB Java SDK by 29 February 2024</h1><p>Azure Cosmos DB Java SDK Sync 2.x for SQL API retired on February 29, 2024. Microsoft no longer provides bug fixes, new features or support for this version, but Azure Cosmos DB continues serving its requests. Migrate affected applications to Java SDK v4. Async 2.x and Java SDK 3.x have a separate retirement date of August 31, 2024.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-02-29"><strong>Retired</strong><span>Retirement date: <time datetime="2024-02-29">29 Feb 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 4 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">29 Feb 2024</p>
-<div class="rich-content"><p>Azure Cosmos DB Java SDK <strong>Sync 2.x for SQL API retired on 2024-02-29</strong>. After that date, Microsoft stopped providing bug fixes, new features and support for this version. Azure Cosmos DB continues serving its requests; this is not an announced workload shutdown.</p>
-<p>The migration guide lists <strong>2024-08-31</strong> for Async 2.x and Java SDK 3.x. Those dates cover different SDK populations, not a conflict or extension. The structured deadline applies only to Sync 2.x. No v4 retirement date is established by the supplied sources.</p>
+<div class="rich-content"><p>Azure Cosmos DB Java SDK <strong>Sync 2.x for SQL API retired on February 29, 2024</strong>. After that date, Microsoft stopped providing bug fixes, new features and support for this version. Azure Cosmos DB continues serving its requests; this is not an announced workload shutdown.</p>
+<p>The migration guide lists <strong>August 31, 2024</strong> for Async 2.x and Java SDK 3.x. Those dates cover different SDK populations, not a conflict or extension. The structured deadline applies only to Sync 2.x. No v4 retirement date is established by the supplied sources.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Cosmos DB Java SDK Sync 2.x for SQL API retired on 2024-02-29, ending bug fixes, new features and Microsoft support for that version. Microsoft directs you to Java SDK v4.</p>
+<div class="rich-content"><p>Azure Cosmos DB Java SDK Sync 2.x for SQL API retired on February 29, 2024, ending bug fixes, new features and Microsoft support for that version. Microsoft directs you to Java SDK v4.</p>
 <p>Before retirement, Microsoft committed to maintaining existing features and functionality without adding new features. After retirement, Azure Cosmos DB continues processing requests from Sync 2.x applications.</p>
 <p>Java SDK v4 provides synchronous and Reactor-based asynchronous APIs in one Maven artifact. The supplied sources do not document regional exceptions or a security-update commitment for retired Sync 2.x.</p>
 </div>
@@ -1943,10 +1943,10 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected by the 2024-02-29 retirement if your applications use Azure Cosmos DB Java SDK <strong>Sync 2.x for SQL API</strong>. Review application dependencies and imports to identify usage; the sources do not provide a tenant-wide inventory tool.</p>
+<div class="rich-content"><p>You are affected by the February 29, 2024 retirement if your applications use Azure Cosmos DB Java SDK <strong>Sync 2.x for SQL API</strong>. Review application dependencies and imports to identify usage; the sources do not provide a tenant-wide inventory tool.</p>
 <p>If you do not upgrade, Azure Cosmos DB continues serving Sync 2.x requests, but Microsoft no longer provides bug fixes, new features or support for that SDK version. Retirement does not itself announce workload shutdown or loss of data access.</p>
 <p>Migration changes application code and build dependencies, including resource access, document representations and dependency compatibility. Sync 2.x applications also need to account for v4's TCP-based direct mode. The supplied sources do not establish retirement-related console restrictions, data deletion or additional charges.</p>
-<p>Async 2.x and Java SDK 3.x have a separate 2024-08-31 retirement milestone; they are not part of the Sync 2.x deadline.</p>
+<p>Async 2.x and Java SDK 3.x have a separate August 31, 2024 retirement milestone; they are not part of the Sync 2.x deadline.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>
     </section>

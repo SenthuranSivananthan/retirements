@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge retired" data-deadline="2026-05-15"><span></span>Retired</span></div>
-  <h1>Retirement: Windows Server Annual Channel (preview)</h1><p>AKS support for Windows Server Annual Channel for Containers (Preview) ended on 2026-05-15. Microsoft stopped new Annual Channel node images, security patches and creation of new Annual Channel node pools. Migrate affected workloads to Long Term Servicing Channel (LTSC). On 2027-05-15, AKS will remove existing Annual Channel node images, causing scaling, reimage and redeploy operations to fail. Neither milestone establishes an automatic shutdown of running workloads. Version-specific Kubernetes support endpoints remain unreconciled with the explicit retirement date and do not establish an extension.</p>
+  <h1>Retirement: Windows Server Annual Channel (preview)</h1><p>AKS support for Windows Server Annual Channel for Containers (Preview) ended on May 15, 2026. Microsoft stopped new Annual Channel node images, security patches and creation of new Annual Channel node pools. Migrate affected workloads to Long Term Servicing Channel (LTSC). On May 15, 2027, AKS will remove existing Annual Channel node images, causing scaling, reimage and redeploy operations to fail. Neither milestone establishes an automatic shutdown of running workloads. Version-specific Kubernetes support endpoints remain unreconciled with the explicit retirement date and do not establish an extension.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-05-15"><strong>Retired</strong><span>Retirement date: <time datetime="2026-05-15">15 May 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 months, 22 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,17 +1916,17 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">15 May 2026</p>
-<div class="rich-content"><h3>Support ended: 2026-05-15</h3>
-<p>The migration deadline in the retirement announcement was <strong>2026-05-15</strong>. AKS ended Annual Channel (Preview) support, new node-image production, security patches and creation of new Annual Channel node pools on that date.</p>
-<h3>Image removal: 2027-05-15</h3>
-<p>AKS will remove existing Annual Channel node images on <strong>2027-05-15</strong>, causing scaling, reimage and redeploy operations to fail. This later milestone is not an extension of support. Neither date is a documented automatic shutdown date for running workloads.</p>
+<div class="rich-content"><h3>Support ended: May 15, 2026</h3>
+<p>The migration deadline in the retirement announcement was <strong>May 15, 2026</strong>. AKS ended Annual Channel (Preview) support, new node-image production, security patches and creation of new Annual Channel node pools on that date.</p>
+<h3>Image removal: May 15, 2027</h3>
+<p>AKS will remove existing Annual Channel node images on <strong>May 15, 2027</strong>, causing scaling, reimage and redeploy operations to fail. This later milestone is not an extension of support. Neither date is a documented automatic shutdown date for running workloads.</p>
 <p>The Annual Channel guidance also lists support endpoints for 23H2 at the end of Kubernetes 1.33 support and 24H2 at the end of Kubernetes 1.35 support. It provides no calendar dates or reconciliation with the explicit retirement notice. Those alternative endpoints remain unconfirmed as retirement deadlines and do not establish an extension.</p>
-<p>The separate Windows Server 2022 LTSC support and image-removal dates, 2028-06-30 and 2029-06-30, do not apply to Annual Channel.</p>
+<p>The separate Windows Server 2022 LTSC support and image-removal dates, June 30, 2028 and June 30, 2029, do not apply to Annual Channel.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Windows Server Annual Channel for Containers (Preview) on AKS retired on <strong>2026-05-15</strong>. Support, new Annual Channel node images, security patches and creation of new Annual Channel node pools ended. Existing Annual Channel node images will be removed on <strong>2027-05-15</strong>.</p>
+<div class="rich-content"><p>Windows Server Annual Channel for Containers (Preview) on AKS retired on <strong>May 15, 2026</strong>. Support, new Annual Channel node images, security patches and creation of new Annual Channel node pools ended. Existing Annual Channel node images will be removed on <strong>May 15, 2027</strong>.</p>
 <p>The announcement said Annual Channel would remain usable without disruption until retirement; that statement does not promise continued support afterward. Setup and upgrade instructions still present in the guidance do not override the restriction on new pools.</p>
 <p>The scope is Annual Channel, including the listed 23H2 and 24H2 releases, not all Windows node pools. Microsoft recommends LTSC and lists Windows Server 2022 and Windows Server 2025 as alternatives. No regional exceptions are documented.</p>
 </div>
@@ -1936,9 +1936,9 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify affected nodes by their OS SKU. The Annual Channel page documents <code>kubectl describe node $NODE_POOL_NAME</code> and the identifying label <code>kubernetes.azure.com/os-sku=WindowsAnnual</code>. This is a node-level check, not a complete pool or tenant inventory.</li>
-<li>Select a supported LTSC destination. Windows Server 2025 requires Kubernetes 1.32.0 or later and a FIPS-enabled image. Windows Server 2022 is unsupported on Kubernetes 1.37 and later; its separate AKS support ends on 2028-06-30, with image removal on 2029-06-30.</li>
+<li>Select a supported LTSC destination. Windows Server 2025 requires Kubernetes 1.32.0 or later and a FIPS-enabled image. Windows Server 2022 is unsupported on Kubernetes 1.37 and later; its separate AKS support ends on June 30, 2028, with image removal on June 30, 2029.</li>
 <li>Test container compatibility with your destination. The Annual Channel page says its Windows Server 2022 base images can run on Windows Server 2022 and Windows Server 2025. Host Process Containers and other privileged administration containers require extra testing.</li>
-<li>Migrate now that the 2026-05-15 deadline has passed, and complete migration before image removal on 2027-05-15. The referenced OS-upgrade guidance requires a new node pool for migrations other than its narrowly supported Windows Server 2022-to-2025 in-place path; that preview path is not documented for Annual Channel. Match the new pool's permissions and resource access, including managed identity and gMSA where used.</li>
+<li>Migrate now that the May 15, 2026 deadline has passed, and complete migration before image removal on May 15, 2027. The referenced OS-upgrade guidance requires a new node pool for migrations other than its narrowly supported Windows Server 2022-to-2025 in-place path; that preview path is not documented for Annual Channel. Match the new pool's permissions and resource access, including managed identity and gMSA where used.</li>
 <li>For manual migration, update deployment node selectors to the destination OS SKU and use compatible container images. Verify node OS details, pod placement, application behavior and resource access before deleting the old pool. Different Windows Server versions cannot coexist within one node pool.</li>
 </ol>
 <p>The supplied guidance does not provide a complete Annual Channel-to-LTSC procedure or retirement-specific backup steps.</p>
@@ -1948,7 +1948,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your AKS nodes use the <code>WindowsAnnual</code> OS SKU. The supplied content does not establish whether your environment contains affected nodes.</p>
-<p>Since <strong>2026-05-15</strong>, affected pools have lost Annual Channel support, new node images and security patches, and you cannot create new Annual Channel pools. From <strong>2027-05-15</strong>, image removal will cause scaling, reimage and redeploy operations to fail.</p>
+<p>Since <strong>May 15, 2026</strong>, affected pools have lost Annual Channel support, new node images and security patches, and you cannot create new Annual Channel pools. From <strong>May 15, 2027</strong>, image removal will cause scaling, reimage and redeploy operations to fail.</p>
 <p>The notice does not state that existing workloads automatically stop on either date. It does not document retirement-related workload-data deletion, retention changes, cost changes or a general console/API shutdown.</p>
 <p>LTSC pools are outside this Annual Channel retirement, but their own version and Kubernetes compatibility limits still apply. Migration can change pod placement, container compatibility and resource-access configuration. Annual Channel is a preview feature, excluded from SLAs and limited warranty, with best-effort partial customer support.</p>
 </div>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Maps</span><span class="badge retired" data-deadline="2026-09-15"><span></span>Retired</span></div>
-  <h1>Azure Maps Gen1 Price Tier will be retired on 15 September 2026 -- transition to Azure Maps Gen2 Price Tier</h1><p>Azure Maps Gen1 Standard S0 and Standard S1 pricing retired on 2026-09-15. Microsoft’s retirement guidance reports that all affected accounts automatically converted to Gen2 without requiring new subscription keys, Microsoft Entra client IDs or SAS tokens. The Q&amp;A states that functionality does not change and no customer action is required for the automatic conversion. ARM templates for new accounts must use SKU G2 and account kind Gen2. Gen2 uses usage-based pricing with volume discounts; individual billing changes are not quantified. The supplied content does not verify your accounts’ conversion status.</p>
+  <h1>Azure Maps Gen1 Price Tier will be retired on 15 September 2026 -- transition to Azure Maps Gen2 Price Tier</h1><p>Azure Maps Gen1 Standard S0 and Standard S1 pricing retired on September 15, 2026. Microsoft’s retirement guidance reports that all affected accounts automatically converted to Gen2 without requiring new subscription keys, Microsoft Entra client IDs or SAS tokens. The Q&amp;A states that functionality does not change and no customer action is required for the automatic conversion. ARM templates for new accounts must use SKU G2 and account kind Gen2. Gen2 uses usage-based pricing with volume discounts; individual billing changes are not quantified. The supplied content does not verify your accounts’ conversion status.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-15"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-15">15 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,18 +1916,18 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">15 Sep 2026</p>
-<div class="rich-content"><p>Azure Maps Gen1 Standard S0 and Standard S1 pricing retired on <strong>2026-09-15</strong>. Microsoft’s retirement guidance reports that all affected accounts automatically converted to Gen2. The Q&amp;A identifies the same date as the end of Gen1 pricing support, not an Azure Maps workload shutdown.</p>
+<div class="rich-content"><p>Azure Maps Gen1 Standard S0 and Standard S1 pricing retired on <strong>September 15, 2026</strong>. Microsoft’s retirement guidance reports that all affected accounts automatically converted to Gen2. The Q&amp;A identifies the same date as the end of Gen1 pricing support, not an Azure Maps workload shutdown.</p>
 <p>Earlier restrictions were separate milestones:</p>
 <ul>
-<li><strong>2023-09-14:</strong> Azure Portal stopped offering Gen1 for new accounts and stopped allowing switches from Gen2 back to Gen1.</li>
-<li><strong>2023-10-12:</strong> The same restrictions took effect through Azure Resource Manager (ARM) templates. This was also the documented deadline for updating new-account ARM deployments to avoid deployment disruptions.</li>
+<li><strong>September 14, 2023:</strong> Azure Portal stopped offering Gen1 for new accounts and stopped allowing switches from Gen2 back to Gen1.</li>
+<li><strong>October 12, 2023:</strong> The same restrictions took effect through Azure Resource Manager (ARM) templates. This was also the documented deadline for updating new-account ARM deployments to avoid deployment disruptions.</li>
 </ul>
 <p>The announcement describes conversion as forthcoming; the retirement guidance reports it as complete. These sources identify the same retirement date, not an extension.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Maps retired the <strong>Gen1 Standard S0 and Standard S1 pricing tiers</strong> on <strong>2026-09-15</strong> and replaced them with Gen2. Microsoft’s retirement guidance reports that all affected accounts automatically converted.</p>
+<div class="rich-content"><p>Azure Maps retired the <strong>Gen1 Standard S0 and Standard S1 pricing tiers</strong> on <strong>September 15, 2026</strong> and replaced them with Gen2. Microsoft’s retirement guidance reports that all affected accounts automatically converted.</p>
 <p>Gen2 provides usage-based pricing, volume discounts and access to all Azure Maps features. The Q&amp;A describes the conversion as a pricing-tier change with no functionality change. Existing subscription keys, Microsoft Entra client IDs and SAS tokens did not require regeneration.</p>
 <p>No regional exceptions are documented. This is not a documented Azure Maps service shutdown; the supplied content does not specify maintenance or security-update commitments.</p>
 </div>
@@ -1937,7 +1937,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><p><strong>No manual account migration is required:</strong> Microsoft reports that all Gen1 S0 and S1 accounts automatically converted to Gen2. You do not need to regenerate subscription keys, Microsoft Entra client IDs or SAS tokens.</p>
 <ol>
-<li>If you create Azure Maps accounts through ARM templates, update any Gen1 configuration to use SKU name <code>G2</code> and account kind <code>Gen2</code>. The documented deadline for avoiding new-account deployment disruptions was <strong>2023-10-12</strong>.</li>
+<li>If you create Azure Maps accounts through ARM templates, update any Gen1 configuration to use SKU name <code>G2</code> and account kind <code>Gen2</code>. The documented deadline for avoiding new-account deployment disruptions was <strong>October 12, 2023</strong>.</li>
 <li>For optional cost planning, review Azure Maps pricing and Understanding Azure Maps Transactions. You can use the referenced Azure pricing calculator with your expected services and transaction volumes.</li>
 </ol>
 <p>The supplied content does not provide account-identification commands, conversion-validation procedures or backup, cutover and cleanup requirements.</p>
@@ -1946,7 +1946,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>This retirement affected Azure Maps accounts using <strong>Gen1 Standard S0 or Standard S1</strong>. Accounts already using Gen2 are not identified as requiring migration. Microsoft reports that remaining Gen1 accounts automatically converted on <strong>2026-09-15</strong>, so taking no manual migration action did not leave them on Gen1.</p>
+<div class="rich-content"><p>This retirement affected Azure Maps accounts using <strong>Gen1 Standard S0 or Standard S1</strong>. Accounts already using Gen2 are not identified as requiring migration. Microsoft reports that remaining Gen1 accounts automatically converted on <strong>September 15, 2026</strong>, so taking no manual migration action did not leave them on Gen1.</p>
 <p>The Q&amp;A states that functionality does not change. Existing credentials did not require regeneration, and the sources do not describe a workload shutdown. Gen1 account creation and switches back from Gen2 are no longer available through Azure Portal or ARM templates; new-account ARM deployments requesting Gen1 risk disruption.</p>
 <p>Gen2 uses usage-based pricing with volume discounts. Your billing change is not quantified in the supplied content. The sources do not establish your account’s current tier or document downtime, data-retention or deletion consequences.</p>
 </div>

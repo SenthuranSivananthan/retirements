@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2022-08-31"><span></span>Retired</span></div>
-  <h1>Update your Traffic Analytics queries by 31 August 2022</h1><p>Traffic Analytics retired support for nine older log-schema fields after 2022-08-31, according to the retirement notice. Update affected queries to the replacement schema. The schema reference provides version 2 migration examples but no retirement date; it does not document an extension. Neither source establishes a Traffic Analytics service shutdown or when older fields stop returning data.</p>
+  <h1>Update your Traffic Analytics queries by 31 August 2022</h1><p>Traffic Analytics retired support for nine older log-schema fields after August 31, 2022, according to the retirement notice. Update affected queries to the replacement schema. The schema reference provides version 2 migration examples but no retirement date; it does not document an extension. Neither source establishes a Traffic Analytics service shutdown or when older fields stop returning data.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2022-08-31">31 Aug 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 4 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2022</p>
-<div class="rich-content"><p>The retirement notice sets <strong>2022-08-31</strong> as the deadline for the older Traffic Analytics fields. Microsoft will no longer support those fields afterward. The notice does not specify when they stop returning data or announce a service shutdown.</p>
-<p>The schema reference instead describes future deprecation without a deadline. Its March 2020 schema-update date and 2023-06-20 last-updated date are not retirement milestones. That reference does not explicitly revise or extend the notice's deadline.</p>
+<div class="rich-content"><p>The retirement notice sets <strong>August 31, 2022</strong> as the deadline for the older Traffic Analytics fields. Microsoft will no longer support those fields afterward. The notice does not specify when they stop returning data or announce a service shutdown.</p>
+<p>The schema reference instead describes future deprecation without a deadline. Its March 2020 schema-update date and June 20, 2023 last-updated date are not retirement milestones. That reference does not explicitly revise or extend the notice's deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Traffic Analytics updated its log schema and retired support for nine older fields after <strong>2022-08-31</strong>, according to the retirement notice:</p>
+<div class="rich-content"><p>Traffic Analytics updated its log schema and retired support for nine older fields after <strong>August 31, 2022</strong>, according to the retirement notice:</p>
 <ul>
 <li>VMIP_s</li>
 <li>Subscription_g</li>
@@ -1954,7 +1954,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your Traffic Analytics queries are affected if they depend on the retiring fields or their schema version 1 representation. After <strong>2022-08-31</strong>, those fields are no longer supported according to the retirement notice; the sources do not establish whether unchanged queries fail or continue returning data.</p>
+<div class="rich-content"><p>Your Traffic Analytics queries are affected if they depend on the retiring fields or their schema version 1 representation. After <strong>August 31, 2022</strong>, those fields are no longer supported according to the retirement notice; the sources do not establish whether unchanged queries fail or continue returning data.</p>
 <p>Source/destination interpretation, NSG rule parsing and flow-count calculations change. In the updated schema, only one of the four allowed/denied inbound/outbound count fields is nonzero. It represents the status and count at the NIC where the flow was captured.</p>
 <p>The supplied content does not establish whether your environment uses these fields. It documents no workload shutdown, regional restrictions, data-retention or deletion changes, or cost consequences.</p>
 </div>

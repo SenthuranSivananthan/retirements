@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Log Analytics</span><span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span></div>
-  <h1>Retirement: Log Analytics Batch API to Be Retired on March 31, 2028</h1><p>Azure Monitor Log Analytics will retire its batch query API on 2028-03-31. The retirement announcement says batch queries will stop working afterward; the migration guide identifies the same date as the end of batch-operation support but does not independently confirm shutdown. Replace batch requests, including SDK batch calls, with individual queries using the standard v1 request and response formats. The separate beta API support cutoff of 2026-03-31 is not the batch retirement deadline.</p>
+  <h1>Retirement: Log Analytics Batch API to Be Retired on March 31, 2028</h1><p>Azure Monitor Log Analytics will retire its batch query API on March 31, 2028. The retirement announcement says batch queries will stop working afterward; the migration guide identifies the same date as the end of batch-operation support but does not independently confirm shutdown. Replace batch requests, including SDK batch calls, with individual queries using the standard v1 request and response formats. The separate beta API support cutoff of March 31, 2026 is not the batch retirement deadline.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-03-31"><strong>500 days remaining</strong><span>Retirement date: <time datetime="2028-03-31">31 Mar 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 30 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2028</p>
-<div class="rich-content"><p>Move your Azure Monitor Log Analytics batch queries to individual requests by <strong>2028-03-31</strong>.</p>
+<div class="rich-content"><p>Move your Azure Monitor Log Analytics batch queries to individual requests by <strong>March 31, 2028</strong>.</p>
 <p>The retirement announcement says batch queries will no longer work afterward. The migration guide lists the same date as the batch-operation support cutoff but does not independently specify a request-shutdown date. These sources agree on the date but describe its consequence differently; the request-failure statement comes from the announcement.</p>
-<p>The guide's <strong>2026-03-31</strong> cutoff applies separately to beta API support, not batch-operation retirement. Reference-page update dates do not establish retirement deadlines.</p>
+<p>The guide's <strong>March 31, 2026</strong> cutoff applies separately to beta API support, not batch-operation retirement. Reference-page update dates do not establish retirement deadlines.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Monitor Log Analytics is retiring its batch query API on <strong>2028-03-31</strong>. Replace batch requests with individual queries using the standard Logs query API v1 request and response formats.</p>
+<div class="rich-content"><p>Azure Monitor Log Analytics is retiring its batch query API on <strong>March 31, 2028</strong>. Replace batch requests with individual queries using the standard Logs query API v1 request and response formats.</p>
 <p>The deprecated batch reference documents the endpoint ending in <code>/v1/$batch</code>. This retirement concerns the batch operation, not the entire v1 API or Azure Monitor Log Analytics service.</p>
 <p>The supplied content does not identify regional or customer exceptions, or separate maintenance and security-update commitments. The migration guide documents batch-operation support through the cutoff; the announcement says batch queries will stop working afterward.</p>
 </div>
@@ -1936,7 +1936,7 @@
 <li>Split every query in a batch request's <code>requests</code> array into a separate request using its <code>query</code> section. For SDK batch calls, use the corresponding individual-query methods.</li>
 <li>Use the standard v1 request format with your workspace GUID, required KQL query and Microsoft Entra authentication. For POST requests, provide a valid JSON body with the <code>Content-Type: application/json</code> header.</li>
 <li>Update response handling for the individual-query response format. Responses contain a <code>tables</code> array; a <code>200 OK</code> response can also contain a non-fatal <code>PartialError</code>, so inspect error details as well as the HTTP status.</li>
-<li>As a team-owned validation step, confirm that migrated queries return the expected results and no longer depend on batch requests before <strong>2028-03-31</strong>.</li>
+<li>As a team-owned validation step, confirm that migrated queries return the expected results and no longer depend on batch requests before <strong>March 31, 2028</strong>.</li>
 </ol>
 <p>Per-workspace concurrency, result-size, query-duration and throttling limits apply; the supplied content does not provide thresholds. It also provides no retirement-specific export, backup, cutover or cleanup procedure.</p>
 <p>The request-format reference uses both <code>api.loganalytics.azure.com</code> and <code>api.loganalytics.io</code> in examples without explaining the difference. It does not establish a separate endpoint-domain retirement or require a domain change.</p>
@@ -1946,7 +1946,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>Your integrations are affected if they use the Log Analytics batch query operation, directly or through SDK batch methods. The migration guide identifies batch-query SDK packages for .NET (<code>Azure.Monitor.Query</code>), Go (<code>azlogs</code>), Java, Python (<code>azure-monitor-query</code>) and JavaScript (<code>@azure/monitor-query</code>); package use alone does not establish that you use batch operations.</p>
-<p>If you do not migrate by <strong>2028-03-31</strong>, the announcement says your batch queries will no longer work. The migration guide separately establishes the end of batch-operation support on that date. This is not an announcement that all Log Analytics queries or workloads will shut down.</p>
+<p>If you do not migrate by <strong>March 31, 2028</strong>, the announcement says your batch queries will no longer work. The migration guide separately establishes the end of batch-operation support on that date. This is not an announcement that all Log Analytics queries or workloads will shut down.</p>
 <p>The supplied content does not announce retirement of standard individual v1 queries or describe console changes, data deletion, retention changes or cost effects. Your environment has not been inspected.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

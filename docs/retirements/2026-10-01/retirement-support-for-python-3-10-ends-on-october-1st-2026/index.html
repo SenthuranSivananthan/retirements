@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">App Service</span><span class="badge retired" data-deadline="2026-10-01"><span></span>Retired</span></div>
-  <h1>Retirement: Support for Python 3.10 ends on October 1st, 2026</h1><p>Extended support for Python 3.10 on Azure App Service ends on 2026-10-01. Apps will continue to run, but Microsoft will stop providing Python 3.10 security updates and customer service. The retirement notice directs you to upgrade to Python 3.11 before that date. Python on Windows App Service has a separate, earlier support cutoff of 2021-12-23; upgrading its Python version alone is not documented as a supported migration.</p>
+  <h1>Retirement: Support for Python 3.10 ends on October 1st, 2026</h1><p>Extended support for Python 3.10 on Azure App Service ends on October 1, 2026. Apps will continue to run, but Microsoft will stop providing Python 3.10 security updates and customer service. The retirement notice directs you to upgrade to Python 3.11 before that date. Python on Windows App Service has a separate, earlier support cutoff of December 23, 2021; upgrading its Python version alone is not documented as a supported migration.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-10-01"><strong>Retired</strong><span>Retirement date: <time datetime="2026-10-01">1 Oct 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 10 months, 17 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Oct 2026</p>
-<div class="rich-content"><p>Extended support for Python 3.10 on Azure App Service ends on <strong>2026-10-01</strong>. The notice directs you to upgrade before that date. This is a security-update and customer-service cutoff, not an application shutdown date.</p>
-<p>Python on Windows App Service has a separate support cutoff: <strong>2021-12-23</strong>, alongside Python 3.6 support. That milestone concerns a different platform scope and does not replace the Python 3.10 deadline.</p>
+<div class="rich-content"><p>Extended support for Python 3.10 on Azure App Service ends on <strong>October 1, 2026</strong>. The notice directs you to upgrade before that date. This is a security-update and customer-service cutoff, not an application shutdown date.</p>
+<p>Python on Windows App Service has a separate support cutoff: <strong>December 23, 2021</strong>, alongside Python 3.6 support. That milestone concerns a different platform scope and does not replace the Python 3.10 deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure App Service is ending extended support for Python 3.10 on 2026-10-01. After that date, Microsoft will no longer provide security updates or customer service for Python 3.10, although apps using it will continue to run. The notice directs you to upgrade to Python 3.11.</p>
+<div class="rich-content"><p>Azure App Service is ending extended support for Python 3.10 on October 1, 2026. After that date, Microsoft will no longer provide security updates or customer service for Python 3.10, although apps using it will continue to run. The notice directs you to upgrade to Python 3.11.</p>
 <p>Separately, App Service removes end-of-life Python versions from the Runtime Stack selection dropdown. Existing apps targeting those versions should not be affected by that removal; this does not establish continued support.</p>
 <p>Python on Windows App Service is already unsupported. The Python guidance identifies Linux as the supported OS going forward and also recommends a Windows container as a migration option.</p>
 </div>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify each App Service app's configured Python version and whether it runs on Linux or Windows, using the referenced language-version guidance.</li>
-<li>For Python 3.10 apps, follow the retirement notice's direction to upgrade to Python 3.11 before 2026-10-01. You can list currently supported Linux runtimes with <code>az webapp list-runtimes --os-type linux</code>.</li>
+<li>For Python 3.10 apps, follow the retirement notice's direction to upgrade to Python 3.11 before October 1, 2026. You can list currently supported Linux runtimes with <code>az webapp list-runtimes --os-type linux</code>.</li>
 <li>For Python apps on Windows, use the separately documented migration options: supported Python on Linux App Service or a Windows container. Changing the Python version alone is not documented as an OS migration.</li>
 <li>For a Python stack-version change in the Azure portal, open the app's Configuration, select General settings, choose the Python version under Stack Settings &gt; Minor version, and save. Changing stack settings restarts the app.</li>
 </ol>
@@ -1942,7 +1942,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Apps hosted on Azure App Service using Python 3.10 are affected. If you do not upgrade, they will continue running after 2026-10-01, but Microsoft will no longer provide Python 3.10 security updates or customer service. The general runtime policy requires upgrading an unsupported language version before receiving App Service support.</p>
+<div class="rich-content"><p>Apps hosted on Azure App Service using Python 3.10 are affected. If you do not upgrade, they will continue running after October 1, 2026, but Microsoft will no longer provide Python 3.10 security updates or customer service. The general runtime policy requires upgrading an unsupported language version before receiving App Service support.</p>
 <p>Runtime selection and workload continuity are separate: end-of-life Python versions are removed from the Runtime Stack dropdown, while existing apps targeting them should not be affected by that removal. Changing stack settings triggers an application restart.</p>
 <p>Python on Windows already lacks security patches and customer service under its separate support cutoff. The supplied sources do not identify your resources or document regional exceptions, data deletion or cost impacts.</p>
 </div>

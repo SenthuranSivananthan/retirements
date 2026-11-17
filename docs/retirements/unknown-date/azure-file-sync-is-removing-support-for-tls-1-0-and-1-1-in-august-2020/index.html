@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Files</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h1>Azure File Sync is removing support for TLS 1.0 and 1.1 in August 2020</h1><p>Azure File Sync removes TLS 1.0 and 1.1 support in existing regions in August 2020; no exact day is specified. Regions added after 2020-05-01 support only TLS 1.2. Supported agents already default to TLS 1.2, but server or proxy settings may prevent its use. Review those settings and ensure connections use TLS 1.2. The general Azure TLS guidance does not establish or supersede this service-specific retirement date.</p>
+  <h1>Azure File Sync is removing support for TLS 1.0 and 1.1 in August 2020</h1><p>Azure File Sync removes TLS 1.0 and 1.1 support in existing regions in August 2020; no exact day is specified. Regions added after May 1, 2020 support only TLS 1.2. Supported agents already default to TLS 1.2, but server or proxy settings may prevent its use. Review those settings and ensure connections use TLS 1.2. The general Azure TLS guidance does not establish or supersede this service-specific retirement date.</p>
   <div class="retirement-countdown unknown" data-countdown data-deadline=""><strong>Retirement date to confirm</strong><span class="badge amber customer-lead-time-pill">Lead time: Not calculable</span></div>
 </div>
 <div class="detail-layout">
@@ -1917,13 +1917,13 @@
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">Date not specified</p>
 <div class="rich-content"><p>Azure File Sync removes TLS 1.0 and 1.1 support in existing regions in <strong>August 2020</strong>. The notice gives no exact day.</p>
-<p>Regions added after <strong>2020-05-01</strong> support only TLS 1.2; this is a separate regional milestone.</p>
+<p>Regions added after <strong>May 1, 2020</strong> support only TLS 1.2; this is a separate regional milestone.</p>
 <p>The general Azure TLS page gives no retirement date. Its statement that some services continue accepting older protocols until further notice does not establish an extension for Azure File Sync.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure File Sync is removing TLS 1.0 and 1.1 support in existing regions in August 2020. Regions added after 2020-05-01 support only TLS 1.2.</p>
+<div class="rich-content"><p>Azure File Sync is removing TLS 1.0 and 1.1 support in existing regions in August 2020. Regions added after May 1, 2020 support only TLS 1.2.</p>
 <p>All supported Azure File Sync agent versions already use TLS 1.2 by default. This change concerns supported connection protocols, not retirement of Azure File Sync or its agents.</p>
 </div>
       <div class="notice"></div>
@@ -1941,7 +1941,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your Azure File Sync connections are affected if they rely on TLS 1.0 or 1.1. Those protocols lose support in existing regions in August 2020 and are unsupported in regions added after 2020-05-01.</p>
+<div class="rich-content"><p>Your Azure File Sync connections are affected if they rely on TLS 1.0 or 1.1. Those protocols lose support in existing regions in August 2020 and are unsupported in regions added after May 1, 2020.</p>
 <p>Supported agents already default to TLS 1.2. The notice identifies disabled server-side TLS 1.2 or, more likely, a proxy as possible reasons for using an older protocol.</p>
 <p>The notice does not describe precise connection-failure behavior after support ends or establish which of your connections are affected.</p>
 </div>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Arc</span><span class="badge upcoming" data-deadline="2028-03-27"><span></span>Upcoming</span></div>
-  <h1>Retirement: Announcing the 3-Year Retirement of Current Architecture for AKS on Windows Server 2019 and Windows Server 2022</h1><p>The current AKS architecture on Windows Server 2019 and Windows Server 2022 retires on 2028-03-27. Microsoft will end support, security and quality updates, and deployment, upgrade and scaling capabilities for that architecture. Replace affected clusters with AKS on Azure Local, version 23H2 or later, after deploying a supported Azure Local version. The supplied content does not state that existing workloads shut down. Azure Local 22H2 has a separate stated end-of-service date of 2025-05-31. Its documented infrastructure upgrade path has OEM, regional and workload restrictions, including required removal of AKS Arc and its settings before the OS upgrade.</p>
+  <h1>Retirement: Announcing the 3-Year Retirement of Current Architecture for AKS on Windows Server 2019 and Windows Server 2022</h1><p>The current AKS architecture on Windows Server 2019 and Windows Server 2022 retires on March 27, 2028. Microsoft will end support, security and quality updates, and deployment, upgrade and scaling capabilities for that architecture. Replace affected clusters with AKS on Azure Local, version 23H2 or later, after deploying a supported Azure Local version. The supplied content does not state that existing workloads shut down. Azure Local 22H2 has a separate stated end-of-service date of May 31, 2025. Its documented infrastructure upgrade path has OEM, regional and workload restrictions, including required removal of AKS Arc and its settings before the OS upgrade.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-03-27"><strong>496 days remaining</strong><span>Retirement date: <time datetime="2028-03-27">27 Mar 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 28 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">27 Mar 2028</p>
-<div class="rich-content"><p>The current AKS architecture on Windows Server 2019 and Windows Server 2022 retires on <strong>2028-03-27</strong>. From that date, Microsoft will no longer provide support or security and quality updates for existing clusters, and you cannot deploy, upgrade or scale that architecture.</p>
-<p>Azure Local 22H2 has a separate stated end-of-service date of <strong>2025-05-31</strong>. This is a different product-version milestone, not a conflicting retirement date.</p>
+<div class="rich-content"><p>The current AKS architecture on Windows Server 2019 and Windows Server 2022 retires on <strong>March 27, 2028</strong>. From that date, Microsoft will no longer provide support or security and quality updates for existing clusters, and you cannot deploy, upgrade or scale that architecture.</p>
+<p>Azure Local 22H2 has a separate stated end-of-service date of <strong>May 31, 2025</strong>. This is a different product-version milestone, not a conflicting retirement date.</p>
 <p>The supplied content does not specify a workload shutdown date. January 2025 pricing changes and reference-page modification dates are not retirement deadlines.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring the current AKS architecture on Windows Server 2019 and Windows Server 2022 on 2028-03-27. The identified replacement is AKS on Azure Local, version 23H2 or later.</p>
+<div class="rich-content"><p>Microsoft is retiring the current AKS architecture on Windows Server 2019 and Windows Server 2022 on March 27, 2028. The identified replacement is AKS on Azure Local, version 23H2 or later.</p>
 <p>The retirement notice also directs AKS on Azure Local 22H2 customers to replace existing clusters and recommends updating Azure Local to continue receiving updates.</p>
 <p>The supplied content does not specify pre-retirement maintenance commitments or retirement-specific regional exceptions. The supporting pricing, overview and upgrade pages do not independently announce a retirement.</p>
 </div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify whether you run AKS on Windows Server 2019, Windows Server 2022 or Azure Local 22H2. The supplied content provides no discovery procedure.</li>
-<li>For the retiring Windows Server architecture, deploy a supported Azure Local version and replace affected clusters with AKS on Azure Local, version 23H2 or later, before 2028-03-27.</li>
+<li>For the retiring Windows Server architecture, deploy a supported Azure Local version and replace affected clusters with AKS on Azure Local, version 23H2 or later, before March 27, 2028.</li>
 <li>If upgrading Azure Local 22H2 infrastructure, first confirm OEM support and regional availability for the documented Azure Local 2311.2-or-later upgrade path. This process excludes 22H2 Supplemental Package clusters and third-party upgrade installation tools.</li>
 <li>Before that OS upgrade, uninstall AKS Arc and its settings using <code>Uninstall-Aks-Hci</code>. If you used preview AKS Arc or preview Arc VMs on 22H2, use <code>Uninstall-Moc</code> to remove preview-created VM instances; preview Arc VMs cannot be upgraded.</li>
 <li>Follow the documented sequence: upgrade the OS through PowerShell, perform post-OS tasks, validate solution upgrade readiness, then apply the solution upgrade. This infrastructure sequence is not a complete AKS workload migration procedure.</li>
@@ -1944,7 +1944,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>If you retain the current AKS architecture on Windows Server 2019 or Windows Server 2022 after 2028-03-27, you lose support, security and quality updates, and deployment, upgrade and scaling capabilities for that architecture. The supplied content does not say existing workloads stop running or document separate console/API-access consequences.</p>
+<div class="rich-content"><p>If you retain the current AKS architecture on Windows Server 2019 or Windows Server 2022 after March 27, 2028, you lose support, security and quality updates, and deployment, upgrade and scaling capabilities for that architecture. The supplied content does not say existing workloads stop running or document separate console/API-access consequences.</p>
 <p>For an Azure Local 22H2 infrastructure upgrade, old and new AKS Kubernetes versions are incompatible, and preparation requires uninstalling AKS Arc and its settings. Preview Arc VMs cannot be upgraded. OEM support and regional availability constrain this upgrade path; 22H2 Supplemental Package clusters are excluded. The OS upgrade is supported for 22H2 instances managed by SCVMM 2025.</p>
 <p>Pricing has a separate version boundary: AKS enabled by Azure Arc on Azure Local release 2402 and later is included in Azure Local pricing effective January 2025. Windows Server and Azure Local releases before 2402 have a separate per-virtual-core/day pricing category, billed monthly, with no numeric rate supplied. The pricing FAQ states that guest and Azure Local license rights must be purchased separately. These facts do not establish your migration cost.</p>
 <p>No retention periods, data-deletion consequences or tenant-specific impact assessment are supplied.</p>

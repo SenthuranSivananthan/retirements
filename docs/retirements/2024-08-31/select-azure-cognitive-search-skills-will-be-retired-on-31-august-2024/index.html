@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure AI Search</span><span class="badge retired" data-deadline="2024-08-31"><span></span>Retired</span></div>
-  <h1>Select Azure Cognitive Search skills will be retired on 31 August 2024</h1><p>Azure Cognitive Search version 2 sentiment analysis and entity recognition skills retired on 2024-08-31. Azure AI Search product guidance lists the same end-of-support date for EntityRecognitionSkill, SentimentSkill and NamedEntityRecognitionSkill. Migrate affected skillsets to V3 and update dependent outputs, schemas and mappings. Runtime guidance conflicts: the announcements say older-skill invocations result in errors after retirement, while product guidance warns of failures but also says existing skillsets should continue functioning. Continued operation is unconfirmed; these sources do not establish your resources&#39; actual runtime status. This is not retirement of the entire search service.</p>
+  <h1>Select Azure Cognitive Search skills will be retired on 31 August 2024</h1><p>Azure Cognitive Search version 2 sentiment analysis and entity recognition skills retired on August 31, 2024. Azure AI Search product guidance lists the same end-of-support date for EntityRecognitionSkill, SentimentSkill and NamedEntityRecognitionSkill. Migrate affected skillsets to V3 and update dependent outputs, schemas and mappings. Runtime guidance conflicts: the announcements say older-skill invocations result in errors after retirement, while product guidance warns of failures but also says existing skillsets should continue functioning. Continued operation is unconfirmed; these sources do not establish your resources&#39; actual runtime status. This is not retirement of the entire search service.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-08-31">31 Aug 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 14 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2024</p>
-<div class="rich-content"><p>The retirement notice sets <strong>2024-08-31</strong> as the retirement date for version 2 sentiment analysis and entity recognition skills, with migration to version 3 required before that date.</p>
-<p>Azure AI Search product guidance lists <strong>2024-08-31</strong> as end of support for EntityRecognitionSkill, SentimentSkill and NamedEntityRecognitionSkill. No supplied source gives a conflicting date, cutoff time or time zone.</p>
+<div class="rich-content"><p>The retirement notice sets <strong>August 31, 2024</strong> as the retirement date for version 2 sentiment analysis and entity recognition skills, with migration to version 3 required before that date.</p>
+<p>Azure AI Search product guidance lists <strong>August 31, 2024</strong> as end of support for EntityRecognitionSkill, SentimentSkill and NamedEntityRecognitionSkill. No supplied source gives a conflicting date, cutoff time or time zone.</p>
 <p>The runtime consequences are inconsistent. The announcements say older-skill invocations after retirement result in errors. Product guidance says affected indexers start failing at end of support and deprecated skills stop working, but also says previously created skillsets should continue functioning. Continued operation is therefore unconfirmed; the sources do not establish actual runtime status.</p>
 <p>The API-version identifiers described below are compatibility limits, not separate retirement dates.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired <strong>version 2 of Azure Cognitive Search sentiment analysis and entity recognition skills on 2024-08-31</strong>. Version 3 is the replacement.</p>
+<div class="rich-content"><p>Microsoft retired <strong>version 2 of Azure Cognitive Search sentiment analysis and entity recognition skills on August 31, 2024</strong>. Version 3 is the replacement.</p>
 <p>Azure AI Search product guidance lists three deprecated skill types with that same end-of-support date:</p>
 <ul>
 <li>Microsoft.Skills.Text.EntityRecognitionSkill → Microsoft.Skills.Text.V3.EntityRecognitionSkill.</li>
@@ -1938,7 +1938,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>The required migration target was <strong>before 2024-08-31</strong>. If your skillsets still use the deprecated skills, migrate them to the corresponding V3 replacements and adapt their consumers.</p>
+<div class="rich-content"><p>The required migration target was <strong>before August 31, 2024</strong>. If your skillsets still use the deprecated skills, migrate them to the corresponding V3 replacements and adapt their consumers.</p>
 <ol>
 <li>Identify skill definitions by their @odata.type. Review their outputs, downstream skill inputs, index definitions, knowledge store projections and indexer output field mappings.</li>
 <li>Use the Update Skillset API to replace EntityRecognitionSkill and NamedEntityRecognitionSkill with Microsoft.Skills.Text.V3.EntityRecognitionSkill, and SentimentSkill with Microsoft.Skills.Text.V3.SentimentSkill.</li>
@@ -1963,7 +1963,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your enrichment pipelines contain Microsoft.Skills.Text.EntityRecognitionSkill, Microsoft.Skills.Text.SentimentSkill or Microsoft.Skills.Text.NamedEntityRecognitionSkill. Inspect skill definitions by @odata.type to identify this scope; the supplied sources do not establish your tenant's exposure.</p>
-<p>The listed end-of-support date is <strong>2024-08-31</strong>. Announcements warn that older-skill invocations after retirement result in errors. Product guidance also warns of indexer failures, but contradicts that warning by saying existing skillsets should continue functioning. Do not treat either statement as proof of your resources' current runtime status.</p>
+<p>The listed end-of-support date is <strong>August 31, 2024</strong>. Announcements warn that older-skill invocations after retirement result in errors. Product guidance also warns of indexer failures, but contradicts that warning by saying existing skillsets should continue functioning. Do not treat either statement as proof of your resources' current runtime status.</p>
 <p>Creation and update compatibility is separate from runtime behavior. The last public API version supporting creation or updates of skillsets containing EntityRecognitionSkill or SentimentSkill is 2021-04-30-Preview; for NamedEntityRecognitionSkill, it is 2017-11-11-Preview.</p>
 <p>Migration affects downstream consumers: entity recognition changes property names, categories and entity-linking capabilities. Sentiment V3 requires coordinated index-schema and mapping changes because its outputs are incompatible with an index definition based on the old SentimentSkill.</p>
 <p>The sources do not establish shutdown of the entire search service or effects on other skills. They do not document regional exceptions, data deletion, retention changes or cost effects.</p>

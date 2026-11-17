@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Site Recovery</span><span class="badge retired" data-deadline="2022-04-30"><span></span>Retired</span></div>
-  <h1>Azure Site Recovery data encryption feature will be retired April 30, 2022</h1><p>Azure Site Recovery retired its data encryption feature on 2022-04-30. VMs still using it after that date lose failover operations and cannot use Azure Site Recovery. The documented migration requires disabling replication, creating a new replication policy and completing initial replication to a storage account with Storage Service Encryption (SSE) enabled. The retirement notice establishes the deadline; the supporting reference pages do not independently establish it.</p>
+  <h1>Azure Site Recovery data encryption feature will be retired April 30, 2022</h1><p>Azure Site Recovery retired its data encryption feature on April 30, 2022. VMs still using it after that date lose failover operations and cannot use Azure Site Recovery. The documented migration requires disabling replication, creating a new replication policy and completing initial replication to a storage account with Storage Service Encryption (SSE) enabled. The retirement notice establishes the deadline; the supporting reference pages do not independently establish it.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-04-30"><strong>Retired</strong><span>Retirement date: <time datetime="2022-04-30">30 Apr 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 2 months, 3 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Apr 2022</p>
-<div class="rich-content"><p>The Azure Site Recovery data encryption feature retired on <strong>2022-04-30</strong>. The notice required migration by that same date. Afterward, VMs still using the feature cease failover operations and cannot use Azure Site Recovery.</p>
+<div class="rich-content"><p>The Azure Site Recovery data encryption feature retired on <strong>April 30, 2022</strong>. The notice required migration by that same date. Afterward, VMs still using the feature cease failover operations and cannot use Azure Site Recovery.</p>
 <p>The supporting reference pages do not establish a different deadline. Their update timestamps are not retirement milestones.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Site Recovery retired its data encryption feature on <strong>2022-04-30</strong>. The documented replacement is Encryption at Rest with Azure Site Recovery, which uses Storage Service Encryption (SSE).</p>
+<div class="rich-content"><p>Azure Site Recovery retired its data encryption feature on <strong>April 30, 2022</strong>. The documented replacement is Encryption at Rest with Azure Site Recovery, which uses Storage Service Encryption (SSE).</p>
 <p>SSE encrypts data before storage and decrypts it on retrieval. Upon failover to Azure, migrated VMs run from encrypted storage accounts. The notice states that this improves recovery time objective (RTO), but provides no quantified improvement.</p>
 <p>The supplied notice does not specify affected versions or regions. Separate reference material about client-side encryption and unmanaged disks does not establish additional scope for this retirement.</p>
 </div>
@@ -1930,7 +1930,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>To retain Azure Site Recovery failover capability, the notice required you to migrate each affected VM by <strong>2022-04-30</strong>:</p>
+<div class="rich-content"><p>To retain Azure Site Recovery failover capability, the notice required you to migrate each affected VM by <strong>April 30, 2022</strong>:</p>
 <ol>
 <li>Identify VMs using the retired data encryption feature. The notice references an affected-VM list, but that list and a feature-specific identification method are absent from the supplied content.</li>
 <li>Disable replication for the affected VM.</li>
@@ -1944,7 +1944,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your VMs are affected if they still use the retired Azure Site Recovery data encryption feature. After <strong>2022-04-30</strong>, those VMs cease failover operations and cannot use Azure Site Recovery.</p>
+<div class="rich-content"><p>Your VMs are affected if they still use the retired Azure Site Recovery data encryption feature. After <strong>April 30, 2022</strong>, those VMs cease failover operations and cannot use Azure Site Recovery.</p>
 <p>The notice does not state that running VMs shut down or that stored data is deleted. It does not specify affected versions or regions, and the referenced affected-VM list is missing.</p>
 <p>The supporting guidance identifies <strong>Protected Items &gt; Replicated Items</strong> as a location for protected machines, but does not show how to distinguish VMs using the retired encryption feature. It therefore does not establish which of your resources are affected.</p>
 </div>

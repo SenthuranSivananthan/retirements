@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2025-09-30"><span></span>Retired</span></div>
-  <h1>Default Internet outbound access for Simplified node communication Batch pools without public IP addresses will be retired on 30 September 2025</h1><p>The Batch-specific notice states that default Internet outbound access for Azure Batch pools using Simplified compute node communication without public IP addresses retires on 2025-09-30. Pools relying on it need explicit outbound access; otherwise, pools, nodes, jobs and tasks may stop working. Pools already configured with explicit outbound access are exempt from that notice. A supplied Batch configuration guide gives 2026-03-31 for the broader Azure Default Outbound Access retirement, but does not establish that it replaces the Batch-specific date. No extension is confirmed. Batch pools without public IP addresses are not themselves being retired.</p>
+  <h1>Default Internet outbound access for Simplified node communication Batch pools without public IP addresses will be retired on 30 September 2025</h1><p>The Batch-specific notice states that default Internet outbound access for Azure Batch pools using Simplified compute node communication without public IP addresses retires on September 30, 2025. Pools relying on it need explicit outbound access; otherwise, pools, nodes, jobs and tasks may stop working. Pools already configured with explicit outbound access are exempt from that notice. A supplied Batch configuration guide gives March 31, 2026 for the broader Azure Default Outbound Access retirement, but does not establish that it replaces the Batch-specific date. No extension is confirmed. Batch pools without public IP addresses are not themselves being retired.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2025-09-30">30 Sep 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 6 months, 8 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,8 +1916,8 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2025</p>
-<div class="rich-content"><p>The Batch-specific notice gives <strong>2025-09-30</strong> as the retirement date and requires explicit outbound access <strong>before 2025-09-30</strong>. It says affected pools can use default outbound access until that date; afterward, dependent pools, nodes, jobs and tasks may stop working.</p>
-<p>The supplied Batch configuration guide instead cites <strong>2026-03-31</strong> for the broader Azure Default Outbound Access retirement. It does not establish that this date supersedes the Batch-specific notice or clarify enforcement phases. The structured deadline therefore retains the explicitly scoped Batch date; an extension to 2026-03-31 is <strong>unconfirmed</strong>.</p>
+<div class="rich-content"><p>The Batch-specific notice gives <strong>September 30, 2025</strong> as the retirement date and requires explicit outbound access <strong>before September 30, 2025</strong>. It says affected pools can use default outbound access until that date; afterward, dependent pools, nodes, jobs and tasks may stop working.</p>
+<p>The supplied Batch configuration guide instead cites <strong>March 31, 2026</strong> for the broader Azure Default Outbound Access retirement. It does not establish that this date supersedes the Batch-specific notice or clarify enforcement phases. The structured deadline therefore retains the explicitly scoped Batch date; an extension to March 31, 2026 is <strong>unconfirmed</strong>.</p>
 <p>The supplied material does not confirm whether retirement occurred or when any particular pool lost connectivity.</p>
 </div>
     </section>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify Batch pools using Simplified compute node communication without public IP addresses. Review their outbound configuration, workload Internet dependencies and Batch node management connectivity.</li>
-<li>If a pool relies on default outbound access, configure explicit outbound connectivity. The notice required this before <strong>2025-09-30</strong>. The guide lists virtual network NAT or a user-defined route through an Internet-connected proxy, such as Azure Firewall. Pools already configured with explicit outbound access require no action under the notice.</li>
+<li>If a pool relies on default outbound access, configure explicit outbound connectivity. The notice required this before <strong>September 30, 2025</strong>. The guide lists virtual network NAT or a user-defined route through an Internet-connected proxy, such as Azure Firewall. Pools already configured with explicit outbound access require no action under the notice.</li>
 <li>Establish management connectivity separately. The guide prefers a nodeManagement private endpoint and requires one when account public network access is disabled. It conflicts on whether a private endpoint is mandatory when public network access is enabled: one section permits your own Internet outbound solution, while another requires a private endpoint for every pool without public IP addresses. Resolve this requirement with Azure support before relying on the alternative.</li>
 <li>Validate endpoint provisioning, approval, DNS and TCP/443 connectivity from the pool network, then separately verify connectivity required by your workloads.</li>
 </ol>
@@ -1945,7 +1945,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected by the Batch-specific notice if your pools use Simplified compute node communication without public IP addresses and depend on default Internet outbound access. Pools already using explicit outbound access are exempt. The supplied material does not establish your pools' configuration.</p>
-<p>Without explicit outbound connectivity, the notice says pools, nodes, jobs and tasks may stop working after <strong>2025-09-30</strong>; it does not establish a guaranteed shutdown of every pool. The later broader retirement date in the configuration guide is not confirmed as a replacement for this date.</p>
+<p>Without explicit outbound connectivity, the notice says pools, nodes, jobs and tasks may stop working after <strong>September 30, 2025</strong>; it does not establish a guaranteed shutdown of every pool. The later broader retirement date in the configuration guide is not confirmed as a replacement for this date.</p>
 <p>Management and workload connectivity are separate. A nodeManagement private endpoint does not provide general Internet access. Incorrect management connectivity can leave compute nodes unusable, while workloads requiring public Internet access need their own working outbound path.</p>
 <p>These pools have no public inbound access; debugging requires access from within the virtual network, such as a jumpbox or Azure Bastion. No retirement-specific data retention, deletion or cost impacts are documented.</p>
 </div>

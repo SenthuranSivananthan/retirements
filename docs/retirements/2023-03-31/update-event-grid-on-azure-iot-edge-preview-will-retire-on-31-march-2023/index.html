@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure IoT Edge · Event Grid</span><span class="badge retired" data-deadline="2023-03-31"><span></span>Retired</span></div>
-  <h1>Update: Event Grid on Azure IoT Edge preview will retire on 31 March 2023</h1><p>Event Grid on Azure IoT Edge public preview retired on 2023-03-31. Microsoft instructed customers to transition before that date to Azure IoT Edge native capabilities, recommending IoT Edge hub rather than an MQTT broker. Applications using the preview are no longer supported. Local Blob Storage triggers have no supported equivalent in the documented cloud-based Azure Functions alternative. The supplied sources do not establish workload shutdown or data deletion.</p>
+  <h1>Update: Event Grid on Azure IoT Edge preview will retire on 31 March 2023</h1><p>Event Grid on Azure IoT Edge public preview retired on March 31, 2023. Microsoft instructed customers to transition before that date to Azure IoT Edge native capabilities, recommending IoT Edge hub rather than an MQTT broker. Applications using the preview are no longer supported. Local Blob Storage triggers have no supported equivalent in the documented cloud-based Azure Functions alternative. The supplied sources do not establish workload shutdown or data deletion.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2023-03-31"><strong>Retired</strong><span>Retirement date: <time datetime="2023-03-31">31 Mar 2023</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 14 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2023</p>
-<div class="rich-content"><p>Event Grid on Azure IoT Edge public preview retired on <strong>2023-03-31</strong>. Microsoft instructed you to transition before that date; applications using the preview are no longer supported after that date.</p>
+<div class="rich-content"><p>Event Grid on Azure IoT Edge public preview retired on <strong>March 31, 2023</strong>. Microsoft instructed you to transition before that date; applications using the preview are no longer supported after that date.</p>
 <p>The retirement notice and transition guidance agree on the retirement date. Neither specifies a workload shutdown date. The pricing page does not independently establish a retirement milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired <strong>Event Grid on Azure IoT Edge public preview</strong> on <strong>2023-03-31</strong>. This retirement concerns Event Grid on IoT Edge, not Azure Event Grid generally.</p>
+<div class="rich-content"><p>Microsoft retired <strong>Event Grid on Azure IoT Edge public preview</strong> on <strong>March 31, 2023</strong>. This retirement concerns Event Grid on IoT Edge, not Azure Event Grid generally.</p>
 <p>Microsoft updated its migration recommendation to Azure IoT Edge native capabilities, including the generally available, officially supported IoT Edge hub module, rather than an MQTT broker.</p>
 <p>Before retirement, Microsoft committed to critical security updates but no new features or bug fixes for the preview. The supplied content makes no security-update commitment after retirement.</p>
 </div>
@@ -1937,13 +1937,13 @@
 <li>Review the referenced scenario guidance and pricing, then change your architecture and application code. The pricing page states that IoT Edge requires IoT Hub Standard tier, not Basic, because it needs bidirectional cloud/edge communication.</li>
 <li>Validate the updated architecture by sending and receiving messages/events.</li>
 </ol>
-<p>Microsoft required the transition before <strong>2023-03-31</strong>. The supplied content does not document export, backup, cutover or cleanup procedures.</p>
+<p>Microsoft required the transition before <strong>March 31, 2023</strong>. The supplied content does not document export, backup, cutover or cleanup procedures.</p>
 </div>
       <p> </p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your applications use <strong>Event Grid on Azure IoT Edge public preview</strong>. Those applications are no longer supported after <strong>2023-03-31</strong>; the supplied sources do not establish that running workloads shut down on that date.</p>
+<div class="rich-content"><p>You are affected if your applications use <strong>Event Grid on Azure IoT Edge public preview</strong>. Those applications are no longer supported after <strong>March 31, 2023</strong>; the supplied sources do not establish that running workloads shut down on that date.</p>
 <p>IoT Edge hub supports device-to-module, module-to-module and device-to-device routing, plus cloud forwarding with offline support. The documented Blob Storage alternative is cloud-based and does not support blob triggers in an IoT Edge Blob Storage module, so it is not an equivalent replacement for that local scenario.</p>
 <p>The sources do not specify regional exceptions, post-retirement console/API behavior, or data retention and deletion. They provide no tenant-specific assessment.</p>
 <p>For pricing context, the IoT Edge runtime is free, while IoT Hub usage and selected Azure modules may incur charges. The free IoT Hub Standard edition has message limits. These are existing pricing conditions, not documented retirement charges or an estimate of your migration costs.</p>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge retired" data-deadline="2024-02-29"><span></span>Retired</span></div>
-  <h1>AKS legacy Azure AD integration will be retired on 29 February 2024</h1><p>Microsoft retired AKS legacy Azure Active Directory integration on 2024-02-29. Clusters using it are unsupported after that date; the notice does not state that they shut down. Transition affected clusters to AKS-managed Microsoft Entra integration. Migration changes kubeconfig, and Free tier clusters might experience API server downtime during the upgrade.</p>
+  <h1>AKS legacy Azure AD integration will be retired on 29 February 2024</h1><p>Microsoft retired AKS legacy Azure Active Directory integration on February 29, 2024. Clusters using it are unsupported after that date; the notice does not state that they shut down. Transition affected clusters to AKS-managed Microsoft Entra integration. Migration changes kubeconfig, and Free tier clusters might experience API server downtime during the upgrade.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-02-29"><strong>Retired</strong><span>Retirement date: <time datetime="2024-02-29">29 Feb 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 6 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">29 Feb 2024</p>
-<div class="rich-content"><p>AKS legacy Azure Active Directory integration retired on <strong>2024-02-29</strong>. Clusters using this integration are unsupported after that date; the notice does not state that they shut down.</p>
+<div class="rich-content"><p>AKS legacy Azure Active Directory integration retired on <strong>February 29, 2024</strong>. Clusters using this integration are unsupported after that date; the notice does not state that they shut down.</p>
 <p>The notice says both to transition by that date and, in its action section, before that date. These refer to the same retirement milestone, not separate deadlines.</p>
 <p>The managed-integration reference page supplies migration guidance but does not independently establish or change the retirement date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired legacy Azure Active Directory integration for Azure Kubernetes Service on <strong>2024-02-29</strong>. The retirement applies to AKS clusters using that legacy integration, not AKS-managed Azure AD integration, described in the reference guidance as managed Microsoft Entra integration.</p>
+<div class="rich-content"><p>Microsoft retired legacy Azure Active Directory integration for Azure Kubernetes Service on <strong>February 29, 2024</strong>. The retirement applies to AKS clusters using that legacy integration, not AKS-managed Azure AD integration, described in the reference guidance as managed Microsoft Entra integration.</p>
 <p>With managed integration, the AKS resource provider manages the client and server apps that customers previously created. Administrators can configure Kubernetes RBAC using user identities or directory group membership. Once Microsoft Entra integration is enabled, you cannot disable it.</p>
 <p>The retirement notice does not document pre-retirement maintenance or security-update commitments, or state that affected clusters shut down.</p>
 </div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your AKS clusters using legacy Azure Active Directory integration. The supplied content does not provide an inventory or discovery method.</li>
-<li>Prepare to transition those clusters to AKS-managed Microsoft Entra integration. The retirement notice required transition before 2024-02-29. The reference guidance requires Azure CLI 2.29.0 or later, and kubectl 1.18.1 or later or kubelogin. Keep Kubernetes and kubectl minor versions no more than one version apart; automated pipelines must manage their tool upgrades.</li>
+<li>Prepare to transition those clusters to AKS-managed Microsoft Entra integration. The retirement notice required transition before February 29, 2024. The reference guidance requires Azure CLI 2.29.0 or later, and kubectl 1.18.1 or later or kubelogin. Keep Kubernetes and kubectl minor versions no more than one version apart; automated pipelines must manage their tool upgrades.</li>
 <li>Prepare a Microsoft Entra admin group, its object ID and the tenant ID. Set the intended admin group during the cluster update to preserve access. Use the documented <code>az aks update</code> command with <code>--enable-aad</code>, <code>--aad-admin-group-object-ids</code> and <code>--aad-tenant-id</code>. For Free tier legacy upgrades, the reference recommends nonbusiness hours because API server downtime might occur.</li>
 <li>Refresh the changed kubeconfig credentials with <code>az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME</code>. Sign in and run <code>kubectl get nodes</code> to verify access. Confirm that the response shows <code>AADProfile</code> with <code>managed</code> set to <code>true</code>, the intended admin-group IDs and tenant ID, and null legacy client/server app fields.</li>
 </ol>
@@ -1944,7 +1944,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your AKS clusters are affected if they use legacy Azure Active Directory integration. Those clusters are unsupported after <strong>2024-02-29</strong>. The notice warns of possible disruption but does not specify retirement-related runtime, console, API or data-access consequences. It does not state that clusters shut down or that data is deleted.</p>
+<div class="rich-content"><p>Your AKS clusters are affected if they use legacy Azure Active Directory integration. Those clusters are unsupported after <strong>February 29, 2024</strong>. The notice warns of possible disruption but does not specify retirement-related runtime, console, API or data-access consequences. It does not state that clusters shut down or that data is deleted.</p>
 <p>The migration guidance documents these operational effects:</p>
 <ul>
 <li>Legacy upgrades change kubeconfig, so you must refresh credentials afterward.</li>

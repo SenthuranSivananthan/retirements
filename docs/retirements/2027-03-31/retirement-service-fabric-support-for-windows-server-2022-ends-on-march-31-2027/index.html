@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Service Fabric</span><span class="badge upcoming" data-deadline="2027-03-31"><span></span>Upcoming</span></div>
-  <h1>Retirement: Service Fabric support for Windows Server 2022 ends on March 31, 2027 - upgrade to Windows Server 2025</h1><p>Service Fabric support for Windows Server 2022 ends on 2027-03-31 across all Service Fabric environments. Upgrade affected clusters to Windows Server 2025 before that date to remain supported. Virtual Machine Scale Sets will continue functioning on Windows Server 2022 afterward; the notice does not announce workload shutdown. Follow the separate primary and nonprimary node-type replacement procedures and plan for possible interruption.</p>
+  <h1>Retirement: Service Fabric support for Windows Server 2022 ends on March 31, 2027 - upgrade to Windows Server 2025</h1><p>Service Fabric support for Windows Server 2022 ends on March 31, 2027 across all Service Fabric environments. Upgrade affected clusters to Windows Server 2025 before that date to remain supported. Virtual Machine Scale Sets will continue functioning on Windows Server 2022 afterward; the notice does not announce workload shutdown. Follow the separate primary and nonprimary node-type replacement procedures and plan for possible interruption.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-03-31"><strong>134 days remaining</strong><span>Retirement date: <time datetime="2027-03-31">31 Mar 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 30 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2027</p>
-<div class="rich-content"><p>Service Fabric support for all clusters running Windows Server 2022 ends on <strong>2027-03-31</strong>. Complete your upgrade to Windows Server 2025 before that date to remain supported.</p>
+<div class="rich-content"><p>Service Fabric support for all clusters running Windows Server 2022 ends on <strong>March 31, 2027</strong>. Complete your upgrade to Windows Server 2025 before that date to remain supported.</p>
 <p>This is an end-of-support milestone, not a documented workload shutdown. Virtual Machine Scale Sets will continue functioning on Windows Server 2022 afterward.</p>
 <p>The supporting migration and support pages establish no additional retirement deadlines. Their update timestamps and the migration procedure's operation durations are not retirement milestones.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Service Fabric is ending support for Windows Server 2022 across all Service Fabric environments on <strong>2027-03-31</strong>. Microsoft directs you to upgrade affected clusters to Windows Server 2025 to remain supported. The notice identifies no exceptions.</p>
+<div class="rich-content"><p>Service Fabric is ending support for Windows Server 2022 across all Service Fabric environments on <strong>March 31, 2027</strong>. Microsoft directs you to upgrade affected clusters to Windows Server 2025 to remain supported. The notice identifies no exceptions.</p>
 <p>The notice also states that Service Fabric will no longer support Windows Server OS images beyond their mainstream support end date. It does not specify maintenance or security-update commitments before the deadline.</p>
 <p>The referenced primary and nonprimary node-type guides describe replacement procedures, not separate retirements. Their Windows Server 2019-to-2022 examples do not change the required destination: the retirement notice says the process also applies to supported OS image upgrades, including Windows Server 2025.</p>
 </div>
@@ -1932,7 +1932,7 @@
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
-<li>Identify your Service Fabric clusters and node types running Windows Server 2022. The supplied material provides no fleet-wide inventory method. Plan their upgrade to Windows Server 2025 before <strong>2027-03-31</strong>.</li>
+<li>Identify your Service Fabric clusters and node types running Windows Server 2022. The supplied material provides no fleet-wide inventory method. Plan their upgrade to Windows Server 2025 before <strong>March 31, 2027</strong>.</li>
 <li>Review the separate primary and nonprimary node-type procedures and validate your approach on a test cluster before production. Do not start with an unhealthy cluster. Obtain the cluster certificate's Key Vault secret identifier, thumbprint and vault resource ID, and identify required workload extensions.</li>
 <li>Deploy replacement node types and scale sets with the target OS, distinct resource names and appropriate networking. Verify both original and replacement node types are healthy. The guides warn that in-place SKU upgrades are unsupported because they risk data and availability loss.</li>
 <li>Migrate before removing original nodes. For a primary node type, mark the original nonprimary and wait until Service Fabric Explorer confirms all seed nodes have moved. For a nonprimary node type, keep the replacement nonprimary, use application placement constraints to move workloads, and confirm all applications have moved and are healthy.</li>
@@ -1947,7 +1947,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>All Service Fabric clusters running Windows Server 2022 are affected, across all Service Fabric environments. The notice names no exceptions and provides no tenant-wide discovery method; these sources do not establish which resources you own.</p>
-<p>Without an upgrade, affected clusters lose Service Fabric support after <strong>2027-03-31</strong>. Virtual Machine Scale Sets will continue functioning on Windows Server 2022, but that does not preserve Service Fabric support. The notice does not announce workload shutdown, retirement-related data deletion, retention deadlines or cost changes.</p>
+<p>Without an upgrade, affected clusters lose Service Fabric support after <strong>March 31, 2027</strong>. Virtual Machine Scale Sets will continue functioning on Windows Server 2022, but that does not preserve Service Fabric support. The notice does not announce workload shutdown, retirement-related data deletion, retention deadlines or cost changes.</p>
 <p>During migration, original and replacement scale sets run side by side. The retirement notice states that supported OS image upgrades do not impact applications, but the detailed guides qualify operational continuity: primary-node replacement can cause brief cluster unavailability, and nonprimary replacement aims for minimal rather than zero downtime. Final deployment requires node restarts even when forceRestart is false.</p>
 <p>Migration also changes management endpoints, deployment templates and, where applicable, DNS and networking resources. The nonprimary example leaves the primary node type unchanged; that is a procedure-specific boundary, not an exemption for primary nodes running Windows Server 2022.</p>
 </div>

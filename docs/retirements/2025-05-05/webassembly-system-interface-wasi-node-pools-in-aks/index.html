@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge retired" data-deadline="2025-05-05"><span></span>Retired</span></div>
-  <h1>WebAssembly System Interface (WASI) Node Pools in AKS</h1><p>AKS blocked creation of new preview WebAssembly System Interface (WASI) node pools starting 2025-05-05. Microsoft confirmed the feature was retired on 2025-05-06; that confirmation does not extend the creation cutoff. You must migrate existing workloads to replacement node pools using the supported SpinKube approach. No existing-workload shutdown date or separate migration deadline is documented.</p>
+  <h1>WebAssembly System Interface (WASI) Node Pools in AKS</h1><p>AKS blocked creation of new preview WebAssembly System Interface (WASI) node pools starting May 5, 2025. Microsoft confirmed the feature was retired on May 6, 2025; that confirmation does not extend the creation cutoff. You must migrate existing workloads to replacement node pools using the supported SpinKube approach. No existing-workload shutdown date or separate migration deadline is documented.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-05-05"><strong>Retired</strong><span>Retirement date: <time datetime="2025-05-05">5 May 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 month, 21 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">5 May 2025</p>
-<div class="rich-content"><p>Starting <strong>2025-05-05</strong>, you can no longer create new preview WASI node pools in AKS. This restriction is not limited to new customers.</p>
-<p>Microsoft's <strong>2025-05-06</strong> update confirms retirement; it is a separate milestone, not an extension of the creation cutoff. The supplied sources give no separate support-end date, migration deadline or shutdown date for existing workloads.</p>
+<div class="rich-content"><p>Starting <strong>May 5, 2025</strong>, you can no longer create new preview WASI node pools in AKS. This restriction is not limited to new customers.</p>
+<p>Microsoft's <strong>May 6, 2025</strong> update confirms retirement; it is a separate milestone, not an extension of the creation cutoff. The supplied sources give no separate support-end date, migration deadline or shutdown date for existing workloads.</p>
 <p>Older instructions that require creating new WASI pools conflict with the dated restriction and establish no exception.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>AKS has retired <strong>WebAssembly System Interface (WASI) node pools (preview)</strong> and blocked new pool creation from 2025-05-05. No regional exceptions or separate retirement dates for Krustlet-based and SpinKube containerD-shim-based pools are documented.</p>
+<div class="rich-content"><p>AKS has retired <strong>WebAssembly System Interface (WASI) node pools (preview)</strong> and blocked new pool creation from May 5, 2025. No regional exceptions or separate retirement dates for Krustlet-based and SpinKube containerD-shim-based pools are documented.</p>
 <p>Microsoft identifies SpinKube deployed to AKS through Azure Marketplace as the supported alternative for WebAssembly workloads. This is distinct from the retiring WASI node-pool feature: the SpinKube operator is not supported on Wasm/WASI node pools.</p>
 <p>The sources do not establish how long existing pools remain usable or promise continued maintenance or security updates. The WASI documentation describes preview support as best-effort, with previews excluded from service-level agreements and limited warranty.</p>
 </div>
@@ -1943,7 +1943,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if you use or planned to create AKS preview node pools with workload runtime <code>WasmWasi</code>. New pool creation is unavailable from 2025-05-05, and existing workloads require migration. The retirement does not announce retirement of ordinary <code>ocicontainer</code> pools or AKS generally.</p>
+<div class="rich-content"><p>You are affected if you use or planned to create AKS preview node pools with workload runtime <code>WasmWasi</code>. New pool creation is unavailable from May 5, 2025, and existing workloads require migration. The retirement does not announce retirement of ordinary <code>ocicontainer</code> pools or AKS generally.</p>
 <p>The documented WASI configuration requires Linux, cannot serve as a system node pool, and supports Spin applications using Wasmtime and native Linux containers. Azure portal creation was already unavailable; the dated restriction is not merely a portal-access change.</p>
 <p>The sources do not establish when existing workloads stop running, when existing-pool management changes, or any retention, deletion or cost consequences. They provide no regional exceptions or continued-operation commitments. Your resources have not been inspected.</p>
 </div>

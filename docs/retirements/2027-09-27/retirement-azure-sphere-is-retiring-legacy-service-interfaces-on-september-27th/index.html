@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Sphere</span><span class="badge upcoming" data-deadline="2027-09-27"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure Sphere is retiring Legacy service interfaces on September 27th, 2027</h1><p>Microsoft will retire Azure Sphere Legacy service interfaces—the Legacy API (PAPI) and azsphere CLI—on 2027-09-27. Complete migration to Azure Sphere (Integrated) before retirement; afterward, Legacy interfaces will no longer manage devices. Legacy remains fully supported until retirement and can run alongside Integrated during migration. Integrating your tenant does not migrate workflows or automation. The supplied content does not describe device-workload shutdown.</p>
+  <h1>Retirement: Azure Sphere is retiring Legacy service interfaces on September 27th, 2027</h1><p>Microsoft will retire Azure Sphere Legacy service interfaces—the Legacy API (PAPI) and azsphere CLI—on September 27, 2027. Complete migration to Azure Sphere (Integrated) before retirement; afterward, Legacy interfaces will no longer manage devices. Legacy remains fully supported until retirement and can run alongside Integrated during migration. Integrating your tenant does not migrate workflows or automation. The supplied content does not describe device-workload shutdown.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-09-27"><strong>314 days remaining</strong><span>Retirement date: <time datetime="2027-09-27">27 Sep 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 24 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">27 Sep 2027</p>
-<div class="rich-content"><p>Microsoft will retire Azure Sphere Legacy service interfaces on <strong>2027-09-27</strong>. Legacy remains fully supported until that date; afterward, its API and CLI will no longer manage your devices.</p>
+<div class="rich-content"><p>Microsoft will retire Azure Sphere Legacy service interfaces on <strong>September 27, 2027</strong>. Legacy remains fully supported until that date; afterward, its API and CLI will no longer manage your devices.</p>
 <p>The supplied notice and blog agree on the date. Their wording alternates between completing migration “before” and “by” that date; these describe the same retirement milestone, not separate deadlines. Complete migration before retirement. No separate current product-guidance page was supplied.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring the Azure Sphere Legacy API (PAPI) and Legacy CLI (azsphere) on <strong>2027-09-27</strong>. Move device-management workflows to Azure Sphere (Integrated).</p>
+<div class="rich-content"><p>Microsoft is retiring the Azure Sphere Legacy API (PAPI) and Legacy CLI (azsphere) on <strong>September 27, 2027</strong>. Move device-management workflows to Azure Sphere (Integrated).</p>
 <p>Integrated provides management through Azure portal, the Azure Sphere extension for Azure CLI, Azure Sphere for PowerShell, and the Integrated API. The notice states that Integrated supports all Legacy features.</p>
 <p>Integrating a Legacy tenant turns it into an Azure Sphere catalog. Existing resources remain the same and receive Azure resource IDs. Integration also proposes mappings from Legacy user roles to Azure RBAC roles for your review.</p>
 <p>You can use Legacy and Integrated interfaces together during migration. The supplied content describes management-interface retirement, not retirement of devices or shutdown of device workloads.</p>
@@ -1939,7 +1939,7 @@
 <li>Verify that users can perform all required tasks, then deploy and validate updated automation. The blog strongly recommends removing migrated users' Legacy permissions and recommends removing Legacy service-principal access after production cutover. Users testing automation may need Legacy access longer.</li>
 <li>Complete remaining Legacy-access cleanup when supported. At the time of the blog, at least one active Legacy Administrator was required, and removing the last administrator was unsupported. The supplied content does not confirm that this restriction has changed.</li>
 </ol>
-<p>Complete migration before <strong>2027-09-27</strong>. Adopting Azure Monitor is optional, not a migration prerequisite.</p>
+<p>Complete migration before <strong>September 27, 2027</strong>. Adopting Azure Monitor is optional, not a migration prerequisite.</p>
 </div>
       <p> </p>
     </section>
@@ -1947,7 +1947,7 @@
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your teams or integrations manage Azure Sphere through PAPI, azsphere, or scripts and applications using those interfaces. Review these dependencies and their Legacy user and service-principal permissions; this synthesis has not inspected your environment.</p>
 <p>Integration does not block existing workflows. Legacy production automation can continue while you develop and test replacements, but integrating the tenant alone does not migrate workflows or automation.</p>
-<p>After <strong>2027-09-27</strong>, the retired interfaces will no longer manage devices. The supplied content does not state that device workloads will shut down, describe data retention or deletion, or quantify migration costs.</p>
+<p>After <strong>September 27, 2027</strong>, the retired interfaces will no longer manage devices. The supplied content does not state that device workloads will shut down, describe data retention or deletion, or quantify migration costs.</p>
 <p>Keeping Legacy permissions after migration lets users bypass the finer-grained Azure RBAC controls configured in Integrated. Remove access after validating migration, subject to the documented last-administrator limitation.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Functions</span><span class="badge retired" data-deadline="2022-09-30"><span></span>Retired</span></div>
-  <h1>Azure Functions support for Node 10 is ending on 30 September 2022</h1><p>Azure Functions applications using Node 10 became unsupported after 2022-09-30. Microsoft recommended upgrading to Node 14 and updating application settings before that date; the supplied content does not establish Node 14&#39;s current support status. No workload shutdown date is documented. Windows version-identification guidance is available, but the suggested Linux method has a reported unresolved limitation.</p>
+  <h1>Azure Functions support for Node 10 is ending on 30 September 2022</h1><p>Azure Functions applications using Node 10 became unsupported after September 30, 2022. Microsoft recommended upgrading to Node 14 and updating application settings before that date; the supplied content does not establish Node 14&#39;s current support status. No workload shutdown date is documented. Windows version-identification guidance is available, but the suggested Linux method has a reported unresolved limitation.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2022-09-30">30 Sep 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 1 month</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2022</p>
-<div class="rich-content"><p>Azure Functions applications using Node 10 became unsupported after <strong>2022-09-30</strong>. Microsoft recommended completing the upgrade and application-settings changes before that date.</p>
-<p>Node 10's community support ended on 2021-04-30, a separate milestone. The supplied content does not specify a workload shutdown date.</p>
+<div class="rich-content"><p>Azure Functions applications using Node 10 became unsupported after <strong>September 30, 2022</strong>. Microsoft recommended completing the upgrade and application-settings changes before that date.</p>
+<p>Node 10's community support ended on April 30, 2021, a separate milestone. The supplied content does not specify a workload shutdown date.</p>
 <p>The Node.js reference does not establish another retirement deadline. Its last-updated date and programming-model maintenance statements do not change the Node 10 milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Functions ended support for applications using <strong>Node 10</strong> after 2022-09-30. Microsoft's announcement recommended upgrading to Node 14, but the supplied content does not establish Node 14's current support status.</p>
+<div class="rich-content"><p>Azure Functions ended support for applications using <strong>Node 10</strong> after September 30, 2022. Microsoft's announcement recommended upgrading to Node 14, but the supplied content does not establish Node 14's current support status.</p>
 <p>The notice does not document regional exceptions, pre-deadline maintenance or security-update commitments, or when applications would stop running.</p>
 <p>Node.js runtime versions and Azure Functions programming-model versions are separate. The reference's description of programming model v3 as GA (maintenance) does not establish another retirement or require a v4 migration for this retirement.</p>
 </div>
@@ -1934,7 +1934,7 @@
 <div class="rich-content"><ol>
 <li>Identify your Azure Functions apps using Node 10. For Windows apps, check <code>WEBSITE_NODE_DEFAULT_VERSION</code> under Configuration &gt; Application settings.</li>
 <li>For Linux apps, Microsoft suggested <code>az functionapp config appsettings list --name &lt;name&gt; --resource-group &lt;group&gt;</code>, run locally or through Cloud Shell. A commenter reported that this did not return a Node version for a Linux app using Functions runtime ~3; the supplied content contains no resolution. The reference also documents logging <code>process.version</code> to see the running Node.js version.</li>
-<li>Upgrade affected apps and update their application settings. The retirement notice recommended Node 14 before 2022-09-30; it does not establish that Node 14 remains a suitable supported target. The supplied content does not establish a current replacement version for every affected configuration.</li>
+<li>Upgrade affected apps and update their application settings. The retirement notice recommended Node 14 before September 30, 2022; it does not establish that Node 14 remains a suitable supported target. The supplied content does not establish a current replacement version for every affected configuration.</li>
 <li>Before changing Node.js versions, follow the reference's guidance to verify your functions locally on the target version and ensure the Functions runtime is current. Changing the Node.js version restarts the app.</li>
 </ol>
 <p>The retirement notice references migration instructions but does not include them. For unresolved identification or migration questions, Microsoft directed customers to the Q&amp;A thread.</p>
@@ -1943,7 +1943,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your Azure Functions apps are in scope if they use Node 10. Those apps became unsupported after 2022-09-30; the supplied content does not establish that they stopped running on that date.</p>
+<div class="rich-content"><p>Your Azure Functions apps are in scope if they use Node 10. Those apps became unsupported after September 30, 2022; the supplied content does not establish that they stopped running on that date.</p>
 <p>Microsoft cited avoiding service disruption and potential security vulnerabilities as reasons to upgrade. No specific retirement-related console, API, data-access, retention, deletion or cost changes are documented. Changing an app's Node.js version restarts it.</p>
 <p>The suggested Linux identification command has a reported unresolved limitation for an app using Functions runtime ~3. That Functions runtime value alone does not establish the app's Node.js version. Programming model v3 likewise does not identify an app as using Node 10.</p>
 </div>

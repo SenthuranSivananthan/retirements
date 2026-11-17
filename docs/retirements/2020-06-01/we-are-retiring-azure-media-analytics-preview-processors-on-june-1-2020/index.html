@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Media Services</span><span class="badge retired" data-deadline="2020-06-01"><span></span>Retired</span></div>
-  <h1>We are retiring Azure Media Analytics preview processors on June 1, 2020</h1><p>Azure Media Analytics retired five preview processors on 2020-06-01: Motion Detection, Video Summarization, Video Optical Character Recognition, Face Detector and Content Moderator. The notice states that affected applications would begin experiencing errors or failed job submissions afterward. It recommended Video Indexer for OCR, face detection and content moderation, but provided no replacement for Motion Detection or Video Summarization. The historically recommended Video Analyzer preset later retired on 2023-09-14; Azure Media Services retired on 2024-06-30. These are separate milestones, not changes to the preview processors’ retirement date.</p>
+  <h1>We are retiring Azure Media Analytics preview processors on June 1, 2020</h1><p>Azure Media Analytics retired five preview processors on June 1, 2020: Motion Detection, Video Summarization, Video Optical Character Recognition, Face Detector and Content Moderator. The notice states that affected applications would begin experiencing errors or failed job submissions afterward. It recommended Video Indexer for OCR, face detection and content moderation, but provided no replacement for Motion Detection or Video Summarization. The historically recommended Video Analyzer preset later retired on September 14, 2023; Azure Media Services retired on June 30, 2024. These are separate milestones, not changes to the preview processors’ retirement date.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2020-06-01"><strong>Retired</strong><span>Retirement date: <time datetime="2020-06-01">1 Jun 2020</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 months, 8 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Jun 2020</p>
-<div class="rich-content"><p>The five Azure Media Analytics preview processors retired on <strong>2020-06-01</strong>. The notice instructed you to update affected applications before that date and states that applications using these processors would begin experiencing errors or failed job submissions afterward.</p>
-<p>The supporting guidance identifies separate later retirements: VideoAnalyzerPreset on <strong>2023-09-14</strong> and Azure Media Services on <strong>2024-06-30</strong>. Neither changes the processors’ retirement deadline. The Video Indexer general-availability announcement dated <strong>2018-09-14</strong> does not establish a retirement deadline.</p>
+<div class="rich-content"><p>The five Azure Media Analytics preview processors retired on <strong>June 1, 2020</strong>. The notice instructed you to update affected applications before that date and states that applications using these processors would begin experiencing errors or failed job submissions afterward.</p>
+<p>The supporting guidance identifies separate later retirements: VideoAnalyzerPreset on <strong>September 14, 2023</strong> and Azure Media Services on <strong>June 30, 2024</strong>. Neither changes the processors’ retirement deadline. The Video Indexer general-availability announcement dated <strong>September 14, 2018</strong> does not establish a retirement deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Media Analytics retired these preview processors on <strong>2020-06-01</strong>:</p>
+<div class="rich-content"><p>Azure Media Analytics retired these preview processors on <strong>June 1, 2020</strong>:</p>
 <ul>
 <li>Motion Detection (Preview).</li>
 <li>Video Summarization (Preview), also called Azure Media Video Thumbnail MP.</li>
@@ -1939,7 +1939,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify applications that use any of the five retired preview processors. The notice does not provide a discovery tool or inventory procedure.</li>
-<li>For video OCR, face detection or content moderation, evaluate Azure Video Indexer against your application’s requirements. The original notice recommended the Video Indexer v2 REST API or the Video Analyzer preset in Azure Media Services v3, with migration before <strong>2020-06-01</strong>. Do not treat the latter as a continuing migration destination: the supporting guidance identifies its retirement on <strong>2023-09-14</strong> and Azure Media Services retirement on <strong>2024-06-30</strong>. The inputs do not establish current API-version availability or complete feature parity.</li>
+<li>For video OCR, face detection or content moderation, evaluate Azure Video Indexer against your application’s requirements. The original notice recommended the Video Indexer v2 REST API or the Video Analyzer preset in Azure Media Services v3, with migration before <strong>June 1, 2020</strong>. Do not treat the latter as a continuing migration destination: the supporting guidance identifies its retirement on <strong>September 14, 2023</strong> and Azure Media Services retirement on <strong>June 30, 2024</strong>. The inputs do not establish current API-version availability or complete feature parity.</li>
 <li>For Motion Detection or Video Summarization, assess how to address the capability gap; the notice supplies no replacement or migration path.</li>
 <li>Before uploading videos to Video Indexer, ensure you have the necessary rights and appropriate consent, including for biometric data, and review the referenced service and privacy terms.</li>
 <li>As team-owned validation, compare the replacement’s outputs with those your applications require before completing your cutover. This is planning advice, not a documented migration-completion check.</li>
@@ -1950,7 +1950,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your applications use any of the five retired Azure Media Analytics preview processors. The notice states that these applications would begin experiencing errors or failed job submissions after <strong>2020-06-01</strong>; it does not establish that entire applications would shut down.</p>
+<div class="rich-content"><p>You are affected if your applications use any of the five retired Azure Media Analytics preview processors. The notice states that these applications would begin experiencing errors or failed job submissions after <strong>June 1, 2020</strong>; it does not establish that entire applications would shut down.</p>
 <p>Motion Detection and Video Summarization had no documented replacement in the notice. For the other three processors, the recommended alternatives do not establish feature parity. If you adopted the historically recommended Video Analyzer preset, its later retirement is a separate dependency to address.</p>
 <p>The supplied sources do not specify regional or customer exceptions, retirement-related data retention or deletion, cost impacts, or separate console and deployment-tooling consequences. Your resource usage has not been assessed.</p>
 </div>

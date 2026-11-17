@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2026-09-30"><span></span>Retired</span></div>
-  <h1>Retirement: NVv4-series Azure Virtual Machines will be retired on September 30, 2026</h1><p>Microsoft Azure retired the eight listed NVv4-series VM sizes on 2026-09-30. Microsoft states that remaining affected VMs are deallocated after that date, stop working and no longer incur VM billing charges; SLA coverage and included support end. Migrate workloads you still need to NVads_V710_v5 or a suitable alternative. Current retirement guidance documents feature registration to unblock a known resize error. NVadsA10_v5 and NVads_V710_v5 are unaffected; NVv3 has separate guidance. Sources conflict on the reserved-instance purchasing cutoff; current product guidance gives 2025-11-02.</p>
+  <h1>Retirement: NVv4-series Azure Virtual Machines will be retired on September 30, 2026</h1><p>Microsoft Azure retired the eight listed NVv4-series VM sizes on September 30, 2026. Microsoft states that remaining affected VMs are deallocated after that date, stop working and no longer incur VM billing charges; SLA coverage and included support end. Migrate workloads you still need to NVads_V710_v5 or a suitable alternative. Current retirement guidance documents feature registration to unblock a known resize error. NVadsA10_v5 and NVads_V710_v5 are unaffected; NVv3 has separate guidance. Sources conflict on the reserved-instance purchasing cutoff; current product guidance gives November 2, 2025.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-30">30 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,18 +1916,18 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2026</p>
-<div class="rich-content"><p>Microsoft Azure retired NVv4-series VMs on <strong>2026-09-30</strong>. You needed to resize or deallocate affected VMs before that date. Microsoft states that remaining affected VMs are deallocated afterward and stop working, with no further VM billing charges, SLA coverage or included support. No exact deallocation time is supplied.</p>
+<div class="rich-content"><p>Microsoft Azure retired NVv4-series VMs on <strong>September 30, 2026</strong>. You needed to resize or deallocate affected VMs before that date. Microsoft states that remaining affected VMs are deallocated afterward and stop working, with no further VM billing charges, SLA coverage or included support. No exact deallocation time is supplied.</p>
 <p>Separate purchasing milestones:</p>
 <ul>
-<li><strong>2025-11-02:</strong> Current retirement guidance says 1-year and 3-year reserved-instance purchases ended. The announcement instead gives <strong>2025-09-30</strong>. The current product-guidance date is preferred; the sources do not explicitly establish an extension.</li>
-<li><strong>2026-06-02:</strong> Current retirement guidance says all NVv4 Compute Pre-Purchase sales ended.</li>
+<li><strong>November 2, 2025:</strong> Current retirement guidance says 1-year and 3-year reserved-instance purchases ended. The announcement instead gives <strong>September 30, 2025</strong>. The current product-guidance date is preferred; the sources do not explicitly establish an extension.</li>
+<li><strong>June 2, 2026:</strong> Current retirement guidance says all NVv4 Compute Pre-Purchase sales ended.</li>
 </ul>
 <p>The announcement planned a resize-error fix for <strong>April 2026</strong>, but delivery is not confirmed. Current retirement guidance instead documents a feature-registration prerequisite.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft Azure retired these AMD Radeon Instinct MI25-powered NVv4 sizes on <strong>2026-09-30</strong>:</p>
+<div class="rich-content"><p>Microsoft Azure retired these AMD Radeon Instinct MI25-powered NVv4 sizes on <strong>September 30, 2026</strong>:</p>
 <ul>
 <li>Standard_NV4as_v4 and Standard_NV4ahs_v4</li>
 <li>Standard_NV8as_v4 and Standard_NV8ahs_v4</li>
@@ -1941,7 +1941,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>The required pre-retirement action was to resize or deallocate affected VMs before <strong>2026-09-30</strong>. If you still need an affected workload:</p>
+<div class="rich-content"><p>The required pre-retirement action was to resize or deallocate affected VMs before <strong>September 30, 2026</strong>. If you still need an affected workload:</p>
 <ol>
 <li>Identify VMs using the listed NVv4 sizes. The supplied guidance provides no inventory command or discovery procedure.</li>
 <li>Select a replacement based on workload, regional availability and cost. Microsoft recommends NVads_V710_v5 overall. Documented alternatives are NVads_V710_v5 or NVadsA10_v5 for small AI workloads where optimal performance is not a priority or reducing cost is a goal; NVads_V710_v5, NVadsA10_v5 or NGads_V620 for graphics, virtual desktops and visualization; and NGads_V620 for gaming.</li>
@@ -1956,7 +1956,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your workloads use any of the eight listed NVv4 sizes. No tenant resources have been inspected, and the supplied guidance provides no automated identification method.</p>
-<p>Microsoft states that remaining affected VMs are deallocated after <strong>2026-09-30</strong> and stop working. This is a workload shutdown, not only an end-of-support change. VM billing charges, SLA coverage and included support end; the sources do not establish whether associated resources continue to incur charges.</p>
+<p>Microsoft states that remaining affected VMs are deallocated after <strong>September 30, 2026</strong> and stop working. This is a workload shutdown, not only an end-of-support change. VM billing charges, SLA coverage and included support end; the sources do not establish whether associated resources continue to incur charges.</p>
 <p>NVadsA10_v5 and NVads_V710_v5 are unaffected by this retirement. NVv3 has separate guidance. Replacement availability, quota and compatibility need checking, and migration to NVads_V710_v5 has a documented feature-registration prerequisite for a known resize error.</p>
 <p>The supplied retirement guidance does not specify data retention, deletion, continued data access, or separate console, API, integration and deployment-tooling changes.</p>
 </div>

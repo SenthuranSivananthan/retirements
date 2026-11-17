@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Functions</span><span class="badge retired" data-deadline="2022-02-28"><span></span>Retired</span></div>
-  <h1>Azure Functions support for Node 6 is ending on 28 February 2022</h1><p>Azure Functions support for Node 6 ended after 2022-02-28. Microsoft states that existing apps continue running, but it will not support issues or potential security vulnerabilities. The announcement recommends upgrading before 2022-02-28; the Q&amp;A gives a separate action target of 2022-09-30 without extending support. Both recommend Node 14 historically, not as confirmation of its current suitability. The documented inventory query covers Linux Function Apps only.</p>
+  <h1>Azure Functions support for Node 6 is ending on 28 February 2022</h1><p>Azure Functions support for Node 6 ended after February 28, 2022. Microsoft states that existing apps continue running, but it will not support issues or potential security vulnerabilities. The announcement recommends upgrading before February 28, 2022; the Q&amp;A gives a separate action target of September 30, 2022 without extending support. Both recommend Node 14 historically, not as confirmation of its current suitability. The documented inventory query covers Linux Function Apps only.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-02-28"><strong>Retired</strong><span>Retirement date: <time datetime="2022-02-28">28 Feb 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 6 months</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">28 Feb 2022</p>
-<div class="rich-content"><p>Azure Functions applications using Node 6 became unsupported after <strong>2022-02-28</strong>. Microsoft states that existing apps continue running after retirement; this is not a documented shutdown date.</p>
-<p>The announcement recommends completing the upgrade and application-setting changes before 2022-02-28. The Q&amp;A instead gives an action target before <strong>2022-09-30</strong>. These recommendations conflict, but the later target does not explicitly extend support; the retirement milestone remains 2022-02-28.</p>
-<p>Node 6 community support ended on 2019-04-30, a separate milestone. The supplied Node.js reference does not establish a different retirement date.</p>
+<div class="rich-content"><p>Azure Functions applications using Node 6 became unsupported after <strong>February 28, 2022</strong>. Microsoft states that existing apps continue running after retirement; this is not a documented shutdown date.</p>
+<p>The announcement recommends completing the upgrade and application-setting changes before February 28, 2022. The Q&amp;A instead gives an action target before <strong>September 30, 2022</strong>. These recommendations conflict, but the later target does not explicitly extend support; the retirement milestone remains February 28, 2022.</p>
+<p>Node 6 community support ended on April 30, 2019, a separate milestone. The supplied Node.js reference does not establish a different retirement date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Functions ended support for applications running Node 6 after <strong>2022-02-28</strong>.</p>
+<div class="rich-content"><p>Azure Functions ended support for applications running Node 6 after <strong>February 28, 2022</strong>.</p>
 <p>Microsoft states that existing Node 6.x.x Function Apps continue running, but Microsoft will not support issues or potential security vulnerabilities that arise. The supplied content does not document a shutdown date, regional exceptions or specific maintenance and security-update commitments.</p>
 <p>Node.js versions and Azure Functions programming model versions are separate. The reference's programming model guidance does not establish another Node 6 retirement milestone.</p>
 </div>
@@ -1934,7 +1934,7 @@
 <div class="rich-content"><ol>
 <li>Identify your Azure Functions apps running Node 6. Use the Linux inventory query under progress, and account separately for Windows apps because the supplied query does not cover them.</li>
 <li>Select an upgrade target and check its applicable support and runtime requirements. Both retirement sources historically recommend Node 14; the supplied content does not confirm its current suitability or support status.</li>
-<li>Upgrade affected apps and update their application settings. The announcement's target was before 2022-02-28; the Q&amp;A's later target was before 2022-09-30, without extending support.</li>
+<li>Upgrade affected apps and update their application settings. The announcement's target was before February 28, 2022; the Q&amp;A's later target was before September 30, 2022, without extending support.</li>
 <li>Verify your functions locally on the target Node.js version and ensure the Functions runtime is current, as the reference directs. Changing the Node.js version restarts the app. After the change, confirm that each identified app is off Node 6 and validate its behavior as a team-owned completion check.</li>
 </ol>
 <p>The supplied content does not provide detailed Node 6 migration or application-setting steps.</p>
@@ -1944,7 +1944,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you have Azure Functions applications running Node 6, including existing Node 6.x.x apps. The inventory query's Linux-only coverage does not mean Windows apps are unaffected.</p>
-<p>After 2022-02-28, Microsoft says these apps continue running, but Microsoft will not support issues or potential security vulnerabilities that arise. The sources recommend upgrading to avoid potential service disruption and security vulnerabilities; they do not announce automatic workload shutdown.</p>
+<p>After February 28, 2022, Microsoft says these apps continue running, but Microsoft will not support issues or potential security vulnerabilities that arise. The sources recommend upgrading to avoid potential service disruption and security vulnerabilities; they do not announce automatic workload shutdown.</p>
 <p>The supplied content cannot establish whether your environment contains affected apps. It does not document retirement-specific console/API, deployment-tooling, data-access, retention, deletion or cost changes.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

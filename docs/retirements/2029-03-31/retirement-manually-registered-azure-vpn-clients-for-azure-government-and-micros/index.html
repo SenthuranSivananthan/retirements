@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">VPN Gateway</span><span class="badge upcoming" data-deadline="2029-03-31"><span></span>Upcoming</span></div>
-  <h1>Retirement: Manually registered Azure VPN Clients for ​Azure Government and ​Microsoft Azure operated by 21Vianet clouds will be retired on March 31, 2029</h1><p>Microsoft will retire manually registered Azure VPN Clients for point-to-site Microsoft Entra ID connections in Azure Government and Microsoft Azure operated by 21Vianet on 2029-03-31. After that date, affected clients will no longer function. Update the Audience value on both gateways and deployed clients to use the Microsoft-registered client before retirement. Custom Audience configurations are outside the migration guidance’s scope.</p>
+  <h1>Retirement: Manually registered Azure VPN Clients for ​Azure Government and ​Microsoft Azure operated by 21Vianet clouds will be retired on March 31, 2029</h1><p>Microsoft will retire manually registered Azure VPN Clients for point-to-site Microsoft Entra ID connections in Azure Government and Microsoft Azure operated by 21Vianet on March 31, 2029. After that date, affected clients will no longer function. Update the Audience value on both gateways and deployed clients to use the Microsoft-registered client before retirement. Custom Audience configurations are outside the migration guidance’s scope.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2029-03-31"><strong>865 days remaining</strong><span>Retirement date: <time datetime="2029-03-31">31 Mar 2029</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,8 +1916,8 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2029</p>
-<div class="rich-content"><p>Migrate before <strong>2029-03-31</strong> for Azure Government and Microsoft Azure operated by 21Vianet. After that date, affected manually registered clients will no longer function; Microsoft will support only Microsoft-registered VPN clients.</p>
-<p>The product guidance’s <strong>2028-03-31</strong> date applies separately to Azure Public Cloud. It does not conflict with or extend the deadline for the two clouds covered by this notice.</p>
+<div class="rich-content"><p>Migrate before <strong>March 31, 2029</strong> for Azure Government and Microsoft Azure operated by 21Vianet. After that date, affected manually registered clients will no longer function; Microsoft will support only Microsoft-registered VPN clients.</p>
+<p>The product guidance’s <strong>March 31, 2028</strong> date applies separately to Azure Public Cloud. It does not conflict with or extend the deadline for the two clouds covered by this notice.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Check the Audience value on your point-to-site gateway and configured clients. The affected manually registered values are 51bb15d4-3a4f-4ebf-9dca-40096fe32426 for Azure Government and 49f817b6-84ae-4cc0-928c-73f27289b3aa for Microsoft Azure operated by 21Vianet.</li>
-<li>Before 2029-03-31, change Audience in the gateway’s Point-to-site configuration to c632b3df-fb67-4d84-bdcf-b95ad541b5c8 and save. Leave other settings unchanged unless you changed tenants. If you update Issuer, preserve its trailing slash. Allow about five minutes for the update; documented downtime is fewer than five minutes.</li>
+<li>Before March 31, 2029, change Audience in the gateway’s Point-to-site configuration to c632b3df-fb67-4d84-bdcf-b95ad541b5c8 and save. Leave other settings unchanged unless you changed tenants. If you update Issuer, preserve its trailing slash. Allow about five minutes for the update; documented downtime is fewer than five minutes.</li>
 <li>Update every affected client. If only Audience or tenant values changed, you can edit existing connection profiles manually. Alternatively, generate and download a new VPN client configuration package and import it into each client. Use a generated package for new clients or when multiple gateway settings change.</li>
 <li>If distributing a package, extract it and locate azurevpnconfig.xml in the AzureVPN folder. Users need valid Microsoft Entra ID credentials to connect.</li>
 <li>Verify that every affected client’s Audience and any changed tenant values match the gateway.</li>
@@ -1944,7 +1944,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you use manually registered Azure VPN Clients for point-to-site Microsoft Entra ID connections in Azure Government or Microsoft Azure operated by 21Vianet. Identify these configurations using the gateway and client Audience values listed in the actions.</p>
-<p>Without migration, affected clients will no longer function after 2029-03-31. Changing the gateway Audience causes fewer than five minutes of documented downtime. Updating only the gateway is insufficient: deployed clients must use matching Audience and tenant values.</p>
+<p>Without migration, affected clients will no longer function after March 31, 2029. Changing the gateway Audience causes fewer than five minutes of documented downtime. Updating only the gateway is insufficient: deployed clients must use matching Audience and tenant values.</p>
 <p>Custom Audience configurations are outside the migration guidance’s scope. The supplied content does not establish a retirement for other authentication methods or document data deletion, retention changes or cost effects.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

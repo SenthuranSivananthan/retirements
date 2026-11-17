@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Virtual Machines</span><span class="badge retired" data-deadline="2023-08-31"><span></span>Retired</span></div>
-  <h1>Update: NC-series Azure Virtual Machines will be retired on 31 August 2023</h1><p>Microsoft extended original NC-series Azure VM retirement from 2022-08-31 to 2023-08-31. The supplied migration guide also confirms 2023-08-31 for original NC, NC v2 and ND VMs. The announcement&#39;s action and consequence paragraphs retain the superseded 2022 date. Migrate affected workloads and deallocate retiring VMs; the announcement says remaining NC VMs will become unavailable. NC v3, NC T4 v3 and ND v2 are excluded.</p>
+  <h1>Update: NC-series Azure Virtual Machines will be retired on 31 August 2023</h1><p>Microsoft extended original NC-series Azure VM retirement from August 31, 2022 to August 31, 2023. The supplied migration guide also confirms August 31, 2023 for original NC, NC v2 and ND VMs. The announcement&#39;s action and consequence paragraphs retain the superseded 2022 date. Migrate affected workloads and deallocate retiring VMs; the announcement says remaining NC VMs will become unavailable. NC v3, NC T4 v3 and ND v2 are excluded.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2023-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2023-08-31">31 Aug 2023</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 5 months, 2 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2023</p>
-<div class="rich-content"><p>The retirement deadline was <strong>2023-08-31</strong> for original NC, NC v2 and original ND Azure VMs, as listed in the supplied migration guide.</p>
-<p>The NC announcement explicitly extended its previously announced <strong>2022-08-31</strong> deadline to <strong>2023-08-31</strong>, but its action and consequence paragraphs still retain 2022-08-31. Those stale paragraphs describe remaining NC VMs being deallocated and becoming unavailable; they do not establish a separate shutdown milestone.</p>
-<p>The migration guide's 2027-05-31 date concerns NP-series FPGA VMs, not this retirement.</p>
+<div class="rich-content"><p>The retirement deadline was <strong>August 31, 2023</strong> for original NC, NC v2 and original ND Azure VMs, as listed in the supplied migration guide.</p>
+<p>The NC announcement explicitly extended its previously announced <strong>August 31, 2022</strong> deadline to <strong>August 31, 2023</strong>, but its action and consequence paragraphs still retain August 31, 2022. Those stale paragraphs describe remaining NC VMs being deallocated and becoming unavailable; they do not establish a separate shutdown milestone.</p>
+<p>The migration guide's May 31, 2027 date concerns NP-series FPGA VMs, not this retirement.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired the original NC-series Azure VM sizes with NVIDIA Tesla K80 GPUs, NC v2 with P100 GPUs and original ND with P40 GPUs on <strong>2023-08-31</strong>.</p>
+<div class="rich-content"><p>Microsoft retired the original NC-series Azure VM sizes with NVIDIA Tesla K80 GPUs, NC v2 with P100 GPUs and original ND with P40 GPUs on <strong>August 31, 2023</strong>.</p>
 <p>The announcement explicitly excludes NC v3, NC T4 v3 and ND v2. It does not document regional exceptions or pre-retirement maintenance and security-update commitments.</p>
 <p>The separate deprecation of Tesla K80 support as of CUDA 11.0 is not the VM retirement milestone.</p>
 </div>
@@ -1936,7 +1936,7 @@
 <li>Select a replacement using the GPU compute migration guide. It generally maps original NC to NC T4 v3, NC v2 to NC A100 v4, and original ND to T4 sizes, with ND24r mapped to ND96amsr_A100_v4. Compare memory, GPU count, storage, interconnect requirements, regional availability and replacement pricing.</li>
 <li>Obtain vCPU quota for the target family. Update CUDA, NVIDIA drivers and, where applicable, Mellanox OFED drivers to meet the replacement's requirements. Follow VM-resize guidance where applicable.</li>
 <li>As a team-owned validation step, confirm workload compatibility, performance and required interconnect capabilities on the replacement. The listed replacements for NC24r and NC24rs_v2 lack InfiniBand; the ND24r replacement retains it.</li>
-<li>Migrate affected workloads and deallocate the retiring VMs. The applicable retirement deadline was <strong>2023-08-31</strong>; the announcement's action paragraph retains the superseded 2022 date.</li>
+<li>Migrate affected workloads and deallocate the retiring VMs. The applicable retirement deadline was <strong>August 31, 2023</strong>; the announcement's action paragraph retains the superseded 2022 date.</li>
 </ol>
 <p>The supplied content does not provide a complete backup or cutover procedure.</p>
 </div>
@@ -1945,7 +1945,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are in scope if your workloads use original NC, NC v2 or original ND VM sizes. NC v3, NC T4 v3 and ND v2 are explicitly excluded.</p>
-<p>The announcement says remaining NC VMs will be deallocated and become unavailable, interrupting workloads left on them, and will no longer incur VM billing charges. That paragraph retains the superseded 2022 date. The supplied migration guide confirms the 2023-08-31 retirement date for all three affected families but does not separately describe NC v2 or ND shutdown mechanics.</p>
+<p>The announcement says remaining NC VMs will be deallocated and become unavailable, interrupting workloads left on them, and will no longer incur VM billing charges. That paragraph retains the superseded 2022 date. The supplied migration guide confirms the August 31, 2023 retirement date for all three affected families but does not separately describe NC v2 or ND shutdown mechanics.</p>
 <p>Replacement capabilities differ: some T4 mappings reduce GPU count or memory, and the listed NC24r and NC24rs_v2 replacements lack InfiniBand.</p>
 <p>The sources do not establish associated-resource charges, data retention or deletion, or console/API transition details for this retirement. No assessment of your resources has been performed.</p>
 </div>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge upcoming" data-deadline="2027-09-30"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure Load Balancer Inbound NAT rule version 1 for Azure VMSS (aka Inbound NAT Pools)</h1><p>Azure Load Balancer Inbound NAT Pools for Virtual Machine Scale Sets retire on 2027-09-30. New pool creation is blocked starting 2026-11-15; existing configurations continue to function until retirement. Complete migration to Inbound NAT rules V2 before 2027-09-30. Migration interrupts active NAT-rule traffic, but not load-balancing or outbound-rule traffic. Single-VM V1 rules are unaffected. Exact post-retirement behavior is not documented.</p>
+  <h1>Retirement: Azure Load Balancer Inbound NAT rule version 1 for Azure VMSS (aka Inbound NAT Pools)</h1><p>Azure Load Balancer Inbound NAT Pools for Virtual Machine Scale Sets retire on September 30, 2027. New pool creation is blocked starting November 15, 2026; existing configurations continue to function until retirement. Complete migration to Inbound NAT rules V2 before September 30, 2027. Migration interrupts active NAT-rule traffic, but not load-balancing or outbound-rule traffic. Single-VM V1 rules are unaffected. Exact post-retirement behavior is not documented.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-09-30"><strong>317 days remaining</strong><span>Retirement date: <time datetime="2027-09-30">30 Sep 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 3 months, 19 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2027</p>
-<div class="rich-content"><p>Azure Load Balancer Inbound NAT Pools for Virtual Machine Scale Sets retire on <strong>2027-09-30</strong>. Complete migration to Inbound NAT rules V2 before that date.</p>
-<p>New pool creation is blocked starting <strong>2026-11-15</strong>. Existing configurations continue to function until retirement. Both supplied sources agree on the retirement date.</p>
+<div class="rich-content"><p>Azure Load Balancer Inbound NAT Pools for Virtual Machine Scale Sets retire on <strong>September 30, 2027</strong>. Complete migration to Inbound NAT rules V2 before that date.</p>
+<p>New pool creation is blocked starting <strong>November 15, 2026</strong>. Existing configurations continue to function until retirement. Both supplied sources agree on the retirement date.</p>
 <p>Single-VM Inbound NAT rules V1 are unaffected. The sources do not specify a separate support-end date or exact post-retirement behavior; the announcement warns of potential service disruptions without migration.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Load Balancer is retiring <strong>Inbound NAT Pools</strong>, the Virtual Machine Scale Sets-specific feature of Inbound NAT rules V1, on <strong>2027-09-30</strong>. New pool creation stops on 2026-11-15; existing configurations continue to function until retirement.</p>
+<div class="rich-content"><p>Azure Load Balancer is retiring <strong>Inbound NAT Pools</strong>, the Virtual Machine Scale Sets-specific feature of Inbound NAT rules V1, on <strong>September 30, 2027</strong>. New pool creation stops on November 15, 2026; existing configurations continue to function until retirement.</p>
 <p>Replace affected pools with Inbound NAT rules V2. NAT Pools automatically create and delete per-instance rules as a scale set scales. V2 instead targets a load balancer backend pool, removes the need for a NAT-pool reference on each scale set NIC configuration and exposes instance port mappings in the load balancer configuration.</p>
 <p>Single-VM V1 rules are outside this retirement and require no migration. The sources do not document maintenance or security-update commitments, or exact post-retirement availability.</p>
 </div>
@@ -1934,7 +1934,7 @@
 <div class="rich-content"><ol>
 <li>Identify affected load balancers by inspecting their inboundNatPools arrays using the documented Azure CLI or PowerShell listing procedure. A nonempty array requires migration. Single-VM V1 rules without NAT Pools require no action.</li>
 <li>Plan an interruption for active NAT-rule traffic. Size the frontend port range for the maximum backend-instance count. Each backend instance is exposed on the new rule's configured port. NAT rules cannot overlap port ranges or share a backend port; NAT and load-balancing rules also cannot share a backend port.</li>
-<li>Choose the manual or automated migration path below and complete migration before <strong>2027-09-30</strong>.</li>
+<li>Choose the manual or automated migration path below and complete migration before <strong>September 30, 2027</strong>.</li>
 <li>Confirm that no NAT Pools remain, the new rule targets the intended backend pool and every expected backend instance has a port mapping.</li>
 </ol>
 <h3>Manual migration</h3>
@@ -1949,7 +1949,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you use Azure Load Balancer Inbound NAT Pools for Virtual Machine Scale Sets. A nonempty inboundNatPools array identifies affected load balancers; scale set NIC configurations reference those pools through loadBalancerInboundNatPools.</p>
-<p>Starting <strong>2026-11-15</strong>, you cannot create new pools. Existing configurations continue to function until <strong>2027-09-30</strong>. Microsoft warns of potential service disruptions without migration, but the sources do not specify exact post-retirement workload behavior.</p>
+<p>Starting <strong>November 15, 2026</strong>, you cannot create new pools. Existing configurations continue to function until <strong>September 30, 2027</strong>. Microsoft warns of potential service disruptions without migration, but the sources do not specify exact post-retirement workload behavior.</p>
 <p>Migration interrupts active NAT-rule traffic. Traffic through load-balancing rules and outbound rules is unaffected during migration. The downtime duration is not specified. V2 changes the configuration target to a backend pool and requires sufficient frontend ports for the planned instance count.</p>
 <p>Single-VM V1 rules without NAT Pools are unaffected. A V1 rule's Azure Virtual Machine type or backendIPConfiguration property alone does not establish that it is affected.</p>
 <p>The sources do not document retention, deletion or cost effects.</p>

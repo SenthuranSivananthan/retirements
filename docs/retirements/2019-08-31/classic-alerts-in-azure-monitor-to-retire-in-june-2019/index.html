@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Alerts · Alerts (Classic) · Application Insights · Azure Monitor · Metrics</span><span class="badge retired" data-deadline="2019-08-31"><span></span>Retired</span></div>
-  <h1>Classic alerts in Azure Monitor to retire in June 2019</h1><p>Microsoft extended the announced Azure Monitor classic alerting retirement from 2019-06-30 to 2019-08-31. Automatic migration would begin afterward; this was not a universal alert shutdown date. Certain rules requiring manual migration could continue until June 2020. Later guidance separately records public-cloud limited use until 2021-05-31 and retirement for Azure Government and Azure China 21Vianet on 2024-02-29. Classic metric alert management interfaces retire, notification payloads change, and some rules require manual migration. Activity Log and Service Health alerts remain usable through their newer interfaces.</p>
+  <h1>Classic alerts in Azure Monitor to retire in June 2019</h1><p>Microsoft extended the announced Azure Monitor classic alerting retirement from June 30, 2019 to August 31, 2019. Automatic migration would begin afterward; this was not a universal alert shutdown date. Certain rules requiring manual migration could continue until June 2020. Later guidance separately records public-cloud limited use until May 31, 2021 and retirement for Azure Government and Azure China 21Vianet on February 29, 2024. Classic metric alert management interfaces retire, notification payloads change, and some rules require manual migration. Activity Log and Service Health alerts remain usable through their newer interfaces.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2019-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2019-08-31">31 Aug 2019</time></span><span class="badge amber customer-lead-time-pill">Lead time: 10 months, 8 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,20 +1916,20 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2019</p>
-<div class="rich-content"><p>Microsoft explicitly extended the announced classic alerting retirement from <strong>2019-06-30 to 2019-08-31</strong>. The structured deadline represents this milestone. The original notice retains the earlier date, but the extension notice supersedes it.</p>
+<div class="rich-content"><p>Microsoft explicitly extended the announced classic alerting retirement from <strong>June 30, 2019 to August 31, 2019</strong>. The structured deadline represents this milestone. The original notice retains the earlier date, but the extension notice supersedes it.</p>
 <p>The supplied sources distinguish these additional milestones:</p>
 <ul>
-<li><strong>After 2019-08-31:</strong> automatic migration would begin for customers who had not migrated voluntarily; this was not a universal shutdown date.</li>
+<li><strong>After August 31, 2019:</strong> automatic migration would begin for customers who had not migrated voluntarily; this was not a universal shutdown date.</li>
 <li><strong>June 2020:</strong> certain rules the migration tool could not handle would continue working until this month and require manual migration. No exact cutoff is supplied.</li>
-<li><strong>2021-05-31:</strong> later guidance identifies the end of limited public-cloud use, not the original retirement date. It does not explicitly establish another extension of the 2019 milestone.</li>
-<li><strong>2024-02-29:</strong> retirement for Azure Government and Azure China 21Vianet, a separate customer population.</li>
+<li><strong>May 31, 2021:</strong> later guidance identifies the end of limited public-cloud use, not the original retirement date. It does not explicitly establish another extension of the 2019 milestone.</li>
+<li><strong>February 29, 2024:</strong> retirement for Azure Government and Azure China 21Vianet, a separate customer population.</li>
 </ul>
 <p>The guidance describes closure of classic APIs, portal interfaces and related services, including new classic rule creation, while also stating that existing rules continue executing and notifying during migration. It does not establish one date when every existing alert stops firing.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Monitor's unified metrics and alerts platform replaces classic monitoring and metric alerting. The announced retirement moved to <strong>2019-08-31</strong>; Azure Government and Azure China 21Vianet have a separate <strong>2024-02-29</strong> retirement date.</p>
+<div class="rich-content"><p>Azure Monitor's unified metrics and alerts platform replaces classic monitoring and metric alerting. The announced retirement moved to <strong>August 31, 2019</strong>; Azure Government and Azure China 21Vianet have a separate <strong>February 29, 2024</strong> retirement date.</p>
 <p>The original announcement broadly includes classic Azure resource metrics and alerts, Application Insights platform/custom metrics and alerts, and classic Failure Anomalies. Later retirement guidance specifically identifies classic metric alert rules shown in <strong>Alerts (classic)</strong> and represented by microsoft.insights/alertrules resources.</p>
 <p>Microsoft describes most rule migrations as automatic, without downtime or lost monitoring coverage. Some rules require manual action, and migrated notifications use a different payload structure.</p>
 <p>Later guidance explicitly preserves these exceptions:</p>

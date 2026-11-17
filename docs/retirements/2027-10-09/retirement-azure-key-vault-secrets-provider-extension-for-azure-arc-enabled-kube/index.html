@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge upcoming" data-deadline="2027-10-09"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure Key Vault Secrets Provider Extension for Azure Arc enabled Kubernetes clusters</h1><p>The Azure Key Vault Secrets Provider extension for Azure Arc-enabled Kubernetes retires on 2027-10-09. After retirement, Microsoft will stop providing new features, bug fixes, security updates and technical support; the supplied sources do not announce workload shutdown. Migrate before retirement to the Secret Store extension (SSE). Migration requires a disruptive switchover because the extensions cannot run side by side. SSE requires Kubernetes 1.27 or later and workload identity federation, stores values as native Kubernetes Secrets, and does not support Windows containers. Although the announcement describes equivalent functionality, the migration guide documents these compatibility and configuration differences.</p>
+  <h1>Retirement: Azure Key Vault Secrets Provider Extension for Azure Arc enabled Kubernetes clusters</h1><p>The Azure Key Vault Secrets Provider extension for Azure Arc-enabled Kubernetes retires on October 9, 2027. After retirement, Microsoft will stop providing new features, bug fixes, security updates and technical support; the supplied sources do not announce workload shutdown. Migrate before retirement to the Secret Store extension (SSE). Migration requires a disruptive switchover because the extensions cannot run side by side. SSE requires Kubernetes 1.27 or later and workload identity federation, stores values as native Kubernetes Secrets, and does not support Windows containers. Although the announcement describes equivalent functionality, the migration guide documents these compatibility and configuration differences.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-10-09"><strong>326 days remaining</strong><span>Retirement date: <time datetime="2027-10-09">9 Oct 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">9 Oct 2027</p>
-<div class="rich-content"><p>The Azure Key Vault Secrets Provider extension for Azure Arc-enabled Kubernetes retires on <strong>2027-10-09</strong>. All supplied sources agree on this date. Migrate before retirement.</p>
+<div class="rich-content"><p>The Azure Key Vault Secrets Provider extension for Azure Arc-enabled Kubernetes retires on <strong>October 9, 2027</strong>. All supplied sources agree on this date. Migrate before retirement.</p>
 <p>After retirement, Microsoft will no longer provide new features, bug fixes, security updates or technical support for the retiring extension. The sources do not specify a workload shutdown date, separate new-customer restrictions or a separate migration deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring the Azure Key Vault Secrets Provider extension for Azure Arc-enabled Kubernetes on <strong>2027-10-09</strong> and directs you to the Secret Store extension (SSE).</p>
+<div class="rich-content"><p>Microsoft is retiring the Azure Key Vault Secrets Provider extension for Azure Arc-enabled Kubernetes on <strong>October 9, 2027</strong> and directs you to the Secret Store extension (SSE).</p>
 <p>SSE synchronizes Key Vault contents into native Kubernetes Secrets rather than providing the retiring extension's CSI-mounted volumes. Local secret copies support workloads during temporary loss of connectivity to Key Vault. SSE requires workload identity federation and supports Linux only; Windows containers are not supported.</p>
 <p>The announcement describes equivalent functionality, but the migration guide documents these authentication, secret-consumption and platform differences. Do not treat the announcement as confirmation of full feature parity.</p>
 <p>Direct configuration using SecretProviderClass and SecretSync is generally available and recommended for migration. AKVSync is a simplified preview alternative that may change. The two extensions cannot run side by side in a cluster.</p>
@@ -1932,7 +1932,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Migrate before <strong>2027-10-09</strong>. First trial the migration on a non-production cluster because some steps are difficult to reverse.</p>
+<div class="rich-content"><p>Migrate before <strong>October 9, 2027</strong>. First trial the migration on a non-production cluster because some steps are difficult to reverse.</p>
 <ol>
 <li><strong>Identify and back up affected configuration.</strong> In the Azure portal, open Kubernetes - Azure Arc, select a cluster, then open Settings &gt; Extensions and look for Azure Key Vault Secrets Provider. Inventory SecretProviderClass resources, vaults, extension settings, CSI-consuming pods and owning resources. Record replica counts and credential references. Include CronJobs, operators, custom resources and GitOps or Helm sources; the guide's common-workload inventory is not exhaustive.</li>
 <li><strong>Check replacement compatibility and prerequisites.</strong> SSE requires Linux workloads, Kubernetes 1.27 or later, workload identity federation, API-server service-account issuer configuration and the latest k8s-extension Azure CLI extension. The supplied sources provide no Windows migration alternative. Check Certificate Management for Azure Arc's supported regions and validated distributions. Uninstall existing open-source cert-manager or trust-manager before installing Certificate Management, then confirm its components are running. Because SSE persists values in Kubernetes Secrets, review cluster RBAC, auditing and encryption at rest.</li>
@@ -1949,7 +1949,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your Azure Arc-enabled Kubernetes clusters use the Azure Key Vault Secrets Provider extension. Check cluster extension inventories, SecretProviderClass resources and workloads referencing the secrets-store.csi.k8s.io driver; the supplied sources do not establish which of your clusters are affected.</p>
-<p>After <strong>2027-10-09</strong>, remaining installations will receive no new features, bug fixes, security updates or technical support. The sources do not state that workloads will stop, secrets will become inaccessible, or portal, API and deployment operations will cease.</p>
+<p>After <strong>October 9, 2027</strong>, remaining installations will receive no new features, bug fixes, security updates or technical support. The sources do not state that workloads will stop, secrets will become inaccessible, or portal, API and deployment operations will cease.</p>
 <p>Migration has these documented effects:</p>
 <ul>
 <li><strong>Disruption:</strong> The extensions cannot coexist. Stop CSI consumers before removing the old extension to avoid stuck terminating pods and secret files remaining on nodes until restart.</li>

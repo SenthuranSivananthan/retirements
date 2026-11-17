@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2024-09-30"><span></span>Retired</span></div>
-  <h1>Azure Multi-Factor Authentication Server will be deprecated 30 September 2024</h1><p>Beginning 2024-09-30, Azure Multi-Factor Authentication Server deployments no longer service MFA requests, so authentications that depend on them could fail. Microsoft directs existing customers to cloud-based Microsoft Entra multifactor authentication. Migration must address federation, applications, RADIUS, hardware tokens and password-reset dependencies—not just registered authentication data. The migration references provide implementation guidance but do not independently establish or change the retirement date.</p>
+  <h1>Azure Multi-Factor Authentication Server will be deprecated 30 September 2024</h1><p>Beginning September 30, 2024, Azure Multi-Factor Authentication Server deployments no longer service MFA requests, so authentications that depend on them could fail. Microsoft directs existing customers to cloud-based Microsoft Entra multifactor authentication. Migration must address federation, applications, RADIUS, hardware tokens and password-reset dependencies—not just registered authentication data. The migration references provide implementation guidance but do not independently establish or change the retirement date.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2024-09-30">30 Sep 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 10 months, 26 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2024</p>
-<div class="rich-content"><p>Beginning <strong>2024-09-30</strong>, Azure Multi-Factor Authentication Server deployments no longer service MFA requests. Authentications that depend on those deployments could fail.</p>
+<div class="rich-content"><p>Beginning <strong>September 30, 2024</strong>, Azure Multi-Factor Authentication Server deployments no longer service MFA requests. Authentications that depend on those deployments could fail.</p>
 <p>Although the announcement title calls this deprecation, its content explicitly describes requests no longer being serviced, not merely an end to support.</p>
-<p>The migration guides state that MFA Server is unavailable for new deployments but do not date that restriction or supply another retirement deadline. Their 2025-03-04 last-updated dates are not retirement milestones and do not establish an extension.</p>
+<p>The migration guides state that MFA Server is unavailable for new deployments but do not date that restriction or supply another retirement deadline. Their March 4, 2025 last-updated dates are not retirement milestones and do not establish an extension.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Multi-Factor Authentication Server stops servicing MFA requests beginning 2024-09-30. Microsoft directs existing customers to cloud-based Microsoft Entra multifactor authentication. MFA Server is also unavailable for new deployments.</p>
+<div class="rich-content"><p>Azure Multi-Factor Authentication Server stops servicing MFA requests beginning September 30, 2024. Microsoft directs existing customers to cloud-based Microsoft Entra multifactor authentication. MFA Server is also unavailable for new deployments.</p>
 <p>The migration guidance describes three choices:</p>
 <ul>
 <li>Replace MFA Server while retaining federation and application authentication through AD FS.</li>
@@ -1957,7 +1957,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your authentication flows depend on Azure Multi-Factor Authentication Server, including through AD FS, applications, RADIUS, MIM password reset or PAM. Beginning 2024-09-30, those deployments no longer service MFA requests, so dependent authentications could fail. The supplied content does not inventory your environment or identify deployment-specific exceptions.</p>
+<div class="rich-content"><p>You are affected if your authentication flows depend on Azure Multi-Factor Authentication Server, including through AD FS, applications, RADIUS, MIM password reset or PAM. Beginning September 30, 2024, those deployments no longer service MFA requests, so dependent authentications could fail. The supplied content does not inventory your environment or identify deployment-specific exceptions.</p>
 <p>Replacing MFA Server does not inherently require replacing AD FS or moving every application. For users moved to cloud authentication, PHS or PTA replaces the federated authentication path, and Microsoft Entra MFA applies when required. Existing Conditional Access policies can remain unchanged if they already determine MFA prompts; MFA enforced through AD FS claims rules needs equivalent coverage.</p>
 <p>Important compatibility limits include:</p>
 <ul>

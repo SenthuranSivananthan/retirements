@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Disk Storage</span><span class="badge upcoming" data-deadline="2028-09-08"><span></span>Upcoming</span></div>
-  <h1>Retirement: Operating System (OS) Disks on Standard HDD will be retired on 08 September 2028</h1><p>Azure retires Standard HDD OS disks for Linux and Windows VMs on 2028-09-08. Migrate affected OS disks to Standard SSD or Premium SSD before that date. Azure will automatically convert remaining affected disks to equivalent-size Standard SSDs afterward, with potential service disruption; the conversion schedule is unspecified. Standard HDD data disks, ephemeral OS disks, Standard HDD snapshots and Standard HDD OS disks created by Azure Site Recovery are unaffected.</p>
+  <h1>Retirement: Operating System (OS) Disks on Standard HDD will be retired on 08 September 2028</h1><p>Azure retires Standard HDD OS disks for Linux and Windows VMs on September 8, 2028. Migrate affected OS disks to Standard SSD or Premium SSD before that date. Azure will automatically convert remaining affected disks to equivalent-size Standard SSDs afterward, with potential service disruption; the conversion schedule is unspecified. Standard HDD data disks, ephemeral OS disks, Standard HDD snapshots and Standard HDD OS disks created by Azure Site Recovery are unaffected.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-09-08"><strong>661 days remaining</strong><span>Retirement date: <time datetime="2028-09-08">8 Sep 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">8 Sep 2028</p>
-<div class="rich-content"><p>Migrate affected Standard HDD OS disks before <strong>2028-09-08</strong>, when Azure retires their use as OS disks.</p>
+<div class="rich-content"><p>Migrate affected Standard HDD OS disks before <strong>September 8, 2028</strong>, when Azure retires their use as OS disks.</p>
 <p>After that date, Azure will automatically convert remaining affected disks to equivalent-size Standard SSDs. Conversion may disrupt workloads; Microsoft does not specify its start or completion schedule. The guidance does not establish a VM shutdown date.</p>
 <p>The retirement notice and product guidance agree on the date. Supporting conversion, billing and support pages do not establish additional retirement deadlines.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure is retiring <strong>Standard HDD OS disks for Linux and Windows VMs</strong> on <strong>2028-09-08</strong>. The guidance describes continued use before retirement without specifying new-customer restrictions. After retirement, Azure will automatically convert remaining affected disks to equivalent-size Standard SSDs.</p>
+<div class="rich-content"><p>Azure is retiring <strong>Standard HDD OS disks for Linux and Windows VMs</strong> on <strong>September 8, 2028</strong>. The guidance describes continued use before retirement without specifying new-customer restrictions. After retirement, Azure will automatically convert remaining affected disks to equivalent-size Standard SSDs.</p>
 <p>The retirement does not affect:</p>
 <ul>
 <li>Standard HDD data disks or other managed disk types.</li>
@@ -1940,7 +1940,7 @@
 <div class="rich-content"><ol>
 <li>Identify affected disks in <strong>Disk Storage Center</strong>. Filter <strong>Storage type</strong> to <strong>Standard HDD LRS</strong> and <strong>OS type</strong> to <strong>Linux</strong> and <strong>Windows</strong>. Use the <strong>Owner</strong> column to identify each associated VM. Account separately for Standard HDD OS disks created by Azure Site Recovery, which are exempt.</li>
 <li>Stop selecting Standard HDD OS disks for new VMs. Choose <strong>Standard SSD</strong> for the documented closest price-to-performance ratio to Standard HDD, or <strong>Premium SSD</strong> for higher performance. Review billing guidance; Premium SSD requires a VM size that supports Premium storage. Premium SSD v2 and Ultra Disk cannot serve as OS disks.</li>
-<li>Plan conversion before <strong>2028-09-08</strong>. The supplied conversion guidance applies to managed disks; unmanaged disks must first be converted to managed disks. Schedule a maintenance window for stopping, deallocating and restarting the VM. A disk's type can change only twice per day.</li>
+<li>Plan conversion before <strong>September 8, 2028</strong>. The supplied conversion guidance applies to managed disks; unmanaged disks must first be converted to managed disks. Schedule a maintenance window for stopping, deallocating and restarting the VM. A disk's type can change only twice per day.</li>
 <li>Follow the supplied conversion procedure: stop and deallocate the VM, resize it if required, update the selected OS disk's SKU, and restart the VM. Procedures that update all attached disks have broader scope than this retirement requires.</li>
 <li>As team-owned validation, review the resulting disk type and record workload-health checks. The supplied guidance does not provide retirement-specific health-validation, backup, cutover or cleanup procedures.</li>
 </ol>
@@ -1950,7 +1950,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your Linux or Windows VMs use Standard HDD OS disks, except for disks created by Azure Site Recovery. Disk Storage Center can identify candidate disks and their owning VMs across subscriptions; the documented filters do not explicitly exclude the Azure Site Recovery exception.</p>
-<p>If you do not migrate before <strong>2028-09-08</strong>, Azure will automatically convert affected disks to equivalent-size Standard SSDs afterward. Workloads may experience service disruption. Planned conversion also requires VM interruption for stopping, deallocating and restarting; Premium SSD may require a VM resize.</p>
+<p>If you do not migrate before <strong>September 8, 2028</strong>, Azure will automatically convert affected disks to equivalent-size Standard SSDs afterward. Workloads may experience service disruption. Planned conversion also requires VM interruption for stopping, deallocating and restarting; Premium SSD may require a VM resize.</p>
 <p>Standard HDD data disks, other managed disk types, ephemeral OS disks and Standard HDD snapshots are unaffected. The guidance does not describe retirement-related VM shutdown, data deletion, retention changes or console/API withdrawal. It recommends reviewing billing but does not quantify the cost change.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

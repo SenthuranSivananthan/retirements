@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Event Grid</span><span class="badge retired" data-deadline="2025-03-01"><span></span>Retired</span></div>
-  <h1>Retirement: Upcoming TLS changes for Azure Event Grid</h1><p>Azure Event Grid ends support for TLS 1.0 and TLS 1.1 on 2025-03-01 and requires TLS 1.2 or higher. Update affected publishing and delivery configurations and verify event flow. Event Grid namespaces require no action under the notice. For system topics, check webhook destinations for TLS 1.2 support. TLS 1.3 is optional; the supplied configuration guidance does not announce another retirement or require existing resources to adopt TLS 1.3.</p>
+  <h1>Retirement: Upcoming TLS changes for Azure Event Grid</h1><p>Azure Event Grid ends support for TLS 1.0 and TLS 1.1 on March 1, 2025 and requires TLS 1.2 or higher. Update affected publishing and delivery configurations and verify event flow. Event Grid namespaces require no action under the notice. For system topics, check webhook destinations for TLS 1.2 support. TLS 1.3 is optional; the supplied configuration guidance does not announce another retirement or require existing resources to adopt TLS 1.3.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-03-01"><strong>Retired</strong><span>Retirement date: <time datetime="2025-03-01">1 Mar 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 6 months, 13 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Mar 2025</p>
-<div class="rich-content"><p>Azure Event Grid's notice sets <strong>2025-03-01</strong> as the end of support for TLS 1.0 and TLS 1.1, when TLS 1.2 or higher becomes required. The system-topic delivery guidance says older TLS versions are unsupported “after 2025-03-01”; neither source specifies an exact cutoff time.</p>
-<p>Microsoft also announces TLS 1.3 enablement on 2025-03-01, while the notice's action guidance describes using it after that date. This is not a requirement to adopt TLS 1.3.</p>
+<div class="rich-content"><p>Azure Event Grid's notice sets <strong>March 1, 2025</strong> as the end of support for TLS 1.0 and TLS 1.1, when TLS 1.2 or higher becomes required. The system-topic delivery guidance says older TLS versions are unsupported “after March 1, 2025”; neither source specifies an exact cutoff time.</p>
+<p>Microsoft also announces TLS 1.3 enablement on March 1, 2025, while the notice's action guidance describes using it after that date. This is not a requirement to adopt TLS 1.3.</p>
 <p>The supplied configuration and API references do not establish another retirement deadline. Their API-version identifiers and update dates are not retirement milestones. No separate workload shutdown date is documented.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Event Grid is ending support for TLS 1.0 and TLS 1.1 on <strong>2025-03-01</strong>, requiring TLS 1.2 or higher for affected connections.</p>
+<div class="rich-content"><p>Azure Event Grid is ending support for TLS 1.0 and TLS 1.1 on <strong>March 1, 2025</strong>, requiring TLS 1.2 or higher for affected connections.</p>
 <ul>
 <li>Topics and domains have minimum TLS configuration guidance.</li>
 <li>For system topics, the documented action applies only to delivery to webhook destinations that do not support TLS 1.2.</li>
@@ -1948,7 +1948,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your Event Grid publishing or delivery configurations are affected if they depend on TLS 1.0 or TLS 1.1, which lose support on <strong>2025-03-01</strong>. The notice does not provide a tenant-wide identification method or establish your specific exposure.</p>
+<div class="rich-content"><p>Your Event Grid publishing or delivery configurations are affected if they depend on TLS 1.0 or TLS 1.1, which lose support on <strong>March 1, 2025</strong>. The notice does not provide a tenant-wide identification method or establish your specific exposure.</p>
 <p>For system topics, the documented action is limited to webhook destinations without TLS 1.2 support. Destinations supporting TLS 1.2 already receive delivery using that version and require no action according to the supplied guidance. Event Grid namespaces require no action under the notice.</p>
 <p>The retirement notice does not specify exact connection-failure, retry or retention behavior after the deadline. Separately, the configuration reference states that Event Grid rejects requests below the configured resource minimum. If you optionally require TLS 1.3, clients without TLS 1.3 support cannot communicate with that resource; existing resources are not automatically switched to that minimum.</p>
 <p>The supplied sources do not announce workload, management API or SDK shutdown, or document retirement-related data deletion, regional differences or costs.</p>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Static Web Apps</span><span class="badge retired" data-deadline="2022-12-03"><span></span>Retired</span></div>
-  <h1>Azure Static Web Apps support for Node 12 ends on 3 December 2022</h1><p>Azure Static Web Apps extended support for Node.js 12 ended on 2022-12-03. Existing static web apps using Azure Functions continue to work, but Microsoft no longer provides Node 12 security patches or customer service. Update affected API runtimes; the notice&#39;s Node 16 migration recommendation is historical, and the supplied configuration guidance lists Node 16 support as ending on 2025-04-30.</p>
+  <h1>Azure Static Web Apps support for Node 12 ends on 3 December 2022</h1><p>Azure Static Web Apps extended support for Node.js 12 ended on December 3, 2022. Existing static web apps using Azure Functions continue to work, but Microsoft no longer provides Node 12 security patches or customer service. Update affected API runtimes; the notice&#39;s Node 16 migration recommendation is historical, and the supplied configuration guidance lists Node 16 support as ending on April 30, 2025.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-12-03"><strong>Retired</strong><span>Retirement date: <time datetime="2022-12-03">3 Dec 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 months, 3 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">3 Dec 2022</p>
-<div class="rich-content"><p>Azure Static Web Apps extended support for Node.js 12 ended on <strong>2022-12-03</strong>. The notice required applications to be updated before that date. The supplied Static Web Apps configuration reference confirms the same Node.js 12.x end-of-support date.</p>
+<div class="rich-content"><p>Azure Static Web Apps extended support for Node.js 12 ended on <strong>December 3, 2022</strong>. The notice required applications to be updated before that date. The supplied Static Web Apps configuration reference confirms the same Node.js 12.x end-of-support date.</p>
 <p>Existing static web apps using Azure Functions continue to work afterward, but Microsoft no longer provides Node 12 security patches or customer service. This is an end-of-support milestone, not a documented workload shutdown.</p>
-<p>Node.js 12 community support separately ended on <strong>2022-04-30</strong>. That earlier milestone does not conflict with the Static Web Apps extended-support deadline.</p>
+<p>Node.js 12 community support separately ended on <strong>April 30, 2022</strong>. That earlier milestone does not conflict with the Static Web Apps extended-support deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Static Web Apps ended extended support for Node.js 12 on <strong>2022-12-03</strong>, including Node 12 managed functions hosted on Azure Functions. Existing applications continue to work, without Microsoft-provided Node 12 security patches or customer service.</p>
-<p>The notice recommended Azure Functions runtime 4.x with Node 16. That recommendation is historical: the supplied Static Web Apps configuration reference lists Node.js 16.x support as ending on <strong>2025-04-30</strong>. This change does not establish retirement of Azure Static Web Apps itself or its static content hosting.</p>
+<div class="rich-content"><p>Azure Static Web Apps ended extended support for Node.js 12 on <strong>December 3, 2022</strong>, including Node 12 managed functions hosted on Azure Functions. Existing applications continue to work, without Microsoft-provided Node 12 security patches or customer service.</p>
+<p>The notice recommended Azure Functions runtime 4.x with Node 16. That recommendation is historical: the supplied Static Web Apps configuration reference lists Node.js 16.x support as ending on <strong>April 30, 2025</strong>. This change does not establish retirement of Azure Static Web Apps itself or its static content hosting.</p>
 </div>
       <div class="notice"></div>
     </section>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify affected APIs by reviewing <code>platform.apiRuntime</code> in each application's <code>staticwebapp.config.json</code>. The supplied content provides no automated resource-discovery procedure.</li>
-<li>Select a replacement runtime using the supplied Static Web Apps configuration guidance. The original notice recommended Functions 4.x with Node 16, but the configuration reference lists Node 16 support as ending on 2025-04-30. It lists Node.js 20.x and 22.x on Functions 4.x without end-of-support dates; missing dates do not establish indefinite support or complete compatibility guidance.</li>
+<li>Select a replacement runtime using the supplied Static Web Apps configuration guidance. The original notice recommended Functions 4.x with Node 16, but the configuration reference lists Node 16 support as ending on April 30, 2025. It lists Node.js 20.x and 22.x on Functions 4.x without end-of-support dates; missing dates do not establish indefinite support or complete compatibility guidance.</li>
 <li>Update affected functions to Azure Functions runtime 4.x and set <code>platform.apiRuntime</code> to your selected runtime. Ensure the build places <code>staticwebapp.config.json</code> at the root of <code>output_location</code>.</li>
 <li>As a team-owned validation step, confirm that the deployed configuration matches your intended runtime and retain application-validation evidence. The supplied content does not provide a retirement-specific testing, backup, cutover or rollback procedure.</li>
 </ol>
@@ -1942,7 +1942,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your Azure Static Web Apps APIs use Node.js 12. Review <code>platform.apiRuntime</code> in <code>staticwebapp.config.json</code>; this summary does not inspect your applications or tenant.</p>
-<p>Without an update, existing static web apps using Azure Functions continue to work after <strong>2022-12-03</strong>, but Microsoft no longer provides Node 12 security patches or customer service. The notice warns of potential service disruptions or security vulnerabilities; it does not announce an automatic shutdown.</p>
+<p>Without an update, existing static web apps using Azure Functions continue to work after <strong>December 3, 2022</strong>, but Microsoft no longer provides Node 12 security patches or customer service. The notice warns of potential service disruptions or security vulnerabilities; it does not announce an automatic shutdown.</p>
 <p>The retirement concerns Node 12 API runtime support, not retirement of static content hosting. The supplied content does not document retirement-specific deployment restrictions, console/API access changes, data deletion or cost consequences.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Container Registry</span><span class="badge retired" data-deadline="2025-09-15"><span></span>Retired</span></div>
-  <h1>Retirement: Transition from Helm Repositories to OCI Artifacts for Storing Helm Charts</h1><p>Azure Container Registry retired legacy Helm repositories and the az acr helm command group on 2025-09-15, according to the supplied current product guidance. Move chart storage and automation to Helm 3 with OCI artifacts. The announcement and CLI references instead give 2025-03-30 and state that non-OCI charts would be deleted then; current guidance does not resolve that deletion claim or explicitly document an extension. Legacy push dates also differ: 2024-10-30 in the announcement versus 2025-01-21 in CLI references. Existing workload shutdown is not established.</p>
+  <h1>Retirement: Transition from Helm Repositories to OCI Artifacts for Storing Helm Charts</h1><p>Azure Container Registry retired legacy Helm repositories and the az acr helm command group on September 15, 2025, according to the supplied current product guidance. Move chart storage and automation to Helm 3 with OCI artifacts. The announcement and CLI references instead give March 30, 2025 and state that non-OCI charts would be deleted then; current guidance does not resolve that deletion claim or explicitly document an extension. Legacy push dates also differ: October 30, 2024 in the announcement versus January 21, 2025 in CLI references. Existing workload shutdown is not established.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-09-15"><strong>Retired</strong><span>Retirement date: <time datetime="2025-09-15">15 Sep 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 20 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">15 Sep 2025</p>
-<div class="rich-content"><p>Azure Container Registry's current product guidance states that legacy Helm repositories and <code>az acr helm</code> retired on <strong>2025-09-15</strong>. This is the preferred retirement date over the announcement's <strong>2025-03-30</strong>, which also appears in CLI references. The inputs do not explicitly document an extension.</p>
-<p>The announcement and CLI references associate <strong>2025-03-30</strong> with deletion of non-OCI charts. Current product guidance specifies no deletion date or post-retirement recovery policy, so the deletion timing remains unconfirmed across the supplied sources.</p>
-<p>For the separate legacy-push milestone, CLI references give <strong>2025-01-21</strong>, preferred over the announcement's <strong>2024-10-30</strong>. Both describe retirement of <code>az acr helm push</code>, not the entire repository service.</p>
+<div class="rich-content"><p>Azure Container Registry's current product guidance states that legacy Helm repositories and <code>az acr helm</code> retired on <strong>September 15, 2025</strong>. This is the preferred retirement date over the announcement's <strong>March 30, 2025</strong>, which also appears in CLI references. The inputs do not explicitly document an extension.</p>
+<p>The announcement and CLI references associate <strong>March 30, 2025</strong> with deletion of non-OCI charts. Current product guidance specifies no deletion date or post-retirement recovery policy, so the deletion timing remains unconfirmed across the supplied sources.</p>
+<p>For the separate legacy-push milestone, CLI references give <strong>January 21, 2025</strong>, preferred over the announcement's <strong>October 30, 2024</strong>. Both describe retirement of <code>az acr helm push</code>, not the entire repository service.</p>
 <p>Helm 2's end of support in <strong>November 2020</strong> is separate. No supplied source establishes a shutdown date for already-running Kubernetes workloads.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Container Registry retired Helm 2-style, <code>index.yaml</code>-based repositories and the <code>az acr helm</code> command group on <strong>2025-09-15</strong>, according to current product guidance. Other supplied references give <strong>2025-03-30</strong> and also describe retirement of ACR's Helm 2 support; the date conflict is not an explicitly documented extension.</p>
+<div class="rich-content"><p>Azure Container Registry retired Helm 2-style, <code>index.yaml</code>-based repositories and the <code>az acr helm</code> command group on <strong>September 15, 2025</strong>, according to current product guidance. Other supplied references give <strong>March 30, 2025</strong> and also describe retirement of ACR's Helm 2 support; the date conflict is not an explicitly documented extension.</p>
 <p>Microsoft continues to support Helm charts stored as OCI artifacts. Use Helm 3, the Helm CLI and <code>az acr repository</code> commands instead. Upgrading the Helm client alone does not migrate chart storage or replace retired commands.</p>
 <p>OCI repositories are not discoverable through <code>helm search</code> or <code>helm repo list</code>. The retirement does not cover ACR as a whole or its supported OCI chart repositories. No regional exceptions or retirement-specific maintenance and security-update commitments are documented.</p>
 </div>
@@ -1945,10 +1945,10 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your chart storage or automation depends on ACR's legacy Helm repositories, Helm 2 support in ACR or <code>az acr helm</code>. Current product guidance dates the legacy-capability retirement to <strong>2025-09-15</strong>; announcement and CLI references instead state <strong>2025-03-30</strong>.</p>
-<p>Legacy push restrictions are a separate milestone: CLI references give <strong>2025-01-21</strong>, while the announcement gives <strong>2024-10-30</strong>. Workflows using retired repository capabilities need replacement even if deployed workloads continue running.</p>
+<div class="rich-content"><p>You are affected if your chart storage or automation depends on ACR's legacy Helm repositories, Helm 2 support in ACR or <code>az acr helm</code>. Current product guidance dates the legacy-capability retirement to <strong>September 15, 2025</strong>; announcement and CLI references instead state <strong>March 30, 2025</strong>.</p>
+<p>Legacy push restrictions are a separate milestone: CLI references give <strong>January 21, 2025</strong>, while the announcement gives <strong>October 30, 2024</strong>. Workflows using retired repository capabilities need replacement even if deployed workloads continue running.</p>
 <p>Charts stored as OCI artifacts remain supported and are excluded from the older references' deletion statement. However, OCI repositories do not appear in <code>helm search</code> or <code>helm repo list</code>, so discovery-dependent integrations need adjustment.</p>
-<p>Older references state that non-OCI charts were deleted on <strong>2025-03-30</strong>. Current product guidance does not confirm that timing, continued legacy access or recovery availability. Do not assume legacy archives remain retrievable.</p>
+<p>Older references state that non-OCI charts were deleted on <strong>March 30, 2025</strong>. Current product guidance does not confirm that timing, continued legacy access or recovery availability. Do not assume legacy archives remain retrievable.</p>
 <p>The inputs do not establish that existing Kubernetes workloads shut down or quantify cost effects. Your registry configuration has not been inspected.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

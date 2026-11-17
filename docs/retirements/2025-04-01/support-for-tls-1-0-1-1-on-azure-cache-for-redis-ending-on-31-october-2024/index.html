@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Cache for Redis</span><span class="badge retired" data-deadline="2025-04-01"><span></span>Retired</span></div>
-  <h1>Support for TLS 1.0/1.1 on Azure Cache for Redis ending on 31 October 2024</h1><p>Azure Cache for Redis requires TLS 1.2 or later starting 2025-04-01 under the supplied product guidance. Connections using TLS 1.0/1.1 are rejected, but the cache service remains available. Enterprise and Enterprise Flash are excluded because they already support only TLS 1.2 or newer. The preparation target was 2025-03-31. The earlier announcement lists retirement on 2024-10-31 and enforcement on 2024-11-01; the applicable product guidance takes precedence, but the supplied content does not explicitly document an extension. Check cache settings, update incompatible clients and validate application connections.</p>
+  <h1>Support for TLS 1.0/1.1 on Azure Cache for Redis ending on 31 October 2024</h1><p>Azure Cache for Redis requires TLS 1.2 or later starting April 1, 2025 under the supplied product guidance. Connections using TLS 1.0/1.1 are rejected, but the cache service remains available. Enterprise and Enterprise Flash are excluded because they already support only TLS 1.2 or newer. The preparation target was March 31, 2025. The earlier announcement lists retirement on October 31, 2024 and enforcement on November 1, 2024; the applicable product guidance takes precedence, but the supplied content does not explicitly document an extension. Check cache settings, update incompatible clients and validate application connections.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-04-01"><strong>Retired</strong><span>Retirement date: <time datetime="2025-04-01">1 Apr 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 5 months, 26 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,20 +1916,20 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Apr 2025</p>
-<div class="rich-content"><p>Starting <strong>2025-04-01</strong>, Azure Cache for Redis enforces TLS 1.2 as the minimum version and rejects TLS 1.0/1.1 connections. This is a protocol retirement, not a cache-service shutdown. Enterprise and Enterprise Flash are excluded.</p>
+<div class="rich-content"><p>Starting <strong>April 1, 2025</strong>, Azure Cache for Redis enforces TLS 1.2 as the minimum version and rejects TLS 1.0/1.1 connections. This is a protocol retirement, not a cache-service shutdown. Enterprise and Enterprise Flash are excluded.</p>
 <p>The supplied product guidance separates these milestones:</p>
 <ul>
 <li>September 2023: Retirement announcement.</li>
-<li>2024-03-01: New and existing caches can no longer be configured with a minimum TLS version of 1.0 or 1.1. Existing settings were not automatically changed at this stage.</li>
-<li>2025-03-31: Preparation target for updating applications and cache minimum TLS settings.</li>
-<li>2025-04-01: Enforcement begins; Microsoft updates applicable cache minimum TLS settings to 1.2.</li>
+<li>March 1, 2024: New and existing caches can no longer be configured with a minimum TLS version of 1.0 or 1.1. Existing settings were not automatically changed at this stage.</li>
+<li>March 31, 2025: Preparation target for updating applications and cache minimum TLS settings.</li>
+<li>April 1, 2025: Enforcement begins; Microsoft updates applicable cache minimum TLS settings to 1.2.</li>
 </ul>
-<p>The earlier announcement instead lists retirement on <strong>2024-10-31</strong> and enforcement on <strong>2024-11-01</strong>. The applicable current product guidance takes precedence for the structured deadline. These conflicting source dates are retained here; the supplied content does not explicitly establish an extension.</p>
+<p>The earlier announcement instead lists retirement on <strong>October 31, 2024</strong> and enforcement on <strong>November 1, 2024</strong>. The applicable current product guidance takes precedence for the structured deadline. These conflicting source dates are retained here; the supplied content does not explicitly establish an extension.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Cache for Redis removes TLS 1.0/1.1 support and requires TLS 1.2 or later starting <strong>2025-04-01</strong>. Enterprise and Enterprise Flash are unaffected because they already support only TLS 1.2 or newer.</p>
+<div class="rich-content"><p>Azure Cache for Redis removes TLS 1.0/1.1 support and requires TLS 1.2 or later starting <strong>April 1, 2025</strong>. Enterprise and Enterprise Flash are unaffected because they already support only TLS 1.2 or newer.</p>
 <p>Microsoft updates applicable cache minimum TLS settings to 1.2 during enforcement. The product guidance states that the cache service remains available while those settings change, but incompatible clients cannot connect.</p>
 <p>For caches configured with minimum TLS 1.2, the guidance restricts supported cipher suites to:</p>
 <ul>
@@ -1942,7 +1942,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Update applicable clients and cache settings to use TLS 1.2 or later. The documented preparation target was <strong>2025-03-31</strong>, before enforcement on <strong>2025-04-01</strong>.</p>
+<div class="rich-content"><p>Update applicable clients and cache settings to use TLS 1.2 or later. The documented preparation target was <strong>March 31, 2025</strong>, before enforcement on <strong>April 1, 2025</strong>.</p>
 <ol>
 <li>Check each cache's Minimum TLS version under Advanced settings in the Azure portal. Identify its connecting applications, client libraries, runtimes and operating systems.</li>
 <li>Upgrade or configure incompatible clients. The guidance requires explicit TLS 1.2 configuration for .NET Framework 4.5.2 or earlier, Java 7 and Predis on PHP 7.0–7.2.1. Java 6 or earlier and Predis on PHP earlier than 7 require upgrades. Its ServiceStack.Redis guidance requires version 5.6 or later. .NET Core defaults depend on the operating system and patches.</li>
@@ -1957,7 +1957,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Starting <strong>2025-04-01</strong>, applications using TLS 1.0/1.1 to connect to applicable Azure Cache for Redis instances have those connections rejected. Applications depending on removed cipher suites are also affected. The cache service remains available; this does not preserve connectivity for incompatible clients.</p>
+<div class="rich-content"><p>Starting <strong>April 1, 2025</strong>, applications using TLS 1.0/1.1 to connect to applicable Azure Cache for Redis instances have those connections rejected. Applications depending on removed cipher suites are also affected. The cache service remains available; this does not preserve connectivity for incompatible clients.</p>
 <p>Enterprise and Enterprise Flash are excluded. For other caches, the guidance says no action is needed if the minimum TLS version is already 1.2 and your application connects without errors.</p>
 <p>Check cache settings and actual application connections rather than relying only on runtime defaults. The article describes Java 8, Node Redis, ioredis, redis-py and Redigo as supporting or defaulting to suitable TLS versions, but that does not establish compatibility for every application configuration.</p>
 <p>The supplied sources do not establish your tenant's exposure or document data deletion, retention changes or cost effects from this protocol retirement.</p>

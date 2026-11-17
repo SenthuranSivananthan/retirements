@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Automation</span><span class="badge upcoming" data-deadline="2027-09-30"><span></span>Upcoming</span></div>
-  <h1>Retirement: Planned Service Retirement - Azure Automation State Configuration on September 30, 2027</h1><p>Azure Automation State Configuration retires on 2027-09-30. Migrate to Azure Machine Configuration by that date. Microsoft’s retirement notice states that configurations, node registrations and associated historical data will be deleted at retirement. A separate portal-navigation change dated 2025-03-31 is not the service shutdown. Migration requires configuration scripts, required modules and compatibility testing; hybrid machines need Azure Arc onboarding before unregistration. Other Azure Automation services, Windows DSC Extension and PowerShell Desired State Configuration are unaffected.</p>
+  <h1>Retirement: Planned Service Retirement - Azure Automation State Configuration on September 30, 2027</h1><p>Azure Automation State Configuration retires on September 30, 2027. Migrate to Azure Machine Configuration by that date. Microsoft’s retirement notice states that configurations, node registrations and associated historical data will be deleted at retirement. A separate portal-navigation change dated March 31, 2025 is not the service shutdown. Migration requires configuration scripts, required modules and compatibility testing; hybrid machines need Azure Arc onboarding before unregistration. Other Azure Automation services, Windows DSC Extension and PowerShell Desired State Configuration are unaffected.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-09-30"><strong>317 days remaining</strong><span>Retirement date: <time datetime="2027-09-30">30 Sep 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 27 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2027</p>
-<div class="rich-content"><p>Azure Automation State Configuration retires on <strong>2027-09-30</strong>. Microsoft directs you to complete migration to Azure Machine Configuration by that date. The retirement notice says you can continue using State Configuration without disruption until retirement, when Microsoft will delete its configurations, node registrations and associated historical data.</p>
-<p>A separate milestone removes the portal’s Add, Compose configuration and Gallery navigation links on <strong>2025-03-31</strong>. This is not the service retirement date and does not establish a workload shutdown or API removal.</p>
-<p>The retirement notice and migration guidance agree on 2027-09-30. The migration guidance does not independently specify deletion timing or post-retirement workload behavior; the deletion statement comes from the retirement notice. Separate end-of-support and security-update milestones are not documented.</p>
+<div class="rich-content"><p>Azure Automation State Configuration retires on <strong>September 30, 2027</strong>. Microsoft directs you to complete migration to Azure Machine Configuration by that date. The retirement notice says you can continue using State Configuration without disruption until retirement, when Microsoft will delete its configurations, node registrations and associated historical data.</p>
+<p>A separate milestone removes the portal’s Add, Compose configuration and Gallery navigation links on <strong>March 31, 2025</strong>. This is not the service retirement date and does not establish a workload shutdown or API removal.</p>
+<p>The retirement notice and migration guidance agree on September 30, 2027. The migration guidance does not independently specify deletion timing or post-retirement workload behavior; the deletion statement comes from the retirement notice. Separate end-of-support and security-update milestones are not documented.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Automation State Configuration, also called Azure Automation Desired State Configuration or AADSC, retires on <strong>2027-09-30</strong>. Microsoft identifies Azure Machine Configuration as the replacement for configuration management of Azure VMs and hybrid machines through Azure Arc-enabled servers.</p>
+<div class="rich-content"><p>Azure Automation State Configuration, also called Azure Automation Desired State Configuration or AADSC, retires on <strong>September 30, 2027</strong>. Microsoft identifies Azure Machine Configuration as the replacement for configuration management of Azure VMs and hybrid machines through Azure Arc-enabled servers.</p>
 <p>Machine Configuration supports native Azure Resource Manager assignments without an Automation Account, Azure Policy assignments at scale, multiple configurations per machine, packages up to 100 MB, remediation timing controls and Azure Resource Graph reporting. It uses DSC version 2 with PowerShell 7, so you need to test compatibility rather than assume existing modules work unchanged. The services are independent and can coexist during migration.</p>
 <p>This retirement does not affect:</p>
 <ul>
@@ -1937,7 +1937,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Complete your transition to Azure Machine Configuration by <strong>2027-09-30</strong>. Redeploy and test configuration content before moving machines.</p>
+<div class="rich-content"><p>Complete your transition to Azure Machine Configuration by <strong>September 30, 2027</strong>. Redeploy and test configuration content before moving machines.</p>
 <ol>
 <li>Inventory your Automation accounts, configurations, assigned nodes and module versions. In the Azure portal, open each Automation Account, then Configuration Management and State Configuration. For command-based discovery, install Az.Automation and use <code>Get-AzAutomationAccount</code>, <code>Get-AzAutomationDscConfiguration</code> and <code>Get-AzAutomationModule</code>.</li>
 <li>Export configuration scripts to your development environment. Compiled node configurations and MOF files cannot be exported; recover the original scripts or reauthor missing configurations.</li>
@@ -1954,9 +1954,9 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you use Azure Automation State Configuration to store configurations or register Azure VMs or hybrid server nodes. Review State Configuration in each Automation Account, or use the documented account, configuration and module discovery commands, to identify usage. These inputs do not establish which resources you use.</p>
-<p>At retirement on <strong>2027-09-30</strong>, Microsoft’s notice states that configurations and node registrations will be deleted and associated historical data will be lost. Microsoft directs migration to avoid disruption, but the supplied content does not specify whether or how existing machine workloads stop or change.</p>
+<p>At retirement on <strong>September 30, 2027</strong>, Microsoft’s notice states that configurations and node registrations will be deleted and associated historical data will be lost. Microsoft directs migration to avoid disruption, but the supplied content does not specify whether or how existing machine workloads stop or change.</p>
 <p>Migration constraints include unavailable exports for compiled MOFs and modules, possible PowerShell 7 compatibility issues, the 100 MB package limit and Azure Arc onboarding for hybrid machines. Machine Configuration does not coordinate ordering across configurations. The guidance also says DSC version 3 can coexist with older DSC implementations but warns that there is no conflict detection.</p>
-<p>The <strong>2025-03-31</strong> portal-navigation removal is separate from retirement; it does not itself establish an API removal or workload shutdown. Other Azure Automation services, Windows DSC Extension and PowerShell Desired State Configuration are unaffected. Migration costs are not documented.</p>
+<p>The <strong>March 31, 2025</strong> portal-navigation removal is separate from retirement; it does not itself establish an API removal or workload shutdown. Other Azure Automation services, Windows DSC Extension and PowerShell Desired State Configuration are unaffected. Migration costs are not documented.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>
     </section>

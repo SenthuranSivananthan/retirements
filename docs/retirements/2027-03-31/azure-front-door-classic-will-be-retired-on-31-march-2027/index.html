@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Front Door</span><span class="badge upcoming" data-deadline="2027-03-31"><span></span>Upcoming</span></div>
-  <h1>Azure Front Door (classic) will be retired on 31 March 2027</h1><p>Azure Front Door (classic) in the public cloud retires on 2027-03-31. Migrate to Standard or Premium by that date to avoid service disruption; Microsoft’s Q&amp;A states that classic profiles cannot be used afterward. A separate endpoint transition allows migrated traffic to use classic endpoints temporarily: finish DNS and direct-hostname cutover by 2028-03-31. Classic endpoints become unsupported and might stop functioning from 2028-04-01; this does not extend retirement. Earlier new-resource cutoff dates conflict across the supplied sources and remain unconfirmed. Managed-certificate restrictions are separate from retirement.</p>
+  <h1>Azure Front Door (classic) will be retired on 31 March 2027</h1><p>Azure Front Door (classic) in the public cloud retires on March 31, 2027. Migrate to Standard or Premium by that date to avoid service disruption; Microsoft’s Q&amp;A states that classic profiles cannot be used afterward. A separate endpoint transition allows migrated traffic to use classic endpoints temporarily: finish DNS and direct-hostname cutover by March 31, 2028. Classic endpoints become unsupported and might stop functioning from April 1, 2028; this does not extend retirement. Earlier new-resource cutoff dates conflict across the supplied sources and remain unconfirmed. Managed-certificate restrictions are separate from retirement.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-03-31"><strong>134 days remaining</strong><span>Retirement date: <time datetime="2027-03-31">31 Mar 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 4 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,18 +1916,18 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2027</p>
-<div class="rich-content"><p>Azure Front Door (classic) in the public cloud retires on <strong>2027-03-31</strong>. Migrate to Standard or Premium by that date to avoid service disruption. Microsoft’s Q&amp;A states that classic profiles cannot be used afterward; the migration guide separately describes transitional routing through classic endpoints after migration.</p>
-<p>Complete that separate endpoint cutover by <strong>2028-03-31</strong>. From <strong>2028-04-01</strong>, classic endpoints are unsupported and might stop functioning. This is not an extension of classic service retirement.</p>
+<div class="rich-content"><p>Azure Front Door (classic) in the public cloud retires on <strong>March 31, 2027</strong>. Migrate to Standard or Premium by that date to avoid service disruption. Microsoft’s Q&amp;A states that classic profiles cannot be used afterward; the migration guide separately describes transitional routing through classic endpoints after migration.</p>
+<p>Complete that separate endpoint cutover by <strong>March 31, 2028</strong>. From <strong>April 1, 2028</strong>, classic endpoints are unsupported and might stop functioning. This is not an extension of classic service retirement.</p>
 <p>Earlier milestones are distinct:</p>
 <ul>
-<li><strong>New resources:</strong> The comparison table gives <strong>2025-03-31</strong>; the update says creation through the portal, Terraform and command-line tools stops on <strong>2025-04-01</strong>; Q&amp;A calls <strong>2025-04-01</strong> the last creation day. For the close March/April dates, use <strong>2025-03-31</strong> as the earlier planning cutoff. However, the comparison narrative also gives <strong>2025-08-15</strong> for new domains and profiles. The overall cutoff remains conflicting and unconfirmed.</li>
-<li><strong>Managed certificates:</strong> The comparison page says support stopped on <strong>2025-08-15</strong>, when BYOC or migration was required. Existing managed certificates renewed before that date remained valid only until <strong>2026-04-14</strong>. Retirement does not extend certificate validity.</li>
+<li><strong>New resources:</strong> The comparison table gives <strong>March 31, 2025</strong>; the update says creation through the portal, Terraform and command-line tools stops on <strong>April 1, 2025</strong>; Q&amp;A calls <strong>April 1, 2025</strong> the last creation day. For the close March/April dates, use <strong>March 31, 2025</strong> as the earlier planning cutoff. However, the comparison narrative also gives <strong>August 15, 2025</strong> for new domains and profiles. The overall cutoff remains conflicting and unconfirmed.</li>
+<li><strong>Managed certificates:</strong> The comparison page says support stopped on <strong>August 15, 2025</strong>, when BYOC or migration was required. Existing managed certificates renewed before that date remained valid only until <strong>April 14, 2026</strong>. Retirement does not extend certificate validity.</li>
 </ul>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Front Door (classic) in the public cloud retires on <strong>2027-03-31</strong>. Microsoft directs you to Azure Front Door Standard or Premium. The supplied content does not establish retirement dates for those destination tiers or other cloud environments.</p>
+<div class="rich-content"><p>Azure Front Door (classic) in the public cloud retires on <strong>March 31, 2027</strong>. Microsoft directs you to Azure Front Door Standard or Premium. The supplied content does not establish retirement dates for those destination tiers or other cloud environments.</p>
 <p>The announcement permits changes to existing classic resources until retirement, but confirming migration preparation locks the classic profile against further changes. Completed migration disables that profile. Azure Front Door then routes traffic arriving at its classic endpoint to the new profile during the separate endpoint transition.</p>
 <p>New classic resources, new-domain onboarding and classic managed certificates already have restrictions. The sources conflict on the new-resource cutoff date. They do not document maintenance or security-update commitments through retirement.</p>
 </div>
@@ -1941,10 +1941,10 @@
 <li>In each classic resource, select <strong>Settings &gt; Migration &gt; Validate</strong>, then use <strong>View errors</strong> to resolve compatibility issues. All custom domains must use HTTPS. Domains sharing a backend pool must have consistent session-affinity settings because affinity moves to origin groups.</li>
 <li>Review the destination tier and copy WAF policies or select compatible existing policies. Managed WAF rules select Premium; choosing Standard requires removing those rules. Select <strong>Prepare</strong> after reviewing your choices; confirmation prevents further classic-profile changes. Review every setting in the prepared profile.</li>
 <li>If you use your own certificates, enable a system-assigned or user-assigned managed identity and grant access to all relevant Azure Key Vaults. This step is not required for destination-tier managed certificates.</li>
-<li>Select <strong>Migrate</strong>, confirm, and inspect the new profile through the success message or completion banner. Complete migration by <strong>2027-03-31</strong>. No DNS changes are required before or during migration.</li>
-<li>Once traffic flows through the new profile, update custom-domain DNS records and replace direct classic hostnames in applications, clients and integrations. Validate traffic and complete endpoint cutover by <strong>2028-03-31</strong>.</li>
+<li>Select <strong>Migrate</strong>, confirm, and inspect the new profile through the success message or completion banner. Complete migration by <strong>March 31, 2027</strong>. No DNS changes are required before or during migration.</li>
+<li>Once traffic flows through the new profile, update custom-domain DNS records and replace direct classic hostnames in applications, clients and integrations. Validate traffic and complete endpoint cutover by <strong>March 31, 2028</strong>.</li>
 </ol>
-<p>Classic managed-certificate dependencies required BYOC or migration separately; their documented validity ended on <strong>2026-04-14</strong>.</p>
+<p>Classic managed-certificate dependencies required BYOC or migration separately; their documented validity ended on <strong>April 14, 2026</strong>.</p>
 <p>Optionally delete the disabled classic profile after migration. Do not delete the new production profile: deletion is irreversible. If you cancel migration, the new profile is deleted automatically, but you must manually delete any copied WAF policies.</p>
 </div>
       <p> </p>
@@ -1954,7 +1954,7 @@
 <div class="rich-content"><p>You are in scope if you use <strong>Azure Front Door (classic) in the public cloud</strong>. The supplied content does not establish whether your resources are affected. Azure CDN Standard from Microsoft (classic) has a separate retirement and is not included in this deadline.</p>
 <p>New-resource restrictions affect the portal, Terraform and command-line provisioning; existing profiles were not immediately stopped by those restrictions. The exact creation cutoff is conflicting. Classic managed-certificate restrictions can affect traffic independently of service retirement.</p>
 <p>Migration requires HTTPS on custom domains, compatible session-affinity settings and appropriate certificate access. Managed WAF rules or Private Link require Premium if you retain those capabilities. Preparation locks classic configuration, and completed migration disables the classic profile.</p>
-<p>Failing to migrate risks service disruption at retirement; Q&amp;A says classic profiles cannot be used after <strong>2027-03-31</strong>. For migrated profiles, both endpoints remain functional during the documented transition, allowing cutover validation without downtime. Remaining classic-endpoint dependencies might stop receiving traffic from <strong>2028-04-01</strong>.</p>
+<p>Failing to migrate risks service disruption at retirement; Q&amp;A says classic profiles cannot be used after <strong>March 31, 2027</strong>. For migrated profiles, both endpoints remain functional during the documented transition, allowing cutover validation without downtime. Remaining classic-endpoint dependencies might stop receiving traffic from <strong>April 1, 2028</strong>.</p>
 <p>Costs depend on workload and destination tier. Per-profile base fees and request charges can increase costs for many-profile or request-heavy deployments; savings are not guaranteed. Use invoices, documented profile metrics and the pricing calculator for a workload-specific comparison. Published examples are illustrative, not regional quotes.</p>
 <p>The sources do not document retirement-related retention commitments or a broader data-deletion schedule.</p>
 </div>
@@ -1965,8 +1965,8 @@
 <p>Review the prepared profile’s settings and, where applicable, managed identity and Key Vault access. After migration, use the success message or completion banner to inspect the new profile and confirm that the classic profile is disabled.</p>
 <p>Maintain <strong>team-owned completion evidence</strong> for two separate milestones:</p>
 <ul>
-<li>Migration completed for the <strong>2027-03-31</strong> retirement.</li>
-<li>DNS updated, direct classic-hostname dependencies replaced and traffic validated against the new endpoint by <strong>2028-03-31</strong>.</li>
+<li>Migration completed for the <strong>March 31, 2027</strong> retirement.</li>
+<li>DNS updated, direct classic-hostname dependencies replaced and traffic validated against the new endpoint by <strong>March 31, 2028</strong>.</li>
 </ul>
 <p>The guide does not provide an automated inventory of every application, client or integration dependency, or a dedicated retirement-progress dashboard. Pricing metrics and invoices support cost assessment, not proof of migration completion.</p>
 <p>For questions, use Microsoft Q&amp;A; posting requires sign-in. If you have an Azure support plan and need technical help, use the question mark icon in the Azure portal. For a significant estimated cost increase, the pricing guidance recommends contacting your Microsoft sales representative.</p>

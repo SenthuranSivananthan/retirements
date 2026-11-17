@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge retired" data-deadline="2026-09-30"><span></span>Retired</span></div>
-  <h1>Retirement: Azure Network Policy Manager (NPM) for Windows nodes on AKS to Be Retired by September 30, 2026</h1><p>Microsoft ends support for Azure Network Policy Manager (NPM) on Windows nodes in AKS on 2026-09-30. Move affected configurations to an alternative to maintain support, security updates and deployment compatibility. The notice does not specify a workload shutdown date. The separate 2026-03-31 default-outbound-access change is not an NPM retirement milestone.</p>
+  <h1>Retirement: Azure Network Policy Manager (NPM) for Windows nodes on AKS to Be Retired by September 30, 2026</h1><p>Microsoft ends support for Azure Network Policy Manager (NPM) on Windows nodes in AKS on September 30, 2026. Move affected configurations to an alternative to maintain support, security updates and deployment compatibility. The notice does not specify a workload shutdown date. The separate March 31, 2026 default-outbound-access change is not an NPM retirement milestone.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-30">30 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 23 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2026</p>
-<div class="rich-content"><p>Microsoft ends support for Azure NPM on Windows nodes in AKS on <strong>2026-09-30</strong>. The experience is unsupported starting that date; the notice does not specify a workload shutdown date or say running workloads will stop.</p>
-<p>The networking reference's 2026-03-31 date concerns default outbound access, not NPM support. It is not a conflicting retirement deadline.</p>
+<div class="rich-content"><p>Microsoft ends support for Azure NPM on Windows nodes in AKS on <strong>September 30, 2026</strong>. The experience is unsupported starting that date; the notice does not specify a workload shutdown date or say running workloads will stop.</p>
+<p>The networking reference's March 31, 2026 date concerns default outbound access, not NPM support. It is not a conflicting retirement deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Network Policy Manager (NPM) on <strong>Windows nodes in AKS</strong> becomes unsupported on 2026-09-30.</p>
+<div class="rich-content"><p>Azure Network Policy Manager (NPM) on <strong>Windows nodes in AKS</strong> becomes unsupported on September 30, 2026.</p>
 <p>The notice does not announce retirement for other node operating systems, identify regional exceptions or describe availability changes before the deadline. The supporting reference pages do not independently establish additional NPM retirement scope or milestones.</p>
 </div>
       <div class="notice"></div>
@@ -1932,7 +1932,7 @@
 <div class="rich-content"><ol>
 <li>Open the Azure Resource Graph query referenced in the notice and select <strong>Run query</strong> to identify impacted resources.</li>
 <li>Evaluate the listed alternatives: node-level Network Security Groups (NSGs) or open-source tools such as Project Calico. The supplied content does not establish feature equivalence or suitability for your configuration.</li>
-<li>Move affected configurations to your selected alternative by 2026-09-30 to maintain support, security updates and deployment compatibility.</li>
+<li>Move affected configurations to your selected alternative by September 30, 2026 to maintain support, security updates and deployment compatibility.</li>
 </ol>
 <p>The notice does not provide migration prerequisites, detailed migration steps or validation criteria. The Calico reference describes general capabilities, not a Windows NPM migration procedure.</p>
 </div>
@@ -1941,7 +1941,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are in scope if you use Azure NPM on Windows nodes in AKS. Use the notice's referenced Azure Resource Graph query to identify impacted resources; no resources in your environment have been inspected here.</p>
-<p>Continuing with this configuration from 2026-09-30 leaves the experience unsupported. Microsoft directs customers to alternatives to maintain support, security updates and deployment compatibility, but does not document specific deployment failures or workload shutdown behavior.</p>
+<p>Continuing with this configuration from September 30, 2026 leaves the experience unsupported. Microsoft directs customers to alternatives to maintain support, security updates and deployment compatibility, but does not document specific deployment failures or workload shutdown behavior.</p>
 <p>The supplied content does not establish retirement-related data deletion, retention changes or cost impacts. Unaffected configurations described for the separate outbound-access change are not NPM retirement exceptions.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

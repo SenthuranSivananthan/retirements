@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2024-08-31"><span></span>Retired</span></div>
-  <h1>Azure classic resource providers will be retired on 31 August 2024</h1><p>Azure classic resource providers using Azure Service Manager (ASM) were scheduled to retire on 2024-08-31. The retirement notice states that Microsoft would revoke endpoint access and disable the providers. You needed to migrate affected resources to Azure Resource Manager and coordinate with your end customers before retirement to avoid service disruptions. The supplied reference pages do not independently confirm that retirement occurred.</p>
+  <h1>Azure classic resource providers will be retired on 31 August 2024</h1><p>Azure classic resource providers using Azure Service Manager (ASM) were scheduled to retire on August 31, 2024. The retirement notice states that Microsoft would revoke endpoint access and disable the providers. You needed to migrate affected resources to Azure Resource Manager and coordinate with your end customers before retirement to avoid service disruptions. The supplied reference pages do not independently confirm that retirement occurred.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-08-31">31 Aug 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 10 months, 24 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2024</p>
-<div class="rich-content"><p>The retirement notice specifies <strong>2024-08-31</strong> for Azure classic resource providers using Azure Service Manager (ASM). It states that Microsoft would revoke access to their endpoints and disable the providers on that date.</p>
+<div class="rich-content"><p>The retirement notice specifies <strong>August 31, 2024</strong> for Azure classic resource providers using Azure Service Manager (ASM). It states that Microsoft would revoke access to their endpoints and disable the providers on that date.</p>
 <p>Its instructions to migrate “by” that date and “before retirement” concern the same milestone, not separate deadlines. The supplied content does not confirm whether retirement occurred as scheduled. The deployment-model reference establishes no alternative retirement date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure classic resource providers using Azure Service Manager (ASM), the classic deployment model, were scheduled to retire on <strong>2024-08-31</strong>. Microsoft stated that their endpoints would become inaccessible and the providers would be disabled.</p>
+<div class="rich-content"><p>Azure classic resource providers using Azure Service Manager (ASM), the classic deployment model, were scheduled to retire on <strong>August 31, 2024</strong>. Microsoft stated that their endpoints would become inaccessible and the providers would be disabled.</p>
 <p>Azure Resource Manager is the documented replacement. The notice describes it as providing the same capabilities plus resource grouping and a management layer. However, the deployment-model reference documents resource compatibility limits; migration is not simply a change in resource-group membership.</p>
 <p>The notice specifies no regional exceptions or pre-retirement maintenance, support or security-update commitments. It does not announce retirement of Azure Resource Manager.</p>
 </div>
@@ -1934,7 +1934,7 @@
 <li>Identify resources and automation that use the classic deployment model. A classic resource appearing in a resource group has not thereby migrated to Resource Manager.</li>
 <li>Select the applicable migration or redeployment path. The reference identifies Cloud Services (extended support) as an option for Cloud Services (classic), which does not support Resource Manager.</li>
 <li>Account for compatibility and tooling changes. A Resource Manager VM cannot use a classic virtual network or directly use a classic user image. The reference documents copying virtual hard disk files into a Resource Manager storage account as an alternative for images. Update provisioning scripts to the Resource Manager schema and check its separate subscription quotas.</li>
-<li>Migrate affected resources and coordinate completion with your end customers. The retirement notice required completion before <strong>2024-08-31</strong> to avoid service disruptions.</li>
+<li>Migrate affected resources and coordinate completion with your end customers. The retirement notice required completion before <strong>August 31, 2024</strong> to avoid service disruptions.</li>
 </ol>
 <p>The supplied content references migration guides but does not provide a complete migration, cutover or validation procedure. For questions or concerns, contact azureclasrp_ret_sup@microsoft.com.</p>
 </div>
@@ -1942,7 +1942,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are in scope if you operate a classic resource provider using ASM or depend on resources using that deployment model. The notice states that endpoint access would be revoked and providers disabled on <strong>2024-08-31</strong>, with service disruptions possible without migration. It does not separately establish workload shutdown, data retention or deletion, or cost effects.</p>
+<div class="rich-content"><p>You are in scope if you operate a classic resource provider using ASM or depend on resources using that deployment model. The notice states that endpoint access would be revoked and providers disabled on <strong>August 31, 2024</strong>, with service disruptions possible without migration. It does not separately establish workload shutdown, data retention or deletion, or cost effects.</p>
 <p>Classic and Resource Manager resources use different APIs. The reference describes VMs, storage accounts and virtual networks as supporting both models, with management operations tied to the model used to create each resource. Resource Manager has separate quotas for these resources, and classic resources do not support tags.</p>
 <p>The reference's statement that existing ASM automation continues to work for existing VMs and virtual networks is not a documented exception to the retirement notice. The supplied pages do not establish which resources in your environment are affected.</p>
 </div>

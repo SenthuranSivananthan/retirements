@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Functions</span><span class="badge retired" data-deadline="2026-11-10"><span></span>Retired</span></div>
-  <h1>Retirement: Support for PowerShell 7.4 ends on November 10, 2026</h1><p>Support for PowerShell 7.4 in Azure Functions ended on 2026-11-10. Apps continue running, but Microsoft no longer provides PowerShell 7.4 security patches, updates or customer support. Upgrade to PowerShell 7.6; apps on Linux Consumption must first migrate to Flex Consumption. The supplied reference documents update and verification steps but does not establish a separate Linux Consumption retirement date.</p>
+  <h1>Retirement: Support for PowerShell 7.4 ends on November 10, 2026</h1><p>Support for PowerShell 7.4 in Azure Functions ended on November 10, 2026. Apps continue running, but Microsoft no longer provides PowerShell 7.4 security patches, updates or customer support. Upgrade to PowerShell 7.6; apps on Linux Consumption must first migrate to Flex Consumption. The supplied reference documents update and verification steps but does not establish a separate Linux Consumption retirement date.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-11-10"><strong>Retired</strong><span>Retirement date: <time datetime="2026-11-10">10 Nov 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 month, 18 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">10 Nov 2026</p>
-<div class="rich-content"><p>Support for PowerShell 7.4 in Azure Functions ended on <strong>2026-11-10</strong>. Microsoft directed you to upgrade to PowerShell 7.6 before that date.</p>
+<div class="rich-content"><p>Support for PowerShell 7.4 in Azure Functions ended on <strong>November 10, 2026</strong>. Microsoft directed you to upgrade to PowerShell 7.6 before that date.</p>
 <p>This is an end-of-support milestone, not an app shutdown date. Apps continue running, but Microsoft no longer provides PowerShell 7.4 security patches, updates or customer support.</p>
 <p>The language-update reference does not independently establish this support deadline or give a separate Linux Consumption retirement date. Moving to Flex Consumption is a prerequisite for upgrading PowerShell on Linux Consumption, not a separate dated milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft ended support for <strong>PowerShell 7.4 in Azure Functions on 2026-11-10</strong> and directs you to transition to PowerShell 7.6. Your apps continue running after support ends, without PowerShell 7.4 security patches, updates or customer support.</p>
+<div class="rich-content"><p>Microsoft ended support for <strong>PowerShell 7.4 in Azure Functions on November 10, 2026</strong> and directs you to transition to PowerShell 7.6. Your apps continue running after support ends, without PowerShell 7.4 security patches, updates or customer support.</p>
 <p>PowerShell 7.4 is the last supported PowerShell version on Linux Consumption. If you use that plan, you must migrate to Flex Consumption before upgrading to PowerShell 7.6.</p>
 </div>
       <div class="notice"></div>
@@ -1935,7 +1935,7 @@
 <li>If an affected app uses Linux Consumption, migrate it to Flex Consumption before upgrading to PowerShell 7.6. The supplied reference does not provide the hosting-plan migration procedure.</li>
 <li>Back up app configuration, review extension bundles, binding extensions, package dependencies and local tooling for compatibility, and test against PowerShell 7.6 locally.</li>
 <li>Test updated code in a non-production app. Flex Consumption does not support deployment slots. For plans that support slots, the reference recommends staging to reduce downtime and provide a rollback option.</li>
-<li>Publish updated code before updating the app's stack configuration. On Flex Consumption, select PowerShell Core Version under Settings &gt; Configuration &gt; General settings. Upgrade affected apps to PowerShell 7.6; the notice's target was before 2026-11-10.</li>
+<li>Publish updated code before updating the app's stack configuration. On Flex Consumption, select PowerShell Core Version under Settings &gt; Configuration &gt; General settings. Upgrade affected apps to PowerShell 7.6; the notice's target was before November 10, 2026.</li>
 <li>After the restart, verify the configured version, confirm the app is Running and test its functions. If you used a staging slot on a supported plan, swap it into production after verification.</li>
 </ol>
 </div>
@@ -1943,7 +1943,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>This retirement affects <strong>Azure Functions apps running PowerShell 7.4</strong>. Without an upgrade, apps continue running after 2026-11-10, but Microsoft no longer provides security patches, updates or customer support for that version. The notice warns that an unsupported runtime or language version may cause issues and degraded performance.</p>
+<div class="rich-content"><p>This retirement affects <strong>Azure Functions apps running PowerShell 7.4</strong>. Without an upgrade, apps continue running after November 10, 2026, but Microsoft no longer provides security patches, updates or customer support for that version. The notice warns that an unsupported runtime or language version may cause issues and degraded performance.</p>
 <h3>Hosting and deployment effects</h3>
 <p>Apps on Linux Consumption must move to Flex Consumption before upgrading to PowerShell 7.6. Flex Consumption does not support deployment slots, so use a non-production app for testing rather than slot-based testing and rollback.</p>
 <p>Changing the language version restarts the app. The reference describes typical unavailability of 30–60 seconds: in-flight requests terminate and new requests fail until restart succeeds. If you update production directly, plan a maintenance window.</p>

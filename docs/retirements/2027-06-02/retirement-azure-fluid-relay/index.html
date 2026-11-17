@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Fluid Relay</span><span class="badge upcoming" data-deadline="2027-06-02"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure Fluid Relay</h1><p>Azure Fluid Relay retires and reaches end of availability on 2027-06-02. Microsoft states that you can continue using it until 2027-06-01 while transitioning. Move dependent workloads to a self-hosted Fluid service before retirement to avoid possible disruption. The open-source Fluid Framework remains available. You own the replacement infrastructure, operating costs and production-readiness decisions. The supplied self-hosting reference provides deployment validation and optional document-copy tooling; it does not independently establish the retirement or confirm a complete migration.</p>
+  <h1>Retirement: Azure Fluid Relay</h1><p>Azure Fluid Relay retires and reaches end of availability on June 2, 2027. Microsoft states that you can continue using it until June 1, 2027 while transitioning. Move dependent workloads to a self-hosted Fluid service before retirement to avoid possible disruption. The open-source Fluid Framework remains available. You own the replacement infrastructure, operating costs and production-readiness decisions. The supplied self-hosting reference provides deployment validation and optional document-copy tooling; it does not independently establish the retirement or confirm a complete migration.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-06-02"><strong>197 days remaining</strong><span>Retirement date: <time datetime="2027-06-02">2 Jun 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 7 months</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">2 Jun 2027</p>
-<div class="rich-content"><p>Azure Fluid Relay retires and reaches end of availability on <strong>2027-06-02</strong>. Complete your transition before that date.</p>
-<p>Microsoft states that you can continue using the service until <strong>2027-06-01</strong> while transitioning. This is the stated usage window, not a conflicting retirement date. Applications that continue using Azure Fluid Relay after 2027-06-02 may experience service disruption.</p>
+<div class="rich-content"><p>Azure Fluid Relay retires and reaches end of availability on <strong>June 2, 2027</strong>. Complete your transition before that date.</p>
+<p>Microsoft states that you can continue using the service until <strong>June 1, 2027</strong> while transitioning. This is the stated usage window, not a conflicting retirement date. Applications that continue using Azure Fluid Relay after June 2, 2027 may experience service disruption.</p>
 <p>The self-hosting reference establishes no separate retirement or migration deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft will retire Azure Fluid Relay on <strong>2027-06-02</strong>, ending service availability. Microsoft states that you can continue using it until 2027-06-01 while transitioning.</p>
+<div class="rich-content"><p>Microsoft will retire Azure Fluid Relay on <strong>June 2, 2027</strong>, ending service availability. Microsoft states that you can continue using it until June 1, 2027 while transitioning.</p>
 <p>The open-source Fluid Framework remains available. The documented replacement is a self-hosted Fluid service that you host and operate.</p>
 <p>The supplied reference deployment runs Routerlicious on Azure Kubernetes Service with Event Hubs, Cosmos DB for MongoDB, Azure Managed Redis and Azure Files. If Managed Redis cannot be created in your region, you can explicitly select Azure Cache for Redis as a temporary fallback.</p>
 <p>The supplied material identifies no retirement-specific version or regional exceptions and documents no maintenance or security-update commitment.</p>
@@ -1933,7 +1933,7 @@
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
-<li>Review your Azure subscriptions and identify applications that depend on Azure Fluid Relay. Plan to transition them before <strong>2027-06-02</strong>.</li>
+<li>Review your Azure subscriptions and identify applications that depend on Azure Fluid Relay. Plan to transition them before <strong>June 2, 2027</strong>.</li>
 <li>Review the self-hosted Fluid service reference architecture, non-goals and open items. Decide identity and authorization, high availability, backup and restore, capacity validation and supported Fluid client versions before production use.</li>
 <li>If you choose this reference deployment, configure its shared parameters and provide a separate, clean Fluid Framework checkout. Select a reviewed release tag or full commit SHA, not a branch name. Build an immutable release bundle and deploy it.</li>
 <li>Configure a token backend before admitting real users, using the optional reference token service or your own backend. Keep the tenant manager inside the cluster: it has no authentication and must never be exposed.</li>
@@ -1946,7 +1946,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Applications that depend on Azure Fluid Relay are affected by its <strong>2027-06-02</strong> retirement. Applications that continue using it afterward may experience service disruption. Review your Azure subscriptions to identify dependencies; the supplied material does not establish which of your resources are affected.</p>
+<div class="rich-content"><p>Applications that depend on Azure Fluid Relay are affected by its <strong>June 2, 2027</strong> retirement. Applications that continue using it afterward may experience service disruption. Review your Azure subscriptions to identify dependencies; the supplied material does not establish which of your resources are affected.</p>
 <p>The open-source Fluid Framework remains available. No retirement-specific version or regional exceptions are documented, and the material does not separately describe console, API or deployment-tooling changes.</p>
 <p>If you adopt the reference deployment, you own every resource it creates and its production-readiness decisions. Managed Azure services bill from creation, not only during active use. No default cost estimate is supplied; price your configuration with the Azure pricing calculator.</p>
 <p>If you use the Redis fallback, its documented maintenance-window migration to Managed Redis does not automatically delete the old cache. This is separate from the Azure Fluid Relay retirement. No retirement-related data-retention or deletion policy is supplied.</p>

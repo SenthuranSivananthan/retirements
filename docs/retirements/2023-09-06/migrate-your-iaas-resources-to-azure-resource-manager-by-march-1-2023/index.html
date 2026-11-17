@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Virtual Machines</span><span class="badge retired" data-deadline="2023-09-06"><span></span>Retired</span></div>
-  <h1>Migrate your IaaS resources to Azure Resource Manager by March 1, 2023</h1><p>The supplied migration guidance schedules Azure Virtual Machines (classic), covering Linux and Windows IaaS VMs, for retirement on 2023-09-06. This product-guidance date is preferred over the announcement&#39;s 2023-03-01 retirement and migration deadline. The sources conflict; neither explicitly documents an extension. The guidance does not confirm that retirement occurred or reconcile the announcement&#39;s earlier VM shutdown consequences. Migrate applicable compute, networking and storage resources to Azure Resource Manager, subject to configuration prerequisites. The supplied content does not establish whether this historical migration path remains available.</p>
+  <h1>Migrate your IaaS resources to Azure Resource Manager by March 1, 2023</h1><p>The supplied migration guidance schedules Azure Virtual Machines (classic), covering Linux and Windows IaaS VMs, for retirement on September 6, 2023. This product-guidance date is preferred over the announcement&#39;s March 1, 2023 retirement and migration deadline. The sources conflict; neither explicitly documents an extension. The guidance does not confirm that retirement occurred or reconcile the announcement&#39;s earlier VM shutdown consequences. Migrate applicable compute, networking and storage resources to Azure Resource Manager, subject to configuration prerequisites. The supplied content does not establish whether this historical migration path remains available.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2023-09-06"><strong>Retired</strong><span>Retirement date: <time datetime="2023-09-06">6 Sep 2023</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 6 months, 9 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">6 Sep 2023</p>
-<div class="rich-content"><p>The supplied product migration guidance schedules full retirement of classic Linux and Windows IaaS VMs for <strong>2023-09-06</strong>, following deprecation on <strong>2020-02-28</strong>. The structured deadline uses that product-guidance retirement date.</p>
-<p>The announcement instead gives <strong>2023-03-01</strong> as both the retirement and migration deadline. It states that, beginning that date, customers could no longer start classic IaaS VMs through Azure Service Management (ASM), and Microsoft would move remaining running or stopped-allocated VMs to stopped-deallocated.</p>
-<p>These dates conflict. The product guidance is preferred, but neither source explicitly documents an extension or reconciles the earlier consequences. The guidance does not confirm that retirement occurred or specify shutdown behavior on 2023-09-06.</p>
+<div class="rich-content"><p>The supplied product migration guidance schedules full retirement of classic Linux and Windows IaaS VMs for <strong>September 6, 2023</strong>, following deprecation on <strong>February 28, 2020</strong>. The structured deadline uses that product-guidance retirement date.</p>
+<p>The announcement instead gives <strong>March 1, 2023</strong> as both the retirement and migration deadline. It states that, beginning that date, customers could no longer start classic IaaS VMs through Azure Service Management (ASM), and Microsoft would move remaining running or stopped-allocated VMs to stopped-deallocated.</p>
+<p>These dates conflict. The product guidance is preferred, but neither source explicitly documents an extension or reconciles the earlier consequences. The guidance does not confirm that retirement occurred or specify shutdown behavior on September 6, 2023.</p>
 <p>The announcement also blocks new classic VM creation for customers not already using classic IaaS VMs, effective “today”; its calendar date is not supplied.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Virtual Machines (classic), covering <strong>Linux and Windows IaaS VMs</strong>, were scheduled for full retirement on <strong>2023-09-06</strong> in the supplied migration guidance. Azure Resource Manager is the migration destination for their compute, networking and storage resources. The announcement gives a conflicting retirement date of 2023-03-01; no explicit extension is documented.</p>
+<div class="rich-content"><p>Azure Virtual Machines (classic), covering <strong>Linux and Windows IaaS VMs</strong>, were scheduled for full retirement on <strong>September 6, 2023</strong> in the supplied migration guidance. Azure Resource Manager is the migration destination for their compute, networking and storage resources. The announcement gives a conflicting retirement date of March 1, 2023; no explicit extension is documented.</p>
 <p>The announcement excludes:</p>
 <ul>
 <li>Cloud Services.</li>
@@ -1938,7 +1938,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Plan migration of your classic IaaS resources to <strong>Azure Resource Manager</strong>. The product guidance states a 2023-09-06 retirement date, while the announcement required migration by 2023-03-01. The supplied sources do not reconcile those dates or establish whether this historical migration path remains available.</p>
+<div class="rich-content"><p>Plan migration of your classic IaaS resources to <strong>Azure Resource Manager</strong>. The product guidance states a September 6, 2023 retirement date, while the announcement required migration by March 1, 2023. The supplied sources do not reconcile those dates or establish whether this historical migration path remains available.</p>
 <ol>
 <li><strong>Identify affected resources.</strong> Inventory classic Linux and Windows VMs, their virtual networks, storage accounts and attached resources. Determine whether each VM is inside a virtual network. The supplied content does not provide a subscription-wide discovery method.</li>
 <li><strong>Resolve network prerequisites and blockers.</strong> Resource Manager VMs require a virtual network; for VMs outside one, choose a platform-created network or an existing Resource Manager network. Migrate classic ExpressRoute circuits first; ExpressRoute gateway migration requires the gateway and virtual network to share a subscription. Remove endpoint ACLs, remove and later recreate Application Gateway, and establish VNet peering after migration. Reduce each VM's subnet references to one and resolve unsupported availability-set arrangements, including cloud services mixing VMs inside and outside availability sets.</li>
@@ -1955,7 +1955,7 @@
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are in scope if you use <strong>classic Linux or Windows IaaS VMs</strong> and their associated resources. The supplied sources do not inspect your subscription or establish how many resources you have.</p>
 <h3>Retirement consequences</h3>
-<p>The announcement states that, from <strong>2023-03-01</strong>, classic VMs could no longer be started through ASM and Microsoft would move remaining running or stopped-allocated VMs to stopped-deallocated, disrupting running workloads. The product guidance instead schedules retirement for <strong>2023-09-06</strong> without specifying workload shutdown behavior. These conflicting milestones and consequences are not reconciled.</p>
+<p>The announcement states that, from <strong>March 1, 2023</strong>, classic VMs could no longer be started through ASM and Microsoft would move remaining running or stopped-allocated VMs to stopped-deallocated, disrupting running workloads. The product guidance instead schedules retirement for <strong>September 6, 2023</strong> without specifying workload shutdown behavior. These conflicting milestones and consequences are not reconciled.</p>
 <p>Customers not already using classic IaaS VMs were separately blocked from creating new classic VMs when the announcement took effect; the effective calendar date is not supplied.</p>
 <h3>Migration effects</h3>
 <ul>

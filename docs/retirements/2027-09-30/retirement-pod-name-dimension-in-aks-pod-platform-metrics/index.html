@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge upcoming" data-deadline="2027-09-30"><span></span>Upcoming</span></div>
-  <h1>Retirement: Pod name dimension in AKS pod platform metrics</h1><p>On 2027-09-30, Microsoft will retire the pod name dimension from the AKS platform metrics kube_pod_status_phase and kube_pod_status_ready. Update monitoring that filters, groups, splits or alerts by pod name before that date. Metric names, aggregate pod counts and namespace-level monitoring remain available; aggregate-only users need no action. For continued pod-level monitoring, Microsoft directs you to Azure Monitor managed service for Prometheus. This change does not announce an AKS workload shutdown.</p>
+  <h1>Retirement: Pod name dimension in AKS pod platform metrics</h1><p>On September 30, 2027, Microsoft will retire the pod name dimension from the AKS platform metrics kube_pod_status_phase and kube_pod_status_ready. Update monitoring that filters, groups, splits or alerts by pod name before that date. Metric names, aggregate pod counts and namespace-level monitoring remain available; aggregate-only users need no action. For continued pod-level monitoring, Microsoft directs you to Azure Monitor managed service for Prometheus. This change does not announce an AKS workload shutdown.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-09-30"><strong>317 days remaining</strong><span>Retirement date: <time datetime="2027-09-30">30 Sep 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 24 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2027</p>
-<div class="rich-content"><p>Microsoft will retire the pod name dimension from <code>kube_pod_status_phase</code> and <code>kube_pod_status_ready</code> on <strong>2027-09-30</strong>. The supplied retirement announcement and AKS reference agree on this date.</p>
+<div class="rich-content"><p>Microsoft will retire the pod name dimension from <code>kube_pod_status_phase</code> and <code>kube_pod_status_ready</code> on <strong>September 30, 2027</strong>. The supplied retirement announcement and AKS reference agree on this date.</p>
 <p>Update dependent monitoring before that date. After retirement, filtering, grouping, splitting and alerting by pod name will no longer be available through these platform metrics. No separate migration deadline or phased restrictions are documented.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>On <strong>2027-09-30</strong>, Microsoft will retire the pod name dimension from two AKS platform metrics:</p>
+<div class="rich-content"><p>On <strong>September 30, 2027</strong>, Microsoft will retire the pod name dimension from two AKS platform metrics:</p>
 <ul>
 <li><code>kube_pod_status_phase</code>: number of pods by phase.</li>
 <li><code>kube_pod_status_ready</code>: number of pods in Ready state.</li>
@@ -1936,7 +1936,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Review dashboards, alerts, workbooks, automation and monitoring workflows for dependencies on the pod name dimension of <code>kube_pod_status_phase</code> or <code>kube_pod_status_ready</code>.</li>
-<li>If you use only aggregate pod counts or namespace-level monitoring, no action is required. If you need pod-level monitoring, move affected dependencies before <strong>2027-09-30</strong>. Microsoft directs you to Azure Monitor managed service for Prometheus; the announcement also recommends Kubernetes-native pod metrics for pod-level monitoring and troubleshooting.</li>
+<li>If you use only aggregate pod counts or namespace-level monitoring, no action is required. If you need pod-level monitoring, move affected dependencies before <strong>September 30, 2027</strong>. Microsoft directs you to Azure Monitor managed service for Prometheus; the announcement also recommends Kubernetes-native pod metrics for pod-level monitoring and troubleshooting.</li>
 <li>For managed Prometheus adoption, create or select an Azure Monitor workspace. Enable direct AKS collection through onboarding, which installs the Azure Monitor agent and creates a data collection rule, or retain self-managed Prometheus and configure remote write to the workspace. In Microsoft Azure air-gapped clouds, contact support to enable managed Prometheus.</li>
 <li>As a team-owned completion check, validate that replacement monitoring provides the pod-level queries, dashboards and alerts you require before retiring old dependencies.</li>
 </ol>
@@ -1946,7 +1946,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your AKS monitoring filters, splits, groups or alerts by pod name using either affected platform metric. Without updating those dependencies, you lose those pod-name-dependent operations on <strong>2027-09-30</strong>.</p>
+<div class="rich-content"><p>You are affected if your AKS monitoring filters, splits, groups or alerts by pod name using either affected platform metric. Without updating those dependencies, you lose those pod-name-dependent operations on <strong>September 30, 2027</strong>.</p>
 <p>Aggregate pod counts, metric names and namespace-level monitoring remain available. Aggregate-only monitoring requires no action. The notice concerns monitoring granularity, not AKS workload shutdown or changes to cluster operation.</p>
 <p>Both affected platform metrics are marked as not exportable to Azure Monitor Logs through diagnostic settings. The references do not specify retirement-related historical-data deletion or costs, or establish how many of your resources are affected.</p>
 <p>If you adopt managed Prometheus, its overview documents 18-month metric retention at no additional storage cost, with charges for ingestion and queries. These are replacement-service characteristics, not retirement-related changes. Broadening collection beyond minimal ingestion can significantly increase ingestion volume; no cost estimate is supplied.</p>

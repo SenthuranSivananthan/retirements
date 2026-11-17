@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Virtual Machines</span><span class="badge retired" data-deadline="2026-06-30"><span></span>Retired</span></div>
-  <h1>Retirement: DCsv2-series Azure Virtual Machines will be retired on June 30, 2026</h1><p>Azure DCsv2-series VMs retire on 2026-06-30, including uses through Virtual Machine Scale Sets and AKS. Microsoft states that remaining DCsv2 VM subscriptions stop working and stop incurring billing charges afterward. Capacity restrictions and a ban on new DCsv2 subscriptions begin on 2025-07-01. Migrate before retirement, checking regional capacity, quota, attestation and temporary-disk dependencies. DCdsv3, the recommended Intel SGX replacement, has a separate documented retirement on 2029-10-31; this does not extend the DCsv2 deadline.</p>
+  <h1>Retirement: DCsv2-series Azure Virtual Machines will be retired on June 30, 2026</h1><p>Azure DCsv2-series VMs retire on June 30, 2026, including uses through Virtual Machine Scale Sets and AKS. Microsoft states that remaining DCsv2 VM subscriptions stop working and stop incurring billing charges afterward. Capacity restrictions and a ban on new DCsv2 subscriptions begin on July 1, 2025. Migrate before retirement, checking regional capacity, quota, attestation and temporary-disk dependencies. DCdsv3, the recommended Intel SGX replacement, has a separate documented retirement on October 31, 2029; this does not extend the DCsv2 deadline.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-06-30"><strong>Retired</strong><span>Retirement date: <time datetime="2026-06-30">30 Jun 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 14 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,20 +1916,20 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Jun 2026</p>
-<div class="rich-content"><p>DCsv2-series VMs retire on <strong>2026-06-30</strong>. Complete migration before that date. Microsoft states that remaining DCsv2 VM subscriptions stop working and stop incurring billing charges afterward.</p>
+<div class="rich-content"><p>DCsv2-series VMs retire on <strong>June 30, 2026</strong>. Complete migration before that date. Microsoft states that remaining DCsv2 VM subscriptions stop working and stop incurring billing charges afterward.</p>
 <ul>
-<li><strong>2025-07-01:</strong> Capacity restrictions begin, and new DCsv2 subscriptions are no longer allowed. The extent of capacity restrictions is not specified.</li>
-<li><strong>2026-06-30:</strong> All DCsv2 uses retire, including Virtual Machine Scale Sets and AKS.</li>
-<li><strong>2029-10-31:</strong> DCdsv3-series VMs, a recommended replacement for Intel SGX workloads, separately retire. Migrate those workloads before that date.</li>
+<li><strong>July 1, 2025:</strong> Capacity restrictions begin, and new DCsv2 subscriptions are no longer allowed. The extent of capacity restrictions is not specified.</li>
+<li><strong>June 30, 2026:</strong> All DCsv2 uses retire, including Virtual Machine Scale Sets and AKS.</li>
+<li><strong>October 31, 2029:</strong> DCdsv3-series VMs, a recommended replacement for Intel SGX workloads, separately retire. Migrate those workloads before that date.</li>
 </ul>
-<p>The DCsv2 notice does not identify DCdsv3 as retiring, but the supplied DCdsv3 product page explicitly documents its separate retirement. These are different series and milestones, not conflicting DCsv2 dates. The DCsv2 guide's 2026-09-26 update timestamp does not establish an extension.</p>
+<p>The DCsv2 notice does not identify DCdsv3 as retiring, but the supplied DCdsv3 product page explicitly documents its separate retirement. These are different series and milestones, not conflicting DCsv2 dates. The DCsv2 guide's September 26, 2026 update timestamp does not establish an extension.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring <strong>Azure DCsv2-series VMs on 2026-06-30</strong>, including standalone VMs, Virtual Machine Scale Sets and app-enclave-aware containers on AKS that use DCsv2. Remaining DCsv2 VM subscriptions stop working afterward.</p>
-<p>Until retirement, Microsoft provides workload support, SLA assurance, infrastructure updates and maintenance, but does not accept feature requests or develop new DCsv2 features. Capacity restrictions apply from 2025-07-01, so unrestricted availability before retirement is not promised.</p>
-<p>Replacement choices depend on your programming model: Intel SGX enclaves, VM-based confidential computing, or containers. DCdsv3 retains Intel SGX but has its own retirement on 2029-10-31. Microsoft does not plan to deploy DCsv2, DCsv3 or DCdsv3 in new Azure regions.</p>
+<div class="rich-content"><p>Microsoft is retiring <strong>Azure DCsv2-series VMs on June 30, 2026</strong>, including standalone VMs, Virtual Machine Scale Sets and app-enclave-aware containers on AKS that use DCsv2. Remaining DCsv2 VM subscriptions stop working afterward.</p>
+<p>Until retirement, Microsoft provides workload support, SLA assurance, infrastructure updates and maintenance, but does not accept feature requests or develop new DCsv2 features. Capacity restrictions apply from July 1, 2025, so unrestricted availability before retirement is not promised.</p>
+<p>Replacement choices depend on your programming model: Intel SGX enclaves, VM-based confidential computing, or containers. DCdsv3 retains Intel SGX but has its own retirement on October 31, 2029. Microsoft does not plan to deploy DCsv2, DCsv3 or DCdsv3 in new Azure regions.</p>
 <p>The other supplied replacement reference pages do not independently establish retirements for those products.</p>
 </div>
       <div class="notice"></div>
@@ -1940,7 +1940,7 @@
 <li>Identify DCsv2 workloads across standalone VMs, Virtual Machine Scale Sets and AKS. Assess Intel SGX and attestation requirements, performance, local temporary-disk dependencies and regional needs. The supplied guidance provides no fleet-wide discovery procedure.</li>
 <li>Select a replacement for your use case:
 <ul>
-<li><strong>Intel SGX enclaves:</strong> DCdsv3. Account for its separate 2029-10-31 retirement. DCdsv3 does not support Intel EPID Attestation Service (IAS); transition away from IAS if you use it.</li>
+<li><strong>Intel SGX enclaves:</strong> DCdsv3. Account for its separate October 31, 2029 retirement. DCdsv3 does not support Intel EPID Attestation Service (IAS); transition away from IAS if you use it.</li>
 <li><strong>VM-based workloads:</strong> DCasv5/DCadsv5/ECasv5/ECadsv5, DCasv6/ECasv6 or DC/ECesv6. The DCsv2 guidance labels the latter two groups as preview; the DCasv6/ECasv6 announcement describes gated access and gradual regional rollout. Supplied reference pages do not establish universal availability or replacement compatibility.</li>
 <li><strong>Containers:</strong> Azure Confidential Container Instances (C-ACI), or Virtual nodes on Azure Container Instances (C-VN2) for AKS orchestration. Confidential virtual nodes require a region supporting confidential ACI. ACI Windows containers and enclaves are preview; enclaves are Linux-only. Confidential ACI requires enforcement policies generated with the Azure CLI confcom extension, not manually created policies.</li>
 </ul>
@@ -1949,7 +1949,7 @@
 <li>For an available DCdsv3 size in your region, stop and deallocate the VM, select the target size, resize and start it. Resizing restarts the VM; Microsoft recommends off-peak hours. Consider a static IP before deallocation if you need to retain the address, because deallocation releases dynamic IPs.</li>
 <li>For DCsv2 workloads in North Central US, Canada East, Australia Southeast or UK West, choose a supported destination region or another offering. The documented cross-region path requires backup, destination quota, deallocation, image capture and replication, then destination VM creation. <strong>The image-capture instructions select automatic deletion of the source VM after image creation.</strong> Choose specialized versus generalized imaging deliberately.</li>
 <li>Review pricing and active DCsv2 Reserved Instances. The guide lists reservation exchange, trade-in for an Azure Savings Plan, or new reservations as options.</li>
-<li>Complete migration before 2026-06-30. As a team-owned completion check, validate the migrated workload and its dependencies. Detailed validation, cutover and general cleanup procedures are not supplied.</li>
+<li>Complete migration before June 30, 2026. As a team-owned completion check, validate the migrated workload and its dependencies. Detailed validation, cutover and general cleanup procedures are not supplied.</li>
 </ol>
 <p>You cannot directly resize between sizes with and without a local temporary disk. DCsv2-to-DCdsv3 resizing is supported; DCsv2-to-DCsv3 requires a separate migration workaround. Check images and scripts for temporary-disk dependencies. The guide's same-price, no-local-disk option contains inconsistent workaround direction; confirm its procedure and applicability before using it.</p>
 </div>
@@ -1958,13 +1958,13 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you use DCsv2 directly, through Virtual Machine Scale Sets, or through app-enclave-aware containers on AKS. The supplied content does not establish whether your resources use DCsv2.</p>
-<p>Without migration, Microsoft states that remaining DCsv2 VM subscriptions stop working and stop incurring billing charges after <strong>2026-06-30</strong>. Post-retirement data retention, deletion, recovery access and separate console/API or deployment-tooling behavior are not documented.</p>
+<p>Without migration, Microsoft states that remaining DCsv2 VM subscriptions stop working and stop incurring billing charges after <strong>June 30, 2026</strong>. Post-retirement data retention, deletion, recovery access and separate console/API or deployment-tooling behavior are not documented.</p>
 <p>During migration:</p>
 <ul>
 <li>Resizing restarts the VM. Deallocation releases dynamic IP addresses but does not affect OS or data disks.</li>
 <li>The documented cross-region image procedure automatically deletes the original VM after image creation; back up data first.</li>
 <li>Regional availability and quota may require a move, particularly from North Central US, Canada East, Australia Southeast or UK West.</li>
-<li>DCdsv3 does not support IAS. The guide separately reports Intel IAS end of support on 2025-04-02; that is not the DCsv2 retirement date.</li>
+<li>DCdsv3 does not support IAS. The guide separately reports Intel IAS end of support on April 2, 2025; that is not the DCsv2 retirement date.</li>
 <li>Temporary-disk differences can require a separate migration path and changes to dependent images or scripts.</li>
 </ul>
 <p>Switching SKUs may change billing; DCsv2-to-DCdsv3 pricing changes are documented, but no specific cost estimate is supplied. The stated end of DCsv2 billing does not establish the billing treatment of other resources or reservations.</p>

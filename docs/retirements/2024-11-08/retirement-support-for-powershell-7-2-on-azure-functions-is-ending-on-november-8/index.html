@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Functions</span><span class="badge retired" data-deadline="2024-11-08"><span></span>Retired</span></div>
-  <h1>Retirement: Support for PowerShell 7.2 on Azure Functions is ending on November 8, 2024</h1><p>Support for PowerShell 7.2 on Azure Functions ended on 2024-11-08. Existing apps continue to run, but Microsoft no longer provides updates or customer service for that version. Upgrade to PowerShell 7.4 on Azure Functions runtime v4, and validate binding-property casing and HTTP request encoding before production deployment. This is an end-of-support milestone, not a documented workload shutdown.</p>
+  <h1>Retirement: Support for PowerShell 7.2 on Azure Functions is ending on November 8, 2024</h1><p>Support for PowerShell 7.2 on Azure Functions ended on November 8, 2024. Existing apps continue to run, but Microsoft no longer provides updates or customer service for that version. Upgrade to PowerShell 7.4 on Azure Functions runtime v4, and validate binding-property casing and HTTP request encoding before production deployment. This is an end-of-support milestone, not a documented workload shutdown.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-11-08"><strong>Retired</strong><span>Retirement date: <time datetime="2024-11-08">8 Nov 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 month, 20 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">8 Nov 2024</p>
-<div class="rich-content"><p>Support for PowerShell 7.2 on Azure Functions ended on <strong>2024-11-08</strong>. The announcement directed you to upgrade before that date; the upgrade guide confirms the same end-of-support milestone.</p>
+<div class="rich-content"><p>Support for PowerShell 7.2 on Azure Functions ended on <strong>November 8, 2024</strong>. The announcement directed you to upgrade before that date; the upgrade guide confirms the same end-of-support milestone.</p>
 <p>Existing apps continue to run, but Microsoft no longer provides updates or customer service for PowerShell 7.2. The supplied sources do not specify a workload shutdown date. The general language-support policy provides no conflicting version-specific date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft ended support for PowerShell 7.2 on Azure Functions on 2024-11-08. Existing apps remain runnable, but Microsoft no longer provides updates or customer service for that version. The documented replacement is PowerShell 7.4 on Azure Functions runtime v4.</p>
+<div class="rich-content"><p>Microsoft ended support for PowerShell 7.2 on Azure Functions on November 8, 2024. Existing apps remain runnable, but Microsoft no longer provides updates or customer service for that version. The documented replacement is PowerShell 7.4 on Azure Functions runtime v4.</p>
 <p>The upgrade changes trigger and input binding data from Hashtable to OrderedHashtable, making property names case-sensitive. It also changes the default request encoding for Invoke-WebRequest and Invoke-RestMethod from ASCII to UTF-8.</p>
 <p>Apps targeting FUNCTIONS_WORKER_RUNTIME_VERSION as ~7 do not automatically upgrade to 7.4; the guide says ~7 refers to 7.0.x. The supplied sources identify no region-specific exceptions.</p>
 </div>
@@ -1943,7 +1943,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your Azure Function Apps are affected if they run PowerShell 7.2. Without an upgrade, existing apps continue running after 2024-11-08, but Microsoft no longer provides updates or customer service for that version. The supplied sources do not establish whether your environment contains affected apps.</p>
+<div class="rich-content"><p>Your Azure Function Apps are affected if they run PowerShell 7.2. Without an upgrade, existing apps continue running after November 8, 2024, but Microsoft no longer provides updates or customer service for that version. The supplied sources do not establish whether your environment contains affected apps.</p>
 <ul>
 <li><strong>Application compatibility:</strong> Incorrectly cased trigger/input property access can return null without an error after upgrading. The HTTP request encoding change to UTF-8 can affect code that depends on ASCII.</li>
 <li><strong>Deployment tooling:</strong> The guide requires Azure PowerShell or ARM for Linux language-version upgrades rather than the portal.</li>

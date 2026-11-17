@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Virtual Machines</span><span class="badge upcoming" data-deadline="2029-11-15"><span></span>Upcoming</span></div>
-  <h1>Retirement: Dv3, Dsv3, Ev3, and Esv3 Azure VMs</h1><p>Microsoft will retire Dv3, Dsv3, Ev3 and Esv3 Azure VMs in public cloud Azure regions on 2029-11-15. Migrate affected Linux and Windows workloads before that date. Current lifecycle guidance says remaining VMs will be deallocated and stop working; the announcement also warns of eventual deletion without specifying timing. Capacity growth restrictions began in July 2026. Separately, purchases and renewals of one-year and three-year reservations for these series ended on 2026-07-01; existing reservations remain valid through their terms.</p>
+  <h1>Retirement: Dv3, Dsv3, Ev3, and Esv3 Azure VMs</h1><p>Microsoft will retire Dv3, Dsv3, Ev3 and Esv3 Azure VMs in public cloud Azure regions on November 15, 2029. Migrate affected Linux and Windows workloads before that date. Current lifecycle guidance says remaining VMs will be deallocated and stop working; the announcement also warns of eventual deletion without specifying timing. Capacity growth restrictions began in July 2026. Separately, purchases and renewals of one-year and three-year reservations for these series ended on July 1, 2026; existing reservations remain valid through their terms.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2029-11-15"><strong>1094 days remaining</strong><span>Retirement date: <time datetime="2029-11-15">15 Nov 2029</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 1 month, 16 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,18 +1916,18 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">15 Nov 2029</p>
-<div class="rich-content"><p>Dv3, Dsv3, Ev3 and Esv3 Azure VMs retire on <strong>2029-11-15</strong>. Complete your transition before that date.</p>
+<div class="rich-content"><p>Dv3, Dsv3, Ev3 and Esv3 Azure VMs retire on <strong>November 15, 2029</strong>. Complete your transition before that date.</p>
 <p>Current lifecycle guidance says remaining VMs will be deallocated at retirement, and you cannot create, resize into, run or purchase these sizes. The announcement uses less definite wording—VMs may be deallocated and ultimately deleted—but gives the same retirement date. No deletion schedule is documented.</p>
 <p>Separate earlier milestones apply:</p>
 <ul>
 <li><strong>July 2026:</strong> capacity growth restrictions began; Azure does not guarantee capacity for new or scaled-out deployments. This is not a shutdown milestone.</li>
-<li><strong>2026-07-01:</strong> purchases and renewals of one-year and three-year Reserved Instances for these series ended. Existing reservations remain valid through their terms; affected workloads move to pay-as-you-go billing when those reservations expire, even with auto-renew enabled.</li>
+<li><strong>July 1, 2026:</strong> purchases and renewals of one-year and three-year Reserved Instances for these series ended. Existing reservations remain valid through their terms; affected workloads move to pay-as-you-go billing when those reservations expire, even with auto-renew enabled.</li>
 </ul>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring <strong>Dv3, Dsv3, Ev3 and Esv3 Azure VM series in public cloud Azure regions on 2029-11-15</strong>, including Linux and Windows workloads and scale-set instances using those sizes. This date does not apply to every D-family, E-family or earlier-generation VM series.</p>
+<div class="rich-content"><p>Microsoft is retiring <strong>Dv3, Dsv3, Ev3 and Esv3 Azure VM series in public cloud Azure regions on November 15, 2029</strong>, including Linux and Windows workloads and scale-set instances using those sizes. This date does not apply to every D-family, E-family or earlier-generation VM series.</p>
 <p>These series are in the End of Life lifecycle stage and remain available until retirement, subject to capacity growth restrictions and restrictions on deployments through new subscriptions. The supplied guidance does not detail the new-subscription restrictions or pre-retirement maintenance and security-update commitments.</p>
 <p>After retirement, support and SLA coverage end, and current lifecycle guidance says remaining VMs are deallocated and stop working. The retirement announcement also warns of eventual deletion without specifying when.</p>
 <p>Microsoft recommends considering v5 first for existing workloads. v5 is Extended; v6 and v7 are Current. Current and Extended sizes are fully supported modernization destinations, subject to workload compatibility and availability.</p>
@@ -1941,7 +1941,7 @@
 <li>Select a replacement by workload requirements, not vCPU count alone. Consider v5 first: D-family for general-purpose workloads and E-family for memory-optimized workloads. Consider v6 or v7 where their features and platform requirements fit. Check memory, disk and NIC limits, throughput, supported disk types, regional and zonal availability, quota and capacity.</li>
 <li>Prepare the target platform. Base v5 sizes lack local temporary disks; choose a suitable temporary-disk variant if needed, and never store persistent data on temporary disks. Intel D-family v5 requires Accelerated Networking enabled on the source before resizing. Confirm supported OS images and current drivers. v5 supports Generation 1 and Generation 2; v6/v7 require a current Generation 2 image with UEFI, NVMe support and current MANA drivers. Trusted Launch is not a stated migration requirement.</li>
 <li>Choose a compatible migration method: resize, rebuild and move configuration and data, replace scale-set instances in controlled batches, or replicate and cut over. Resizing usually requires a restart and may require deallocation. Plan identity, networking, DNS and rollback for replication. Use application-aware synchronization and role transfer for stateful clusters, confirm vendor certification for appliances, and check supported sizes for service-managed compute rather than assuming a direct resize is supported.</li>
-<li>Establish performance baselines and rollback plans, start with representative low-risk workloads, and migrate in controlled waves before <strong>2029-11-15</strong>. Validate boot, application health, disks, networking, performance, monitoring and backup, then obtain workload-owner acceptance.</li>
+<li>Establish performance baselines and rollback plans, start with representative low-risk workloads, and migrate in controlled waves before <strong>November 15, 2029</strong>. Validate boot, application health, disks, networking, performance, monitoring and backup, then obtain workload-owner acceptance.</li>
 <li>Review reservations, savings plans, licensing and family-specific commitments. Existing reservations remain valid through their terms, but affected reservations cannot renew and workloads move to pay-as-you-go billing at expiry. A savings-plan trade-in is optional, not a retirement requirement. It requires eligible reservations, appropriate permissions and a new one- or three-year commitment at least equal to the returned reservations' remaining commitment; benefits may not cover the same resources. Savings-plan purchases cannot be canceled or refunded.</li>
 </ol>
 </div>
@@ -1951,7 +1951,7 @@
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you use <strong>Dv3, Dsv3, Ev3 or Esv3 VMs or scale-set instances in public cloud Azure regions</strong>. Identify exposure by inventorying sizes and configurations; the supplied material does not establish whether your environment contains affected resources.</p>
 <p>Capacity growth restrictions have applied since July 2026 to new or scaled-out deployments. They do not themselves shut down existing workloads.</p>
-<p>At retirement on <strong>2029-11-15</strong>, current lifecycle guidance says remaining VMs will be deallocated, stop working, stop incurring VM charges and lose SLA and support coverage. You cannot create, resize into, run or purchase these sizes. The announcement also warns of eventual deletion, but no deletion schedule or data-retention policy is supplied. Charges for associated resources are not addressed.</p>
+<p>At retirement on <strong>November 15, 2029</strong>, current lifecycle guidance says remaining VMs will be deallocated, stop working, stop incurring VM charges and lose SLA and support coverage. You cannot create, resize into, run or purchase these sizes. The announcement also warns of eventual deletion, but no deletion schedule or data-retention policy is supplied. Charges for associated resources are not addressed.</p>
 <p>Migration can require downtime and compatibility changes. Resizing usually restarts the VM and may require deallocation or a host move. Temporary-disk availability, networking requirements, images, drivers and performance can differ; matching vCPU counts alone does not establish equivalence. Region, zone, quota and capacity can constrain your target.</p>
 <p>Existing reservations remain valid until expiry, after which affected workloads move to pay-as-you-go billing even if auto-renew is enabled. No cost difference is quantified. The supplied content does not document separate console, API, integration or deployment-tooling retirement phases, or assign this retirement date to other VM series.</p>
 </div>
@@ -1963,7 +1963,7 @@
 <ol>
 <li>Maintain an inventory of affected workloads, dependencies, selected targets and migration waves. Record image and driver readiness, required features, regional and zonal availability, quota and capacity.</li>
 <li>Retain transition and validation evidence for boot, application health, disks, networking, baseline performance, monitoring, backup and workload-owner acceptance. Include state synchronization and role transfer for stateful workloads and vendor certification for appliances.</li>
-<li>Reconcile the inventory to identify remaining retiring sizes before <strong>2029-11-15</strong>. For service-managed workloads, the v6/v7 playbook ends at discovery, subject to the service's supported-size list; do not treat that limited check as proof of tenant-wide migration completion.</li>
+<li>Reconcile the inventory to identify remaining retiring sizes before <strong>November 15, 2029</strong>. For service-managed workloads, the v6/v7 playbook ends at discovery, subject to the service's supported-size list; do not treat that limited check as proof of tenant-wide migration completion.</li>
 </ol>
 <p>These local checks depend on inventory completeness. Reservation utilization in Azure portal <strong>Reservations</strong> tracks billing-benefit use, not retirement readiness, and requires appropriate reservation permissions.</p>
 <p>For migration assistance, submit an Azure support request with an active support plan and the required subscription-level permissions. Microsoft Q&amp;A is available for general questions.</p>

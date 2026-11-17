@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2024-08-31"><span></span>Retired</span></div>
-  <h1>Change tracking and inventory with Log Analytics agent in Azure Automation will be retired on 31 August 2024</h1><p>Azure Automation Change Tracking and Inventory with the Log Analytics agent had a retirement date of 2024-08-31. The supplied Microsoft Q&amp;A announcement identifies the same date as end of support and LA agent deprecation. Microsoft directed customers to migrate to the Azure Monitor Agent-based version to avoid service disruption. The sources do not establish an exact workload shutdown date. Migration requires manual handling of file-content tracking settings and, when changing workspaces, alerts. Same-workspace script migration removes extension-installed legacy agents, which can affect other solutions.</p>
+  <h1>Change tracking and inventory with Log Analytics agent in Azure Automation will be retired on 31 August 2024</h1><p>Azure Automation Change Tracking and Inventory with the Log Analytics agent had a retirement date of August 31, 2024. The supplied Microsoft Q&amp;A announcement identifies the same date as end of support and LA agent deprecation. Microsoft directed customers to migrate to the Azure Monitor Agent-based version to avoid service disruption. The sources do not establish an exact workload shutdown date. Migration requires manual handling of file-content tracking settings and, when changing workspaces, alerts. Same-workspace script migration removes extension-installed legacy agents, which can affect other solutions.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-08-31">31 Aug 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 8 months, 8 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2024</p>
-<div class="rich-content"><p>The retirement date for Azure Automation Change Tracking and Inventory with the Log Analytics (LA) agent was <strong>2024-08-31</strong>. The supplied Microsoft Q&amp;A announcement identifies that same date as end of support and LA agent deprecation.</p>
+<div class="rich-content"><p>The retirement date for Azure Automation Change Tracking and Inventory with the Log Analytics (LA) agent was <strong>August 31, 2024</strong>. The supplied Microsoft Q&amp;A announcement identifies that same date as end of support and LA agent deprecation.</p>
 <p>The retirement announcement required migration by that date to avoid service disruption; the Q&amp;A announcement instructed customers to migrate before it. Neither source establishes an exact workload shutdown date or when data would become inaccessible.</p>
 <p>The supplied AMA overview and migration guide do not independently establish a retirement deadline or document an extension. Their update dates are not retirement milestones.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Automation Change Tracking and Inventory with the LA agent reached its stated retirement and support-end date on <strong>2024-08-31</strong>. Microsoft named Change Tracking and Inventory with Azure Monitor Agent (AMA) as the replacement.</p>
+<div class="rich-content"><p>Azure Automation Change Tracking and Inventory with the LA agent reached its stated retirement and support-end date on <strong>August 31, 2024</strong>. Microsoft named Change Tracking and Inventory with Azure Monitor Agent (AMA) as the replacement.</p>
 <p>The affected migration scope includes Windows VMs, Linux VMs and Azure Arc-enabled servers using LA-based Change Tracking and Inventory. This is not a retirement of Azure Automation as a whole or of the AMA-based replacement.</p>
 <p>The AMA overview requires Change Tracking extension version <strong>2.20.0.0 or later</strong> and describes Azure Policy onboarding and data collection rule management. The supplied sources do not specify regional retirement exceptions, pre-retirement maintenance or security-update commitments, or exact post-retirement availability.</p>
 </div>
@@ -1931,7 +1931,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Microsoft directed you to migrate affected configurations to AMA by <strong>2024-08-31</strong> to avoid service disruption.</p>
+<div class="rich-content"><p>Microsoft directed you to migrate affected configurations to AMA by <strong>August 31, 2024</strong> to avoid service disruption.</p>
 <ol>
 <li>Identify LA-based Change Tracking and Inventory machines and their workspaces. The Automation account onboarding workflow lists Azure and Azure Arc machines ready for migration. A workspace's JSON View provides its resource ID.</li>
 <li>Choose a migration route: Azure portal workflows for selected machines or an Automation account's machines, or the documented PowerShell script for workspace-wide migration, including same-workspace migration. A Q&amp;A user reported a same-subscription restriction in portal onboarding; the supplied thread does not resolve it.</li>

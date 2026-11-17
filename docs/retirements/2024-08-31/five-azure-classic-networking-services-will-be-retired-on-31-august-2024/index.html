@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2024-08-31"><span></span>Retired</span></div>
-  <h1>Five Azure classic networking services will be retired on 31 August 2024</h1><p>Microsoft announced 2024-08-31 as the retirement date for classic Azure Virtual Network, reserved IP addresses, ExpressRoute gateway, Application Gateway and VPN Gateway. The notice directs you to migrate affected resources to Azure Resource Manager by that date to avoid service disruptions, but does not specify shutdown timing. ExpressRoute migration guidance documents configuration-dependent downtime and unsupported scenarios; it does not establish a separate retirement date.</p>
+  <h1>Five Azure classic networking services will be retired on 31 August 2024</h1><p>Microsoft announced August 31, 2024 as the retirement date for classic Azure Virtual Network, reserved IP addresses, ExpressRoute gateway, Application Gateway and VPN Gateway. The notice directs you to migrate affected resources to Azure Resource Manager by that date to avoid service disruptions, but does not specify shutdown timing. ExpressRoute migration guidance documents configuration-dependent downtime and unsupported scenarios; it does not establish a separate retirement date.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-08-31">31 Aug 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 5 months, 12 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2024</p>
-<div class="rich-content"><p>The announced retirement date for all five classic networking services is <strong>2024-08-31</strong>, also given as the migration deadline. The notice directs you to migrate before retirement and warns of service disruptions if you do not.</p>
+<div class="rich-content"><p>The announced retirement date for all five classic networking services is <strong>August 31, 2024</strong>, also given as the migration deadline. The notice directs you to migrate before retirement and warns of service disruptions if you do not.</p>
 <p>The supplied content does not specify shutdown timing or confirm actual post-retirement behavior. The ExpressRoute migration guidance provides no separate retirement milestone. The other supplied pages do not establish additional deadlines or an extension.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft announced retirement on <strong>2024-08-31</strong> of five networking services that depend on Azure Cloud Services (classic):</p>
+<div class="rich-content"><p>Microsoft announced retirement on <strong>August 31, 2024</strong> of five networking services that depend on Azure Cloud Services (classic):</p>
 <ul>
 <li>Classic Azure Virtual Network</li>
 <li>Classic reserved IP addresses</li>
@@ -1939,7 +1939,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify resources using the five affected classic networking services. The retirement notice does not provide discovery instructions.</li>
-<li>Follow the applicable service migration guidance to move affected resources to Azure Resource Manager. The announced migration deadline was <strong>2024-08-31</strong>. Detailed procedures are supplied only for ExpressRoute-associated resources.</li>
+<li>Follow the applicable service migration guidance to move affected resources to Azure Resource Manager. The announced migration deadline was <strong>August 31, 2024</strong>. Detailed procedures are supplied only for ExpressRoute-associated resources.</li>
 <li>For ExpressRoute, identify attached classic virtual networks, gateways and deployments. Check whether they share the circuit's subscription and whether a virtual network has both ExpressRoute and VPN gateways. That combined-gateway configuration cannot use the supplied procedure; moving a circuit across subscriptions is also unsupported.</li>
 <li>Install the latest Azure PowerShell modules, including the classic deployment model module. Review migration prerequisites, routing requirements, limitations and common errors. Verify that the classic circuit is fully operational and that you have a Resource Manager resource group.</li>
 <li>Move the ExpressRoute circuit to Resource Manager before migrating attached resources. The guidance states that circuit migration has no downtime.</li>
@@ -1951,7 +1951,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are in scope if you use the classic versions of Virtual Network, reserved IP addresses, ExpressRoute gateway, Application Gateway or VPN Gateway. The notice warns of service disruptions if you did not migrate by <strong>2024-08-31</strong>, but does not specify exact shutdown behavior. These pages do not determine which resources you have.</p>
+<div class="rich-content"><p>You are in scope if you use the classic versions of Virtual Network, reserved IP addresses, ExpressRoute gateway, Application Gateway or VPN Gateway. The notice warns of service disruptions if you did not migrate by <strong>August 31, 2024</strong>, but does not specify exact shutdown behavior. These pages do not determine which resources you have.</p>
 <p>For ExpressRoute, migration effects depend on configuration:</p>
 <ul>
 <li><strong>Circuit migration:</strong> Moving a circuit from classic to Resource Manager does not interrupt data transfer between your premises and Microsoft, according to the guidance.</li>

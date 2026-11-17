@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Monitor</span><span class="badge retired" data-deadline="2025-10-31"><span></span>Retired</span></div>
-  <h1>Retirement: Change Analysis (classic) API in Azure Monitor is retiring</h1><p>The notice sets Azure Monitor Change Analysis (classic) API retirement for 2025-10-31 and requires migration to Change Analysis powered by Azure Resource Graph before that date. It warns of workload deletion and associated application data loss, but does not confirm whether retirement or deletion occurred. The replacement guidance documents coverage exclusions and a 14-day change-history query window; it does not independently establish a retirement deadline.</p>
+  <h1>Retirement: Change Analysis (classic) API in Azure Monitor is retiring</h1><p>The notice sets Azure Monitor Change Analysis (classic) API retirement for October 31, 2025 and requires migration to Change Analysis powered by Azure Resource Graph before that date. It warns of workload deletion and associated application data loss, but does not confirm whether retirement or deletion occurred. The replacement guidance documents coverage exclusions and a 14-day change-history query window; it does not independently establish a retirement deadline.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-10-31"><strong>Retired</strong><span>Retirement date: <time datetime="2025-10-31">31 Oct 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 30 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,8 +1916,8 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Oct 2025</p>
-<div class="rich-content"><p>The notice sets retirement for <strong>2025-10-31</strong> and requires you to migrate before that date to avoid service disruptions. That date has passed, but the supplied content does not confirm whether retirement or deletion occurred.</p>
-<p>No separate shutdown or deletion date is provided. The replacement page's last-updated date of 2025-10-31 is not an independent retirement deadline. Its 14-day change-history query window is a retention limit, not a retirement milestone.</p>
+<div class="rich-content"><p>The notice sets retirement for <strong>October 31, 2025</strong> and requires you to migrate before that date to avoid service disruptions. That date has passed, but the supplied content does not confirm whether retirement or deletion occurred.</p>
+<p>No separate shutdown or deletion date is provided. The replacement page's last-updated date of October 31, 2025 is not an independent retirement deadline. Its 14-day change-history query window is a retention limit, not a retirement milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
@@ -1933,7 +1933,7 @@
 <div class="rich-content"><ol>
 <li>Identify your workloads and integrations that use Azure Monitor Change Analysis (classic) API. The supplied content provides no discovery method.</li>
 <li>Assess Change Analysis powered by ARG against your use cases. It covers supported Azure Resource Manager control-plane changes, but excludes data-plane changes and App Service file and configuration changes. No alternative is documented for those excluded cases.</li>
-<li>Migrate affected usage to ARG Change Analysis. The notice required migration before 2025-10-31. The replacement guidance documents the portal experience and the preferred POST Microsoft.ResourceGraph/resources API, plus scoped GET/LIST Microsoft.Resources/Changes and Microsoft.Resources/Snapshots APIs.</li>
+<li>Migrate affected usage to ARG Change Analysis. The notice required migration before October 31, 2025. The replacement guidance documents the portal experience and the preferred POST Microsoft.ResourceGraph/resources API, plus scoped GET/LIST Microsoft.Resources/Changes and Microsoft.Resources/Snapshots APIs.</li>
 <li>If you need change history beyond 14 days, the replacement guidance describes integrating a Resource Graph query with Azure Logic Apps and manually exporting results to an Azure data store such as Log Analytics. This is a retention option, not a documented migration requirement.</li>
 </ol>
 <p>The supplied content does not provide a migration procedure, migration prerequisites, backup instructions, cutover, validation or cleanup steps.</p>

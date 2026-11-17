@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Blockchain Service</span><span class="badge retired" data-deadline="2021-09-10"><span></span>Retired</span></div>
-  <h1>Action Required: Migrate your Azure Blockchain Service data by 10 September 2021</h1><p>Azure Blockchain Service retired on 2021-09-10. Existing deployments were supported until that date and could not continue beyond it. After 2021-05-10, new member creation and deployments were no longer supported. Microsoft recommended migrating to an alternative, exporting existing ledger data if needed. Export required consortium coordination, a temporary transaction pause and time-limited downloads. Member resources continued to incur charges while they existed. The supplied reference pages do not establish the current availability of the recommended alternatives.</p>
+  <h1>Action Required: Migrate your Azure Blockchain Service data by 10 September 2021</h1><p>Azure Blockchain Service retired on September 10, 2021. Existing deployments were supported until that date and could not continue beyond it. After May 10, 2021, new member creation and deployments were no longer supported. Microsoft recommended migrating to an alternative, exporting existing ledger data if needed. Export required consortium coordination, a temporary transaction pause and time-limited downloads. Member resources continued to incur charges while they existed. The supplied reference pages do not establish the current availability of the recommended alternatives.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2021-09-10"><strong>Retired</strong><span>Retirement date: <time datetime="2021-09-10">10 Sep 2021</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 months, 27 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">10 Sep 2021</p>
-<div class="rich-content"><p>Azure Blockchain Service retired on <strong>2021-09-10</strong>. The notice and migration guide agree on this date. The guide states that existing deployments were supported until retirement and could not continue beyond it; this was not only an end-of-support milestone.</p>
-<p>A separate restriction applied <strong>after 2021-05-10</strong>: new member creation and deployments were no longer supported.</p>
+<div class="rich-content"><p>Azure Blockchain Service retired on <strong>September 10, 2021</strong>. The notice and migration guide agree on this date. The guide states that existing deployments were supported until retirement and could not continue beyond it; this was not only an end-of-support milestone.</p>
+<p>A separate restriction applied <strong>after May 10, 2021</strong>: new member creation and deployments were no longer supported.</p>
 <p>For data format v1 exports, the guide requires downloading data within seven days. That export-access window is separate from retirement. The supplied sources do not specify a shutdown time or post-retirement data-retention, deletion or recovery schedule.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Blockchain Service retired on <strong>2021-09-10</strong>, after which existing deployments could not continue. Microsoft supported existing deployments until that date. The supplied guidance identifies no regional, SKU or Quorum-version retirement exceptions and makes no separate security-update commitment.</p>
+<div class="rich-content"><p>Azure Blockchain Service retired on <strong>September 10, 2021</strong>, after which existing deployments could not continue. Microsoft supported existing deployments until that date. The supplied guidance identifies no regional, SKU or Quorum-version retirement exceptions and makes no separate security-update commitment.</p>
 <p>Microsoft recommended these alternatives:</p>
 <ul>
 <li><strong>Production or pilot workloads:</strong> ConsenSys Quorum Blockchain Service on Azure, the preferred destination, or a self-managed Azure VM deployment.</li>
@@ -1936,7 +1936,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>The documented migration target was before <strong>2021-09-10</strong>. These historical instructions do not establish that export or migration services remain available now.</p>
+<div class="rich-content"><p>The documented migration target was before <strong>September 10, 2021</strong>. These historical instructions do not establish that export or migration services remain available now.</p>
 <ol>
 <li>Identify your consortium members, nodes, Quorum version and whether you need existing ledger data. Select an alternative for your production, pilot or evaluation use case. If you do not need existing data, the guide recommends creating a new consortium.</li>
 <li>If you need an export and have a paid support plan, open a Microsoft Support ticket in the Azure portal. Select issue type Technical, service Azure Blockchain Service - Preview, summary Request data for migration, and problem type other. Include your subscription ID or resource ID, tenant, consortium, region, member name and preferred migration time. Each consortium member must request its own data. The guide does not document an export route without a paid support plan.</li>
@@ -1951,7 +1951,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Existing Azure Blockchain Service deployments could not continue beyond <strong>2021-09-10</strong>. The guidance covers production, pilot and evaluation scenarios and documents no regional, SKU or version exemption. It provides no resource-discovery method and does not establish whether your resources are affected.</p>
+<div class="rich-content"><p>Existing Azure Blockchain Service deployments could not continue beyond <strong>September 10, 2021</strong>. The guidance covers production, pilot and evaluation scenarios and documents no regional, SKU or version exemption. It provides no resource-discovery method and does not establish whether your resources are affected.</p>
 <p>Migration also temporarily interrupts transactions: Microsoft pauses the consortium for the export snapshot and resumes it afterward. You must coordinate application writes across members to avoid data loss or differences between networks. The guide describes v2 snapshot creation as about 8–10 times faster, but gives no guaranteed downtime duration.</p>
 <p>Each consortium member needs its own export request. Exports include node data, configuration, metadata and keys. Standard SKU exports include two validator nodes; Basic SKU exports include one, alongside transaction nodes. Download access is time-limited.</p>
 <p>A self-managed VM destination transfers infrastructure and blockchain-stack management to you and requires updated connectivity and security settings. Azure Blockchain member resources continue to incur charges while they exist; the sources provide no migration-cost estimate.</p>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">App Service</span><span class="badge retired" data-deadline="2024-08-31"><span></span>Retired</span></div>
-  <h1>App Service Environment version 1 and version 2 will be retired on 31 August 2024</h1><p>Azure App Service Environment (ASE) v1 and v2 retired on 2024-08-31. Microsoft directs affected customers to migrate to ASEv3. Support ended at retirement; notices warned of application unavailability, environment and application deletion, and associated data loss. Later Microsoft guidance describes progressive infrastructure decommissioning, disruptions and eventual outages, without confirming an exact shutdown or deletion date or an extension. Multitenant Basic, Standard, Premium v2 and Premium v3 plans are unaffected.</p>
+  <h1>App Service Environment version 1 and version 2 will be retired on 31 August 2024</h1><p>Azure App Service Environment (ASE) v1 and v2 retired on August 31, 2024. Microsoft directs affected customers to migrate to ASEv3. Support ended at retirement; notices warned of application unavailability, environment and application deletion, and associated data loss. Later Microsoft guidance describes progressive infrastructure decommissioning, disruptions and eventual outages, without confirming an exact shutdown or deletion date or an extension. Multitenant Basic, Standard, Premium v2 and Premium v3 plans are unaffected.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-08-31">31 Aug 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 2 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,16 +1916,16 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2024</p>
-<div class="rich-content"><p>ASEv1 and ASEv2 retired on <strong>2024-08-31</strong>. Microsoft required migration to ASEv3 by that date; support ended at retirement.</p>
+<div class="rich-content"><p>ASEv1 and ASEv2 retired on <strong>August 31, 2024</strong>. Microsoft required migration to ASEv3 by that date; support ended at retirement.</p>
 <p>The original announcement said environment and application availability would end on that date. Other notices warned of deletion and associated application data loss afterward. A later Microsoft response describes disruptions and eventual outages after retirement as infrastructure is decommissioned. These accounts agree on retirement but do not establish an exact shutdown or deletion date. No extension is confirmed, and the supplied content does not establish whether any particular environment has been deleted.</p>
-<p>A separate restriction blocked creation of new ASEv1/v2 environments after <strong>2024-01-15</strong> through all available methods. This was not the retirement milestone.</p>
+<p>A separate restriction blocked creation of new ASEv1/v2 environments after <strong>January 15, 2024</strong> through all available methods. This was not the retirement milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired <strong>Azure App Service Environment v1 and v2 on 2024-08-31</strong> and identifies ASEv3 as the migration destination. The notices connect this retirement to the underlying Azure Cloud Services (classic) retirement.</p>
+<div class="rich-content"><p>Microsoft retired <strong>Azure App Service Environment v1 and v2 on August 31, 2024</strong> and identifies ASEv3 as the migration destination. The notices connect this retirement to the underlying Azure Cloud Services (classic) retirement.</p>
 <p>Affected configurations include Premium plans within ASEv1 and Isolated plans within ASEv2. Multitenant Basic, Standard, Premium v2 and Premium v3 plans are explicitly unaffected. A later comment that Premium v1/v2 plans are not retiring does not override the explicit ASEv1 retirement scope.</p>
-<p>Existing environments were required to migrate by retirement; new v1/v2 creation was blocked after 2024-01-15. The supplied content documents no regional exceptions or pre-retirement maintenance and security-update commitments. The supplied v3 overviews describe replacement capabilities and constraints, but do not independently establish a retirement or revise its date.</p>
+<p>Existing environments were required to migrate by retirement; new v1/v2 creation was blocked after January 15, 2024. The supplied content documents no regional exceptions or pre-retirement maintenance and security-update commitments. The supplied v3 overviews describe replacement capabilities and constraints, but do not independently establish a retirement or revise its date.</p>
 </div>
       <div class="notice"></div>
     </section>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify whether your applications run in ASEv1 or ASEv2. The retirement discussion references upgrade documentation for finding your environment version, but the supplied content does not include that procedure. A plan name such as P3v2 does not mean you use ASEv2.</li>
-<li>If affected, follow the referenced guidance to migrate to ASEv3. The required deadline was 2024-08-31; later Microsoft guidance says to migrate as soon as possible to avoid disruptions. Contact Microsoft about remaining resources rather than assuming they or their data remain available.</li>
+<li>If affected, follow the referenced guidance to migrate to ASEv3. The required deadline was August 31, 2024; later Microsoft guidance says to migrate as soon as possible to avoid disruptions. Contact Microsoft about remaining resources rather than assuming they or their data remain available.</li>
 <li>Review v3 compatibility and capacity before migration. V3 does not support backup and restore using storage behind a firewall or FTPS access through a custom domain suffix; no replacements for those capabilities are supplied. Check regional and SKU availability, network requirements and subnet capacity. The overview recommends a /24 subnet for full scale-out and documents limits of 200 instances per environment and 100 per Isolated v2 plan.</li>
 <li>If you need zone redundancy, confirm regional support and configure the environment and relevant plans. Each zone-redundant plan needs at least two instances; a per-app scaling limit of one still permits only one active replica for that app or slot. Dedicated hosts have limited regional availability, separate core-based capacity limits, support only I1v2, I2v2 and I3v2 sizes, and do not support zone redundancy.</li>
 <li>If you want reservation coverage on ASEv3, purchase Isolated v2 reservations; existing ASE reservations do not transfer.</li>
@@ -1945,8 +1945,8 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your applications run in <strong>ASEv1 or ASEv2</strong>, including Premium plans within ASEv1 and Isolated plans within ASEv2. Multitenant Basic, Standard, Premium v2 and Premium v3 plans, including P3v2, are explicitly unaffected. The supplied content does not establish which resources you use.</p>
-<p>Without migration, affected environments lost support on 2024-08-31. Notices warned of workload unavailability, deletion of environments and applications, and loss of associated application data. Later Microsoft guidance describes progressive disruptions and eventual outages; the exact shutdown, deletion and recovery status of any particular environment is not established.</p>
-<p>The separate creation restriction after 2024-01-15 covered templates, Azure Portal, Azure CLI and REST API. It does not by itself establish removal of all management access.</p>
+<p>Without migration, affected environments lost support on August 31, 2024. Notices warned of workload unavailability, deletion of environments and applications, and loss of associated application data. Later Microsoft guidance describes progressive disruptions and eventual outages; the exact shutdown, deletion and recovery status of any particular environment is not established.</p>
+<p>The separate creation restriction after January 15, 2024 covered templates, Azure Portal, Azure CLI and REST API. It does not by itself establish removal of all management access.</p>
 <p>For migration planning, v3 feature gaps, regional/SKU availability and capacity limits can affect suitability. Existing ASE reservations do not transfer. The v3 overview documents an empty-environment charge equivalent to one Windows I1v2 instance and additional dedicated-host charges; these are not estimates of your migration costs.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

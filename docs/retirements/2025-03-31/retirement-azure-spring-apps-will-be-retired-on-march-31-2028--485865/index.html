@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Spring Apps</span><span class="badge retired" data-deadline="2025-03-31"><span></span>Retired</span></div>
-  <h1>Retirement: Azure Spring Apps will be retired on March 31, 2028</h1><p>Azure Spring Apps retirement dates depend on your plan: Standard consumption and dedicated (preview) retired on 2025-03-31; Basic, Standard and Enterprise retire on 2028-03-31. After each applicable date, Microsoft ends support and instances become inaccessible. The structured deadline represents the earlier preview-plan retirement, not all plans. Three Enterprise Tanzu components separately lost support starting September 2025. Migrate to a suitable destination before your plan retires; guidance conflicts for customers retaining Spring commercial support or Tanzu components.</p>
+  <h1>Retirement: Azure Spring Apps will be retired on March 31, 2028</h1><p>Azure Spring Apps retirement dates depend on your plan: Standard consumption and dedicated (preview) retired on March 31, 2025; Basic, Standard and Enterprise retire on March 31, 2028. After each applicable date, Microsoft ends support and instances become inaccessible. The structured deadline represents the earlier preview-plan retirement, not all plans. Three Enterprise Tanzu components separately lost support starting September 2025. Migrate to a suitable destination before your plan retires; guidance conflicts for customers retaining Spring commercial support or Tanzu components.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-03-31"><strong>Retired</strong><span>Retirement date: <time datetime="2025-03-31">31 Mar 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 13 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1917,17 +1917,17 @@
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2025</p>
 <div class="rich-content"><h3>Standard consumption and dedicated (preview)</h3>
-<p>Retirement was <strong>2025-03-31</strong>. The sunset period began on 2024-09-30, and new-customer sign-ups stopped after that date.</p>
+<p>Retirement was <strong>March 31, 2025</strong>. The sunset period began on September 30, 2024, and new-customer sign-ups stopped after that date.</p>
 <h3>Basic, Standard and Enterprise</h3>
-<p>Retirement is <strong>2028-03-31</strong>. After that date, Microsoft ends support and access to your workloads and Azure Spring Apps services. Existing customers can continue operating until retirement, subject to the earlier component-support exception below.</p>
-<p>Current retirement guidance states that the retirement period began and new-customer sign-ups stopped on <strong>2025-03-17</strong>. One announcement instead says sign-ups stopped after <strong>2025-03-31</strong> and describes the sunset start only as mid-March 2025. Use the current guidance's 2025-03-17 restriction; the announcement's alternative remains a source discrepancy, not an extension.</p>
+<p>Retirement is <strong>March 31, 2028</strong>. After that date, Microsoft ends support and access to your workloads and Azure Spring Apps services. Existing customers can continue operating until retirement, subject to the earlier component-support exception below.</p>
+<p>Current retirement guidance states that the retirement period began and new-customer sign-ups stopped on <strong>March 17, 2025</strong>. One announcement instead says sign-ups stopped after <strong>March 31, 2025</strong> and describes the sunset start only as mid-March 2025. Use the current guidance's March 17, 2025 restriction; the announcement's alternative remains a source discrepancy, not an extension.</p>
 <h3>Enterprise component support</h3>
 <p>App Live View, App Accelerator and App Configuration Service lost support starting <strong>September 2025</strong>, also described as after August 2025. No exact day is supplied. This is separate from service retirement and does not establish workload shutdown then.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring Azure Spring Apps Standard consumption and dedicated (preview), Basic, Standard and Enterprise plans. The preview plan retired on <strong>2025-03-31</strong>; Basic, Standard and Enterprise retire on <strong>2028-03-31</strong>. After the applicable retirement date, instances become inaccessible and Microsoft ends support.</p>
+<div class="rich-content"><p>Microsoft is retiring Azure Spring Apps Standard consumption and dedicated (preview), Basic, Standard and Enterprise plans. The preview plan retired on <strong>March 31, 2025</strong>; Basic, Standard and Enterprise retire on <strong>March 31, 2028</strong>. After the applicable retirement date, instances become inaccessible and Microsoft ends support.</p>
 <p>For Basic, Standard and Enterprise, Microsoft documents continued workload support, SLA assurance, infrastructure maintenance, OSS/Tanzu management and application container-image updates through retirement, except for the Enterprise components below. Microsoft will not add features or accept feature requests.</p>
 <p>Enterprise App Live View, App Accelerator and App Configuration Service lost support starting September 2025. Microsoft reserves the right to remove these unsupported components if a critical vulnerability is identified.</p>
 <p>The retirement concerns Azure Spring Apps, not Java on Azure overall. The supplied content does not document regional exceptions. The Container Apps and AKS product pages do not independently establish a retirement.</p>
@@ -1937,7 +1937,7 @@
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
-<li>Identify your Azure Spring Apps plans, workloads and Enterprise Tanzu dependencies. Standard consumption and dedicated (preview) had a <strong>2025-03-31</strong> migration deadline; Basic, Standard and Enterprise have a <strong>2028-03-31</strong> deadline. The supplied content provides no automated inventory procedure.</li>
+<li>Identify your Azure Spring Apps plans, workloads and Enterprise Tanzu dependencies. Standard consumption and dedicated (preview) had a <strong>March 31, 2025</strong> migration deadline; Basic, Standard and Enterprise have a <strong>March 31, 2028</strong> deadline. The supplied content provides no automated inventory procedure.</li>
 <li>Select a destination. Microsoft recommends Azure Container Apps for managed, serverless container hosting or Azure Kubernetes Service (AKS) for Kubernetes-based hosting. Current retirement guidance also lists Azure App Service as a PaaS alternative. Azure Container Apps meets most Spring hosting needs; full feature parity is not established.</li>
 <li>If you need Spring commercial support or Tanzu components, resolve the conflicting destination guidance before choosing. The supplied guidance recommends both AKS with Tanzu purchased through your Broadcom sales representative and Tanzu Platform Spring Essentials on Azure Container Apps; the applicable choice remains unconfirmed.</li>
 <li>Follow the referenced migration guidance and move workloads by your applicable deadline. The Azure CLI spring extension tool assists with Azure Container Apps environment setup; it is not documented as completing the entire migration. Detailed prerequisites, backup, cutover and cleanup procedures are not supplied.</li>
@@ -1951,19 +1951,19 @@
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>Your plan determines the retirement impact:</p>
 <ul>
-<li><strong>Standard consumption and dedicated (preview):</strong> retirement was 2025-03-31.</li>
-<li><strong>Basic, Standard and Enterprise:</strong> retirement is 2028-03-31.</li>
+<li><strong>Standard consumption and dedicated (preview):</strong> retirement was March 31, 2025.</li>
+<li><strong>Basic, Standard and Enterprise:</strong> retirement is March 31, 2028.</li>
 </ul>
 <p>After the applicable date, Microsoft ends support and instances become inaccessible. The supplied content does not establish whether your environment contains affected resources or specify data-retention and deletion timing.</p>
-<p>Existing Basic, Standard and Enterprise customers can continue creating, updating and deleting instances before retirement, but eligibility wording has limits. Current guidance requires an instance created before 2025-03-17 and also classifies customers without an instance in the past three months as new customers. It refers to operations within the same tenant in 2025 or within the same subscription; broader tenant-wide eligibility afterward is unclear.</p>
+<p>Existing Basic, Standard and Enterprise customers can continue creating, updating and deleting instances before retirement, but eligibility wording has limits. Current guidance requires an instance created before March 17, 2025 and also classifies customers without an instance in the past three months as new customers. It refers to operations within the same tenant in 2025 or within the same subscription; broader tenant-wide eligibility afterward is unclear.</p>
 <p>Enterprise customers using App Live View, App Accelerator or App Configuration Service face support loss starting September 2025 and possible component removal if a critical vulnerability is identified. That support milestone does not itself establish workload shutdown.</p>
-<p>Commercial Tanzu component billing resumed on <strong>2025-04-21</strong> at the pre-promotion price, with Microsoft collecting payment directly. Destination costs depend on usage and pricing model; the guidance recommends the Azure Pricing Calculator but supplies no customer-specific estimate.</p>
+<p>Commercial Tanzu component billing resumed on <strong>April 21, 2025</strong> at the pre-promotion price, with Microsoft collecting payment directly. Destination costs depend on usage and pricing model; the guidance recommends the Azure Pricing Calculator but supplies no customer-specific estimate.</p>
 <p>Separate console/API, integration and deployment-tooling effects are not detailed. No unaffected Azure Spring Apps plans are documented.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
-<div class="rich-content"><p>Monitor the retirement announcement's release timeline for migration guidance and tooling updates. It lists guidance for Azure Container Apps, AKS and Tanzu alternatives, plus migration-tooling guidance for all plans dated <strong>2025-03-17</strong>.</p>
+<div class="rich-content"><p>Monitor the retirement announcement's release timeline for migration guidance and tooling updates. It lists guidance for Azure Container Apps, AKS and Tanzu alternatives, plus migration-tooling guidance for all plans dated <strong>March 17, 2025</strong>.</p>
 <p>The supplied content does not document an automated resource-inventory method, migration-completion dashboard or defined completion checks. Workload inventories, dependency checks and destination-validation evidence you maintain are <strong>team-owned tracking</strong>, not verification performed by this website. The environment-setup tool does not establish migration completion.</p>
 <p>For migration help, open an Azure portal support ticket. For Azure Container Apps capability questions, use its GitHub repository's issues. Contact your Broadcom sales representative for Tanzu-on-AKS purchasing and deployment questions.</p>
 </div>

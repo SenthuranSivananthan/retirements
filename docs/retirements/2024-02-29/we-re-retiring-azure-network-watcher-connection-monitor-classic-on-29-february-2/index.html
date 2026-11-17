@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Monitor · Network Watcher</span><span class="badge retired" data-deadline="2024-02-29"><span></span>Retired</span></div>
-  <h1>We’re retiring Azure Network Watcher Connection Monitor (classic) on 29 February 2024</h1><p>Microsoft retired Azure Network Watcher Connection Monitor (classic) on 2024-02-29 and instructed customers to migrate before that date. New classic monitors could not be created starting 2021-07-01. Current supplied guidance says classic is no longer available, but still includes migration instructions whose present availability is unconfirmed. Move classic monitoring to Connection Monitor and update dashboard and integration metrics manually. The sources do not establish that monitored workloads shut down or specify what happens to unmigrated configurations and historical data.</p>
+  <h1>We’re retiring Azure Network Watcher Connection Monitor (classic) on 29 February 2024</h1><p>Microsoft retired Azure Network Watcher Connection Monitor (classic) on February 29, 2024 and instructed customers to migrate before that date. New classic monitors could not be created starting July 1, 2021. Current supplied guidance says classic is no longer available, but still includes migration instructions whose present availability is unconfirmed. Move classic monitoring to Connection Monitor and update dashboard and integration metrics manually. The sources do not establish that monitored workloads shut down or specify what happens to unmigrated configurations and historical data.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-02-29"><strong>Retired</strong><span>Retirement date: <time datetime="2024-02-29">29 Feb 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 6 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">29 Feb 2024</p>
-<div class="rich-content"><p>Azure Network Watcher Connection Monitor (classic) retired on <strong>2024-02-29</strong>. Microsoft instructed you to migrate before that date to minimize disruption.</p>
-<p>A separate restriction began on <strong>2021-07-01</strong>: new classic monitors could no longer be created. Existing monitors created before that date remained usable before retirement.</p>
+<div class="rich-content"><p>Azure Network Watcher Connection Monitor (classic) retired on <strong>February 29, 2024</strong>. Microsoft instructed you to migrate before that date to minimize disruption.</p>
+<p>A separate restriction began on <strong>July 1, 2021</strong>: new classic monitors could no longer be created. Existing monitors created before that date remained usable before retirement.</p>
 <p>The supplied product guidance says classic is now deprecated and no longer available, but gives no different retirement date. Its remaining classic-access and migration instructions do not confirm that those paths are still available. The sources do not specify a separate support-end date or the exact shutdown behavior at retirement.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired Azure Network Watcher Connection Monitor (classic) on 2024-02-29. The replacement is the current Connection Monitor, which supports connectivity monitoring across Azure and hybrid environments using TCP, ICMP and HTTP tests.</p>
+<div class="rich-content"><p>Microsoft retired Azure Network Watcher Connection Monitor (classic) on February 29, 2024. The replacement is the current Connection Monitor, which supports connectivity monitoring across Azure and hybrid environments using TCP, ICMP and HTTP tests.</p>
 <p>The migration guidance describes zero-downtime migration with unchanged monitor names, regions, subscriptions and resource IDs. Migrated monitors appear only in the current Connection Monitor. Metric alerts migrate automatically; dashboards and external integrations require manual metric updates.</p>
 <p>These migration descriptions remain alongside statements that classic is no longer available, so current migration availability is unconfirmed. The sources do not document regional retirement exceptions or classic maintenance and security-update commitments. They do not identify the current Connection Monitor or Azure Network Watcher as a whole as retired.</p>
 </div>
@@ -1931,7 +1931,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Microsoft instructed you to migrate classic monitoring before 2024-02-29. If you still depend on classic, use the supplied migration guidance, but confirm that its migration interface remains available: current guidance says classic is no longer available.</p>
+<div class="rich-content"><p>Microsoft instructed you to migrate classic monitoring before February 29, 2024. If you still depend on classic, use the supplied migration guidance, but confirm that its migration interface remains available: current guidance says classic is no longer available.</p>
 <ol>
 <li>Identify classic monitors and their source endpoints, destinations, tests, alerts, dashboards and integrations. The documented interface is <strong>Connection monitor → Migrate Connection Monitors</strong>, followed by subscription selection; its present availability is unconfirmed.</li>
 <li>Check prerequisites. Enable Network Watcher in applicable subscriptions and regions and install the Network Watcher extension on source Azure VMs and scale sets. For a custom Log Analytics workspace, enable Network Watcher in its subscription and region. The overview also requires the Network Performance Monitoring solution in the workspace. On-premises sources require Azure Arc and Azure Monitor Agent; you must enable Azure Arc yourself. Destination endpoints do not require the Network Watcher extension.</li>
@@ -1946,7 +1946,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are in scope if you depend on Azure Network Watcher Connection Monitor (classic). New classic monitor creation was blocked from 2021-07-01, and current supplied guidance says classic is no longer available. These sources do not establish whether you have affected resources.</p>
+<div class="rich-content"><p>You are in scope if you depend on Azure Network Watcher Connection Monitor (classic). New classic monitor creation was blocked from July 1, 2021, and current supplied guidance says classic is no longer available. These sources do not establish whether you have affected resources.</p>
 <p>The documented change concerns connectivity monitoring, not shutdown of the VMs, applications or network connections being monitored. The sources do not specify the fate of unmigrated configurations, historical data or classic console/API access beyond the general unavailability statement.</p>
 <p>For migration and replacement monitoring:</p>
 <ul>

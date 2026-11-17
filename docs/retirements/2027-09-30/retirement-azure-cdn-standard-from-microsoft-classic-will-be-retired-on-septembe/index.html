@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Content Delivery Network</span><span class="badge upcoming" data-deadline="2027-09-30"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure CDN Standard from Microsoft (classic) will be retired on September 30th, 2027</h1><p>Azure CDN Standard from Microsoft (classic) retires on 2027-09-30. Migrate to Azure Front Door Standard or Premium by that date to avoid service disruptions. New classic resource creation through the Azure portal, Terraform and command-line tools has been restricted since 2025-10-01. The migration guide also states that classic no longer supports new domain onboarding or managed certificates, without specifying effective dates. After migration, complete endpoint cutover by 2028-03-31. From 2028-04-01, classic endpoints are unsupported and might stop functioning. This separate endpoint milestone does not extend the retirement date.</p>
+  <h1>Retirement: Azure CDN Standard from Microsoft (classic) will be retired on September 30th, 2027</h1><p>Azure CDN Standard from Microsoft (classic) retires on September 30, 2027. Migrate to Azure Front Door Standard or Premium by that date to avoid service disruptions. New classic resource creation through the Azure portal, Terraform and command-line tools has been restricted since October 1, 2025. The migration guide also states that classic no longer supports new domain onboarding or managed certificates, without specifying effective dates. After migration, complete endpoint cutover by March 31, 2028. From April 1, 2028, classic endpoints are unsupported and might stop functioning. This separate endpoint milestone does not extend the retirement date.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-09-30"><strong>317 days remaining</strong><span>Retirement date: <time datetime="2027-09-30">30 Sep 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 4 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,21 +1916,21 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2027</p>
-<div class="rich-content"><p>Azure CDN Standard from Microsoft (classic) retires on <strong>2027-09-30</strong>. Migrate to Azure Front Door Standard or Premium by that date to avoid service disruptions. The supplied sources do not specify an exact workload shutdown time on the retirement date.</p>
+<div class="rich-content"><p>Azure CDN Standard from Microsoft (classic) retires on <strong>September 30, 2027</strong>. Migrate to Azure Front Door Standard or Premium by that date to avoid service disruptions. The supplied sources do not specify an exact workload shutdown time on the retirement date.</p>
 <p>The sources distinguish these additional milestones:</p>
 <ul>
-<li><strong>2025-10-01:</strong> New classic resource creation through the Azure portal, Terraform and command-line tools is no longer available.</li>
-<li><strong>2028-03-31:</strong> Complete post-migration endpoint cutover, including custom-domain DNS changes and replacement of directly used classic hostnames.</li>
-<li><strong>2028-04-01:</strong> Classic endpoints become unsupported and might stop functioning. Remaining dependencies might stop receiving traffic.</li>
+<li><strong>October 1, 2025:</strong> New classic resource creation through the Azure portal, Terraform and command-line tools is no longer available.</li>
+<li><strong>March 31, 2028:</strong> Complete post-migration endpoint cutover, including custom-domain DNS changes and replacement of directly used classic hostnames.</li>
+<li><strong>April 1, 2028:</strong> Classic endpoints become unsupported and might stop functioning. Remaining dependencies might stop receiving traffic.</li>
 </ul>
 <p>The endpoint cutover deadline is a separate milestone, not an extension of the retirement date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring <strong>Azure CDN Standard from Microsoft (classic) on 2027-09-30</strong>. Migrate affected profiles to Azure Front Door Standard or Premium.</p>
-<p>New classic resource creation through the Azure portal, Terraform and command-line tools has been restricted since <strong>2025-10-01</strong>. The migration guide also states that classic no longer supports profile creation, new domain onboarding or managed certificates; it does not give separate effective dates for the latter restrictions.</p>
-<p>After migration completes, the classic profile is no longer available. Azure Front Door automatically routes traffic from the classic endpoint to the new profile during the transition. You must still replace dependencies on classic endpoints by <strong>2028-03-31</strong>; from <strong>2028-04-01</strong>, those endpoints are unsupported and might stop functioning.</p>
+<div class="rich-content"><p>Microsoft is retiring <strong>Azure CDN Standard from Microsoft (classic) on September 30, 2027</strong>. Migrate affected profiles to Azure Front Door Standard or Premium.</p>
+<p>New classic resource creation through the Azure portal, Terraform and command-line tools has been restricted since <strong>October 1, 2025</strong>. The migration guide also states that classic no longer supports profile creation, new domain onboarding or managed certificates; it does not give separate effective dates for the latter restrictions.</p>
+<p>After migration completes, the classic profile is no longer available. Azure Front Door automatically routes traffic from the classic endpoint to the new profile during the transition. You must still replace dependencies on classic endpoints by <strong>March 31, 2028</strong>; from <strong>April 1, 2028</strong>, those endpoints are unsupported and might stop functioning.</p>
 <p>The supplied sources do not document maintenance, support or security-update commitments for the period before retirement.</p>
 </div>
       <div class="notice"></div>
@@ -1943,8 +1943,8 @@
 <li>Choose Standard or Premium for your requirements. A profile exceeding Standard resource limits migrates to Premium. You cannot change the profile name; rename endpoints whose names exceed 46 characters. Existing geo-filtering rules become WAF custom rules at the selected tier.</li>
 <li>Select <strong>Prepare</strong> and confirm only when ready: confirmation prevents further changes to the classic profile. Review the new read-only Front Door configuration.</li>
 <li>If you bring your own certificate, enable a system-assigned or user-assigned managed identity and grant access to the relevant Azure Key Vaults. Otherwise, skip this step. The guide states that Front Door Standard/Premium managed certificates are not currently supported in Azure Government Cloud; there, bring your own certificate or wait for availability.</li>
-<li>Select <strong>Migrate</strong> and confirm, completing migration by <strong>2027-09-30</strong>. Once migration finishes, the classic profile is no longer available. If you cancel migration, the new Front Door profile is deleted, but you must manually delete any new WAF policy copies.</li>
-<li>Complete endpoint cutover by <strong>2028-03-31</strong>. Update custom-domain DNS records to the new endpoint and replace classic hostnames used directly by applications, clients and integrations. Validate these changes while both endpoints remain functional.</li>
+<li>Select <strong>Migrate</strong> and confirm, completing migration by <strong>September 30, 2027</strong>. Once migration finishes, the classic profile is no longer available. If you cancel migration, the new Front Door profile is deleted, but you must manually delete any new WAF policy copies.</li>
+<li>Complete endpoint cutover by <strong>March 31, 2028</strong>. Update custom-domain DNS records to the new endpoint and replace classic hostnames used directly by applications, clients and integrations. Validate these changes while both endpoints remain functional.</li>
 </ol>
 </div>
       <p> </p>
@@ -1954,10 +1954,10 @@
 <div class="rich-content"><p>This retirement affects <strong>Azure CDN Standard from Microsoft (classic)</strong> profiles. Run <strong>Settings &gt; Migration &gt; Validate</strong> on each relevant profile to assess migration compatibility. Validation can take up to two minutes and provides errors and recommendations when checks fail; it does not establish that all endpoint dependencies have been found.</p>
 <p>The practical effects are distinct:</p>
 <ul>
-<li><strong>Resource creation:</strong> Since <strong>2025-10-01</strong>, you cannot create new classic resources through the Azure portal, Terraform or command-line tools. The guide also reports restrictions on new domain onboarding and managed certificates without separate effective dates.</li>
+<li><strong>Resource creation:</strong> Since <strong>October 1, 2025</strong>, you cannot create new classic resources through the Azure portal, Terraform or command-line tools. The guide also reports restrictions on new domain onboarding and managed certificates without separate effective dates.</li>
 <li><strong>Configuration:</strong> Preparing migration freezes changes to the classic profile. Completing migration makes that profile unavailable.</li>
 <li><strong>Traffic:</strong> Automatic routing from the classic endpoint supports continuity during the transition. The guide states that both endpoints remain functional during this period so you can validate cutover without downtime.</li>
-<li><strong>Remaining dependencies:</strong> Custom-domain DNS and directly used classic hostnames require updates by <strong>2028-03-31</strong>. From <strong>2028-04-01</strong>, unsupported classic endpoints might stop functioning, affecting applications, clients and integrations that still use them.</li>
+<li><strong>Remaining dependencies:</strong> Custom-domain DNS and directly used classic hostnames require updates by <strong>March 31, 2028</strong>. From <strong>April 1, 2028</strong>, unsupported classic endpoints might stop functioning, affecting applications, clients and integrations that still use them.</li>
 </ul>
 <p>Migration constraints include Standard resource limits, endpoint-name length, managed-identity access to certificates in Key Vault, and the managed-certificate limitation in Azure Government Cloud. The supplied sources do not provide cost estimates, data-retention commitments or general data-deletion details beyond cancellation cleanup.</p>
 </div>
@@ -1969,7 +1969,7 @@
 <li>Run <strong>Validate</strong> and resolve issues under <strong>View errors</strong> before preparing migration.</li>
 <li>After preparation, review the new read-only Front Door configuration.</li>
 <li>If you bring your own certificate, confirm that managed identity is enabled and has access to the relevant Key Vaults.</li>
-<li>After migration, validate custom-domain DNS changes and application, client and integration use of the new endpoint while both endpoints remain functional. Complete cutover by <strong>2028-03-31</strong>.</li>
+<li>After migration, validate custom-domain DNS changes and application, client and integration use of the new endpoint while both endpoints remain functional. Complete cutover by <strong>March 31, 2028</strong>.</li>
 </ol>
 <p>For <strong>team-owned tracking</strong>, record affected profiles, validation results, configuration reviews and endpoint-cutover checks. Compatibility validation alone does not establish that all DNS records or application dependencies have been updated.</p>
 <p>The supplied guide does not describe an automated estate-wide completion tracker or a retirement-specific help or escalation route.</p>

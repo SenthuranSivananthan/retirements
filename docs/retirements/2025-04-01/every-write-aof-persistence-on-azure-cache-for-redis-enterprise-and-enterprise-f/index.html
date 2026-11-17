@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Cache for Redis</span><span class="badge retired" data-deadline="2025-04-01"><span></span>Retired</span></div>
-  <h1>Every-write AOF persistence on Azure Cache for Redis Enterprise and Enterprise Flash will be retired on 1 April 2025</h1><p>Every-write (Always write) AOF persistence on Azure Cache for Redis Enterprise and Enterprise Flash retired on 2025-04-01. Microsoft announced that affected instances would automatically switch to every-second AOF on that date; the supplied content does not confirm completion. Microsoft recommends every-second AOF or RDB persistence instead. This retirement concerns one persistence option, not AOF persistence or the cache service as a whole.</p>
+  <h1>Every-write AOF persistence on Azure Cache for Redis Enterprise and Enterprise Flash will be retired on 1 April 2025</h1><p>Every-write (Always write) AOF persistence on Azure Cache for Redis Enterprise and Enterprise Flash retired on April 1, 2025. Microsoft announced that affected instances would automatically switch to every-second AOF on that date; the supplied content does not confirm completion. Microsoft recommends every-second AOF or RDB persistence instead. This retirement concerns one persistence option, not AOF persistence or the cache service as a whole.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-04-01"><strong>Retired</strong><span>Retirement date: <time datetime="2025-04-01">1 Apr 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 3 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Apr 2025</p>
-<div class="rich-content"><p>Every-write AOF persistence on Azure Cache for Redis Enterprise and Enterprise Flash retired on <strong>2025-04-01</strong>. Microsoft announced that instances using this option would automatically switch to every-second AOF on that date.</p>
+<div class="rich-content"><p>Every-write AOF persistence on Azure Cache for Redis Enterprise and Enterprise Flash retired on <strong>April 1, 2025</strong>. Microsoft announced that instances using this option would automatically switch to every-second AOF on that date.</p>
 <p>The reference guidance describes the option as already retired but supplies no alternative date or confirmation that automatic conversion completed. Its update date is not a retirement milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired the <strong>every-write</strong>, also called <strong>Always write</strong>, AOF persistence option for Azure Cache for Redis Enterprise and Enterprise Flash on <strong>2025-04-01</strong>.</p>
+<div class="rich-content"><p>Microsoft retired the <strong>every-write</strong>, also called <strong>Always write</strong>, AOF persistence option for Azure Cache for Redis Enterprise and Enterprise Flash on <strong>April 1, 2025</strong>.</p>
 <p>The announcement explains that a fix for potential AOF data-loss events significantly degrades performance with every-write enabled. Microsoft recommends every-second AOF or RDB persistence instead; AOF persistence as a whole is not retired by this change.</p>
 <p>The reference guidance still describes persistence as in preview for Enterprise and Enterprise Flash and gives no general-availability date. This specific option retirement does not cover Premium-tier AOF. The separate all-SKU Azure Cache for Redis retirement is a different change whose timeline is not established by these inputs.</p>
 </div>
@@ -1942,7 +1942,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are in scope if an <strong>Enterprise or Enterprise Flash</strong> cache uses <strong>every-write/Always write AOF persistence</strong>. Microsoft announced automatic conversion to every-second AOF on <strong>2025-04-01</strong> if you left that setting unchanged; the supplied content does not confirm whether conversion completed for any particular cache.</p>
+<div class="rich-content"><p>You are in scope if an <strong>Enterprise or Enterprise Flash</strong> cache uses <strong>every-write/Always write AOF persistence</strong>. Microsoft announced automatic conversion to every-second AOF on <strong>April 1, 2025</strong> if you left that setting unchanged; the supplied content does not confirm whether conversion completed for any particular cache.</p>
 <p>This is a persistence-setting change, not a documented cache-service shutdown. Before retirement, the fix for potential AOF data-loss events significantly degraded every-write performance. The content does not quantify that degradation or specify downtime or data-loss guarantees for conversion.</p>
 <p>Every-second AOF writes once per second and adds compute and throughput overhead. RDB takes interval-based snapshots with less throughput impact, but recovery depends on the latest snapshot. Persistence also preserves corrupted data rather than providing point-in-time recovery.</p>
 <p>Premium AOF, caches already using every-second AOF, and RDB configurations are not identified as affected by this specific option retirement. No assessment of your resources or migration costs is supplied.</p>

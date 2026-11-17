@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">API Management</span><span class="badge retired" data-deadline="2023-03-31"><span></span>Retired</span></div>
-  <h1>Review your VNET configurations that may be affected by IP address changes</h1><p>Azure API Management scheduled resource-provider IP address changes for 2023-03-31 in seven regions; this was a management-connectivity change, not a service retirement. Product guidance reports rollout completion between 2023-04-01 and 2023-04-20, without explicitly extending the action deadline. Developer and Premium instances inside virtual networks need networking updates where explicit IP-based rules or routes affect management connectivity. Without updates, services continue running, but configuration changes can be blocked.</p>
+  <h1>Review your VNET configurations that may be affected by IP address changes</h1><p>Azure API Management scheduled resource-provider IP address changes for March 31, 2023 in seven regions; this was a management-connectivity change, not a service retirement. Product guidance reports rollout completion between April 1, 2023 and April 20, 2023, without explicitly extending the action deadline. Developer and Premium instances inside virtual networks need networking updates where explicit IP-based rules or routes affect management connectivity. Without updates, services continue running, but configuration changes can be blocked.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2023-03-31"><strong>Retired</strong><span>Retirement date: <time datetime="2023-03-31">31 Mar 2023</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 9 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,8 +1916,8 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2023</p>
-<div class="rich-content"><p>The stated resource-provider IP address change date was <strong>2023-03-31</strong>, with networking updates required before that date. This is the scheduled configuration-change milestone, not a documented service retirement.</p>
-<p>Product guidance also reports that the rollout completed between <strong>2023-04-01 and 2023-04-20</strong>. It does not explicitly extend the action deadline or identify each region's actual cutover date. The structured date retains the scheduled milestone; the completion range describes the later rollout.</p>
+<div class="rich-content"><p>The stated resource-provider IP address change date was <strong>March 31, 2023</strong>, with networking updates required before that date. This is the scheduled configuration-change milestone, not a documented service retirement.</p>
+<p>Product guidance also reports that the rollout completed between <strong>April 1, 2023 and April 20, 2023</strong>. It does not explicitly extend the action deadline or identify each region's actual cutover date. The structured date retains the scheduled milestone; the completion range describes the later rollout.</p>
 <p>Without the required updates, your service continues running, but management connectivity can be blocked, preventing API additions or removals, policy changes and other configuration changes.</p>
 </div>
     </section>
@@ -1939,7 +1939,7 @@
 <li>Check other systems that could affect communication from the resource provider to the API Management subnet.</li>
 <li>Because the rollout is complete, you can remove the listed old IP addresses from your NSG.</li>
 </ol>
-<p>The documented action deadline was before <strong>2023-03-31</strong>. The supplied guidance does not provide an automated completion test.</p>
+<p>The documented action deadline was before <strong>March 31, 2023</strong>. The supplied guidance does not provide an automated completion test.</p>
 </div>
       <p> </p>
     </section>
@@ -1964,7 +1964,7 @@
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
 <div class="rich-content"><p>Use the documented Azure portal check to identify affected NSG rules: open the NSG associated with your API Management virtual network, select <strong>Inbound security rules</strong>, and look for the region's old source IP. Separately review control-plane UDRs, forced tunneling and other systems on the management path.</p>
 <p>For <strong>team-owned tracking</strong>, record each affected instance, its NSG update, routing and intermediary-system reviews, and any old-IP cleanup. This is local planning evidence, not a documented automated completion check. The NSG check alone does not establish that the full management path is ready.</p>
-<p>Microsoft reports that its rollout completed between <strong>2023-04-01 and 2023-04-20</strong>; that does not verify your network configuration. For questions, use Microsoft Q&amp;A. If you have a support plan and need technical help, create a support request.</p>
+<p>Microsoft reports that its rollout completed between <strong>April 1, 2023 and April 20, 2023</strong>; that does not verify your network configuration. For questions, use Microsoft Q&amp;A. If you have a support plan and need technical help, create a support request.</p>
 </div>
     </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">

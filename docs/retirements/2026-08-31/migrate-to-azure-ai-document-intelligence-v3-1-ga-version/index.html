@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2026-08-31"><span></span>Retired</span></div>
-  <h1>Migrate to Azure AI Document Intelligence v3.1 GA version</h1><p>Azure AI Document Intelligence v2.0 API retires on 2026-08-31. The announcement directs you to migrate to v3.1 by that date but does not specify post-retirement request behavior. Separate product guidance directs listed preview APIs, v2.1 and v3.0 to v4.0 on different support timelines; it does not explicitly revise the v2.0 milestone or migration target.</p>
+  <h1>Migrate to Azure AI Document Intelligence v3.1 GA version</h1><p>Azure AI Document Intelligence v2.0 API retires on August 31, 2026. The announcement directs you to migrate to v3.1 by that date but does not specify post-retirement request behavior. Separate product guidance directs listed preview APIs, v2.1 and v3.0 to v4.0 on different support timelines; it does not explicitly revise the v2.0 milestone or migration target.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2026-08-31">31 Aug 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 5 months, 2 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,19 +1916,19 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2026</p>
-<div class="rich-content"><p>Azure AI Document Intelligence <strong>v2.0 API retires on 2026-08-31</strong>. The announcement directs you to transition to v3.1 by the same date. It does not specify post-retirement request behavior or workload shutdown.</p>
+<div class="rich-content"><p>Azure AI Document Intelligence <strong>v2.0 API retires on August 31, 2026</strong>. The announcement directs you to transition to v3.1 by the same date. It does not specify post-retirement request behavior or workload shutdown.</p>
 <p>The migration guidance lists separate end-of-support milestones:</p>
 <ul>
-<li>REST previews 2024-07-31-preview, 2024-02-29-preview and 2023-10-31-preview: <strong>2026-06-30</strong>.</li>
-<li>v2.1: <strong>2027-09-15</strong>.</li>
-<li>v3.0 (2022-08-31): <strong>2029-03-30</strong>.</li>
+<li>REST previews 2024-07-31-preview, 2024-02-29-preview and 2023-10-31-preview: <strong>June 30, 2026</strong>.</li>
+<li>v2.1: <strong>September 15, 2027</strong>.</li>
+<li>v3.0 (2022-08-31): <strong>March 30, 2029</strong>.</li>
 </ul>
 <p>These are different version-specific milestones, not conflicting dates or extensions for v2.0. The structured deadline records the v2.0 retirement.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring Azure AI Document Intelligence <strong>v2.0 API on 2026-08-31</strong>. The announcement names v3.1 as the replacement.</p>
+<div class="rich-content"><p>Microsoft is retiring Azure AI Document Intelligence <strong>v2.0 API on August 31, 2026</strong>. The announcement names v3.1 as the replacement.</p>
 <p>Separate migration guidance names v4.0 (2024-11-30) as the GA target for the listed preview APIs, v2.1 and v3.0. It does not explicitly establish a revised target or deadline for v2.0, or announce retirement of v3.1. Older sections still recommend v3.1, so distinguish those examples from the explicit v4.0 guidance.</p>
 <p>Custom extraction and classification models trained with the listed preview APIs retire with those previews and require retraining using the latest GA API. The supplied content does not document regional exceptions or pre-retirement maintenance and security-update commitments.</p>
 </div>
@@ -1938,7 +1938,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify applications and integrations using v2.0, and separately inventory other API versions, SDKs and custom models. The v2.0 notice provides no identification method; the migration guidance documents model-level checks, not a complete application inventory.</li>
-<li>For v2.0, follow the announcement's direction to transition to v3.1 by <strong>2026-08-31</strong>. The supplied content does not include detailed v2.0 migration steps or explicitly reconcile that target with the separate v4.0 guidance.</li>
+<li>For v2.0, follow the announcement's direction to transition to v3.1 by <strong>August 31, 2026</strong>. The supplied content does not include detailed v2.0 migration steps or explicitly reconcile that target with the separate v4.0 guidance.</li>
 <li>For the listed previews, v2.1 or v3.0, migrate to v4.0 before the applicable support deadline and update the language-specific SDK. Guides cover .NET/C#, Java, Python and JavaScript/TypeScript; v3.0 can migrate directly to v4.0.</li>
 <li>Apply the relevant endpoint and response-handling changes. Older-version guidance includes replacing boundingBox with polygon; do not use older examples as v4.0 endpoint specifications. Retrain preview-trained extraction and classification models using the latest GA API, checking model expiration and available neural-build quota.</li>
 <li>As team-owned validation, check analysis results and successful model operations before production cutover. Review applicable pricing; the supplied content does not establish a migration cost estimate.</li>
@@ -1948,7 +1948,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected by the v2.0 retirement if your applications or integrations use that API. The supplied content does not establish whether you use it, and does not specify whether requests fail or workloads stop after <strong>2026-08-31</strong>.</p>
+<div class="rich-content"><p>You are affected by the v2.0 retirement if your applications or integrations use that API. The supplied content does not establish whether you use it, and does not specify whether requests fail or workloads stop after <strong>August 31, 2026</strong>.</p>
 <p>The listed previews, v2.1 and v3.0 have separate support deadlines. Microsoft warns of production disruption without migration, but does not equate every end-of-support date with workload shutdown. Preview-trained custom extraction and classification models also require attention.</p>
 <p>Migration guidance documents integration constraints including response-schema changes, removal of includeTextDetails and a single nesting level for composed models. Office/HTML support in prebuilt-read excludes bounding boxes and embedded images; add-on requests for those files return an empty array without errors.</p>
 <p>Custom neural-model builds have monthly per-subscription, per-region limits. Optional formula, font/style and high-resolution OCR features can add charges; these do not establish your migration cost. The sources do not specify retirement-related data retention, deletion or separate portal availability changes.</p>

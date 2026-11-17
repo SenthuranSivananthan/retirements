@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Monitor</span><span class="badge retired" data-deadline="2026-09-14"><span></span>Retired</span></div>
-  <h1>Azure Monitor Data Collection API Retirement</h1><p>Support for Azure Monitor&#39;s legacy HTTP Data Collector API ended on 2026-09-14. The supplied migration guide says ingestion continues for clients using TLS 1.2 or later and gives no shutdown date. This conflicts with the announcement&#39;s claim that endpoints would become unavailable after cutover; ingestion shutdown remains unconfirmed. Clients below TLS 1.2 have been unable to ingest since 2026-03-01. Migrate to the DCR-based Logs ingestion API, accounting for authentication, schema, payload-size and integration changes.</p>
+  <h1>Azure Monitor Data Collection API Retirement</h1><p>Support for Azure Monitor&#39;s legacy HTTP Data Collector API ended on September 14, 2026. The supplied migration guide says ingestion continues for clients using TLS 1.2 or later and gives no shutdown date. This conflicts with the announcement&#39;s claim that endpoints would become unavailable after cutover; ingestion shutdown remains unconfirmed. Clients below TLS 1.2 have been unable to ingest since March 1, 2026. Migrate to the DCR-based Logs ingestion API, accounting for authentication, schema, payload-size and integration changes.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-14"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-14">14 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 23 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">14 Sep 2026</p>
-<div class="rich-content"><p>Support for the legacy HTTP Data Collector API ended on <strong>2026-09-14</strong>. The supplied migration guide distinguishes this from shutdown: clients using TLS 1.2 or later can continue ingesting, and it specifies no ingestion shutdown date or separate migration deadline.</p>
-<p>The announcement also names <strong>2026-09-14</strong>, but says endpoints would become unavailable after cutover and directs migration before that date. Prefer the migration guide's explicit operational guidance; the conflicting shutdown claim remains unconfirmed. The inputs do not document an extension.</p>
-<p>A separate restriction began on <strong>2026-03-01</strong>: clients unable to negotiate TLS 1.2 or later can no longer ingest.</p>
+<div class="rich-content"><p>Support for the legacy HTTP Data Collector API ended on <strong>September 14, 2026</strong>. The supplied migration guide distinguishes this from shutdown: clients using TLS 1.2 or later can continue ingesting, and it specifies no ingestion shutdown date or separate migration deadline.</p>
+<p>The announcement also names <strong>September 14, 2026</strong>, but says endpoints would become unavailable after cutover and directs migration before that date. Prefer the migration guide's explicit operational guidance; the conflicting shutdown claim remains unconfirmed. The inputs do not document an extension.</p>
+<p>A separate restriction began on <strong>March 1, 2026</strong>: clients unable to negotiate TLS 1.2 or later can no longer ingest.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Monitor's legacy HTTP Data Collector API for custom-log ingestion is deprecated, and support ended on <strong>2026-09-14</strong>. According to the migration guide, ingestion continues for TLS 1.2-or-later clients; the announcement's conflicting endpoint-shutdown statement is not confirmed by that guide.</p>
+<div class="rich-content"><p>Azure Monitor's legacy HTTP Data Collector API for custom-log ingestion is deprecated, and support ended on <strong>September 14, 2026</strong>. According to the migration guide, ingestion continues for TLS 1.2-or-later clients; the announcement's conflicting endpoint-shutdown statement is not confirmed by that guide.</p>
 <p>Microsoft directs you to the DCR-based Logs ingestion API. It uses Microsoft Entra OAuth authentication and DCR-scoped access control, with either a DCR ingestion endpoint or a separate data collection endpoint (DCE).</p>
 <p>The replacement supports transformations, multiple destinations and explicit schema management. It does not automatically add columns when source schemas change. Its per-call limit is <strong>1 MB, compressed or uncompressed</strong>, compared with 30 MB for the legacy API. The supplied content identifies no regional exceptions.</p>
 </div>
@@ -1940,13 +1940,13 @@
 <li>Validate destination data, expected fields and dependent queries before completing cutover. Allow 10–15 minutes for new-table or schema changes to appear. If legacy ingestion continues into a converted table, do not introduce schema changes: they can stop ingestion for the entire table.</li>
 <li>For side-by-side migration, delete the old table only when you are ready; otherwise, its data remains available until its retention period ends.</li>
 </ol>
-<p>The migration guide documents no ingestion shutdown date or separate migration deadline. The announcement's instruction to migrate before 2026-09-14 accompanies its conflicting shutdown claim.</p>
+<p>The migration guide documents no ingestion shutdown date or separate migration deadline. The announcement's instruction to migrate before September 14, 2026 accompanies its conflicting shutdown claim.</p>
 </div>
       <p> </p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your clients or connectors use the legacy HTTP Data Collector API. Support ended on <strong>2026-09-14</strong>, but the migration guide says this did not stop ingestion for TLS 1.2-or-later clients. Clients below TLS 1.2 have been unable to ingest since <strong>2026-03-01</strong>. The announcement's broader endpoint-unavailability and ingestion-loss warning conflicts with that guidance; a shutdown date remains unconfirmed.</p>
+<div class="rich-content"><p>You are affected if your clients or connectors use the legacy HTTP Data Collector API. Support ended on <strong>September 14, 2026</strong>, but the migration guide says this did not stop ingestion for TLS 1.2-or-later clients. Clients below TLS 1.2 have been unable to ingest since <strong>March 1, 2026</strong>. The announcement's broader endpoint-unavailability and ingestion-loss warning conflicts with that guidance; a shutdown date remains unconfirmed.</p>
 <p>Identify candidate tables through the portal's <strong>Custom table (classic)</strong> type or the Tables API's <code>properties.schema.tableSubType</code> value of <code>Classic</code>. Classic tables can also receive MMA data, so this does not establish current legacy API usage. Records with <code>SourceSystem</code> set to <code>RestAPI</code> show historical usage, not necessarily an active client; legacy column suffixes are additional clues.</p>
 <p>Migration changes authentication, payload batching, schema handling and potentially downstream integrations. Converting a table stops previously defined custom fields from receiving new data. Schema changes while legacy ingestion continues into a converted table can stop ingestion for the entire table.</p>
 <p>With side-by-side migration, old-table data remains available until its retention period ends unless you delete the table. GUID storage and querying remain unchanged: Azure Monitor Logs stores GUIDs as strings. The supplied content does not establish effects on other ingestion methods or provide a cost estimate.</p>

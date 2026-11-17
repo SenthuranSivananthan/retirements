@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Monitor</span><span class="badge retired" data-deadline="2022-01-31"><span></span>Retired</span></div>
-  <h1>Scheduled Query Rules API preview version 2021-02-01 will be retired on 31 January 2022</h1><p>Microsoft announced retirement and removal of an Azure Monitor Scheduled Query Rules preview API on 2022-01-31. Update affected Azure Resource Manager templates to API version 2021-08-01 to avoid the documented risk of service disruption. The affected version is inconsistent: the title names 2021-02-01, the body identifies 2020-02-01-preview for removal, and migration guidance addresses 2021-02-01-preview. Charging for alert rules created using preview versions began separately on 2021-11-30. The supporting reference pages do not resolve the version conflict or independently establish retirement details.</p>
+  <h1>Scheduled Query Rules API preview version 2021-02-01 will be retired on 31 January 2022</h1><p>Microsoft announced retirement and removal of an Azure Monitor Scheduled Query Rules preview API on January 31, 2022. Update affected Azure Resource Manager templates to API version 2021-08-01 to avoid the documented risk of service disruption. The affected version is inconsistent: the title names February 1, 2021, the body identifies 2020-02-01-preview for removal, and migration guidance addresses 2021-02-01-preview. Charging for alert rules created using preview versions began separately on November 30, 2021. The supporting reference pages do not resolve the version conflict or independently establish retirement details.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-01-31"><strong>Retired</strong><span>Retirement date: <time datetime="2022-01-31">31 Jan 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 12 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Jan 2022</p>
-<div class="rich-content"><p>The announced retirement and removal date was <strong>2022-01-31</strong>. Microsoft also specified that date for updating affected templates to avoid service disruption.</p>
-<p>The date is consistent, but the affected version is not: the title names 2021-02-01, the body identifies 2020-02-01-preview for removal, and migration guidance addresses 2021-02-01-preview. The precise affected-version scope remains unconfirmed.</p>
-<p>Charging for alert rules created using preview versions began on <strong>2021-11-30</strong>, a separate billing milestone.</p>
+<div class="rich-content"><p>The announced retirement and removal date was <strong>January 31, 2022</strong>. Microsoft also specified that date for updating affected templates to avoid service disruption.</p>
+<p>The date is consistent, but the affected version is not: the title names February 1, 2021, the body identifies 2020-02-01-preview for removal, and migration guidance addresses 2021-02-01-preview. The precise affected-version scope remains unconfirmed.</p>
+<p>Charging for alert rules created using preview versions began on <strong>November 30, 2021</strong>, a separate billing milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft announced retirement and removal of a preview Azure Monitor Scheduled Query Rules API on <strong>2022-01-31</strong>, with generally available API version 2021-08-01 as the migration target.</p>
-<p>The notice inconsistently names 2021-02-01, 2020-02-01-preview and 2021-02-01-preview. It does not resolve which versions are subject to removal.</p>
+<div class="rich-content"><p>Microsoft announced retirement and removal of a preview Azure Monitor Scheduled Query Rules API on <strong>January 31, 2022</strong>, with generally available API version 2021-08-01 as the migration target.</p>
+<p>The notice inconsistently names February 1, 2021, 2020-02-01-preview and 2021-02-01-preview. It does not resolve which versions are subject to removal.</p>
 <p>For templates using 2021-02-01-preview, Microsoft states that migration requires only changing the API version, with no other template-format changes. The supplied content does not establish that this also applies to 2020-02-01-preview.</p>
 </div>
       <div class="notice"></div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Review your Azure Resource Manager templates for preview API versions of <code>Microsoft.Insights/ScheduledQueryRules</code>.</li>
-<li>Update affected templates to generally available API version 2021-08-01. Microsoft's stated deadline was 2022-01-31 to avoid service disruption.</li>
+<li>Update affected templates to generally available API version 2021-08-01. Microsoft's stated deadline was January 31, 2022 to avoid service disruption.</li>
 <li>Seek clarification through Microsoft Q&amp;A about the conflicting version scope. If you have a support plan and need technical help, create a support request.</li>
 </ol>
 <p>Microsoft documents an API-version-only template change for 2021-02-01-preview, not for 2020-02-01-preview. The supplied content provides no deployment-validation, backup or cutover procedure.</p>
@@ -1943,14 +1943,14 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>Your deployment tooling is potentially affected if your Azure Resource Manager templates use preview API versions of <code>Microsoft.Insights/ScheduledQueryRules</code>. The conflicting version names prevent a definitive version-by-version assessment.</p>
-<p>Microsoft warns of service disruption if affected templates were not updated by 2022-01-31. The notice does not specify whether existing alert rules stop running or which operations fail; it does not establish workload shutdown or data deletion.</p>
-<p>Microsoft began charging for alert rules created using preview versions on 2021-11-30. The supplied content provides no applicable rates or estimate of your costs.</p>
+<p>Microsoft warns of service disruption if affected templates were not updated by January 31, 2022. The notice does not specify whether existing alert rules stop running or which operations fail; it does not establish workload shutdown or data deletion.</p>
+<p>Microsoft began charging for alert rules created using preview versions on November 30, 2021. The supplied content provides no applicable rates or estimate of your costs.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
 <div class="rich-content"><p>Tracking guidance is not available for this retirement.</p>
-<p>For <strong>team-owned tracking</strong>, review the API versions in your Azure Resource Manager templates and record updates to 2021-08-01. This records template changes only; it does not confirm that deployed alert rules work. The supplied content provides no automated completion check or deployment-validation procedure.</p>
+<p>For <strong>team-owned tracking</strong>, review the API versions in your Azure Resource Manager templates and record updates to August 1, 2021. This records template changes only; it does not confirm that deployed alert rules work. The supplied content provides no automated completion check or deployment-validation procedure.</p>
 <p>Use Microsoft Q&amp;A for questions. If you have a support plan, you can create a support request for technical help.</p>
 </div>
     </section>

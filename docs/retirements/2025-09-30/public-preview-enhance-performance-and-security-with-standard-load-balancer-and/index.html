@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure DevTest Labs</span><span class="badge retired" data-deadline="2025-09-30"><span></span>Retired</span></div>
-  <h1>Public Preview: Enhance Performance and Security with Standard Load Balancer and Standard SKU Public IP Addresses in Azure DevTest Labs</h1><p>Azure Basic Load Balancer and Basic SKU public IP addresses retired on 2025-09-30, according to the supplied DevTest Labs blog and product guidance. New Basic deployments or creation were blocked after 2025-03-31. Existing Basic Load Balancers remain operational without support or SLA guarantees; behavior of existing Basic public IP addresses after retirement is unspecified. DevTest Labs preview enhancements move public/shared-IP VM creation to Standard resources; private-IP VMs are unaffected. The separately announced 2025-03-31 rollout target does not confirm rollout completion or automatic migration.</p>
+  <h1>Public Preview: Enhance Performance and Security with Standard Load Balancer and Standard SKU Public IP Addresses in Azure DevTest Labs</h1><p>Azure Basic Load Balancer and Basic SKU public IP addresses retired on September 30, 2025, according to the supplied DevTest Labs blog and product guidance. New Basic deployments or creation were blocked after March 31, 2025. Existing Basic Load Balancers remain operational without support or SLA guarantees; behavior of existing Basic public IP addresses after retirement is unspecified. DevTest Labs preview enhancements move public/shared-IP VM creation to Standard resources; private-IP VMs are unaffected. The separately announced March 31, 2025 rollout target does not confirm rollout completion or automatic migration.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2025-09-30">30 Sep 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 6 months, 4 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,17 +1916,17 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2025</p>
-<div class="rich-content"><p>Azure Basic Load Balancer and Basic SKU public IP addresses have a documented retirement date of <strong>2025-09-30</strong>.</p>
+<div class="rich-content"><p>Azure Basic Load Balancer and Basic SKU public IP addresses have a documented retirement date of <strong>September 30, 2025</strong>.</p>
 <ul>
-<li><strong>Basic Load Balancer:</strong> new deployments were blocked after 2025-03-31. The blog explicitly says existing load balancers remain operational after retirement without support or SLA guarantees; no shutdown date is supplied.</li>
-<li><strong>Basic SKU public IP addresses:</strong> new creation was blocked after 2025-03-31. The sources document existing-address use until 2025-09-30 but do not specify subsequent behavior.</li>
+<li><strong>Basic Load Balancer:</strong> new deployments were blocked after March 31, 2025. The blog explicitly says existing load balancers remain operational after retirement without support or SLA guarantees; no shutdown date is supplied.</li>
+<li><strong>Basic SKU public IP addresses:</strong> new creation was blocked after March 31, 2025. The sources document existing-address use until September 30, 2025 but do not specify subsequent behavior.</li>
 </ul>
-<p>Separately, Microsoft expected the phased DevTest Labs enhancement rollout to finish by <strong>2025-03-31</strong>. This was a rollout target, not a retirement deadline or extension. The announcement alone establishes no retirement date, and none of the supplied sources confirms rollout completion.</p>
+<p>Separately, Microsoft expected the phased DevTest Labs enhancement rollout to finish by <strong>March 31, 2025</strong>. This was a rollout target, not a retirement deadline or extension. The announcement alone establishes no retirement date, and none of the supplied sources confirms rollout completion.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure DevTest Labs announced preview changes to public/shared-IP VM creation to accommodate the Basic SKU retirements on <strong>2025-09-30</strong>:</p>
+<div class="rich-content"><p>Azure DevTest Labs announced preview changes to public/shared-IP VM creation to accommodate the Basic SKU retirements on <strong>September 30, 2025</strong>:</p>
 <ul>
 <li><strong>Public-IP VMs:</strong> Standard SKU public IP addresses with static allocation replace dynamic Basic SKU addresses, with one public IP address per VM.</li>
 <li><strong>Shared-IP VMs:</strong> Standard Load Balancer replaces Basic Load Balancer for shared-IP traffic.</li>
@@ -1953,7 +1953,7 @@
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>Your DevTest Labs public-IP and shared-IP VM configurations are in scope; private-IP VMs are unaffected. Inspect the linked public IP or load balancer SKU in each VM's Azure compute view to identify individual Basic resources. The sources provide no tenant-wide inventory method.</p>
 <p>Public-IP VM creation changes from dynamic Basic addresses to dedicated static Standard addresses. Shared-IP VM creation changes to Standard Load Balancer. Both new configurations require an NSG configured for required inbound access.</p>
-<p>Existing Basic Load Balancers continue operating after <strong>2025-09-30</strong>, but without support or SLA guarantees, according to the blog. For existing Basic public IP addresses, post-retirement connectivity or shutdown behavior is not established.</p>
+<p>Existing Basic Load Balancers continue operating after <strong>September 30, 2025</strong>, but without support or SLA guarantees, according to the blog. For existing Basic public IP addresses, post-retirement connectivity or shutdown behavior is not established.</p>
 <p>The sources do not establish automatic conversion, regional rollout completion, deployment-tooling effects, retention or deletion rules, or cost effects. They do not inventory your resources.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

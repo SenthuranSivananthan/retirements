@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Monitor</span><span class="badge retired" data-deadline="2019-06-15"><span></span>Retired</span></div>
-  <h1>Azure log integration tool deprecation</h1><p>Azure Log Integration (AzLog) was scheduled for deprecation by 2019-06-15. Downloads were disabled on 2018-06-27, a separate restriction. Microsoft recommends SIEM vendor connectors, using Azure Monitor and Azure Event Hubs where applicable; migration guidance differs for Splunk, QRadar and ArcSight. The supplied pages do not establish that existing integrations or workloads stopped operating at deprecation, or document post-deprecation support and security-update commitments.</p>
+  <h1>Azure log integration tool deprecation</h1><p>Azure Log Integration (AzLog) was scheduled for deprecation by June 15, 2019. Downloads were disabled on June 27, 2018, a separate restriction. Microsoft recommends SIEM vendor connectors, using Azure Monitor and Azure Event Hubs where applicable; migration guidance differs for Splunk, QRadar and ArcSight. The supplied pages do not establish that existing integrations or workloads stopped operating at deprecation, or document post-deprecation support and security-update commitments.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2019-06-15"><strong>Retired</strong><span>Retirement date: <time datetime="2019-06-15">15 Jun 2019</time></span><span class="badge amber customer-lead-time-pill">Lead time: 25 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">15 Jun 2019</p>
-<div class="rich-content"><p>Azure Log Integration was scheduled for deprecation <strong>by 2019-06-15</strong>. The announcement and product guidance agree on that date.</p>
-<p>AzLog downloads were disabled on <strong>2018-06-27</strong>. This was a separate download restriction, not the deprecation milestone. The timeline was announced in June 2018.</p>
+<div class="rich-content"><p>Azure Log Integration was scheduled for deprecation <strong>by June 15, 2019</strong>. The announcement and product guidance agree on that date.</p>
+<p>AzLog downloads were disabled on <strong>June 27, 2018</strong>. This was a separate download restriction, not the deprecation milestone. The timeline was announced in June 2018.</p>
 <p>The sources do not specify a workload shutdown date or establish that existing integrations stopped operating at deprecation. The Azure Monitor streaming reference does not independently establish a retirement deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Log Integration (AzLog), which collects Azure logs for on-premises SIEM security analysis, was scheduled for deprecation by 2019-06-15. Microsoft recommends SIEM vendor connectors instead, using Azure Monitor to stream logs through Azure Event Hubs where applicable.</p>
+<div class="rich-content"><p>Azure Log Integration (AzLog), which collects Azure logs for on-premises SIEM security analysis, was scheduled for deprecation by June 15, 2019. Microsoft recommends SIEM vendor connectors instead, using Azure Monitor to stream logs through Azure Event Hubs where applicable.</p>
 <p>AzLog supported Azure commercial and Azure Government, not other clouds. Its documented integrations include ArcSight, QRadar and Splunk, with collection of Windows events, Azure activity logs, Azure Security Center alerts and Azure Diagnostics logs.</p>
 <p>The product guidance says feature documentation would be maintained until deprecation. It does not establish continued tool availability before that date beyond the download restriction, or post-deprecation operation, support or security-update commitments. This notice does not announce retirement of Azure Monitor or SIEM vendor connectors.</p>
 </div>
@@ -1950,7 +1950,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are in scope if you use AzLog to send Azure logs to an on-premises SIEM in Azure commercial or Azure Government. Other clouds were not supported. The sources do not provide a tenant inventory or establish whether your resources use AzLog.</p>
-<p>Downloads were disabled on 2018-06-27. The sources do not establish whether existing installations stopped collecting or forwarding logs at deprecation, whether workloads were affected, or what happened if you took no action. They do not document retirement-related data retention or deletion consequences.</p>
+<p>Downloads were disabled on June 27, 2018. The sources do not establish whether existing installations stopped collecting or forwarding logs at deprecation, whether workloads were affected, or what happened if you took no action. They do not document retirement-related data retention or deletion consequences.</p>
 <p>For the replacement streaming integration, throughput capacity and consumer partition support affect configuration. The reference recommends at least seven days of event retention to support recovery after consumer interruptions; this is operational guidance, not an AzLog retirement retention policy.</p>
 <p>AzLog is described as free, but storing log-file information incurs Azure storage costs. Migration costs are not quantified.</p>
 </div>

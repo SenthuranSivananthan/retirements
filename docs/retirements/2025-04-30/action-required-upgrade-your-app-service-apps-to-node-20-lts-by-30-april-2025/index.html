@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2025-04-30"><span></span>Retired</span></div>
-  <h1>Action required: Upgrade your App Service apps to Node 20 LTS by 30 April 2025</h1><p>Extended support for Node 18 LTS on Azure App Service ended on 2025-04-30. Apps continue to run, but Microsoft no longer provides security updates or customer service for that version. The notice directed customers to upgrade to Node 20 LTS before that date. Runtime changes restart your app; check currently supported runtimes when planning an upgrade.</p>
+  <h1>Action required: Upgrade your App Service apps to Node 20 LTS by 30 April 2025</h1><p>Extended support for Node 18 LTS on Azure App Service ended on April 30, 2025. Apps continue to run, but Microsoft no longer provides security updates or customer service for that version. The notice directed customers to upgrade to Node 20 LTS before that date. Runtime changes restart your app; check currently supported runtimes when planning an upgrade.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-04-30"><strong>Retired</strong><span>Retirement date: <time datetime="2025-04-30">30 Apr 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 1 month, 8 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Apr 2025</p>
-<div class="rich-content"><p>Extended support for Node 18 LTS on Azure App Service ended on <strong>2025-04-30</strong>. The notice directed you to upgrade to Node 20 LTS before that date.</p>
+<div class="rich-content"><p>Extended support for Node 18 LTS on Azure App Service ended on <strong>April 30, 2025</strong>. The notice directed you to upgrade to Node 20 LTS before that date.</p>
 <p>This is an end-of-support milestone, not an application shutdown. Apps continue to run, but Microsoft no longer provides security updates or customer service for Node 18 LTS. The supplied reference pages establish no conflicting Node 18 deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure App Service ended extended support for <strong>Node 18 LTS</strong> on 2025-04-30. The notice names Node 20 LTS as the upgrade target and specifies no regional exceptions.</p>
+<div class="rich-content"><p>Azure App Service ended extended support for <strong>Node 18 LTS</strong> on April 30, 2025. The notice names Node 20 LTS as the upgrade target and specifies no regional exceptions.</p>
 <p>Existing Node 18 apps continue to run after support ends, without security updates or Microsoft customer service for that version. The Node.js runtime guidance covers Windows and Linux and says end-of-life versions are removed from the Runtime Stack dropdown; existing apps targeting those versions should not be affected by that removal.</p>
 </div>
       <div class="notice"></div>
@@ -1931,7 +1931,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your Node 18 LTS apps. Check <code>WEBSITE_NODE_DEFAULT_VERSION</code> for Windows apps or <code>linux-fx-version</code> for Linux apps.</li>
-<li>Check available supported runtimes with <code>az webapp list-runtimes --os-type windows</code> or <code>az webapp list-runtimes --os-type linux</code>. The retirement notice directed an upgrade to Node 20 LTS before 2025-04-30; the supplied content does not establish whether Node 20 remains supported when you perform the migration.</li>
+<li>Check available supported runtimes with <code>az webapp list-runtimes --os-type windows</code> or <code>az webapp list-runtimes --os-type linux</code>. The retirement notice directed an upgrade to Node 20 LTS before April 30, 2025; the supplied content does not establish whether Node 20 remains supported when you perform the migration.</li>
 <li>Update affected apps to a supported runtime. On Windows, change the runtime app setting through the portal or Azure CLI. On Linux, use Azure CLI or select Configuration → General settings → Stack Settings → Major version in the portal and save. <strong>Changing runtime settings restarts your app.</strong></li>
 <li>As a team-owned validation step, confirm each app's configured runtime after the change and test your application. The supplied Node.js guidance provides no retirement-specific compatibility checklist or completion test.</li>
 </ol>
@@ -1942,7 +1942,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your Azure App Service apps use Node 18 LTS. The runtime guidance covers Windows and Linux; no resources in your environment have been inspected.</p>
-<p>Without an upgrade, your apps continue running after 2025-04-30, but Node 18 LTS receives no security updates or Microsoft customer service. Continued execution does not mean continued support.</p>
+<p>Without an upgrade, your apps continue running after April 30, 2025, but Node 18 LTS receives no security updates or Microsoft customer service. Continued execution does not mean continued support.</p>
 <p>End-of-life versions disappear from the Runtime Stack dropdown. This selection change is separate from workload continuity, and changing your app's runtime causes a restart. The supplied content documents no retirement-related API restriction, deployment-tool shutdown, data deletion or cost change.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

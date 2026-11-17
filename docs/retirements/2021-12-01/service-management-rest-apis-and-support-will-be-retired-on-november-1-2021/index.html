@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Resource Manager</span><span class="badge retired" data-deadline="2021-12-01"><span></span>Retired</span></div>
-  <h1>Service Management REST APIs and support will be retired on November 1, 2021</h1><p>Classic Azure Service Manager management REST APIs for Azure Service Bus, Relay and Event Hubs are identified for retirement on 2021-12-01 in the supplied migration guidance, with migration to Azure Resource Manager requested by 2021-11-30. The announcement and REST references instead state 2021-11-01. The migration guidance is preferred for the structured retirement date, but the discrepancy remains unresolved; no supplied source explicitly documents an extension. The Event Hubs reference also says Event Hubs has no RDFE REST APIs, leaving its precise affected scope unclear. This concerns classic management interfaces, not an announced shutdown of the underlying messaging services.</p>
+  <h1>Service Management REST APIs and support will be retired on November 1, 2021</h1><p>Classic Azure Service Manager management REST APIs for Azure Service Bus, Relay and Event Hubs are identified for retirement on December 1, 2021 in the supplied migration guidance, with migration to Azure Resource Manager requested by November 30, 2021. The announcement and REST references instead state November 1, 2021. The migration guidance is preferred for the structured retirement date, but the discrepancy remains unresolved; no supplied source explicitly documents an extension. The Event Hubs reference also says Event Hubs has no RDFE REST APIs, leaving its precise affected scope unclear. This concerns classic management interfaces, not an announced shutdown of the underlying messaging services.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2021-12-01"><strong>Retired</strong><span>Retirement date: <time datetime="2021-12-01">1 Dec 2021</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 9 months, 3 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Dec 2021</p>
-<div class="rich-content"><p>The supplied migration guidance identifies <strong>2021-12-01</strong> as the retirement date for classic Azure Service Manager management REST APIs for Azure Service Bus, Relay and Event Hubs. It separately instructs you to migrate by <strong>2021-11-30</strong>.</p>
-<p>The announcement and REST references instead give <strong>2021-11-01</strong>. The structured deadline follows the applicable migration guidance, but this month-long discrepancy remains unresolved: the supplied sources do not explicitly document an extension. The announcement warns of failures and errors beginning 2021-11-01; the migration guidance does not establish a revised enforcement date or independently confirm completed retirement.</p>
+<div class="rich-content"><p>The supplied migration guidance identifies <strong>December 1, 2021</strong> as the retirement date for classic Azure Service Manager management REST APIs for Azure Service Bus, Relay and Event Hubs. It separately instructs you to migrate by <strong>November 30, 2021</strong>.</p>
+<p>The announcement and REST references instead give <strong>November 1, 2021</strong>. The structured deadline follows the applicable migration guidance, but this month-long discrepancy remains unresolved: the supplied sources do not explicitly document an extension. The announcement warns of failures and errors beginning November 1, 2021; the migration guidance does not establish a revised enforcement date or independently confirm completed retirement.</p>
 <p>The Event Hubs reference also says Event Hubs has no RDFE REST APIs, so that reference alone does not establish an Event Hubs-specific retirement.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Resource Manager replaces the classic Azure Service Manager management model covered by this retirement. The migration guidance names Azure Service Bus, Relay and Event Hubs and gives <strong>2021-12-01</strong> as the retirement date; the announcement and REST references give <strong>2021-11-01</strong>.</p>
+<div class="rich-content"><p>Azure Resource Manager replaces the classic Azure Service Manager management model covered by this retirement. The migration guidance names Azure Service Bus, Relay and Event Hubs and gives <strong>December 1, 2021</strong> as the retirement date; the announcement and REST references give <strong>November 1, 2021</strong>.</p>
 <p>The change concerns classic management REST APIs and their support, with migration guidance also mapping deprecated PowerShell commands to replacements. It does not announce retirement of the underlying messaging services, Resource Manager APIs or direct service APIs.</p>
 <p>Event Hubs scope needs care: the migration guidance includes it, but its REST reference explicitly says Event Hubs has no RDFE REST APIs. The supplied content does not resolve that inconsistency or document regional exceptions, pre-retirement availability, maintenance or security-update commitments.</p>
 </div>
@@ -1937,14 +1937,14 @@
 <li>Update affected PowerShell scripts using the listed Resource Manager replacements, including newer Az commands where provided.</li>
 <li>As a <strong>team-owned validation step</strong>, verify that changed management operations work and no longer depend on classic endpoints or deprecated commands.</li>
 </ol>
-<p>The migration guidance requested completion by <strong>2021-11-30</strong>, ahead of its stated retirement on <strong>2021-12-01</strong>. Other supplied sources give 2021-11-01; no explicit extension is documented. Detailed prerequisites, resolution of unmapped operations and a complete cutover procedure are not supplied.</p>
+<p>The migration guidance requested completion by <strong>November 30, 2021</strong>, ahead of its stated retirement on <strong>December 1, 2021</strong>. Other supplied sources give November 1, 2021; no explicit extension is documented. Detailed prerequisites, resolution of unmapped operations and a complete cutover procedure are not supplied.</p>
 </div>
       <p> </p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are potentially affected if your management integrations or scripts use the listed classic APIs or deprecated PowerShell commands for Azure Service Bus, Relay or Event Hubs. The migration guidance identifies classic REST calls by <code>management.core.windows.net</code> and covers namespace management, authorization rules, connection details and listed entity-management operations.</p>
-<p>The announcement warns that unmigrated applications will experience failures and errors beginning <strong>2021-11-01</strong>. The migration guidance instead identifies retirement on <strong>2021-12-01</strong>, without specifying revised failure timing or exact API responses. That discrepancy remains unresolved.</p>
+<p>The announcement warns that unmigrated applications will experience failures and errors beginning <strong>November 1, 2021</strong>. The migration guidance instead identifies retirement on <strong>December 1, 2021</strong>, without specifying revised failure timing or exact API responses. That discrepancy remains unresolved.</p>
 <p>The Event Hubs reference says it has no RDFE REST APIs, despite its inclusion in the broader migration guidance. Your affected Event Hubs scope therefore cannot be established from the generic warning alone.</p>
 <p>The supplied content does not establish shutdown of messaging workloads, retirement of Resource Manager or direct service APIs, deletion of resources or messages, retention changes or cost effects. Your environment has not been inspected.</p>
 </div>

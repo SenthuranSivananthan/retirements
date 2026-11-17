@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Functions</span><span class="badge retired" data-deadline="2024-08-31"><span></span>Retired</span></div>
-  <h1>Update to Azure Functions Cosmos DB extension version 4.x by 31 August 2024 for continued support</h1><p>Azure Cosmos DB extension 3.x for Azure Functions retired on 2024-08-31. Applications continue to function, but Microsoft no longer provides extension maintenance or support. Migrate to extension 4.x, accounting for binding-property changes, SDK v3 types, explicit output item IDs and lease permissions. The underlying Microsoft.Azure.DocumentDB package&#39;s 2023-03-31 obsolescence and the .NET in-process model&#39;s 2026-11-10 end of support are separate milestones.</p>
+  <h1>Update to Azure Functions Cosmos DB extension version 4.x by 31 August 2024 for continued support</h1><p>Azure Cosmos DB extension 3.x for Azure Functions retired on August 31, 2024. Applications continue to function, but Microsoft no longer provides extension maintenance or support. Migrate to extension 4.x, accounting for binding-property changes, SDK v3 types, explicit output item IDs and lease permissions. The underlying Microsoft.Azure.DocumentDB package&#39;s March 31, 2023 obsolescence and the .NET in-process model&#39;s November 10, 2026 end of support are separate milestones.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-08-31">31 Aug 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 2 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,19 +1916,19 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2024</p>
-<div class="rich-content"><p>Azure Cosmos DB extension 3.x for Azure Functions retired on <strong>2024-08-31</strong>. Applications using it continue to function, but Microsoft no longer provides maintenance or support for the extension. This is not a workload-shutdown date.</p>
+<div class="rich-content"><p>Azure Cosmos DB extension 3.x for Azure Functions retired on <strong>August 31, 2024</strong>. Applications using it continue to function, but Microsoft no longer provides maintenance or support for the extension. This is not a workload-shutdown date.</p>
 <p>The announcement required updating to extension 4.x by that date for continued support. Even before retirement, support for issues rooted in the underlying Microsoft.Azure.DocumentDB SDK required updating to 4.x.</p>
 <p>Two separate milestones also matter:</p>
 <ul>
-<li><strong>2023-03-31:</strong> Microsoft.Azure.DocumentDB became obsolete according to its package notice. This is not a conflicting extension-retirement date. The package README's promise of critical bug fixes conflicts with its no-maintenance notice, so continued package fixes are unconfirmed.</li>
-<li><strong>2026-11-10:</strong> support ended for the .NET in-process model. Updating the Cosmos DB extension alone does not address this separate process-model milestone.</li>
+<li><strong>March 31, 2023:</strong> Microsoft.Azure.DocumentDB became obsolete according to its package notice. This is not a conflicting extension-retirement date. The package README's promise of critical bug fixes conflicts with its no-maintenance notice, so continued package fixes are unconfirmed.</li>
+<li><strong>November 10, 2026:</strong> support ended for the .NET in-process model. Updating the Cosmos DB extension alone does not address this separate process-model milestone.</li>
 </ul>
 <p>The extension 4.x announcement and Microsoft.Azure.Cosmos package listing do not independently establish retirement deadlines.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Cosmos DB extension <strong>3.x for Azure Functions retired on 2024-08-31</strong>. Microsoft no longer maintains or supports that extension, although it and applications using it continue to function. The retirement announcement also states that version 3.x receives no new features, security patches or performance optimizations after retirement.</p>
+<div class="rich-content"><p>Azure Cosmos DB extension <strong>3.x for Azure Functions retired on August 31, 2024</strong>. Microsoft no longer maintains or supports that extension, although it and applications using it continue to function. The retirement announcement also states that version 3.x receives no new features, security patches or performance optimizations after retirement.</p>
 <p>Microsoft recommends extension 4.x, which uses Azure Cosmos DB .NET SDK v3 instead of the older Microsoft.Azure.DocumentDB SDK. Migration affects binding properties, SDK types and output item-ID handling. The guidance covers .NET apps and non-.NET apps using extension bundles; it identifies no regional exceptions.</p>
 <p>Connection-string authentication remains supported in version 4.x; managed identity is optional. The separate end of support for the .NET in-process model still requires attention if your apps use that model.</p>
 </div>
@@ -1951,7 +1951,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your Azure Functions apps use Azure Cosmos DB extension 3.x. After <strong>2024-08-31</strong>, those apps continue to function without Microsoft extension maintenance or support, including new features, security patches and performance optimizations. The sources do not announce forced workload shutdown, data deletion, a separate data-access cutoff or retirement-related cost changes.</p>
+<div class="rich-content"><p>You are affected if your Azure Functions apps use Azure Cosmos DB extension 3.x. After <strong>August 31, 2024</strong>, those apps continue to function without Microsoft extension maintenance or support, including new features, security patches and performance optimizations. The sources do not announce forced workload shutdown, data deletion, a separate data-access cutoff or retirement-related cost changes.</p>
 <p>Migration impact depends on your configuration:</p>
 <ul>
 <li><strong>.NET apps:</strong> package, binding-attribute and SDK-type changes may require code updates. Extension 4.x no longer supports the Document class.</li>
@@ -1961,7 +1961,7 @@
 <li><strong>Removed settings:</strong> checkpoint interval and document-count properties are removed. Multiple-write-location detection is automatic; serialization customization uses SDK v3 support.</li>
 </ul>
 <p>The trigger does not retry failed executions by default. Optional retry policies can repeat an entire batch. Newtonsoft.Json remains the default serializer; custom serialization is optional. A reported LINQ property-mapping issue with custom serialization is not conclusively resolved by the supplied discussion.</p>
-<p>Apps remaining on the .NET in-process model also face its separate <strong>2026-11-10</strong> end of support. These sources do not establish which of your apps are affected.</p>
+<p>Apps remaining on the .NET in-process model also face its separate <strong>November 10, 2026</strong> end of support. These sources do not establish which of your apps are affected.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>
     </section>

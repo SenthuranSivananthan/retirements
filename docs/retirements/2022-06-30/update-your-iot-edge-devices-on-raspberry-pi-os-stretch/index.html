@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure IoT Edge</span><span class="badge retired" data-deadline="2022-06-30"><span></span>Retired</span></div>
-  <h1>Update your IoT Edge devices on Raspberry Pi OS Stretch</h1><p>Microsoft stopped publishing IoT Edge armhf patch releases targeting Raspberry Pi OS Stretch after 2022-06-30. Devices and applications continue running, and previously published packages remain available. The notice recommends moving to Bullseye with arm32v7 packages, but the supplied Debian reference lists Bullseye LTS as ending on 2026-08-31; the inputs do not establish a currently supported IoT Edge migration target.</p>
+  <h1>Update your IoT Edge devices on Raspberry Pi OS Stretch</h1><p>Microsoft stopped publishing IoT Edge armhf patch releases targeting Raspberry Pi OS Stretch after June 30, 2022. Devices and applications continue running, and previously published packages remain available. The notice recommends moving to Bullseye with arm32v7 packages, but the supplied Debian reference lists Bullseye LTS as ending on August 31, 2026; the inputs do not establish a currently supported IoT Edge migration target.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-06-30"><strong>Retired</strong><span>Retirement date: <time datetime="2022-06-30">30 Jun 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 month, 24 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Jun 2022</p>
-<div class="rich-content"><p>The patch-release cutoff was <strong>2022-06-30</strong>, when Debian 9 (Stretch) LTS ended. After that date, Microsoft stopped publishing IoT Edge armhf patch releases targeting Stretch. This was not a workload shutdown.</p>
-<p>The separate <strong>2026-08-31</strong> end of Debian 11 Bullseye LTS affects the notice's recommended destination; it does not change the Stretch cutoff.</p>
+<div class="rich-content"><p>The patch-release cutoff was <strong>June 30, 2022</strong>, when Debian 9 (Stretch) LTS ended. After that date, Microsoft stopped publishing IoT Edge armhf patch releases targeting Stretch. This was not a workload shutdown.</p>
+<p>The separate <strong>August 31, 2026</strong> end of Debian 11 Bullseye LTS affects the notice's recommended destination; it does not change the Stretch cutoff.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft no longer publishes IoT Edge armhf patch releases targeting Raspberry Pi OS Stretch after 2022-06-30.</p>
+<div class="rich-content"><p>Microsoft no longer publishes IoT Edge armhf patch releases targeting Raspberry Pi OS Stretch after June 30, 2022.</p>
 <p>Previously published Stretch packages remain available. Devices and applications continue running; the notice states that applications are not impacted. Continued operation does not mean continued patch availability.</p>
 </div>
       <div class="notice"></div>
@@ -1931,7 +1931,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your IoT Edge devices running Raspberry Pi OS Stretch with armhf packages targeting Stretch. The notice provides no identification commands.</li>
-<li>Review the notice's recommendation to update the host OS to Bullseye using arm32v7 packages available on packages.microsoft.com. The supplied Debian reference lists Bullseye LTS as ending on 2026-08-31, so that recommendation does not establish a currently supported destination. Confirm an applicable supported OS and IoT Edge package combination before choosing your target.</li>
+<li>Review the notice's recommendation to update the host OS to Bullseye using arm32v7 packages available on packages.microsoft.com. The supplied Debian reference lists Bullseye LTS as ending on August 31, 2026, so that recommendation does not establish a currently supported destination. Confirm an applicable supported OS and IoT Edge package combination before choosing your target.</li>
 <li>Plan the migration and validation using guidance for that combination. The supplied notice provides no migration commands, prerequisites, backup procedure, cutover steps or validation criteria.</li>
 </ol>
 <p>The referenced IoT Edge Bullseye support announcement was unavailable, so its compatibility details could not be confirmed.</p>
@@ -1940,7 +1940,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if you run IoT Edge armhf packages targeting Raspberry Pi OS Stretch. Remaining on that configuration means no further Microsoft patch releases targeting Stretch after 2022-06-30, with potential security exposure.</p>
+<div class="rich-content"><p>You are affected if you run IoT Edge armhf packages targeting Raspberry Pi OS Stretch. Remaining on that configuration means no further Microsoft patch releases targeting Stretch after June 30, 2022, with potential security exposure.</p>
 <p>Your devices and applications continue running, and previously published packages remain available. The notice does not describe workload shutdown, package removal or data deletion.</p>
 <p>The Debian reference documents release-specific security-maintenance periods; it does not independently establish IoT Edge compatibility or a replacement retirement deadline.</p>
 </div>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2024-11-12"><span></span>Retired</span></div>
-  <h1>Extended support for .NET 6 (LTS) ends on 12 November 2024</h1><p>Microsoft ended extended support for .NET 6 (LTS) on 2024-11-12. Azure App Service apps using .NET 6 continue running, but Microsoft no longer provides security updates or customer service for that version. The notice required upgrading to .NET 8 (LTS) by the same date. General App Service guidance also describes end-of-life runtime removal from the Runtime Stack dropdown; this is not a workload shutdown.</p>
+  <h1>Extended support for .NET 6 (LTS) ends on 12 November 2024</h1><p>Microsoft ended extended support for .NET 6 (LTS) on November 12, 2024. Azure App Service apps using .NET 6 continue running, but Microsoft no longer provides security updates or customer service for that version. The notice required upgrading to .NET 8 (LTS) by the same date. General App Service guidance also describes end-of-life runtime removal from the Runtime Stack dropdown; this is not a workload shutdown.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-11-12"><strong>Retired</strong><span>Retirement date: <time datetime="2024-11-12">12 Nov 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 18 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">12 Nov 2024</p>
-<div class="rich-content"><p>Extended support for .NET 6 (LTS) ended on <strong>2024-11-12</strong>. The notice also required upgrading your Azure App Service apps to .NET 8 (LTS) by that date.</p>
+<div class="rich-content"><p>Extended support for .NET 6 (LTS) ended on <strong>November 12, 2024</strong>. The notice also required upgrading your Azure App Service apps to .NET 8 (LTS) by that date.</p>
 <p>This was an end-of-support milestone, not an application shutdown: hosted apps continue running, but Microsoft no longer provides security updates or customer service for .NET 6 (LTS). The supplied reference pages establish no conflicting .NET 6 deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft ended extended support for .NET 6 (LTS) on 2024-11-12. For Azure App Service apps using that version, security updates and customer service ended, but the apps continue running.</p>
+<div class="rich-content"><p>Microsoft ended extended support for .NET 6 (LTS) on November 12, 2024. For Azure App Service apps using that version, security updates and customer service ended, but the apps continue running.</p>
 <p>General App Service .NET guidance says end-of-life versions are removed from the Runtime Stack selection dropdown and existing apps targeting them should not be affected. That policy page does not independently establish the .NET 6 retirement date or promise post-end-of-life patches.</p>
 <p>The retirement notice names .NET 8 (LTS) as the upgrade target and specifies no regional exceptions.</p>
 </div>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your App Service apps configured for .NET 6. In the Azure portal, select each app, then open Configuration, General settings and Stack Settings to review its configured version.</li>
-<li>Upgrade affected apps. The retirement notice required .NET 8 (LTS) by 2024-11-12; general configuration guidance recommends selecting a supported .NET version. The supplied content does not establish .NET 8's current support status.</li>
+<li>Upgrade affected apps. The retirement notice required .NET 8 (LTS) by November 12, 2024; general configuration guidance recommends selecting a supported .NET version. The supplied content does not establish .NET 8's current support status.</li>
 <li>To change the configured runtime, select the supported version under Major version and save. <strong>Changing stack settings restarts your application.</strong></li>
 </ol>
 <p>You can list supported runtimes with <code>az webapp list-runtimes --os-type linux</code> or <code>az webapp list-runtimes --os-type windows</code>. These commands do not identify which apps need migration.</p>

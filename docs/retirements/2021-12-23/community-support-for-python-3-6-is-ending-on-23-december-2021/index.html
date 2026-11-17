@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">App Service · Static Web Apps</span><span class="badge retired" data-deadline="2021-12-23"><span></span>Retired</span></div>
-  <h1>Community support for Python 3.6 is ending on 23 December 2021</h1><p>Python 3.6 support on Windows and Linux ended on 2021-12-23, leaving Azure App Service applications using that version unsupported. Product guidance also states that Python on Windows App Service became unsupported on that date and no longer receives security patches or customer service. Migrate to supported Python on Linux App Service or a Windows container. Neither source announces workload shutdown.</p>
+  <h1>Community support for Python 3.6 is ending on 23 December 2021</h1><p>Python 3.6 support on Windows and Linux ended on December 23, 2021, leaving Azure App Service applications using that version unsupported. Product guidance also states that Python on Windows App Service became unsupported on that date and no longer receives security patches or customer service. Migrate to supported Python on Linux App Service or a Windows container. Neither source announces workload shutdown.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2021-12-23"><strong>Retired</strong><span>Retirement date: <time datetime="2021-12-23">23 Dec 2021</time></span><span class="badge amber customer-lead-time-pill">Lead time: 10 months, 1 day</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">23 Dec 2021</p>
-<div class="rich-content"><p>Python 3.6 extended support on Windows and Linux ended on <strong>2021-12-23</strong>. Azure App Service applications still using Python 3.6 became unsupported after that date. The announcement recommended updating before 2021-12-23.</p>
+<div class="rich-content"><p>Python 3.6 extended support on Windows and Linux ended on <strong>December 23, 2021</strong>. Azure App Service applications still using Python 3.6 became unsupported after that date. The announcement recommended updating before December 23, 2021.</p>
 <p>Separately, product guidance states that support for Python on Windows App Service ended on the same date; those apps no longer receive security patches or customer service.</p>
 <p>These are end-of-support milestones, not documented workload shutdown dates. The sources agree on the date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Python 3.6 support ended on Windows and Linux on 2021-12-23, affecting Azure App Service applications using that version.</p>
+<div class="rich-content"><p>Python 3.6 support ended on Windows and Linux on December 23, 2021, affecting Azure App Service applications using that version.</p>
 <p>The product guidance also describes a broader OS restriction: Python on Windows App Service is unsupported. It identifies Linux as the supported OS for Python going forward and recommends either supported Python on Linux App Service or a Windows container as migration options.</p>
 <p>Separately, App Service removes Python versions that reach end of life from the Runtime Stack dropdown. Existing applications targeting those versions should not be affected by that selection change; this does not establish continued support.</p>
 <p>App Service normally updates the underlying Python runtime to the latest available platform patch during platform updates. That statement does not establish continued patching for unsupported Python on Windows.</p>
@@ -1938,13 +1938,13 @@
 <li>To list supported Linux runtimes, run <code>az webapp list-runtimes --os-type linux</code>. The product guidance recommends the most recent Python version.</li>
 <li>To change an application's Python version in the Azure portal, open the app under App Service, select Configuration, then General settings, and choose a version under Stack Settings &gt; Minor version. Select Save. Changing stack settings restarts the application.</li>
 </ol>
-<p>The original notice recommended updating before 2021-12-23. The supplied content references deployment instructions but does not provide migration prerequisites, capability comparisons, backup, cutover, cleanup or application-validation procedures.</p>
+<p>The original notice recommended updating before December 23, 2021. The supplied content references deployment instructions but does not provide migration prerequisites, capability comparisons, backup, cutover, cleanup or application-validation procedures.</p>
 </div>
       <p> </p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your Azure App Service applications use Python 3.6 on Windows or Linux: those applications became unsupported after 2021-12-23. The product guidance additionally states that Python applications on Windows App Service no longer receive security patches or customer service, regardless of the Python 3.6-specific scope of the announcement.</p>
+<div class="rich-content"><p>You are affected if your Azure App Service applications use Python 3.6 on Windows or Linux: those applications became unsupported after December 23, 2021. The product guidance additionally states that Python applications on Windows App Service no longer receive security patches or customer service, regardless of the Python 3.6-specific scope of the announcement.</p>
 <p>Neither source announces that these workloads will stop running. For Python versions reaching end of life generally, removal from the Runtime Stack dropdown affects runtime selection; existing applications targeting those versions should not be affected by that removal. Changing stack settings does restart the application.</p>
 <p>The supplied content does not establish your resource inventory, regional exceptions, data-retention or deletion consequences, or costs. It does not document other deployment-tooling or data-access consequences.</p>
 </div>

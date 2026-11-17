@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Maps</span><span class="badge retired" data-deadline="2023-05-05"><span></span>Retired</span></div>
-  <h1>Azure Maps Elevation APIs and Render V2 DEM tiles will be retired on 5 May 2023</h1><p>Azure Maps Elevation services and Render V2 DEM tiles retired on 2023-05-05. The notice states that affected API calls fail after that date; all other Azure Maps APIs, services and TilesetIDs are unaffected. Applications needed to transition before retirement. The original notice recommended Bing Maps Get Elevations for elevation requests and SRTM data for replacement DEM tiles. However, the supplied Bing Maps guidance says Elevations API access has already retired for Basic accounts and remains available to Enterprise customers only until 2028-06-30. That is a separate retirement, not an extension of the Azure Maps deadline.</p>
+  <h1>Azure Maps Elevation APIs and Render V2 DEM tiles will be retired on 5 May 2023</h1><p>Azure Maps Elevation services and Render V2 DEM tiles retired on May 5, 2023. The notice states that affected API calls fail after that date; all other Azure Maps APIs, services and TilesetIDs are unaffected. Applications needed to transition before retirement. The original notice recommended Bing Maps Get Elevations for elevation requests and SRTM data for replacement DEM tiles. However, the supplied Bing Maps guidance says Elevations API access has already retired for Basic accounts and remains available to Enterprise customers only until June 30, 2028. That is a separate retirement, not an extension of the Azure Maps deadline.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2023-05-05"><strong>Retired</strong><span>Retirement date: <time datetime="2023-05-05">5 May 2023</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 month, 11 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">5 May 2023</p>
-<div class="rich-content"><p>Azure Maps Elevation services and Render V2 DEM tiles retired on <strong>2023-05-05</strong>. You needed to transition before that date. The notice states that afterward the affected services and TilesetIDs would no longer be available and/or supported, and affected API calls would fail.</p>
-<p>The <strong>2028-06-30</strong> deadline in the supplied Bing Maps guidance applies separately to Enterprise use of Bing Maps Elevations API, a replacement named in the original notice. It does not extend the Azure Maps retirement. Bing Maps Basic access has already retired; its retirement date is not supplied.</p>
+<div class="rich-content"><p>Azure Maps Elevation services and Render V2 DEM tiles retired on <strong>May 5, 2023</strong>. You needed to transition before that date. The notice states that afterward the affected services and TilesetIDs would no longer be available and/or supported, and affected API calls would fail.</p>
+<p>The <strong>June 30, 2028</strong> deadline in the supplied Bing Maps guidance applies separately to Enterprise use of Bing Maps Elevations API, a replacement named in the original notice. It does not extend the Azure Maps retirement. Bing Maps Basic access has already retired; its retirement date is not supplied.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Maps retired its generally available Elevation services and Render V2 DEM tiles on <strong>2023-05-05</strong>.</p>
+<div class="rich-content"><p>Azure Maps retired its generally available Elevation services and Render V2 DEM tiles on <strong>May 5, 2023</strong>.</p>
 <p>Affected Elevation services:</p>
 <ul>
 <li>Get Data For Bounding Box</li>
@@ -1944,9 +1944,9 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Review your applications for calls to the five retired Elevation services and the two retired Render V2 DEM TilesetIDs.</li>
-<li>Select a replacement for each dependency. The original notice directs Elevation users to Bing Maps Get Elevations, but the supplied replacement guidance says Basic access has already retired and Enterprise access ends on <strong>2028-06-30</strong>. Review eligibility, pricing and licensing rather than treating it as an unrestricted long-term replacement.</li>
+<li>Select a replacement for each dependency. The original notice directs Elevation users to Bing Maps Get Elevations, but the supplied replacement guidance says Basic access has already retired and Enterprise access ends on <strong>June 30, 2028</strong>. Review eligibility, pricing and licensing rather than treating it as an unrestricted long-term replacement.</li>
 <li>For Render V2 elevation tiles, the notice directs you to use free Shuttle Radar Topography Mission (SRTM) data to build replacement DEM tiles on Microsoft Azure.</li>
-<li>Replace affected calls. The required transition target was before <strong>2023-05-05</strong>; the supplied notice does not provide detailed migration, cutover or cleanup steps.</li>
+<li>Replace affected calls. The required transition target was before <strong>May 5, 2023</strong>; the supplied notice does not provide detailed migration, cutover or cleanup steps.</li>
 </ol>
 <p>As optional team-owned validation, check that replacement responses and tiles meet your application's requirements. Do not assume equivalent capabilities. If evaluating Bing Maps Elevations, account for its maximum of 1,024 returned elevations per request and stated request latitude range of -85 to 85. Its page also lists coverage including the poles without resolving that discrepancy.</p>
 <p>Several supplied Elevation and Render API references returned HTTP 404, limiting the available implementation guidance.</p>
@@ -1955,9 +1955,9 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your applications are affected if they use any listed Elevation service or either retired DEM TilesetID. The notice states that affected API calls fail after <strong>2023-05-05</strong>, disrupting functionality that depends on those calls.</p>
+<div class="rich-content"><p>Your applications are affected if they use any listed Elevation service or either retired DEM TilesetID. The notice states that affected API calls fail after <strong>May 5, 2023</strong>, disrupting functionality that depends on those calls.</p>
 <p>All other Azure Maps APIs, services and TilesetIDs are unaffected by this announcement. The supplied Q&amp;A claims about the Service Module and API version 1.0 concern separate scopes and do not change this retirement date.</p>
-<p>If you selected Bing Maps Elevations as a replacement, its separate account restrictions and retirement timeline also matter: Basic access has already retired, while Enterprise access continues until <strong>2028-06-30</strong>.</p>
+<p>If you selected Bing Maps Elevations as a replacement, its separate account restrictions and retirement timeline also matter: Basic access has already retired, while Enterprise access continues until <strong>June 30, 2028</strong>.</p>
 <p>SRTM data is described as free, but the supplied content does not establish total migration or operating costs. It also does not establish your actual usage or retirement-related data-retention or deletion consequences.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

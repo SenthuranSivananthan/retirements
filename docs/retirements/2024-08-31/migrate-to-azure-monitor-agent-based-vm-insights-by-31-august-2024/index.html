@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Monitor</span><span class="badge retired" data-deadline="2024-08-31"><span></span>Retired</span></div>
-  <h1>Migrate to Azure Monitor agent–based VM insights by 31 August 2024</h1><p>Log Analytics agent–based VM insights retired on 2024-08-31. Migrate to Azure Monitor agent–based VM insights to use a supported version. Separately, the underlying Log Analytics agent is unsupported, and its monitoring data uploads can stop at any time after 2026-03-02 without further notice as cloud ingestion services shut down. This does not establish a shutdown date for monitored machines. Agents connected exclusively to on-premises SCOM are exempt from the underlying agent retirement.</p>
+  <h1>Migrate to Azure Monitor agent–based VM insights by 31 August 2024</h1><p>Log Analytics agent–based VM insights retired on August 31, 2024. Migrate to Azure Monitor agent–based VM insights to use a supported version. Separately, the underlying Log Analytics agent is unsupported, and its monitoring data uploads can stop at any time after March 2, 2026 without further notice as cloud ingestion services shut down. This does not establish a shutdown date for monitored machines. Agents connected exclusively to on-premises SCOM are exempt from the underlying agent retirement.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-08-31">31 Aug 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 10 months, 25 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2024</p>
-<div class="rich-content"><p>Log Analytics agent–based VM insights retired on <strong>2024-08-31</strong>. Microsoft specified the same date for migration to Azure Monitor agent–based VM insights to remain on a supported version.</p>
-<p>The underlying Log Analytics agent also retired on <strong>2024-08-31</strong>. Separately, its data uploads can stop at any time after <strong>2026-03-02</strong>, without further notice, as cloud ingestion services shut down. This is not an extension of retirement or a confirmed shutdown date for every machine.</p>
+<div class="rich-content"><p>Log Analytics agent–based VM insights retired on <strong>August 31, 2024</strong>. Microsoft specified the same date for migration to Azure Monitor agent–based VM insights to remain on a supported version.</p>
+<p>The underlying Log Analytics agent also retired on <strong>August 31, 2024</strong>. Separately, its data uploads can stop at any time after <strong>March 2, 2026</strong>, without further notice, as cloud ingestion services shut down. This is not an extension of retirement or a confirmed shutdown date for every machine.</p>
 <p>Agents connected exclusively to on-premises System Center Operations Manager (SCOM) are exempt from the underlying agent retirement. The VM insights notice does not specify workload shutdown or data-access consequences.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired <strong>Log Analytics agent–based VM insights</strong> on 2024-08-31. Azure Monitor agent–based VM insights is the supported replacement.</p>
+<div class="rich-content"><p>Microsoft retired <strong>Log Analytics agent–based VM insights</strong> on August 31, 2024. Azure Monitor agent–based VM insights is the supported replacement.</p>
 <p>The underlying Log Analytics agent is also called Microsoft Monitoring Agent (MMA) or Operations Management Suite (OMS). Its retirement covers Windows and Linux machines in Azure, on-premises and other clouds, except agents connected exclusively to on-premises SCOM. Azure Monitor Agent (AMA) uses data collection rules (DCRs) rather than workspace-based collection settings.</p>
 <p>Microsoft no longer supports the old agent or provides new distributions or service packs. Azure portal installation is unavailable. Offline and extension-based installation still work, but do not avoid the ingestion shutdown risk. The supplied content does not specify regional exceptions or security-update commitments.</p>
 </div>
@@ -1947,7 +1947,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you use <strong>Log Analytics agent–based VM insights</strong>. The broader agent retirement also affects Windows and Linux machines sending data through the Log Analytics agent to Azure Monitor, including machines outside Azure. Agents connected exclusively to on-premises SCOM are exempt from that agent retirement.</p>
-<p>Without migration, you remain on an unsupported version, and old-agent monitoring uploads can stop at any time after 2026-03-02. The supplied guidance describes loss of ingestion, not shutdown of monitored machines. It does not establish whether your resources are affected or document deletion of previously collected data.</p>
+<p>Without migration, you remain on an unsupported version, and old-agent monitoring uploads can stop at any time after March 2, 2026. The supplied guidance describes loss of ingestion, not shutdown of monitored machines. It does not establish whether your resources are affected or document deletion of previously collected data.</p>
 <p>Portal installation of the old agent is unavailable; offline and extension-based installation remain possible. Dependent monitoring and security services may require separate migration steps. Overlapping collection through both agents can cause duplicate ingestion; no quantified cost impact is supplied.</p>
 <p>For applicable configurations, check the IIS logging requirement and SQL Assessment Solution workspace constraint described in the actions.</p>
 </div>

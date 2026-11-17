@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2022-08-31"><span></span>Retired</span></div>
-  <h1>Upgrade to the latest version of Azure AD Connect before 31 August 2022</h1><p>All Azure AD Connect 1.x versions retired on 2022-08-31 because they include SQL Server 2012 components that would no longer be supported. Microsoft directed customers to upgrade before that date to avoid service disruptions; the notice does not establish an automatic shutdown that day. The supplied upgrade reference describes a separate Microsoft Entra Connect Sync legacy-authentication retirement on 2027-04-07, not an extension of the 1.x retirement.</p>
+  <h1>Upgrade to the latest version of Azure AD Connect before 31 August 2022</h1><p>All Azure AD Connect 1.x versions retired on August 31, 2022 because they include SQL Server 2012 components that would no longer be supported. Microsoft directed customers to upgrade before that date to avoid service disruptions; the notice does not establish an automatic shutdown that day. The supplied upgrade reference describes a separate Microsoft Entra Connect Sync legacy-authentication retirement on April 7, 2027, not an extension of the 1.x retirement.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2022-08-31">31 Aug 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 29 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2022</p>
-<div class="rich-content"><p>All Azure AD Connect 1.x versions retired on <strong>2022-08-31</strong>. Microsoft directed you to upgrade before that date, also described as “by that date,” to avoid service disruptions. No cutoff time or universal shutdown schedule is documented.</p>
-<p>The upgrade reference separately states that Microsoft Entra Connect Sync synchronization will stop after <strong>2027-04-07</strong> unless you use version <strong>2.6.84.0 or later</strong> and application-based authentication. This is a different milestone, documented by that reference, not an extension of the 1.x retirement.</p>
+<div class="rich-content"><p>All Azure AD Connect 1.x versions retired on <strong>August 31, 2022</strong>. Microsoft directed you to upgrade before that date, also described as “by that date,” to avoid service disruptions. No cutoff time or universal shutdown schedule is documented.</p>
+<p>The upgrade reference separately states that Microsoft Entra Connect Sync synchronization will stop after <strong>April 7, 2027</strong> unless you use version <strong>2.6.84.0 or later</strong> and application-based authentication. This is a different milestone, documented by that reference, not an extension of the 1.x retirement.</p>
 <p>A Q&amp;A reply also quotes expected TLS 1.0/1.1 deprecation in <strong>January 2022</strong> and ADAL end of support in <strong>June 2022</strong>. These are separate dependency milestones; the supplied page does not independently confirm their implementation dates.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired <strong>all Azure AD Connect 1.x versions</strong> on <strong>2022-08-31</strong> because they include SQL Server 2012 components that would no longer be supported. Microsoft directed affected customers to upgrade to the latest Azure AD Connect version.</p>
+<div class="rich-content"><p>Microsoft retired <strong>all Azure AD Connect 1.x versions</strong> on <strong>August 31, 2022</strong> because they include SQL Server 2012 components that would no longer be supported. Microsoft directed affected customers to upgrade to the latest Azure AD Connect version.</p>
 <p>The notice identifies no regional exceptions and does not document maintenance or security-update commitments through retirement. It warns of service disruptions but does not establish that every 1.x installation stopped working on retirement day.</p>
 <p>The supplied upgrade reference also describes a separate retirement of Microsoft Entra Connect Sync legacy authentication in 2027. Its version and authentication requirements must not be treated as the original 2022 requirements.</p>
 </div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify whether you run Azure AD Connect 1.x. All 1.x versions are affected; the supplied retirement notice provides no version-discovery procedure.</li>
-<li>Upgrade to the latest supported Connect version. The original notice required an upgrade before <strong>2022-08-31</strong>. The supplied upgrade reference separately requires <strong>2.6.84.0 or later</strong> and application-based authentication by <strong>2027-04-07</strong>; upgrading alone does not meet that later requirement.</li>
+<li>Upgrade to the latest supported Connect version. The original notice required an upgrade before <strong>August 31, 2022</strong>. The supplied upgrade reference separately requires <strong>2.6.84.0 or later</strong> and application-based authentication by <strong>April 7, 2027</strong>; upgrading alone does not meet that later requirement.</li>
 <li>Review the referenced minimum requirements and upgrade permissions. The upgrade page lists .NET Framework 4.7.2 and TLS 1.2 and identifies Microsoft Entra Admin Center as the exclusive installer download location. Evaluate cloud sync suitability before choosing a path; supplied capability details are insufficient to establish suitability.</li>
 <li>Choose an upgrade method. Microsoft recommends <strong>swing migration for older 1.x versions</strong>, substantial configuration changes and operating-system upgrades. It requires an active server and a staging server. An in-place upgrade suits a single server with fewer than about 100,000 objects, but the upgraded release or configuration cannot be rolled back.</li>
 <li>For swing migration, export and import synchronization settings, preserve custom configuration, run full import and full synchronization on staging, and investigate unexpected changes. Correct discrepancies and repeat verification before cutover. Upgrade the former active server if retaining it as staging.</li>
@@ -1946,7 +1946,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected by the <strong>2022-08-31</strong> retirement if you run any Azure AD Connect 1.x version. The supplied content does not establish which version you use. Microsoft warns of service disruptions without an upgrade, but does not establish immediate workload shutdown, directory-data deletion or costs.</p>
+<div class="rich-content"><p>You are affected by the <strong>August 31, 2022</strong> retirement if you run any Azure AD Connect 1.x version. The supplied content does not establish which version you use. Microsoft warns of service disruptions without an upgrade, but does not establish immediate workload shutdown, directory-data deletion or costs.</p>
 <p>The Q&amp;A reply describes separate dependency risks: continued TLS 1.0/1.1 use could cause unexpected service failure, and ADAL-related authentication failure could prevent the server from working properly. Configuring TLS 1.2 alone does not resolve the older authentication-library limitation. Community failure reports do not establish that every 1.x installation failed.</p>
 <p>Upgrade effects depend on your configuration:</p>
 <ul>
@@ -1955,7 +1955,7 @@
 <li>Swing migration requires additional server capacity. With only two servers, upgrading staging temporarily leaves no ready staging backup.</li>
 <li>Retired servers left operational can overwrite Microsoft Entra data with stale values. Downgrading to legacy clients after cutover is unsupported and can cause data loss.</li>
 </ul>
-<p>Separately, the upgrade reference states that synchronization stops after <strong>2027-04-07</strong> if either its minimum-version or application-based authentication requirement is unmet. It does not state that existing Microsoft Entra workloads shut down.</p>
+<p>Separately, the upgrade reference states that synchronization stops after <strong>April 7, 2027</strong> if either its minimum-version or application-based authentication requirement is unmet. It does not state that existing Microsoft Entra workloads shut down.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>
     </section>

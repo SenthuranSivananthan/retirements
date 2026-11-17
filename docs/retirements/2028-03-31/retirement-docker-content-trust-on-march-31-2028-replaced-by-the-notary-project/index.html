@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Container Registry</span><span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span></div>
-  <h1>Retirement: Docker Content Trust on March 31, 2028 – Replaced by the Notary Project and Azure Key Vault</h1><p>Azure Container Registry (ACR) will remove Docker Content Trust (DCT) and permanently delete its DCT signing and verification data on 2028-03-31. New DCT enablement stopped on 2025-09-30. Migrate affected signing and verification workflows to the Notary Project ecosystem, including Notation. Separately, Docker&#39;s Notary v1 endpoint at notary.docker.io shuts down on 2026-12-08; this is not an earlier ACR removal date. The supplied tutorials document replacement workflows, not additional retirement deadlines.</p>
+  <h1>Retirement: Docker Content Trust on March 31, 2028 – Replaced by the Notary Project and Azure Key Vault</h1><p>Azure Container Registry (ACR) will remove Docker Content Trust (DCT) and permanently delete its DCT signing and verification data on March 31, 2028. New DCT enablement stopped on September 30, 2025. Migrate affected signing and verification workflows to the Notary Project ecosystem, including Notation. Separately, Docker&#39;s Notary v1 endpoint at notary.docker.io shuts down on December 8, 2026; this is not an earlier ACR removal date. The supplied tutorials document replacement workflows, not additional retirement deadlines.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-03-31"><strong>500 days remaining</strong><span>Retirement date: <time datetime="2028-03-31">31 Mar 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 5 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,17 +1916,17 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2028</p>
-<div class="rich-content"><p>ACR will remove DCT and permanently delete its DCT signing and signature-verification data on <strong>2028-03-31</strong>. New enablement stopped on <strong>2025-09-30</strong>; that restriction is separate from removal for existing users.</p>
-<p>The ACR notice also says DCT is unavailable “after” 2028-03-31, while its detailed milestone specifies removal on that date. Plan for 2028-03-31; no cutoff time is supplied.</p>
-<p>Separately, Docker's Notary v1 service at notary.docker.io shuts down on <strong>2026-12-08</strong>. This applies to that endpoint, not ACR's removal milestone. The supplied content gives no shutdown date for independently hosted Notary servers.</p>
+<div class="rich-content"><p>ACR will remove DCT and permanently delete its DCT signing and signature-verification data on <strong>March 31, 2028</strong>. New enablement stopped on <strong>September 30, 2025</strong>; that restriction is separate from removal for existing users.</p>
+<p>The ACR notice also says DCT is unavailable “after” March 31, 2028, while its detailed milestone specifies removal on that date. Plan for March 31, 2028; no cutoff time is supplied.</p>
+<p>Separately, Docker's Notary v1 service at notary.docker.io shuts down on <strong>December 8, 2026</strong>. This applies to that endpoint, not ACR's removal milestone. The supplied content gives no shutdown date for independently hosted Notary servers.</p>
 <p>The Notary Project, Notation and implementation reference pages establish no additional retirement deadlines. Their publication, update and release dates are not retirement milestones.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Container Registry will remove Docker Content Trust on <strong>2028-03-31</strong>, ending its DCT image-signing and signature-verification functionality and deleting the associated data. Existing use is distinct from new enablement, which stopped on 2025-09-30.</p>
+<div class="rich-content"><p>Azure Container Registry will remove Docker Content Trust on <strong>March 31, 2028</strong>, ending its DCT image-signing and signature-verification functionality and deleting the associated data. Existing use is distinct from new enablement, which stopped on September 30, 2025.</p>
 <p>Microsoft directs affected customers to the Notary Project ecosystem, including Notation. Azure Key Vault provides documented signing-key and certificate options; it is not presented as a standalone replacement for every DCT capability.</p>
-<p>The supplied notice specifies no regional exceptions or maintenance, support or security-update commitments before removal. Docker's separate shutdown of notary.docker.io on 2026-12-08 does not establish an ACR shutdown on that date.</p>
+<p>The supplied notice specifies no regional exceptions or maintenance, support or security-update commitments before removal. Docker's separate shutdown of notary.docker.io on December 8, 2026 does not establish an ACR shutdown on that date.</p>
 </div>
       <div class="notice"></div>
     </section>
@@ -1936,7 +1936,7 @@
 <li>Identify ACR workflows that use DCT for publishing or verifying images. Separately identify dependencies on notary.docker.io, which shuts down earlier. The ACR notice supplies no inventory method; Docker documents checking DCT configuration and using <code>docker trust inspect</code>, but this is not a complete dependency inventory.</li>
 <li>Select a replacement workflow using Notation and the Notary Project ecosystem. Supplied guidance covers Azure Key Vault signing with self-signed or CA-issued certificates, Azure Pipelines, GitHub Actions and AKS verification. The self-signed certificate examples are for testing.</li>
 <li>Prepare the required registry access, signing keys and certificates, authentication, trust stores and trust policies. Registry permissions depend on ABAC configuration. Notation v1.2.0 and later use the OCI referrers tag schema by default; the documented OCI Referrers API alternative is unsupported for registries encrypted with customer-managed keys.</li>
-<li>Implement and validate signing and verification for your selected workflows before ACR removal on 2028-03-31. Address dependencies on Docker's endpoint before 2026-12-08. Use image digests rather than mutable tags in the documented signing workflows.</li>
+<li>Implement and validate signing and verification for your selected workflows before ACR removal on March 31, 2028. Address dependencies on Docker's endpoint before December 8, 2026. Use image digests rather than mutable tags in the documented signing workflows.</li>
 </ol>
 <p>For AKS enforcement, test trusted, unsigned and untrusted-signer images. Deny blocks failed verification; Audit allows deployment and reports non-compliance. Do not combine the documented standalone Gatekeeper setup with the Azure Policy add-on.</p>
 <p>Docker recommends securely backing up your DCT root key; a lost root key cannot be recovered. The supplied content does not document an ACR DCT data-export procedure, conversion of existing signatures, or a complete retirement cutover and cleanup procedure.</p>
@@ -1946,8 +1946,8 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected by ACR's retirement if you use its DCT image-signing or signature-verification functionality. New enablement stopped on 2025-09-30. On <strong>2028-03-31</strong>, that functionality and its stored signing and verification data will be removed permanently.</p>
-<p>Separately, workflows depending on Docker's notary.docker.io endpoint face its <strong>2026-12-08</strong> shutdown. The Docker page does not specify their exact post-shutdown failure behavior or shutdown dates for independently hosted Notary servers.</p>
+<div class="rich-content"><p>You are affected by ACR's retirement if you use its DCT image-signing or signature-verification functionality. New enablement stopped on September 30, 2025. On <strong>March 31, 2028</strong>, that functionality and its stored signing and verification data will be removed permanently.</p>
+<p>Separately, workflows depending on Docker's notary.docker.io endpoint face its <strong>December 8, 2026</strong> shutdown. The Docker page does not specify their exact post-shutdown failure behavior or shutdown dates for independently hosted Notary servers.</p>
 <p>The supplied content does not state that ACR container images will be deleted or running workloads will stop. It does not establish other retirement-related console, API, support or cost effects.</p>
 <p>Replacement enforcement can affect new deployments: configured AKS Deny policies reject unsigned images, untrusted signers and images outside the configured trust-policy scope. Audit permits deployments while reporting non-compliance. These are configuration effects, not documented shutdowns of existing workloads.</p>
 <p>No supplied information establishes whether your resources use these features.</p>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Functions</span><span class="badge retired" data-deadline="2025-10-31"><span></span>Retired</span></div>
-  <h1>Retirement: Support for Python 3.9 ends on October 31, 2025 – upgrade your Azure Functions apps to Python 3.11</h1><p>Support for Python 3.9 in Azure Functions ends on 2025-10-31, the stated deadline to upgrade affected apps to Python 3.11. Apps continue running afterward, but Microsoft no longer provides Python 3.9 security updates, performance optimizations or customer service. Python versions cannot be changed in place on Consumption-plan apps; the supplied guidance does not provide a complete alternative migration procedure.</p>
+  <h1>Retirement: Support for Python 3.9 ends on October 31, 2025 – upgrade your Azure Functions apps to Python 3.11</h1><p>Support for Python 3.9 in Azure Functions ends on October 31, 2025, the stated deadline to upgrade affected apps to Python 3.11. Apps continue running afterward, but Microsoft no longer provides Python 3.9 security updates, performance optimizations or customer service. Python versions cannot be changed in place on Consumption-plan apps; the supplied guidance does not provide a complete alternative migration procedure.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-10-31"><strong>Retired</strong><span>Retirement date: <time datetime="2025-10-31">31 Oct 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 6 months, 17 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Oct 2025</p>
-<div class="rich-content"><p>Support for Python 3.9 in Azure Functions ends on <strong>2025-10-31</strong>, also the notice's deadline to upgrade to Python 3.11. This is an end-of-support date, not an app shutdown date: hosted apps continue running.</p>
+<div class="rich-content"><p>Support for Python 3.9 in Azure Functions ends on <strong>October 31, 2025</strong>, also the notice's deadline to upgrade to Python 3.11. This is an end-of-support date, not an app shutdown date: hosted apps continue running.</p>
 <p>The reference guides provide no conflicting Python 3.9 date. The separately mentioned Linux Consumption retirement has no supplied deadline and does not change this milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Functions is ending support for Python 3.9 in alignment with community end of support. After 2025-10-31, Microsoft no longer provides security updates, performance optimizations or customer service for Python 3.9. The notice directs affected customers to Python 3.11.</p>
+<div class="rich-content"><p>Azure Functions is ending support for Python 3.9 in alignment with community end of support. After October 31, 2025, Microsoft no longer provides security updates, performance optimizations or customer service for Python 3.9. The notice directs affected customers to Python 3.11.</p>
 <p>Apps continue running after support ends. The general language-support policy also permits creation and deployment of retired-language apps, but excludes them from new features until upgraded. The notice specifies no regional exceptions.</p>
 </div>
       <div class="notice"></div>
@@ -1931,7 +1931,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your Azure Functions apps using Python 3.9, including their hosting plan and Functions runtime version. The supplied notice provides no Python-version inventory method. The FUNCTIONS_WORKER_RUNTIME setting identifies the language, not its version.</li>
-<li>Follow the notice's direction to upgrade affected apps to Python 3.11 by 2025-10-31. Check package dependencies, binding extensions, extension bundles and local tools. The update guide calls for Functions runtime 4.x; follow runtime migration guidance if you use an older runtime rather than merely changing its setting.</li>
+<li>Follow the notice's direction to upgrade affected apps to Python 3.11 by October 31, 2025. Check package dependencies, binding extensions, extension bundles and local tools. The update guide calls for Functions runtime 4.x; follow runtime migration guidance if you use an older runtime rather than merely changing its setting.</li>
 <li>Test compatible code locally and back up app configuration. <strong>Consumption-plan apps do not support changing Python versions in place.</strong> The supplied guide does not provide a complete alternative migration procedure or required destination for those apps.</li>
 <li>Where version changes are supported, publish compatible code before updating the stack configuration. Use a staging slot where available; Flex Consumption does not support slots, so test in a non-production app first.</li>
 <li>Confirm the configured language version, Running status and function behavior. If using a staging slot, swap it into production after validation.</li>
@@ -1941,7 +1941,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your Azure Functions apps using Python 3.9 are affected; no inspection of your resources is established by these sources. Without an upgrade, apps continue running after 2025-10-31 but lose the documented security updates, performance optimizations and Microsoft customer service for Python 3.9.</p>
+<div class="rich-content"><p>Your Azure Functions apps using Python 3.9 are affected; no inspection of your resources is established by these sources. Without an upgrade, apps continue running after October 31, 2025 but lose the documented security updates, performance optimizations and Microsoft customer service for Python 3.9.</p>
 <p>The general language-support policy says Microsoft may limit allocated instances for retired-language apps, including scaling to one instance in some cases. It does not establish that every Python 3.9 app will receive that limit.</p>
 <p>For supported language updates, changing the version restarts the app. A direct production update typically causes 30–60 seconds of unavailability, terminates in-flight requests and rejects new requests until restart succeeds. Incompatible dependencies can prevent startup or cause function errors. Consumption-plan Python apps cannot use an in-place version change.</p>
 <p>The supplied content specifies no Python 3.9 retirement-related data deletion, retention change or cost change.</p>

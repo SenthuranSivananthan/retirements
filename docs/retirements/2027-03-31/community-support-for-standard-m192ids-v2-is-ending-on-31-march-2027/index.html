@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge upcoming" data-deadline="2027-03-31"><span></span>Upcoming</span></div>
-  <h1>Community support for Standard_M192ids_v2 is ending on 31 March 2027</h1><p>Microsoft will retire Azure Standard_M192ids_v2 on 2027-03-31. Migrate by that date; the announcement recommends Mdsv3 Medium Memory. Current migration guidance says remaining affected VMs will be stopped and deallocated, while the announcement says workloads will be deleted and associated application data lost. Use the current guidance for expected shutdown behavior, but the conflicting deletion statement remains unresolved.</p>
+  <h1>Community support for Standard_M192ids_v2 is ending on 31 March 2027</h1><p>Microsoft will retire Azure Standard_M192ids_v2 on March 31, 2027. Migrate by that date; the announcement recommends Mdsv3 Medium Memory. Current migration guidance says remaining affected VMs will be stopped and deallocated, while the announcement says workloads will be deleted and associated application data lost. Use the current guidance for expected shutdown behavior, but the conflicting deletion statement remains unresolved.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-03-31"><strong>134 days remaining</strong><span>Retirement date: <time datetime="2027-03-31">31 Mar 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 9 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2027</p>
-<div class="rich-content"><p>Azure <strong>Standard_M192ids_v2 retires on 2027-03-31</strong>. Microsoft says you can continue using it without disruption until then. Complete migration by that date to avoid workload interruption.</p>
+<div class="rich-content"><p>Azure <strong>Standard_M192ids_v2 retires on March 31, 2027</strong>. Microsoft says you can continue using it without disruption until then. Complete migration by that date to avoid workload interruption.</p>
 <p>The announcement title describes community support ending, but its body explicitly describes retirement and deletion. Current product migration guidance instead says Azure will stop and deallocate remaining affected VMs on the same date. The retirement date agrees across these sources; the deletion statements remain inconsistent. Current guidance is preferred for expected shutdown behavior, but data retention is not confirmed.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring <strong>Standard_M192ids_v2</strong>, an Azure Mdsv2 Medium Memory isolated VM size, on <strong>2027-03-31</strong>. This is full-size retirement, not merely loss of physical isolation or community support.</p>
+<div class="rich-content"><p>Microsoft is retiring <strong>Standard_M192ids_v2</strong>, an Azure Mdsv2 Medium Memory isolated VM size, on <strong>March 31, 2027</strong>. This is full-size retirement, not merely loss of physical isolation or community support.</p>
 <p>The announcement recommends <strong>Mdsv3 Medium Memory</strong>. The broader migration guide covers Msv3 and Mdsv3 Medium Memory replacements and also retires Standard_M192is_v2, Standard_M192ims_v2 and Standard_M192idms_v2 on the same date. It does not establish retirement of other VM sizes or specify regional exceptions.</p>
 </div>
       <div class="notice"></div>
@@ -1932,7 +1932,7 @@
 <div class="rich-content"><ol>
 <li>Identify your Standard_M192ids_v2 VMs. Check each VM's Azure portal properties for Availability Set and Proximity Placement Group (PPG) membership. For Availability Sets, check your records for compute-cluster pinning; ask Azure Support if uncertain.</li>
 <li>Select a suitable replacement. The announcement recommends Mdsv3 Medium Memory; the migration guide covers Msv3 and Mdsv3 Medium Memory. Obtain target-series quota and assess pricing with the pricing calculator. If physical isolation remains required, verify that your replacement meets that requirement and is available in your region.</li>
-<li>Follow the applicable migration path and complete migration by <strong>2027-03-31</strong>:
+<li>Follow the applicable migration path and complete migration by <strong>March 31, 2027</strong>:
 <ul>
 <li>Neither Availability Set nor PPG: resize the VM.</li>
 <li>PPG only: shut down all PPG VMs, resize and restart affected VMs, then restart the other PPG VMs.</li>
@@ -1949,7 +1949,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you use <strong>Standard_M192ids_v2</strong>. This synthesis does not establish whether your subscription contains affected VMs.</p>
-<p>Current migration guidance says remaining affected VMs will be stopped and deallocated on <strong>2027-03-31</strong>, interrupting workloads. It says the VMs will not be billed while deallocated, but does not address other resource charges. The announcement instead states that workloads will be deleted and associated application data lost. That conflict remains unresolved; do not treat deallocation guidance as confirmation of data retention or recovery.</p>
+<p>Current migration guidance says remaining affected VMs will be stopped and deallocated on <strong>March 31, 2027</strong>, interrupting workloads. It says the VMs will not be billed while deallocated, but does not address other resource charges. The announcement instead states that workloads will be deleted and associated application data lost. That conflict remains unresolved; do not treat deallocation guidance as confirmation of data retention or recovery.</p>
 <p>Migration may also require downtime for other VMs sharing an Availability Set or PPG. Cluster pinning can require Azure Support assistance. The supplied sources do not specify separate console, API or deployment-tooling changes, migration costs or regional exceptions.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

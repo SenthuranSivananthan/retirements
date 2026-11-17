@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h1>Support of Azure Notification Hubs’ Firebase Cloud Messaging (FCM) legacy API will be deprecated by July 2024.</h1><p>Azure Notification Hubs’ FCM Legacy integration is described as deprecated by July 2024, without an exact retirement day. Migrate applications, payloads and registrations/installations to FCM v1. The notice specifies an action target before 2024-06-01 and separately requires migration before Google’s stated legacy HTTP support cutoff on 2024-06-20. Customer reports of a 2024-07-20 extension were not explicitly confirmed by Microsoft. Microsoft later described continued legacy pass-through while Google makes it available, without assuring quality after 2024-06-20. The final shutdown date and installation-deletion timing remain unconfirmed.</p>
+  <h1>Support of Azure Notification Hubs’ Firebase Cloud Messaging (FCM) legacy API will be deprecated by July 2024.</h1><p>Azure Notification Hubs’ FCM Legacy integration is described as deprecated by July 2024, without an exact retirement day. Migrate applications, payloads and registrations/installations to FCM v1. The notice specifies an action target before June 1, 2024 and separately requires migration before Google’s stated legacy HTTP support cutoff on June 20, 2024. Customer reports of a July 20, 2024 extension were not explicitly confirmed by Microsoft. Microsoft later described continued legacy pass-through while Google makes it available, without assuring quality after June 20, 2024. The final shutdown date and installation-deletion timing remain unconfirmed.</p>
   <div class="retirement-countdown unknown" data-countdown data-deadline=""><strong>Retirement date to confirm</strong><span class="badge amber customer-lead-time-pill">Lead time: Not calculable</span></div>
 </div>
 <div class="detail-layout">
@@ -1919,18 +1919,18 @@
 <div class="rich-content"><p>Azure Notification Hubs’ FCM Legacy support is described as deprecated <strong>by July 2024</strong>, without an exact retirement day or confirmed delivery cutoff.</p>
 <p>The supplied material identifies separate milestones:</p>
 <ul>
-<li><strong>Before 2024-06-01:</strong> The notice’s required-action section directs you to migrate to minimize impact.</li>
-<li><strong>2024-06-20:</strong> Google’s stated legacy HTTP support cutoff; the original guidance also requires migration before this date.</li>
-<li><strong>2024-07-20:</strong> Customers reported an extension to this date, but Microsoft did not explicitly confirm it.</li>
+<li><strong>Before June 1, 2024:</strong> The notice’s required-action section directs you to migrate to minimize impact.</li>
+<li><strong>June 20, 2024:</strong> Google’s stated legacy HTTP support cutoff; the original guidance also requires migration before this date.</li>
+<li><strong>July 20, 2024:</strong> Customers reported an extension to this date, but Microsoft did not explicitly confirm it.</li>
 </ul>
-<p>Microsoft later said Notification Hubs would retain legacy pass-through while Google makes FCM Legacy available, without assuring quality after 2024-06-20. This does not confirm an exact-date extension or shutdown date. The action targets do not replace the month-only retirement milestone.</p>
+<p>Microsoft later said Notification Hubs would retain legacy pass-through while Google makes FCM Legacy available, without assuring quality after June 20, 2024. This does not confirm an exact-date extension or shutdown date. The action targets do not replace the month-only retirement milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
 <div class="rich-content"><p>Azure Notification Hubs’ FCM Legacy HTTP integration for push notifications to Google Play-supported Android devices is described as deprecated by July 2024. You must move affected applications, notification payloads and registrations/installations to FCM v1; this is not retirement of Notification Hubs as a whole.</p>
 <p>FCM Legacy and FCM v1 are separate push notification service types. Legacy registrations cannot receive notifications through the FCM v1 pipeline.</p>
-<p>Microsoft says it will retain the legacy endpoint as a pass-through while Google provides FCM Legacy, but does not assure its quality after 2024-06-20. The supplied content does not document regional exceptions or an exact shutdown date.</p>
+<p>Microsoft says it will retain the legacy endpoint as a pass-through while Google provides FCM Legacy, but does not assure its quality after June 20, 2024. The supplied content does not document regional exceptions or an exact shutdown date.</p>
 </div>
       <div class="notice"></div>
     </section>
@@ -1942,7 +1942,7 @@
 <li>For client-managed registrations, update your app to register under the FCM v1 platform. For server-managed records, fetch and update registrations/installations to FCM v1. Microsoft points to REST API and Azure portal migration guidance; bulk registration import/export is an optional approach.</li>
 <li>Verify actual notification delivery to FCM v1 registrations/installations. Legacy registrations do not work with the FCM v1 pipeline, and portal results showing zero passes and zero failures do not prove delivery.</li>
 </ol>
-<p>The notice specifies migration before 2024-06-01 to minimize impact and separately before 2024-06-20. Later pass-through guidance does not establish a confirmed replacement action deadline. The supplied content does not provide detailed cutover, backup or cleanup procedures.</p>
+<p>The notice specifies migration before June 1, 2024 to minimize impact and separately before June 20, 2024. Later pass-through guidance does not establish a confirmed replacement action deadline. The supplied content does not provide detailed cutover, backup or cleanup procedures.</p>
 </div>
       <p> </p>
     </section>
@@ -1950,8 +1950,8 @@
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your Azure Notification Hubs integration uses FCM Legacy for Android push notifications. The supplied material does not inspect your resources or quantify your exposure.</p>
 <p>FCM v1 requires matching registrations/installations. Sending through the FCM v1 pipeline without them can produce portal test results showing zero passes and zero failures without delivering notifications.</p>
-<p>Without migration, legacy delivery depends on Google’s availability and decommissioning steps. Microsoft does not assure legacy service quality after 2024-06-20, but the material does not establish an exact delivery cutoff or shutdown of Notification Hubs as a whole.</p>
-<p>An earlier Microsoft reply states that installations not migrated before 2024-06-20 would be automatically removed. Later pass-through replies do not clarify or withdraw that statement, so installation-deletion timing remains unclear. Equivalent deletion behavior for registrations is not established.</p>
+<p>Without migration, legacy delivery depends on Google’s availability and decommissioning steps. Microsoft does not assure legacy service quality after June 20, 2024, but the material does not establish an exact delivery cutoff or shutdown of Notification Hubs as a whole.</p>
+<p>An earlier Microsoft reply states that installations not migrated before June 20, 2024 would be automatically removed. Later pass-through replies do not clarify or withdraw that statement, so installation-deletion timing remains unclear. Equivalent deletion behavior for registrations is not established.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>
     </section>

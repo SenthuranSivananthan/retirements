@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Front Door</span><span class="badge retired" data-deadline="2025-11-15"><span></span>Retired</span></div>
-  <h1>Retirement: Azure CDN – Migrate to Azure Front Door on December 1, 2025</h1><p>Azure CDN in Microsoft Azure operated by 21Vianet (Azure China) stopped serving traffic on 2025-12-01, according to the supplied FAQ. Migration guidance required migration before 2025-11-15; the FAQ instead recommended before 2025-11-30, without documenting an extension. Eligible profiles were scheduled for automatic migration, but excluded configurations required customer action. Auto-migrated customers also needed to update automation and replace legacy CNAME targets before 2026-02-01. Standard Azure Front Door billing applies from 2026-10-01. The supplied material does not confirm any individual profile&#39;s migration status.</p>
+  <h1>Retirement: Azure CDN – Migrate to Azure Front Door on December 1, 2025</h1><p>Azure CDN in Microsoft Azure operated by 21Vianet (Azure China) stopped serving traffic on December 1, 2025, according to the supplied FAQ. Migration guidance required migration before November 15, 2025; the FAQ instead recommended before November 30, 2025, without documenting an extension. Eligible profiles were scheduled for automatic migration, but excluded configurations required customer action. Auto-migrated customers also needed to update automation and replace legacy CNAME targets before February 1, 2026. Standard Azure Front Door billing applies from October 1, 2026. The supplied material does not confirm any individual profile&#39;s migration status.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-11-15"><strong>Retired</strong><span>Retirement date: <time datetime="2025-11-15">15 Nov 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 months, 13 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,22 +1916,22 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">15 Nov 2025</p>
-<div class="rich-content"><p>Migration guidance required you to migrate before <strong>2025-11-15</strong>; the announcement also required successful validation and deletion of Azure CDN resources before that date. The FAQ instead recommended completion before <strong>2025-11-30</strong>. The selected deadline follows the explicit migration guidance, but this recommendation conflict remains unresolved: the supplied material does not document an extension.</p>
+<div class="rich-content"><p>Migration guidance required you to migrate before <strong>November 15, 2025</strong>; the announcement also required successful validation and deletion of Azure CDN resources before that date. The FAQ instead recommended completion before <strong>November 30, 2025</strong>. The selected deadline follows the explicit migration guidance, but this recommendation conflict remains unresolved: the supplied material does not document an extension.</p>
 <p>Other milestones apply separately:</p>
 <ul>
-<li><strong>2025-09-15:</strong> Creation of new Azure CDN profiles stopped.</li>
-<li><strong>2025-11-15:</strong> Changes to existing profiles stopped.</li>
-<li><strong>2025-11-15–2025-12-01:</strong> Microsoft scheduled compatible profiles for automatic migration through an in-place SKU upgrade.</li>
-<li><strong>2025-12-01:</strong> Azure China CDN stopped serving traffic, according to the FAQ. Certain unmigrated profiles remained visible in the portal through <strong>2026-01-31</strong>, without serving traffic.</li>
-<li><strong>2026-02-01:</strong> Legacy mcchcdn.com CNAME targets became unusable for auto-migrated profiles; the FAQ required replacement by the end of January 2026.</li>
-<li><strong>2026-10-01:</strong> Standard Azure Front Door billing began applying to all meters.</li>
+<li><strong>September 15, 2025:</strong> Creation of new Azure CDN profiles stopped.</li>
+<li><strong>November 15, 2025:</strong> Changes to existing profiles stopped.</li>
+<li><strong>November 15, 2025–December 1, 2025:</strong> Microsoft scheduled compatible profiles for automatic migration through an in-place SKU upgrade.</li>
+<li><strong>December 1, 2025:</strong> Azure China CDN stopped serving traffic, according to the FAQ. Certain unmigrated profiles remained visible in the portal through <strong>January 31, 2026</strong>, without serving traffic.</li>
+<li><strong>February 1, 2026:</strong> Legacy mcchcdn.com CNAME targets became unusable for auto-migrated profiles; the FAQ required replacement by the end of January 2026.</li>
+<li><strong>October 1, 2026:</strong> Standard Azure Front Door billing began applying to all meters.</li>
 </ul>
-<p>The comparison page's 2026-06-24 update date does not establish an extension. Scheduled automatic migration does not confirm completion for your profiles.</p>
+<p>The comparison page's June 24, 2026 update date does not establish an extension. Scheduled automatic migration does not confirm completion for your profiles.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure CDN in <strong>Microsoft Azure operated by 21Vianet (Azure China)</strong> retired and stopped serving traffic on <strong>2025-12-01</strong>, according to the FAQ. These sources do not establish retirement dates for Azure CDN outside China.</p>
+<div class="rich-content"><p>Azure CDN in <strong>Microsoft Azure operated by 21Vianet (Azure China)</strong> retired and stopped serving traffic on <strong>December 1, 2025</strong>, according to the FAQ. These sources do not establish retirement dates for Azure CDN outside China.</p>
 <p>Microsoft offered Azure Front Door or an alternative CDN as replacement paths. Compatible profiles were scheduled for automatic, in-place migration; afterward, they were no longer visible as Azure CDN profiles. Incompatible and other excluded configurations required customer-led migration.</p>
 <p>Azure Front Door is not feature-equivalent. The comparison lists two China PoPs, in China North 3 and China East 2, versus more than 600 mainland China PoPs for Azure China CDN. Features, endpoints, authentication, reporting and billing differ. The supplied material does not document interim maintenance, support or security-update commitments.</p>
 </div>
@@ -1945,7 +1945,7 @@
 <li><strong>Resolve delivery-scope requirements.</strong> The migration guide describes China Front Door for mainland delivery, public Azure Front Door with a public Azure subscription for overseas delivery, and both deployments with Azure Traffic Manager for combined delivery. The FAQ instead directs noneligible overseas/global configurations to a third-party CDN. These sources do not establish one applicable route for every such profile; confirm compatibility before choosing. The guide directs you to Premium when Web Application Firewall and Private Link to origins are needed, otherwise Standard.</li>
 <li><strong>Check provider-led migration prerequisites.</strong> Certain service-team customizations require customer-led migration. For bring-your-own certificates, the comparison requires certificate auto-rotation but then refers to enabling “automatic migration”; that prerequisite is ambiguous in the supplied material.</li>
 <li><strong>Migrate, validate and cut over.</strong> The guide describes testing by locally binding the host IP to the relevant Front Door IP, testing both deployments for combined delivery, then changing custom-domain DNS for single-scope delivery. For combined delivery, it directs you to add both endpoints to Azure Traffic Manager but supplies no complete setup or final cutover procedure. No export or backup procedure is supplied.</li>
-<li><strong>Update integrations and clean up.</strong> Replace Azure CDN APIs/tooling in automation with Azure Front Door equivalents. Replace legacy mcchcdn.com CNAME targets, which became unusable on 2026-02-01. After validating migration to another CDN, delete the old Azure CDN profile to avoid unnecessary charges; the announcement also required post-validation deletion before 2025-11-15.</li>
+<li><strong>Update integrations and clean up.</strong> Replace Azure CDN APIs/tooling in automation with Azure Front Door equivalents. Replace legacy mcchcdn.com CNAME targets, which became unusable on February 1, 2026. After validating migration to another CDN, delete the old Azure CDN profile to avoid unnecessary charges; the announcement also required post-validation deletion before November 15, 2025.</li>
 </ol>
 <p>Contact support or your sales contact for migration help. The FAQ directs customers seeking automatic-migration opt-out to support.</p>
 </div>
@@ -1953,7 +1953,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your exposure depends on your Azure China CDN configuration and whether migration completed. Unmigrated profiles stopped serving traffic on <strong>2025-12-01</strong>; continued portal visibility did not mean continued service. No customer resources have been inspected.</p>
+<div class="rich-content"><p>Your exposure depends on your Azure China CDN configuration and whether migration completed. Unmigrated profiles stopped serving traffic on <strong>December 1, 2025</strong>; continued portal visibility did not mean continued service. No customer resources have been inspected.</p>
 <p>Documented automatic-migration exclusions and constraints include:</p>
 <ul>
 <li>Disabled profiles, active profiles without endpoints, and disabled endpoints within active profiles.</li>
@@ -1962,10 +1962,10 @@
 <li>Incompatible features, overseas/global configurations and certain service-team customizations.</li>
 <li>The certificate prerequisite described in the comparison, whose wording is ambiguous.</li>
 </ul>
-<p>Microsoft described automatic migration as downtime-free for eligible instances, not as proof that any particular migration succeeded. After migration, Azure CDN profile views disappeared and automation needed Azure Front Door APIs or tooling. Legacy CNAME targets became unusable on <strong>2026-02-01</strong>.</p>
+<p>Microsoft described automatic migration as downtime-free for eligible instances, not as proof that any particular migration succeeded. After migration, Azure CDN profile views disappeared and automation needed Azure Front Door APIs or tooling. Legacy CNAME targets became unusable on <strong>February 1, 2026</strong>.</p>
 <p>Front Door also changes feature configuration, authentication and reporting. It uses standard Azure REST API authentication and Azure Monitor diagnostics; basic request and usage metrics do not fully match CDN reporting. IPv4/IPv6 is dual-stack by default and cannot be configured separately.</p>
-<p>Standard Front Door billing applies from <strong>2026-10-01</strong>, with base, request and traffic-related fees rather than CDN egress-only billing. Costs may increase depending on traffic; no customer-specific estimate is supplied. The FAQ describes a customer-requested, time-bound discount through sales, not an automatic entitlement.</p>
-<p>The FAQ documents portal visibility through <strong>2026-01-31</strong> for certain unmigrated profiles, but not subsequent retention or deletion behavior.</p>
+<p>Standard Front Door billing applies from <strong>October 1, 2026</strong>, with base, request and traffic-related fees rather than CDN egress-only billing. Costs may increase depending on traffic; no customer-specific estimate is supplied. The FAQ describes a customer-requested, time-bound discount through sales, not an automatic entitlement.</p>
+<p>The FAQ documents portal visibility through <strong>January 31, 2026</strong> for certain unmigrated profiles, but not subsequent retention or deletion behavior.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>
     </section>

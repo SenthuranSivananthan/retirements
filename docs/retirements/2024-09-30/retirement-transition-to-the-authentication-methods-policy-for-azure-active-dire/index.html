@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2024-09-30"><span></span>Retired</span></div>
-  <h1>Retirement: transition to the Authentication methods policy for Azure Active Directory</h1><p>Microsoft announced 2024-09-30 as the retirement date for managing Azure Active Directory MFA and self-service password reset authentication methods through legacy policies. Move this management to the unified Authentication methods policy. The supplied migration guide describes continued legacy-policy use during migration and reversible completion, but gives no revised retirement date or extension. Current enforcement is therefore unconfirmed; neither source establishes an authentication-service shutdown.</p>
+  <h1>Retirement: transition to the Authentication methods policy for Azure Active Directory</h1><p>Microsoft announced September 30, 2024 as the retirement date for managing Azure Active Directory MFA and self-service password reset authentication methods through legacy policies. Move this management to the unified Authentication methods policy. The supplied migration guide describes continued legacy-policy use during migration and reversible completion, but gives no revised retirement date or extension. Current enforcement is therefore unconfirmed; neither source establishes an authentication-service shutdown.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2024-09-30">30 Sep 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 5 months, 16 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2024</p>
-<div class="rich-content"><p>Microsoft's retirement notice identifies <strong>2024-09-30</strong> as the retirement date for authentication-method management through legacy Azure Active Directory MFA and self-service password reset (SSPR) policies. It does not identify an MFA, SSPR or user-authentication shutdown date.</p>
-<p>The migration guide describes continued legacy-policy use during migration and reversible completion, but states no retirement deadline or extension. Its 2026-01-15 last-updated date is not a retirement milestone. The supplied sources do not resolve how that guidance aligns with the announced retirement date, so current enforcement remains unconfirmed.</p>
+<div class="rich-content"><p>Microsoft's retirement notice identifies <strong>September 30, 2024</strong> as the retirement date for authentication-method management through legacy Azure Active Directory MFA and self-service password reset (SSPR) policies. It does not identify an MFA, SSPR or user-authentication shutdown date.</p>
+<p>The migration guide describes continued legacy-policy use during migration and reversible completion, but states no retirement deadline or extension. Its January 15, 2026 last-updated date is not a retirement milestone. The supplied sources do not resolve how that guidance aligns with the announced retirement date, so current enforcement remains unconfirmed.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft announced retirement of legacy MFA and SSPR authentication-method management on 2024-09-30, replacing it with the unified Authentication methods policy.</p>
+<div class="rich-content"><p>Microsoft announced retirement of legacy MFA and SSPR authentication-method management on September 30, 2024, replacing it with the unified Authentication methods policy.</p>
 <p>The migration guide says you can use legacy policies while configuring the replacement. After you select Migration Complete, Microsoft Entra follows the unified policy; legacy method settings no longer apply or remain editable, <strong>except SSPR security questions</strong>, which remain managed in legacy SSPR settings.</p>
 <p>The automated guide migrates tenant policy settings, not individual user settings. Already-configured methods available only in the unified policy, including FIDO2 security keys, Temporary Access Pass and Microsoft Entra certificate-based authentication, need no migration changes.</p>
 <p>The sources do not establish an authentication-service shutdown, regional exceptions, or maintenance, support and security-update commitments.</p>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Virtual Machines</span><span class="badge retired" data-deadline="2022-02-28"><span></span>Retired</span></div>
-  <h1>The GS5 Azure Virtual Machines will no longer be SAP HANA Certified on 28 February 2022</h1><p>GS5 Azure VMs lose SAP HANA certification on 2022-02-28. Microsoft directs customers running SAP HANA to transition to E64ds_v4 before that date. No action is required if you do not run SAP HANA. This is a certification change, not an announced VM shutdown or end of support.</p>
+  <h1>The GS5 Azure Virtual Machines will no longer be SAP HANA Certified on 28 February 2022</h1><p>GS5 Azure VMs lose SAP HANA certification on February 28, 2022. Microsoft directs customers running SAP HANA to transition to E64ds_v4 before that date. No action is required if you do not run SAP HANA. This is a certification change, not an announced VM shutdown or end of support.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-02-28"><strong>Retired</strong><span>Retirement date: <time datetime="2022-02-28">28 Feb 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 6 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">28 Feb 2022</p>
-<div class="rich-content"><p>GS5 Azure VMs will no longer be SAP HANA certified on <strong>2022-02-28</strong>. Microsoft directs you to transition SAP HANA workloads to E64ds_v4 <strong>before 2022-02-28</strong>.</p>
+<div class="rich-content"><p>GS5 Azure VMs will no longer be SAP HANA certified on <strong>February 28, 2022</strong>. Microsoft directs you to transition SAP HANA workloads to E64ds_v4 <strong>before February 28, 2022</strong>.</p>
 <p>The notice does not specify a VM shutdown or end-of-support date. The resizing references establish no separate retirement milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>GS5 Azure VMs lose SAP HANA certification on <strong>2022-02-28</strong>. Microsoft identifies E64ds_v4 as the replacement for affected SAP HANA workloads.</p>
+<div class="rich-content"><p>GS5 Azure VMs lose SAP HANA certification on <strong>February 28, 2022</strong>. Microsoft identifies E64ds_v4 as the replacement for affected SAP HANA workloads.</p>
 <p>The certification statement names GS5, while the migration instructions refer to G/GS5 VMs. The notice does not announce retirement of the VM service or changes to support or security updates. If you do not run SAP HANA, Microsoft says no action is required.</p>
 </div>
       <div class="notice"></div>
@@ -1933,7 +1933,7 @@
 <ol>
 <li>Identify your SAP HANA workloads on GS5 VMs. Note that Microsoft's migration instructions refer more broadly to G/GS5 VMs; the certification-loss statement specifically names GS5.</li>
 <li>Check E64ds_v4 availability and compatibility for your workload. The resizing references require an s-version size for Premium Storage. Windows direct resizing requires matching local temporary-disk configurations; Linux supports changes between configurations with and without that disk. Direct SCSI-to-remote-NVMe resizing is unsupported; the references point to workarounds.</li>
-<li>Plan the interruption. Microsoft directs you to stop your current G/GS5 VMs and follow the Windows or Linux resizing instructions, transitioning to E64ds_v4 before <strong>2022-02-28</strong>. Resizing a running VM causes a restart. If the target size is unavailable on an availability set's current cluster, all VMs in the set must be deallocated, and others may also need resizing.</li>
+<li>Plan the interruption. Microsoft directs you to stop your current G/GS5 VMs and follow the Windows or Linux resizing instructions, transitioning to E64ds_v4 before <strong>February 28, 2022</strong>. Resizing a running VM causes a restart. If the target size is unavailable on an availability set's current cluster, all VMs in the set must be deallocated, and others may also need resizing.</li>
 <li>Review the referenced operating-system-specific pricing when planning. No GS5-to-E64ds_v4 cost comparison is supplied.</li>
 <li>Confirm successful allocation. After a failed resize, the portal and GET responses can show the requested size while the VM still runs at its previous size; the references provide no independent running-size verification procedure.</li>
 </ol>
@@ -1944,7 +1944,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>If you run SAP HANA on GS5 Azure VMs without transitioning, those VMs lose SAP HANA certification on <strong>2022-02-28</strong>. The notice does not say that workloads will stop, VM support will end or data will be deleted. It provides no retirement-specific resource-discovery method.</p>
+<div class="rich-content"><p>If you run SAP HANA on GS5 Azure VMs without transitioning, those VMs lose SAP HANA certification on <strong>February 28, 2022</strong>. The notice does not say that workloads will stop, VM support will end or data will be deleted. It provides no retirement-specific resource-discovery method.</p>
 <p>For the migration itself:</p>
 <ul>
 <li>Resizing a running VM causes a restart and can disrupt stateful workloads.</li>

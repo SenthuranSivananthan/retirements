@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Application Insights · Azure Monitor</span><span class="badge retired" data-deadline="2024-09-30"><span></span>Retired</span></div>
-  <h1>Azure Monitor support for OpenCensus will end on 30 September 2024 - transition to using Azure Monitor OpenTelemetry Python Distro</h1><p>Azure Monitor support for the OpenCensus Python SDK ended on 2024-09-30. Microsoft directed affected customers to migrate to Azure Monitor OpenTelemetry Python Distro by that date. Without migration, telemetry continues flowing to Application Insights, but Microsoft cannot support cases for the unsupported SDK and you do not receive the latest product features. The supplied migration guide requires Python 3.10 or later and documents configuration, instrumentation, metrics and Azure Functions tracing differences. Applications already using Azure Monitor OpenTelemetry Distro need no action. No workload shutdown date is documented.</p>
+  <h1>Azure Monitor support for OpenCensus will end on 30 September 2024 - transition to using Azure Monitor OpenTelemetry Python Distro</h1><p>Azure Monitor support for the OpenCensus Python SDK ended on September 30, 2024. Microsoft directed affected customers to migrate to Azure Monitor OpenTelemetry Python Distro by that date. Without migration, telemetry continues flowing to Application Insights, but Microsoft cannot support cases for the unsupported SDK and you do not receive the latest product features. The supplied migration guide requires Python 3.10 or later and documents configuration, instrumentation, metrics and Azure Functions tracing differences. Applications already using Azure Monitor OpenTelemetry Distro need no action. No workload shutdown date is documented.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2024-09-30">30 Sep 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 1 day</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2024</p>
-<div class="rich-content"><p>Azure Monitor support for the OpenCensus Python SDK ended on <strong>2024-09-30</strong>. Microsoft specified the same date for upgrading to Azure Monitor OpenTelemetry Python Distro to avoid using an unsupported SDK.</p>
+<div class="rich-content"><p>Azure Monitor support for the OpenCensus Python SDK ended on <strong>September 30, 2024</strong>. Microsoft specified the same date for upgrading to Azure Monitor OpenTelemetry Python Distro to avoid using an unsupported SDK.</p>
 <p>This was an end-of-support milestone, not a documented shutdown: the notice says telemetry continues flowing to Application Insights without an upgrade.</p>
 <p>The migration guide confirms retirement but supplies no different retirement date. Its last-updated date is not a retirement milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Monitor ended support for the OpenCensus Python SDK on <strong>2024-09-30</strong>. Microsoft identifies Azure Monitor OpenTelemetry Python Distro as the replacement; the migration guide calls it the Microsoft OpenTelemetry Distro.</p>
+<div class="rich-content"><p>Azure Monitor ended support for the OpenCensus Python SDK on <strong>September 30, 2024</strong>. Microsoft identifies Azure Monitor OpenTelemetry Python Distro as the replacement; the migration guide calls it the Microsoft OpenTelemetry Distro.</p>
 <p>The replacement requires Python 3.10 or later and changes APIs, configuration and autocollection behavior. Microsoft does not recommend or support the OpenTelemetry OpenCensus shim as a migration substitute.</p>
 <p>Applications already using Azure Monitor OpenTelemetry Distro need no action. The standalone Azure Monitor OpenTelemetry exporter retains its existing package name and API for custom pipelines outside the distro. The notice does not specify affected OpenCensus SDK versions, regional differences or other exceptions.</p>
 </div>
@@ -1940,7 +1940,7 @@
 <li>If you rely on the Azure Functions connected distributed-tracing scenario, implement the guide's manual trace-context propagation workaround.</li>
 <li>As a team-owned completion check, validate the telemetry, metrics and correlations your application needs, including behavior affected by documented migration gaps.</li>
 </ol>
-<p>Microsoft's upgrade target was <strong>2024-09-30</strong>, the same date support ended. Applications already using Azure Monitor OpenTelemetry Distro need no action.</p>
+<p>Microsoft's upgrade target was <strong>September 30, 2024</strong>, the same date support ended. Applications already using Azure Monitor OpenTelemetry Distro need no action.</p>
 </div>
       <p> </p>
     </section>

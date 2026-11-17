@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge retired" data-deadline="2026-06-08"><span></span>Retired</span></div>
-  <h1>Retirement: Flatcar Container Linux for AKS (preview)</h1><p>AKS support for Flatcar Container Linux (preview) ended on 2026-06-08, along with new node images, security patches and new Flatcar node-pool creation. Image removal on 2026-09-08 causes scaling, reimage and redeploy operations to fail. Migrate workloads to new Azure Linux or Ubuntu pools, then delete the old Flatcar pools; in-place migration is not supported. The supplied notices do not specify automatic shutdown of running workloads.</p>
+  <h1>Retirement: Flatcar Container Linux for AKS (preview)</h1><p>AKS support for Flatcar Container Linux (preview) ended on June 8, 2026, along with new node images, security patches and new Flatcar node-pool creation. Image removal on September 8, 2026 causes scaling, reimage and redeploy operations to fail. Migrate workloads to new Azure Linux or Ubuntu pools, then delete the old Flatcar pools; in-place migration is not supported. The supplied notices do not specify automatic shutdown of running workloads.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-06-08"><strong>Retired</strong><span>Retirement date: <time datetime="2026-06-08">8 Jun 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 months, 23 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1918,15 +1918,15 @@
       <p class="deadline-date">8 Jun 2026</p>
 <div class="rich-content"><p>Two milestones apply to Flatcar Container Linux for AKS (preview):</p>
 <ul>
-<li><strong>2026-06-08:</strong> AKS ended support, new node-image production, security patches and creation of new Flatcar node pools. The announcement stated that use could continue without disruption through 2026-06-07.</li>
-<li><strong>2026-09-08:</strong> AKS removes existing Flatcar images and code, causing scaling and remediation operations, including reimage and redeploy, to fail.</li>
+<li><strong>June 8, 2026:</strong> AKS ended support, new node-image production, security patches and creation of new Flatcar node pools. The announcement stated that use could continue without disruption through June 7, 2026.</li>
+<li><strong>September 8, 2026:</strong> AKS removes existing Flatcar images and code, causing scaling and remediation operations, including reimage and redeploy, to fail.</li>
 </ul>
 <p>The supplied Flatcar notices agree on these dates. They describe separate milestones, not an extension, and do not specify automatic shutdown of running workloads.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>AKS has retired support for <strong>Flatcar Container Linux for AKS (preview)</strong>. Support, new images, security patches and new Flatcar node-pool creation ended on 2026-06-08. Image and code removal on 2026-09-08 prevents scaling and remediation operations.</p>
+<div class="rich-content"><p>AKS has retired support for <strong>Flatcar Container Linux for AKS (preview)</strong>. Support, new images, security patches and new Flatcar node-pool creation ended on June 8, 2026. Image and code removal on September 8, 2026 prevents scaling and remediation operations.</p>
 <p>The notices identify Azure Linux and Ubuntu as supported migration destinations. They specify no Flatcar version, regional or customer exceptions. The other supplied reference pages do not establish additional Flatcar retirement dates.</p>
 </div>
       <div class="notice"></div>
@@ -1936,7 +1936,7 @@
 <div class="rich-content"><ol>
 <li>Identify your Flatcar pools and nodes using the image and OS checks under progress.</li>
 <li>Choose a supported replacement: Ubuntu for a portable, general-purpose OS with cross-cloud support, or Azure Linux for a Microsoft-created, general-purpose OS optimized for Azure. Check the supported version and compatibility for your configuration; the reference page separately identifies Azure Linux 2.0 as retired.</li>
-<li>Create replacement node pools and migrate your workloads. <strong>In-place migration from Flatcar to another OS is not supported.</strong> The stated transition deadline was 2026-06-08.</li>
+<li>Create replacement node pools and migrate your workloads. <strong>In-place migration from Flatcar to another OS is not supported.</strong> The stated transition deadline was June 8, 2026.</li>
 <li>Delete the old Flatcar pools after migrating workloads.</li>
 </ol>
 <p>If you use replacement pools, the supplied node-pool reference requires a Standard SKU load balancer, Virtual Machine Scale Sets and a shared virtual network across pools. You cannot delete a system pool unless another system pool replaces it.</p>
@@ -1948,8 +1948,8 @@
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>This retirement affects AKS node pools using Flatcar Container Linux (preview). Your resources have not been inspected.</p>
 <ul>
-<li>From <strong>2026-06-08</strong>, existing Flatcar pools receive no new node images or security patches, AKS support ends, and you cannot create new Flatcar pools.</li>
-<li>From <strong>2026-09-08</strong>, image and code removal causes scaling, reimage and redeploy operations to fail.</li>
+<li>From <strong>June 8, 2026</strong>, existing Flatcar pools receive no new node images or security patches, AKS support ends, and you cannot create new Flatcar pools.</li>
+<li>From <strong>September 8, 2026</strong>, image and code removal causes scaling, reimage and redeploy operations to fail.</li>
 </ul>
 <p>These are support and node-management consequences, not a documented automatic shutdown of running workloads. The Flatcar notices do not specify data deletion, retention changes, cost effects or general console/API removal. They do not announce retirement of Ubuntu or Azure Linux as a whole; the reference page describes separate Azure Linux populations and schedules.</p>
 </div>

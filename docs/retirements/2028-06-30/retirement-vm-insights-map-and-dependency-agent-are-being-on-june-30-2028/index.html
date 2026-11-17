@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Monitor</span><span class="badge upcoming" data-deadline="2028-06-30"><span></span>Upcoming</span></div>
-  <h1>Retirement: VM Insights Map and Dependency Agent are being on June 30, 2028</h1><p>VM Insights Map and the Dependency Agent retire and reach end of support on 2028-06-30. Offboard before that date and replace dependency monitoring or inventory tracking where needed. VM Insights performance monitoring is unaffected. Microsoft documents removal of the monitoring experiences at retirement, but the exact ingestion cutoff remains unconfirmed: the announcement places it after retirement, while the retirement guidance FAQ says sometime afterward. Existing data remains subject to your Log Analytics workspace retention settings.</p>
+  <h1>Retirement: VM Insights Map and Dependency Agent are being on June 30, 2028</h1><p>VM Insights Map and the Dependency Agent retire and reach end of support on June 30, 2028. Offboard before that date and replace dependency monitoring or inventory tracking where needed. VM Insights performance monitoring is unaffected. Microsoft documents removal of the monitoring experiences at retirement, but the exact ingestion cutoff remains unconfirmed: the announcement places it after retirement, while the retirement guidance FAQ says sometime afterward. Existing data remains subject to your Log Analytics workspace retention settings.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-06-30"><strong>591 days remaining</strong><span>Retirement date: <time datetime="2028-06-30">30 Jun 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 28 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,20 +1916,20 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Jun 2028</p>
-<div class="rich-content"><p>Offboard before <strong>2028-06-30</strong>, when VM Insights Map and the Dependency Agent retire and reach end of support. Microsoft provides no Dependency Agent support after that date.</p>
+<div class="rich-content"><p>Offboard before <strong>June 30, 2028</strong>, when VM Insights Map and the Dependency Agent retire and reach end of support. Microsoft provides no Dependency Agent support after that date.</p>
 <p>Separate milestones:</p>
 <ul>
-<li><strong>2025-06-30:</strong> The announcement says restrictions on support for new operating-system versions start on this date; retirement guidance says after this date and also excludes new Azure regions. Use the earlier boundary for planning; the wording differs.</li>
-<li><strong>2025-07-02:</strong> Retirement announcement.</li>
-<li><strong>2025-09-30:</strong> Product guidance says new-VM onboarding through the Azure portal is blocked from this date; other supplied wording says after it. Use the earlier boundary. Other onboarding methods remain available until support ends, but Microsoft directs you not to start new installations.</li>
-<li><strong>2028-06-30:</strong> Retirement, end of support, documentation archival and experience removal, according to retirement guidance.</li>
+<li><strong>June 30, 2025:</strong> The announcement says restrictions on support for new operating-system versions start on this date; retirement guidance says after this date and also excludes new Azure regions. Use the earlier boundary for planning; the wording differs.</li>
+<li><strong>July 2, 2025:</strong> Retirement announcement.</li>
+<li><strong>September 30, 2025:</strong> Product guidance says new-VM onboarding through the Azure portal is blocked from this date; other supplied wording says after it. Use the earlier boundary. Other onboarding methods remain available until support ends, but Microsoft directs you not to start new installations.</li>
+<li><strong>June 30, 2028:</strong> Retirement, end of support, documentation archival and experience removal, according to retirement guidance.</li>
 </ul>
-<p>The exact ingestion cutoff remains <strong>unconfirmed</strong>. The announcement groups ingestion loss with restrictions after retirement; retirement guidance describes it as a retirement impact, but its FAQ says ingestion is disabled sometime after 2028-06-30. This does not establish an extension of support. Both components are already deprecated; no separate deprecation date is supplied.</p>
+<p>The exact ingestion cutoff remains <strong>unconfirmed</strong>. The announcement groups ingestion loss with restrictions after retirement; retirement guidance describes it as a retirement impact, but its FAQ says ingestion is disabled sometime after June 30, 2028. This does not establish an extension of support. Both components are already deprecated; no separate deprecation date is supplied.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring <strong>VM Insights Map and the Dependency Agent on 2028-06-30</strong>. They provide visibility into VM processes and network dependencies, including Windows and Linux machines in Azure or your own environment.</p>
+<div class="rich-content"><p>Microsoft is retiring <strong>VM Insights Map and the Dependency Agent on June 30, 2028</strong>. They provide visibility into VM processes and network dependencies, including Windows and Linux machines in Azure or your own environment.</p>
 <p>The retirement affects the Map tab, Connections Overview workbook, Service Map API, portal installation of the Dependency Agent and new agent-based data ingestion. Experience removal is listed at retirement; the exact ingestion cutoff is unconfirmed. Previously downloaded binaries might still install, but cannot send data once ingestion is disabled.</p>
 <p>Existing maps are documented, but the supplied content does not establish a maintenance or security-update commitment through retirement. Do not enable the feature for new deployments.</p>
 <p><strong>VM Insights performance monitoring, which uses Azure Monitor Agent, is unaffected.</strong> This is not retirement of all VM Insights capabilities or Azure Monitor Agent.</p>
@@ -1942,7 +1942,7 @@
 <li><strong>Identify existing installations.</strong> Use Azure Advisor, the referenced Resource Graph query and the referenced Log Analytics query, accounting for the coverage limits described under progress. Include standalone and manually installed agents; portal extension checks alone miss manual installations.</li>
 <li><strong>Choose replacements by use case.</strong> For process and dependency monitoring, Microsoft recommends evaluating Azure Marketplace monitoring and diagnostics solutions. For inventory tracking, retirement guidance identifies Azure Monitor Agent with Change Tracking and Inventory. Feature parity, detailed migration prerequisites and replacement-validation criteria are not established by the supplied content.</li>
 <li><strong>Stop new deployments and update automation.</strong> Identify policy or initiative assignments that deploy the Dependency Agent and update or remove the relevant assignments. Contact your Azure administrator if you do not manage them.</li>
-<li><strong>Offboard and uninstall before 2028-06-30.</strong> Check the Log Analytics discovery query's Notes column first: a <strong>Caution</strong> value flags older Windows agents that might cause a system crash during uninstallation. Use the removal method matching the installation and version:
+<li><strong>Offboard and uninstall before June 30, 2028.</strong> Check the Log Analytics discovery query's Notes column first: a <strong>Caution</strong> value flags older Windows agents that might cause a system crash during uninstallation. Use the removal method matching the installation and version:
 <ul>
 <li>Portal extension: open the VM, then <strong>Extensions + applications &gt; DependencyAgentWindows or DependencyAgentLinux &gt; Uninstall</strong>.</li>
 <li>Manual Windows installation: remove <strong>Microsoft Dependency Agent</strong> through <strong>Add and remove programs</strong>, or use the version-appropriate uninstaller in <code>C:\Program Files\Microsoft Dependency Agent</code>. For 9.7.7.4050 and later, use <code>Uninstall_&lt;version&gt;.exe /S</code>; for earlier versions, use <code>Uninstall.exe /S</code>. Uninstallers before 9.7.4.3150 lack a Microsoft digital signature.</li>

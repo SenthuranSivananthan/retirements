@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Functions</span><span class="badge retired" data-deadline="2024-11-12"><span></span>Retired</span></div>
-  <h1>Retirement: Support for .NET 6 ends on 12 November 2024—upgrade your Azure Functions apps to .NET 8</h1><p>Support for .NET 6 in Azure Functions ended on 2024-11-12. Apps continue running, but Microsoft no longer provides security updates or customer service for .NET 6. The retirement notice directed customers to upgrade to .NET 8 by that date. Separate guidance requires in-process .NET apps to migrate to the isolated worker model before 2026-11-10; that requirement does not change the .NET 6 end-of-support date.</p>
+  <h1>Retirement: Support for .NET 6 ends on 12 November 2024—upgrade your Azure Functions apps to .NET 8</h1><p>Support for .NET 6 in Azure Functions ended on November 12, 2024. Apps continue running, but Microsoft no longer provides security updates or customer service for .NET 6. The retirement notice directed customers to upgrade to .NET 8 by that date. Separate guidance requires in-process .NET apps to migrate to the isolated worker model before November 10, 2026; that requirement does not change the .NET 6 end-of-support date.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-11-12"><strong>Retired</strong><span>Retirement date: <time datetime="2024-11-12">12 Nov 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 7 months, 14 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">12 Nov 2024</p>
-<div class="rich-content"><p>Support for <strong>.NET 6 in Azure Functions ended on 2024-11-12</strong>, aligned with community end of support. The notice required upgrading affected apps to .NET 8 by the same date.</p>
+<div class="rich-content"><p>Support for <strong>.NET 6 in Azure Functions ended on November 12, 2024</strong>, aligned with community end of support. The notice required upgrading affected apps to .NET 8 by the same date.</p>
 <p>This is an end-of-support milestone, not a workload shutdown date. Apps continue running without Microsoft security updates or customer service for .NET 6.</p>
-<p>Separately, the version-upgrade reference requires in-process .NET apps to migrate to the isolated worker model <strong>before 2026-11-10</strong>. That is a different migration requirement, not an extension of .NET 6 support. The reference does not independently establish a worker-model retirement or shutdown date.</p>
+<p>Separately, the version-upgrade reference requires in-process .NET apps to migrate to the isolated worker model <strong>before November 10, 2026</strong>. That is a different migration requirement, not an extension of .NET 6 support. The reference does not independently establish a worker-model retirement or shutdown date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft ended support for <strong>.NET 6 in Azure Functions on 2024-11-12</strong>. Affected apps continue running, but Microsoft no longer provides security updates or customer service for .NET 6. The retirement notice names .NET 8 as the upgrade target and documents no regional exceptions.</p>
+<div class="rich-content"><p>Microsoft ended support for <strong>.NET 6 in Azure Functions on November 12, 2024</strong>. Affected apps continue running, but Microsoft no longer provides security updates or customer service for .NET 6. The retirement notice names .NET 8 as the upgrade target and documents no regional exceptions.</p>
 <p>The general language-support policy says retired language apps can still be created and deployed, but are no longer eligible for new features, security patches or performance optimizations until upgraded.</p>
 <p>The separate requirement to migrate from the in-process model to the isolated worker model applies to in-process .NET apps. Apps already using the isolated worker model are outside that model-migration requirement.</p>
 </div>
@@ -1933,8 +1933,8 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your Azure Functions apps using .NET 6 and their worker models. The supplied content does not provide a complete inventory method. Azure portal, Azure CLI and Azure PowerShell can check the Functions runtime version; <code>FUNCTIONS_WORKER_RUNTIME</code> identifies the language stack, not its version.</li>
-<li>Upgrade affected apps. The retirement notice specified .NET 8 by 2024-11-12. Check Supported languages in Azure Functions and runtime compatibility when selecting your target.</li>
-<li>If an app uses the in-process model, follow the referenced isolated-worker migration guidance before 2026-11-10. Changing the .NET version alone does not establish completion of that migration.</li>
+<li>Upgrade affected apps. The retirement notice specified .NET 8 by November 12, 2024. Check Supported languages in Azure Functions and runtime compatibility when selecting your target.</li>
+<li>If an app uses the in-process model, follow the referenced isolated-worker migration guidance before November 10, 2026. Changing the .NET version alone does not establish completion of that migration.</li>
 <li>For apps already using the isolated worker model, install the target SDK and update the target framework, SDK and worker packages, binding extensions, dependencies and build/deployment tooling. Rebuild and test locally. Confirm Functions runtime 4.x; follow the runtime migration guidance if needed rather than only changing its setting.</li>
 <li>Publish updated code before changing the Azure stack configuration, targeting the correct app or staging slot. Linux Consumption apps require Azure CLI for stack updates.</li>
 <li>Verify the configured .NET version, Running status and function behavior. If using a staging slot, validate it before swapping into production.</li>
@@ -1945,7 +1945,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your Azure Functions apps using <strong>.NET 6</strong> are affected: they continue running after 2024-11-12 but no longer receive Microsoft security updates or customer service for .NET 6. Continued use leaves potential security vulnerabilities without those updates. The supplied content does not establish which of your apps are affected.</p>
+<div class="rich-content"><p>Your Azure Functions apps using <strong>.NET 6</strong> are affected: they continue running after November 12, 2024 but no longer receive Microsoft security updates or customer service for .NET 6. Continued use leaves potential security vulnerabilities without those updates. The supplied content does not establish which of your apps are affected.</p>
 <p>Under the general language-support policy, retired language apps lose eligibility for new features, security patches and performance optimizations. Microsoft may limit allocated instances in certain cases, including scaling to one instance, and requires an upgrade before providing support. These are general policy conditions, not evidence that a specific app has been limited.</p>
 <p>For the documented language-version update, changing the stack configuration restarts the app. A direct production update typically causes 30–60 seconds of unavailability, terminates in-flight requests and rejects new requests until restart succeeds. Staging slots can minimize downtime, but Flex Consumption does not support them. Dependencies, bindings and CI/CD settings may also need updates.</p>
 <p>The sources do not document retirement-related data deletion or additional costs. The separate in-process migration reference does not specify the consequences of missing its deadline.</p>
