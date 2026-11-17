@@ -1,5 +1,6 @@
 """Atomic, guarded JSON stage files and a single cross-platform writer lease."""
 
+import copy
 import json
 import os
 import tempfile
@@ -13,6 +14,16 @@ STAGES = (
     "retirement_enrichment_automatic", "retirement_enrichment_manual",
     "retirements_canonical",
 )
+
+
+def merge_fields(original, changes):
+    result = copy.deepcopy(original)
+    for key, value in changes.items():
+        if isinstance(value, dict) and isinstance(result.get(key), dict):
+            result[key] = merge_fields(result[key], value)
+        else:
+            result[key] = value
+    return result
 
 
 def fingerprint(value):

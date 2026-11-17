@@ -6,13 +6,13 @@ import json
 import re
 import socket
 import time
+from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 from urllib.error import HTTPError, URLError
 from urllib.parse import urldefrag, urljoin, urlsplit
 from urllib.request import HTTPRedirectHandler, ProxyHandler, Request, build_opener
 
 import html5lib
-
-from .pipeline import retry_delay
 
 MAX_BYTES = 8 * 1024 * 1024
 MAX_REFERENCES = 80
@@ -20,6 +20,19 @@ MAX_REFERENCES = 80
 
 class DownloadError(ValueError):
     """A URL could not supply usable public content."""
+
+
+def retry_delay(error, attempt):
+    value = error.headers.get("Retry-After") if isinstance(error, HTTPError) and error.headers else None
+    if value:
+        try:
+            delay = float(value)
+        except ValueError:
+            delay = (parsedate_to_datetime(value) - datetime.now(timezone.utc)).total_seconds()
+        if delay > 60:
+            raise ValueError("Retry-After exceeds this bounded run; retry the stage later") from error
+        return max(0, delay)
+    return 2 ** attempt
 
 
 def sha256(body):

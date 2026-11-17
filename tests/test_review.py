@@ -11,8 +11,7 @@ from unittest.mock import patch
 
 from fixtures import catalog
 from scripts.catalog import ROOT, QUESTIONS, learn_documentation_url, microsoft_techcommunity_url, parse_catalog
-from scripts.feed import merge_retirements
-from scripts.refresh_data import read_snapshot
+from scripts.catalog_io import read_snapshot
 from scripts.review_data import apply_reviews, main, review_report
 
 
@@ -62,7 +61,6 @@ class ReviewTests(unittest.TestCase):
         result = apply_reviews(batch, self.output)
         record = result["records"][0]
         old = self.original["records"][0]
-        self.assertNotIn("manuallyEnriched", record)
         self.assertEqual(record["questions"]["deadline"]["date"], "2029-01-02")
         self.assertEqual(record["sourceReview"]["deadlineSource"], self.url)
         self.assertEqual(record["sourceReview"]["originalAnnouncement"], old["questions"]["what"]["announcement"])
@@ -71,7 +69,6 @@ class ReviewTests(unittest.TestCase):
             self.assertEqual(record[field], old[field])
         self.assertEqual(result["retrievedAt"], self.original["retrievedAt"])
         self.assertEqual(result["records"][1:], self.original["records"][1:])
-        self.assertEqual(merge_retirements(self.original["records"], result["records"])[0], old)
         self.assertEqual(json.loads(self.output.read_bytes()), result)
         self.assertEqual(list(self.output.parent.glob("*.tmp")), [])
 
@@ -411,7 +408,8 @@ class ReviewTests(unittest.TestCase):
             if calls == 2:
                 self.output.write_bytes(external)
             return read_snapshot(output)
-        with patch("scripts.review_data.read_snapshot", side_effect=read), patch("scripts.refresh_data.read_snapshot", side_effect=read):
+        with patch("scripts.review_data.read_snapshot", side_effect=read), \
+                patch("scripts.catalog_io.read_snapshot", side_effect=read):
             with self.assertRaisesRegex(ValueError, "changed during content review"):
                 apply_reviews(batch, self.output)
         self.assertEqual(self.output.read_bytes(), external)
@@ -435,8 +433,6 @@ class ReviewTests(unittest.TestCase):
         self.assertEqual(manual["summary"], record["summary"])
         self.assertEqual(manual["questions"], record["questions"])
         self.assertEqual(manual["customNotes"], record["customNotes"])
-        self.assertEqual(next(item for item in merge_retirements(value["records"], reviewed["records"])
-                              if item["id"] == "manual"), record)
         self.assertEqual(manual["sourceReview"]["status"], "enriched")
         report = review_report(reviewed, 10)
         self.assertEqual(report["reviewed"], 1)

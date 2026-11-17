@@ -12,8 +12,8 @@ Every retirement has a complete HTML page with all five planning questions. Cont
 | --- | --- |
 | Website | `site\build.py` reads `data\retirements.json`, renders `docs`, and validates the output. Builds do not fetch announcements or run synthesis. |
 | JSON enrichment | Opt-in `scripts.enrichment` commands acquire sources, synthesize five answers, reconcile `retirements_canonical.json`, and project website JSON. A real synthesis adapter is required. |
-| Existing data | The SQLite and JSON workflows are separate. |
-| Automation | `.github\workflows\pages.yml` validates changes and runs a daily/manual `scripts.refresh_data` feed refresh, **not** JSON synthesis or SQLite research stages. |
+| Existing data | The public catalog, enrichment stages, and review batches use JSON files. |
+| Automation | `.github\workflows\pages.yml` validates and rebuilds on pushes, pull requests, and manual dispatch. Catalog acquisition and synthesis are explicit JSON enrichment tasks. |
 
 Use the [preview and development commands](#quick-preview) for site work and the
 [JSON enrichment pipeline](#json-enrichment-pipeline) for the new data workflow.
@@ -85,11 +85,11 @@ The examples below use `python` for an interpreter with the dependencies install
 
 | Command | Purpose |
 | --- | --- |
-| `python -m pip install -r requirements.txt` | Install all build and refresh dependencies |
+| `python -m pip install -r requirements.txt` | Install site-build and enrichment dependencies |
 | `python site\build.py` | Read `data\retirements.json`, prepare view metadata, render `docs`, and verify the result |
 | `python site\build.py --serve` | Rebuild, verify, then serve at `http://localhost:8000/` |
 | `python -m http.server 8000 --bind 127.0.0.1 --directory docs` | Preview the existing output without installing dependencies or rebuilding |
-| `python -m unittest discover -s tests -v` | Run offline schema, date, source, refresh-protection, and renderer tests |
+| `python -m unittest discover -s tests -v` | Run offline schema, date, source, JSON-concurrency, and renderer tests |
 | `python -m scripts.check_site` | Verify an existing `docs` build against `data\retirements.json` |
 | `python -m scripts.enrichment init` | Create the five JSON stage files without changing the website catalog |
 | `python -m scripts.enrichment discover` | Crawl the complete Azure Updates retirement feed |
@@ -107,10 +107,10 @@ bundled with this repository.
 ## JSON enrichment pipeline
 
 The JSON enrichment pipeline is `python -m scripts.enrichment`. It uses readable
-JSON stage state and runs independently of the retained SQLite workflow. `merge`
+JSON stage state. `merge`
 writes to the selected stage directory unless `--output` is supplied; it first persists `retirements_canonical.json`,
 then writes the website-facing `retirements.json`.
-Existing hidden, feed-absent and manual-protected records are preserved.
+Existing hidden records are left unchanged; feed-absent records remain in the catalog.
 If projection is interrupted, a pending marker permits retry only while the output
 still matches its pre-write snapshot; a concurrent edit is preserved and blocks retry.
 
@@ -397,14 +397,11 @@ competing writers. Canonical/projection fingerprints reject out-of-band edits;
 still matches its pre-write snapshot or already equals the canonical projection.
 Concurrent edits are preserved and must be reconciled, not overwritten.
 
-The [existing schedule](#automated-refresh) still runs `scripts.refresh_data`, not
-JSON synthesis. That command refuses to overwrite a JSON-pipeline catalog.
-
 ## Project structure
 
 ```text
 retirements
-  .github\workflows\pages.yml   Validation and existing daily/manual feed refresh
+  .github\workflows\pages.yml   Site validation and rebuild on push, PR, or manual dispatch
   .github\prompts\              Enrichment and site-build instructions; not schedules
   site\                     Website source, separate from shared data and tooling
     build.py                Python/Jinja static-site generator and optional server
@@ -417,17 +414,16 @@ retirements
   docs\                     Generated public website; intentionally checked in
   data\
     retirements.json        Current website input and public download
-    pipeline\               Retained five-store SQLite data
+    retirement_*.json       JSON enrichment stages (created by init)
+    retirements_canonical.json  Canonical JSON enrichment stage
   scripts\
     enrichment.py           Opt-in JSON pipeline and single-record reprocessing
     enrichment_json.py      Guarded JSON writes, writer lease and transient text handling
     enrichment_http.py      Bounded page retrieval and content/reference extraction
+    catalog_io.py           Guarded atomic writes for public catalog reviews
     catalog.py              Validation, dates, countdowns, grouping, and preparation
     feed.py                 Azure Updates parsing, pagination, and normalization
-    refresh_data.py         Existing feed refresh and manual-override composition
-    pipeline.py             Retained SQLite stages and guarded export
-    manual_data.py          Field-level manual composition
-    review_data.py          Retained review reporting and guarded batch edits
+    review_data.py          JSON review reporting and guarded batch edits
     check_site.py           Generated page, question, link, and catalog checks
   tests\                    Python unittest suite and offline fixtures
   requirements.txt          Python dependencies
@@ -461,24 +457,16 @@ generated detail tree to remove stale routes while preserving unrelated output.
 
 Filters use ordinary query strings. Existing `#/retirements/<id>` and `#/?...` links redirect to their current static or query-string equivalents, retaining navigation context. On GitHub Pages, the custom 404 page also redirects old ID-based detail URLs and outdated date folders when the record can be identified unambiguously, preserving query strings and section anchors. These redirects require JavaScript; current detail pages and navigation remain usable without it. Python's basic local HTTP server does not serve the custom 404 page for missing paths.
 
-### Automated refresh
+### Automated validation
 
 Pull requests and pushes to `main` install Python dependencies, run offline tests, check the committed publishing output, and rebuild from source. They do not fetch announcements or receive write permissions.
 
-Daily at **06:23 UTC**, or through **Actions > Validate site and refresh GitHub Pages > Run workflow**, the main-branch refresh job:
-
-1. Confirms Pages is configured for **main /docs**.
-2. Fetches the complete Azure Updates retirement feed and composes retained manual overrides.
-3. Runs tests, rebuilds, and validates the website.
-4. Commits changes to `data/retirements.json` and `docs`, then pushes to `main`.
-5. Explicitly requests a native Pages build, because pushes made using `GITHUB_TOKEN` do not trigger Pages builds automatically.
-
-The refresh requires `contents: write` and `pages: write`; repository policy and branch protection must allow the bot's normal push. A rejected push or Pages request fails visibly; no force push or protection bypass is attempted. If you prefer local refreshes, disable the scheduled workflow and commit refreshed data and output yourself. Configure Pages before running the automated refresh. A failed fetch, validation, or build does not commit incomplete output.
-
-This scheduled job still uses `scripts.refresh_data`, not the JSON enrichment
-pipeline or its adapters. After adopting a JSON-pipeline catalog it intentionally
-fails rather than replacing enriched answers. Disable the scheduled refresh or
-configure a separately approved JSON workflow with real synthesis/MCP adapters.
+Use **Actions > Validate site > Run workflow** to run the same read-only tests,
+committed-output check, and rebuild on the selected ref. It does not update the
+catalog or publish files. To acquire or synthesize catalog data, run the explicit
+JSON enrichment workflow, review its output, rebuild `docs`, and commit the
+intended JSON and generated site changes. GitHub Pages serves the committed
+`docs` directory from the configured branch.
 
 ## Explore and plan
 
@@ -527,7 +515,7 @@ explicitly. Team-owned/local planning is not progress saved by this site.
 
 ### Question-organized JSON
 
-Catalog/download retain `schemaVersion: 2`, ID/title/services/categories, announcement/update dates, summary and source URL. The obsolete `manuallyEnriched` flag is removed; optional `manualEnrichment.fields` lists supplied override paths. Answers use exactly five `questions` keys:
+Catalog/download retain `schemaVersion: 2`, ID/title/services/categories, announcement/update dates, summary and source URL. Answers use exactly five `questions` keys:
 
 | Key | Organized content |
 | --- | --- |
@@ -539,7 +527,7 @@ Catalog/download retain `schemaVersion: 2`, ID/title/services/categories, announ
 
 Every section contains its complete `question` and `introduction`. The JSON key order remains unchanged; detail pages and their article navigation display `deadline` first. Templates read the headings and answers from prepared JSON, not a second UI-specific set. Preparation and browser loading reject missing or malformed sections. Source content is distinguished from general advice; tenant-specific impact and actual team progress are never inferred.
 
-`announcedOn` is the UTC calendar date from Microsoft's per-announcement `created` timestamp, displayed as **Announced**; it records when the announcement was published. Missing values remain `null`, and dates are not inferred from announcement text. `lastUpdatedOn` is the UTC calendar date from Microsoft's per-announcement `modified` timestamp, displayed as **Last updated**. It is not the publication date, deadline, or retrieval time. Missing timestamps produce `null` and **Not provided by source**; malformed timestamps fail refresh. Catalog-level `retrievedAt` is the snapshot time, updated by a feed refresh or changed merged content; individual page download/check times remain in the stage metadata.
+`announcedOn` is the UTC calendar date from Microsoft's per-announcement `created` timestamp, displayed as **Announced**; it records when the announcement was published. Missing values remain `null`, and dates are not inferred from announcement text. `lastUpdatedOn` is the UTC calendar date from Microsoft's per-announcement `modified` timestamp, displayed as **Last updated**. It is not the publication date, deadline, or retrieval time. Missing timestamps produce `null` and **Not provided by source**; malformed timestamps fail normalization. Catalog-level `retrievedAt` is the snapshot time, updated by JSON enrichment merges; individual page download/check times remain in stage metadata.
 
 `categories` comes from official `productCategories`, not guessed service names. Multi-category announcements appear under each applicable category but count once in directory totals. Missing categories, including on older protected records, use **Uncategorized** without modifying the record.
 
@@ -552,33 +540,13 @@ For the JSON workflow, associate links/context with the existing retirement ID i
 overrides belong to that input's `overrides`; automatic summaries remain underneath.
 See the [JSON workflow examples](#json-enrichment-pipeline).
 
-Each record also has a `hidden` boolean, initially `false`. Set it to `true` to exclude that retirement from search, navigation, filters, and visible counts; the direct detail page and public JSON download remain accessible, so this is not an access-control feature. Feed refresh preserves the flag for matching records. Older records without the field are treated as visible.
-
-#### Existing SQLite manual overrides
-
-The following commands apply only while SQLite owns the catalog. Store supplied
-fields separately in **`data\pipeline\manual.sqlite`**. Manual values override only
-matching fields at export; objects merge recursively, arrays replace, and explicit
-nulls remain null. Whole-record protection via `manuallyEnriched` is no longer used.
-
-Manual batches use `catalogSha256` from `python -m scripts.pipeline status`:
-
-```json
-{"catalogSha256":"<reported composed hash>","overrides":[{"id":"<existing-id>","fields":{"questions":{"impact":{"guidance":"<user-provided content>"}}}}]}
-```
-
-Apply with `python -m scripts.pipeline manual --batch <manual-batch.json>`, then `export` and `python site/build.py`. Use the same `--db-dir`/`--output` options as the target pipeline. `fields: null` removes an override and restores automatic values. Identity/timestamps/visibility use their normal workflows, not content overrides. Custom content and citation fields are supported; HTML/resources/dates must pass existing validation. A plain answer change without matching HTML discards stale HTML and uses the plain fallback.
-
-Automatic reviews use `status.automaticCatalogSha256`, never composed manual data. Export records supplied field paths as provenance; it does not claim user content was independently researched. Refresh reapplies overrides and retains their baseline for feed-absent records. Manual edits/research remain separate and neither silently overwrites the other.
-
-`python -m scripts.pipeline migrate` removes legacy flags offline, preserving flagged content as manual overrides. The checked-in migration changed no retirement facts. JSON-only review refuses composed output. External JSON refreshes can still conflict with the canonical DB's export guard and need reconciliation; invalid data and concurrent edits fail without overwriting snapshots.
+Each record also has a `hidden` boolean, initially `false`. Set it to `true` to exclude that retirement from search, navigation, filters, and visible counts; the direct detail page and public JSON download remain accessible, so this is not an access-control feature. JSON enrichment leaves hidden records unchanged. Older records without the field are treated as visible.
 
 ### Evidence-based content reviews
 
 The [enrichment prompt](.github/prompts/retirement-enrichment.prompt.md) describes the
-current three-step JSON workflow. The review commands in this subsection describe
-the retained SQLite/guarded-review tools and existing `sourceReview` records, not an
-additional required step for JSON enrichment.
+current JSON workflow and its review requirements. The commands in this subsection
+apply evidence-backed review edits to the public JSON catalog.
 
 Reviews organize automatic answers under five questions and add **`sourceReview`**: actual UTC day, `enriched` status, issues, sources and checks. This means reviewed/organized, not proof of every claim. Preserve uncertainty, original evidence and timestamps. Hidden content is untouched; automatic workers cannot write manual overrides.
 
@@ -592,7 +560,7 @@ Inspect coverage and a resumable batch without network access or file changes:
 python -m scripts.review_data --limit 20
 ```
 
-The report includes a catalog SHA-256 guard, review counts/issues and candidate IDs. About one fifth rechecks oldest reviews; the rest advances unreviewed records. Database reviews use the automatic hash from pipeline status; manual overlays are not research.
+The report includes a catalog SHA-256 guard, review counts/issues and candidate IDs. About one fifth rechecks oldest reviews; the rest advances unreviewed records.
 
 Prepare a temporary JSON object with `catalogSha256` from the report and a `reviews` array. Each entry contains `id`, `summary`, `questions` (all five section keys, with changed answer fields only), and `sourceReview` (review date/status/issues, sources, resource checks, and nullable `deadlineSource`). Do not supply the two original-evidence fields; the command captures them automatically and preserves them on subsequent reviews. Apply and rebuild:
 
@@ -603,45 +571,13 @@ python site/build.py
 python -m scripts.check_site
 ```
 
-The editor validates batches atomically, rejects stale/concurrent changes and preserves unrelated records/timestamps. It is not a crawler or proof of citation accuracy. JSON-only review is for catalogs without composed overrides; use pipeline review/manual/export when databases own the catalog. Keep checked-in `docs` synchronized.
-
-### Retained SQLite tools
-
-`scripts.pipeline` remains available for existing SQLite-owned catalogs; it is not
-the new JSON workflow or a full-run research orchestrator. Inspect its actual CLI
-before operating on a store:
-
-```powershell
-python -m scripts.pipeline --help
-python -m scripts.pipeline canonical --help
-python -m scripts.pipeline status
-```
-
-Its stages are `seed`, `ingest`, `extract`, `links`, `canonical`, `review`, `manual`,
-`export` and `migrate`. The five stores hold raw source bytes (`raw.sqlite`),
-observations (`extracted.sqlite`), cached pages (`web_cache.sqlite`), automatic
-records/provenance (`canonical.sqlite`) and partial user overrides (`manual.sqlite`).
-`ingest --id` requires an explicitly selected `--lifecycle-url`; this is not
-permission to introduce Lifecycle discovery into the JSON workflow.
-
-Review against `status.automaticCatalogSha256`, apply the evidence-backed batch
-with `review --batch`, then reassemble using `canonical --id`. Approval requires an
-enriched record and explicit attestation of the current `inputSha256` and
-`recordSha256` using `--accept-review`, `--input-sha256` and `--record-sha256`.
-Downloaded pages, fingerprints or approval-field counts alone do not prove
-semantic completeness. Missing/stale dependencies and concurrent JSON edits block
-export. Keep all existing evidence and external review journals for the final
-audited handoff.
-
-Do not run this CLI concurrently against one `--db-dir`, merge database binaries,
-or remove a lock without checking its owner. The scheduled `scripts.refresh_data`
-command reads manual overrides but does not refresh the research databases.
+The editor validates batches atomically, rejects stale/concurrent changes and preserves unrelated records/timestamps. It is not a crawler or proof of citation accuracy. Keep checked-in `docs` synchronized.
 
 ### Azure Updates feed and website output
 
 The automatic discovery source is Microsoft's public [Azure Updates JSON feed](https://www.microsoft.com/releasecommunications/api/v2/azure?$count=true&$filter=tags/any(f:f%20eq%20%27Retirements%27)); explicitly supplied links form the separate manual discovery input. Feed acquisition fetches every page tagged `Retirements`, checks the reported count and unique IDs, and publishes discovery state only after a complete fetch. Source IDs remain unchanged in the catalog and disambiguate duplicate title slugs.
 
-This is the complete tagged announcement collection returned by that feed, **not a guarantee that every Azure lifecycle obligation is represented**. Announcements may overlap, and endpoint changes cause refresh to fail rather than silently publishing an incomplete directory.
+This is the complete tagged announcement collection returned by that feed, **not a guarantee that every Azure lifecycle obligation is represented**. Announcements may overlap, and endpoint changes cause acquisition to fail rather than silently publishing an incomplete directory.
 
 The structured feed supplies a retirement **month**, not an exact day. Before enrichment, feed normalization extracts exact dates conservatively from current announcement **titles** only when a single distinct, valid date appears; ISO dates require explicit deadline wording to distinguish deadlines from API versions. Enrichment may instead use explicit retirement-specific dates in the permitted announcement/reference content. Neither path infers deadlines from publication dates, IDs or URL slugs. Month-only and unresolved deadlines remain **Date to confirm** and do not count as upcoming or retired. **Within 90 days** includes today and day 90 UTC; **Upcoming** includes that group.
 

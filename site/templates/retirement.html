@@ -48,7 +48,7 @@
       {% if questions.progress.get('html') %}<div class="rich-content">{{ questions.progress.html | question_html }}</div>
       {% elif questions.progress.get('tracking') %}<p>{{ questions.progress.tracking.guidance }}</p>{% endif %}
       {% if questions.progress.get('tracking') %}<p><a href="{{ questions.progress.tracking.sourceUrl }}" target="_blank" rel="noopener noreferrer">Read the tracking guidance {{ icon('external') }}</a></p>
-      {% elif not record.get('enrichment') %}<p>Tracking guidance is not available for this retirement.</p>{% endif %}
+      {% elif not questions.progress.get('html') %}<p>Tracking guidance is not available for this retirement.</p>{% endif %}
     </section>
     {% if reading %}<div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
       <h3 id="further-reading-heading">References</h3>

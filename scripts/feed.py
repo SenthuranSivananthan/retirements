@@ -4,7 +4,7 @@ import re
 import time
 from datetime import date
 from urllib.error import HTTPError, URLError
-from urllib.parse import quote, urlencode, urljoin
+from urllib.parse import parse_qs, quote, urlencode, urljoin, urlsplit
 from urllib.request import Request, urlopen
 import json
 
@@ -58,6 +58,21 @@ def title_date(title):
         if re.search(context, title[:match.start()], re.I) and not re.match(r"-(?:preview|ga)\b", title[match.end():], re.I):
             add(*match.groups())
     return next(iter(dates)) if len(dates) == 1 else None
+
+
+def announcement_id(url):
+    parsed = urlsplit(url)
+    if parsed.scheme != "https" or parsed.hostname != "azure.microsoft.com":
+        raise ValueError("The target needs its original Azure Updates announcement identity")
+    path = re.sub(r"^/[a-z]{2}-[a-z]{2}(?=/)", "", parsed.path).strip("/")
+    if path == "updates":
+        values = parse_qs(parsed.query).get("id", [])
+        if len(values) == 1 and values[0]:
+            return values[0]
+    parts = path.split("/")
+    if len(parts) == 2 and parts[0] == "updates":
+        return parts[1]
+    raise ValueError("Unsupported Azure Updates announcement URL")
 
 
 def normalize(item):
@@ -147,28 +162,6 @@ def normalize(item):
             },
         },
     }
-
-
-def record_map(records):
-    if not isinstance(records, list):
-        raise ValueError("Invalid catalog records; existing snapshot preserved")
-    result = {}
-    for record in records:
-        if (not isinstance(record, dict) or not isinstance(record.get("id"), str) or not record["id"]
-                or "manuallyEnriched" in record
-                or ("hidden" in record and type(record["hidden"]) is not bool) or record["id"] in result):
-            raise ValueError("Invalid record ID, deprecated manual flag, hidden flag, or duplicate ID; existing snapshot preserved")
-        result[record["id"]] = record
-    return result
-
-
-def merge_retirements(fetched, existing):
-    previous = record_map(existing)
-    merged = record_map(fetched)
-    for identifier, record in merged.items():
-        if identifier in previous and "hidden" in previous[identifier]:
-            merged[identifier] = {**record, "hidden": previous[identifier]["hidden"]}
-    return [merged[identifier] for identifier in sorted(merged)]
 
 
 def fetch_page(url):

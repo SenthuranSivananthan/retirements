@@ -17,10 +17,8 @@ from markdown_it import MarkdownIt
 
 from .catalog import QUESTIONS, ROOT, parse_catalog, sanitize_question_html, valid_date
 from .enrichment_http import DownloadError, MAX_BYTES, extract_content, fetch_http, public_url, sha256
-from .enrichment_json import STAGES, Stages, fingerprint, read_bytes, write_json
-from .feed import ENDPOINT, fetch_retirements, normalize
-from .manual_data import merge_fields
-from .pipeline import announcement_id
+from .enrichment_json import STAGES, Stages, fingerprint, merge_fields, read_bytes, write_json
+from .feed import ENDPOINT, announcement_id, fetch_retirements, normalize
 
 SOURCE_AUTO, SOURCE_MANUAL, ENRICH_AUTO, ENRICH_MANUAL, CANONICAL = STAGES
 PROCESSOR_VERSION = "json-five-questions-v2"
@@ -575,7 +573,6 @@ def to_record(identifier, source, summary, references, baseline=None):
         "productCategories": source.get("categories", ["Uncategorized"]),
     })
     record.pop("sourceReview", None)
-    record.pop("manualEnrichment", None)
     record.update(title=source["title"], sourceUrl=source["urls"][0], summary=summary["summary"])
     record["sourceLabel"] = "Microsoft Azure Updates" if SOURCE_AUTO in source["sourceKinds"] else "User-provided retirement"
     for field in ("announcedOn", "lastUpdatedOn"):
@@ -679,8 +676,7 @@ def merge(store, output, identifiers=None):
             continue
         baseline = records.get(identifier)
         auto = automatic["records"].get(identifier)
-        managed = baseline and baseline.get("enrichment")
-        if baseline and (baseline.get("hidden") or (baseline.get("manualEnrichment") and not managed)):
+        if baseline and baseline.get("hidden"):
             protected.append(identifier)
             continue
         if not auto or auto.get("error"):

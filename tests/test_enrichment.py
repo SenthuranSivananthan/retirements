@@ -19,7 +19,6 @@ from scripts.enrichment import (
 )
 from scripts.enrichment_http import DownloadError, extract_content, fetch_http, public_url, sha256
 from scripts.enrichment_json import STAGES, Stages, fingerprint, write_json
-from scripts.refresh_data import refresh_catalog
 from fixtures import ITEM, catalog
 
 ROOT_URL = "https://example.com/retirement"
@@ -103,7 +102,6 @@ class JSONEnrichmentTests(unittest.TestCase):
         self.assertEqual(set(value["records"][0]["questions"]), set(QUESTIONS))
         self.assertEqual(len(list(self.directory.glob("*.json"))), 6)
         self.assertFalse(list(self.store.work.glob("*.txt")))
-        self.assertFalse(list(self.directory.glob("*.sqlite")))
         self.assertIn("team's", value["records"][0]["questions"]["progress"]["storageNote"])
         for name in STAGES:
             body = (self.directory / f"{name}.json").read_text(encoding="utf-8")
@@ -537,13 +535,6 @@ class JSONEnrichmentTests(unittest.TestCase):
         (self.store.work / "stop").unlink()
         self.run_pipeline()
 
-    def test_legacy_refresh_refuses_new_catalog_without_network(self):
-        output = self.run_pipeline()
-        original = output.read_bytes()
-        with self.assertRaisesRegex(ValueError, "JSON enrichment"):
-            refresh_catalog(fetcher=lambda _: self.fail("Legacy refresh must not fetch"), output=output)
-        self.assertEqual(output.read_bytes(), original)
-
     def test_many_response_bodies_are_limited_to_active_workers(self):
         class Body(bytes):
             live = 0
@@ -689,6 +680,19 @@ class EnrichmentBoundaries(unittest.TestCase):
                         with self.assertRaises(DownloadError):
                             fetch_http(ROOT_URL)
                 self.assertTrue(body.closed)
+
+    def test_retry_after_exceeding_bounded_run_fails_without_retrying(self):
+        body = io.BytesIO()
+        opener = Mock()
+        opener.open.side_effect = HTTPError(ROOT_URL, 503, "response", {"Retry-After": "61"}, body)
+        with patch("scripts.enrichment_http.public_url", side_effect=lambda url, **_: url), \
+                patch("scripts.enrichment_http.build_opener", return_value=opener), \
+                patch("scripts.enrichment_http.time.sleep") as sleep:
+            with self.assertRaisesRegex(ValueError, "Retry-After exceeds this bounded run"):
+                fetch_http(ROOT_URL)
+        self.assertEqual(opener.open.call_count, 1)
+        sleep.assert_not_called()
+        self.assertTrue(body.closed)
 
     def test_url_safety_and_fragment_identity(self):
         self.assertEqual(public_url("https://example.com/a?q=1#heading"), "https://example.com/a?q=1")

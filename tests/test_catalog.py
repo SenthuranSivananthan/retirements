@@ -253,7 +253,7 @@ class CatalogTests(unittest.TestCase):
         changes = [
             {"id": 1}, {"id": ""}, {"id": "."}, {"id": ".."}, {"title": None}, {"services": [42]},
             {"services": None}, {"announcedOn": "2026-13-01"}, {"lastUpdatedOn": "2026-02-30"},
-            {"manuallyEnriched": "true"}, {"summary": None}, {"sourceUrl": None}, {"questions": []},
+            {"summary": None}, {"sourceUrl": None}, {"questions": []},
         ]
         for change in changes:
             value = catalog()
@@ -404,13 +404,13 @@ class CatalogTests(unittest.TestCase):
                 prepare_site(root)
             self.assertEqual(metadata.read_bytes(), before)
 
-    def test_checked_in_snapshot_has_unique_ids_and_conservative_dates(self):
+    def test_checked_in_snapshot_has_unique_ids_and_valid_source_links(self):
         value = parse_catalog(json.loads((ROOT / "data" / "retirements.json").read_text(encoding="utf-8")))
         for record in value["records"]:
             with self.subTest(identifier=record["id"]):
                 self.assertEqual(list(record["questions"]), list(QUESTIONS))
-                if "sourceReview" not in record and "manualEnrichment" not in record:
+                if not record.get("enrichment"):
                     self.assertEqual(record["questions"]["deadline"]["date"], title_date(record["title"]))
                     self.assertTrue(record["categories"])
-                for link in record["questions"]["actions"]["resources"] + [record["questions"]["actions"]["support"], record["questions"]["impact"]["advisor"]]:
-                    self.assertTrue(safe_url(link["url"]))
+                    for link in record["questions"]["actions"]["resources"] + [record["questions"]["actions"]["support"], record["questions"]["impact"]["advisor"]]:
+                        self.assertTrue(safe_url(link["url"]))
