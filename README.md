@@ -476,9 +476,10 @@ The `docs/.nojekyll` file disables Jekyll processing. GitHub serves the already-
 
 Detail URLs use `/retirements/retirements/YYYY-MM-DD/<title-slug>/` on the project
 site: the first segment is the repository base path, the second is the detail
-directory. The date is the exact deadline; month-only/unknown dates use
-`unknown-date`. Duplicate title slugs receive an ID suffix. Each build replaces the
-generated detail tree to remove stale routes while preserving unrelated output.
+directory. The date is the structured deadline; records without one, including
+month-only dates not yet enriched, use `unknown-date`. Duplicate title slugs receive
+an ID suffix. Each build replaces the generated detail tree to remove stale routes
+while preserving unrelated output.
 
 Filters use ordinary query strings. Existing `#/retirements/<id>` and `#/?...` links redirect to their current static or query-string equivalents, retaining navigation context. On GitHub Pages, the custom 404 page also redirects old ID-based detail URLs and outdated date folders when the record can be identified unambiguously, preserving query strings and section anchors. These redirects require JavaScript; current detail pages and navigation remain usable without it. Python's basic local HTTP server does not serve the custom 404 page for missing paths.
 
@@ -560,7 +561,8 @@ commands and manual source-input instructions are in the
   are saved by the current UI; there is no tenant connection or analytics.
 
 Countdowns use UTC calendar days: **Retires today (0 days remaining)**,
-**Retired**, or **Retirement date to confirm** for unknown/month-only dates.
+**Retired**, or **Retirement date to confirm** for unknown dates and month-only dates
+that have not received the conservative first-of-month date during enrichment.
 JavaScript updates countdowns/outlook on load and UTC date changes; without it,
 static content reflects the build.
 
@@ -620,7 +622,7 @@ Reviews organize automatic answers under five questions and add **`sourceReview`
 
 For these existing review records, read actual destinations, use real titles, verify Learn locale normalization, preserve selectors/original snapshots, account for every resource, and exclude references only after confirmed 404/410. `guidanceSource` selects Learn documentation cited for actions; `deadlineSource` must match cited applicable deadline evidence. References deduplicate reviewed sources/resources and use reviewed redirects; citation details remain in JSON. The new workflow's [processing rules](.github/prompts/retirement-enrichment.prompt.md#step-2-process-and-summarize-enrichment) restrict content to its permitted source/reference inputs.
 
-The [date and summary rules](.github/prompts/retirement-enrichment.prompt.md#five-question-summary-contract) require matching event/scope/milestone and explicit applicable evidence. Exclude superseded dates only with documented extensions. A full conflict span of **1-6 days selects the earliest**, even over later Learn evidence; exactly seven days and longer chains do not qualify. Otherwise prefer an unambiguous current applicable Learn deadline; unresolved conflicts stay unconfirmed. Preserve month-only precision, alternatives, times/time zones and rationale; never claim Microsoft reconciled a conservative selection. Keep structured date/month, answers and citations consistent.
+The [date and summary rules](.github/prompts/retirement-enrichment.prompt.md#five-question-summary-contract) require matching event/scope/milestone and explicit applicable evidence. Exclude superseded dates only with documented extensions. A full conflict span of **1-6 days selects the earliest**, even over later Learn evidence; exactly seven days and longer chains do not qualify. Otherwise prefer an unambiguous current applicable Learn deadline; unresolved conflicts stay unconfirmed. When source content states a retirement/deprecation/end-of-support month and year without a day, enrichment uses the first day as a conservative planning date, while retaining the source's month-level precision in its explanation and never claiming the source published that exact day. Preserve alternatives, times/time zones and rationale; never claim Microsoft reconciled a conservative selection. Keep structured date/month, answers and citations consistent.
 
 Inspect coverage and a resumable batch without network access or file changes:
 
@@ -647,7 +649,7 @@ The automatic discovery source is Microsoft's public [Azure Updates JSON feed](h
 
 This is the complete tagged announcement collection returned by that feed, **not a guarantee that every Azure lifecycle obligation is represented**. Announcements may overlap, and endpoint changes cause acquisition to fail rather than silently publishing an incomplete directory.
 
-The structured feed supplies a retirement **month**, not an exact day. Before enrichment, feed normalization extracts exact dates conservatively from current announcement **titles** only when a single distinct, valid date appears; ISO dates require explicit deadline wording to distinguish deadlines from API versions. Enrichment may instead use explicit retirement-specific dates in the permitted announcement/reference content. Neither path infers deadlines from publication dates, IDs or URL slugs. Month-only and unresolved deadlines remain **Date to confirm** and do not count as upcoming or retired. **Within 90 days** includes today and day 90 UTC; **Upcoming** includes that group.
+The structured feed supplies a retirement **month**, not an exact day. Before enrichment, feed normalization extracts exact dates conservatively from current announcement **titles** only when a single distinct, valid date appears; ISO dates require explicit deadline wording to distinguish deadlines from API versions. Enrichment may use explicit retirement-specific dates in permitted announcement/reference content. If that content states only the retirement/deprecation/end-of-support month and year, enrichment uses the first calendar day as a conservative planning date, labels it as an assumption in prose, and does not claim Microsoft published that exact day. Neither path infers deadlines from publication dates, IDs or URL slugs. Unknown or unresolved deadlines remain **Date to confirm** and do not count as upcoming or retired; an explicitly enriched conservative date is used for date-based filters and countdowns. **Within 90 days** includes today and day 90 UTC; **Upcoming** includes that group.
 
 Source HTML becomes escaped plain text plus separate HTTPS references. JSON merge
 renders the five Markdown answers through the safe HTML rules above; retained plain
