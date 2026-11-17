@@ -11,7 +11,7 @@ Every retirement has a complete HTML page with all five planning questions. Cont
 | Area | Implemented behavior |
 | --- | --- |
 | Website | `site\build.py` reads `data\retirements.json`, renders `docs`, and validates the output. Builds do not fetch announcements or run synthesis. |
-| JSON enrichment | Opt-in `scripts.enrichment` commands acquire sources, synthesize five answers, reconcile `retirements_canonical.json`, and project website JSON. A real synthesis adapter is required. |
+| JSON enrichment | Opt-in `scripts.enrichment` commands incrementally refresh sources by default, synthesize five answers, reconcile `retirements_canonical.json`, and project website JSON. `run --full` forces a full refresh. A real synthesis adapter is required. |
 | Existing data | The public catalog, enrichment stages, and review batches use JSON files. |
 | Automation | `.github\workflows\pages.yml` validates and rebuilds on pushes, pull requests, and manual dispatch. Catalog acquisition and synthesis are explicit JSON enrichment tasks. |
 
@@ -92,11 +92,13 @@ The examples below use `python` for an interpreter with the dependencies install
 | `python -m unittest discover -s tests -v` | Run offline schema, date, source, JSON-concurrency, and renderer tests |
 | `python -m scripts.check_site` | Verify an existing `docs` build against `data\retirements.json` |
 | `python -m scripts.enrichment init` | Create the five JSON stage files without changing the website catalog |
-| `python -m scripts.enrichment discover` | Crawl the complete Azure Updates retirement feed |
+| `python -m scripts.enrichment discover` | Fetch and compare the complete Azure Updates membership snapshot |
 | `python -m scripts.enrichment download --workers 4` | Download automatic and manually supplied retirement source links |
 | `python -m scripts.enrichment enrich --summarizer-command '["python","my_summarizer.py"]'` | Summarize acquired pages, depth-one references and manual context using your adapter |
 | `python -m scripts.enrichment merge` | Reconcile sources and enrichment into `retirements_canonical.json`, then project the website catalog |
 | `python -m scripts.enrichment status` | Inspect source, summary and failure counts without fetching content |
+| `python -m scripts.enrichment run --workers 4 --batch-size 10 --summarizer-command '["python","my_summarizer.py"]'` | Incrementally discover updates, process new/changed records, hide feed-absent records, and project |
+| `python -m scripts.enrichment run --full --workers 4 --batch-size 10 --summarizer-command '["python","my_summarizer.py"]'` | Force-refresh every active source and regenerate all summaries |
 | `python -m scripts.enrichment reprocess --retirement-id <id> --summarizer-command '["python","my_summarizer.py"]'` | Force-refresh one existing record through projection without global discovery |
 
 These are PowerShell examples. On Linux, use `site/build.py` and `/` in filesystem
@@ -110,7 +112,13 @@ The JSON enrichment pipeline is `python -m scripts.enrichment`. It uses readable
 JSON stage state. `merge`
 writes to the selected stage directory unless `--output` is supplied; it first persists `retirements_canonical.json`,
 then writes the website-facing `retirements.json`.
-Existing hidden records are left unchanged; feed-absent records remain in the catalog.
+Existing user-hidden records are left unchanged. After a complete, validated feed scan,
+Azure Updates records no longer present are retained with `hidden: true` and
+`hiddenReason: "not-in-azure-updates"` for historical review, but excluded from the
+website. Records still present in manual sources are not hidden. Hidden records are
+skipped by download, enrichment, reprocessing, and full refresh; enrichment never
+deletes them, including if they later reappear in the feed. A user can explicitly
+unhide a record in the catalog when it should be processed again.
 If projection is interrupted, a pending marker permits retry only while the output
 still matches its pre-write snapshot; a concurrent edit is preserved and blocks retry.
 
@@ -206,7 +214,12 @@ python -m scripts.enrichment status --data-dir $StageDir
 ```
 
 `my_summarizer.py` is **your supplied adapter**, not a bundled model or fake summarizer.
-For subsequent refreshes, the equivalent combined command is:
+For subsequent refreshes, `run` scans the complete Azure Updates feed to verify
+membership but downloads automatic announcement pages only for added/changed feed
+entries or missing/failed pages. It continues conditional refreshes for manual
+sources and direct references, and synthesizes only when source/input revisions or
+processing rules require it. A failed/incomplete feed scan does not change membership
+or hide records. The incremental command is:
 
 ```powershell
 python -m scripts.enrichment run --data-dir $StageDir --workers 4 --batch-size 10 --summarizer-command '["python","my_summarizer.py"]'
@@ -214,7 +227,19 @@ if ($LASTEXITCODE -ne 0) { throw "Enrichment failed; do not adopt or build a rep
 ```
 
 `run` combines discovery, download, enrichment, canonical reconciliation and website
-projection; it does not build the site.
+projection; it does not build the site. To unconditionally fetch all active
+automatic/manual sources and depth-one references and regenerate every summary, use
+the explicit full-update flag:
+
+```powershell
+python -m scripts.enrichment run --full --data-dir $StageDir --workers 4 --batch-size 10 --summarizer-command '["python","my_summarizer.py"]'
+if ($LASTEXITCODE -ne 0) { throw "Full enrichment failed; do not adopt or build a replacement catalog." }
+```
+
+`--full-update` is an alias for `--full`; both are valid only with `run`. Hidden records
+are excluded from both incremental and full processing and remain in
+`retirements.json` for historical review; the site build excludes them. Enrichment
+does not delete records, even during a full update.
 To force a complete refresh for one existing retirement ID without rerunning global
 discovery or touching other records, use:
 
@@ -520,8 +545,9 @@ commands and manual source-input instructions are in the
   descending exact deadlines (unknown last, title ties). Counts and pagination are
   unique even when an announcement belongs to several groups.
 - **Search and filters:** combine category, service, retirement window, announcement
-  year and sidebar status shortcuts. Announcement year uses the current UTC year
-  and previous three; retirement years include confirmed month-only years. Shareable
+  time frame and sidebar status shortcuts. The announcement filter includes this
+  week/month, current and previous quarter month ranges with abbreviated months, and the current UTC year
+  plus previous three as year choices; retirement years include confirmed month-only years. Shareable
   URLs, history and return links preserve filters; **Reset filters** clears them.
 - **Sidebar:** retirement year > category > retirement. Directory branches/counts
   reflect all matches, not just loaded results. Detail pages show the complete
@@ -582,7 +608,7 @@ For the JSON workflow, associate links/context with the existing retirement ID i
 overrides belong to that input's `overrides`; automatic summaries remain underneath.
 See the [JSON workflow examples](#json-enrichment-pipeline).
 
-Each record also has a `hidden` boolean, initially `false`. Set it to `true` to exclude that retirement from search, navigation, filters, and visible counts; the direct detail page and public JSON download remain accessible, so this is not an access-control feature. JSON enrichment leaves hidden records unchanged. Older records without the field are treated as visible.
+Each record also has a `hidden` boolean, initially `false`. Set it to `true` to exclude that retirement from search, navigation, filters, and visible counts; the direct detail page and public JSON download remain accessible, so this is not an access-control feature. JSON enrichment skips hidden records and never deletes them, including during a full update. Older records without the field are treated as visible.
 
 ### Evidence-based content reviews
 

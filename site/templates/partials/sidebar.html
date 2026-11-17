@@ -7,6 +7,13 @@
     <details class="year-group" data-year-group="{{ group.year }}"{% if (view and group.year == view.year) or group.year == current_year %} open{% endif %}>
       <summary>{{ group.label }}<span class="nav-count">{{ group.count }}</span></summary>
       <a href="{{ '/' | relative_url }}?year={{ group.year }}" data-year="{{ group.year }}" data-category="">All in {{ group.label }}</a>
+      {% if group.year == current_year %}
+      <div class="year-period-filters" aria-label="Retirement periods in {{ current_year }}">
+        {% for period in site.retirementPeriods %}
+        <a href="{{ '/' | relative_url }}?year={{ current_year }}&amp;period={{ period.key }}" data-year="{{ current_year }}" data-category="" data-period="{{ period.key }}">{{ period.label }}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
       {% for category in group.categories %}
       <details class="category-group" data-category-group="{{ category.name }}"{% if view and group.year == view.year and category.name == view.categories[0] %} open{% endif %}>
         <summary>{{ category.name }}<span class="nav-count">{{ category.count }}</span></summary>

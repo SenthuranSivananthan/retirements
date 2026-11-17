@@ -6,7 +6,7 @@ import shutil
 import unicodedata
 from calendar import monthrange
 from collections import Counter
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from html import escape as escape_html
 from html.parser import HTMLParser
 from pathlib import Path
@@ -19,6 +19,13 @@ QUESTION_HTML_VOID_TAGS = frozenset(("br",))
 TITLE_SLUG_MAX_LENGTH = 80
 DETAIL_SLUG_MAX_LENGTH = 130
 MONTHS = ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+RETIREMENT_PERIODS = (
+    {"key": "this-week", "label": "This week"},
+    {"key": "this-month", "label": "This month"},
+    {"key": "last-month", "label": "Last month"},
+    {"key": "this-quarter", "label": "This quarter"},
+    {"key": "last-quarter", "label": "Last quarter"},
+)
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -439,6 +446,53 @@ def format_date(value):
     return f"{parsed.day} {MONTHS[parsed.month - 1][:3]} {parsed.year}"
 
 
+def format_retirement_date(value):
+    if value is None:
+        return "Date not specified"
+    parsed = date.fromisoformat(value)
+    return f"{MONTHS[parsed.month - 1]} {parsed.day}, {parsed.year}"
+
+
+def announcement_period_options(today):
+    current = date.fromisoformat(today)
+    quarter_start = (current.month - 1) // 3 * 3 + 1
+    current_start = date(current.year, quarter_start, 1)
+    current_end = date(current.year, quarter_start + 2, monthrange(current.year, quarter_start + 2)[1])
+    previous_month = quarter_start - 3
+    previous_year = current.year
+    if previous_month < 1:
+        previous_month += 12
+        previous_year -= 1
+    previous_start = date(previous_year, previous_month, 1)
+    previous_end = date(previous_year, previous_month + 2, monthrange(previous_year, previous_month + 2)[1])
+    return [
+        {"key": "this-week", "label": "Announced this week"},
+        {"key": "this-month", "label": "Announced this month"},
+        {"key": "this-quarter", "label": (
+            f"Announced {MONTHS[current_start.month - 1][:3]}–{MONTHS[current_end.month - 1][:3]} {current_end.year}"
+        )},
+        {"key": "last-quarter", "label": (
+            f"Announced {MONTHS[previous_start.month - 1][:3]}–{MONTHS[previous_end.month - 1][:3]} {previous_end.year}"
+        )},
+    ]
+
+
+def announcement_period(announced_on, today):
+    if announced_on is None or announced_on > today:
+        return None
+    announced = date.fromisoformat(announced_on)
+    current = date.fromisoformat(today)
+    if announced >= current - timedelta(days=current.weekday()):
+        return "Announced this week"
+    if announced.year == current.year and announced.month == current.month:
+        return "Announced this month"
+    if announced.year == current.year and (announced.month - 1) // 3 == (current.month - 1) // 3:
+        return "Announced this quarter"
+    if announced.year == current.year:
+        return "Announced this year"
+    return None
+
+
 def add_calendar_months(value, months):
     month_index = value.month - 1 + months
     year = value.year + month_index // 12
@@ -543,9 +597,10 @@ def prepare_site(root=ROOT, today=None):
         status = status_of(questions["deadline"], today)
         by_id[record["id"]] = {
             "record": record, "status": status, "label": labels[status], "countdown": countdown(questions["deadline"], today),
+            "announcementPeriod": announcement_period(record["announcedOn"], today),
             "sections": [{"id": key, "question": questions[key]["question"]} for key in DETAIL_QUESTIONS],
             "year": retirement_year(record), "categories": sorted(categories_of(record), key=str.casefold),
-            "url": urls[record["id"]], "deadline": format_date(questions["deadline"]["date"]),
+            "url": urls[record["id"]], "deadline": format_retirement_date(questions["deadline"]["date"]),
             "announced": format_date(record["announcedOn"]),
             "customerLeadTime": customer_lead_time(record["announcedOn"], questions["deadline"]["date"]),
             "updated": format_date(record["lastUpdatedOn"]) if record["lastUpdatedOn"] else "Not provided by source",
@@ -565,6 +620,7 @@ def prepare_site(root=ROOT, today=None):
     } for group in group_retirements(visible)]
     metadata = {
         "byId": by_id, "navigation": navigation, "buildDate": today,
+        "retirementPeriods": RETIREMENT_PERIODS, "announcementPeriods": announcement_period_options(today),
         "categories": sorted({category for record in visible for category in categories_of(record)}, key=str.casefold),
         "services": sorted({service for record in visible for service in services_of(record)}, key=str.casefold),
         "initialIds": [record["id"] for record in sort_timeline(visible)[:24]], "count": len(visible),

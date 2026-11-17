@@ -1,5 +1,5 @@
 import catalog from './data.js';
-import { RETIREMENT_WINDOWS, announcedYears, categoriesOf, customerLeadTime, directoryUrl, escapeHtml as e, filterRecords, findDetailRecord, formatDate, groupRetirements, groupTimeline, inRetirementWindow, recordUrls, retirementCountdown, retirementWindow, retirementYear, servicesForCategory, statusOf } from './catalog.js';
+import { RETIREMENT_PERIODS, RETIREMENT_WINDOWS, announcementPeriod, announcementPeriods, announcedYears, categoriesForFilters, categoriesOf, customerLeadTime, directoryUrl, escapeHtml as e, filterRecords, findDetailRecord, formatDate, formatRetirementDate, groupRetirements, groupTimeline, inRetirementWindow, recordUrls, retirementCountdown, retirementWindow, retirementYear, servicesForCategory, statusOf } from './catalog.js';
 function element(selector) {
     const node = document.querySelector(selector);
     if (!node)
@@ -19,6 +19,8 @@ const years = new Set(groupRetirements(visibleRecords).map(group => group.year))
 const labels = { upcoming: 'Upcoming', soon: 'Within 90 days', retired: 'Retired', unknown: 'Date to confirm' };
 const yearLabel = (year) => year === 'unknown' ? 'Unconfirmed year' : year;
 const directoryLink = (filters) => directoryUrl(filters, homeUrl.pathname);
+const periodLabel = (period) => RETIREMENT_PERIODS.find(item => item.key === period)?.label || '';
+const announcementPeriodLabel = (period) => announcementPeriods().find(item => item.key === period)?.label || '';
 const icon = (name) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${name === 'clock' ? '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>' : '<path d="M5 12h14m-5-5 5 5-5 5"/>'}</svg>`;
 function detailLink(record, context = {}) {
     const path = recordPaths.get(record.id);
@@ -34,8 +36,14 @@ function statusFilter(value) {
 function windowFilter(value) {
     return RETIREMENT_WINDOWS.includes(value) ? value : '';
 }
+function retirementPeriodFilter(value) {
+    return RETIREMENT_PERIODS.some(item => item.key === value) ? value : '';
+}
 function announcementYearFilter(value) {
     return announcedYears().includes(value) ? value : '';
+}
+function announcementPeriodFilter(value) {
+    return announcementPeriods().some(item => item.key === value) ? value : '';
 }
 function readFilters() {
     const params = new URLSearchParams(location.search);
@@ -48,7 +56,9 @@ function readFilters() {
         year: years.has(year) ? year : '', category,
         status: statusFilter(params.get('status')), sort: 'date-desc',
         window: windowFilter(params.get('window')),
+        period: retirementPeriodFilter(params.get('period')),
         announcedYear: announcementYearFilter(params.get('announcedYear')),
+        announcedPeriod: announcementPeriodFilter(params.get('announcedPeriod')),
     };
 }
 let filters = readFilters();
@@ -209,7 +219,7 @@ function updateNav() {
     for (const yearGroup of document.querySelectorAll('#navigation .year-group')) {
         const year = yearGroup.dataset.yearGroup;
         const yearIds = new Set();
-        const yearContext = { ...navigationFilters, year };
+        const yearContext = { ...navigationFilters, year, period: '' };
         yearGroup.querySelector(':scope > a[data-year]').href = `${directoryLink(yearContext)}#catalog`;
         for (const categoryGroup of yearGroup.querySelectorAll('.category-group')) {
             const category = categoryGroup.dataset.categoryGroup;
@@ -228,7 +238,7 @@ function updateNav() {
             categoryGroup.hidden = categoryIds.size === 0;
             categoryGroup.querySelector('summary .nav-count').textContent = String(categoryIds.size);
         }
-        yearGroup.hidden = yearIds.size === 0;
+        yearGroup.hidden = yearIds.size === 0 && year !== new Date().toISOString().slice(0, 4);
         yearGroup.querySelector(':scope > summary .nav-count').textContent = String(yearIds.size);
     }
     element('#navigation-empty').hidden = matches.size > 0;
@@ -239,9 +249,11 @@ function updateNav() {
     for (const link of document.querySelectorAll('#navigation a[data-nav], #navigation a[data-year]')) {
         const active = link.dataset.record
             ? activeRecord?.id === link.dataset.record && link.dataset.year === year && link.dataset.category === category
-            : link.dataset.year
+            : link.dataset.period
+                ? isDirectory && link.dataset.period === filters.period
+                : link.dataset.year
                 ? isDirectory && link.dataset.year === filters.year && link.dataset.category === filters.category
-                : isDirectory && !filters.year && !filters.category && !filters.window && !filters.announcedYear && link.dataset.nav === filters.status;
+                : isDirectory && !filters.year && !filters.category && !filters.window && !filters.announcedYear && !filters.announcedPeriod && link.dataset.nav === filters.status;
         if (active) {
             link.setAttribute('aria-current', 'page');
             let group = link.closest('details');
@@ -257,11 +269,13 @@ function updateNav() {
 function renderTimelineEntry(record) {
     const deadline = record.questions.deadline;
     const status = statusOf(deadline);
+    const announced = announcementPeriod(record.announcedOn);
     const url = detailLink(record, filters);
     return `<li class="timeline-entry" data-record="${e(record.id)}">
-      <div class="timeline-date"><span class="timeline-date-label">Retirement date</span>${deadline.date ? `<time datetime="${e(deadline.date)}">${e(formatDate(deadline.date))}</time>` : '<span>Date to confirm</span>'}<span class="timeline-date-label timeline-lead-time-label">Customer lead time</span><span class="timeline-lead-time">${e(customerLeadTime(record.announcedOn, deadline.date))}</span></div>
+      <div class="timeline-date"><span class="timeline-date-label">Retirement date</span>${deadline.date ? `<time datetime="${e(deadline.date)}">${e(formatRetirementDate(deadline.date))}</time>` : '<span>Date to confirm</span>'}<span class="timeline-date-label timeline-lead-time-label">Customer lead time</span><span class="timeline-lead-time">${e(customerLeadTime(record.announcedOn, deadline.date))}</span></div>
       <article class="timeline-content">
         <span class="badge ${status}" data-deadline="${e(deadline.date || '')}"><span></span>${labels[status]}</span>
+        <span class="badge announcement-flag" data-announcement-flag data-announced-on="${e(record.announcedOn || '')}"${announced ? '' : ' hidden'}>${e(announced || '')}</span>
         <h5><a href="${e(url)}">${e(record.title)}</a></h5><p>${e(record.summary)}</p>
         <a class="timeline-detail" href="${e(url)}" aria-label="View details: ${e(record.title)}">View details ${icon('arrow')}</a>
       </article>
@@ -282,8 +296,8 @@ function renderResults() {
       </section>`).join('') : `<div class="empty"><h3>No matching retirements</h3><p>Try a different keyword, service, retirement window, announcement year, or category.</p><a class="button" href="${e(homeUrl.pathname)}">Clear filters</a></div>`;
     element('#load-more').hidden = records.length <= visible;
     const group = element('#group-filter');
-    group.hidden = !filters.year && !filters.announcedYear && !filters.category && filters.status === 'all';
-    group.innerHTML = `${filters.year ? `<span>Retirement year: <strong>${e(yearLabel(filters.year))}</strong></span>` : ''}${filters.announcedYear ? `<span>Announced in: <strong>${e(filters.announcedYear)}</strong></span><a href="${e(directoryLink({ ...filters, announcedYear: '' }))}">Clear announcement year</a>` : ''}${filters.category ? `<span>Azure category: <strong>${e(filters.category)}</strong></span>` : ''}${filters.year || filters.category ? `<a href="${e(directoryLink({ ...filters, year: '', category: '' }))}">Clear year and category</a>` : ''}${filters.status !== 'all' ? `<span>Status: <strong>${e(labels[filters.status])}</strong></span><a href="${e(directoryLink({ ...filters, status: 'all' }))}">Clear status</a>` : ''}`;
+    group.hidden = !filters.year && !filters.period && !filters.announcedYear && !filters.announcedPeriod && !filters.category && filters.status === 'all';
+    group.innerHTML = `${filters.year ? `<span>Retirement year: <strong>${e(yearLabel(filters.year))}</strong></span>` : ''}${filters.period ? `<span>Retirement period: <strong>${e(periodLabel(filters.period))}</strong></span>` : ''}${filters.announcedYear ? `<span>Announced in: <strong>${e(filters.announcedYear)}</strong></span><a href="${e(directoryLink({ ...filters, announcedYear: '' }))}">Clear announcement year</a>` : ''}${filters.announcedPeriod ? `<span>${e(announcementPeriodLabel(filters.announcedPeriod))}</span><a href="${e(directoryLink({ ...filters, announcedPeriod: '' }))}">Clear announcement period</a>` : ''}${filters.category ? `<span>Azure category: <strong>${e(filters.category)}</strong></span>` : ''}${filters.year || filters.category || filters.period ? `<a href="${e(directoryLink({ ...filters, year: '', category: '', period: '' }))}">Clear year and category</a>` : ''}${filters.status !== 'all' ? `<span>Status: <strong>${e(labels[filters.status])}</strong></span><a href="${e(directoryLink({ ...filters, status: 'all' }))}">Clear status</a>` : ''}`;
     for (const card of document.querySelectorAll('[data-window]')) {
         if (card.dataset.window === filters.window)
             card.setAttribute('aria-current', 'true');
@@ -299,44 +313,79 @@ function updateServiceOptions() {
     control.replaceChildren(new Option('All services', ''), ...services.map(service => new Option(service, service)));
     control.value = filters.service;
 }
+function updateCategoryOptions() {
+    const categories = categoriesForFilters(visibleRecords, filters);
+    if (filters.category && !categories.includes(filters.category))
+        filters.category = '';
+    const control = element('#category');
+    control.replaceChildren(new Option('All categories', ''), ...categories.map(category => new Option(category, category)));
+    control.value = filters.category;
+}
 function updateAnnouncementYearOptions() {
     const control = element('#announced-year');
+    const periodOptions = document.createElement('optgroup');
+    periodOptions.label = 'Announcement period';
+    for (const period of announcementPeriods())
+        periodOptions.append(new Option(period.label, period.key));
+    const yearOptions = document.createElement('optgroup');
+    yearOptions.label = 'Announcement year';
+    for (const year of announcedYears())
+        yearOptions.append(new Option(`Announced in ${year}`, year));
     control.replaceChildren(
         new Option('All announcement dates', ''),
-        ...announcedYears().map(year => new Option(`Announced in ${year}`, year)),
+        periodOptions,
+        yearOptions,
     );
+    control.value = filters.announcedPeriod || filters.announcedYear;
 }
 function restoreDirectoryFilters() {
     filters = readFilters();
     visible = 24;
+    const selectedCategory = filters.category;
+    updateServiceOptions();
+    updateCategoryOptions();
     updateServiceOptions();
     updateAnnouncementYearOptions();
     for (const [id, key] of [['search', 'q'], ['category', 'category'], ['service', 'service'], ['window', 'window'], ['announced-year', 'announcedYear']]) {
-        element(`#${id}`).value = key === 'window' ? filters.window || filters.year : filters[key];
+        element(`#${id}`).value = key === 'window' ? filters.window || filters.year
+            : key === 'announcedYear' ? filters.announcedPeriod || filters.announcedYear : filters[key];
     }
+    if (filters.category !== selectedCategory)
+        history.replaceState(null, '', directoryLink(filters));
     renderResults();
     updateNav();
 }
 function bindDirectory() {
     for (const control of document.querySelectorAll('[data-enhancement]'))
         control.hidden = false;
+    const selectedCategory = filters.category;
+    updateServiceOptions();
+    updateCategoryOptions();
     updateServiceOptions();
     updateAnnouncementYearOptions();
+    if (filters.category !== selectedCategory)
+        history.replaceState(null, '', directoryLink(filters));
     for (const [id, key, event] of [['search', 'q', 'input'], ['category', 'category', 'change'], ['service', 'service', 'change'], ['window', 'window', 'change'], ['announced-year', 'announcedYear', 'change']]) {
         const control = element(`#${id}`);
-        control.value = key === 'window' ? filters.window || filters.year : filters[key];
+        control.value = key === 'window' ? filters.window || filters.year
+            : key === 'announcedYear' ? filters.announcedPeriod || filters.announcedYear : filters[key];
         control.addEventListener(event, () => {
             if (key === 'window') {
                 filters.window = windowFilter(control.value);
                 filters.year = years.has(control.value) ? control.value : '';
+                filters.period = '';
                 filters.status = 'all';
             }
-            else if (key === 'announcedYear')
+            else if (key === 'announcedYear') {
                 filters.announcedYear = announcementYearFilter(control.value);
+                filters.announcedPeriod = announcementPeriodFilter(control.value);
+            }
             else
                 filters[key] = control.value;
             if (key === 'category')
                 updateServiceOptions();
+            updateCategoryOptions();
+            updateServiceOptions();
             visible = 24;
             history.replaceState(null, '', directoryLink(filters));
             renderResults();
@@ -377,6 +426,11 @@ function updateDates() {
         badge.className = `badge ${status}`;
         badge.innerHTML = `<span></span>${labels[status]}`;
     }
+    for (const badge of document.querySelectorAll('[data-announcement-flag]')) {
+        const period = announcementPeriod(badge.dataset.announcedOn || null);
+        badge.hidden = !period;
+        badge.textContent = period || '';
+    }
     if (activeRecord) {
         const countdown = element('[data-countdown]');
         countdown.className = `retirement-countdown ${statusOf(activeRecord.questions.deadline)}`;
@@ -415,8 +469,10 @@ if (!redirectLegacyRoute() && !redirectMovedDetail()) {
         if (day === current)
             return;
         day = current;
-        if (isDirectory)
+        if (isDirectory) {
+            updateAnnouncementYearOptions();
             renderResults();
+        }
         updateNav();
         updateDates();
     };
