@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">API Management</span><span class="badge retired" data-deadline="2024-08-31"><span></span>Retired</span></div>
-  <h1>Retirement: Azure API Management STV1 compute platform is retired as of August 31, 2024</h1><p>Azure API Management retired the stv1 compute platform in global Azure on 2024-08-31 and in Azure Government and Azure operated by 21Vianet on 2025-02-24. This affects Developer, Basic, Standard and Premium instances on stv1, not existing stv2 instances or Consumption&#39;s mtv1 platform. Migrate remaining stv1 instances to stv2. Retirement did not itself shut down or delete instances, but global Azure stv1 SLA guarantees and related service credits ended on 2024-09-01. Hardware decommissioning and automatic migration can disrupt service. Under special conditions, automatic migration removes virtual network settings and blocks endpoints.</p>
+  <h1>Retirement: Azure API Management STV1 compute platform is retired as of August 31, 2024</h1><p>Azure API Management retired the stv1 compute platform in global Azure on August 31, 2024 and in Azure Government and Azure operated by 21Vianet on February 24, 2025. This affects Developer, Basic, Standard and Premium instances on stv1, not existing stv2 instances or Consumption&#39;s mtv1 platform. Migrate remaining stv1 instances to stv2. Retirement did not itself shut down or delete instances, but global Azure stv1 SLA guarantees and related service credits ended on September 1, 2024. Hardware decommissioning and automatic migration can disrupt service. Under special conditions, automatic migration removes virtual network settings and blocks endpoints.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-08-31">31 Aug 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 9 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1918,17 +1918,17 @@
       <p class="deadline-date">31 Aug 2024</p>
 <div class="rich-content"><p>Azure API Management stv1 retired on separate dates by environment:</p>
 <ul>
-<li><strong>2024-08-31:</strong> global Azure. The structured deadline represents this milestone.</li>
-<li><strong>2025-02-24:</strong> Azure Government and Azure operated by 21Vianet. This is a separate regional milestone, not an extension.</li>
+<li><strong>August 31, 2024:</strong> global Azure. The structured deadline represents this milestone.</li>
+<li><strong>February 24, 2025:</strong> Azure Government and Azure operated by 21Vianet. This is a separate regional milestone, not an extension.</li>
 </ul>
 <p>Microsoft directed customers to migrate before their applicable retirement date. If you still have stv1 instances, migrate immediately.</p>
-<p>Global Azure stv1 SLA guarantees and related performance or availability service credits ended on <strong>2024-09-01</strong>. The supplied guidance does not separately specify that transition date for the other environments. Retirement itself did not shut down, deactivate or delete instances.</p>
-<p>The announcement described automatic migration starting on 2024-09-01; product guidance describes individually scheduled migrations with one week's advance notification and no universal completion date. These describe rollout timing, not a different retirement deadline, and do not establish that all migrations have finished. Support cannot extend automatic-migration timelines or post-retirement stv1 SLA support.</p>
+<p>Global Azure stv1 SLA guarantees and related performance or availability service credits ended on <strong>September 1, 2024</strong>. The supplied guidance does not separately specify that transition date for the other environments. Retirement itself did not shut down, deactivate or delete instances.</p>
+<p>The announcement described automatic migration starting on September 1, 2024; product guidance describes individually scheduled migrations with one week's advance notification and no universal completion date. These describe rollout timing, not a different retirement deadline, and do not establish that all migrations have finished. Support cannot extend automatic-migration timelines or post-retirement stv1 SLA support.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure API Management retired its <strong>stv1 compute platform</strong>, directing affected Developer, Basic, Standard and Premium instances to stv2. Retirement took effect on 2024-08-31 in global Azure and 2025-02-24 in Azure Government and Azure operated by 21Vianet.</p>
+<div class="rich-content"><p>Azure API Management retired its <strong>stv1 compute platform</strong>, directing affected Developer, Basic, Standard and Premium instances to stv2. Retirement took effect on August 31, 2024 in global Azure and February 24, 2025 in Azure Government and Azure operated by 21Vianet.</p>
 <p>This retires the compute platform, not those service tiers. Existing stv2 instances and the Consumption tier's mtv1 platform are outside scope.</p>
 <p>Before retirement, stv1 instances continued operating normally without the latest stv2 features. Retirement did not immediately shut down or delete instances. Microsoft states that hardware decommissioning has begun, potentially affecting availability and performance, and schedules remaining instances for automatic migration. Microsoft will make no new security and compliance investments in stv1; the supplied content does not specify a security-update schedule.</p>
 </div>
@@ -1951,7 +1951,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your Developer, Basic, Standard or Premium API Management instance has <strong>platformVersion</strong> set to <strong>stv1</strong>. Existing stv2 instances and Consumption's mtv1 platform are unaffected by this retirement. The supplied content does not establish your tenant's inventory.</p>
-<p>For global Azure, retirement on 2024-08-31 did not itself shut down, deactivate or delete instances. However, SLA guarantees and related performance or availability service credits ended on 2024-09-01. Hardware decommissioning may reduce availability or performance, and automatic migration can cause downtime for upstream API consumers. The separate retirement date for Azure Government and Azure operated by 21Vianet was 2025-02-24.</p>
+<p>For global Azure, retirement on August 31, 2024 did not itself shut down, deactivate or delete instances. However, SLA guarantees and related performance or availability service credits ended on September 1, 2024. Hardware decommissioning may reduce availability or performance, and automatic migration can cause downtime for upstream API consumers. The separate retirement date for Azure Government and Azure operated by 21Vianet was February 24, 2025.</p>
 <p>Automatic migration usually retains virtual network settings. Under special conditions, it removes them and blocks the API gateway, developer portal, direct management API and Git repository. The portal displays an all-endpoints-blocked message. Portal unblocking exposes endpoints publicly until you restore network protection.</p>
 <p>Side-by-side migration temporarily incurs the cost of an additional instance. The supplied content does not quantify costs or downtime, establish a universal workload shutdown date, or provide a separate data-retention or deletion policy.</p>
 </div>

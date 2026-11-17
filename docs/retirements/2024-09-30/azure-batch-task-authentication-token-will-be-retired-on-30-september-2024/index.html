@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Batch</span><span class="badge retired" data-deadline="2024-09-30"><span></span>Retired</span></div>
-  <h1>Azure Batch task authentication token will be retired on 30 September 2024</h1><p>Azure Batch retired task authentication token issuance and acceptance on 2024-09-30. Tasks using these tokens needed to switch to pool-level user-assigned managed identity by that date; the notice states that the tokens would no longer function afterward. This retirement concerns the authentication feature, not Azure Batch itself.</p>
+  <h1>Azure Batch task authentication token will be retired on 30 September 2024</h1><p>Azure Batch retired task authentication token issuance and acceptance on September 30, 2024. Tasks using these tokens needed to switch to pool-level user-assigned managed identity by that date; the notice states that the tokens would no longer function afterward. This retirement concerns the authentication feature, not Azure Batch itself.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2024-09-30">30 Sep 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 1 day</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2024</p>
-<div class="rich-content"><p>Azure Batch task authentication tokens retired on <strong>2024-09-30</strong>, which was also the required migration date. The notice allowed continued use through that date and states that issuance and acceptance would no longer function afterward.</p>
+<div class="rich-content"><p>Azure Batch task authentication tokens retired on <strong>September 30, 2024</strong>, which was also the required migration date. The notice allowed continued use through that date and states that issuance and acceptance would no longer function afterward.</p>
 <p>The managed-identity reference page establishes no separate retirement milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Batch retired issuance and acceptance of task authentication tokens on <strong>2024-09-30</strong>. These tokens allowed specific tasks to perform Batch service operations on their job without full account access credentials.</p>
+<div class="rich-content"><p>Azure Batch retired issuance and acceptance of task authentication tokens on <strong>September 30, 2024</strong>. These tokens allowed specific tasks to perform Batch service operations on their job without full account access credentials.</p>
 <p>The documented replacement is pool-level user-assigned managed identity. The notice does not announce retirement of Azure Batch itself.</p>
 </div>
       <div class="notice"></div>
@@ -1931,7 +1931,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify tasks that use Azure Batch task authentication tokens. The notice provides no discovery procedure.</li>
-<li>Replace token use with pool-level user-assigned managed identity. The required completion date was <strong>2024-09-30</strong>.</li>
+<li>Replace token use with pool-level user-assigned managed identity. The required completion date was <strong>September 30, 2024</strong>.</li>
 <li>Create the user-assigned identity in the same tenant as your Batch account; it may be in a different resource group or subscription. Assign it to the pool and ensure the pool's Identity property is configured.</li>
 <li>If you modify an existing pool's identity collection, follow Microsoft's recommendation to scale the pool to zero compute nodes first. In-place identity updates are unsupported while nodes are active, and existing nodes do not receive the changes.</li>
 <li>Configure your tasks to use the assigned identity. The supplied content does not provide retirement-specific implementation or validation procedures.</li>
@@ -1943,7 +1943,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your Azure Batch tasks rely on task authentication tokens to perform Batch service operations on their job. After <strong>2024-09-30</strong>, those operations cannot continue using this authentication method.</p>
+<div class="rich-content"><p>You are affected if your Azure Batch tasks rely on task authentication tokens to perform Batch service operations on their job. After <strong>September 30, 2024</strong>, those operations cannot continue using this authentication method.</p>
 <p>The notice does not state that Batch workloads themselves shut down or document effects on configurations that do not use task authentication tokens.</p>
 <p>When configuring the replacement, an incorrect pool Identity property can cause access or upload errors. Existing compute nodes do not receive identity-collection changes; Microsoft recommends scaling the pool to zero before modification. The supplied content does not establish retirement-related data deletion or cost impacts.</p>
 </div>

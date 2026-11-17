@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Database for PostgreSQL</span><span class="badge retired" data-deadline="2022-11-10"><span></span>Retired</span></div>
-  <h1>Community support for Azure Database PostgreSQL version 10 ends on 10 November 2022</h1><p>Azure Database for PostgreSQL ended support for PostgreSQL version 10 after 2022-11-10, coinciding with its stated community-support end. Microsoft recommended upgrading to version 11 before that date; the Q&amp;A announcement says by that date. Neither source establishes a scheduled workload shutdown. Version 11 was the historical upgrade target, not a confirmed currently supported destination. Later flexible-server guidance lists separate support dates and restrictions; it does not document an extension for version 10. The supplied upgrade link contains Bing content rather than migration instructions.</p>
+  <h1>Community support for Azure Database PostgreSQL version 10 ends on 10 November 2022</h1><p>Azure Database for PostgreSQL ended support for PostgreSQL version 10 after November 10, 2022, coinciding with its stated community-support end. Microsoft recommended upgrading to version 11 before that date; the Q&amp;A announcement says by that date. Neither source establishes a scheduled workload shutdown. Version 11 was the historical upgrade target, not a confirmed currently supported destination. Later flexible-server guidance lists separate support dates and restrictions; it does not document an extension for version 10. The supplied upgrade link contains Bing content rather than migration instructions.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-11-10"><strong>Retired</strong><span>Retirement date: <time datetime="2022-11-10">10 Nov 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 2 months, 16 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">10 Nov 2022</p>
-<div class="rich-content"><p>Azure Database for PostgreSQL support for PostgreSQL version 10 ended after <strong>2022-11-10</strong>, the stated community-support end date. This is an end-of-support milestone, not a scheduled workload shutdown.</p>
-<p>The notice recommends upgrading before 2022-11-10; the Q&amp;A announcement says by 2022-11-10. These are differently worded action targets around the same retirement date, not conflicting retirement dates.</p>
-<p>Separate flexible-server guidance lists 2026-07-31 as the Standard Support end date for PostgreSQL 11–13. It does not establish an extension for version 10. Upstream dates for other major versions likewise do not replace this retirement date.</p>
+<div class="rich-content"><p>Azure Database for PostgreSQL support for PostgreSQL version 10 ended after <strong>November 10, 2022</strong>, the stated community-support end date. This is an end-of-support milestone, not a scheduled workload shutdown.</p>
+<p>The notice recommends upgrading before November 10, 2022; the Q&amp;A announcement says by November 10, 2022. These are differently worded action targets around the same retirement date, not conflicting retirement dates.</p>
+<p>Separate flexible-server guidance lists July 31, 2026 as the Standard Support end date for PostgreSQL 11–13. It does not establish an extension for version 10. Upstream dates for other major versions likewise do not replace this retirement date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Database for PostgreSQL ended support for PostgreSQL version 10 after 2022-11-10. The announcement names version 11 as the historical upgrade destination and says restrictions apply to version 10 servers retained beyond retirement.</p>
+<div class="rich-content"><p>Azure Database for PostgreSQL ended support for PostgreSQL version 10 after November 10, 2022. The announcement names version 11 as the historical upgrade destination and says restrictions apply to version 10 servers retained beyond retirement.</p>
 <p>The retirement notice does not specify deployment variants, regions, exceptions, or detailed maintenance and security-update commitments. Separate flexible-server guidance describes continued operation with restrictions for community-retired engines, but its applicability to every server covered by the original notice is not established.</p>
 </div>
       <div class="notice"></div>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your Azure Database for PostgreSQL servers running version 10 and their deployment variant. The supplied content provides no inventory procedure or discovery command.</li>
-<li>Select an applicable supported upgrade destination. The original notice recommended version 11, but the separate flexible-server policy lists its Standard Support end as 2026-07-31; do not treat the historical recommendation as confirmation of current support. That policy references Extended Support without supplying eligibility, coverage or terms.</li>
+<li>Select an applicable supported upgrade destination. The original notice recommended version 11, but the separate flexible-server policy lists its Standard Support end as July 31, 2026; do not treat the historical recommendation as confirmation of current support. That policy references Extended Support without supplying eligibility, coverage or terms.</li>
 <li>Obtain applicable Azure upgrade instructions and review the versioning policy before migrating. The supplied upgrade-link content is a Bing page and provides no migration procedure. Upstream PostgreSQL guidance recommends reading release notes for all intervening major versions, but does not establish an Azure-specific upgrade method.</li>
 <li>As team-owned planning, document compatibility checks, backup needs, cutover and validation evidence. The supplied Azure content does not provide those procedures or cleanup instructions.</li>
 </ol>
@@ -1942,7 +1942,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are in scope if you run Azure Database for PostgreSQL version 10. After 2022-11-10, that version is unsupported under the announcement and retained servers face version-policy restrictions. The supplied content does not establish which of your servers are affected or a scheduled shutdown of all version 10 workloads.</p>
+<div class="rich-content"><p>You are in scope if you run Azure Database for PostgreSQL version 10. After November 10, 2022, that version is unsupported under the announcement and retained servers face version-policy restrictions. The supplied content does not establish which of your servers are affected or a scheduled shutdown of all version 10 workloads.</p>
 <p>Separate flexible-server guidance documents these consequences for community-retired engines:</p>
 <ul>
 <li>Existing servers can continue running, but engine bug and security patches stop; underlying service-component patching continues.</li>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure DNS</span><span class="badge retired" data-deadline="2019-12-31"><span></span>Retired</span></div>
-  <h1>Azure DNS private zones preview API is being deprecated</h1><p>Azure DNS public-preview private zones using dnszones with zoneType set to Private must migrate to the GA privateDnsZones resource model. The migration guide says support ended after 2019-12-31; the announcement instead gives 2020-06-30 and says existing preview zones stop working afterward. The structured deadline follows the applicable product guidance, but the support-date conflict remains unconfirmed; no extension is explicitly documented. The announcement separately blocks new preview private-zone creation after 2020-04-15. Public DNS zones using dnszones are unaffected.</p>
+  <h1>Azure DNS private zones preview API is being deprecated</h1><p>Azure DNS public-preview private zones using dnszones with zoneType set to Private must migrate to the GA privateDnsZones resource model. The migration guide says support ended after December 31, 2019; the announcement instead gives June 30, 2020 and says existing preview zones stop working afterward. The structured deadline follows the applicable product guidance, but the support-date conflict remains unconfirmed; no extension is explicitly documented. The announcement separately blocks new preview private-zone creation after April 15, 2020. Public DNS zones using dnszones are unaffected.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2019-12-31"><strong>Retired</strong><span>Retirement date: <time datetime="2019-12-31">31 Dec 2019</time></span><span class="badge amber customer-lead-time-pill">Lead time: -2 months, 12 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,19 +1916,19 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Dec 2019</p>
-<div class="rich-content"><p>The migration guide says legacy public-preview private DNS zones are unsupported after <strong>2019-12-31</strong>. This product-guidance date is used as the structured retirement deadline, but the supplied sources conflict.</p>
+<div class="rich-content"><p>The migration guide says legacy public-preview private DNS zones are unsupported after <strong>December 31, 2019</strong>. This product-guidance date is used as the structured retirement deadline, but the supplied sources conflict.</p>
 <ul>
-<li>The announcement gives <strong>2020-06-30</strong> as the support deadline and explicitly says existing preview zones stop working afterward.</li>
-<li>The migration guide gives <strong>2019-12-31</strong> as the support deadline but does not establish a DNS-resolution shutdown date.</li>
-<li>The announcement separately blocks creation of new preview private zones after <strong>2020-04-15</strong>.</li>
+<li>The announcement gives <strong>June 30, 2020</strong> as the support deadline and explicitly says existing preview zones stop working afterward.</li>
+<li>The migration guide gives <strong>December 31, 2019</strong> as the support deadline but does not establish a DNS-resolution shutdown date.</li>
+<li>The announcement separately blocks creation of new preview private zones after <strong>April 15, 2020</strong>.</li>
 </ul>
-<p>The support-date conflict remains unconfirmed. Neither source explicitly documents an extension. The guide's 2023-11-30 update date is not a retirement milestone. Do not equate its earlier support deadline with workload shutdown.</p>
+<p>The support-date conflict remains unconfirmed. Neither source explicitly documents an extension. The guide's November 30, 2023 update date is not a retirement milestone. Do not equate its earlier support deadline with workload shutdown.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
 <div class="rich-content"><p>Azure DNS is retiring public-preview private zones represented as dnszones resources with zoneType set to Private. You must move affected zones to the GA privateDnsZones resource model.</p>
-<p>The announcement says existing preview zones stop working after 2020-06-30; the migration guide instead documents loss of support after 2019-12-31 without establishing shutdown on that date.</p>
+<p>The announcement says existing preview zones stop working after June 30, 2020; the migration guide instead documents loss of support after December 31, 2019 without establishing shutdown on that date.</p>
 <p>Public DNS zones using dnszones are unaffected. Zones already using privateDnsZones are not identified as part of this retirement. The REST, CLI and PowerShell reference pages describe management capabilities; they do not independently establish retirement dates or requirements.</p>
 </div>
       <div class="notice"></div>
@@ -1971,7 +1971,7 @@ az network dns zone list --query "[?zoneType=='Private']"
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you have public-preview dnszones resources with zoneType set to Private. The documented CLI query checks only the selected subscription; repeat it for each subscription you need to assess. No inspection of your resources is established by the supplied content.</p>
-<p>The announcement blocks new preview private-zone creation after 2020-04-15 and says existing preview zones stop working after 2020-06-30. The migration guide establishes unsupported status after 2019-12-31, not shutdown on that date. These conflicting support dates do not establish an extension.</p>
+<p>The announcement blocks new preview private-zone creation after April 15, 2020 and says existing preview zones stop working after June 30, 2020. The migration guide establishes unsupported status after December 31, 2019, not shutdown on that date. These conflicting support dates do not establish an extension.</p>
 <p>Microsoft describes migration as automated and not expected to cause downtime, but recommends a maintenance window for critical production zones. Cutover switches virtual-network resolution to the new zones. Cleanup deletes legacy zones, so verify resolution before approving it. Templates, scripts and SDK integrations using the legacy model also need updating.</p>
 <p>Public DNS zones using dnszones are unaffected. The sources do not establish automatic retention, deletion or cost consequences from taking no action.</p>
 </div>

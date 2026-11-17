@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Automation</span><span class="badge retired" data-deadline="2026-09-30"><span></span>Retired</span></div>
-  <h1>Retirement: Support for Python-2.7; 3.8 and PowerShell- 7.1; 7.2 will be retired on September 30, 2026</h1><p>Azure Automation is retiring support for Python 2.7, Python 3.8, PowerShell 7.1 and PowerShell 7.2. The announcement title gives 2026-09-30; its body says unsupported status begins on 2026-10-01. Runbooks can continue running, but lose security updates, bug fixes and official support. Upgrade to supported Azure Automation runtimes to retain support eligibility. The supplied lifecycle references do not establish replacement-runtime availability in Azure Automation or extend this retirement.</p>
+  <h1>Retirement: Support for Python-2.7; 3.8 and PowerShell- 7.1; 7.2 will be retired on September 30, 2026</h1><p>Azure Automation is retiring support for Python 2.7, Python 3.8, PowerShell 7.1 and PowerShell 7.2. The announcement title gives September 30, 2026; its body says unsupported status begins on October 1, 2026. Runbooks can continue running, but lose security updates, bug fixes and official support. Upgrade to supported Azure Automation runtimes to retain support eligibility. The supplied lifecycle references do not establish replacement-runtime availability in Azure Automation or extend this retirement.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-30">30 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 months, 20 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2026</p>
-<div class="rich-content"><p>Use <strong>2026-09-30</strong> as the support-retirement planning deadline. The announcement title names that date; its body says unsupported status starts on <strong>2026-10-01</strong>. These adjacent dates describe retirement and the start of unsupported status, not a documented workload shutdown.</p>
-<p>The general Azure Automation policy provides no alternative version-specific date. Python 3.8's upstream end of life on 2024-10-07 is a separate milestone. PowerShell 7.4/7.5 support ending on 2026-11-10 and PowerShell 7.6 support ending on 2028-11-14 concern other versions; they do not extend this retirement.</p>
+<div class="rich-content"><p>Use <strong>September 30, 2026</strong> as the support-retirement planning deadline. The announcement title names that date; its body says unsupported status starts on <strong>October 1, 2026</strong>. These adjacent dates describe retirement and the start of unsupported status, not a documented workload shutdown.</p>
+<p>The general Azure Automation policy provides no alternative version-specific date. Python 3.8's upstream end of life on October 7, 2024 is a separate milestone. PowerShell 7.4/7.5 support ending on November 10, 2026 and PowerShell 7.6 support ending on November 14, 2028 concern other versions; they do not extend this retirement.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Automation is ending support for <strong>Python 2.7, Python 3.8, PowerShell 7.1 and PowerShell 7.2</strong>, with retirement dated 2026-09-30 and unsupported status beginning on 2026-10-01.</p>
+<div class="rich-content"><p>Azure Automation is ending support for <strong>Python 2.7, Python 3.8, PowerShell 7.1 and PowerShell 7.2</strong>, with retirement dated September 30, 2026 and unsupported status beginning on October 1, 2026.</p>
 <p>Affected runbooks may continue running afterward, but Microsoft will no longer provide security updates, bug fixes or official support for these runtimes. The general policy also makes retired runtimes ineligible for new features and performance optimizations, while allowing you to create, deploy and run runbooks and environments using them.</p>
 <p>The notice specifies no regional exceptions or retirement of other runtime versions.</p>
 </div>
@@ -1933,7 +1933,7 @@
 <div class="rich-content"><ol>
 <li>Review Azure Automation retirement notification emails for affected versions and applicable timelines. Identify your runbooks using Python 2.7, Python 3.8, PowerShell 7.1 or PowerShell 7.2; the supplied material gives no inventory procedure.</li>
 <li>Select a supported runtime available in Azure Automation. Consult the supplied PowerShell and Python lifecycle references, but do not treat upstream support as proof that Azure Automation offers a particular version. The material does not identify service-supported replacement versions or migration prerequisites.</li>
-<li>Upgrade affected runbooks to retain support eligibility, using 2026-09-30 as your planning deadline before unsupported status begins on 2026-10-01.</li>
+<li>Upgrade affected runbooks to retain support eligibility, using September 30, 2026 as your planning deadline before unsupported status begins on October 1, 2026.</li>
 <li>As team-owned migration planning, validate your scripts, modules and integrations before cutover and record the results. The retirement material provides no validation criteria, backup, rollback or cleanup procedure.</li>
 </ol>
 <p>An upgrade is needed for supported status, not because the policy requires existing runbooks to stop running.</p>
@@ -1943,7 +1943,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your Azure Automation runbooks use Python 2.7, Python 3.8, PowerShell 7.1 or PowerShell 7.2. The supplied material does not establish which or how many of your runbooks use them.</p>
-<p>From 2026-10-01, affected runbooks lose security updates, bug fixes and official support. They may continue running; the notice does not guarantee continued execution or announce an automatic shutdown. The general policy permits creation and deployment with retired runtimes, but warns of possible issues, performance impacts and scaling restrictions, including a possible one-instance limit in some cases. It does not establish that every affected runbook will receive that limit.</p>
+<p>From October 1, 2026, affected runbooks lose security updates, bug fixes and official support. They may continue running; the notice does not guarantee continued execution or announce an automatic shutdown. The general policy permits creation and deployment with retired runtimes, but warns of possible issues, performance impacts and scaling restrictions, including a possible one-instance limit in some cases. It does not establish that every affected runbook will receive that limit.</p>
 <p>No specific console, API, integration, data-access, retention, deletion or cost changes are documented. Other versions' lifecycle dates do not establish their availability or suitability as Azure Automation replacements.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

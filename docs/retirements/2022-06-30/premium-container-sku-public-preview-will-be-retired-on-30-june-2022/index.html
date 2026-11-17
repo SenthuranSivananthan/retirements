@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">App Service</span><span class="badge retired" data-deadline="2022-06-30"><span></span>Retired</span></div>
-  <h1>Premium Container SKU (public preview) will be retired on 30 June 2022</h1><p>Azure App Service Premium Container SKU (Public Preview), identified as PremiumContainer, had a stated retirement date of 2022-06-30 and would not become generally available. Microsoft directed affected Windows container workloads to the SLA-backed Premium V3 SKU. Complete migration before that date to satisfy the notices&#39; differing “by” and “before” wording. Premium V2 and other Premium SKUs are unaffected. Migration requires a new Premium V3 plan and a cloned/redeployed application. The supplied sources do not specify exact shutdown behavior or data-retention consequences. The separate Premium v4 configuration page does not change this retirement deadline; Premium v4 does not support Windows containers.</p>
+  <h1>Premium Container SKU (public preview) will be retired on 30 June 2022</h1><p>Azure App Service Premium Container SKU (Public Preview), identified as PremiumContainer, had a stated retirement date of June 30, 2022 and would not become generally available. Microsoft directed affected Windows container workloads to the SLA-backed Premium V3 SKU. Complete migration before that date to satisfy the notices&#39; differing “by” and “before” wording. Premium V2 and other Premium SKUs are unaffected. Migration requires a new Premium V3 plan and a cloned/redeployed application. The supplied sources do not specify exact shutdown behavior or data-retention consequences. The separate Premium v4 configuration page does not change this retirement deadline; Premium v4 does not support Windows containers.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-06-30"><strong>Retired</strong><span>Retirement date: <time datetime="2022-06-30">30 Jun 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 months, 14 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Jun 2022</p>
-<div class="rich-content"><p>Azure App Service Premium Container SKU (Public Preview) had a stated retirement date of <strong>2022-06-30</strong>.</p>
-<p>The sources agree on the retirement date but request migration both “by” and “before” that date. Completing migration before 2022-06-30 satisfies both instructions; this wording difference does not establish a separate retirement milestone.</p>
+<div class="rich-content"><p>Azure App Service Premium Container SKU (Public Preview) had a stated retirement date of <strong>June 30, 2022</strong>.</p>
+<p>The sources agree on the retirement date but request migration both “by” and “before” that date. Completing migration before June 30, 2022 satisfies both instructions; this wording difference does not establish a separate retirement milestone.</p>
 <p>Microsoft directed migration to continue running affected Windows container workloads. The sources do not specify an exact shutdown time or what happens to remaining applications and their data. The separate Premium v4 configuration page establishes no retirement deadline or extension.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft announced retirement of Azure App Service <strong>Premium Container SKU (Public Preview)</strong>, identified as <code>PremiumContainer</code>, on 2022-06-30 rather than making it generally available.</p>
+<div class="rich-content"><p>Microsoft announced retirement of Azure App Service <strong>Premium Container SKU (Public Preview)</strong>, identified as <code>PremiumContainer</code>, on June 30, 2022 rather than making it generally available.</p>
 <p>The replacement is the SLA-backed <strong>Premium V3</strong> SKU, which supports Windows containers. Migration requires copying and redeploying your application into a new Premium V3 App Service Plan; the supplied tutorial does not describe an in-place conversion.</p>
 <p>Premium V2 and all other Premium SKUs are explicitly unaffected. The sources do not document pre-retirement availability changes, maintenance or security-update commitments. Premium v4 is not the documented replacement for this retirement and does not support Windows containers.</p>
 </div>
@@ -1941,7 +1941,7 @@
 <li>Clone the application with <code>New-AzWebApp</code>, supplying the retrieved application as <code>-SourceWebApp</code>. Confirm that the clone exists in the new Premium V3 plan.</li>
 <li>As a team-owned validation step, verify the replacement workload before relying on it. Clone creation alone does not establish that traffic has moved.</li>
 </ol>
-<p>Microsoft directed you to complete migration before <strong>2022-06-30</strong>. Premium V2 and other Premium SKUs require no migration for this retirement. The supplied material does not document backup/export, traffic-cutover or old-resource cleanup procedures, or a full capability-gap assessment.</p>
+<p>Microsoft directed you to complete migration before <strong>June 30, 2022</strong>. Premium V2 and other Premium SKUs require no migration for this retirement. The supplied material does not document backup/export, traffic-cutover or old-resource cleanup procedures, or a full capability-gap assessment.</p>
 </div>
       <p> </p>
     </section>
@@ -1958,7 +1958,7 @@
 <div class="rich-content"><p>Microsoft documents two identification methods:</p>
 <ul>
 <li>Run the PremiumContainer CLI query in the actions answer.</li>
-<li>Call <code>GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Web/serverfarms?api-version=2021-02-01</code> and check Tier under SkuDescription for <code>PremiumContainer</code>.</li>
+<li>Call <code>GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Web/serverfarms?api-version=February 1, 2021</code> and check Tier under SkuDescription for <code>PremiumContainer</code>.</li>
 </ul>
 <p>The REST check covers the subscription supplied in the request, not a documented tenant-wide inventory. The tutorial's completion result is a cloned application in a new, Hyper-V-enabled Premium V3 App Service Plan. That result alone does not confirm application functionality or traffic cutover.</p>
 <p>For <strong>team-owned tracking</strong>, record each affected plan, its replacement, clone confirmation and workload-validation evidence. This is local planning advice, not a Microsoft-provided migration dashboard. The sources do not document automated fleet-wide completion tracking.</p>

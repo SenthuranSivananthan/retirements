@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Monitor</span><span class="badge retired" data-deadline="2024-02-29"><span></span>Retired</span></div>
-  <h1>Start using new alerts in Azure Monitor for Azure China 21Vianet</h1><p>Azure Monitor classic alerts on Azure China 21Vianet retired on 2024-02-29. Migrate affected classic metric rules to newer alerts, update Resource Manager templates and adapt notification integrations. Activity log alerts, including Service Health alerts, and log search alerts are unaffected. Some metrics require manual recreation, threshold changes or alternatives; migration-tool completion alone does not establish full coverage. The supplied guidance describes historical tool availability and migration continuity, not verified current availability or a universal shutdown date for every existing rule.</p>
+  <h1>Start using new alerts in Azure Monitor for Azure China 21Vianet</h1><p>Azure Monitor classic alerts on Azure China 21Vianet retired on February 29, 2024. Migrate affected classic metric rules to newer alerts, update Resource Manager templates and adapt notification integrations. Activity log alerts, including Service Health alerts, and log search alerts are unaffected. Some metrics require manual recreation, threshold changes or alternatives; migration-tool completion alone does not establish full coverage. The supplied guidance describes historical tool availability and migration continuity, not verified current availability or a universal shutdown date for every existing rule.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-02-29"><strong>Retired</strong><span>Retirement date: <time datetime="2024-02-29">29 Feb 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 4 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">29 Feb 2024</p>
-<div class="rich-content"><p>Azure Monitor classic alerts on <strong>Azure China 21Vianet retired on 2024-02-29</strong>. The applicable notice and product guidance agree on this date; no China-specific extension is documented.</p>
-<p>Keep other populations and milestones separate: the public-cloud notice explicitly extended its retirement from 2019-06-30 to 2019-08-31. Later guidance describes limited public-cloud use until 2021-05-31. Neither is the China deadline.</p>
+<div class="rich-content"><p>Azure Monitor classic alerts on <strong>Azure China 21Vianet retired on February 29, 2024</strong>. The applicable notice and product guidance agree on this date; no China-specific extension is documented.</p>
+<p>Keep other populations and milestones separate: the public-cloud notice explicitly extended its retirement from June 30, 2019 to August 31, 2019. Later guidance describes limited public-cloud use until May 31, 2021. Neither is the China deadline.</p>
 <p>The guidance describes closure of classic APIs, portal interfaces and related services, but also says existing rules continue evaluating during migration. It does not establish one shutdown date for every existing rule. Rules targeting deleted resources or deprecated metrics will not migrate and will not be available after retirement.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Monitor retired classic alerts on <strong>Azure China 21Vianet on 2024-02-29</strong>, replacing classic metric alert rules with newer alerts and reusable action groups. Affected rules appear in <strong>Alerts (classic)</strong> and use the Microsoft.Insights/alertRules resource type.</p>
+<div class="rich-content"><p>Azure Monitor retired classic alerts on <strong>Azure China 21Vianet on February 29, 2024</strong>, replacing classic metric alert rules with newer alerts and reusable action groups. Affected rules appear in <strong>Alerts (classic)</strong> and use the Microsoft.Insights/alertRules resource type.</p>
 <p><strong>Activity log alerts, including Service Health alerts, and log search alerts are unaffected.</strong></p>
 <p>The documented migration tool creates equivalent rules and action groups where supported, then deletes the classic rules. During migration, existing rules continue evaluating and notifying until replacements take effect; this does not establish availability after retirement. Notification payloads and management APIs change, and new action-group emails are English-only.</p>
 <p>Some metrics require manual changes or have no replacement identified in the supplied guidance. The pages describe historical migration-tool availability, not verified current availability. They provide no maintenance or security-update commitments.</p>

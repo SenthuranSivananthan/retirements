@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2025-03-15"><span></span>Retired</span></div>
-  <h1>Migrate your Git Repository to automated deployments with APIOps by 15 March 2025</h1><p>Azure API Management retired its built-in Git configuration repository on 2025-03-15 for Developer, Basic, Standard and Premium tiers. Product guidance says you can no longer save or update configuration through that repository after retirement; the API Management instance itself is unaffected. Replace affected workflows with APIOps or another supported configuration-management method. Separate APIOps Toolkit-to-CLI guidance does not establish another retirement deadline.</p>
+  <h1>Migrate your Git Repository to automated deployments with APIOps by 15 March 2025</h1><p>Azure API Management retired its built-in Git configuration repository on March 15, 2025 for Developer, Basic, Standard and Premium tiers. Product guidance says you can no longer save or update configuration through that repository after retirement; the API Management instance itself is unaffected. Replace affected workflows with APIOps or another supported configuration-management method. Separate APIOps Toolkit-to-CLI guidance does not establish another retirement deadline.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-03-15"><strong>Retired</strong><span>Retirement date: <time datetime="2025-03-15">15 Mar 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 15 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">15 Mar 2025</p>
-<div class="rich-content"><p>The retirement and end-of-support date was <strong>2025-03-15</strong>. Newly created instances cannot activate the built-in Git repository after retirement.</p>
-<p>The sources describe normal use through 2025-03-15, while product guidance instructs customers to migrate before retirement starts that day. These describe the same retirement date but leave availability during that day unclear; the documented action was to migrate before 2025-03-15.</p>
+<div class="rich-content"><p>The retirement and end-of-support date was <strong>March 15, 2025</strong>. Newly created instances cannot activate the built-in Git repository after retirement.</p>
+<p>The sources describe normal use through March 15, 2025, while product guidance instructs customers to migrate before retirement starts that day. These describe the same retirement date but leave availability during that day unclear; the documented action was to migrate before March 15, 2025.</p>
 <p>The announcement does not specify when existing repositories stop functioning. Product guidance clarifies that saving or updating configuration through them is unavailable after retirement. This does not mean API workloads shut down.</p>
 <p>The separate APIOps Toolkit-to-CLI guidance provides no retirement or mandatory migration date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure API Management retired its built-in Git repository for saving and deploying service configuration on <strong>2025-03-15</strong>, affecting Developer, Basic, Standard and Premium tiers—not API Management itself.</p>
+<div class="rich-content"><p>Azure API Management retired its built-in Git repository for saving and deploying service configuration on <strong>March 15, 2025</strong>, affecting Developer, Basic, Standard and Premium tiers—not API Management itself.</p>
 <p>After retirement, you cannot save or update configuration through that repository. The Azure portal, REST APIs and Azure Resource Manager templates remain available for configuration management.</p>
 <p>APIOps is a replacement for Git-based workflows: it extracts configuration into your own repository, such as GitHub or Azure DevOps Repositories, using Azure Resource Manager-based REST APIs and Azure RBAC.</p>
 <p>The architecture reference separately recommends replacing the legacy APIOps Toolkit with APIOps CLI. It is migration guidance, not evidence of another retirement.</p>
@@ -1935,7 +1935,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify workflows that use API Management's built-in Git repository. The supplied retirement sources provide no discovery command or automated inventory procedure.</li>
-<li>Replace affected workflows with Azure Resource Manager-based REST API tooling and Azure RBAC. To retain Git-based configuration management, use a solution such as APIOps to extract and maintain configuration in your own repository. The documented migration deadline was 2025-03-15.</li>
+<li>Replace affected workflows with Azure Resource Manager-based REST API tooling and Azure RBAC. To retain Git-based configuration management, use a solution such as APIOps to extract and maintain configuration in your own repository. The documented migration deadline was March 15, 2025.</li>
 <li>If you also migrate an existing legacy APIOps Toolkit workflow to APIOps CLI, preserve a tagged, known-good pipeline and artifact baseline for rollback. In a migration branch, use the latest CLI, run <code>apiops init</code> without <code>--force</code>, review generated files, and pin the tested dependency with its lock file.</li>
 <li>For that CLI migration, run <code>apiops publish --dry-run</code> against a nonproduction instance, review creations, updates and deletions, then perform a controlled publish and test APIs, policies, named values and dependencies. A dry run does not replace API tests.</li>
 <li>Before CLI cutover, resolve any reliance on workspace child overrides through another promotion approach or postpone affected resources: publishing applies overrides to the workspace container, not its children. Disable the legacy publisher trigger before enabling the CLI publisher, and retain the rollback baseline through a successful release cycle.</li>
@@ -1947,7 +1947,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you use the built-in Git repository to save or deploy configuration for a Developer, Basic, Standard or Premium API Management instance. The supplied sources identify no region exceptions and provide no automated detection method.</p>
-<p>Support ended on <strong>2025-03-15</strong>. Without migration, you lose configuration saves and updates through the built-in repository. Your API Management instance itself is unaffected; the Azure portal, REST APIs and Azure Resource Manager templates remain available.</p>
+<p>Support ended on <strong>March 15, 2025</strong>. Without migration, you lose configuration saves and updates through the built-in repository. Your API Management instance itself is unaffected; the Azure portal, REST APIs and Azure Resource Manager templates remain available.</p>
 <p>Your own Git repository used with APIOps is not the retired capability. Repository-data retention and deletion behavior are not specified.</p>
 <p>If you separately adopt APIOps CLI, workspace child overrides are not applied during publishing. Its configuration workflow does not deploy API back ends or service infrastructure, and restoring a configuration commit does not restore an incompatible or unavailable back end.</p>
 </div>

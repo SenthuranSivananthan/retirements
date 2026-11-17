@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure Maps Route APIs Version 1.0 to Be Retired on March 31, 2028</h1><p>Azure Maps Route APIs version 1.0 retire on 2028-03-31. Microsoft states that they remain usable without disruption through that date; afterward, they will be unavailable and unsupported, and calls will fail. Migrate to version 2025-01-01 before retirement. The migration requires request and response changes and has capability gaps, including unavailable asynchronous Directions batching and unsupported electric consumption models. All other Azure Maps services are unaffected.</p>
+  <h1>Retirement: Azure Maps Route APIs Version 1.0 to Be Retired on March 31, 2028</h1><p>Azure Maps Route APIs version 1.0 retire on March 31, 2028. Microsoft states that they remain usable without disruption through that date; afterward, they will be unavailable and unsupported, and calls will fail. Migrate to version 2025-01-01 before retirement. The migration requires request and response changes and has capability gaps, including unavailable asynchronous Directions batching and unsupported electric consumption models. All other Azure Maps services are unaffected.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-03-31"><strong>500 days remaining</strong><span>Retirement date: <time datetime="2028-03-31">31 Mar 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 5 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2028</p>
-<div class="rich-content"><p>Azure Maps Route APIs version 1.0 retire on <strong>2028-03-31</strong>. Microsoft's announcement states that you can continue using them without disruption through that date. Afterward, the APIs will be unavailable and unsupported, and calls will fail. Complete your transition before retirement.</p>
+<div class="rich-content"><p>Azure Maps Route APIs version 1.0 retire on <strong>March 31, 2028</strong>. Microsoft's announcement states that you can continue using them without disruption through that date. Afterward, the APIs will be unavailable and unsupported, and calls will fail. Complete your transition before retirement.</p>
 <p>The API references and migration guide do not independently state a retirement deadline; their silence does not conflict with the announcement. The target version identifier, 2025-01-01, is not a retirement date.</p>
-<p>A Q&amp;A question mentions 2026-09-30 for the separate Azure Maps Service Module. That unconfirmed, different-scope date does not apply to this Route API retirement.</p>
+<p>A Q&amp;A question mentions September 30, 2026 for the separate Azure Maps Service Module. That unconfirmed, different-scope date does not apply to this Route API retirement.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring these Azure Maps Route APIs version 1.0 on 2028-03-31:</p>
+<div class="rich-content"><p>Microsoft is retiring these Azure Maps Route APIs version 1.0 on March 31, 2028:</p>
 <ul>
 <li>Get Route Directions</li>
 <li>Get Route Directions Batch</li>
@@ -1944,7 +1944,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>As team-owned preparation, identify integrations using the affected v1.0 APIs. Check dependencies on GET, XML, asynchronous Directions batches, electric consumption models and beta travel profiles. The supplied pages provide no automated inventory method.</li>
-<li>Follow the migration guide to move to version 2025-01-01 before 2028-03-31. Map Directions GET/POST calls to Post Route Directions and all Directions batch variants to synchronous Post Route Directions Batch. Asynchronous Directions batching is currently unavailable.</li>
+<li>Follow the migration guide to move to version 2025-01-01 before March 31, 2028. Map Directions GET/POST calls to Post Route Directions and all Directions batch variants to synchronous Post Route Directions Batch. Asynchronous Directions batching is currently unavailable.</li>
 <li>Map Post Route Matrix to Post Route Matrix Async, and Post Route Matrix Sync to Post Route Matrix. Replace Get Route Matrix usage with Get Route Operations Status and Get Route Operation Result for asynchronous status and results.</li>
 <li>Replace Get Route Range with Post Route Range. Update request bodies and response parsing for the target GeoJSON structures. Change Directions and Range coordinates from latitude/longitude to longitude/latitude; Matrix already uses longitude/latitude. For Directions localization, replace the language parameter with the Accept-Language request header.</li>
 <li>Resolve capability gaps before switching. The guide provides no replacement for electric consumption models or the listed beta travel profiles. As team-owned validation, use the supplied examples to check request construction, response parsing and the routing features your application needs. The examples require an Azure Maps subscription key.</li>
@@ -1956,7 +1956,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your applications use the listed Azure Maps Route APIs version 1.0. After 2028-03-31, calls will fail and can disrupt dependent functionality. The supplied content does not establish whether your applications use them. All other Azure Maps services are unaffected.</p>
+<div class="rich-content"><p>You are affected if your applications use the listed Azure Maps Route APIs version 1.0. After March 31, 2028, calls will fail and can disrupt dependent functionality. The supplied content does not establish whether your applications use them. All other Azure Maps services are unaffected.</p>
 <p>Important migration constraints include:</p>
 <ul>
 <li>Directions and Range require POST, changed request bodies, GeoJSON response parsing and longitude/latitude coordinate order. Matrix retains longitude/latitude order.</li>

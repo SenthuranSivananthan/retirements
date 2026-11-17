@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Logic Apps</span><span class="badge retired" data-deadline="2025-06-30"><span></span>Retired</span></div>
-  <h1>Retirement: SQL Server Connector V1 Actions and Triggers to Be Retired on June 30, 2025 – Transition to V2 Actions and Triggers</h1><p>Microsoft set 2025-06-30 as the retirement date for SQL Server connector V1 actions and triggers, explicitly extending the original 2024-03-31 date. The notice permits V1 use through 2025-06-30 but directs migration to V2 before that date; it does not specify post-retirement execution behavior. Use the supplied migration guidance for affected Logic Apps, Power Automate flows and Power Apps, including backups, compatibility checks and validation. SQL Server itself and the entire connector are not identified as retiring.</p>
+  <h1>Retirement: SQL Server Connector V1 Actions and Triggers to Be Retired on June 30, 2025 – Transition to V2 Actions and Triggers</h1><p>Microsoft set June 30, 2025 as the retirement date for SQL Server connector V1 actions and triggers, explicitly extending the original March 31, 2024 date. The notice permits V1 use through June 30, 2025 but directs migration to V2 before that date; it does not specify post-retirement execution behavior. Use the supplied migration guidance for affected Logic Apps, Power Automate flows and Power Apps, including backups, compatibility checks and validation. SQL Server itself and the entire connector are not identified as retiring.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-06-30"><strong>Retired</strong><span>Retirement date: <time datetime="2025-06-30">30 Jun 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 3 months</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Jun 2025</p>
-<div class="rich-content"><p>SQL Server connector V1 actions and triggers had a stated retirement date of <strong>2025-06-30</strong>. Microsoft explicitly extended the original 2024-03-31 retirement date, which was announced on 2023-03-31.</p>
-<p>The notice permits continued V1 use through 2025-06-30 while directing you to migrate to V2 before 2025-06-30. It specifies neither an exact cutoff time nor whether existing operations stop executing after retirement.</p>
+<div class="rich-content"><p>SQL Server connector V1 actions and triggers had a stated retirement date of <strong>June 30, 2025</strong>. Microsoft explicitly extended the original March 31, 2024 retirement date, which was announced on March 31, 2023.</p>
+<p>The notice permits continued V1 use through June 30, 2025 while directing you to migrate to V2 before June 30, 2025. It specifies neither an exact cutoff time nor whether existing operations stop executing after retirement.</p>
 <p>V1's documented deprecation since 2019 is a separate milestone. The connector reference and migration guidance supply no retirement date themselves; the retirement date comes from the supplied notices.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft set <strong>2025-06-30</strong> as the retirement date for SQL Server connector V1 actions and triggers and directs you to replace them with V2 operations. The notice allows V1 use through that date but does not document subsequent execution, maintenance or security-update commitments.</p>
+<div class="rich-content"><p>Microsoft set <strong>June 30, 2025</strong> as the retirement date for SQL Server connector V1 actions and triggers and directs you to replace them with V2 operations. The notice allows V1 use through that date but does not document subsequent execution, maintenance or security-update commitments.</p>
 <p>The migration guidance covers SQL Server managed connector operations in Logic Apps, Power Automate and Power Apps: row creation, retrieval, update and deletion; table listing; SQL queries; and item-created and item-modified triggers. It also maps Execute stored procedure to V2, although that V1 operation is not explicitly marked deprecated in its operation reference.</p>
 <p>V2 adds Server name and Database name parameters and supports Microsoft Entra ID authentication. Managed identity authentication is supported only in Logic Apps.</p>
 <p>This is not a retirement of SQL Server itself or the entire connector. The SQL Server built-in connector for Standard logic app workflows is distinct from the managed connector described here. Default authentication has a separate deprecation label, with no supplied removal date.</p>
@@ -1932,7 +1932,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Migrate affected V1 operations to V2; the notice's action target was before <strong>2025-06-30</strong>. Check compatibility before replacing operations.</p>
+<div class="rich-content"><p>Migrate affected V1 operations to V2; the notice's action target was before <strong>June 30, 2025</strong>. Check compatibility before replacing operations.</p>
 <ol>
 <li>Identify V1 operations. In Power Automate, inspect each SQL operation's Code View and compare host.operationId with the documented V1 IDs. For Logic Apps, run the supplied Azure Resource Graph queries separately for actions and triggers, supplying your subscription ID.</li>
 <li>Save a backup copy of each affected logic app, flow or Power App before changing it.</li>
@@ -1947,7 +1947,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are in scope if your apps or workflows use SQL Server managed connector V1 actions or triggers. The retirement date is <strong>2025-06-30</strong>, but the supplied notices do not establish whether unmigrated workflows stop executing afterward. No assessment of your resources or affected resource count is supplied.</p>
+<div class="rich-content"><p>You are in scope if your apps or workflows use SQL Server managed connector V1 actions or triggers. The retirement date is <strong>June 30, 2025</strong>, but the supplied notices do not establish whether unmigrated workflows stop executing afterward. No assessment of your resources or affected resource count is supplied.</p>
 <p>Existing V2 operations and SQL Server databases themselves are not identified as retirement targets. No retirement-specific regional restrictions or customer exceptions are documented.</p>
 <p>Migration constraints include:</p>
 <ul>

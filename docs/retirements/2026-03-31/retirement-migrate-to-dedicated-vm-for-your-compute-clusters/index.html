@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Machine Learning</span><span class="badge retired" data-deadline="2026-03-31"><span></span>Retired</span></div>
-  <h1>Retirement: Migrate to dedicated VM for your compute clusters</h1><p>Azure Machine Learning support for compute clusters using low-priority VMs ends on 2026-03-31. Microsoft directs you to recreate affected clusters with dedicated VMs before that date. Afterward, low-priority clusters cannot be used, and the notice warns of automatic scale-down without specifying its exact timing. The 2025-09-30 Low-Priority VM end-of-life milestone is separate from the Azure Machine Learning support deadline.</p>
+  <h1>Retirement: Migrate to dedicated VM for your compute clusters</h1><p>Azure Machine Learning support for compute clusters using low-priority VMs ends on March 31, 2026. Microsoft directs you to recreate affected clusters with dedicated VMs before that date. Afterward, low-priority clusters cannot be used, and the notice warns of automatic scale-down without specifying its exact timing. The September 30, 2025 Low-Priority VM end-of-life milestone is separate from the Azure Machine Learning support deadline.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-03-31"><strong>Retired</strong><span>Retirement date: <time datetime="2026-03-31">31 Mar 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 4 months, 10 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2026</p>
-<div class="rich-content"><p>Recreate affected Azure Machine Learning compute clusters before <strong>2026-03-31</strong>. Microsoft states that clusters using low-priority VMs cannot be used after that date and warns of automatic scale-down, without specifying its exact timing.</p>
-<p>Low-Priority VM reaches end of life on <strong>2025-09-30</strong>, while Azure Machine Learning support continues until <strong>2026-03-31</strong>. These are separate milestones, not conflicting dates. The Azure Batch notice's 2025-09-30 retirement date applies to Azure Batch, not the Azure Machine Learning support deadline.</p>
+<div class="rich-content"><p>Recreate affected Azure Machine Learning compute clusters before <strong>March 31, 2026</strong>. Microsoft states that clusters using low-priority VMs cannot be used after that date and warns of automatic scale-down, without specifying its exact timing.</p>
+<p>Low-Priority VM reaches end of life on <strong>September 30, 2025</strong>, while Azure Machine Learning support continues until <strong>March 31, 2026</strong>. These are separate milestones, not conflicting dates. The Azure Batch notice's September 30, 2025 retirement date applies to Azure Batch, not the Azure Machine Learning support deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Machine Learning is ending support for compute clusters that use low-priority VMs on <strong>2026-03-31</strong>. Microsoft directs you to recreate those clusters with dedicated VMs.</p>
-<p>Microsoft documents Azure Machine Learning support through that date, despite the separate Low-Priority VM end-of-life milestone on 2025-09-30. After 2026-03-31, low-priority clusters cannot be used. The notice does not announce retirement of Azure Machine Learning compute clusters generally or the v2 CLI and SDK.</p>
+<div class="rich-content"><p>Azure Machine Learning is ending support for compute clusters that use low-priority VMs on <strong>March 31, 2026</strong>. Microsoft directs you to recreate those clusters with dedicated VMs.</p>
+<p>Microsoft documents Azure Machine Learning support through that date, despite the separate Low-Priority VM end-of-life milestone on September 30, 2025. After March 31, 2026, low-priority clusters cannot be used. The notice does not announce retirement of Azure Machine Learning compute clusters generally or the v2 CLI and SDK.</p>
 </div>
       <div class="notice"></div>
     </section>
@@ -1931,7 +1931,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your Azure Machine Learning compute clusters using low-priority VMs. The supplied guide documents finding clusters in your workspace under <strong>Compute</strong>, then <strong>Compute cluster</strong>, but provides no retirement-specific inventory procedure.</li>
-<li>Recreate affected clusters with <strong>dedicated VMs</strong> before <strong>2026-03-31</strong>. Check regional VM-size availability, core quotas and your CPU or GPU requirements. Cluster creation requires an Azure Machine Learning workspace; CLI or SDK use also requires the relevant v2 tooling and authentication.</li>
+<li>Recreate affected clusters with <strong>dedicated VMs</strong> before <strong>March 31, 2026</strong>. Check regional VM-size availability, core quotas and your CPU or GPU requirements. Cluster creation requires an Azure Machine Learning workspace; CLI or SDK use also requires the relevant v2 tooling and authentication.</li>
 <li>As a team-owned validation step, confirm your jobs work on the replacement clusters before removing old compute. This is planning advice, not a documented retirement completion check.</li>
 </ol>
 <p>The notice does not provide detailed migration, backup, export or cutover procedures. The Azure Batch recommendation to use Spot VMs applies to that service; it is not the documented replacement for this retirement.</p>
@@ -1941,7 +1941,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>This retirement affects Azure Machine Learning compute clusters configured with low-priority VMs. The supplied content does not establish whether your resources use that configuration.</p>
-<p>Without recreation using dedicated VMs before <strong>2026-03-31</strong>, the notice warns of automatic scale-down. After that date, affected clusters cannot be used. The exact scale-down timing, retirement-related data-retention or deletion effects, and cost changes are not documented.</p>
+<p>Without recreation using dedicated VMs before <strong>March 31, 2026</strong>, the notice warns of automatic scale-down. After that date, affected clusters cannot be used. The exact scale-down timing, retirement-related data-retention or deletion effects, and cost changes are not documented.</p>
 <p>Replacement cluster choices depend on regional availability and quotas. The guide notes that a minimum node count above zero keeps nodes running while idle, and using a region different from your workspace or datastores can increase latency and data-transfer costs. These are configuration considerations, not quantified migration costs.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

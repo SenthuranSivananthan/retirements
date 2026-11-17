@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2024-02-29"><span></span>Retired</span></div>
-  <h1>Update your scripts to use Az PowerShell modules by 29 February 2024</h1><p>AzureRM PowerShell retired on 2024-02-29; Microsoft’s migration guidance describes this as deprecation and the end of maintenance and support. AzureRM may still function, and the sources do not establish a workload shutdown date. Migrate scripts and script modules to Az for continued support and updates. Migration can require changes beyond cmdlet names, and compatibility aliases do not resolve every breaking change.</p>
+  <h1>Update your scripts to use Az PowerShell modules by 29 February 2024</h1><p>AzureRM PowerShell retired on February 29, 2024; Microsoft’s migration guidance describes this as deprecation and the end of maintenance and support. AzureRM may still function, and the sources do not establish a workload shutdown date. Migrate scripts and script modules to Az for continued support and updates. Migration can require changes beyond cmdlet names, and compatibility aliases do not resolve every breaking change.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-02-29"><strong>Retired</strong><span>Retirement date: <time datetime="2024-02-29">29 Feb 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 6 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,7 +1916,7 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">29 Feb 2024</p>
-<div class="rich-content"><p>AzureRM PowerShell’s retirement date was <strong>2024-02-29</strong>. The announcement set the same date for updating scripts to Az to avoid service interruptions.</p>
+<div class="rich-content"><p>AzureRM PowerShell’s retirement date was <strong>February 29, 2024</strong>. The announcement set the same date for updating scripts to Az to avoid service interruptions.</p>
 <p>The migration guidance describes this milestone as deprecation: AzureRM is no longer maintained or supported, although it may still function. It gives no separate migration-completion or workload shutdown date. The sources therefore agree on the date but describe its consequences with different precision; retirement does not establish that running Azure workloads stopped.</p>
 </div>
     </section>
@@ -1945,7 +1945,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>Your PowerShell tooling is affected if you have AzureRM installed or scripts and script modules that depend on it. Installation checks, script searches and migration-planner analysis can help identify that usage, but they are not a tenant-wide resource inventory. Your environment has not been assessed.</p>
-<p>AzureRM may continue to function after <strong>2024-02-29</strong>, but Microsoft no longer maintains or supports it. The announcement warns of service interruptions without specifying exact failures; the migration guidance does not establish that existing Azure workloads shut down.</p>
+<p>AzureRM may continue to function after <strong>February 29, 2024</strong>, but Microsoft no longer maintains or supports it. The announcement warns of service interruptions without specifying exact failures; the migration guidance does not establish that existing Azure workloads shut down.</p>
 <p>Moving to Az can require changes beyond cmdlet renaming. Compatibility aliases remain supported but do not guarantee script compatibility. Automated file changes also require care: in-place upgrades have no undo, unusual encodings may cause problems, and Pester mock arguments containing AzureRM cmdlets are not detected.</p>
 <p>The sources do not document resource-data deletion, retention changes or cost consequences.</p>
 </div>

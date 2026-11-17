@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Application Gateway · Web Application Firewall</span><span class="badge upcoming" data-deadline="2027-03-15"><span></span>Upcoming</span></div>
-  <h1>Retirement: Support for Application Gateway Web Application Firewall v2 Configuration is ending</h1><p>Legacy WAF configuration on Azure Application Gateway WAF v2 retires on 2027-03-15; the WAF v2 SKU itself is not retiring. Migrate to WAF policy before that date. Microsoft states that existing configurations remain usable and supported through retirement and that the direct WAF v2 configuration upgrade preserves configuration and rules without downtime. New legacy configuration deployments were discontinued on 2025-03-15. Post-retirement traffic and shutdown behavior are not specified.</p>
+  <h1>Retirement: Support for Application Gateway Web Application Firewall v2 Configuration is ending</h1><p>Legacy WAF configuration on Azure Application Gateway WAF v2 retires on March 15, 2027; the WAF v2 SKU itself is not retiring. Migrate to WAF policy before that date. Microsoft states that existing configurations remain usable and supported through retirement and that the direct WAF v2 configuration upgrade preserves configuration and rules without downtime. New legacy configuration deployments were discontinued on March 15, 2025. Post-retirement traffic and shutdown behavior are not specified.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-03-15"><strong>118 days remaining</strong><span>Retirement date: <time datetime="2027-03-15">15 Mar 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,19 +1916,19 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">15 Mar 2027</p>
-<div class="rich-content"><p>Legacy WAF configuration on Application Gateway WAF v2 retires on <strong>2027-03-15</strong>. You must migrate to WAF policy before that date.</p>
+<div class="rich-content"><p>Legacy WAF configuration on Application Gateway WAF v2 retires on <strong>March 15, 2027</strong>. You must migrate to WAF policy before that date.</p>
 <p>The milestones are separate:</p>
 <ul>
-<li><strong>2024-03-15:</strong> Microsoft announced deprecation.</li>
-<li><strong>2025-03-15:</strong> Microsoft discontinued new legacy WAF configuration deployments on WAF v2.</li>
-<li><strong>2027-03-15:</strong> Legacy WAF configuration retires.</li>
+<li><strong>March 15, 2024:</strong> Microsoft announced deprecation.</li>
+<li><strong>March 15, 2025:</strong> Microsoft discontinued new legacy WAF configuration deployments on WAF v2.</li>
+<li><strong>March 15, 2027:</strong> Legacy WAF configuration retires.</li>
 </ul>
-<p>Microsoft states that existing configurations remain usable and supported through 2027-03-15 while directing customers to migrate before that date. The supplied content does not specify a cutoff time or whether remaining workloads stop serving traffic afterward.</p>
+<p>Microsoft states that existing configurations remain usable and supported through March 15, 2027 while directing customers to migrate before that date. The supplied content does not specify a cutoff time or whether remaining workloads stop serving traffic afterward.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring <strong>legacy WAF configuration on Azure Application Gateway WAF v2 on 2027-03-15</strong>, not the WAF v2 SKU itself. Use WAF policy instead. Gateways already using WAF policy are outside this retirement's scope.</p>
+<div class="rich-content"><p>Microsoft is retiring <strong>legacy WAF configuration on Azure Application Gateway WAF v2 on March 15, 2027</strong>, not the WAF v2 SKU itself. Use WAF policy instead. Gateways already using WAF policy are outside this retirement's scope.</p>
 <p>Microsoft is making no further investments in legacy configuration; latest features and future enhancements are available only through WAF policies. Existing configurations remain usable and supported through retirement, but the supplied content gives no specific security-update commitment or regional exceptions.</p>
 <p>WAF policies support gateway, listener and path-based scopes and can be shared across gateways, listeners and URL paths. Microsoft describes equivalent functionality and additional Policy features as available at no extra cost.</p>
 </div>
@@ -1936,7 +1936,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Migrate affected Application Gateway WAF v2 gateways to <strong>WAF policy before 2027-03-15</strong>.</p>
+<div class="rich-content"><p>Migrate affected Application Gateway WAF v2 gateways to <strong>WAF policy before March 15, 2027</strong>.</p>
 <ol>
 <li>In the Azure portal, open each relevant gateway and select <strong>Web Application Firewall</strong>. Identify gateways using legacy configuration and the <strong>Upgrade from WAF configuration</strong> option.</li>
 <li>Select <strong>Upgrade from WAF configuration</strong>.</li>
@@ -1952,7 +1952,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you use <strong>legacy WAF configuration on Application Gateway WAF v2</strong>. Check the gateway's <strong>Web Application Firewall</strong> settings in the Azure portal for the legacy configuration and upgrade option. This summary does not inspect your resources.</p>
-<p>Gateways already using WAF policy are outside this retirement's scope. New legacy configuration deployments have been discontinued since 2025-03-15; existing configurations remain usable and supported through 2027-03-15.</p>
+<p>Gateways already using WAF policy are outside this retirement's scope. New legacy configuration deployments have been discontinued since March 15, 2025; existing configurations remain usable and supported through March 15, 2027.</p>
 <p>If you do not migrate, the notice warns of service disruption but does not specify post-retirement traffic or shutdown behavior. It also does not establish separate console, API, deployment-tooling or data-access consequences.</p>
 <p>The documented direct upgrade to a new policy preserves the previous configuration and rules without downtime. Microsoft describes WAF policy and its additional features as available at no extra cost, but the supplied content provides no total migration-cost estimate or retention and deletion details.</p>
 </div>

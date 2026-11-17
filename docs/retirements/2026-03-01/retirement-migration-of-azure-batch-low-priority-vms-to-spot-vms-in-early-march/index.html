@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Batch</span><span class="badge retired" data-deadline="2026-03-01"><span></span>Retired</span></div>
-  <h1>Retirement: Migration of Azure Batch Low-Priority VMs to Spot VMs in early March</h1><p>Azure Batch retired Low-Priority VMs on 2025-09-30. Automatic migration of remaining instances to Spot VMs was scheduled to start on 2026-03-01 and finish within several days; no exact completion date or completion confirmation is supplied. Microsoft expected no workload interruption. No action was required to accept Spot VMs; avoiding the transition required moving to dedicated compute before the end of February 2026. Spot-based billing begins with the March invoice. Spot VMs have no SLA or availability guarantee and can lose local data and unsaved work when evicted.</p>
+  <h1>Retirement: Migration of Azure Batch Low-Priority VMs to Spot VMs in early March</h1><p>Azure Batch retired Low-Priority VMs on September 30, 2025. Automatic migration of remaining instances to Spot VMs was scheduled to start on March 1, 2026 and finish within several days; no exact completion date or completion confirmation is supplied. Microsoft expected no workload interruption. No action was required to accept Spot VMs; avoiding the transition required moving to dedicated compute before the end of February 2026. Spot-based billing begins with the March invoice. Spot VMs have no SLA or availability guarantee and can lose local data and unsaved work when evicted.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-03-01"><strong>Retired</strong><span>Retirement date: <time datetime="2026-03-01">1 Mar 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: -15 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Mar 2026</p>
-<div class="rich-content"><p>Automatic migration of remaining Azure Batch Low-Priority VMs to Spot VMs was scheduled to begin on <strong>2026-03-01</strong> and complete within several days. The supplied content gives no exact completion date or confirmation that migration finished.</p>
+<div class="rich-content"><p>Automatic migration of remaining Azure Batch Low-Priority VMs to Spot VMs was scheduled to begin on <strong>March 1, 2026</strong> and complete within several days. The supplied content gives no exact completion date or confirmation that migration finished.</p>
 <p>To avoid the transition, you needed to move workloads to dedicated compute before the end of February 2026. After that cutoff, Low-Priority VMs could no longer be created, and remaining instances would be billed at Spot pricing. Spot-based billing begins with the March invoice.</p>
-<p>The <strong>2025-09-30</strong> Low-Priority VM retirement is a separate milestone. The Spot guidance page establishes no additional retirement deadline; its 2026-09-18 update date does not change these milestones.</p>
+<p>The <strong>September 30, 2025</strong> Low-Priority VM retirement is a separate milestone. The Spot guidance page establishes no additional retirement deadline; its September 18, 2026 update date does not change these milestones.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Batch announced automatic migration of all remaining Low-Priority VMs to Spot VMs starting <strong>2026-03-01</strong>, following their retirement on <strong>2025-09-30</strong>. The notice lists no regional or version exceptions.</p>
+<div class="rich-content"><p>Azure Batch announced automatic migration of all remaining Low-Priority VMs to Spot VMs starting <strong>March 1, 2026</strong>, following their retirement on <strong>September 30, 2025</strong>. The notice lists no regional or version exceptions.</p>
 <p>Batch-managed pool allocation handles the transition. Existing API/SDK references to Low-Priority VM properties allocate Spot capacity without code or configuration changes. The notice does not specify a separate pre-migration availability or support commitment.</p>
 <p>The separate Spot guidance describes operating constraints, not another retirement: Spot capacity varies by VM family, size, region and time, with no SLA or availability guarantee. Batch Spot VMs support neither maximum prices nor price-based evictions; eviction is capacity-driven. Some clouds, VM sizes and subscription offers are unavailable, and ephemeral OS disks are unsupported.</p>
 </div>

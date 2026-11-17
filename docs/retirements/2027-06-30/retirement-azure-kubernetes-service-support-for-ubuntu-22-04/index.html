@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge upcoming" data-deadline="2027-06-30"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure Kubernetes Service support for Ubuntu 22.04</h1><p>AKS retires Ubuntu 22.04 support on 2027-06-30. Migrate non-FIPS node pools to Ubuntu 24.04 or later by that date; support, security patches, new images and new Ubuntu 22.04 node-pool creation then end. On 2028-04-30, image and code removal will cause scaling and remediation failures. The supplied guidance does not announce automatic workload shutdown. Ubuntu 22.04 FIPS retirement timing and migration guidance remain unconfirmed.</p>
+  <h1>Retirement: Azure Kubernetes Service support for Ubuntu 22.04</h1><p>AKS retires Ubuntu 22.04 support on June 30, 2027. Migrate non-FIPS node pools to Ubuntu 24.04 or later by that date; support, security patches, new images and new Ubuntu 22.04 node-pool creation then end. On April 30, 2028, image and code removal will cause scaling and remediation failures. The supplied guidance does not announce automatic workload shutdown. Ubuntu 22.04 FIPS retirement timing and migration guidance remain unconfirmed.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-06-30"><strong>225 days remaining</strong><span>Retirement date: <time datetime="2027-06-30">30 Jun 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 2 months, 14 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Jun 2027</p>
-<div class="rich-content"><p>Migrate non-FIPS AKS Ubuntu 22.04 node pools by <strong>2027-06-30</strong>. Microsoft states that Ubuntu 22.04 remains usable without disruption until that date. AKS then ends support, security patches, new node images and creation of new Ubuntu 22.04 node pools.</p>
-<p>On <strong>2028-04-30</strong>, AKS removes Ubuntu 22.04 node images and associated code, causing scaling and remediation operations to fail. This is a separate removal milestone, not an extension. The supplied guidance does not state that existing workloads automatically shut down at support end.</p>
+<div class="rich-content"><p>Migrate non-FIPS AKS Ubuntu 22.04 node pools by <strong>June 30, 2027</strong>. Microsoft states that Ubuntu 22.04 remains usable without disruption until that date. AKS then ends support, security patches, new node images and creation of new Ubuntu 22.04 node pools.</p>
+<p>On <strong>April 30, 2028</strong>, AKS removes Ubuntu 22.04 node images and associated code, causing scaling and remediation operations to fail. This is a separate removal milestone, not an extension. The supplied guidance does not state that existing workloads automatically shut down at support end.</p>
 <p><strong>FIPS timing remains unconfirmed.</strong> The retirement GitHub guidance says Microsoft will provide separate Ubuntu 22.04 FIPS guidance when a new FIPS Ubuntu version is available.</p>
-<p>The reference pages also contain 2025-11-30 and 2027-03-17 structured dates for other operating-system retirements. Those dates are not competing Ubuntu 22.04 deadlines.</p>
+<p>The reference pages also contain November 30, 2025 and March 17, 2027 structured dates for other operating-system retirements. Those dates are not competing Ubuntu 22.04 deadlines.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>AKS is retiring Ubuntu 22.04 support on <strong>2027-06-30</strong>. Until then, Microsoft says you can continue using it without disruption. Afterward, AKS stops support, security patches, new images and new Ubuntu 22.04 node-pool creation. Image and code removal follows on <strong>2028-04-30</strong>.</p>
+<div class="rich-content"><p>AKS is retiring Ubuntu 22.04 support on <strong>June 30, 2027</strong>. Until then, Microsoft says you can continue using it without disruption. Afterward, AKS stops support, security patches, new images and new Ubuntu 22.04 node-pool creation. Image and code removal follows on <strong>April 30, 2028</strong>.</p>
 <p>The documented replacement is Ubuntu 24.04 or later, subject to Kubernetes-version and image-feature compatibility. This is not retirement of AKS or all Ubuntu node images. No regional exceptions are documented.</p>
 <p>Ubuntu 22.04 FIPS has pending separate guidance; the supplied material does not confirm its retirement timing or provide a supported FIPS migration solution.</p>
 </div>
@@ -1941,7 +1941,7 @@
 </ul>
 </li>
 <li>Check that the target image supports your Kubernetes version, VM size and image features and is available in your region. The node-image reference says Ubuntu 24.04 or later does not yet support FIPS images. For FIPS pools, follow AKS GitHub issue <strong>#4857</strong> for the separate guidance Microsoft says it will provide; do not assume the standard path resolves that gap. If you want LTS with Kubernetes <strong>1.33 or later</strong>, update to Ubuntu 24.04 first.</li>
-<li>Follow Microsoft's recommendation to test nonproduction workloads on the target OS. Upgrade Kubernetes or change the supported Linux OS SKU in place, completing non-FIPS migration by <strong>2027-06-30</strong>. An OS-version change can trigger node reimaging.</li>
+<li>Follow Microsoft's recommendation to test nonproduction workloads on the target OS. Upgrade Kubernetes or change the supported Linux OS SKU in place, completing non-FIPS migration by <strong>June 30, 2027</strong>. An OS-version change can trigger node reimaging.</li>
 <li>As a <strong>team-owned completion check</strong>, confirm the resulting OS version and validate your workloads. The supplied pages do not provide retirement-specific backup, rollback, cutover or cleanup procedures.</li>
 </ol>
 <p>One Ubuntu2204 table entry says Ubuntu 22.04 remains the default through Kubernetes 1.35, conflicting with repeated migration guidance placing Ubuntu 24.04 at 1.35+. Follow the explicit migration guidance and verify the resulting OS rather than relying on that inconsistent mapping.</p>
@@ -1953,8 +1953,8 @@
 <div class="rich-content"><p>This retirement affects AKS node pools actually running Ubuntu 22.04. Review their OS version, SKU, Kubernetes version and image features; this summary has not inspected your resources. Ubuntu 22.04 FIPS timing remains unconfirmed.</p>
 <p>For the documented non-FIPS retirement, taking no action means:</p>
 <ul>
-<li>From <strong>2027-06-30</strong>, support, security patches and new node images end, and you cannot create new Ubuntu 22.04 node pools. Microsoft also warns of security vulnerabilities and failed node-image upgrades.</li>
-<li>From <strong>2028-04-30</strong>, image and code removal causes scaling and remediation operations to fail.</li>
+<li>From <strong>June 30, 2027</strong>, support, security patches and new node images end, and you cannot create new Ubuntu 22.04 node pools. Microsoft also warns of security vulnerabilities and failed node-image upgrades.</li>
+<li>From <strong>April 30, 2028</strong>, image and code removal causes scaling and remediation operations to fail.</li>
 </ul>
 <p>These consequences do not establish automatic shutdown of running workloads at support end. Migration itself can reimage nodes, and an incompatible target image can cause the update to fail. FIPS support is a documented replacement-image gap; check other enabled image features before selecting a target.</p>
 <p>The supplied material does not document retirement-specific application-data deletion, retention periods, cost changes or console/API withdrawal.</p>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2021-04-29"><span></span>Retired</span></div>
-  <h1>Cloud-based load testing features will be retired on March 31, 2020</h1><p>Azure DevOps cloud-based load testing retired on 2021-04-29 according to the product guidance and the blog&#39;s official-retirement statement. The original announcement and retained blog text instead identify 2020-03-31; no supplied source explicitly documents an extension or reconciles the shutdown dates. Cloud testing, dependent pipeline tasks and Azure portal performance-test options are affected. On-premises Visual Studio testing follows a separate support lifecycle, and Application Insights Availability tests are excluded. Replace affected cloud execution and pipeline dependencies, and preserve needed tests and results where exports remain available.</p>
+  <h1>Cloud-based load testing features will be retired on March 31, 2020</h1><p>Azure DevOps cloud-based load testing retired on April 29, 2021 according to the product guidance and the blog&#39;s official-retirement statement. The original announcement and retained blog text instead identify March 31, 2020; no supplied source explicitly documents an extension or reconciles the shutdown dates. Cloud testing, dependent pipeline tasks and Azure portal performance-test options are affected. On-premises Visual Studio testing follows a separate support lifecycle, and Application Insights Availability tests are excluded. Replace affected cloud execution and pipeline dependencies, and preserve needed tests and results where exports remain available.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2021-04-29"><strong>Retired</strong><span>Retirement date: <time datetime="2021-04-29">29 Apr 2021</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 21 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,20 +1916,20 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">29 Apr 2021</p>
-<div class="rich-content"><p>The selected retirement milestone is <strong>2021-04-29</strong>, supported by the Azure DevOps product guidance and the blog's statement that the features officially retired that day. The guidance says new Load Test Portal tests cannot run afterward and dependent pipeline tasks produce errors.</p>
+<div class="rich-content"><p>The selected retirement milestone is <strong>April 29, 2021</strong>, supported by the Azure DevOps product guidance and the blog's statement that the features officially retired that day. The guidance says new Load Test Portal tests cannot run afterward and dependent pipeline tasks produce errors.</p>
 <p>The supplied sources retain conflicting dates and separate milestones:</p>
 <ul>
-<li><strong>2020-03-31:</strong> The original announcement names this retirement and replacement deadline. Retained blog text also describes service shutdown after this date. These statements conflict with the later retirement milestone; no explicit extension is documented, so the precise shutdown timing remains unresolved.</li>
-<li><strong>2020-03-31:</strong> Separately, Visual Studio cloud-based load testing became unsupported. This does not establish an on-premises shutdown.</li>
-<li><strong>2020-10-12:</strong> Azure DevOps organizations and Azure subscriptions without prior cloud load-testing usage lost access.</li>
-<li><strong>2021-04-29:</strong> The product guidance identifies the cloud-service deprecation milestone for existing Azure DevOps portal users.</li>
+<li><strong>March 31, 2020:</strong> The original announcement names this retirement and replacement deadline. Retained blog text also describes service shutdown after this date. These statements conflict with the later retirement milestone; no explicit extension is documented, so the precise shutdown timing remains unresolved.</li>
+<li><strong>March 31, 2020:</strong> Separately, Visual Studio cloud-based load testing became unsupported. This does not establish an on-premises shutdown.</li>
+<li><strong>October 12, 2020:</strong> Azure DevOps organizations and Azure subscriptions without prior cloud load-testing usage lost access.</li>
+<li><strong>April 29, 2021:</strong> The product guidance identifies the cloud-service deprecation milestone for existing Azure DevOps portal users.</li>
 </ul>
 <p>On-premises testing follows the applicable Visual Studio support lifecycle; no exact end-of-support date is supplied. Historical availability statements do not confirm current access.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure DevOps cloud-based load testing retired, with <strong>2021-04-29</strong> identified by product guidance and the blog's official-retirement statement, subject to the conflicting shutdown dates described above.</p>
+<div class="rich-content"><p>Azure DevOps cloud-based load testing retired, with <strong>April 29, 2021</strong> identified by product guidance and the blog's official-retirement statement, subject to the conflicting shutdown dates described above.</p>
 <p>The affected features include:</p>
 <ul>
 <li>Visual Studio cloud execution using auto-provisioned or self-provisioned agents.</li>
@@ -1946,19 +1946,19 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify tests and pipelines that use Visual Studio cloud execution, the Azure DevOps Load Test Portal, cloud-backed pipeline tasks or Azure portal performance-test options. Separate these from on-premises rigs and Application Insights Availability tests.</li>
-<li>Select a replacement for your test type. The sources identify self-hosted Test Controller/Test Agent for Visual Studio tests, subject to the applicable Visual Studio Enterprise lifecycle; Apache JMeter or compatible services for JMeter workloads; and SOAP UI as an alternative for API testing with <code>.webtest</code> files. The blog's 2022-10-03 update also names Azure Load Testing. Another reference calls it Preview; the supplied content does not establish its current status, feature parity or a conversion path for Visual Studio projects.</li>
+<li>Select a replacement for your test type. The sources identify self-hosted Test Controller/Test Agent for Visual Studio tests, subject to the applicable Visual Studio Enterprise lifecycle; Apache JMeter or compatible services for JMeter workloads; and SOAP UI as an alternative for API testing with <code>.webtest</code> files. The blog's October 3, 2022 update also names Azure Load Testing. Another reference calls it Preview; the supplied content does not establish its current status, feature parity or a conversion path for Visual Studio projects.</li>
 <li>Where the historical export paths remain available, export URL-, HAR- and Visual Studio webtest-based tests using <strong>Export test to Visual Studio</strong>. Existing JMeter scripts can be reused with compatible alternatives; automatic conversion of Visual Studio tests is not promised.</li>
 <li>Preserve historical results you need. The guidance describes downloading Visual Studio, URL and HAR reports through Visual Studio Enterprise for offline viewing, and downloading JMeter results as <code>.csv</code> files for JMeter reporters. Current export availability is not confirmed.</li>
 <li>Replace cloud execution and affected pipeline tasks. As a <strong>team-owned completion check</strong>, validate replacement test runs and pipeline execution. Detailed cutover and cleanup procedures are not supplied.</li>
 </ol>
-<p>The original announcement required a replacement by 2020-03-31; later guidance recommends migration as soon as possible. The sources do not document an extension of that original action target.</p>
+<p>The original announcement required a replacement by March 31, 2020; later guidance recommends migration as soon as possible. The sources do not document an extension of that original action target.</p>
 </div>
       <p> </p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if you depend on the retired cloud execution, portal testing experiences or cloud load-testing pipeline tasks. The product guidance says that after <strong>2021-04-29</strong>, new portal tests cannot run and dependent pipeline tasks produce errors. The blog also describes affected tasks stopping and being removed, but retains conflicting earlier shutdown timing.</p>
-<p>Visual Studio cloud execution became unsupported separately on <strong>2020-03-31</strong>. Organizations and subscriptions with no prior usage were blocked beginning <strong>2020-10-12</strong>.</p>
+<div class="rich-content"><p>You are affected if you depend on the retired cloud execution, portal testing experiences or cloud load-testing pipeline tasks. The product guidance says that after <strong>April 29, 2021</strong>, new portal tests cannot run and dependent pipeline tasks produce errors. The blog also describes affected tasks stopping and being removed, but retains conflicting earlier shutdown timing.</p>
+<p>Visual Studio cloud execution became unsupported separately on <strong>March 31, 2020</strong>. Organizations and subscriptions with no prior usage were blocked beginning <strong>October 12, 2020</strong>.</p>
 <p>Cloud retirement does not itself shut down the applications being tested. On-premises Visual Studio Enterprise testing with Test Controller/Test Agent follows its separate product lifecycle; Visual Studio 2019 is the last release with these capabilities. Application Insights Availability tests are outside the announcement.</p>
 <p>The supplied content does not establish your environment's exposure, current access to historical exports, result-retention periods, deletion dates or migration costs.</p>
 </div>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Microsoft Entra ID (formerly Azure AD)</span><span class="badge retired" data-deadline="2021-09-30"><span></span>Retired</span></div>
-  <h1>Deprecation of webview sign-in support announcement from Google</h1><p>Google deprecated embedded web-view Gmail sign-in on 2021-09-30, affecting Google federation in Microsoft Entra B2B and Azure AD B2C. Affected apps need an allowed authentication method, such as the system browser; Google federation itself is not retired. The supplied product guidance supports this date over the announcement&#39;s 2021-01-04 date, but does not explain the discrepancy. Separate restrictions and a limited historical enforcement extension apply to specific populations.</p>
+  <h1>Deprecation of webview sign-in support announcement from Google</h1><p>Google deprecated embedded web-view Gmail sign-in on September 30, 2021, affecting Google federation in Microsoft Entra B2B and Azure AD B2C. Affected apps need an allowed authentication method, such as the system browser; Google federation itself is not retired. The supplied product guidance supports this date over the announcement&#39;s January 4, 2021 date, but does not explain the discrepancy. Separate restrictions and a limited historical enforcement extension apply to specific populations.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2021-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2021-09-30">30 Sep 2021</time></span><span class="badge amber customer-lead-time-pill">Lead time: 9 months, 18 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,21 +1916,21 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2021</p>
-<div class="rich-content"><p>Google's embedded web-view sign-in deprecation began on <strong>2021-09-30</strong>, according to the supplied product guidance. Affected Gmail users can lose authentication access; this is not a documented workload shutdown.</p>
-<p>The announcement instead gives <strong>2021-01-04</strong>. The structured deadline uses the applicable product-guidance date, 2021-09-30. The sources do not explain this discrepancy or establish that the change between these dates was an extension.</p>
+<div class="rich-content"><p>Google's embedded web-view sign-in deprecation began on <strong>September 30, 2021</strong>, according to the supplied product guidance. Affected Gmail users can lose authentication access; this is not a documented workload shutdown.</p>
+<p>The announcement instead gives <strong>January 4, 2021</strong>. The structured deadline uses the applicable product-guidance date, September 30, 2021. The sources do not explain this discrepancy or establish that the change between these dates was an extension.</p>
 <p>Separate populations and milestones apply:</p>
 <ul>
-<li><strong>2021-06-30:</strong> CEF-based Gmail authentication, including affected Electron apps, was disabled. These apps are outside the reference page's detailed guidance.</li>
-<li><strong>2021-07-12:</strong> Restrictions began for new Google integrations used for self-service sign-up or invitations in affected custom or line-of-business apps without system web-view authentication.</li>
-<li><strong>2022-01-31:</strong> A documented one-time enforcement extension for affected OAuth client IDs ended. The sources do not establish whether your client IDs received it.</li>
-<li><strong>2022-02-01:</strong> Google's quoted notice states that enforcement would apply with no further exceptions or extensions.</li>
+<li><strong>June 30, 2021:</strong> CEF-based Gmail authentication, including affected Electron apps, was disabled. These apps are outside the reference page's detailed guidance.</li>
+<li><strong>July 12, 2021:</strong> Restrictions began for new Google integrations used for self-service sign-up or invitations in affected custom or line-of-business apps without system web-view authentication.</li>
+<li><strong>January 31, 2022:</strong> A documented one-time enforcement extension for affected OAuth client IDs ended. The sources do not establish whether your client IDs received it.</li>
+<li><strong>February 1, 2022:</strong> Google's quoted notice states that enforcement would apply with no further exceptions or extensions.</li>
 </ul>
 <p>The sources specify no separate Microsoft service shutdown date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Google deprecated embedded web-view Gmail sign-in on <strong>2021-09-30</strong>. The change affects apps using Google federation with Microsoft Entra B2B or Azure AD B2C for external-user invitations or self-service sign-up.</p>
+<div class="rich-content"><p>Google deprecated embedded web-view Gmail sign-in on <strong>September 30, 2021</strong>. The change affects apps using Google federation with Microsoft Entra B2B or Azure AD B2C for external-user invitations or self-service sign-up.</p>
 <p>The reference guidance primarily covers B2B collaboration in workforce tenants, but explicitly includes Azure AD B2C in its warning. Google federation itself remains available through allowed authentication methods; this is not a broader Microsoft Entra External ID retirement.</p>
 <p>Affected authentication components include Windows WebView, WebView2 and WebBrowser, Android WebView, iOS UIWebView/WKWebview, and ADAL. The guidance also lists Teams and Power Apps on Windows.</p>
 <p>Microsoft documented a device sign-in workaround rollout starting September 30 that moves part of authentication to a separate browser. The supplied sources do not confirm its current availability for your apps or establish that every affected sign-in was blocked.</p>
@@ -1960,7 +1960,7 @@
 <li>Google Workspace identities using SAML-based federation.</li>
 </ul>
 <p>The documented Microsoft device sign-in workaround requires users to open a separate browser, enter a displayed code, authenticate with Google and confirm the app before returning. Existing browser sessions can reduce these steps, but the sources do not confirm current workaround coverage.</p>
-<p>CEF/Electron Gmail authentication has a separate <strong>2021-06-30</strong> disablement milestone and is outside the reference page's detailed coverage.</p>
+<p>CEF/Electron Gmail authentication has a separate <strong>June 30, 2021</strong> disablement milestone and is outside the reference page's detailed coverage.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>
     </section>

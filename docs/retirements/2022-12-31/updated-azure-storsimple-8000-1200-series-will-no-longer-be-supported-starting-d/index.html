@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">StorSimple</span><span class="badge retired" data-deadline="2022-12-31"><span></span>Retired</span></div>
-  <h1>(updated) Azure StorSimple 8000/1200 series will no longer be supported starting December 31, 2022</h1><p>Azure StorSimple 8000/1200 series, Data Manager and Snapshot Manager reached end of life on 2022-12-31. The end-of-life notice states that cloud management, access to live data and backups, and customer support would no longer be available. An older notice marked potentially outdated says data would remain accessible; this conflicts with the end-of-life notice. Migrate required data, validate access and complete applicable decommissioning steps: powering off an appliance does not stop billing. The migration guide documents a backup-based workflow but does not confirm its availability after end of support.</p>
+  <h1>(updated) Azure StorSimple 8000/1200 series will no longer be supported starting December 31, 2022</h1><p>Azure StorSimple 8000/1200 series, Data Manager and Snapshot Manager reached end of life on December 31, 2022. The end-of-life notice states that cloud management, access to live data and backups, and customer support would no longer be available. An older notice marked potentially outdated says data would remain accessible; this conflicts with the end-of-life notice. Migrate required data, validate access and complete applicable decommissioning steps: powering off an appliance does not stop billing. The migration guide documents a backup-based workflow but does not confirm its availability after end of support.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-12-31"><strong>Retired</strong><span>Retirement date: <time datetime="2022-12-31">31 Dec 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 10 months, 5 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Dec 2022</p>
-<div class="rich-content"><p>Azure StorSimple reached end of life on <strong>2022-12-31</strong>, according to the supplied end-of-life notice. It identifies that date as the end of support and availability of cloud management, live data and backups.</p>
+<div class="rich-content"><p>Azure StorSimple reached end of life on <strong>December 31, 2022</strong>, according to the supplied end-of-life notice. It identifies that date as the end of support and availability of cloud management, live data and backups.</p>
 <p>Both supplied notices give the same date, but their stated consequences conflict: the older notice, marked potentially outdated, says data remains accessible; the end-of-life notice says access to live data and backups would no longer be available. Use the end-of-life notice for planning rather than treating this as support-only retirement. Neither notice establishes a data-deletion schedule.</p>
-<p>The migration guide confirms end of support without supplying an effective date. Its reference to a 2019 announcement and its 2023-01-12 update date are not retirement deadlines. No separate migration deadline or documented extension is supplied.</p>
+<p>The migration guide confirms end of support without supplying an effective date. Its reference to a 2019 announcement and its January 12, 2023 update date are not retirement deadlines. No separate migration deadline or documented extension is supplied.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure StorSimple reached end of life on <strong>2022-12-31</strong>, covering:</p>
+<div class="rich-content"><p>Azure StorSimple reached end of life on <strong>December 31, 2022</strong>, covering:</p>
 <ul>
 <li>8000 series: physical appliances 8100 and 8600, and virtual appliances 8010 and 8020.</li>
 <li>1200 series.</li>
@@ -1954,7 +1954,7 @@
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are in scope if you use StorSimple 8000 series models 8100, 8600, 8010 or 8020, the 1200 series, Data Manager or Snapshot Manager. The supplied material does not inspect your environment or provide regional exceptions.</p>
 <h3>Retirement consequences</h3>
-<p>From <strong>2022-12-31</strong>, the end-of-life notice says cloud management, live-data and backup access, and customer support would no longer be available. Management changes include losing the ability to view or change volume, share, backup and backup-policy settings or install updates. Hardware replacement and repair ended for 8000 series devices; software updates ended for both device series.</p>
+<p>From <strong>December 31, 2022</strong>, the end-of-life notice says cloud management, live-data and backup access, and customer support would no longer be available. Management changes include losing the ability to view or change volume, share, backup and backup-policy settings or install updates. Hardware replacement and repair ended for 8000 series devices; software updates ended for both device series.</p>
 <p>The older, potentially outdated notice says data remains accessible, which conflicts with the end-of-life notice. Do not interpret end of support alone as proof of workload shutdown, but do not assume continued data access given the explicit end-of-life warning. The sources do not specify data-retention or deletion timing, separate API changes, or distinct operational consequences for Data Manager and Snapshot Manager.</p>
 <h3>Migration limits and data fidelity</h3>
 <p>The supplied 8000 series workflow supports NTFS volumes only. ReFS, Windows Server Dynamic Disks, BitLocker-encrypted volumes, deduplication-enabled volumes and corrupted backups are unsupported. Jobs migrate backups, so later live changes require catch-up copying or a final backup migration; cutover requires downtime.</p>

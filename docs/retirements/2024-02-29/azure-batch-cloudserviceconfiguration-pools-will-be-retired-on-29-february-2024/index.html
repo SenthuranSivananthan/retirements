@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Batch</span><span class="badge retired" data-deadline="2024-02-29"><span></span>Retired</span></div>
-  <h1>Azure Batch ‘CloudServiceConfiguration’ pools will be retired on 29 February 2024</h1><p>Azure Batch CloudServiceConfiguration pools retired on 2024-02-29. The retirement notice directs you to use VirtualMachineConfiguration before that date. After that date, Microsoft states that you cannot create CloudServiceConfiguration pools or add nodes to existing pools, and existing pools with active nodes will be force-scaled to zero. The supplied reference pages do not independently establish or revise this retirement.</p>
+  <h1>Azure Batch ‘CloudServiceConfiguration’ pools will be retired on 29 February 2024</h1><p>Azure Batch CloudServiceConfiguration pools retired on February 29, 2024. The retirement notice directs you to use VirtualMachineConfiguration before that date. After that date, Microsoft states that you cannot create CloudServiceConfiguration pools or add nodes to existing pools, and existing pools with active nodes will be force-scaled to zero. The supplied reference pages do not independently establish or revise this retirement.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-02-29"><strong>Retired</strong><span>Retirement date: <time datetime="2024-02-29">29 Feb 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 7 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">29 Feb 2024</p>
-<div class="rich-content"><p>The retirement date is <strong>2024-02-29</strong>. The notice directs you to start using VirtualMachineConfiguration before that date.</p>
-<p>After 2024-02-29, Microsoft states that you cannot create CloudServiceConfiguration pools or add nodes to existing pools of that type. Existing pools with active nodes will be force-scaled to zero.</p>
-<p>The supplied configuration reference pages provide no retirement date and do not establish an extension or conflicting milestone. Their 2026-06-16 update date is not a retirement date.</p>
+<div class="rich-content"><p>The retirement date is <strong>February 29, 2024</strong>. The notice directs you to start using VirtualMachineConfiguration before that date.</p>
+<p>After February 29, 2024, Microsoft states that you cannot create CloudServiceConfiguration pools or add nodes to existing pools of that type. Existing pools with active nodes will be force-scaled to zero.</p>
+<p>The supplied configuration reference pages provide no retirement date and do not establish an extension or conflicting milestone. Their June 16, 2026 update date is not a retirement date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Batch retired <strong>CloudServiceConfiguration</strong> pools on 2024-02-29. The documented replacement is <strong>VirtualMachineConfiguration</strong>; this notice does not retire Azure Batch or VirtualMachineConfiguration pools.</p>
+<div class="rich-content"><p>Azure Batch retired <strong>CloudServiceConfiguration</strong> pools on February 29, 2024. The documented replacement is <strong>VirtualMachineConfiguration</strong>; this notice does not retire Azure Batch or VirtualMachineConfiguration pools.</p>
 <p>At publication, the notice described both configurations as available, but CloudServiceConfiguration was receiving no new features and did not provide access to all Batch features. VirtualMachineConfiguration provides access to all Batch features, including expanded VM-series selection, containers and disk encryption.</p>
 <p>The supplied content documents no regional exceptions or retirement-related maintenance, support or security-update commitments.</p>
 </div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your Azure Batch pools that use CloudServiceConfiguration. The supplied content does not document an inventory method.</li>
-<li>Review configuration differences and plan replacement pools using VirtualMachineConfiguration. The notice required you to start using it before 2024-02-29 to avoid application disruption.</li>
+<li>Review configuration differences and plan replacement pools using VirtualMachineConfiguration. The notice required you to start using it before February 29, 2024 to avoid application disruption.</li>
 <li>For replacement-pool configuration, select a VM size, image reference and compatible Batch node agent SKU. The general reference documents the List Supported Node Agent SKUs operation for SKU-to-image mappings. If you use a virtual network, use Microsoft Entra authentication for the Batch client API.</li>
 </ol>
 <p>The reference pages provide general configuration requirements, not a retirement-specific migration procedure. Detailed export, backup, cutover, validation and cleanup steps are not supplied. For planning, note that a pool's VM size cannot change after creation, core quotas can limit its node count, and removing nodes discards changes to their operating systems and files.</p>
@@ -1943,7 +1943,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are in scope if you use Azure Batch pools configured with <strong>CloudServiceConfiguration</strong>. VirtualMachineConfiguration pools are not the target of this retirement. Your actual pool configurations have not been assessed.</p>
-<p>After 2024-02-29, the documented consequences are blocked creation of CloudServiceConfiguration pools, blocked addition of nodes to existing pools of that type, and forced scaling of active pools to zero nodes. Applications depending on those nodes face disruption.</p>
+<p>After February 29, 2024, the documented consequences are blocked creation of CloudServiceConfiguration pools, blocked addition of nodes to existing pools of that type, and forced scaling of active pools to zero nodes. Applications depending on those nodes face disruption.</p>
 <p>The notice does not document retirement-specific data retention, deletion, cost effects or separate support and tooling changes. The reference page's warning about losing operating-system and file changes when removing nodes is a general pool behavior, not a documented retirement deletion policy.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

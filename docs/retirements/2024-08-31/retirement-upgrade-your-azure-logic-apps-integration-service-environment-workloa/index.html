@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Logic Apps</span><span class="badge retired" data-deadline="2024-08-31"><span></span>Retired</span></div>
-  <h1>Retirement: Upgrade your Azure Logic Apps Integration Service Environment workloads</h1><p>Azure Logic Apps Integration Service Environment (ISE) had a documented retirement deadline of 2024-08-31, with migration to Logic Apps Standard required to preserve workload continuity. Microsoft stated that afterward ISE access and support would end, workflows would stop, workflow history would be permanently deleted, and linked integration accounts would be removed. Logic Apps Consumption is unaffected. The retirement notice and product guidance support 2024-08-31; a Q&amp;A also gives 2024-08-01, without documenting an extension. Sources separately conflict on when new ISE creation stopped: 2022-09-14 versus after 2022-11-01. The supplied content documents announced consequences, not independently verified retirement execution.</p>
+  <h1>Retirement: Upgrade your Azure Logic Apps Integration Service Environment workloads</h1><p>Azure Logic Apps Integration Service Environment (ISE) had a documented retirement deadline of August 31, 2024, with migration to Logic Apps Standard required to preserve workload continuity. Microsoft stated that afterward ISE access and support would end, workflows would stop, workflow history would be permanently deleted, and linked integration accounts would be removed. Logic Apps Consumption is unaffected. The retirement notice and product guidance support August 31, 2024; a Q&amp;A also gives August 1, 2024, without documenting an extension. Sources separately conflict on when new ISE creation stopped: September 14, 2022 versus after November 1, 2022. The supplied content documents announced consequences, not independently verified retirement execution.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-08-31">31 Aug 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 30 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2024</p>
-<div class="rich-content"><p>The documented ISE retirement deadline was <strong>2024-08-31</strong>. Microsoft required migration off ISE by that date. Afterward, Microsoft stated that ISE access and support would end, workflows would stop, workflow history would be permanently deleted, and associated integration accounts would be removed.</p>
-<p>The retirement notice and product guidance identify 2024-08-31. A Q&amp;A title and announcement instead identify 2024-08-01, while an employee reply on that page gives 2024-08-31. This synthesis uses the applicable product-guidance date, 2024-08-31; the supplied content does not explicitly establish an extension.</p>
-<p>A separate new-instance restriction has an unresolved date discrepancy: the Q&amp;A says creation stopped on 2022-09-14, while product guidance says after 2022-11-01. Product guidance documents a support-request exception for existing customers needing to recreate an environment, not an exception to retirement.</p>
+<div class="rich-content"><p>The documented ISE retirement deadline was <strong>August 31, 2024</strong>. Microsoft required migration off ISE by that date. Afterward, Microsoft stated that ISE access and support would end, workflows would stop, workflow history would be permanently deleted, and associated integration accounts would be removed.</p>
+<p>The retirement notice and product guidance identify August 31, 2024. A Q&amp;A title and announcement instead identify August 1, 2024, while an employee reply on that page gives August 31, 2024. This synthesis uses the applicable product-guidance date, August 31, 2024; the supplied content does not explicitly establish an extension.</p>
+<p>A separate new-instance restriction has an unresolved date discrepancy: the Q&amp;A says creation stopped on September 14, 2022, while product guidance says after November 1, 2022. Product guidance documents a support-request exception for existing customers needing to recreate an environment, not an exception to retirement.</p>
 <p>No exact shutdown time or time zone is supplied. The sources do not independently confirm that retirement occurred as announced.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Logic Apps <strong>Integration Service Environment (ISE)</strong> was scheduled to retire on <strong>2024-08-31</strong>. Microsoft directs you to migrate ISE workloads to <strong>Logic Apps Standard</strong>, rather than expect a transparent infrastructure migration.</p>
+<div class="rich-content"><p>Azure Logic Apps <strong>Integration Service Environment (ISE)</strong> was scheduled to retire on <strong>August 31, 2024</strong>. Microsoft directs you to migrate ISE workloads to <strong>Logic Apps Standard</strong>, rather than expect a transparent infrastructure migration.</p>
 <p>The change covers deployed ISE instances, their workflows, workflow history and associated integration accounts. Product guidance attributes retirement to ISE's dependency on retiring Classic Cloud Services and identifies infrastructure and virtual-network interdependencies as migration considerations.</p>
 <p>Microsoft documented support for existing instances during the transition and allowed logic app deployments into existing ISE environments until decommissioning within the retirement timeline. The supplied content does not specify regional exceptions or detailed security-update commitments.</p>
 <p><strong>Logic Apps Consumption is unaffected.</strong> Logic Apps Standard is the recommended destination, not a retiring service.</p>
@@ -1933,7 +1933,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Microsoft required you to migrate ISE workloads to Logic Apps Standard by <strong>2024-08-31</strong> to preserve continuity.</p>
+<div class="rich-content"><p>Microsoft required you to migrate ISE workloads to Logic Apps Standard by <strong>August 31, 2024</strong> to preserve continuity.</p>
 <ol>
 <li>Identify your ISE instances, workflows, connections and associated integration accounts. The supplied sources provide no inventory procedure.</li>
 <li>Plan workflow grouping, network dependencies and connector compatibility. The March 2023 connector-parity target is a historical plan, not confirmation of current availability.</li>
@@ -1948,7 +1948,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are in scope if you have workflows deployed in Azure Logic Apps ISE environments or integration accounts associated with those environments. <strong>Logic Apps Consumption is unaffected.</strong> The supplied content does not establish whether you have affected resources.</p>
-<p>Microsoft documented these consequences after <strong>2024-08-31</strong>:</p>
+<p>Microsoft documented these consequences after <strong>August 31, 2024</strong>:</p>
 <ul>
 <li>Loss of support and access to deployed ISE instances.</li>
 <li>Stopped workflow execution.</li>
@@ -1957,7 +1957,7 @@
 </ul>
 <p>These consequences extend beyond end of support. The sources do not distinguish portal access from API access or independently verify that the announced shutdown and deletion occurred.</p>
 <p>Migration requires attention to network dependencies and connector availability. The supplied content does not establish current connector parity, resolve the Q&amp;A's static-IP capability question or quantify migration costs.</p>
-<p>New-instance creation restrictions were separate from retirement. Sources disagree between 2022-09-14 and after 2022-11-01. Product guidance documents a support-ticket exception for existing customers recreating environments and permits deployments into existing ISEs within the retirement timeline; neither changes the retirement deadline.</p>
+<p>New-instance creation restrictions were separate from retirement. Sources disagree between September 14, 2022 and after November 1, 2022. Product guidance documents a support-ticket exception for existing customers recreating environments and permits deployments into existing ISEs within the retirement timeline; neither changes the retirement deadline.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>
     </section>

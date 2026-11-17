@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Virtual Machines</span><span class="badge retired" data-deadline="2023-08-31"><span></span>Retired</span></div>
-  <h1>Update: ND-series Azure Virtual Machines will be retired on 31 August 2023</h1><p>Microsoft extended retirement of original ND-series Azure VMs powered by NVIDIA Tesla P40 GPUs from 2022-08-31 to 2023-08-31. The migration guide independently lists the same retirement date. The announcement&#39;s action and automatic-deallocation paragraphs retain the superseded 2022 date, so their consequence timing was not separately updated. Migrate affected workloads and deallocate the original VMs. NC v3, NC T4 v3 and ND v2-series VMs are explicitly excluded.</p>
+  <h1>Update: ND-series Azure Virtual Machines will be retired on 31 August 2023</h1><p>Microsoft extended retirement of original ND-series Azure VMs powered by NVIDIA Tesla P40 GPUs from August 31, 2022 to August 31, 2023. The migration guide independently lists the same retirement date. The announcement&#39;s action and automatic-deallocation paragraphs retain the superseded 2022 date, so their consequence timing was not separately updated. Migrate affected workloads and deallocate the original VMs. NC v3, NC T4 v3 and ND v2-series VMs are explicitly excluded.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2023-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2023-08-31">31 Aug 2023</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 5 months, 2 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2023</p>
-<div class="rich-content"><p>Original ND-series Azure VMs powered by NVIDIA Tesla P40 GPUs had an extended retirement deadline of <strong>2023-08-31</strong>. The announcement explicitly extends the original <strong>2022-08-31</strong> deadline, and the migration guide also lists <strong>2023-08-31</strong> for original ND-series retirement.</p>
-<p>The announcement's required-action and automatic-deallocation paragraphs still show <strong>2022-08-31</strong>. Those dates are superseded by the explicit extension, but the consequence wording was not separately updated. The announcement says remaining VMs will be deallocated and become unavailable; the migration guide does not independently confirm their shutdown mechanics.</p>
-<p>The guide's <strong>2027-05-31</strong> deadline concerns NP-series FPGA VMs, not original ND-series VMs.</p>
+<div class="rich-content"><p>Original ND-series Azure VMs powered by NVIDIA Tesla P40 GPUs had an extended retirement deadline of <strong>August 31, 2023</strong>. The announcement explicitly extends the original <strong>August 31, 2022</strong> deadline, and the migration guide also lists <strong>August 31, 2023</strong> for original ND-series retirement.</p>
+<p>The announcement's required-action and automatic-deallocation paragraphs still show <strong>August 31, 2022</strong>. Those dates are superseded by the explicit extension, but the consequence wording was not separately updated. The announcement says remaining VMs will be deallocated and become unavailable; the migration guide does not independently confirm their shutdown mechanics.</p>
+<p>The guide's <strong>May 31, 2027</strong> deadline concerns NP-series FPGA VMs, not original ND-series VMs.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired the original ND-series Azure VMs powered by NVIDIA Tesla P40 GPUs, with an extended retirement date of <strong>2023-08-31</strong>.</p>
+<div class="rich-content"><p>Microsoft retired the original ND-series Azure VMs powered by NVIDIA Tesla P40 GPUs, with an extended retirement date of <strong>August 31, 2023</strong>.</p>
 <p>NC v3, NC T4 v3 and ND v2-series VMs are explicitly excluded. The migration guide also discusses original NC and NC v2 retirement, but those are separate VM populations.</p>
 <p>The supplied content does not document regional exceptions or pre-retirement maintenance, support and security-update commitments.</p>
 </div>
@@ -1936,7 +1936,7 @@
 <li>Select replacements using the GPU compute migration guide. It generally maps original ND sizes to T4 sizes and maps ND24r to ND96amsr_A100_v4. Compare GPU count, memory, storage, interconnect requirements and regional availability rather than assuming a drop-in replacement.</li>
 <li>Obtain vCPU quota for the target family. Update CUDA, NVIDIA drivers and, where applicable, Mellanox OFED drivers to meet the replacement's requirements. Updating the operating system or adopting an HPC image is optional guidance.</li>
 <li>Migrate your workloads using the applicable migration or resize guidance. As a team-owned validation step, confirm workload compatibility, performance and required interconnect capabilities before relying on the replacement.</li>
-<li>Deallocate the original ND VMs. The announcement required migration and deallocation by the extended retirement deadline, <strong>2023-08-31</strong>, although its action paragraph retains the superseded 2022 date.</li>
+<li>Deallocate the original ND VMs. The announcement required migration and deallocation by the extended retirement deadline, <strong>August 31, 2023</strong>, although its action paragraph retains the superseded 2022 date.</li>
 </ol>
 <p>Use Azure Virtual Machine pricing or the Azure Pricing Calculator to compare replacement costs. For assistance, contact HPC VM Retirement, or create a technical support request if you have a support plan.</p>
 </div>
@@ -1945,7 +1945,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you use original ND-series VMs powered by NVIDIA Tesla P40 GPUs. NC v3, NC T4 v3 and ND v2-series VMs are explicitly excluded. No assessment of your resources has been performed.</p>
-<p>The announcement says remaining original ND VMs will be deallocated, become unavailable and stop incurring billing charges. That paragraph retains <strong>2022-08-31</strong> despite the explicit retirement extension to <strong>2023-08-31</strong>; its consequence timing was not separately updated.</p>
+<p>The announcement says remaining original ND VMs will be deallocated, become unavailable and stop incurring billing charges. That paragraph retains <strong>August 31, 2022</strong> despite the explicit retirement extension to <strong>August 31, 2023</strong>; its consequence timing was not separately updated.</p>
 <p>Replacement capabilities differ. Some T4 mappings reduce GPU count or memory; the listed ND24r replacement retains InfiniBand. Validate your workload requirements before selecting a target.</p>
 <p>The supplied content does not establish original ND data-retention or deletion rules, replacement costs, or console/API and deployment-tooling changes. The guide's managed-disk preservation statement applies to NP-series retirement and does not establish an ND-series guarantee.</p>
 </div>

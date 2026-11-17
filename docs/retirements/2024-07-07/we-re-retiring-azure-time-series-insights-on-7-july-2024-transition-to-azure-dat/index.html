@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Time Series Insights</span><span class="badge retired" data-deadline="2024-07-07"><span></span>Retired</span></div>
-  <h1>We’re retiring Azure Time Series Insights on 7 July 2024 – transition to Azure Data Explorer</h1><p>Microsoft retired Azure Time Series Insights Gen1 and Gen2 on 2024-07-07. The notice states that the service stops functioning and becomes inaccessible, with no support afterward; migration guidance warns of automatic resource deletion if migration is incomplete. Microsoft recommends Eventhouse in Fabric Real-Time Intelligence, with Azure Data Explorer as another documented destination. Gen1 migration requires parallel ingestion for its full fixed retention period. Gen2 cold-storage data remains accessible in your storage account, but this does not preserve the Time Series Insights service. A Q&amp;A listing mentions support after March 2025 without supplying answers; it does not confirm an extension or alternative retirement date.</p>
+  <h1>We’re retiring Azure Time Series Insights on 7 July 2024 – transition to Azure Data Explorer</h1><p>Microsoft retired Azure Time Series Insights Gen1 and Gen2 on July 7, 2024. The notice states that the service stops functioning and becomes inaccessible, with no support afterward; migration guidance warns of automatic resource deletion if migration is incomplete. Microsoft recommends Eventhouse in Fabric Real-Time Intelligence, with Azure Data Explorer as another documented destination. Gen1 migration requires parallel ingestion for its full fixed retention period. Gen2 cold-storage data remains accessible in your storage account, but this does not preserve the Time Series Insights service. A Q&amp;A listing mentions support after March 2025 without supplying answers; it does not confirm an extension or alternative retirement date.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-07-07"><strong>Retired</strong><span>Retirement date: <time datetime="2024-07-07">7 Jul 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 month, 7 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">7 Jul 2024</p>
-<div class="rich-content"><p>Azure Time Series Insights Gen1 and Gen2 retired on <strong>2024-07-07</strong>. The retirement notice states that the service stops functioning and becomes inaccessible on that date, with no support afterward. Migration guidance warns that Time Series Insights resources will be automatically deleted if migration is incomplete by that date.</p>
+<div class="rich-content"><p>Azure Time Series Insights Gen1 and Gen2 retired on <strong>July 7, 2024</strong>. The retirement notice states that the service stops functioning and becomes inaccessible on that date, with no support afterward. Migration guidance warns that Time Series Insights resources will be automatically deleted if migration is incomplete by that date.</p>
 <p>Microsoft describes the retirement as accelerated but does not supply the previous date. A Q&amp;A listing references support ending after March 2025, but its answers are absent. That reference does not confirm a different retirement milestone or an extension. The pricing and portal pages establish no retirement deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired <strong>Azure Time Series Insights Gen1 and Gen2 on 2024-07-07</strong>. This is service shutdown, not only end of support. The supplied guidance identifies no regional or customer exceptions and makes no maintenance or security-update commitment before retirement.</p>
+<div class="rich-content"><p>Microsoft retired <strong>Azure Time Series Insights Gen1 and Gen2 on July 7, 2024</strong>. This is service shutdown, not only end of support. The supplied guidance identifies no regional or customer exceptions and makes no maintenance or security-update commitment before retirement.</p>
 <p>The announcement directs customers to Azure Data Explorer; the migration guidance recommends Eventhouse in Fabric Real-Time Intelligence and also documents Azure Data Explorer as an alternative. The tsi2rti repository provides readiness guidance and migration tools for both destinations.</p>
 <p>The notice also states that Time Series Insights no longer receives the updates needed to meet the latest FedRAMP High requirements and can no longer be considered FedRAMP High compliant.</p>
 </div>
@@ -1930,7 +1930,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>The documented migration deadline was <strong>2024-07-07</strong>. The supplied guidance does not establish a post-retirement recovery procedure.</p>
+<div class="rich-content"><p>The documented migration deadline was <strong>July 7, 2024</strong>. The supplied guidance does not establish a post-retirement recovery procedure.</p>
 <ol>
 <li>Identify whether your environments use Gen1 or Gen2. No inventory command is supplied.</li>
 <li>Select your destination. Microsoft recommends Eventhouse in Fabric Real-Time Intelligence; Azure Data Explorer is another documented option. Use the tsi2rti readiness guidance for the selected destination.</li>
@@ -1956,7 +1956,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>If you used Time Series Insights Gen1 or Gen2, the documented consequence from <strong>2024-07-07</strong> is loss of service access and support. Migration guidance also warns of automatic resource deletion if migration was incomplete. The supplied content does not identify your resources or establish unaffected versions, regions or customer groups.</p>
+<div class="rich-content"><p>If you used Time Series Insights Gen1 or Gen2, the documented consequence from <strong>July 7, 2024</strong> is loss of service access and support. Migration guidance also warns of automatic resource deletion if migration was incomplete. The supplied content does not identify your resources or establish unaffected versions, regions or customer groups.</p>
 <ul>
 <li><strong>Gen1:</strong> There is no cold storage or hierarchy capability. Its fixed data-retention period makes parallel ingestion for that full period a prerequisite of the documented migration.</li>
 <li><strong>Gen2:</strong> Cold data resides as Parquet blobs in your subscription. The guidance says that data remains accessible in your storage account after Time Series Insights resource deletion. It also limits Azure Resource Manager access to management operations, such as updating storage-account settings, retrieving properties or keys, and deleting storage accounts. It does not specify the post-retirement data-reading interface or retention duration.</li>

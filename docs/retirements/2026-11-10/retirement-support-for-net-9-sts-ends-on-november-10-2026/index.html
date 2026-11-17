@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">App Service</span><span class="badge retired" data-deadline="2026-11-10"><span></span>Retired</span></div>
-  <h1>Retirement: Support for .NET 9 (STS) ends on November 10, 2026</h1><p>Support for .NET 9 (STS) on Azure App Service ends on 2026-11-10. Apps continue running, but Microsoft stops providing security updates and customer service for .NET 9. Microsoft directs you to upgrade to .NET 10 (LTS) before that date. End-of-life versions are removed from the Runtime Stack dropdown; changing stack settings restarts your app.</p>
+  <h1>Retirement: Support for .NET 9 (STS) ends on November 10, 2026</h1><p>Support for .NET 9 (STS) on Azure App Service ends on November 10, 2026. Apps continue running, but Microsoft stops providing security updates and customer service for .NET 9. Microsoft directs you to upgrade to .NET 10 (LTS) before that date. End-of-life versions are removed from the Runtime Stack dropdown; changing stack settings restarts your app.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-11-10"><strong>Retired</strong><span>Retirement date: <time datetime="2026-11-10">10 Nov 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 5 months, 5 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">10 Nov 2026</p>
-<div class="rich-content"><p>Support for .NET 9 (STS) on Azure App Service ends on <strong>2026-11-10</strong>. Microsoft directs you to upgrade to .NET 10 (LTS) before that date.</p>
+<div class="rich-content"><p>Support for .NET 9 (STS) on Azure App Service ends on <strong>November 10, 2026</strong>. Microsoft directs you to upgrade to .NET 10 (LTS) before that date.</p>
 <p>This is an end-of-support milestone, not an application shutdown: apps continue running, but Microsoft no longer provides security updates or customer service for .NET 9. The supporting policy pages provide no conflicting .NET 9 deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is ending support for .NET 9 (STS) on Azure App Service on 2026-11-10. Apps continue running afterward without .NET 9 security updates or customer service. The notice identifies .NET 10 (LTS) as the upgrade target and specifies no regional exceptions.</p>
+<div class="rich-content"><p>Microsoft is ending support for .NET 9 (STS) on Azure App Service on November 10, 2026. Apps continue running afterward without .NET 9 security updates or customer service. The notice identifies .NET 10 (LTS) as the upgrade target and specifies no regional exceptions.</p>
 <p>Under the general App Service .NET policy, end-of-life versions are removed from the Runtime Stack selection dropdown. Existing apps targeting those versions should not be affected by dropdown removal.</p>
 </div>
       <div class="notice"></div>
@@ -1931,7 +1931,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your Azure App Service apps using .NET 9 (STS). In the Azure portal, select each app and review Configuration, General settings, then Stack Settings. The notice provides no fleet-wide identification method.</li>
-<li>Upgrade affected apps to .NET 10 (LTS) before 2026-11-10. The supplied content does not provide application migration steps, prerequisites or compatibility constraints.</li>
+<li>Upgrade affected apps to .NET 10 (LTS) before November 10, 2026. The supplied content does not provide application migration steps, prerequisites or compatibility constraints.</li>
 <li>To change the configured runtime, select the supported .NET version under Major version and save. Changing stack settings restarts your application.</li>
 </ol>
 <p>You can list supported runtimes with <code>az webapp list-runtimes --os-type linux</code> or <code>az webapp list-runtimes --os-type windows</code>. These commands do not inventory your apps. Backup and post-upgrade validation procedures are not supplied.</p>
@@ -1940,7 +1940,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your Azure App Service apps using .NET 9 (STS) are affected. If you do not upgrade, they continue running after 2026-11-10, but lose .NET 9 security updates and customer service. The general support policy requires upgrading an unsupported runtime before receiving related App Service support.</p>
+<div class="rich-content"><p>Your Azure App Service apps using .NET 9 (STS) are affected. If you do not upgrade, they continue running after November 10, 2026, but lose .NET 9 security updates and customer service. The general support policy requires upgrading an unsupported runtime before receiving related App Service support.</p>
 <p>End-of-life dropdown removal affects runtime selection, not documented workload continuity. Changing stack settings causes an application restart; its duration is not specified.</p>
 <p>The supplied content does not identify your resources, quantify affected apps or establish changes to APIs, integrations, deployment tooling, data access, retention or costs.</p>
 </div>

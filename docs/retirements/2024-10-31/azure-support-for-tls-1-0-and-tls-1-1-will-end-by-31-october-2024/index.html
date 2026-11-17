@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2024-10-31"><span></span>Retired</span></div>
-  <h1>Azure support for TLS 1.0 and TLS 1.1 will end by 31 October 2024</h1><p>Microsoft announced that Azure support for TLS 1.0 and TLS 1.1 would end on 2024-10-31, with interactions requiring TLS 1.2 or later from that date. Older-protocol dependencies could cause service disruptions. The supplied announcement does not confirm current enforcement or service-specific rollout dates. Resources already using TLS 1.2 or later exclusively need no further action under the announcement.</p>
+  <h1>Azure support for TLS 1.0 and TLS 1.1 will end by 31 October 2024</h1><p>Microsoft announced that Azure support for TLS 1.0 and TLS 1.1 would end on October 31, 2024, with interactions requiring TLS 1.2 or later from that date. Older-protocol dependencies could cause service disruptions. The supplied announcement does not confirm current enforcement or service-specific rollout dates. Resources already using TLS 1.2 or later exclusively need no further action under the announcement.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-10-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-10-31">31 Oct 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 20 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Oct 2024</p>
-<div class="rich-content"><p>Azure support for TLS 1.0 and TLS 1.1 ended on <strong>2024-10-31</strong>, according to the supplied announcement. Microsoft specified the same date for interactions with Azure services to use TLS 1.2 or later.</p>
+<div class="rich-content"><p>Azure support for TLS 1.0 and TLS 1.1 ended on <strong>October 31, 2024</strong>, according to the supplied announcement. Microsoft specified the same date for interactions with Azure services to use TLS 1.2 or later.</p>
 <p>The announcement does not confirm current enforcement or service-specific rollout dates. It does not establish that workloads automatically shut down on that date. The supporting migration and support pages do not establish a different Azure retirement deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft announced the end of Azure support for TLS 1.0 and TLS 1.1 on <strong>2024-10-31</strong>, requiring TLS 1.2 or later for interactions with Azure services.</p>
+<div class="rich-content"><p>Microsoft announced the end of Azure support for TLS 1.0 and TLS 1.1 on <strong>October 31, 2024</strong>, requiring TLS 1.2 or later for interactions with Azure services.</p>
 <p>The announcement does not specify regional or individual service exceptions, pre-deadline maintenance commitments, or service-specific enforcement behavior. The linked legacy-TLS guidance provides migration recommendations; it does not independently announce a universal Microsoft shutdown.</p>
 </div>
       <div class="notice"></div>
@@ -1935,13 +1935,13 @@
 <li>Following the supporting guidance, disable protocols older than TLS 1.2 in staging and run full-stack regression tests, including mutual TLS, service dependencies and partner integrations. Coordinate rollout with affected customers and partners. If you must retain FIPS Mode, follow the separate FIPS-preserving guidance.</li>
 <li>Confirm that resources interacting with Azure exclusively use TLS 1.2 or later. If they already do, the announcement says no further action is needed.</li>
 </ol>
-<p>The announcement's transition deadline was <strong>2024-10-31</strong>. The supporting migration guidance primarily covers Microsoft operating systems and Windows cryptography libraries; it is not a service-specific Azure migration procedure.</p>
+<p>The announcement's transition deadline was <strong>October 31, 2024</strong>. The supporting migration guidance primarily covers Microsoft operating systems and Windows cryptography libraries; it is not a service-specific Azure migration procedure.</p>
 </div>
       <p> </p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Resources that depend on TLS 1.0 or TLS 1.1 to interact with Azure services are affected. Microsoft warned of potential service disruptions if those dependencies were not transitioned by <strong>2024-10-31</strong>. Resources already using TLS 1.2 or later exclusively need no further action under the announcement.</p>
+<div class="rich-content"><p>Resources that depend on TLS 1.0 or TLS 1.1 to interact with Azure services are affected. Microsoft warned of potential service disruptions if those dependencies were not transitioned by <strong>October 31, 2024</strong>. Resources already using TLS 1.2 or later exclusively need no further action under the announcement.</p>
 <p>The supporting guidance explains that incompatible clients can lose connectivity when older protocols are disabled. Older frameworks, hardcoded protocol choices, mutual TLS certificate selection and third-party integrations can require changes even when the operating system supports TLS 1.2.</p>
 <p>The supplied material does not confirm current enforcement for individual Azure services or establish automatic workload shutdown, data deletion or pricing changes. Your resources have not been inspected.</p>
 </div>

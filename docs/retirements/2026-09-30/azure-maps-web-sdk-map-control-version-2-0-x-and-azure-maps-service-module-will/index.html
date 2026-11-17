@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Maps</span><span class="badge retired" data-deadline="2026-09-30"><span></span>Retired</span></div>
-  <h1>Azure Maps Web SDK Map Control version 2.0.x and Azure Maps Service Module will be retired on 30 September 2026</h1><p>The Azure announcement sets 2026-09-30 as the retirement date for Azure Maps Web SDK Map Control 2.0.x and Azure Maps Service Module, with migration to Map Control v3 and Azure Maps JavaScript REST SDK, respectively. The migration guide more specifically identifies Map Control versions 2.0.0–2.0.32 as retired and separately includes v1 without a date. The announcement warns of workload deletion and application-data loss; the supplied technical guides do not independently confirm that behavior.</p>
+  <h1>Azure Maps Web SDK Map Control version 2.0.x and Azure Maps Service Module will be retired on 30 September 2026</h1><p>The Azure announcement sets September 30, 2026 as the retirement date for Azure Maps Web SDK Map Control 2.0.x and Azure Maps Service Module, with migration to Map Control v3 and Azure Maps JavaScript REST SDK, respectively. The migration guide more specifically identifies Map Control versions 2.0.0–2.0.32 as retired and separately includes v1 without a date. The announcement warns of workload deletion and application-data loss; the supplied technical guides do not independently confirm that behavior.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-30">30 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 6 months, 1 day</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2026</p>
-<div class="rich-content"><p>The Azure announcement sets <strong>2026-09-30</strong> as the retirement and migration deadline for Azure Maps Web SDK Map Control 2.0.x and Azure Maps Service Module. It permits continued use without disruption until that date and states that affected workloads will be deleted and associated application data lost on that date. It provides no cutoff time; the technical guides do not independently confirm those consequences.</p>
+<div class="rich-content"><p>The Azure announcement sets <strong>September 30, 2026</strong> as the retirement and migration deadline for Azure Maps Web SDK Map Control 2.0.x and Azure Maps Service Module. It permits continued use without disruption until that date and states that affected workloads will be deleted and associated application data lost on that date. It provides no cutoff time; the technical guides do not independently confirm those consequences.</p>
 <p>The Map Control migration guide identifies versions <strong>2.0.0–2.0.32</strong> as already retired, rather than describing all v2 releases as retired. It separately includes Map Control v1 but supplies no retirement date for it. Neither page-update dates nor SDK release dates establish another retirement milestone or an extension.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Maps is retiring Web SDK Map Control 2.0.x and Azure Maps Service Module on <strong>2026-09-30</strong>, according to the announcement. The named replacements are:</p>
+<div class="rich-content"><p>Azure Maps is retiring Web SDK Map Control 2.0.x and Azure Maps Service Module on <strong>September 30, 2026</strong>, according to the announcement. The named replacements are:</p>
 <ul>
 <li><strong>Map Control v3</strong> for Map Control 2.0.x.</li>
 <li><strong>Azure Maps JavaScript REST SDK</strong> for Azure Maps Service Module.</li>
@@ -1940,14 +1940,14 @@
 <li>Migrate Service Module applications to Azure Maps JavaScript REST SDK. Identify the service packages and capabilities you need first: the supplied preview guide documents incomplete SDK v1-to-v2 parity and using both versions where necessary. Prepare an Azure Maps account, authentication and an LTS version of Node.js. Microsoft Entra authentication requires application registration and role assignment; SAS setup requires a managed identity and management-client configuration.</li>
 <li>Test Map Control functionality, performance and user experience across browsers and devices. For REST SDK operations, check request-level errors and individual batch-item failures. A gradual rollout is optional.</li>
 </ol>
-<p>The announcement sets <strong>2026-09-30</strong> for completing migration. The supplied content does not establish whether your applications have migrated or provide retirement-specific export, backup, cutover or cleanup procedures.</p>
+<p>The announcement sets <strong>September 30, 2026</strong> for completing migration. The supplied content does not establish whether your applications have migrated or provide retirement-specific export, backup, cutover or cleanup procedures.</p>
 </div>
       <p> </p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>Your applications are potentially affected if they use Azure Maps Web SDK Map Control 2.0.x or Azure Maps Service Module. The migration guide specifically identifies Map Control versions 2.0.0–2.0.32; it does not establish retirement of all v2 releases. Your environment has not been assessed.</p>
-<p>The announcement states that affected workloads will be deleted and associated application data lost on <strong>2026-09-30</strong>. The technical guides do not independently confirm this behavior or explain the deletion mechanism, recovery options, or whether deletion actually occurred. Separate console, API, deployment-tooling and support consequences are not documented.</p>
+<p>The announcement states that affected workloads will be deleted and associated application data lost on <strong>September 30, 2026</strong>. The technical guides do not independently confirm this behavior or explain the deletion mechanism, recovery options, or whether deletion actually occurred. Separate console, API, deployment-tooling and support consequences are not documented.</p>
 <p>Migration can require authentication changes. The Map Control release notes identify conditional v3 authentication changes for app-registration platform settings and custom authentication contexts. The REST SDK guide documents incomplete v1-to-v2 feature parity, so validate the operations your application needs; the Q&amp;A excerpts do not establish current replacement readiness.</p>
 <p>No broader Azure Maps retirement or retirement-related cost changes are established. Separate API v1.0 questions do not establish that those APIs share this deadline.</p>
 </div>

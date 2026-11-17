@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Monitor · Service Map</span><span class="badge retired" data-deadline="2022-03-31"><span></span>Retired</span></div>
-  <h1>Wire Data 2.0 (preview) will be retired on 31 March 2022</h1><p>Microsoft retired Wire Data 2.0 (Preview) in Azure Monitor and ended support on 2022-03-31. Customers were directed to transition to VM insights or Service Map before that date to avoid or minimize disruption to network connection monitoring and analysis. Migration includes replacement onboarding, WireData query updates and removal of the Wire Data solution while retaining the Dependency agent. The supplied guidance does not establish a workload shutdown date or historical-data deletion schedule.</p>
+  <h1>Wire Data 2.0 (preview) will be retired on 31 March 2022</h1><p>Microsoft retired Wire Data 2.0 (Preview) in Azure Monitor and ended support on March 31, 2022. Customers were directed to transition to VM insights or Service Map before that date to avoid or minimize disruption to network connection monitoring and analysis. Migration includes replacement onboarding, WireData query updates and removal of the Wire Data solution while retaining the Dependency agent. The supplied guidance does not establish a workload shutdown date or historical-data deletion schedule.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-03-31"><strong>Retired</strong><span>Retirement date: <time datetime="2022-03-31">31 Mar 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 2 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2022</p>
-<div class="rich-content"><p>Wire Data 2.0 (Preview) retired and reached end of support on <strong>2022-03-31</strong>. Existing customers could continue using it until that date.</p>
-<p>The announcement initially requests transition by 2022-03-31; its action-required section says to transition <strong>before 2022-03-31</strong> to avoid or minimize disruption. These describe the same retirement date, with different wording for the action target.</p>
+<div class="rich-content"><p>Wire Data 2.0 (Preview) retired and reached end of support on <strong>March 31, 2022</strong>. Existing customers could continue using it until that date.</p>
+<p>The announcement initially requests transition by March 31, 2022; its action-required section says to transition <strong>before March 31, 2022</strong> to avoid or minimize disruption. These describe the same retirement date, with different wording for the action target.</p>
 <p>The supplied guidance does not specify when collection stopped, a workload shutdown date or a historical-data deletion schedule.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired Wire Data 2.0 (Preview) in Azure Monitor on <strong>2022-03-31</strong> and directs new and existing customers to VM insights or Service Map.</p>
+<div class="rich-content"><p>Microsoft retired Wire Data 2.0 (Preview) in Azure Monitor on <strong>March 31, 2022</strong> and directs new and existing customers to VM insights or Service Map.</p>
 <p>Both replacements use the Log Analytics agent and Dependency agent to collect network connection data and connect with Microsoft Sentinel. Their Map data set is described as comparable to Wire Data 2.0, not identical. VM insights also provides performance data and additional analysis features.</p>
 <p>The supplied guidance does not document regional exceptions or post-retirement maintenance and security-update commitments.</p>
 </div>
@@ -1934,7 +1934,7 @@
 <div class="rich-content"><ol>
 <li>Identify Log Analytics workspaces using Wire Data 2.0 and their reporting VMs. Check whether each VM already has VM insights or Service Map enabled.</li>
 <li>Choose Service Map for its Map data set, or VM insights for that data set plus performance data and additional analysis features. Both require the Log Analytics agent and Dependency agent; consult the referenced deployment guidance for requirements and onboarding methods.</li>
-<li>Onboard VMs that have only Wire Data enabled. Do not duplicate onboarding for VMs already using either replacement. The notice directed transition before 2022-03-31.</li>
+<li>Onboard VMs that have only Wire Data enabled. Do not duplicate onboarding for VMs already using either replacement. The notice directed transition before March 31, 2022.</li>
 <li>Migrate WireData queries using the documented replacement examples. Most use VMConnection; the IP-address inventory example uses VMComputer. Update field names, byte calculations and direction values as documented.</li>
 <li>As a team-owned validation step, confirm replacement data and migrated queries meet your monitoring needs before removing Wire Data 2.0 from affected workspaces.</li>
 </ol>

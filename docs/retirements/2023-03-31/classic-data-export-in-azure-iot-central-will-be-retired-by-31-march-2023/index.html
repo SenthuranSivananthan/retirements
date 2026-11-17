@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2023-03-31"><span></span>Retired</span></div>
-  <h1>Classic data export in Azure IoT Central will be retired by 31 March 2023</h1><p>Classic (legacy) data export in Azure IoT Central retires on 2023-03-31. Microsoft directs you to migrate existing classic exports to new data exports before that date to avoid export disruption. The notice does not specify exact post-retirement behavior. The supplied Blob Storage guide documents replacement-export setup and operational checks, but does not independently establish a retirement deadline or complete migration procedure.</p>
+  <h1>Classic data export in Azure IoT Central will be retired by 31 March 2023</h1><p>Classic (legacy) data export in Azure IoT Central retires on March 31, 2023. Microsoft directs you to migrate existing classic exports to new data exports before that date to avoid export disruption. The notice does not specify exact post-retirement behavior. The supplied Blob Storage guide documents replacement-export setup and operational checks, but does not independently establish a retirement deadline or complete migration procedure.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2023-03-31"><strong>Retired</strong><span>Retirement date: <time datetime="2023-03-31">31 Mar 2023</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 7 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2023</p>
-<div class="rich-content"><p>Classic data export in Azure IoT Central retires on <strong>2023-03-31</strong>. Microsoft directs you to migrate before that date to avoid export disruption. The notice does not specify the exact shutdown behavior or establish that IoT Central applications themselves will shut down.</p>
-<p>A supplied community question mentions <strong>2029-09-20</strong> for broader IoT Central deprecation. Its referenced announcement is absent, its milestone is unclear, and it is not confirmed as applicable to classic data export. It does not establish an extension of this retirement.</p>
+<div class="rich-content"><p>Classic data export in Azure IoT Central retires on <strong>March 31, 2023</strong>. Microsoft directs you to migrate before that date to avoid export disruption. The notice does not specify the exact shutdown behavior or establish that IoT Central applications themselves will shut down.</p>
+<p>A supplied community question mentions <strong>September 20, 2029</strong> for broader IoT Central deprecation. Its referenced announcement is absent, its milestone is unclear, and it is not confirmed as applicable to classic data export. It does not establish an extension of this retirement.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring classic, also called legacy, data export in Azure IoT Central on <strong>2023-03-31</strong>, with new data exports as the replacement.</p>
+<div class="rich-content"><p>Microsoft is retiring classic, also called legacy, data export in Azure IoT Central on <strong>March 31, 2023</strong>, with new data exports as the replacement.</p>
 <p>Classic exports support telemetry, devices and device templates without filtering. The notice describes new exports supporting telemetry, property changes, device connectivity, device lifecycle and device template lifecycle, with filtering, enrichment and transformation. It does not establish one-to-one compatibility for every classic configuration.</p>
 <p>The retirement targets classic exports, not the new export feature. The notice does not document maintenance, support or security-update commitments before retirement, or precise availability afterward.</p>
 </div>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify classic or legacy exports in your Azure IoT Central applications. The notice does not provide an inventory method.</li>
-<li>Select and configure replacement new data exports for your downstream requirements, then migrate before <strong>2023-03-31</strong>. The supplied material documents Blob Storage setup, not a complete classic-to-new migration procedure or every destination alternative.</li>
+<li>Select and configure replacement new data exports for your downstream requirements, then migrate before <strong>March 31, 2023</strong>. The supplied material documents Blob Storage setup, not a complete classic-to-new migration procedure or every destination alternative.</li>
 <li>If you choose Blob Storage, obtain Data export permission and use storage that supports block blobs: Standard General Purpose V1, General Purpose V2 or Blob storage, or Premium Block Blob storage. Contact your administrator if Data export is missing from navigation.</li>
 <li>Configure the destination using a connection string or system-assigned managed identity. Firewall-protected destinations require managed identity. Assign that identity Storage Blob Data Contributor, not Storage Account Contributor, at an appropriate scope. Enter the storage endpoint and case-sensitive container name, then save.</li>
 <li>Create and enable an export, select its data type and add the destination. Filtering, enrichment and transformation are optional. Each export supports up to five destinations.</li>
@@ -1944,7 +1944,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your Azure IoT Central applications use classic or legacy data exports. Microsoft warns of export disruption without migration before <strong>2023-03-31</strong>, but does not describe the precise failure behavior. Your application configurations have not been inspected.</p>
+<div class="rich-content"><p>You are affected if your Azure IoT Central applications use classic or legacy data exports. Microsoft warns of export disruption without migration before <strong>March 31, 2023</strong>, but does not describe the precise failure behavior. Your application configurations have not been inspected.</p>
 <p>New data exports are not the retirement target. The supplied material does not establish application shutdown, console/API removal, data deletion, retention changes or retirement-related costs.</p>
 <p>If you choose the documented Blob Storage replacement:</p>
 <ul>

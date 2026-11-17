@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2026-09-30"><span></span>Retired</span></div>
-  <h1>Retirement: NVv3-series Azure Virtual Machines will be retired on September 30 ,2026</h1><p>Azure NVv3-series VMs retired on 2026-09-30, except existing Azure UAE North users have an explicit extension through 2027-01-31. Microsoft states that remaining affected VMs will be deallocated after retirement, stopping workloads and VM billing, with no SLA or included support. Migrate workloads to a supported VM series or deallocate unneeded VMs. The current retirement guidance lists 2025-11-02 as the reserved-instance purchase cutoff, conflicting with 2025-09-30 in the announcement; this is separate from workload retirement.</p>
+  <h1>Retirement: NVv3-series Azure Virtual Machines will be retired on September 30 ,2026</h1><p>Azure NVv3-series VMs retired on September 30, 2026, except existing Azure UAE North users have an explicit extension through January 31, 2027. Microsoft states that remaining affected VMs will be deallocated after retirement, stopping workloads and VM billing, with no SLA or included support. Migrate workloads to a supported VM series or deallocate unneeded VMs. The current retirement guidance lists November 2, 2025 as the reserved-instance purchase cutoff, conflicting with September 30, 2025 in the announcement; this is separate from workload retirement.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-30">30 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 7 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2026</p>
-<div class="rich-content"><p>The general Azure NVv3-series retirement deadline was <strong>2026-09-30</strong>. Microsoft states that remaining affected VMs will be deallocated after retirement, stopping workloads and ending SLA coverage and included support.</p>
-<p><strong>Existing Azure UAE North users have an explicit extension through 2027-01-31</strong> and must migrate by that date.</p>
-<p>The separate purchase cutoff for 1-year and 3-year NVv3 reserved instances differs between sources: the announcement says <strong>2025-09-30</strong>, while the current product retirement guidance says <strong>2025-11-02</strong>. This summary uses the current product-guidance date; the supplied content does not explain the discrepancy or establish an extension of that purchase cutoff.</p>
+<div class="rich-content"><p>The general Azure NVv3-series retirement deadline was <strong>September 30, 2026</strong>. Microsoft states that remaining affected VMs will be deallocated after retirement, stopping workloads and ending SLA coverage and included support.</p>
+<p><strong>Existing Azure UAE North users have an explicit extension through January 31, 2027</strong> and must migrate by that date.</p>
+<p>The separate purchase cutoff for 1-year and 3-year NVv3 reserved instances differs between sources: the announcement says <strong>September 30, 2025</strong>, while the current product retirement guidance says <strong>November 2, 2025</strong>. This summary uses the current product-guidance date; the supplied content does not explain the discrepancy or establish an extension of that purchase cutoff.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired Azure NVv3-series VMs powered by NVIDIA Tesla M60 GPUs on <strong>2026-09-30</strong>, with continued use for existing Azure UAE North users through <strong>2027-01-31</strong>.</p>
+<div class="rich-content"><p>Microsoft retired Azure NVv3-series VMs powered by NVIDIA Tesla M60 GPUs on <strong>September 30, 2026</strong>, with continued use for existing Azure UAE North users through <strong>January 31, 2027</strong>.</p>
 <p>Affected sizes are:</p>
 <ul>
 <li>Standard_NV12s_v3</li>
@@ -1944,7 +1944,7 @@
 <li>Identify VMs using the six affected NVv3 sizes and determine whether they qualify for the existing-user Azure UAE North extension. The supplied content provides no inventory command or automated assessment procedure.</li>
 <li>Select a supported replacement for workloads you need to keep running. Microsoft recommends NVadsA10_v5. The retirement guidance lists NVadsA10_v5 or NC_RTXPRO6000BSE_v6 for graphics applications, virtual desktops, visualization and small AI workloads. It lists NCasT4_v3 for offline inference when latency is not a primary concern and smaller sizes or lower costs are priorities.</li>
 <li>Check target-region availability, pricing and quota, and request quota for the target VM. If considering NVadsA10_v5, compare its CPU, memory, GPU, storage and network limits with your requirements. It does not support Live Migration, Memory Preserving Updates or Nested Virtualization.</li>
-<li>Resize affected VMs to your selected supported size, or deallocate VMs you no longer need. The general deadline has passed; qualifying existing Azure UAE North users must migrate by <strong>2027-01-31</strong>.</li>
+<li>Resize affected VMs to your selected supported size, or deallocate VMs you no longer need. The general deadline has passed; qualifying existing Azure UAE North users must migrate by <strong>January 31, 2027</strong>.</li>
 </ol>
 <p>The supplied content does not provide detailed compatibility, backup, cutover or post-migration validation procedures. If you have a support plan and need resizing help, create a technical support request for Virtual Machine running Windows/Linux and select Assistance with resizing my VM.</p>
 </div>
@@ -1953,7 +1953,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you use one of the six listed NVv3 sizes. The supplied sources do not establish whether your environment contains those VMs.</p>
-<p>Microsoft states that remaining affected VMs will be deallocated after <strong>2026-09-30</strong>, stopping workloads and VM billing. NVv3 loses SLA coverage and included support after retirement. Existing Azure UAE North users may continue through <strong>2027-01-31</strong> under the documented extension.</p>
+<p>Microsoft states that remaining affected VMs will be deallocated after <strong>September 30, 2026</strong>, stopping workloads and VM billing. NVv3 loses SLA coverage and included support after retirement. Existing Azure UAE North users may continue through <strong>January 31, 2027</strong> under the documented extension.</p>
 <p>The content does not describe data retention, deletion, disk access or whether charges for associated resources cease. It provides no migration-cost estimate or separate retirement-related console, API, integration or deployment-tooling changes.</p>
 <p>NVadsA10_v5 and NVadsV710_v5 are outside this announcement; NVv4 is covered separately.</p>
 </div>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Network Watcher</span><span class="badge upcoming" data-deadline="2027-09-30"><span></span>Upcoming</span></div>
-  <h1>Retirement: Network security group flow logs in Azure Network Watcher will be retired</h1><p>Azure Network Watcher network security group (NSG) flow logs retire on 2027-09-30. Migrate to virtual network flow logs before retirement. After that date, Azure deletes existing NSG flow log resources and no longer supports traffic analytics enabled for them. Existing records in Azure Storage remain subject to configured retention policies and storage charges. New NSG flow log creation ended on 2025-06-30, a separate milestone. Use Network Watcher&#39;s migration view and reports to assess your selected subscriptions and regions and confirm replacement resource state; validate log delivery and downstream consumers separately.</p>
+  <h1>Retirement: Network security group flow logs in Azure Network Watcher will be retired</h1><p>Azure Network Watcher network security group (NSG) flow logs retire on September 30, 2027. Migrate to virtual network flow logs before retirement. After that date, Azure deletes existing NSG flow log resources and no longer supports traffic analytics enabled for them. Existing records in Azure Storage remain subject to configured retention policies and storage charges. New NSG flow log creation ended on June 30, 2025, a separate milestone. Use Network Watcher&#39;s migration view and reports to assess your selected subscriptions and regions and confirm replacement resource state; validate log delivery and downstream consumers separately.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-09-30"><strong>317 days remaining</strong><span>Retirement date: <time datetime="2027-09-30">30 Sep 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 4 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2027</p>
-<div class="rich-content"><p>NSG flow logs in Azure Network Watcher retire on <strong>2027-09-30</strong>. Complete migration to virtual network flow logs before retirement. After that date, Azure deletes existing NSG flow log resources and no longer supports traffic analytics enabled for them.</p>
-<p>Creation of new NSG flow logs ended on <strong>2025-06-30</strong>, according to the announcement. Product guidance confirms that new creation is unavailable without repeating its start date. This is a separate restriction, not a conflicting retirement date.</p>
+<div class="rich-content"><p>NSG flow logs in Azure Network Watcher retire on <strong>September 30, 2027</strong>. Complete migration to virtual network flow logs before retirement. After that date, Azure deletes existing NSG flow log resources and no longer supports traffic analytics enabled for them.</p>
+<p>Creation of new NSG flow logs ended on <strong>June 30, 2025</strong>, according to the announcement. Product guidance confirms that new creation is unavailable without repeating its start date. This is a separate restriction, not a conflicting retirement date.</p>
 <p>The supplied guidance gives no separate retirement dates for NSG flow log schema versions 1 and 2. Existing Azure Storage records are not deleted by retirement; configured retention policies continue to apply.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Network Watcher is retiring <strong>network security group (NSG) flow logs on 2027-09-30</strong>. Microsoft directs you to replace them with virtual network flow logs. No version-specific or regional retirement exceptions are documented.</p>
+<div class="rich-content"><p>Azure Network Watcher is retiring <strong>network security group (NSG) flow logs on September 30, 2027</strong>. Microsoft directs you to replace them with virtual network flow logs. No version-specific or regional retirement exceptions are documented.</p>
 <p>Existing NSG flow logs can remain in use before retirement, but you can no longer create new ones. The sources provide no separate maintenance or security-update commitment.</p>
 <p>After retirement, Azure deletes NSG flow log resources and no longer supports their traffic analytics. This does not delete existing log records from Azure Storage.</p>
 <p>Virtual network flow logs record supported Layer 4 traffic and add security admin rule decisions and virtual network encryption status. Their reference page describes replacement capabilities and limits; it does not independently establish the retirement or guarantee equivalent coverage for every configuration.</p>
@@ -1932,7 +1932,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Migrate to <strong>virtual network flow logs before 2027-09-30</strong>.</p>
+<div class="rich-content"><p>Migrate to <strong>virtual network flow logs before September 30, 2027</strong>.</p>
 <ol>
 <li>Open Network Watcher &gt; Logs &gt; Migrate flow logs in Azure portal. Select your subscriptions and regions, then review total and selected NSG flow log counts. As team-owned preparation, identify traffic analytics, storage and downstream consumer dependencies.</li>
 <li>Choose a migration method. Use the script for partial interface/subnet coverage or differing configurations. Use Azure Policy for uniform configurations, where the same NSG applies across all interfaces or subnets, or when you want virtual-network-level logging. The script does not support PaaS scenarios where NSG flow logs are in your subscription but target resources are in other subscriptions; manually enable replacement logging on the PaaS virtual network or subnet instead.</li>
@@ -1947,7 +1947,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if you use NSG flow logs or traffic analytics enabled for them. Without migration, Azure deletes those logging resources after <strong>2027-09-30</strong> and no longer supports their traffic analytics. The supplied guidance does not announce shutdown of VMs, virtual networks or NSG traffic filtering.</p>
+<div class="rich-content"><p>You are affected if you use NSG flow logs or traffic analytics enabled for them. Without migration, Azure deletes those logging resources after <strong>September 30, 2027</strong> and no longer supports their traffic analytics. The supplied guidance does not announce shutdown of VMs, virtual networks or NSG traffic filtering.</p>
 <p>Existing Azure Storage records remain subject to configured retention policies and storage charges. The NSG flow log retention feature requires general-purpose v2 storage accounts.</p>
 <h3>Migration scope and limits</h3>
 <ul>

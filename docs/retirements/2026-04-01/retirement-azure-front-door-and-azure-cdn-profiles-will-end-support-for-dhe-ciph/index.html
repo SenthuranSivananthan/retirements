@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Front Door</span><span class="badge retired" data-deadline="2026-04-01"><span></span>Retired</span></div>
-  <h1>Retirement: Azure Front Door and Azure CDN profiles will end support for DHE cipher suites on April 1, 2026</h1><p>Azure Front Door Standard, Premium and Classic, and Azure CDN from Microsoft Classic, end support for two DHE cipher suites on 2026-04-01 across client-to-service and service-to-origin TLS connections. Use that date as the action deadline. Enforcement timing remains unclear: the guidance says negotiation stops on that date but also says Microsoft will disable the suites afterward. Clients and origins that require these suites will fail TLS negotiation once disabled. Update both connection legs to compatible alternatives and validate them separately. This is a cipher-support change, not a shutdown of these services.</p>
+  <h1>Retirement: Azure Front Door and Azure CDN profiles will end support for DHE cipher suites on April 1, 2026</h1><p>Azure Front Door Standard, Premium and Classic, and Azure CDN from Microsoft Classic, end support for two DHE cipher suites on April 1, 2026 across client-to-service and service-to-origin TLS connections. Use that date as the action deadline. Enforcement timing remains unclear: the guidance says negotiation stops on that date but also says Microsoft will disable the suites afterward. Clients and origins that require these suites will fail TLS negotiation once disabled. Update both connection legs to compatible alternatives and validate them separately. This is a cipher-support change, not a shutdown of these services.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-04-01"><strong>Retired</strong><span>Retirement date: <time datetime="2026-04-01">1 Apr 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 month, 30 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Apr 2026</p>
-<div class="rich-content"><p>The stated support-end and retirement date is <strong>2026-04-01</strong> for both connection legs across all affected tiers. Use this as the action deadline.</p>
-<p>Precise enforcement timing remains unconfirmed. The retirement guidance says negotiation stops on 2026-04-01, but also says Microsoft will disable the suites after 2026-04-01. The supplied content documents neither an exact later enforcement date nor an extension or confirmed completion.</p>
+<div class="rich-content"><p>The stated support-end and retirement date is <strong>April 1, 2026</strong> for both connection legs across all affected tiers. Use this as the action deadline.</p>
+<p>Precise enforcement timing remains unconfirmed. The retirement guidance says negotiation stops on April 1, 2026, but also says Microsoft will disable the suites after April 1, 2026. The supplied content documents neither an exact later enforcement date nor an extension or confirmed completion.</p>
 <p>The reference pages' publication and update dates do not change this deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Front Door Standard, Premium and Classic, and Azure CDN from Microsoft Classic, end support on <strong>2026-04-01</strong> for:</p>
+<div class="rich-content"><p>Azure Front Door Standard, Premium and Classic, and Azure CDN from Microsoft Classic, end support on <strong>April 1, 2026</strong> for:</p>
 <ul>
 <li>TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</li>
 <li>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</li>
@@ -1952,7 +1952,7 @@
 </ul>
 <p>For origin configuration, the guidance points to App Service TLS/SSL settings or ARM templates, Application Gateway predefined or custom SSL policies, and API Management's Protocols and Ciphers blade.</p>
 <h3>Front Door Standard/Premium policies</h3>
-<p>The notice describes optional advance disabling through a TLS policy before 2026-04-01, available only for Standard and Premium. This option does not establish a later deadline.</p>
+<p>The notice describes optional advance disabling through a TLS policy before April 1, 2026, available only for Standard and Premium. This option does not establish a later deadline.</p>
 <p>The policy reference requires a Front Door profile, a custom domain and applicable DNS configuration. You can choose a predefined policy or customize the minimum TLS version, suites and priority. The newest predefined policy, TLSv1.2_2023, excludes ECDHE_CBC suites. The reference states that Windows 7, Windows 8 and Windows 8.1 require ECDHE_CBC rather than ECDHE_GCM compatibility.</p>
 <p>Clients must also support a group in the domain's separately configured key exchange policy. Hybrid post-quantum groups require TLS 1.3; a custom key exchange policy permitting TLS 1.2 must include at least one classical group.</p>
 </div>

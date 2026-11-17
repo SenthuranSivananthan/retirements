@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Scheduler</span><span class="badge retired" data-deadline="2022-01-31"><span></span>Retired</span></div>
-  <h1>Extend Azure Scheduler retirement date to 31 January 2022</h1><p>Microsoft extended Azure Scheduler’s standalone-service retirement from December 2019 to 2022-01-31. Move configured jobs to Azure Logic Apps before that date to continue using them. Earlier free-SKU and portal restrictions are separate milestones. The original timeline described full retirement as stopping all jobs and deleting all data, but the extension notices do not restate those consequences. The supplied Logic Apps quickstart does not establish Scheduler migration requirements or completion.</p>
+  <h1>Extend Azure Scheduler retirement date to 31 January 2022</h1><p>Microsoft extended Azure Scheduler’s standalone-service retirement from December 2019 to January 31, 2022. Move configured jobs to Azure Logic Apps before that date to continue using them. Earlier free-SKU and portal restrictions are separate milestones. The original timeline described full retirement as stopping all jobs and deleting all data, but the extension notices do not restate those consequences. The supplied Logic Apps quickstart does not establish Scheduler migration requirements or completion.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-01-31"><strong>Retired</strong><span>Retirement date: <time datetime="2022-01-31">31 Jan 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 4 months, 8 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,20 +1916,20 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Jan 2022</p>
-<div class="rich-content"><p>Azure Scheduler’s extended retirement date is <strong>2022-01-31</strong>. Microsoft directs you to move configured jobs to Azure Logic Apps before that date to continue using them.</p>
+<div class="rich-content"><p>Azure Scheduler’s extended retirement date is <strong>January 31, 2022</strong>. Microsoft directs you to move configured jobs to Azure Logic Apps before that date to continue using them.</p>
 <p>The retained original timeline contains separate milestones:</p>
 <ul>
-<li><strong>2019-09-30:</strong> Free-SKU job collections disabled and their jobs stopped; data remained retrievable for migration. Portal creation of job collections disabled for all SKUs.</li>
-<li><strong>2019-10-31:</strong> Scheduler removed from the Azure portal; existing Standard, P10 and P20 resources continued running through API and SDK access.</li>
-<li><strong>2019-12-31:</strong> Original full-retirement date, explicitly superseded by the extension to 2022-01-31.</li>
+<li><strong>September 30, 2019:</strong> Free-SKU job collections disabled and their jobs stopped; data remained retrievable for migration. Portal creation of job collections disabled for all SKUs.</li>
+<li><strong>October 31, 2019:</strong> Scheduler removed from the Azure portal; existing Standard, P10 and P20 resources continued running through API and SDK access.</li>
+<li><strong>December 31, 2019:</strong> Original full-retirement date, explicitly superseded by the extension to January 31, 2022.</li>
 </ul>
-<p>The extension does not explicitly revise the earlier free-SKU or portal milestones. The original full-retirement milestone included stopping all jobs and deleting all data; the updated notices do not restate those consequences for 2022-01-31.</p>
+<p>The extension does not explicitly revise the earlier free-SKU or portal milestones. The original full-retirement milestone included stopping all jobs and deleting all data; the updated notices do not restate those consequences for January 31, 2022.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft extended retirement of <strong>Azure Scheduler as a standalone service</strong> to <strong>2022-01-31</strong> and directs you to replace configured jobs with Azure Logic Apps.</p>
-<p>The historical timeline distinguishes free-SKU jobs, which stopped on 2019-09-30, from existing Standard, P10 and P20 resources, which continued running through API and SDK access after portal removal on 2019-10-31. The extension does not explicitly change those earlier milestones.</p>
+<div class="rich-content"><p>Microsoft extended retirement of <strong>Azure Scheduler as a standalone service</strong> to <strong>January 31, 2022</strong> and directs you to replace configured jobs with Azure Logic Apps.</p>
+<p>The historical timeline distinguishes free-SKU jobs, which stopped on September 30, 2019, from existing Standard, P10 and P20 resources, which continued running through API and SDK access after portal removal on October 31, 2019. The extension does not explicitly change those earlier milestones.</p>
 <p>The notices do not document regional exceptions or interim maintenance, support or security-update commitments. They also do not restate post-retirement operating behavior. The supplied Logic Apps Consumption quickstart is not a Scheduler retirement or migration notice.</p>
 </div>
       <div class="notice"></div>
@@ -1939,10 +1939,10 @@
 <div class="rich-content"><ol>
 <li>Identify the configured Azure Scheduler jobs you need to continue using. The supplied notices do not provide an inventory procedure.</li>
 <li>Review the referenced migration guidance and FAQ. The supplied migration-reference content is instead a Logic Apps Consumption quickstart, so it does not establish Scheduler migration prerequisites or compatibility.</li>
-<li>Move your configured jobs to <strong>Azure Logic Apps before 2022-01-31</strong> to continue using them.</li>
+<li>Move your configured jobs to <strong>Azure Logic Apps before January 31, 2022</strong> to continue using them.</li>
 </ol>
 <p>The supplied content does not provide Scheduler-specific export, backup, validation, cutover or cleanup procedures, or document capability gaps. The quickstart’s account, subscription, network and email requirements apply to its example, not to every Scheduler migration.</p>
-<p>Separately, the historical portal-removal instructions told customers who did not want jobs to continue running to disable or delete their job collections before 2019-10-31. That was not the extended retirement deadline.</p>
+<p>Separately, the historical portal-removal instructions told customers who did not want jobs to continue running to disable or delete their job collections before October 31, 2019. That was not the extended retirement deadline.</p>
 </div>
       <p> </p>
     </section>
@@ -1950,11 +1950,11 @@
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>Your configured Azure Scheduler jobs are in scope; the supplied pages do not establish which resources you use.</p>
 <ul>
-<li><strong>Free SKU:</strong> Job collections were disabled and jobs stopped on 2019-09-30 under the original timeline. Data remained retrievable for migration at that phase.</li>
-<li><strong>All SKUs:</strong> Portal creation of job collections was disabled on 2019-09-30; management of existing collections remained available at that phase.</li>
-<li><strong>Standard, P10 and P20:</strong> Existing resources continued running through API and SDK access after portal removal on 2019-10-31. Portal removal was therefore separate from workload shutdown.</li>
+<li><strong>Free SKU:</strong> Job collections were disabled and jobs stopped on September 30, 2019 under the original timeline. Data remained retrievable for migration at that phase.</li>
+<li><strong>All SKUs:</strong> Portal creation of job collections was disabled on September 30, 2019; management of existing collections remained available at that phase.</li>
+<li><strong>Standard, P10 and P20:</strong> Existing resources continued running through API and SDK access after portal removal on October 31, 2019. Portal removal was therefore separate from workload shutdown.</li>
 </ul>
-<p>Microsoft directs you to migrate jobs to continue using them after the 2022-01-31 retirement. The original timeline associated full retirement with all jobs stopping and all data being deleted, but the extension notices do not confirm those mechanics or retention details for the revised date. Continued operation after retirement is not documented.</p>
+<p>Microsoft directs you to migrate jobs to continue using them after the January 31, 2022 retirement. The original timeline associated full retirement with all jobs stopping and all data being deleted, but the extension notices do not confirm those mechanics or retention details for the revised date. Continued operation after retirement is not documented.</p>
 <p>No migration cost estimate or unaffected configuration is documented. The quickstart’s pay-per-execution billing describes its example, not your migration costs.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

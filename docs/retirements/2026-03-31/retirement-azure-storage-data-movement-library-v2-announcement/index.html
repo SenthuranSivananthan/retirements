@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2026-03-31"><span></span>Retired</span></div>
-  <h1>Retirement: Azure Storage Data Movement Library (v2) Announcement</h1><p>Microsoft announced retirement of the legacy Azure Storage Data Movement Library (v2) on 2026-03-31 and recommends migration for continued support. The supplied guide covers migration from Microsoft.Azure.Storage.DataMovement v2 to Azure.Storage.DataMovement v12, with substantial API changes and capability gaps. The announcement warns of potential service disruptions but does not establish that existing workloads shut down on that date.</p>
+  <h1>Retirement: Azure Storage Data Movement Library (v2) Announcement</h1><p>Microsoft announced retirement of the legacy Azure Storage Data Movement Library (v2) on March 31, 2026 and recommends migration for continued support. The supplied guide covers migration from Microsoft.Azure.Storage.DataMovement v2 to Azure.Storage.DataMovement v12, with substantial API changes and capability gaps. The announcement warns of potential service disruptions but does not establish that existing workloads shut down on that date.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-03-31"><strong>Retired</strong><span>Retirement date: <time datetime="2026-03-31">31 Mar 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 6 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2026</p>
-<div class="rich-content"><p>The announced retirement date for Azure Storage Data Movement Library (v2) is <strong>2026-03-31</strong>. Microsoft recommends completing migration before that date; the announcement's recommended-action section also uses “by” the same date.</p>
+<div class="rich-content"><p>The announced retirement date for Azure Storage Data Movement Library (v2) is <strong>March 31, 2026</strong>. Microsoft recommends completing migration before that date; the announcement's recommended-action section also uses “by” the same date.</p>
 <p>The announcement does not specify a shutdown time or separate support-ending and workload-shutdown milestones. It does not establish that existing workloads stop working on that date. The migration guide supplies no separate deadline and does not contradict or extend the announcement.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft announced retirement of the legacy Azure Storage Data Movement Library (v2) on <strong>2026-03-31</strong> and recommends moving to the modern library for continued support. This concerns applications using the library, not Azure Storage generally.</p>
+<div class="rich-content"><p>Microsoft announced retirement of the legacy Azure Storage Data Movement Library (v2) on <strong>March 31, 2026</strong> and recommends moving to the modern library for continued support. This concerns applications using the library, not Azure Storage generally.</p>
 <p>The supplied migration guide covers <strong>Microsoft.Azure.Storage.DataMovement v2</strong> to <strong>Azure.Storage.DataMovement v12</strong>. Version 12 separates core and storage-specific packages and substantially changes the API: an instance-based TransferManager and StartTransferAsync replace static transfer methods, StorageResource objects define endpoints, and TransferOptions replaces TransferContext.</p>
 <p>The announcement highlights checkpointing and shared infrastructure with Azure Storage v12 client libraries. Neither source specifies regional exceptions, pre-retirement maintenance commitments or a post-retirement security-update policy. Existing-workload availability after retirement is not confirmed.</p>
 </div>
@@ -1930,7 +1930,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Microsoft recommends migrating before <strong>2026-03-31</strong>. Use the supplied guide's side-by-side examples; it assumes familiarity with the legacy library.</p>
+<div class="rich-content"><p>Microsoft recommends migrating before <strong>March 31, 2026</strong>. Use the supplied guide's side-by-side examples; it assumes familiarity with the legacy library.</p>
 <ol>
 <li>Identify applications using Microsoft.Azure.Storage.DataMovement v2. The supplied sources provide no dependency-discovery method.</li>
 <li>Review upload, download, copy, progress-reporting and pause/resume usage against the v12 mappings. Check the compatibility limits before selecting replacements.</li>
@@ -1946,7 +1946,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are in scope if your applications use Microsoft.Azure.Storage.DataMovement v2. The migration guide covers local files, Blob Storage and file-share transfers; it does not document region-specific exceptions or unaffected customer populations.</p>
-<p>Microsoft warns of potential service disruptions without migration, but the announcement does not establish that retirement shuts down existing workloads or removes data access on <strong>2026-03-31</strong>.</p>
+<p>Microsoft warns of potential service disruptions without migration, but the announcement does not establish that retirement shuts down existing workloads or removes data access on <strong>March 31, 2026</strong>.</p>
 <p>Migration has documented compatibility limits:</p>
 <ul>
 <li>Legacy listing-concurrency limits, cache-size limits, user-agent prefixes, last-checkpoint observation and client request IDs are listed as not implemented in v12.</li>

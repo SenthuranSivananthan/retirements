@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2025-02-01"><span></span>Retired</span></div>
-  <h1>Retirement: Azure Monitor experience (preview) in HDInsight is retiring by February 1, 2025</h1><p>Azure HDInsight’s Azure Monitor experience (preview) retired on 2025-02-01. Microsoft required migration to Azure Monitor Agent (AMA) using HDInsight image 2407260448 before 2025-01-31. The guides separately describe preview operation until 2025-01-31 and no support beyond 2025-02-01; they do not establish an exact shutdown time or shutdown of HDInsight workloads. Migration includes cluster recreation for preview users and table-schema changes for customers moving directly from Classic integration.</p>
+  <h1>Retirement: Azure Monitor experience (preview) in HDInsight is retiring by February 1, 2025</h1><p>Azure HDInsight’s Azure Monitor experience (preview) retired on February 1, 2025. Microsoft required migration to Azure Monitor Agent (AMA) using HDInsight image 2407260448 before January 31, 2025. The guides separately describe preview operation until January 31, 2025 and no support beyond February 1, 2025; they do not establish an exact shutdown time or shutdown of HDInsight workloads. Migration includes cluster recreation for preview users and table-schema changes for customers moving directly from Classic integration.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-02-01"><strong>Retired</strong><span>Retirement date: <time datetime="2025-02-01">1 Feb 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 5 months, 3 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Feb 2025</p>
-<div class="rich-content"><p>Azure HDInsight’s Azure Monitor experience (preview) retired on <strong>2025-02-01</strong>.</p>
-<p>Microsoft required migration to Azure Monitor Agent (AMA), using HDInsight image 2407260448, <strong>before 2025-01-31</strong> to avoid service disruptions. The guides say the preview would work until 2025-01-31 and would not be supported beyond 2025-02-01. These are separate migration, operation and retirement/support milestones, not an extension. The precise operational cutoff is unclear; the content does not establish a cluster workload shutdown.</p>
-<p>Classic integration’s 2024-08-31 ingestion cutoff applies to a different experience, not this preview retirement.</p>
+<div class="rich-content"><p>Azure HDInsight’s Azure Monitor experience (preview) retired on <strong>February 1, 2025</strong>.</p>
+<p>Microsoft required migration to Azure Monitor Agent (AMA), using HDInsight image 2407260448, <strong>before January 31, 2025</strong> to avoid service disruptions. The guides say the preview would work until January 31, 2025 and would not be supported beyond February 1, 2025. These are separate migration, operation and retirement/support milestones, not an extension. The precise operational cutoff is unclear; the content does not establish a cluster workload shutdown.</p>
+<p>Classic integration’s August 31, 2024 ingestion cutoff applies to a different experience, not this preview retirement.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired the <strong>Azure Monitor experience (preview) in HDInsight</strong> on 2025-02-01 and directed customers to AMA, which replaces the Log Analytics agent. This is a monitoring-integration retirement, not retirement of HDInsight or Azure Monitor logs as whole services.</p>
+<div class="rich-content"><p>Microsoft retired the <strong>Azure Monitor experience (preview) in HDInsight</strong> on February 1, 2025 and directed customers to AMA, which replaces the Log Analytics agent. This is a monitoring-integration retirement, not retirement of HDInsight or Azure Monitor logs as whole services.</p>
 <p>The notice identifies image <strong>2407260448</strong> as the migration image. The AMA guide documents API version 2024-08-01-preview and AMA as the default setup for that image. AMA uses data collection rules (DCRs), system-assigned identity authentication and redesigned Log Analytics schemas, and is available in all HDInsight regions.</p>
 <p>The preview had limited support, with Microsoft patching only critical security issues; fixes requiring an image change required migration. These commitments do not establish support beyond the cutoff. The notice’s older-image pinning option is not confirmed as available after retirement.</p>
 </div>

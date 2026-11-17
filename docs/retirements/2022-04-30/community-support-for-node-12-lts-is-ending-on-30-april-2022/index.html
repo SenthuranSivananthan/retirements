@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">App Service</span><span class="badge retired" data-deadline="2022-04-30"><span></span>Retired</span></div>
-  <h1>Community support for Node 12 LTS is ending on 30 April 2022</h1><p>Node 12 LTS support on Azure App Service for Windows and Linux ended on 2022-04-30. Existing applications continue running, but Microsoft no longer provides Node 12 LTS patches or customer service. The notice directed customers to update to Node 14 LTS before that date; it does not establish that Node 14 remains supported today. Runtime changes restart applications.</p>
+  <h1>Community support for Node 12 LTS is ending on 30 April 2022</h1><p>Node 12 LTS support on Azure App Service for Windows and Linux ended on April 30, 2022. Existing applications continue running, but Microsoft no longer provides Node 12 LTS patches or customer service. The notice directed customers to update to Node 14 LTS before that date; it does not establish that Node 14 remains supported today. Runtime changes restart applications.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-04-30"><strong>Retired</strong><span>Retirement date: <time datetime="2022-04-30">30 Apr 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 month, 14 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Apr 2022</p>
-<div class="rich-content"><p>Node 12 LTS support on Azure App Service for Windows and Linux ended on <strong>2022-04-30</strong>. The notice directed you to update before that date.</p>
+<div class="rich-content"><p>Node 12 LTS support on Azure App Service for Windows and Linux ended on <strong>April 30, 2022</strong>. The notice directed you to update before that date.</p>
 <p>This is an end-of-support milestone, not an application shutdown: existing applications continue running, but Microsoft no longer provides Node 12 LTS patches or customer service. The general runtime-policy page supplies no separate retirement date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure App Service ended support for <strong>Node 12 LTS on Windows and Linux</strong> on <strong>2022-04-30</strong>. Existing applications continue running, but lose Node 12 LTS patches and customer service.</p>
+<div class="rich-content"><p>Azure App Service ended support for <strong>Node 12 LTS on Windows and Linux</strong> on <strong>April 30, 2022</strong>. Existing applications continue running, but lose Node 12 LTS patches and customer service.</p>
 <p>The general runtime policy says end-of-life versions disappear from the Runtime Stack dropdown; existing applications targeting them should not be affected. It does not promise continued support or security updates.</p>
 <p>The Q&amp;A page attributes patch provision to “.NET” despite discussing Node 12; that attribution is unresolved. The retirement notice separately states that Microsoft stops providing Node 12 LTS patches.</p>
 </div>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify affected applications by checking WEBSITE_NODE_DEFAULT_VERSION on Windows or linux-fx-version on Linux.</li>
-<li>Select a supported replacement. The retirement notice recommended <strong>Node 14 LTS before 2022-04-30</strong>, but that historical recommendation does not establish current support. List currently supported runtimes with <code>az webapp list-runtimes --os-type windows</code> or <code>az webapp list-runtimes --os-type linux</code>.</li>
+<li>Select a supported replacement. The retirement notice recommended <strong>Node 14 LTS before April 30, 2022</strong>, but that historical recommendation does not establish current support. List currently supported runtimes with <code>az webapp list-runtimes --os-type windows</code> or <code>az webapp list-runtimes --os-type linux</code>.</li>
 <li>Update affected applications through the portal or Azure CLI. For Linux in the portal, select the app, then Configuration → General settings → Stack Settings → Major version, and save.</li>
 </ol>
 <p>Changing runtime settings restarts your application. For Windows, the runtime guidance recommends tilde syntax rather than pinning a specific minor or patch version, whose availability is not guaranteed.</p>
@@ -1943,7 +1943,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your Azure App Service applications use <strong>Node 12 LTS on Windows or Linux</strong>. No tenant resources have been inspected.</p>
-<p>Without an update, existing applications continue running, but Microsoft no longer provides Node 12 LTS patches or customer service after <strong>2022-04-30</strong>. Workload continuity does not mean continued support or security updates.</p>
+<p>Without an update, existing applications continue running, but Microsoft no longer provides Node 12 LTS patches or customer service after <strong>April 30, 2022</strong>. Workload continuity does not mean continued support or security updates.</p>
 <p>The general runtime policy removes end-of-life versions from the Runtime Stack dropdown. Changing runtime settings restarts the application. The supplied content does not document workload shutdown, API restrictions, data deletion or pricing changes, and does not quantify your exposure.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

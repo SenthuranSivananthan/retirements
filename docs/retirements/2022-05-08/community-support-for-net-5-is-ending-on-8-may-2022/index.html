@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">App Service</span><span class="badge retired" data-deadline="2022-05-08"><span></span>Retired</span></div>
-  <h1>Community support for .NET 5 is ending on 8 May 2022</h1><p>Support for .NET 5 ended on 2022-05-08. The notice states that Azure App Service applications will continue to run, but Microsoft will no longer provide .NET 5 patches or customer service. It directs you to update to .NET 6 before that date. General App Service guidance also describes removal of end-of-life versions from the Runtime Stack dropdown; this is not a workload shutdown.</p>
+  <h1>Community support for .NET 5 is ending on 8 May 2022</h1><p>Support for .NET 5 ended on May 8, 2022. The notice states that Azure App Service applications will continue to run, but Microsoft will no longer provide .NET 5 patches or customer service. It directs you to update to .NET 6 before that date. General App Service guidance also describes removal of end-of-life versions from the Runtime Stack dropdown; this is not a workload shutdown.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-05-08"><strong>Retired</strong><span>Retirement date: <time datetime="2022-05-08">8 May 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 month, 22 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">8 May 2022</p>
-<div class="rich-content"><p>Support for .NET 5 ended on <strong>2022-05-08</strong>. The notice directs you to update applications to .NET 6 before that date; this is not a separate retirement milestone.</p>
+<div class="rich-content"><p>Support for .NET 5 ended on <strong>May 8, 2022</strong>. The notice directs you to update applications to .NET 6 before that date; this is not a separate retirement milestone.</p>
 <p>The title calls this community support, while the body calls it extended support. Both give the same date. The cutoff ends patches and customer service, not App Service workload execution.</p>
 <p>The other supplied pages establish no additional retirement dates.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft ended support for .NET 5 on 2022-05-08 and will no longer provide .NET 5 patches or customer service. The notice states that applications hosted on Azure App Service will continue to run and existing workloads will not be impacted.</p>
+<div class="rich-content"><p>Microsoft ended support for .NET 5 on May 8, 2022 and will no longer provide .NET 5 patches or customer service. The notice states that applications hosted on Azure App Service will continue to run and existing workloads will not be impacted.</p>
 <p>Separately, general App Service policy removes end-of-life .NET versions from the Runtime Stack selection dropdown. Existing apps targeting those versions should not be affected. This policy does not independently establish the .NET 5 retirement date or promise post-end-of-life maintenance or security updates.</p>
 </div>
       <div class="notice"></div>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your Azure App Service applications using .NET 5. You can review each app's Configuration, General settings and Stack Settings in the Azure portal; the supplied guidance provides no fleet-wide inventory method.</li>
-<li>Follow the notice's required action: update affected applications to .NET 6. Its stated target was before 2022-05-08. The general runtime page recommends the most recent supported version but does not document compatibility or migration procedures.</li>
+<li>Follow the notice's required action: update affected applications to .NET 6. Its stated target was before May 8, 2022. The general runtime page recommends the most recent supported version but does not document compatibility or migration procedures.</li>
 <li>To change the configured runtime, select a supported .NET version under Major version and save. <strong>Changing stack settings restarts the application.</strong> This configuration change alone is not documented as a complete application migration.</li>
 </ol>
 <p>You can list supported runtimes with <code>az webapp list-runtimes --os-type linux</code> or <code>az webapp list-runtimes --os-type windows</code>. The supplied content does not provide migration prerequisites, backup, cutover, cleanup or post-change validation procedures.</p>
@@ -1942,7 +1942,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>The notice addresses .NET 5 applications on Azure App Service. The supplied content does not establish whether you have affected applications or specify regional exceptions.</p>
-<p>If you remain on .NET 5 after 2022-05-08, the notice says your applications will continue to run, but Microsoft will no longer provide .NET 5 patches or customer service.</p>
+<p>If you remain on .NET 5 after May 8, 2022, the notice says your applications will continue to run, but Microsoft will no longer provide .NET 5 patches or customer service.</p>
 <p>General App Service policy separately removes end-of-life versions from the Runtime Stack dropdown without describing a shutdown of existing apps. Changing stack settings causes an application restart; its duration is not specified. Effects on deployment tooling, integrations, data access, retention and costs are not documented.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

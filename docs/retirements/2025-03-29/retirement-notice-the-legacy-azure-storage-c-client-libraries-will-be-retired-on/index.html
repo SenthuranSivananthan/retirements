@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">SDKs · Storage Accounts</span><span class="badge retired" data-deadline="2025-03-29"><span></span>Retired</span></div>
-  <h1>Retirement notice: The legacy Azure Storage C++ client libraries will be retired on 29 March 2025</h1><p>The legacy Azure Storage C++ client libraries retired on 2025-03-29. Microsoft no longer issues updates for them, but the notice explicitly permits continued use; it does not announce an Azure Storage service shutdown or loss of data access. Transition to the latest libraries. The supplied migration guide covers Blob workloads moving primarily from v7.5 to v12, not equivalent migration paths for Tables, Queues or Files. The legacy repository was separately archived on 2025-04-08 and is read-only.</p>
+  <h1>Retirement notice: The legacy Azure Storage C++ client libraries will be retired on 29 March 2025</h1><p>The legacy Azure Storage C++ client libraries retired on March 29, 2025. Microsoft no longer issues updates for them, but the notice explicitly permits continued use; it does not announce an Azure Storage service shutdown or loss of data access. Transition to the latest libraries. The supplied migration guide covers Blob workloads moving primarily from v7.5 to v12, not equivalent migration paths for Tables, Queues or Files. The legacy repository was separately archived on April 8, 2025 and is read-only.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-03-29"><strong>Retired</strong><span>Retirement date: <time datetime="2025-03-29">29 Mar 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">29 Mar 2025</p>
-<div class="rich-content"><p>The legacy Azure Storage C++ client libraries retired on <strong>2025-03-29</strong>. The notice also specified that date as the migration target. Microsoft no longer issues updates for the legacy libraries after that date, although they remain usable.</p>
-<p>The repository was separately archived on <strong>2025-04-08</strong> and is read-only. This is not a retirement extension. The supplied sources do not establish a workload-shutdown or data-access cutoff.</p>
+<div class="rich-content"><p>The legacy Azure Storage C++ client libraries retired on <strong>March 29, 2025</strong>. The notice also specified that date as the migration target. Microsoft no longer issues updates for the legacy libraries after that date, although they remain usable.</p>
+<p>The repository was separately archived on <strong>April 8, 2025</strong> and is read-only. This is not a retirement extension. The supplied sources do not establish a workload-shutdown or data-access cutoff.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>The legacy Azure Storage C++ client libraries retired on <strong>2025-03-29</strong>. Microsoft no longer issues updates for these libraries, but you can continue using them. Their source remains available on GitHub in the archived, read-only repository.</p>
+<div class="rich-content"><p>The legacy Azure Storage C++ client libraries retired on <strong>March 29, 2025</strong>. Microsoft no longer issues updates for these libraries, but you can continue using them. Their source remains available on GitHub in the archived, read-only repository.</p>
 <p>The legacy library supports Tables, Blobs, Queues and Files. The repository labels <strong>v7.5.0 deprecated</strong>; the notice does not enumerate all affected versions or regional and customer exceptions. It does not separately define support or security-update commitments.</p>
 <p>The supplied migration guide covers Blob applications moving primarily from v7.5 to v12. V12 changes packages, authentication and resource objects, removes Boost and cpprestsdk dependencies, and provides synchronous APIs without an asynchronous interface. The guide does not establish replacement paths for Tables, Queues or Files. The underlying Azure Storage services are not identified as retiring.</p>
 </div>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify applications using the legacy libraries, including dependencies on <code>azure-storage-cpp</code> or the <code>Microsoft.Azure.Storage.CPP</code> NuGet package. This is a team-owned dependency review; the sources provide no automated discovery procedure. Separate Blob, Table, Queue and File usage before selecting replacements.</li>
-<li>Transition to the latest Azure Storage C++ client libraries, as directed by the retirement notice. Its migration target was <strong>2025-03-29</strong>. Use the supplied v12 migration guide for Blob workloads; it does not establish equivalent migration paths for the other services.</li>
+<li>Transition to the latest Azure Storage C++ client libraries, as directed by the retirement notice. Its migration target was <strong>March 29, 2025</strong>. Use the supplied v12 migration guide for Blob workloads; it does not establish equivalent migration paths for the other services.</li>
 <li>For Blob migration, install the documented package with <code>vcpkg install azure-storage-blobs-cpp</code> and adapt namespaces, clients and operations. The guide assumes v7.5 familiarity and directs new users to the v12 Quickstart.</li>
 <li>Adapt authentication and directory handling. SAS authentication requires a complete SAS URI, and SAS rotation requires a new client. Retain the shared credential object for shared-key rotation across a service client and derived clients. Replace legacy directory objects with blob naming and hierarchical listing. For directory-heavy workloads, the guide suggests considering hierarchical namespace and the Data Lake Gen2 SDK, but that migration is outside its scope.</li>
 <li>Preserve metadata explicitly when overwriting blob content, and implement required content-hash calculation and validation. Resolve the guide's conflicting transactional-checksum guidance before depending on those capabilities. Adapt asynchronous calls and retry behavior: v12 has no asynchronous interface and supports exponential retry only. Wrapping synchronous calls in an asynchronous framework still performs synchronous I/O and, according to the guide, provides no performance gain.</li>
@@ -1944,7 +1944,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your applications use the legacy Azure Storage C++ client libraries. The supplied sources do not inspect your resources or provide an automated inventory method.</p>
-<p>If you remain on the legacy libraries, they remain usable, but Microsoft no longer issues updates after <strong>2025-03-29</strong>. The notice's recommendation to migrate for data access does not establish a data-access cutoff: it explicitly permits continued library use. Repository archival on <strong>2025-04-08</strong> separately made the repository read-only.</p>
+<p>If you remain on the legacy libraries, they remain usable, but Microsoft no longer issues updates after <strong>March 29, 2025</strong>. The notice's recommendation to migrate for data access does not establish a data-access cutoff: it explicitly permits continued library use. Repository archival on <strong>April 8, 2025</strong> separately made the repository read-only.</p>
 <p>For Blob applications migrating primarily from v7.5 to v12, important compatibility differences include:</p>
 <ul>
 <li>No equivalent to the legacy directory object; use blob naming and hierarchical listing.</li>

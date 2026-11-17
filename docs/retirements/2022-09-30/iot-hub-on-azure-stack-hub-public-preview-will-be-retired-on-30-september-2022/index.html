@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure IoT Edge · Azure IoT Hub · Azure Stack Hub</span><span class="badge retired" data-deadline="2022-09-30"><span></span>Retired</span></div>
-  <h1>IoT Hub on Azure Stack Hub public preview will be retired on 30 September 2022</h1><p>The public preview of IoT Hub on Azure Stack Hub retired on 2022-09-30. Microsoft recommended migrating to Azure IoT Edge gateway before that date and said it would remove the preview package from Azure Stack Marketplace afterward, without specifying a removal date. The supplied removal guide says the preview is closed but does not independently establish workload shutdown. Uninstalling the resource provider permanently deletes all devices and data; dependencies require separate removal.</p>
+  <h1>IoT Hub on Azure Stack Hub public preview will be retired on 30 September 2022</h1><p>The public preview of IoT Hub on Azure Stack Hub retired on September 30, 2022. Microsoft recommended migrating to Azure IoT Edge gateway before that date and said it would remove the preview package from Azure Stack Marketplace afterward, without specifying a removal date. The supplied removal guide says the preview is closed but does not independently establish workload shutdown. Uninstalling the resource provider permanently deletes all devices and data; dependencies require separate removal.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2022-09-30">30 Sep 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 6 months, 13 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2022</p>
-<div class="rich-content"><p>The <strong>IoT Hub on Azure Stack Hub public preview</strong> retired on <strong>2022-09-30</strong>. Microsoft recommended migrating before that date.</p>
+<div class="rich-content"><p>The <strong>IoT Hub on Azure Stack Hub public preview</strong> retired on <strong>September 30, 2022</strong>. Microsoft recommended migrating before that date.</p>
 <p>Microsoft said it would remove the package from Azure Stack Marketplace afterward, but supplied no exact removal date. The removal guide says the preview is closed and cites the same retirement notice; it does not independently establish an uninstall deadline, support cutoff or workload shutdown date.</p>
-<p>Separately, the replacement guidance lists IoT Edge 1.5 LTS support ending on <strong>2026-11-10</strong> and IoT Edge 1.4 LTS reaching end of life on <strong>2024-11-12</strong>. These version-specific milestones do not change the Azure Stack Hub preview retirement date.</p>
+<p>Separately, the replacement guidance lists IoT Edge 1.5 LTS support ending on <strong>November 10, 2026</strong> and IoT Edge 1.4 LTS reaching end of life on <strong>November 12, 2024</strong>. These version-specific milestones do not change the Azure Stack Hub preview retirement date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired the <strong>public preview of IoT Hub on Azure Stack Hub</strong> on 2022-09-30 and announced removal of its Azure Stack Marketplace package afterward. The supplied removal guide confirms that the preview is closed.</p>
+<div class="rich-content"><p>Microsoft retired the <strong>public preview of IoT Hub on Azure Stack Hub</strong> on September 30, 2022 and announced removal of its Azure Stack Marketplace package afterward. The supplied removal guide confirms that the preview is closed.</p>
 <p>Microsoft recommends Azure IoT Edge gateway, which integrates with Azure IoT Hub running in Azure and provides diagnostics capabilities. You can host the gateway on an Azure Stack Hub virtual machine or a virtual machine on other physical hardware.</p>
 <p>This notice does not retire Azure IoT Hub running in Azure, Azure Stack Hub VMs or IoT Edge generally. It does not document regional or version exceptions, maintenance or security-update commitments, or whether existing preview workloads stop running.</p>
 </div>
@@ -1931,7 +1931,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Microsoft recommended migrating before <strong>2022-09-30</strong>. The supplied guidance supports these steps:</p>
+<div class="rich-content"><p>Microsoft recommended migrating before <strong>September 30, 2022</strong>. The supplied guidance supports these steps:</p>
 <ol>
 <li>Identify whether the IoT Hub resource provider is installed: open Marketplace management and look for IoT Hub marked as installed. This does not inventory individual workloads or devices.</li>
 <li>Choose an Azure IoT Edge gateway host: an Azure Stack Hub VM or a VM on other physical hardware. If you choose Azure Stack Hub, create a VM there.</li>
@@ -1947,7 +1947,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>This retirement affects the <strong>IoT Hub resource provider public preview on Azure Stack Hub</strong>. Marketplace management can identify an installed provider, but it does not establish which individual workloads or devices depend on it. Your environment has not been inspected.</p>
-<p>Microsoft announced removal of the Marketplace package after 2022-09-30. The supplied content does not explain whether leaving an existing deployment installed affects workload operation, APIs, integrations, deployment tooling or data access. It provides no retirement-specific cost estimates or retention policy.</p>
+<p>Microsoft announced removal of the Marketplace package after September 30, 2022. The supplied content does not explain whether leaving an existing deployment installed affects workload operation, APIs, integrations, deployment tooling or data access. It provides no retirement-specific cost estimates or retention policy.</p>
 <p>Provider uninstallation has a separate, explicit consequence: it irreversibly deletes all devices and data. Dependencies such as Azure Event Hubs remain unless separately removed.</p>
 <p>Azure IoT Hub running in Azure is part of the recommended replacement architecture, not the retired preview. For transparent gateways, downstream devices cannot use file upload; this is a documented existing limitation, not a retirement consequence. IoT Edge version support milestones are separate and do not establish workload shutdown.</p>
 </div>

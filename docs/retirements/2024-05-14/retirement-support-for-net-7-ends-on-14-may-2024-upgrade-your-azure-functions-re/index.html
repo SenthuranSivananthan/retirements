@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Functions</span><span class="badge retired" data-deadline="2024-05-14"><span></span>Retired</span></div>
-  <h1>Retirement: Support for .NET 7 ends on 14 May 2024—upgrade your Azure Functions resources to .NET 8</h1><p>Support for .NET 7 in Azure Functions ended on 2024-05-14, also the notice&#39;s deadline to upgrade affected apps to .NET 8. Hosted apps continue running, but Microsoft no longer provides .NET 7 security updates or customer service. Upgrade and validate affected apps using guidance appropriate to their worker model, operating system and hosting plan.</p>
+  <h1>Retirement: Support for .NET 7 ends on 14 May 2024—upgrade your Azure Functions resources to .NET 8</h1><p>Support for .NET 7 in Azure Functions ended on May 14, 2024, also the notice&#39;s deadline to upgrade affected apps to .NET 8. Hosted apps continue running, but Microsoft no longer provides .NET 7 security updates or customer service. Upgrade and validate affected apps using guidance appropriate to their worker model, operating system and hosting plan.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-05-14"><strong>Retired</strong><span>Retirement date: <time datetime="2024-05-14">14 May 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 month, 22 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">14 May 2024</p>
-<div class="rich-content"><p>Support for <strong>.NET 7 in Azure Functions ended on 2024-05-14</strong>, aligned with community end of support. The notice required upgrading affected function apps to .NET 8 by the same date.</p>
+<div class="rich-content"><p>Support for <strong>.NET 7 in Azure Functions ended on May 14, 2024</strong>, aligned with community end of support. The notice required upgrading affected function apps to .NET 8 by the same date.</p>
 <p>This was an end-of-support milestone, not an app shutdown. Hosted apps continue running, but Microsoft no longer provides .NET 7 security updates or customer service.</p>
-<p>The upgrade reference's requirement to migrate in-process apps before 2026-11-10 concerns a separate worker-model milestone. It does not change or extend the .NET 7 support deadline.</p>
+<p>The upgrade reference's requirement to migrate in-process apps before November 10, 2026 concerns a separate worker-model milestone. It does not change or extend the .NET 7 support deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft ended support for <strong>.NET 7 in Azure Functions on 2024-05-14</strong>. Affected apps continue running, but Microsoft no longer provides security updates or customer service for .NET 7. The retirement notice directs you to upgrade these apps to .NET 8.</p>
+<div class="rich-content"><p>Microsoft ended support for <strong>.NET 7 in Azure Functions on May 14, 2024</strong>. Affected apps continue running, but Microsoft no longer provides security updates or customer service for .NET 7. The retirement notice directs you to upgrade these apps to .NET 8.</p>
 <p>The general Azure Functions language policy says retired language stacks remain available for app creation and deployment, but lose eligibility for new features, security patches and performance optimizations. This does not establish a shutdown date.</p>
 </div>
       <div class="notice"></div>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your Azure Functions apps using .NET 7 and record their worker model, target framework, Functions runtime, operating system and hosting plan. The retirement notice does not provide a .NET 7 inventory method. The <code>FUNCTIONS_WORKER_RUNTIME</code> setting identifies the language stack, not its version.</li>
-<li>Upgrade affected apps to <strong>.NET 8</strong>, as required by the notice by 2024-05-14. Check the supported-language guidance and compatibility of the Functions runtime, worker packages, binding extensions and dependencies. The supplied version-upgrade procedure primarily covers isolated-worker apps; use the referenced model-migration guidance where needed rather than assuming it covers every worker model.</li>
+<li>Upgrade affected apps to <strong>.NET 8</strong>, as required by the notice by May 14, 2024. Check the supported-language guidance and compatibility of the Functions runtime, worker packages, binding extensions and dependencies. The supplied version-upgrade procedure primarily covers isolated-worker apps; use the referenced model-migration guidance where needed rather than assuming it covers every worker model.</li>
 <li>Install the target SDK, update the target framework and required code or deployment settings, then rebuild and test locally. Ensure the app uses Functions runtime 4.x; older runtime migrations require the relevant migration guide.</li>
 <li>Back up the app configuration as recommended. Where supported, test in a staging slot. Flex Consumption does not support slots, so verify changes in a non-production app instead.</li>
 <li>Publish updated code before changing the Azure language-stack configuration, targeting the correct app or slot. Linux Consumption requires Azure CLI for stack updates; supported Linux plans otherwise allow portal updates.</li>

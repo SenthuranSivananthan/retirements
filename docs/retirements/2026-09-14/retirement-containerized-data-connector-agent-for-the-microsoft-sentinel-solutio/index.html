@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Microsoft Sentinel</span><span class="badge retired" data-deadline="2026-09-14"><span></span>Retired</span></div>
-  <h1>Retirement: Containerized data connector agent for the Microsoft Sentinel solution for SAP applications</h1><p>The Microsoft Sentinel containerized SAP data connector agent retired on 2026-09-14. Current product guidance says it is unsupported and unmaintained; existing TLS-compliant agents might continue sending logs, unlike the announcement&#39;s claim of permanent disablement. The guidance separately specifies container-image removal on 2026-10-14 and directs migration before that date. Migrate to the supported SAP agentless connector. Existing agentless customers are unaffected.</p>
+  <h1>Retirement: Containerized data connector agent for the Microsoft Sentinel solution for SAP applications</h1><p>The Microsoft Sentinel containerized SAP data connector agent retired on September 14, 2026. Current product guidance says it is unsupported and unmaintained; existing TLS-compliant agents might continue sending logs, unlike the announcement&#39;s claim of permanent disablement. The guidance separately specifies container-image removal on October 14, 2026 and directs migration before that date. Migrate to the supported SAP agentless connector. Existing agentless customers are unaffected.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-14"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-14">14 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 month, 2 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">14 Sep 2026</p>
-<div class="rich-content"><p>The containerized SAP data connector agent retired on <strong>2026-09-14</strong>, ending support and maintenance.</p>
-<p>Current product guidance separately specifies <strong>2026-10-14</strong> for container-image removal and directs you to migrate before that date. Image removal prevents new pulls, installation, redeployment, scaling, replacement and disaster recovery; it does not change the retirement date.</p>
-<p>The announcement says Microsoft would permanently disable the agent and stop SAP log collection on 2026-09-14. Current product guidance instead says existing TLS-compliant agents might continue sending logs through the retired HTTP Data Collector API. Prefer that guidance for current behavior: a universal ingestion shutdown date is not confirmed, and continued ingestion is not guaranteed. This is not a documented retirement extension.</p>
+<div class="rich-content"><p>The containerized SAP data connector agent retired on <strong>September 14, 2026</strong>, ending support and maintenance.</p>
+<p>Current product guidance separately specifies <strong>October 14, 2026</strong> for container-image removal and directs you to migrate before that date. Image removal prevents new pulls, installation, redeployment, scaling, replacement and disaster recovery; it does not change the retirement date.</p>
+<p>The announcement says Microsoft would permanently disable the agent and stop SAP log collection on September 14, 2026. Current product guidance instead says existing TLS-compliant agents might continue sending logs through the retired HTTP Data Collector API. Prefer that guidance for current behavior: a universal ingestion shutdown date is not confirmed, and continued ingestion is not guaranteed. This is not a documented retirement extension.</p>
 <p>Creation of new containerized agents is already disabled; neither source specifies when that restriction began.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>The Microsoft Sentinel containerized SAP data connector agent retired on <strong>2026-09-14</strong> and is unsupported and unmaintained. The supported SAP agentless connector replaces it. This applies in both the Microsoft Defender portal and the Azure portal; customers already using the agentless connector are unaffected.</p>
+<div class="rich-content"><p>The Microsoft Sentinel containerized SAP data connector agent retired on <strong>September 14, 2026</strong> and is unsupported and unmaintained. The supported SAP agentless connector replaces it. This applies in both the Microsoft Defender portal and the Azure portal; customers already using the agentless connector are unaffected.</p>
 <p>You can run both connectors side by side during migration. Updated KQL functions combine data from both ingestion methods. Existing solution content remains functional within documented source coverage, but feature parity does not cover every configuration.</p>
 <p>The portal's cross-workspace deployment option has been removed. Underlying ARM APIs still support split deployments. Retirement does not change pricing or billing meters.</p>
 </div>
@@ -1932,7 +1932,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Current product guidance directs you to migrate to the supported SAP agentless connector before <strong>2026-10-14</strong>, the separate container-image removal milestone. The retirement itself occurred on <strong>2026-09-14</strong>.</p>
+<div class="rich-content"><p>Current product guidance directs you to migrate to the supported SAP agentless connector before <strong>October 14, 2026</strong>, the separate container-image removal milestone. The retirement itself occurred on <strong>September 14, 2026</strong>.</p>
 <ol>
 <li>Identify your containerized agents, monitored SAP systems, required tables and log types, and custom configurations. Use the agentless connector for new SAP systems.</li>
 <li>Compare connector capabilities and configuration options. Review the SAP Sentinel user and role: the agentless connector requires fewer but different authorizations. Consult the referenced configuration guide and minimum-authorization role sample.</li>
@@ -1946,9 +1946,9 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if you use the containerized SAP data connector agent, which became unsupported and unmaintained on <strong>2026-09-14</strong>. Review your agents, SAP systems, log types and custom configurations to establish your scope. Customers already using the agentless connector are unaffected.</p>
+<div class="rich-content"><p>You are affected if you use the containerized SAP data connector agent, which became unsupported and unmaintained on <strong>September 14, 2026</strong>. Review your agents, SAP systems, log types and custom configurations to establish your scope. Customers already using the agentless connector are unaffected.</p>
 <p>Current product guidance says existing TLS-compliant agents might continue sending logs, rather than confirming the announcement's universal shutdown claim. Continued ingestion is not guaranteed. Loss of required ingestion affects results from dependent analytics rules, workbooks, hunting queries and playbooks. The sources do not describe retention or deletion of previously collected data.</p>
-<p>The separate <strong>2026-10-14</strong> container-image removal milestone prevents new pulls, installation, redeployment, scaling, replacement and disaster recovery.</p>
+<p>The separate <strong>October 14, 2026</strong> container-image removal milestone prevents new pulls, installation, redeployment, scaling, replacement and disaster recovery.</p>
 <p>Migration parity covers most important analytics-rule and workbook use cases, not every configuration. Rules and workbooks using documented underlying SAP sources remain functional without changes; watchlists and playbooks also remain functional. SAP HANA database and OS-level detections use their own connectors and are outside this comparison.</p>
 <p>The portal no longer offers cross-workspace deployment, but ARM APIs still support split deployments. Pricing and billing meters do not change; review SAP SID billing exclusions because the connectors identify systems differently.</p>
 </div>

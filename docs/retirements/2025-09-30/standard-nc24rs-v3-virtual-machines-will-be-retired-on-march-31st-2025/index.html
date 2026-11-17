@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2025-09-30"><span></span>Retired</span></div>
-  <h1>Standard_NC24rs_v3 virtual machines will be retired on March 31st, 2025</h1><p>Microsoft&#39;s migration guidance lists 2025-09-30 as the retirement date for all NCv3-series VM sizes, including Standard_NC24rs_v3. This date takes precedence over the original Standard_NC24rs_v3 announcement&#39;s 2025-03-31 date; the supplied content does not explicitly document an extension. The guidance says remaining Standard_NC24rs_v3 VMs will be deallocated after 2025-09-30, stop working and lose SLA coverage and included support. It recommends resizing to a suitable supported alternative or deallocating workloads you no longer need. NCasT4_v3, NC_A100_v4 and NCadsH100_v5 are excluded from this announcement. The supplied pages do not confirm that deallocation occurred.</p>
+  <h1>Standard_NC24rs_v3 virtual machines will be retired on March 31st, 2025</h1><p>Microsoft&#39;s migration guidance lists September 30, 2025 as the retirement date for all NCv3-series VM sizes, including Standard_NC24rs_v3. This date takes precedence over the original Standard_NC24rs_v3 announcement&#39;s March 31, 2025 date; the supplied content does not explicitly document an extension. The guidance says remaining Standard_NC24rs_v3 VMs will be deallocated after September 30, 2025, stop working and lose SLA coverage and included support. It recommends resizing to a suitable supported alternative or deallocating workloads you no longer need. NCasT4_v3, NC_A100_v4 and NCadsH100_v5 are excluded from this announcement. The supplied pages do not confirm that deallocation occurred.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2025-09-30">30 Sep 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 6 months, 1 day</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,20 +1916,20 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2025</p>
-<div class="rich-content"><p>Microsoft's migration guidance gives <strong>2025-09-30</strong> as the retirement date for all NCv3-series VM sizes, including Standard_NC24rs_v3. You needed to resize or deallocate Standard_NC24rs_v3 VMs before that date. The guidance states that remaining affected VMs will be deallocated afterward and lose SLA coverage and included support.</p>
-<p>The original announcement gives <strong>2025-03-31</strong> for Standard_NC24rs_v3. The applicable current migration guidance takes precedence, but the supplied content does not explicitly document an extension or confirm that deallocation occurred. Its 2026-07-16 last-updated date is not another retirement milestone.</p>
+<div class="rich-content"><p>Microsoft's migration guidance gives <strong>September 30, 2025</strong> as the retirement date for all NCv3-series VM sizes, including Standard_NC24rs_v3. You needed to resize or deallocate Standard_NC24rs_v3 VMs before that date. The guidance states that remaining affected VMs will be deallocated afterward and lose SLA coverage and included support.</p>
+<p>The original announcement gives <strong>March 31, 2025</strong> for Standard_NC24rs_v3. The applicable current migration guidance takes precedence, but the supplied content does not explicitly document an extension or confirm that deallocation occurred. Its July 16, 2026 last-updated date is not another retirement milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft's migration guidance lists <strong>2025-09-30</strong> as the retirement date for all NCv3-series VM sizes. Its detailed migration instructions and operational consequences focus on <strong>Standard_NC24rs_v3</strong>; the original announcement covered only that size.</p>
+<div class="rich-content"><p>Microsoft's migration guidance lists <strong>September 30, 2025</strong> as the retirement date for all NCv3-series VM sizes. Its detailed migration instructions and operational consequences focus on <strong>Standard_NC24rs_v3</strong>; the original announcement covered only that size.</p>
 <p>Microsoft recommends moving Standard_NC24rs_v3 workloads to NCadsH100_v5 or another suitable alternative. NCasT4_v3, NC_A100_v4 and NCadsH100_v5 are explicitly outside this announcement's scope. The supplied content does not document pre-retirement maintenance or security-update commitments.</p>
 </div>
       <div class="notice"></div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Microsoft's guidance required you to resize or deallocate Standard_NC24rs_v3 VMs before <strong>2025-09-30</strong>. For workloads you need to continue running:</p>
+<div class="rich-content"><p>Microsoft's guidance required you to resize or deallocate Standard_NC24rs_v3 VMs before <strong>September 30, 2025</strong>. For workloads you need to continue running:</p>
 <ol>
 <li>Identify workloads using Standard_NC24rs_v3. The supplied pages do not provide a discovery method.</li>
 <li>Select a target based on workload, regional availability and cost. Microsoft recommends NCadsH100_v5 for high-GPU-compute workloads, including real-time and LLM inferencing; NCasT4_v3 for offline inferencing where latency matters less; and NVadsA10_v5 or NVadsV710_v5 for graphics, visualization or small AI workloads where optimal performance is not the priority.</li>
@@ -1943,7 +1943,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you use <strong>Standard_NC24rs_v3</strong>. The migration guidance also announces retirement of all NCv3-series sizes, but its detailed operational consequences apply specifically to Standard_NC24rs_v3. The supplied content does not establish whether your subscriptions contain affected VMs or specify regional exceptions.</p>
-<p>The guidance states that remaining Standard_NC24rs_v3 VMs will be deallocated after <strong>2025-09-30</strong>, stop working and no longer incur VM billing charges. That size will lose SLA coverage and included support. The supplied pages do not confirm that these changes occurred or describe data retention, deletion or charges for associated resources.</p>
+<p>The guidance states that remaining Standard_NC24rs_v3 VMs will be deallocated after <strong>September 30, 2025</strong>, stop working and no longer incur VM billing charges. That size will lose SLA coverage and included support. The supplied pages do not confirm that these changes occurred or describe data retention, deletion or charges for associated resources.</p>
 <p>NCasT4_v3, NC_A100_v4 and NCadsH100_v5 are explicitly outside this announcement's scope.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

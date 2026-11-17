@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2026-03-16"><span></span>Retired</span></div>
-  <h1>Retirement: Azure Kubernetes Service on VMware will be retired on March 16, 2026 - Replace with Azure Kubernetes Service on Azure Local</h1><p>Azure Kubernetes Service on VMware (preview) retires on 2026-03-16. After that date, deployment and support are unavailable. Microsoft directs customers who need a supported service to transition to AKS on Azure Local by that date. The supplied guidance does not establish that existing workloads shut down or provide a complete migration procedure.</p>
+  <h1>Retirement: Azure Kubernetes Service on VMware will be retired on March 16, 2026 - Replace with Azure Kubernetes Service on Azure Local</h1><p>Azure Kubernetes Service on VMware (preview) retires on March 16, 2026. After that date, deployment and support are unavailable. Microsoft directs customers who need a supported service to transition to AKS on Azure Local by that date. The supplied guidance does not establish that existing workloads shut down or provide a complete migration procedure.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-03-16"><strong>Retired</strong><span>Retirement date: <time datetime="2026-03-16">16 Mar 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 6 months</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">16 Mar 2026</p>
-<div class="rich-content"><p><strong>2026-03-16</strong> is the retirement date for Azure Kubernetes Service on VMware (preview). The announcement and product overview agree: after that date, you can no longer deploy or receive support for the service.</p>
+<div class="rich-content"><p><strong>March 16, 2026</strong> is the retirement date for Azure Kubernetes Service on VMware (preview). The announcement and product overview agree: after that date, you can no longer deploy or receive support for the service.</p>
 <p>Microsoft asks customers who need a supported service to transition by that date. No separate workload shutdown date or new-customer restriction date is documented.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
 <div class="rich-content"><p>Microsoft is retiring <strong>AKS on VMware (preview)</strong>, which uses Azure Arc to create and manage Kubernetes clusters on VMware vSphere. Microsoft identifies <strong>AKS on Azure Local</strong> as the supported replacement.</p>
-<p>The overview describes the preview as available before retirement; deployment and support are unavailable after 2026-03-16. The supplied guidance states no regional exceptions, separate customer phases, maintenance commitments or security-update commitments.</p>
+<p>The overview describes the preview as available before retirement; deployment and support are unavailable after March 16, 2026. The supplied guidance states no regional exceptions, separate customer phases, maintenance commitments or security-update commitments.</p>
 <p>This notice does not establish retirement of Arc-enabled VMware vSphere, Arc Resource Bridge or AKS on Azure Local. Separate version-support milestones in the Azure Local release notes are not deadlines for this retirement.</p>
 </div>
       <div class="notice"></div>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify whether you use <strong>AKS on VMware (preview)</strong>. Its documented setup connects vCenter to Azure through Arc Resource Bridge and includes the Kubernetes extension for AKS operators. These components alone do not establish that you use the retiring service; no retirement-specific inventory procedure is supplied.</li>
-<li>If you need a supported service, transition to <strong>AKS on Azure Local</strong> by 2026-03-16. The supplied replacement-service release notes state that AKS on Azure Local requires Azure Local 23H2 or later, but do not provide a complete migration path or capability comparison for VMware deployments.</li>
+<li>If you need a supported service, transition to <strong>AKS on Azure Local</strong> by March 16, 2026. The supplied replacement-service release notes state that AKS on Azure Local requires Azure Local 23H2 or later, but do not provide a complete migration path or capability comparison for VMware deployments.</li>
 <li>As team-owned planning, establish migration, validation and cutover criteria before moving workloads. The supplied material does not specify retirement-specific export, backup, cutover, cleanup or completion procedures.</li>
 <li>Direct product questions to the AKS enabled by Azure Arc GitHub repository. Use official Azure support channels for urgent, production or cluster-specific issues; repository issue handling is best effort.</li>
 </ol>
@@ -1942,7 +1942,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are in scope if you use <strong>AKS on VMware (preview)</strong> to run Kubernetes clusters on VMware vSphere. The overview states that this preview is not recommended for production workloads. Your actual resource exposure cannot be determined from the supplied pages.</p>
-<p>After 2026-03-16, deployment and support are unavailable. The guidance does <strong>not</strong> say that existing workloads stop running, or establish whether existing-cluster management through the portal, Azure CLI or APIs continues. It does not specify integration or data-access changes.</p>
+<p>After March 16, 2026, deployment and support are unavailable. The guidance does <strong>not</strong> say that existing workloads stop running, or establish whether existing-cluster management through the portal, Azure CLI or APIs continues. It does not specify integration or data-access changes.</p>
 <p>No retirement-specific data retention, deletion or cost consequences are documented. Do not treat the shared use of Azure Arc or VMware infrastructure as evidence that another service is retiring.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

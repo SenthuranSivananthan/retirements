@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">App Center</span><span class="badge retired" data-deadline="2020-05-03"><span></span>Retired</span></div>
-  <h1>Move from App Center Auth and Data Preview services to alternative Azure services before 3 May 2020</h1><p>App Center Auth and Data Preview services retired on 2020-05-03. The retirement notice states that their REST APIs become unavailable to application backends on that date. The announcement allowed for brief continued backend operation, so the sources differ on immediate backend availability; neither provides a later confirmed shutdown date. Microsoft recommended migrating Auth to Azure Active Directory B2C and Data to Azure Cosmos DB using the App Center portal migration experience. The later App Center-wide retirement and Analytics and Diagnostics support dates are separate milestones.</p>
+  <h1>Move from App Center Auth and Data Preview services to alternative Azure services before 3 May 2020</h1><p>App Center Auth and Data Preview services retired on May 3, 2020. The retirement notice states that their REST APIs become unavailable to application backends on that date. The announcement allowed for brief continued backend operation, so the sources differ on immediate backend availability; neither provides a later confirmed shutdown date. Microsoft recommended migrating Auth to Azure Active Directory B2C and Data to Azure Cosmos DB using the App Center portal migration experience. The later App Center-wide retirement and Analytics and Diagnostics support dates are separate milestones.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2020-05-03"><strong>Retired</strong><span>Retirement date: <time datetime="2020-05-03">3 May 2020</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 months, 21 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">3 May 2020</p>
-<div class="rich-content"><p>App Center Auth and Data Preview services' retirement milestone is <strong>2020-05-03</strong>.</p>
+<div class="rich-content"><p>App Center Auth and Data Preview services' retirement milestone is <strong>May 3, 2020</strong>.</p>
 <p>The retirement notice states that their REST APIs become unavailable to application backends on that date. The announcement says portal access ends afterward but allows for brief continued backend operation. Both identify the same retirement milestone; they differ on immediate backend availability. Do not rely on continued operation after retirement: no later shutdown date is confirmed.</p>
 <p>Restrictions for apps not already using these services and removal of the Auth and Data SDKs are separate changes without supplied calendar dates. The notice describes both as already effective; the announcement describes SDK removal as upcoming.</p>
-<p>The broader App Center retirement on 2025-03-31 and Analytics and Diagnostics support through 2027-03-31 are separate milestones, not extensions of Auth and Data availability.</p>
+<p>The broader App Center retirement on March 31, 2025 and Analytics and Diagnostics support through March 31, 2027 are separate milestones, not extensions of Auth and Data availability.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired App Center's <strong>Auth and Data Preview services</strong> on 2020-05-03. The retirement notice says existing REST APIs continue until that date and then become unavailable to application backends.</p>
+<div class="rich-content"><p>Microsoft retired App Center's <strong>Auth and Data Preview services</strong> on May 3, 2020. The retirement notice says existing REST APIs continue until that date and then become unavailable to application backends.</p>
 <p>Apps not already using these services had already lost access to them in the App Center portal, and the notice says the Auth and Data SDKs were no longer available in the publish SDK repository. Configured apps received a portal migration experience.</p>
 <p>The announcement also discusses Push, but gives it a separate, unconfirmed retirement timeline. That does not change the Auth and Data milestone. These sources provide no regional exceptions or maintenance and security-update commitments for Auth and Data.</p>
 </div>
@@ -1935,7 +1935,7 @@
 <div class="rich-content"><ol>
 <li>Identify your apps configured to use App Center Auth or Data, including backend integrations that call their REST APIs. The announcement identifies configured apps as receiving a portal migration experience; it does not document an automated inventory tool.</li>
 <li>Select the documented replacement: Azure Active Directory B2C for Auth and Azure Cosmos DB for Data.</li>
-<li>Use the App Center portal migration experience and the corresponding migration guides referenced by the announcement. The notice called for migration before 2020-05-03; do not treat possible brief backend operation afterward as an extension.</li>
+<li>Use the App Center portal migration experience and the corresponding migration guides referenced by the announcement. The notice called for migration before May 3, 2020; do not treat possible brief backend operation afterward as an extension.</li>
 <li>As a <strong>team-owned validation step</strong>, verify that your replacement supports the functionality your app uses and that dependent integrations work before recording migration as complete.</li>
 </ol>
 <p>The supplied content does not include detailed prerequisites, capability comparisons, export, backup, cutover or cleanup procedures. It does not establish whether the historical portal migration experience remains accessible. Contact App Center Support for migration questions; the announcement also identifies the portal's blue chat button as a support route.</p>
@@ -1945,7 +1945,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your apps use App Center Auth or Data Preview services or their REST APIs. The retirement notice states that application backends lose access to those APIs on 2020-05-03, so dependent integrations need migration.</p>
+<div class="rich-content"><p>You are affected if your apps use App Center Auth or Data Preview services or their REST APIs. The retirement notice states that application backends lose access to those APIs on May 3, 2020, so dependent integrations need migration.</p>
 <p>Portal access and SDK distribution are distinct impacts: apps without these services configured lost portal access earlier, the Auth and Data SDKs were removed from the publish SDK repository, and the announcement says configured apps lose portal access after the retirement milestone. Its allowance for brief backend operation is not a continuity guarantee.</p>
 <p>The supplied sources do not establish which of your apps are affected, data retention or deletion rules, migration costs, or a later confirmed backend shutdown date. Push has a separate timeline in the announcement. The later App Center-wide retirement and Analytics and Diagnostics support exception do not establish continued availability for Auth or Data.</p>
 </div>

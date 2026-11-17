@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h1>Retirement of Computer Vision API v3.2 previews</h1><p>Computer Vision API v3.2 previews retired, with v3.2 GA identified as the migration destination. The supplied product guidance lists December 2022, while the announcement gives 2023-01-30. This synthesis uses the product-guidance month; the conflicting announcement date remains unresolved, and no extension is documented. The announcement says preview calls will not work after 2023-01-30.</p>
+  <h1>Retirement of Computer Vision API v3.2 previews</h1><p>Computer Vision API v3.2 previews retired, with v3.2 GA identified as the migration destination. The supplied product guidance lists December 2022, while the announcement gives January 30, 2023. This synthesis uses the product-guidance month; the conflicting announcement date remains unresolved, and no extension is documented. The announcement says preview calls will not work after January 30, 2023.</p>
   <div class="retirement-countdown unknown" data-countdown data-deadline=""><strong>Retirement date to confirm</strong><span class="badge amber customer-lead-time-pill">Lead time: Not calculable</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">Date not specified</p>
-<div class="rich-content"><p>The supplied product guidance lists <strong>December 2022</strong> for retirement of Azure Vision 3.2 preview APIs, without an exact day. The Computer Vision API v3.2-preview announcement instead gives <strong>2023-01-30</strong> and directs migration before that date, also using “by” that date.</p>
-<p>The structured deadline follows the applicable product-guidance month. These dates conflict; the supplied sources do not explain the difference or document an extension. The announcement states that preview calls will not work after 2023-01-30, but gives no cutoff time.</p>
+<div class="rich-content"><p>The supplied product guidance lists <strong>December 2022</strong> for retirement of Azure Vision 3.2 preview APIs, without an exact day. The Computer Vision API v3.2-preview announcement instead gives <strong>January 30, 2023</strong> and directs migration before that date, also using “by” that date.</p>
+<p>The structured deadline follows the applicable product-guidance month. These dates conflict; the supplied sources do not explain the difference or document an extension. The announcement states that preview calls will not work after January 30, 2023, but gives no cutoff time.</p>
 <p>Dates for Image Analysis 4.0 Preview, older API versions and Read-specific previews concern separate retirement scopes. The Q&amp;A listing confirms no deadline for this retirement.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Computer Vision API v3.2 previews retired. Microsoft directs you to <strong>Computer Vision API v3.2 GA</strong>. The product guidance lists December 2022; the announcement instead specifies 2023-01-30.</p>
+<div class="rich-content"><p>Computer Vision API v3.2 previews retired. Microsoft directs you to <strong>Computer Vision API v3.2 GA</strong>. The product guidance lists December 2022; the announcement instead specifies January 30, 2023.</p>
 <p>The announcement says v3.2 GA includes all preview features, an improved image captioning model and additional OCR languages. It does not announce retirement of v3.2 GA. No regional exceptions or retirement-specific maintenance, support or security-update commitments are supplied.</p>
 </div>
       <div class="notice"></div>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify applications that call Computer Vision API v3.2 previews. The supplied sources provide no inventory procedure.</li>
-<li>Migrate those applications to Computer Vision API v3.2 GA using the migration documentation referenced by the announcement. The announcement required migration before 2023-01-30; product guidance separately lists retirement in December 2022.</li>
+<li>Migrate those applications to Computer Vision API v3.2 GA using the migration documentation referenced by the announcement. The announcement required migration before January 30, 2023; product guidance separately lists retirement in December 2022.</li>
 <li>Account for the changed error format when moving from 3.2 previews to 3.2 GA. Analyze Image and Read support an optional model-version parameter, default to the latest model and return the model version used.</li>
 <li>As a team-owned completion check, verify that migrated workloads use GA rather than preview APIs. The sources do not provide a retirement-specific validation procedure.</li>
 </ol>
@@ -1942,7 +1942,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Applications calling Computer Vision API v3.2 previews are affected. The announcement says those calls will not work after <strong>2023-01-30</strong>, so unmigrated workloads face service disruption. Product guidance lists an earlier retirement month, December 2022, without separately describing post-retirement request behavior.</p>
+<div class="rich-content"><p>Applications calling Computer Vision API v3.2 previews are affected. The announcement says those calls will not work after <strong>January 30, 2023</strong>, so unmigrated workloads face service disruption. Product guidance lists an earlier retirement month, December 2022, without separately describing post-retirement request behavior.</p>
 <p>The sources identify v3.2 GA as the replacement; they do not establish retirement of all Computer Vision workloads or confirm whether your applications are affected. The changed error format may require updates to error handling.</p>
 <p>No separate console, deployment-tooling, data-retention, deletion or cost consequences are documented for this retirement. The Q&amp;A question about v3.2 READ API and connected containers does not establish their retirement scope.</p>
 </div>

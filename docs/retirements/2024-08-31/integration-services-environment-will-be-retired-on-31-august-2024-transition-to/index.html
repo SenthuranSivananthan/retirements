@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2024-08-31"><span></span>Retired</span></div>
-  <h1>Integration Services Environment will be retired on 31 August 2024 – transition to Logic Apps Standard</h1><p>Azure Logic Apps integration service environment (ISE) retired on 2024-08-31. Microsoft required exporting ISE workflows to Logic Apps Standard before that date to avoid service disruptions. New ISE resource creation ended on 2022-11-01; resources created earlier remained supported through retirement. The notice does not specify exact post-retirement shutdown behavior. The supplied comparison, pricing and development pages do not independently establish a retirement or provide a complete ISE migration procedure.</p>
+  <h1>Integration Services Environment will be retired on 31 August 2024 – transition to Logic Apps Standard</h1><p>Azure Logic Apps integration service environment (ISE) retired on August 31, 2024. Microsoft required exporting ISE workflows to Logic Apps Standard before that date to avoid service disruptions. New ISE resource creation ended on November 1, 2022; resources created earlier remained supported through retirement. The notice does not specify exact post-retirement shutdown behavior. The supplied comparison, pricing and development pages do not independently establish a retirement or provide a complete ISE migration procedure.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-08-31">31 Aug 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 10 months, 21 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2024</p>
-<div class="rich-content"><p>ISE retired on <strong>2024-08-31</strong>. Microsoft's notice required you to export your ISE workflows to Logic Apps Standard before that date to avoid service disruptions.</p>
-<p>New ISE resource creation ended on <strong>2022-11-01</strong>. Resources created before that restriction remained supported through 2024-08-31. The notice does not specify exact shutdown behavior after retirement.</p>
+<div class="rich-content"><p>ISE retired on <strong>August 31, 2024</strong>. Microsoft's notice required you to export your ISE workflows to Logic Apps Standard before that date to avoid service disruptions.</p>
+<p>New ISE resource creation ended on <strong>November 1, 2022</strong>. Resources created before that restriction remained supported through August 31, 2024. The notice does not specify exact shutdown behavior after retirement.</p>
 <p>Azure Cloud Services (classic), on which ISE depended, had the same retirement date. The supplied comparison and development pages establish no alternative ISE deadline; their last-updated dates are not retirement milestones.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Logic Apps retired its integration service environment (ISE) option on <strong>2024-08-31</strong> because it depended on Azure Cloud Services (classic).</p>
-<p>Microsoft identifies <strong>Logic Apps Standard</strong> as the ISE replacement and describes it as providing the same capabilities plus additional features. New ISE resource creation ended on 2022-11-01; resources created earlier remained supported through retirement.</p>
+<div class="rich-content"><p>Azure Logic Apps retired its integration service environment (ISE) option on <strong>August 31, 2024</strong> because it depended on Azure Cloud Services (classic).</p>
+<p>Microsoft identifies <strong>Logic Apps Standard</strong> as the ISE replacement and describes it as providing the same capabilities plus additional features. New ISE resource creation ended on November 1, 2022; resources created earlier remained supported through retirement.</p>
 <p>The supplied comparison pages do not announce retirement of Logic Apps Consumption or Standard. They document hosting and capability differences, so the replacement statement should not be treated as proof that every workflow can move unchanged. The separate Cloud Services (classic) migration target is not the documented migration target for ISE workflows.</p>
 </div>
       <div class="notice"></div>
@@ -1934,7 +1934,7 @@
 <div class="rich-content"><ol>
 <li>Identify your workflows running in ISE. The retirement notice does not provide an inventory method. The Azure portal's Logic apps page lists Consumption and Standard resources, but that listing alone does not establish ISE exposure.</li>
 <li>Review Logic Apps Standard pricing and assess your workflows' connector, authentication, networking and stateful or stateless requirements. The supplied guidance documents capability differences between hosting options.</li>
-<li>Export all ISE workflows to Logic Apps Standard. Microsoft's notice required completion before 2024-08-31 to avoid service disruptions. The supplied content at the export reference describes Standard development and deployment, not a retirement-specific export procedure.</li>
+<li>Export all ISE workflows to Logic Apps Standard. Microsoft's notice required completion before August 31, 2024 to avoid service disruptions. The supplied content at the export reference describes Standard development and deployment, not a retirement-specific export procedure.</li>
 <li>As team-owned validation, test connections, trigger permissions and workflow behavior, then confirm deployment and execution. These checks do not establish that every ISE workflow has been migrated.</li>
 </ol>
 <p>If you use the supplied Visual Studio Code guide, install Visual Studio Code and the Azure Logic Apps (Standard) extension and verify Project Runtime <code>~4</code>. Azure deployment and managed connector scenarios require the documented Azure access and connectivity prerequisites. Publishing to an existing Standard logic app overwrites its deployed version; local settings are not included in deployment. Exclude files containing secrets from source control.</p>
@@ -1944,7 +1944,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>This retirement affects <strong>Azure Logic Apps workflows hosted in ISE</strong>. New ISE resource creation ended on 2022-11-01, and resources created earlier remained supported through 2024-08-31. The supplied pages cannot determine whether you have affected resources.</p>
+<div class="rich-content"><p>This retirement affects <strong>Azure Logic Apps workflows hosted in ISE</strong>. New ISE resource creation ended on November 1, 2022, and resources created earlier remained supported through August 31, 2024. The supplied pages cannot determine whether you have affected resources.</p>
 <p>The retirement notice warns of service disruptions if workflows were not exported to Logic Apps Standard before retirement. It does not specify exact post-retirement workload behavior, separate console or API changes, data retention or deletion, or migration cost differences.</p>
 <p>For migration planning, assess connector, authentication, networking, deployment-tooling and workflow-behavior differences. Standard supports stateful and stateless workflows, but stateless workflows do not retain run history by default. The supplied guidance also warns that incorrectly configured Standard service-provider triggers can cause unnecessary scaling and substantially increase billing; this is a configuration risk, not an automatic retirement charge.</p>
 <p>The supporting pages do not establish a retirement of Consumption or Standard, or document regional exceptions to the ISE retirement.</p>

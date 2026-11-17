@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Functions</span><span class="badge retired" data-deadline="2026-11-10"><span></span>Retired</span></div>
-  <h1>Retirement: Support for .NET 8 and .NET 9 ends on November 10, 2026—upgrade your apps to .NET 10</h1><p>Support for .NET 8 and .NET 9 on Azure Functions ends on 2026-11-10. Your apps can continue running afterward, but Microsoft will no longer provide security updates or support for those versions. Complete upgrades to .NET 10 before that date. In-process apps must first migrate to isolated workers; Linux Consumption apps must first move to Flex Consumption. Support for the in-process model separately ends on the same date.</p>
+  <h1>Retirement: Support for .NET 8 and .NET 9 ends on November 10, 2026—upgrade your apps to .NET 10</h1><p>Support for .NET 8 and .NET 9 on Azure Functions ends on November 10, 2026. Your apps can continue running afterward, but Microsoft will no longer provide security updates or support for those versions. Complete upgrades to .NET 10 before that date. In-process apps must first migrate to isolated workers; Linux Consumption apps must first move to Flex Consumption. Support for the in-process model separately ends on the same date.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-11-10"><strong>Retired</strong><span>Retirement date: <time datetime="2026-11-10">10 Nov 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 month, 18 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">10 Nov 2026</p>
-<div class="rich-content"><p>Support for <strong>.NET 8 and .NET 9 on Azure Functions ends on 2026-11-10</strong>. Complete the required upgrades to .NET 10 before that date. Apps can continue running afterward, but Microsoft will no longer provide security updates or support for those versions.</p>
-<p>Separately, support for the <strong>in-process execution model ends on 2026-11-10</strong>. Migrate affected apps to isolated workers before that date.</p>
+<div class="rich-content"><p>Support for <strong>.NET 8 and .NET 9 on Azure Functions ends on November 10, 2026</strong>. Complete the required upgrades to .NET 10 before that date. Apps can continue running afterward, but Microsoft will no longer provide security updates or support for those versions.</p>
+<p>Separately, support for the <strong>in-process execution model ends on November 10, 2026</strong>. Migrate affected apps to isolated workers before that date.</p>
 <p>The language-version update reference states a migration requirement rather than independently establishing a retirement date. The retirement notice and in-process migration guide establish the respective support-end milestones. No workload-shutdown date is documented.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Functions is ending support for <strong>.NET 8 and .NET 9 on 2026-11-10</strong>. The notice directs affected apps to .NET 10; it does not announce an Azure Functions service shutdown.</p>
+<div class="rich-content"><p>Azure Functions is ending support for <strong>.NET 8 and .NET 9 on November 10, 2026</strong>. The notice directs affected apps to .NET 10; it does not announce an Azure Functions service shutdown.</p>
 <p>Your migration path depends on the app:</p>
 <ul>
 <li><strong>In-process apps:</strong> migrate to the isolated worker model before upgrading to .NET 10. In-process model support separately ends on the same date.</li>
@@ -1936,7 +1936,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Complete the required upgrades before <strong>2026-11-10</strong>.</p>
+<div class="rich-content"><p>Complete the required upgrades before <strong>November 10, 2026</strong>.</p>
 <ol>
 <li><strong>Inventory affected apps.</strong> Identify each app's .NET version, execution model, operating system, hosting plan and Functions runtime version. The migration guide's PowerShell inventory identifies in-process apps only in the currently selected subscription; repeat it for each relevant subscription.</li>
 <li><strong>Resolve migration prerequisites.</strong> Move Linux Consumption apps to Flex Consumption before upgrading to .NET 10. Migrate in-process apps to isolated workers first. The project migration guidance assumes Functions runtime 4.x; use the corresponding host-version migration guidance for older runtimes. Convert C# script apps to the project model before applying those project steps.</li>
@@ -1951,7 +1951,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you run <strong>Azure Functions apps on .NET 8 or .NET 9</strong>. This synthesis does not establish whether your apps use either version.</p>
-<p>After <strong>2026-11-10</strong>, those apps can continue operating, but Microsoft will no longer provide security updates or support for those versions. The general policy also removes eligibility for new features and performance optimizations and says Microsoft may restrict scaling, including to one instance in certain cases. It does not establish that every affected app will receive that restriction.</p>
+<p>After <strong>November 10, 2026</strong>, those apps can continue operating, but Microsoft will no longer provide security updates or support for those versions. The general policy also removes eligibility for new features and performance optimizations and says Microsoft may restrict scaling, including to one instance in certain cases. It does not establish that every affected app will receive that restriction.</p>
 <p>In-process apps need code, dependency, configuration and deployment changes. Apps already using isolated workers do not need that model migration, but still need the .NET version upgrade. Linux Consumption apps also need a move to Flex Consumption.</p>
 <p>Direct language-version updates restart the app. The update guide describes a typical 30–60-second interruption, terminating in-flight requests and failing new requests until restart succeeds. Model migration also introduces temporary configuration/code mismatch errors during an uncoordinated cutover. Staging can keep that interim state out of production where slots are supported; Flex Consumption has no slots.</p>
 <p>The supplied sources do not document data deletion, retention changes or cost effects.</p>

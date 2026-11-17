@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Alerts</span><span class="badge retired" data-deadline="2026-09-30"><span></span>Retired</span></div>
-  <h1>Action required: Migrate to using ARG query for “Get Alert Summary” in Azure Monitor</h1><p>Microsoft scheduled Azure Monitor’s GetAlertSummary API retirement for 2026-09-30 and directed users to migrate to Azure Resource Graph queries to avoid a breaking change. The migration reference describes the alertsSummary API as deprecated on the same date, but does not specify shutdown behavior. The supplied content does not confirm whether retirement has completed. Review alert-summary callers, replace their requests and validate response handling.</p>
+  <h1>Action required: Migrate to using ARG query for “Get Alert Summary” in Azure Monitor</h1><p>Microsoft scheduled Azure Monitor’s GetAlertSummary API retirement for September 30, 2026 and directed users to migrate to Azure Resource Graph queries to avoid a breaking change. The migration reference describes the alertsSummary API as deprecated on the same date, but does not specify shutdown behavior. The supplied content does not confirm whether retirement has completed. Review alert-summary callers, replace their requests and validate response handling.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-30">30 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 1 day</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2026</p>
-<div class="rich-content"><p>The announcement sets <strong>2026-09-30</strong> as Azure Monitor’s GetAlertSummary API retirement date. It directs you to migrate before that date, while its required-action section says “by” the same date.</p>
-<p>The migration reference describes <strong>2026-09-30</strong> as the alertsSummary API deprecation date, not an explicit shutdown date. The supplied content does not confirm whether retirement has completed or whether existing calls now fail.</p>
+<div class="rich-content"><p>The announcement sets <strong>September 30, 2026</strong> as Azure Monitor’s GetAlertSummary API retirement date. It directs you to migrate before that date, while its required-action section says “by” the same date.</p>
+<p>The migration reference describes <strong>September 30, 2026</strong> as the alertsSummary API deprecation date, not an explicit shutdown date. The supplied content does not confirm whether retirement has completed or whether existing calls now fail.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft announced retirement of Azure Monitor’s GetAlertSummary API on <strong>2026-09-30</strong>, with Azure Resource Graph queries as the replacement. The migration reference describes the affected API as alertsSummary.</p>
+<div class="rich-content"><p>Microsoft announced retirement of Azure Monitor’s GetAlertSummary API on <strong>September 30, 2026</strong>, with Azure Resource Graph queries as the replacement. The migration reference describes the affected API as alertsSummary.</p>
 <p>The announcement states that Resource Graph provides all GetAlertSummary functionality and supports additional fields and more flexible summaries. The reference illustrates replacing subscription-level summaries grouped by severity and alert state.</p>
 <p>The supplied content does not identify affected API versions, regional exceptions or availability, maintenance and support commitments before or after the milestone.</p>
 </div>
@@ -1935,7 +1935,7 @@
 <li>Replace those calls with Azure Resource Graph queries. The migration reference points to examples grouped by severity; severity and alert state; or severity, monitor service and target resource type. The supplied content does not include query text, permissions or prerequisites.</li>
 <li>As team-owned validation, compare replacement results with your integrations’ requirements and update response handling. The illustrated existing response uses nested groups, while the Resource Graph table response uses columns and rows.</li>
 </ol>
-<p>The announcement required migration before or by <strong>2026-09-30</strong> to avoid a breaking change. The supplied content says that date has passed but does not confirm current API behavior.</p>
+<p>The announcement required migration before or by <strong>September 30, 2026</strong> to avoid a breaking change. The supplied content says that date has passed but does not confirm current API behavior.</p>
 </div>
       <p> </p>
     </section>

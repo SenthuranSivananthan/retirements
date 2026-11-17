@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Functions</span><span class="badge retired" data-deadline="2026-11-10"><span></span>Retired</span></div>
-  <h1>Retirement: Support for the in-process model for .NET apps in Azure Functions ends 10 November 2026.</h1><p>Microsoft ended support for the in-process model for .NET apps in Azure Functions on 2026-11-10. Apps can continue running, but Microsoft no longer provides security or feature updates for this model. Migrate affected apps to the isolated worker model and a supported target framework, then validate application behavior and deployment configuration. This is an end-of-support milestone, not a workload shutdown.</p>
+  <h1>Retirement: Support for the in-process model for .NET apps in Azure Functions ends 10 November 2026.</h1><p>Microsoft ended support for the in-process model for .NET apps in Azure Functions on November 10, 2026. Apps can continue running, but Microsoft no longer provides security or feature updates for this model. Migrate affected apps to the isolated worker model and a supported target framework, then validate application behavior and deployment configuration. This is an end-of-support milestone, not a workload shutdown.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-11-10"><strong>Retired</strong><span>Retirement date: <time datetime="2026-11-10">10 Nov 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 7 months, 12 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">10 Nov 2026</p>
-<div class="rich-content"><p>Microsoft ended support for the Azure Functions in-process model on <strong>2026-11-10</strong>. The retirement notice and migration guide agree on this date. Migration to the isolated worker model was required by that date to retain support.</p>
+<div class="rich-content"><p>Microsoft ended support for the Azure Functions in-process model on <strong>November 10, 2026</strong>. The retirement notice and migration guide agree on this date. Migration to the isolated worker model was required by that date to retain support.</p>
 <p>This is not a workload shutdown: in-process apps can continue running, but Microsoft no longer provides security or feature updates for the model.</p>
-<p>.NET 8 and .NET 9 also reached end of support on 2026-11-10 under their separate version lifecycles. Changing the execution model alone does not resolve an unsupported target framework.</p>
+<p>.NET 8 and .NET 9 also reached end of support on November 10, 2026 under their separate version lifecycles. Changing the execution model alone does not resolve an unsupported target framework.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft ended support for the in-process model for .NET apps in Azure Functions on <strong>2026-11-10</strong>. The replacement is the isolated worker model. Existing in-process apps can continue running without support or security and feature updates for that model.</p>
+<div class="rich-content"><p>Microsoft ended support for the in-process model for .NET apps in Azure Functions on <strong>November 10, 2026</strong>. The replacement is the isolated worker model. Existing in-process apps can continue running without support or security and feature updates for that model.</p>
 <p>The migration guide covers C# function apps and assumes Functions runtime 4.x. Apps on runtime 1.x, 2.x or 3.x need the corresponding host-version migration guidance. No regional restrictions or customer exceptions are documented.</p>
 <p>The notice describes the isolated model as offering the same functionality, dependency-chain control, isolation from platform lifecycle activities and support for targeting STS .NET versions. Migration still requires reviewing documented code, binding, serialization and logging differences.</p>
 </div>
@@ -1941,14 +1941,14 @@
 <li>Coordinate deployment with the Azure worker-runtime and, if needed, .NET stack configuration changes. Changing the worker-runtime setting and deploying code each restart the app; an interim mismatch produces AZFD0013 errors.</li>
 <li>When feasible, use a staging slot. Set its worker runtime to <code>dotnet-isolated</code> without making that setting slot-specific, deploy and validate the app, then swap into production. Validate production behavior and update infrastructure automation to preserve the new configuration.</li>
 </ol>
-<p>The supplied .NET policy lists .NET 10 and .NET 11 as supported through 2028-11-14, subject to current patches and operating-system eligibility. These are framework lifecycles, not extensions of the in-process retirement.</p>
+<p>The supplied .NET policy lists .NET 10 and .NET 11 as supported through November 14, 2028, subject to current patches and operating-system eligibility. These are framework lifecycles, not extensions of the in-process retirement.</p>
 </div>
       <p> </p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your .NET Azure Functions apps use the in-process model. The documented inventory script covers only the currently selected subscription; it does not establish your tenant-wide exposure or assess migration readiness.</p>
-<p>Without migration, apps can continue running after <strong>2026-11-10</strong>, but Microsoft no longer supports the model or provides its security and feature updates. The sources do not announce workload shutdown, data deletion, retention changes or cost effects.</p>
+<p>Without migration, apps can continue running after <strong>November 10, 2026</strong>, but Microsoft no longer supports the model or provides its security and feature updates. The sources do not announce workload shutdown, data deletion, retention changes or cost effects.</p>
 <p>Migration affects application code, extension packages, runtime configuration and potentially build/deployment automation. Compatibility risks include changed binding types, Newtonsoft.Json attributes being silently ignored by System.Text.Json, separate host/application logging configuration and synchronous HTTP stream I/O failing under ASP.NET Core integration.</p>
 <p>Runtime-setting changes and code deployment each restart the app. A temporary mismatch produces AZFD0013 errors; a validated staging-slot swap avoids introducing that interim mismatch in production.</p>
 <p>You do not need to change <code>AzureWebJobsStorage</code> solely for this migration. No general <code>host.json</code> change is required, although extension upgrades or logging requirements can require updates. Apps already using the isolated worker model are outside this model retirement, but their target frameworks have separate support lifecycles.</p>

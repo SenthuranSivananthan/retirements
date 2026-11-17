@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Batch</span><span class="badge retired" data-deadline="2025-04-23"><span></span>Retired</span></div>
-  <h1>Support for Ubuntu 20.04 LTS for Batch pools will be retired on 23 April 2025</h1><p>Azure Batch support for Ubuntu 20.04 LTS pool images and the batch.node.ubuntu 20.04 node agent SKU ends after 2025-04-23. The notice requires you to stop using affected images before that date. Create replacement pools with supported images and migrate your workloads; existing pools cannot change their VM image reference. After retirement, affected new pool creation is blocked, and existing pools may fail to scale out or be forcibly resized to zero nodes. No universal shutdown date is specified.</p>
+  <h1>Support for Ubuntu 20.04 LTS for Batch pools will be retired on 23 April 2025</h1><p>Azure Batch support for Ubuntu 20.04 LTS pool images and the batch.node.ubuntu 20.04 node agent SKU ends after April 23, 2025. The notice requires you to stop using affected images before that date. Create replacement pools with supported images and migrate your workloads; existing pools cannot change their VM image reference. After retirement, affected new pool creation is blocked, and existing pools may fail to scale out or be forcibly resized to zero nodes. No universal shutdown date is specified.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-04-23"><strong>Retired</strong><span>Retirement date: <time datetime="2025-04-23">23 Apr 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 25 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">23 Apr 2025</p>
-<div class="rich-content"><p>Azure Batch retires support for the affected Ubuntu 20.04 LTS pool configurations after <strong>2025-04-23</strong>. The notice requires you to stop using these images before 2025-04-23 and states that you can continue using them without disruption until that date.</p>
+<div class="rich-content"><p>Azure Batch retires support for the affected Ubuntu 20.04 LTS pool configurations after <strong>April 23, 2025</strong>. The notice requires you to stop using these images before April 23, 2025 and states that you can continue using them without disruption until that date.</p>
 <p>Afterward, new pool creation using the affected node agent SKU is blocked. Existing affected pools may fail to scale out and may be forcibly resized to zero nodes. The notice does not specify a universal shutdown date for existing pools.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Batch is retiring support for Ubuntu 20.04 LTS VM images and the batch.node.ubuntu 20.04 node agent SKU after <strong>2025-04-23</strong>. This concerns their use in Batch, not a general retirement across other services.</p>
+<div class="rich-content"><p>Azure Batch is retiring support for Ubuntu 20.04 LTS VM images and the batch.node.ubuntu 20.04 node agent SKU after <strong>April 23, 2025</strong>. This concerns their use in Batch, not a general retirement across other services.</p>
 <p>Affected Marketplace images and SKUs are:</p>
 <ul>
 <li>Canonical: 0001-com-ubuntu-server-focal — 20_04-lts and 20_04-lts-gen2.</li>
@@ -1936,7 +1936,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Stop using affected Ubuntu 20.04 LTS-based Batch images before <strong>2025-04-23</strong>.</p>
+<div class="rich-content"><p>Stop using affected Ubuntu 20.04 LTS-based Batch images before <strong>April 23, 2025</strong>.</p>
 <ol>
 <li>Identify pools using the listed Marketplace images, Ubuntu 20.04 LTS-based custom images or the batch.node.ubuntu 20.04 node agent SKU.</li>
 <li>Select an Ubuntu 22.04-or-later image or another suitable Batch-supported VM image. For container workloads or workloads requiring InfiniBand/GPU support, the notice recommends microsoft-dsvm ubuntu-hpc 2204 or later. Check regional availability, account core quotas and image-generation compatibility.</li>
@@ -1950,7 +1950,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your Batch pools use the listed Ubuntu 20.04 LTS Marketplace images, Ubuntu 20.04 LTS-based custom images or the affected node agent SKU. Review pool image references, node agent SKUs and custom-image base versions to establish your scope; this summary has not inspected your resources.</p>
-<p>After <strong>2025-04-23</strong>:</p>
+<p>After <strong>April 23, 2025</strong>:</p>
 <ul>
 <li>You cannot create new pools using batch.node.ubuntu 20.04 with the relevant Marketplace or Compute Image Gallery images.</li>
 <li>Existing affected pools may fail to scale out and may be forcibly resized to zero nodes, interrupting workloads.</li>

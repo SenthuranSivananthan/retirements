@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Data Explorer</span><span class="badge retired" data-deadline="2025-02-01"><span></span>Retired</span></div>
-  <h1>Retirement: Deprecation of Virtual Network Injection for Azure Data Explorer</h1><p>Azure Data Explorer Virtual Network Injection retired by 2025-02-01. The retirement notice states that all running virtual network injected clusters would be stopped starting that date; the migration guide confirms the retirement date but does not independently describe shutdown enforcement. Migrate affected clusters to a private-endpoint network model, preparing client and dependent-service connectivity first. Complete migration within a few hours of preparation to avoid service malfunction. Migration takes several minutes with minimal query downtime, but missing connectivity to essential ingestion dependencies can create data-loss risk.</p>
+  <h1>Retirement: Deprecation of Virtual Network Injection for Azure Data Explorer</h1><p>Azure Data Explorer Virtual Network Injection retired by February 1, 2025. The retirement notice states that all running virtual network injected clusters would be stopped starting that date; the migration guide confirms the retirement date but does not independently describe shutdown enforcement. Migrate affected clusters to a private-endpoint network model, preparing client and dependent-service connectivity first. Complete migration within a few hours of preparation to avoid service malfunction. Migration takes several minutes with minimal query downtime, but missing connectivity to essential ingestion dependencies can create data-loss risk.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-02-01"><strong>Retired</strong><span>Retirement date: <time datetime="2025-02-01">1 Feb 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 4 months, 6 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Feb 2025</p>
-<div class="rich-content"><p>Azure Data Explorer Virtual Network Injection retired <strong>by 2025-02-01</strong>. The retirement notice states that all running virtual network injected clusters would be stopped starting <strong>2025-02-01</strong>. The migration guide confirms the retirement milestone but does not independently specify shutdown enforcement or a separate end-of-support date.</p>
+<div class="rich-content"><p>Azure Data Explorer Virtual Network Injection retired <strong>by February 1, 2025</strong>. The retirement notice states that all running virtual network injected clusters would be stopped starting <strong>February 1, 2025</strong>. The migration guide confirms the retirement milestone but does not independently specify shutdown enforcement or a separate end-of-support date.</p>
 <p>New customers were blocked from creating virtual network injected clusters effective immediately in the notice; no exact date is supplied for that restriction.</p>
 <p>Separately, complete migration within a few hours of finishing preparation. The guide warns that delaying can cause service malfunction. This operational timing requirement is not another retirement milestone. Page update dates do not change the retirement deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Data Explorer retired <strong>Virtual Network Injection</strong> by 2025-02-01. Microsoft recommends moving affected clusters from your virtual network to a private-endpoint network security model. The notice says all running clusters using Virtual Network Injection would be stopped starting that date; no version or regional exceptions are documented.</p>
+<div class="rich-content"><p>Azure Data Explorer retired <strong>Virtual Network Injection</strong> by February 1, 2025. Microsoft recommends moving affected clusters from your virtual network to a private-endpoint network security model. The notice says all running clusters using Virtual Network Injection would be stopped starting that date; no version or regional exceptions are documented.</p>
 <p>Migration creates new engine and data management services in a Microsoft-managed virtual network and switches connections to them. It takes several minutes with minimal query downtime. Existing private-prefixed cluster endpoints remain usable after migration, but the guide directs you to move clients to regular cluster endpoints without the private prefix.</p>
 <p>The notice describes migration as fully supported and generally available. It does not document ongoing maintenance or security-update commitments for the retired feature.</p>
 </div>
@@ -1945,7 +1945,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your Azure Data Explorer cluster uses Virtual Network Injection. Azure Resource Graph can identify matching clusters within the subscription you query; this synthesis does not inspect your resources.</p>
-<p>The retirement notice states that all running affected clusters would be stopped starting 2025-02-01, disrupting their workloads if left unmigrated. The migration guide does not independently describe that enforcement. New customers also cannot create virtual network injected clusters.</p>
+<p>The retirement notice states that all running affected clusters would be stopped starting February 1, 2025, disrupting their workloads if left unmigrated. The migration guide does not independently describe that enforcement. New customers also cannot create virtual network injected clusters.</p>
 <p>Migration takes several minutes with minimal query downtime, but connectivity preparation matters:</p>
 <ul>
 <li>Clients with public access disabled need working private-endpoint connectivity after migration.</li>

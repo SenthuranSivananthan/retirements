@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure IoT Hub</span><span class="badge retired" data-deadline="2022-02-01"><span></span>Retired</span></div>
-  <h1>Action Required: Upgrade IoT Hub IP filter before 1 February 2022</h1><p>Microsoft announced retirement of the classic Azure IoT Hub IP filter, with a manual upgrade deadline of 2022-02-01 to avoid possible service disruption. Microsoft said automatic upgrades would roll out afterward; the supplied notice gives no completion date or separate shutdown date. Review allow rules carefully: the upgraded filter blocks IP ranges by default and removes individual deny rules during upgrade. Current configuration guidance describes built-in endpoint filtering as optional and available only for paid hubs.</p>
+  <h1>Action Required: Upgrade IoT Hub IP filter before 1 February 2022</h1><p>Microsoft announced retirement of the classic Azure IoT Hub IP filter, with a manual upgrade deadline of February 1, 2022 to avoid possible service disruption. Microsoft said automatic upgrades would roll out afterward; the supplied notice gives no completion date or separate shutdown date. Review allow rules carefully: the upgraded filter blocks IP ranges by default and removes individual deny rules during upgrade. Current configuration guidance describes built-in endpoint filtering as optional and available only for paid hubs.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-02-01"><strong>Retired</strong><span>Retirement date: <time datetime="2022-02-01">1 Feb 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 10 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Feb 2022</p>
-<div class="rich-content"><p>The classic Azure IoT Hub IP filter retirement notice sets <strong>2022-02-01</strong> as the manual upgrade deadline to avoid possible service disruption. Microsoft said automatic upgrades would roll out for customers who had not upgraded manually.</p>
-<p>The title says “before” 2022-02-01, while the required-action text says “by” that date. Neither specifies a different calendar date. The notice gives no automatic-upgrade completion date or separate shutdown date; this deadline does not establish when workloads would stop.</p>
+<div class="rich-content"><p>The classic Azure IoT Hub IP filter retirement notice sets <strong>February 1, 2022</strong> as the manual upgrade deadline to avoid possible service disruption. Microsoft said automatic upgrades would roll out for customers who had not upgraded manually.</p>
+<p>The title says “before” February 1, 2022, while the required-action text says “by” that date. Neither specifies a different calendar date. The notice gives no automatic-upgrade completion date or separate shutdown date; this deadline does not establish when workloads would stop.</p>
 <p>The configuration reference provides no replacement retirement date. Its last-updated date is not a retirement milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft announced retirement of the <strong>classic Azure IoT Hub IP filter</strong> in favor of an upgraded model, with manual upgrades due by 2022-02-01 and automatic upgrades planned afterward.</p>
+<div class="rich-content"><p>Microsoft announced retirement of the <strong>classic Azure IoT Hub IP filter</strong> in favor of an upgraded model, with manual upgrades due by February 1, 2022 and automatic upgrades planned afterward.</p>
 <p>The notice says the upgraded filter blocks all IP ranges by default, removes individual deny rules during upgrade, and lets you review rules before saving. It also describes protection for the built-in endpoint.</p>
 <p>The configuration reference separately describes filtering the built-in Event Hubs-compatible endpoint as optional, requiring a paid hub and unavailable for free F1 hubs. Do not treat the notice's endpoint description as evidence that filtering is mandatory for every hub.</p>
 <p>The supplied content documents no regional exceptions, support or security-update commitments, or separate shutdown milestone.</p>
@@ -1933,7 +1933,7 @@
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
-<li>Open your IoT hub in Azure portal and select <strong>Networking</strong>. Look for the banner prompting an upgrade from the classic IP filter. The notice's manual upgrade deadline was 2022-02-01; it does not establish whether an upgrade is still pending for your hub.</li>
+<li>Open your IoT hub in Azure portal and select <strong>Networking</strong>. Look for the banner prompting an upgrade from the classic IP filter. The notice's manual upgrade deadline was February 1, 2022; it does not establish whether an upgrade is still pending for your hub.</li>
 <li>If the upgrade banner is present, follow its prompts and carefully review the rules before saving. The upgrade removes individual deny rules, and addresses not explicitly allowed are blocked.</li>
 <li>Review the current configuration under <strong>Security settings &gt; Networking &gt; Public access &gt; Selected IP Ranges</strong>. Include required device, back-end application and browser source IPv4 addresses or CIDR ranges. Each hub supports up to 100 rules.</li>
 <li>Review whether filtering should apply to the built-in Event Hubs-compatible endpoint. This option requires a paid hub. For Azure Stream Analytics, the configuration guidance directs you to disable that option and manually configure an Event Hubs stream input using the hub's Event Hubs-compatible name and endpoint.</li>
@@ -1945,7 +1945,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>The retirement concerns IoT hubs using the <strong>classic IP filter</strong>. Microsoft warned of possible service disruption if you did not upgrade manually by 2022-02-01 and said automatic upgrades would roll out. The supplied content does not establish whether your hubs were affected or have already been upgraded.</p>
+<div class="rich-content"><p>The retirement concerns IoT hubs using the <strong>classic IP filter</strong>. Microsoft warned of possible service disruption if you did not upgrade manually by February 1, 2022 and said automatic upgrades would roll out. The supplied content does not establish whether your hubs were affected or have already been upgraded.</p>
 <p>The configuration reference documents these access consequences:</p>
 <ul>
 <li>Filtering applies to device and back-end connections across supported protocols. Disallowed addresses receive an unauthorized 401 response that does not identify the IP rule.</li>

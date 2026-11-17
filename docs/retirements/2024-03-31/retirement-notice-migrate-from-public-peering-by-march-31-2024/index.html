@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure ExpressRoute</span><span class="badge retired" data-deadline="2024-03-31"><span></span>Retired</span></div>
-  <h1>Retirement notice: Migrate from Public Peering by March 31, 2024</h1><p>Microsoft set 2024-03-31 as the retirement and migration deadline for Azure ExpressRoute public peering, directing customers to Microsoft peering with route filters. New public peering connections had been blocked since 2018. Migration requires attention to NAT, public addressing, service allowlists and route advertisements. The supplied sources agree on the deadline but do not confirm actual shutdown behavior or post-retirement connectivity. This retirement does not concern ExpressRoute as a whole.</p>
+  <h1>Retirement notice: Migrate from Public Peering by March 31, 2024</h1><p>Microsoft set March 31, 2024 as the retirement and migration deadline for Azure ExpressRoute public peering, directing customers to Microsoft peering with route filters. New public peering connections had been blocked since 2018. Migration requires attention to NAT, public addressing, service allowlists and route advertisements. The supplied sources agree on the deadline but do not confirm actual shutdown behavior or post-retirement connectivity. This retirement does not concern ExpressRoute as a whole.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-03-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-03-31">31 Mar 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2024</p>
-<div class="rich-content"><p>Microsoft set <strong>2024-03-31</strong> as the retirement date for ExpressRoute public peering and the deadline to complete migration to Microsoft peering. The supplied retirement notice and product guidance agree on that date; no extension is documented.</p>
+<div class="rich-content"><p>Microsoft set <strong>March 31, 2024</strong> as the retirement date for ExpressRoute public peering and the deadline to complete migration to Microsoft peering. The supplied retirement notice and product guidance agree on that date; no extension is documented.</p>
 <p>New public peering connections had been blocked separately since 2018; the notice gives no exact date for that restriction.</p>
-<p>The sources do not specify actual shutdown mechanics, post-retirement connectivity or management availability. The migration guide's 2024-03-11 update date is not a retirement milestone.</p>
+<p>The sources do not specify actual shutdown mechanics, post-retirement connectivity or management availability. The migration guide's March 11, 2024 update date is not a retirement milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft set <strong>2024-03-31</strong> as the retirement date for Azure ExpressRoute public peering and directed customers to Microsoft peering with route filters for Azure services, including Azure Storage and Azure SQL Database. This change concerns public peering, not ExpressRoute as a whole. No regional exception is documented.</p>
+<div class="rich-content"><p>Microsoft set <strong>March 31, 2024</strong> as the retirement date for Azure ExpressRoute public peering and directed customers to Microsoft peering with route filters for Azure services, including Azure Storage and Azure SQL Database. This change concerns public peering, not ExpressRoute as a whole. No regional exception is documented.</p>
 <p>Microsoft peering changes routing behavior:</p>
 <ul>
 <li>It supports bidirectional connection initiation, unlike public peering's WAN-initiated connections only.</li>
@@ -1937,7 +1937,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>If you still use ExpressRoute public peering, migrate to Microsoft peering. Microsoft's required completion date was <strong>2024-03-31</strong>. Follow the documented order, which is intended to avoid downtime:</p>
+<div class="rich-content"><p>If you still use ExpressRoute public peering, migrate to Microsoft peering. Microsoft's required completion date was <strong>March 31, 2024</strong>. Follow the documented order, which is intended to avoid downtime:</p>
 <ol>
 <li>Identify circuits using public peering through the Azure portal or the documented CLI command <code>az network express-route list</code>. Review peering details and identify any Azure Storage or Azure SQL public-IP network rules. Verify that your required services support Microsoft peering using their documentation and published IP ranges; contact the service's support team if compatibility is unclear.</li>
 <li>Arrange and correctly size NAT yourself or through your connectivity provider. Add the Microsoft peering NAT pool to applicable Storage and SQL allowlists. Do not advertise that NAT pool to the Internet: the guide warns that doing so breaks connectivity to other Microsoft services. Review asymmetric-routing caveats for your Internet and ExpressRoute paths.</li>

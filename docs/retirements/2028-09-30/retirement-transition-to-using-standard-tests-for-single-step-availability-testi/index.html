@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Application Insights · Azure Monitor</span><span class="badge upcoming" data-deadline="2028-09-30"><span></span>Upcoming</span></div>
-  <h1>Retirement: Transition to using standard tests for single-step availability testing in Azure Monitor application insights by September 30, 2028</h1><p>Azure Monitor Application Insights URL ping tests retire on 2028-09-30, when Microsoft will remove existing tests from your resources. Microsoft explicitly extended the original 2026-09-30 deadline by 24 months; older references retain the superseded date. Migrate to Standard tests and validate monitoring and alert cutover before retirement. Enabled Standard tests incur charges, some validation rules need manual conversion, and alert rules do not migrate automatically.</p>
+  <h1>Retirement: Transition to using standard tests for single-step availability testing in Azure Monitor application insights by September 30, 2028</h1><p>Azure Monitor Application Insights URL ping tests retire on September 30, 2028, when Microsoft will remove existing tests from your resources. Microsoft explicitly extended the original September 30, 2026 deadline by 24 months; older references retain the superseded date. Migrate to Standard tests and validate monitoring and alert cutover before retirement. Enabled Standard tests incur charges, some validation rules need manual conversion, and alert rules do not migrate automatically.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-09-30"><strong>683 days remaining</strong><span>Retirement date: <time datetime="2028-09-30">30 Sep 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 5 years, 8 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2028</p>
-<div class="rich-content"><p>URL ping tests in Azure Monitor Application Insights retire on <strong>2028-09-30</strong>. Microsoft will remove existing URL ping tests from your resources that day. Complete migration and alert cutover before then to maintain this availability monitoring.</p>
-<p>Microsoft explicitly extended the original <strong>2026-09-30</strong> retirement by 24 months. The previous-version guidance and older Q&amp;A announcement retain that superseded date; current product guidance and the updated announcement establish 2028-09-30.</p>
+<div class="rich-content"><p>URL ping tests in Azure Monitor Application Insights retire on <strong>September 30, 2028</strong>. Microsoft will remove existing URL ping tests from your resources that day. Complete migration and alert cutover before then to maintain this availability monitoring.</p>
+<p>Microsoft explicitly extended the original <strong>September 30, 2026</strong> retirement by 24 months. The previous-version guidance and older Q&amp;A announcement retain that superseded date; current product guidance and the updated announcement establish September 30, 2028.</p>
 <p>URL ping tests are already deprecated, but the supplied content gives no separate deprecation date or new-customer restriction date. China test-location and TLS changes are separate milestones.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring <strong>Application Insights URL ping tests</strong>, also categorized as classic availability tests, on <strong>2028-09-30</strong>. Existing tests remain usable during migration until retirement, when Microsoft removes them.</p>
+<div class="rich-content"><p>Microsoft is retiring <strong>Application Insights URL ping tests</strong>, also categorized as classic availability tests, on <strong>September 30, 2028</strong>. Existing tests remain usable during migration until retirement, when Microsoft removes them.</p>
 <p>Standard tests are the replacement for single-step availability monitoring. They support custom headers, request bodies and TLS/SSL certificate checks. Creating a Standard test does not modify or remove its original URL ping test.</p>
 <p>This retirement does not include Standard tests. The supplied guidance does not assign this retirement date to custom TrackAvailability implementations or document regional exceptions or pre-retirement maintenance and security-update commitments.</p>
 </div>
@@ -1931,7 +1931,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Complete migration and alert cutover before <strong>2028-09-30</strong>.</p>
+<div class="rich-content"><p>Complete migration and alert cutover before <strong>September 30, 2028</strong>.</p>
 <ol>
 <li>Identify URL ping tests using the documented Azure Resource Graph discovery query or Azure PowerShell listing procedure. Record each test's resource group, name, settings and alert rules.</li>
 <li>Confirm prerequisites: a workspace-based Application Insights resource, Azure PowerShell access for the documented migration procedure, and permission to read and create Microsoft.Insights/webTests resources. Review Standard-test pricing before enabling replacements.</li>
@@ -1946,7 +1946,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your Application Insights resources contain URL ping tests. Microsoft removes those tests on <strong>2028-09-30</strong>; without replacements, you lose their availability monitoring. This is not a documented shutdown of the applications being monitored.</p>
+<div class="rich-content"><p>You are affected if your Application Insights resources contain URL ping tests. Microsoft removes those tests on <strong>September 30, 2028</strong>; without replacements, you lose their availability monitoring. This is not a documented shutdown of the applications being monitored.</p>
 <ul>
 <li><strong>Alerting:</strong> Replacement creation does not migrate alert rules. Successful test execution alone does not establish that notifications are configured correctly.</li>
 <li><strong>Costs:</strong> Enabled Standard tests incur charges, including during overlap with original tests. The supplied content does not establish your costs.</li>

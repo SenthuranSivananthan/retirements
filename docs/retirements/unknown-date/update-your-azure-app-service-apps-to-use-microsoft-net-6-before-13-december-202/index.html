@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">App Service</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h1>Update your Azure App Service apps to use Microsoft .NET 6 before 13 December 2022</h1><p>Microsoft ended support and patches for .NET Core 3.1 on Azure App Service in December 2022; existing applications would continue to run. The Azure notice gives 2022-12-13, while the Microsoft Q&amp;A announcement gives 2022-12-03. The exact date remains unconfirmed because the supplied sources conflict. Both recommend moving to .NET 6, but do not establish its current support status. General App Service guidance explains runtime selection and restarts, not a retirement-specific deadline.</p>
+  <h1>Update your Azure App Service apps to use Microsoft .NET 6 before 13 December 2022</h1><p>Microsoft ended support and patches for .NET Core 3.1 on Azure App Service in December 2022; existing applications would continue to run. The Azure notice gives December 13, 2022, while the Microsoft Q&amp;A announcement gives December 3, 2022. The exact date remains unconfirmed because the supplied sources conflict. Both recommend moving to .NET 6, but do not establish its current support status. General App Service guidance explains runtime selection and restarts, not a retirement-specific deadline.</p>
   <div class="retirement-countdown unknown" data-countdown data-deadline=""><strong>Retirement date to confirm</strong><span class="badge amber customer-lead-time-pill">Lead time: Not calculable</span></div>
 </div>
 <div class="detail-layout">
@@ -1918,8 +1918,8 @@
       <p class="deadline-date">Date not specified</p>
 <div class="rich-content"><p>Support and patches for .NET Core 3.1 on Azure App Service ended in <strong>December 2022</strong>, but the supplied sources conflict on the exact date:</p>
 <ul>
-<li>The Azure notice gives <strong>2022-12-13</strong> and recommends updating before that date.</li>
-<li>The Microsoft Q&amp;A announcement gives <strong>2022-12-03</strong>. Its title describes community support, while its body describes extended support.</li>
+<li>The Azure notice gives <strong>December 13, 2022</strong> and recommends updating before that date.</li>
+<li>The Microsoft Q&amp;A announcement gives <strong>December 3, 2022</strong>. Its title describes community support, while its body describes extended support.</li>
 </ul>
 <p>These dates are ten days apart. Neither source establishes an extension or resolves the discrepancy, and the general runtime-policy page provides no version-specific date. The exact date remains unconfirmed.</p>
 <p>This is an end-of-support milestone, not a workload shutdown date. Both announcements say existing applications would continue to run without .NET Core 3.1 patches or support.</p>
@@ -1941,7 +1941,7 @@
 <li>For the documented stack-setting change, open your app in the Azure portal, then Configuration, General settings and Stack Settings. Select a supported .NET version under Major version and select Save. <strong>Changing stack settings restarts the application.</strong></li>
 </ol>
 <p>You can list supported runtime versions with <code>az webapp list-runtimes --os-type linux</code> or <code>az webapp list-runtimes --os-type windows</code>.</p>
-<p>The Azure notice recommended updating before 2022-12-13; the Q&amp;A announcement gives a conflicting support-end date of 2022-12-03. Migration is not described as necessary to keep existing apps running. The supplied content does not document application migration procedures, prerequisites, compatibility constraints, backup, cutover, cleanup or post-change validation steps; changing the stack setting alone is not documented as a complete migration.</p>
+<p>The Azure notice recommended updating before December 13, 2022; the Q&amp;A announcement gives a conflicting support-end date of December 3, 2022. Migration is not described as necessary to keep existing apps running. The supplied content does not document application migration procedures, prerequisites, compatibility constraints, backup, cutover, cleanup or post-change validation steps; changing the stack setting alone is not documented as a complete migration.</p>
 </div>
       <p> </p>
     </section>

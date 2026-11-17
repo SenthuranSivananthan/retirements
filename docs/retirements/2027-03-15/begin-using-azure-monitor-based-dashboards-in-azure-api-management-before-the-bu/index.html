@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge upcoming" data-deadline="2027-03-15"><span></span>Upcoming</span></div>
-  <h1>Begin using Azure Monitor–based dashboards in Azure API Management before the built-in analytics dashboards are retired on 15 March 2027</h1><p>Microsoft is retiring Azure API Management’s legacy built-in analytics dashboards and associated reports in classic tiers in March 2027. The announcement specifies 2027-03-15; current monitoring guidance gives only the month. Begin using the Azure Monitor-based dashboard before 2027-03-15. It requires gateway logs in a Log Analytics workspace. This is an analytics retirement, not a documented API workload shutdown; the future of REST API Reports operations remains unclear.</p>
+  <h1>Begin using Azure Monitor–based dashboards in Azure API Management before the built-in analytics dashboards are retired on 15 March 2027</h1><p>Microsoft is retiring Azure API Management’s legacy built-in analytics dashboards and associated reports in classic tiers in March 2027. The announcement specifies March 15, 2027; current monitoring guidance gives only the month. Begin using the Azure Monitor-based dashboard before March 15, 2027. It requires gateway logs in a Log Analytics workspace. This is an analytics retirement, not a documented API workload shutdown; the future of REST API Reports operations remains unclear.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-03-15"><strong>118 days remaining</strong><span>Retirement date: <time datetime="2027-03-15">15 Mar 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 15 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">15 Mar 2027</p>
-<div class="rich-content"><p>Microsoft’s announcement specifies <strong>2027-03-15</strong> for retirement of the built-in Azure API Management analytics dashboards. Current monitoring guidance identifies <strong>March 2027</strong> for the legacy dashboard and associated reports in classic tiers but does not specify a day. These dates are compatible; the reference does not independently confirm the exact day.</p>
-<p>Begin using the replacement before 2027-03-15 to avoid losing the retiring dashboard experience. Both dashboard options remain available in the Azure portal until retirement. This milestone is not a documented shutdown of API Management workloads.</p>
+<div class="rich-content"><p>Microsoft’s announcement specifies <strong>March 15, 2027</strong> for retirement of the built-in Azure API Management analytics dashboards. Current monitoring guidance identifies <strong>March 2027</strong> for the legacy dashboard and associated reports in classic tiers but does not specify a day. These dates are compatible; the reference does not independently confirm the exact day.</p>
+<p>Begin using the replacement before March 15, 2027 to avoid losing the retiring dashboard experience. Both dashboard options remain available in the Azure portal until retirement. This milestone is not a documented shutdown of API Management workloads.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring the legacy built-in analytics dashboard and associated reports in Azure API Management classic tiers in March 2027. The announcement specifies 2027-03-15 for the dashboards.</p>
+<div class="rich-content"><p>Microsoft is retiring the legacy built-in analytics dashboard and associated reports in Azure API Management classic tiers in March 2027. The announcement specifies March 15, 2027 for the dashboards.</p>
 <p>The replacement Azure Monitor-based dashboard uses Log Analytics workbooks and gateway logs stored in a Log Analytics workspace. Microsoft describes closely similar data, not guaranteed feature parity. The replacement dashboards do not consume API Management instance capacity.</p>
 <p>The monitoring article applies broadly, but its retirement statement specifically concerns classic tiers. It does not explicitly establish whether or when REST API Reports operations retire. API analytics is currently unavailable in API Management workspaces, which are distinct from the Log Analytics workspace required by the replacement.</p>
 </div>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify classic-tier API Management instances where you use <strong>Monitoring &gt; Analytics (classic)</strong>. Review dependencies on REST API Reports operations separately because their retirement scope is unclear.</li>
-<li>Begin using <strong>Monitoring &gt; Analytics</strong>, the Azure Monitor-based dashboard, before 2027-03-15. You need a Log Analytics workspace receiving API Management gateway logs.</li>
+<li>Begin using <strong>Monitoring &gt; Analytics</strong>, the Azure Monitor-based dashboard, before March 15, 2027. You need a Log Analytics workspace receiving API Management gateway logs.</li>
 <li>If logging is not configured, open <strong>Monitoring &gt; Diagnostic settings &gt; + Add diagnostic setting</strong>. Name the setting, select <strong>Logs related to ApiManagement Gateway</strong>, choose <strong>Send to Log Analytics</strong>, select a workspace, set the destination table to <strong>Resource specific</strong>, and save. The workspace can be in the same or a different subscription. For LLM analytics, also select <strong>Logs related to generative AI gateway</strong>.</li>
 <li>Allow up to two hours for a new workspace to receive data, or approximately 15 minutes for an existing workspace. In <strong>Monitoring &gt; Analytics</strong>, check the time ranges and report categories you need. Inspect gateway logs through <strong>Monitoring &gt; Logs</strong>.</li>
 </ol>

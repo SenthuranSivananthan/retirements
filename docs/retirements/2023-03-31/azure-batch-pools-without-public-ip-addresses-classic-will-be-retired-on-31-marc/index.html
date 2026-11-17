@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Batch</span><span class="badge retired" data-deadline="2023-03-31"><span></span>Retired</span></div>
-  <h1>Azure Batch pools without public IP addresses (classic) will be retired on 31 March 2023</h1><p>Azure Batch pools without public IP addresses (classic), described in the reference page as the original preview, retired on 2023-03-31. Microsoft required migration to Simplified node communication pools without public IP addresses before that date. Microsoft no longer supports the classic configuration; existing pools may lose functionality, including scale-out, or be scaled down to zero at any time. The notice does not specify a universal shutdown date. The supplied replacement guidance includes migration steps for previous-preview pools created in a virtual network, but the linked Retirement Migration Guide returned unrelated content.</p>
+  <h1>Azure Batch pools without public IP addresses (classic) will be retired on 31 March 2023</h1><p>Azure Batch pools without public IP addresses (classic), described in the reference page as the original preview, retired on March 31, 2023. Microsoft required migration to Simplified node communication pools without public IP addresses before that date. Microsoft no longer supports the classic configuration; existing pools may lose functionality, including scale-out, or be scaled down to zero at any time. The notice does not specify a universal shutdown date. The supplied replacement guidance includes migration steps for previous-preview pools created in a virtual network, but the linked Retirement Migration Guide returned unrelated content.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2023-03-31"><strong>Retired</strong><span>Retirement date: <time datetime="2023-03-31">31 Mar 2023</time></span><span class="badge amber customer-lead-time-pill">Lead time: 5 months, 24 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2023</p>
-<div class="rich-content"><p>Azure Batch pools without public IP addresses (classic) retired on <strong>2023-03-31</strong>. Microsoft instructed customers to transition before that date.</p>
+<div class="rich-content"><p>Azure Batch pools without public IP addresses (classic) retired on <strong>March 31, 2023</strong>. Microsoft instructed customers to transition before that date.</p>
 <p>After retirement, Microsoft stops supporting the classic configuration. Existing pools may lose functionality, including scale-out, or be actively scaled down to zero at any time. The notice does not specify a separate shutdown date or say every affected pool stops on the retirement date.</p>
-<p>The original-preview reference page gives the same retirement date, but does not independently confirm that retirement occurred. The <strong>2026-03-31</strong> Default Outbound Access date in the replacement guidance concerns a different retirement; it is not an extension of the classic-pool deadline.</p>
+<p>The original-preview reference page gives the same retirement date, but does not independently confirm that retirement occurred. The <strong>March 31, 2026</strong> Default Outbound Access date in the replacement guidance concerns a different retirement; it is not an extension of the classic-pool deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Batch retired its classic pools without public IP addresses on <strong>2023-03-31</strong>. The replacement is <strong>Simplified node communication pools without public IP addresses</strong>.</p>
+<div class="rich-content"><p>Azure Batch retired its classic pools without public IP addresses on <strong>March 31, 2023</strong>. The replacement is <strong>Simplified node communication pools without public IP addresses</strong>.</p>
 <p>The retirement concerns the original preview/classic configuration, not Azure Batch as a whole or all pools without public IP addresses. The preview used Virtual Machine Configuration and was available only in the regions listed by its reference page.</p>
 <p>The announcement documents the end of support and possible loss of existing-pool functionality after retirement. It does not document maintenance or security-update commitments. The preview reference also states that the preview had no service-level agreement and was not recommended for production workloads.</p>
 </div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify pools using the retiring classic/original-preview configuration. The supplied pages provide no definitive retirement inventory method. The setting <code>NoPublicIPAddresses</code> alone does not distinguish the retiring preview from its replacement.</li>
-<li>Plan the move to Simplified node communication pools without public IP addresses. Microsoft required the transition before <strong>2023-03-31</strong>. The supplied replacement guidance supports migration of previous-preview pools only when they were created in a virtual network; it does not provide a migration path for other cases.</li>
+<li>Plan the move to Simplified node communication pools without public IP addresses. Microsoft required the transition before <strong>March 31, 2023</strong>. The supplied replacement guidance supports migration of previous-preview pools only when they were created in a virtual network; it does not provide a migration path for other cases.</li>
 <li>Confirm replacement prerequisites: regional availability, Microsoft Entra authentication for the Batch client API, and a virtual network in the Batch account's subscription and region with sufficient subnet addresses. Configure a nodeManagement private endpoint. If tasks require public internet access, configure explicit outbound connectivity, such as virtual network NAT or a user-defined route through a proxy or Azure Firewall; the private endpoint does not provide general internet access.</li>
 <li>For an eligible previous-preview pool, the replacement guidance gives this sequence: create the private endpoint, switch node communication to simplified, scale to zero nodes, then scale out. As team-owned preparation, plan for the scale-to-zero step's effect on your workloads.</li>
 <li>Validate private endpoint approval, provisioning, DNS and TCP/443 connectivity from the pool network. Confirm nodes are usable and test the destinations your workloads require.</li>
@@ -1946,7 +1946,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are in scope if you use Azure Batch pools without public IP addresses in the classic/original-preview configuration. The supplied content does not establish whether your account contains affected pools or how many.</p>
-<p>After <strong>2023-03-31</strong>, Microsoft no longer supports that configuration. Existing pools may lose functionality, including scale-out, or be scaled down to zero at any time. Continued workload operation is not assured, but the notice does not establish a simultaneous shutdown of all affected pools.</p>
+<p>After <strong>March 31, 2023</strong>, Microsoft no longer supports that configuration. Existing pools may lose functionality, including scale-out, or be scaled down to zero at any time. Continued workload operation is not assured, but the notice does not establish a simultaneous shutdown of all affected pools.</p>
 <p>Migration also affects connectivity and operations:</p>
 <ul>
 <li>The documented previous-preview migration path applies only to pools created in a virtual network and includes scaling to zero before scaling out.</li>

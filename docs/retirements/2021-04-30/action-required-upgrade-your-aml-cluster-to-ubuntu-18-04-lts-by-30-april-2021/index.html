@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Machine Learning</span><span class="badge retired" data-deadline="2021-04-30"><span></span>Retired</span></div>
-  <h1>Action required: upgrade your AML cluster to Ubuntu 18.04 LTS by 30 April 2021</h1><p>On 2021-04-30, Ubuntu 16.04 LTS standard support ended, and Microsoft began replacing its image with Ubuntu 18.04 LTS for new Azure Machine Learning compute instances and clusters. Automatic migration of existing resources began on 2021-03-15; long-running compute instances and non-autoscaling clusters with minimum nodes greater than zero required manual migration before 2021-04-30. The notice states that support and security updates end, not that workloads shut down. The supplied reference pages describe releases and ongoing maintenance; they do not establish another retirement deadline or an extension.</p>
+  <h1>Action required: upgrade your AML cluster to Ubuntu 18.04 LTS by 30 April 2021</h1><p>On April 30, 2021, Ubuntu 16.04 LTS standard support ended, and Microsoft began replacing its image with Ubuntu 18.04 LTS for new Azure Machine Learning compute instances and clusters. Automatic migration of existing resources began on March 15, 2021; long-running compute instances and non-autoscaling clusters with minimum nodes greater than zero required manual migration before April 30, 2021. The notice states that support and security updates end, not that workloads shut down. The supplied reference pages describe releases and ongoing maintenance; they do not establish another retirement deadline or an extension.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2021-04-30"><strong>Retired</strong><span>Retirement date: <time datetime="2021-04-30">30 Apr 2021</time></span><span class="badge amber customer-lead-time-pill">Lead time: 10 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Apr 2021</p>
-<div class="rich-content"><p>Ubuntu 16.04 LTS standard support ended on <strong>2021-04-30</strong>. Starting that date, Microsoft replaced its image with Ubuntu 18.04 LTS for new Azure Machine Learning compute instances and clusters. The notice states that Ubuntu 16.04 would receive no support or security updates after that date; it does not announce workload shutdown.</p>
-<p>Long-running compute instances and non-autoscaling clusters with minimum nodes greater than zero required manual migration <strong>before 2021-04-30</strong>. Automatic migration of existing resources began on 2021-03-15; this was a rollout start, not a completion deadline.</p>
+<div class="rich-content"><p>Ubuntu 16.04 LTS standard support ended on <strong>April 30, 2021</strong>. Starting that date, Microsoft replaced its image with Ubuntu 18.04 LTS for new Azure Machine Learning compute instances and clusters. The notice states that Ubuntu 16.04 would receive no support or security updates after that date; it does not announce workload shutdown.</p>
+<p>Long-running compute instances and non-autoscaling clusters with minimum nodes greater than zero required manual migration <strong>before April 30, 2021</strong>. Automatic migration of existing resources began on March 15, 2021; this was a rollout start, not a completion deadline.</p>
 <p>The supplied reference pages establish no conflicting retirement date or extension. Their release and last-updated dates are not retirement milestones.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft replaced Ubuntu 16.04 LTS with Ubuntu 18.04 LTS for new Azure Machine Learning managed-compute instances and single- or multi-node clusters starting <strong>2021-04-30</strong>.</p>
-<p>Automatic migration of existing instances and clusters began on 2021-03-15. Long-running compute instances and non-autoscaling clusters with minimum nodes greater than zero required manual migration.</p>
+<div class="rich-content"><p>Microsoft replaced Ubuntu 16.04 LTS with Ubuntu 18.04 LTS for new Azure Machine Learning managed-compute instances and single- or multi-node clusters starting <strong>April 30, 2021</strong>.</p>
+<p>Automatic migration of existing instances and clusters began on March 15, 2021. Long-running compute instances and non-autoscaling clusters with minimum nodes greater than zero required manual migration.</p>
 <p>The supplied current vulnerability-management pages describe ongoing maintenance, not another retirement announcement or confirmation that the historical migration completed.</p>
 </div>
       <div class="notice"></div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your Azure Machine Learning compute instances and clusters using Ubuntu 16.04 LTS, particularly long-running instances and non-autoscaling clusters with minimum nodes greater than zero. The retirement notice does not provide an identification procedure; the supplied maintenance guidance documents querying a compute instance's OS version.</li>
-<li>For resources requiring manual migration, the notice required moving to Ubuntu 18.04 LTS before 2021-04-30. It references migration instructions, but the supplied destination content now describes ongoing maintenance rather than the historical migration procedure.</li>
+<li>For resources requiring manual migration, the notice required moving to Ubuntu 18.04 LTS before April 30, 2021. It references migration instructions, but the supplied destination content now describes ongoing maintenance rather than the historical migration procedure.</li>
 <li>If you use the documented maintenance approaches, preserve data before recreating compute instances: store notebooks in the User files directory and persist files through mounted data. Recreation loses data and customizations on OS and temporary disks. For compute clusters, temporarily set the minimum node count to zero and allow jobs to finish and the cluster to reach zero nodes; continuous jobs can prevent image refreshes. These are maintenance approaches, not a confirmed reconstruction of the historical migration instructions.</li>
 </ol>
 <p>The notice lists ubuntu18azureml@service.microsoft.com for clarification or concerns. The supplied content does not establish whether that contact remains available.</p>
@@ -1942,15 +1942,15 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>The retirement affects Ubuntu 16.04 LTS host images for Azure Machine Learning managed-compute instances and clusters. New resources moved to Ubuntu 18.04 LTS starting 2021-04-30; existing resources entered automatic migration on 2021-03-15, except those requiring manual migration.</p>
-<p>If you remained on Ubuntu 16.04 after 2021-04-30, the notice states that support and security updates ended. It does not specify workload shutdown, migration downtime, compatibility effects or retirement-related data deletion. Your resources have not been inspected.</p>
+<div class="rich-content"><p>The retirement affects Ubuntu 16.04 LTS host images for Azure Machine Learning managed-compute instances and clusters. New resources moved to Ubuntu 18.04 LTS starting April 30, 2021; existing resources entered automatic migration on March 15, 2021, except those requiring manual migration.</p>
+<p>If you remained on Ubuntu 16.04 after April 30, 2021, the notice states that support and security updates ended. It does not specify workload shutdown, migration downtime, compatibility effects or retirement-related data deletion. Your resources have not been inspected.</p>
 <p>The supplied maintenance guidance distinguishes host OS images from container OS images. It also warns that recreating a compute instance loses data and customizations on OS and temporary disks. These are maintenance considerations, not additional retirement consequences.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
 <div class="rich-content"><p>Tracking guidance is not available for this retirement.</p>
-<p>The notice provides no resource-level migration status method, completion checks or rollout completion date. Its 2021-03-15 automatic-migration start does not prove that any particular resource migrated.</p>
+<p>The notice provides no resource-level migration status method, completion checks or rollout completion date. Its March 15, 2021 automatic-migration start does not prove that any particular resource migrated.</p>
 <p>The supplied maintenance guidance documents querying a compute instance's OS version and comparing it with compute instance image release notes. You can keep team-owned records of versions and migration work, but those maintenance checks do not establish retirement migration completion or provide cluster-wide retirement coverage.</p>
 <p>The notice lists ubuntu18azureml@service.microsoft.com for clarification or concerns; its current availability is not established.</p>
 </div>

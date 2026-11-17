@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Batch</span><span class="badge upcoming" data-deadline="2028-05-01"><span></span>Upcoming</span></div>
-  <h1>Retirement: D-series, Ds-series, Dv2-series, Dsv2-series, and Ls-series Virtual Machines for Azure Batch pools</h1><p>Azure Compute will retire D-, Ds-, Dv2-, Dsv2- and Ls-series VMs on 2028-05-01, affecting Azure Batch pools that use them. Migrate before this date. Existing pools continue running before retirement. Afterward, affected pools cannot be created or scale out, pools may be forcibly resized to zero, and remaining VMs will be stopped/deallocated without SLA coverage.</p>
+  <h1>Retirement: D-series, Ds-series, Dv2-series, Dsv2-series, and Ls-series Virtual Machines for Azure Batch pools</h1><p>Azure Compute will retire D-, Ds-, Dv2-, Dsv2- and Ls-series VMs on May 1, 2028, affecting Azure Batch pools that use them. Migrate before this date. Existing pools continue running before retirement. Afterward, affected pools cannot be created or scale out, pools may be forcibly resized to zero, and remaining VMs will be stopped/deallocated without SLA coverage.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-05-01"><strong>531 days remaining</strong><span>Retirement date: <time datetime="2028-05-01">1 May 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 10 months, 20 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 May 2028</p>
-<div class="rich-content"><p>Migrate affected Azure Batch pools before <strong>2028-05-01</strong>, when Azure Compute retires D-, Ds-, Dv2-, Dsv2- and Ls-series VMs.</p>
+<div class="rich-content"><p>Migrate affected Azure Batch pools before <strong>May 1, 2028</strong>, when Azure Compute retires D-, Ds-, Dv2-, Dsv2- and Ls-series VMs.</p>
 <p>Existing pools continue running before retirement. After retirement, you cannot create pools using these series or scale out affected pools. Pools may be forcibly resized to zero nodes, and remaining VMs will be stopped/deallocated without SLA coverage.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Compute will retire <strong>D-series, Ds-series, Dv2-series, Dsv2-series and Ls-series VMs on 2028-05-01</strong>. This affects Azure Batch pools that use these series.</p>
+<div class="rich-content"><p>Azure Compute will retire <strong>D-series, Ds-series, Dv2-series, Dsv2-series and Ls-series VMs on May 1, 2028</strong>. This affects Azure Batch pools that use these series.</p>
 <p>Existing pools continue running before retirement. Afterward, affected pool creation and scale-out are blocked, and existing workloads face shutdown. The supplied notice does not specify regional exceptions or maintenance and security-update commitments.</p>
 </div>
       <div class="notice"></div>
@@ -1932,7 +1932,7 @@
 <div class="rich-content"><ol>
 <li>Identify your Azure Batch pools that use D-, Ds-, Dv2-, Dsv2- or Ls-series VMs. The supplied notice does not provide an identification procedure.</li>
 <li>Select a supported replacement for your workload from the alternatives below.</li>
-<li>Migrate before <strong>2028-05-01</strong>. Either scale the pool to zero and update its VM size using Batch API version <strong>2024-07-01 or later</strong>, or create a new pool with supported VM sizes and migrate workloads.</li>
+<li>Migrate before <strong>May 1, 2028</strong>. Either scale the pool to zero and update its VM size using Batch API version <strong>2024-07-01 or later</strong>, or create a new pool with supported VM sizes and migrate workloads.</li>
 </ol>
 <p>Replacement options:</p>
 <ul>
@@ -1947,7 +1947,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>Your Azure Batch pools are affected if they use D-, Ds-, Dv2-, Dsv2- or Ls-series VMs. The supplied notice does not establish whether your pools use these series.</p>
-<p>Without migration before <strong>2028-05-01</strong>, you cannot create pools using these series or scale out existing affected pools after retirement. Pools may be forcibly resized to zero nodes. Remaining VMs will be stopped/deallocated without SLA coverage, disrupting workloads.</p>
+<p>Without migration before <strong>May 1, 2028</strong>, you cannot create pools using these series or scale out existing affected pools after retirement. Pools may be forcibly resized to zero nodes. Remaining VMs will be stopped/deallocated without SLA coverage, disrupting workloads.</p>
 <p>Migration may change VM pricing; the notice provides no cost estimates.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

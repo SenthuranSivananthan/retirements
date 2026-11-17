@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2024-08-31"><span></span>Retired</span></div>
-  <h1>Azure Automation is retiring Agent-based User Hybrid Runbook Worker (Windows &amp; Linux) on 31 August 2024</h1><p>Azure Automation retired Agent-based User Hybrid Runbook Worker (V1) for Windows and Linux on 2024-08-31, ending support. Separately, Microsoft states that jobs on agent-based Hybrid Workers will be stopped starting 2025-04-01. Migrate to supported extension-based User Hybrid Runbook Worker (V2), validate your runbooks, then remove V1 and manually uninstall its stale agent. Agent-based System Hybrid Runbook Worker used by Azure Automation Update Management is excluded from this retirement.</p>
+  <h1>Azure Automation is retiring Agent-based User Hybrid Runbook Worker (Windows &amp; Linux) on 31 August 2024</h1><p>Azure Automation retired Agent-based User Hybrid Runbook Worker (V1) for Windows and Linux on August 31, 2024, ending support. Separately, Microsoft states that jobs on agent-based Hybrid Workers will be stopped starting April 1, 2025. Migrate to supported extension-based User Hybrid Runbook Worker (V2), validate your runbooks, then remove V1 and manually uninstall its stale agent. Agent-based System Hybrid Runbook Worker used by Azure Automation Update Management is excluded from this retirement.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-08-31">31 Aug 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 5 months, 7 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2024</p>
-<div class="rich-content"><p>Agent-based User Hybrid Runbook Worker (V1) for Windows and Linux retired on <strong>2024-08-31</strong>, ending support. The announcements instructed you to migrate before that date.</p>
-<p>Separately, Microsoft states that all jobs running on agent-based Hybrid Workers will be stopped starting <strong>2025-04-01</strong>. This is a job-stop milestone, not an extension of support or a replacement retirement date. The supplied content does not establish when any particular job actually stopped.</p>
-<p>The deployment references provide no alternative retirement date. Their 2026-05-05 update date is not a retirement milestone.</p>
+<div class="rich-content"><p>Agent-based User Hybrid Runbook Worker (V1) for Windows and Linux retired on <strong>August 31, 2024</strong>, ending support. The announcements instructed you to migrate before that date.</p>
+<p>Separately, Microsoft states that all jobs running on agent-based Hybrid Workers will be stopped starting <strong>April 1, 2025</strong>. This is a job-stop milestone, not an extension of support or a replacement retirement date. The supplied content does not establish when any particular job actually stopped.</p>
+<p>The deployment references provide no alternative retirement date. Their May 5, 2026 update date is not a retirement milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Automation retired <strong>Agent-based User Hybrid Runbook Worker (V1) for Windows and Linux</strong> on <strong>2024-08-31</strong>. V1 is no longer supported; Microsoft states that jobs on agent-based Hybrid Workers will be stopped starting <strong>2025-04-01</strong>.</p>
+<div class="rich-content"><p>Azure Automation retired <strong>Agent-based User Hybrid Runbook Worker (V1) for Windows and Linux</strong> on <strong>August 31, 2024</strong>. V1 is no longer supported; Microsoft states that jobs on agent-based Hybrid Workers will be stopped starting <strong>April 1, 2025</strong>.</p>
 <p>Use the supported extension-based User Hybrid Runbook Worker (V2). It removes the Log Analytics agent and workspace dependency and uses system-assigned managed identities. Microsoft documents the same runbook execution process after extension installation.</p>
 <p>V1 and V2 can coexist on the same machine during migration, with separate portal entries. Installing V2 does not remove V1. V2 supports Azure and non-Azure machines, including the documented Azure Arc configurations.</p>
 <p>Agent-based <strong>System</strong> Hybrid Runbook Worker used by Azure Automation Update Management is excluded from this retirement. The sources do not announce retirement of Azure sandbox execution or the entire Azure Automation service.</p>
@@ -1941,13 +1941,13 @@
 <li><strong>Validate before removing V1.</strong> Confirm the Extension based (V2) entry and successful installation under the VM's <strong>Extensions</strong> tab. As team-owned validation, test your required runbooks, authentication and resource access on V2. Coexistence alone does not prove that jobs ran on V2.</li>
 <li><strong>Remove V1 and clean up its agent.</strong> After validating V2, remove the V1 portal entry and follow the referenced manual agent-uninstall guidance. Portal deletion alone leaves the stale V1 worker on the VM. Do not delete the V2 entry as cleanup: deleting V2 removes its extension.</li>
 </ol>
-<p>The announcement required migration before <strong>2024-08-31</strong>; the later job-stop milestone did not extend support. Microsoft recommends V2 for new User workers and automatic minor-version upgrades. Major-version upgrades require manual management.</p>
+<p>The announcement required migration before <strong>August 31, 2024</strong>; the later job-stop milestone did not extend support. Microsoft recommends V2 for new User workers and automatic minor-version upgrades. Major-version upgrades require manual management.</p>
 </div>
       <p> </p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if you use agent-based <strong>User</strong> Hybrid Runbook Workers on Windows or Linux. Support ended on <strong>2024-08-31</strong>; Microsoft states that jobs on agent-based Hybrid Workers will be stopped starting <strong>2025-04-01</strong>. This concerns execution on those workers, not a documented shutdown of their machines or the whole Azure Automation service.</p>
+<div class="rich-content"><p>You are affected if you use agent-based <strong>User</strong> Hybrid Runbook Workers on Windows or Linux. Support ended on <strong>August 31, 2024</strong>; Microsoft states that jobs on agent-based Hybrid Workers will be stopped starting <strong>April 1, 2025</strong>. This concerns execution on those workers, not a documented shutdown of their machines or the whole Azure Automation service.</p>
 <p>Use each worker group's Platform column to identify V1. Two entries can represent one machine during V1/V2 coexistence. The supplied information does not establish your inventory or migration status. System Hybrid Runbook Workers used by Azure Automation Update Management are excluded.</p>
 <p>Important V2 constraints include:</p>
 <ul>

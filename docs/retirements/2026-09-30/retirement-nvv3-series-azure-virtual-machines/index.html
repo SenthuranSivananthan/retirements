@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Virtual Machines</span><span class="badge retired" data-deadline="2026-09-30"><span></span>Retired</span></div>
-  <h1>Retirement: NVv3-series Azure Virtual Machines</h1><p>Azure NVv3-series VMs retired on 2026-09-30. Microsoft states that remaining affected VMs will be deallocated, stopping workloads and VM billing, and NVv3 will no longer have SLA coverage or included support. Existing users in Azure UAE North have an explicit extension until 2027-01-31 and must migrate by that date. Resize needed workloads to a supported series or deallocate VMs you no longer need.</p>
+  <h1>Retirement: NVv3-series Azure Virtual Machines</h1><p>Azure NVv3-series VMs retired on September 30, 2026. Microsoft states that remaining affected VMs will be deallocated, stopping workloads and VM billing, and NVv3 will no longer have SLA coverage or included support. Existing users in Azure UAE North have an explicit extension until January 31, 2027 and must migrate by that date. Resize needed workloads to a supported series or deallocate VMs you no longer need.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-30">30 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 0 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2026</p>
-<div class="rich-content"><p>The general NVv3 retirement date was <strong>2026-09-30</strong>. Microsoft required migration before that date and states that remaining affected VMs will be deallocated afterward, stopping workloads. NVv3 will no longer have SLA coverage or included support.</p>
-<p><strong>UAE North exception:</strong> Existing NVv3 users in Azure UAE North can continue using these VMs until <strong>2027-01-31</strong> and must migrate by that date.</p>
-<p>Purchases of 1-year and 3-year NVv3 Reserved Instances ended on <strong>2025-11-02</strong>. This was a separate purchasing restriction, not the retirement deadline.</p>
+<div class="rich-content"><p>The general NVv3 retirement date was <strong>September 30, 2026</strong>. Microsoft required migration before that date and states that remaining affected VMs will be deallocated afterward, stopping workloads. NVv3 will no longer have SLA coverage or included support.</p>
+<p><strong>UAE North exception:</strong> Existing NVv3 users in Azure UAE North can continue using these VMs until <strong>January 31, 2027</strong> and must migrate by that date.</p>
+<p>Purchases of 1-year and 3-year NVv3 Reserved Instances ended on <strong>November 2, 2025</strong>. This was a separate purchasing restriction, not the retirement deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired Azure NVv3-series VMs powered by NVIDIA Tesla M60 GPUs on <strong>2026-09-30</strong>, with an extension until <strong>2027-01-31</strong> for existing users in Azure UAE North.</p>
+<div class="rich-content"><p>Microsoft retired Azure NVv3-series VMs powered by NVIDIA Tesla M60 GPUs on <strong>September 30, 2026</strong>, with an extension until <strong>January 31, 2027</strong> for existing users in Azure UAE North.</p>
 <p>Affected sizes are:</p>
 <ul>
 <li>Standard_NV12s_v3</li>
@@ -1944,7 +1944,7 @@
 <li>Identify VMs using one of the six affected NVv3 sizes and distinguish Azure UAE North from other regions. The supplied guidance lists affected sizes but provides no inventory command or automated assessment method.</li>
 <li>Select a supported replacement for workloads you need to keep running. Microsoft recommends NVadsA10_v5. It lists NVadsA10_v5 or NC_RTXPRO6000BSE_v6 for graphics applications, virtual desktops, visualization and small AI workloads; NCasT4_v3 is listed for offline inference when latency is not a primary concern and smaller sizes or lower costs are priorities.</li>
 <li>Check target-region availability and pricing, then request quota for the target VM.</li>
-<li>Resize your VMs to the selected supported size, or deallocate VMs you no longer need. The general retirement deadline has passed; existing UAE North users must migrate by <strong>2027-01-31</strong>.</li>
+<li>Resize your VMs to the selected supported size, or deallocate VMs you no longer need. The general retirement deadline has passed; existing UAE North users must migrate by <strong>January 31, 2027</strong>.</li>
 </ol>
 <p>The supplied guidance does not provide detailed compatibility, backup, cutover or post-migration validation procedures. If you have a support plan, you can request technical help under Virtual Machine running Windows/Linux and select Assistance with resizing my VM.</p>
 </div>
@@ -1952,9 +1952,9 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if you use one of the six listed NVv3 sizes. The general retirement date was <strong>2026-09-30</strong>; existing Azure UAE North users can continue until <strong>2027-01-31</strong> under the explicit extension.</p>
+<div class="rich-content"><p>You are affected if you use one of the six listed NVv3 sizes. The general retirement date was <strong>September 30, 2026</strong>; existing Azure UAE North users can continue until <strong>January 31, 2027</strong> under the explicit extension.</p>
 <p>Microsoft states that remaining affected VMs will be deallocated: workloads stop and those VMs no longer incur billing charges. NVv3 will no longer have SLA coverage or included support. The supplied guidance does not establish whether your VMs have already been deallocated.</p>
-<p>The guidance does not describe data retention, deletion, disk access or charges for associated resources, and provides no migration-cost estimate. It also does not explain treatment of existing reservations following the <strong>2025-11-02</strong> end of 1-year and 3-year NVv3 Reserved Instance purchases.</p>
+<p>The guidance does not describe data retention, deletion, disk access or charges for associated resources, and provides no migration-cost estimate. It also does not explain treatment of existing reservations following the <strong>November 2, 2025</strong> end of 1-year and 3-year NVv3 Reserved Instance purchases.</p>
 <p>NVadsA10_v5 and NVadsV710_v5 are outside this retirement; NVv4 is covered separately.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

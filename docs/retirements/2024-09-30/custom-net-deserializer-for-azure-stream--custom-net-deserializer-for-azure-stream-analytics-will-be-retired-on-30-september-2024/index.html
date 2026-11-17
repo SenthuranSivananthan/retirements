@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Stream Analytics</span><span class="badge retired" data-deadline="2024-09-30"><span></span>Retired</span></div>
-  <h1>Custom .net deserializer for Azure Stream Analytics will be retired on 30 September 2024</h1><p>Azure Stream Analytics’ custom .NET deserializer (public preview) retired on 2024-09-30 and cannot be used after that date. The notice required transition before retirement to built-in JSON, AVRO or CSV deserialization. Unsupported formats require preprocessing before ingestion. This retirement does not announce a shutdown of Azure Stream Analytics itself.</p>
+  <h1>Custom .net deserializer for Azure Stream Analytics will be retired on 30 September 2024</h1><p>Azure Stream Analytics’ custom .NET deserializer (public preview) retired on September 30, 2024 and cannot be used after that date. The notice required transition before retirement to built-in JSON, AVRO or CSV deserialization. Unsupported formats require preprocessing before ingestion. This retirement does not announce a shutdown of Azure Stream Analytics itself.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2024-09-30">30 Sep 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 6 months, 1 day</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2024</p>
-<div class="rich-content"><p>The retirement date for Azure Stream Analytics’ custom .NET deserializer (public preview) is <strong>2024-09-30</strong>. The notice states that you cannot use the feature after that date.</p>
-<p>The introduction says to transition by 2024-09-30; the required-action section says before that date. Completing the transition before 2024-09-30 satisfies both instructions. These are wording differences, not separate retirement dates.</p>
+<div class="rich-content"><p>The retirement date for Azure Stream Analytics’ custom .NET deserializer (public preview) is <strong>September 30, 2024</strong>. The notice states that you cannot use the feature after that date.</p>
+<p>The introduction says to transition by September 30, 2024; the required-action section says before that date. Completing the transition before September 30, 2024 satisfies both instructions. These are wording differences, not separate retirement dates.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Stream Analytics retired its <strong>custom .NET deserializer (public preview)</strong> on 2024-09-30. This feature supports reading XML and other custom formats.</p>
+<div class="rich-content"><p>Azure Stream Analytics retired its <strong>custom .NET deserializer (public preview)</strong> on September 30, 2024. This feature supports reading XML and other custom formats.</p>
 <p>Microsoft documented technical support and recommendations until retirement, but no new features or updates. After retirement, inputs must use formats with built-in support, such as JSON, AVRO or CSV; other formats require preprocessing.</p>
 <p>The supplied parsing reference describes supported parsing capabilities but does not independently establish a retirement or deadline.</p>
 </div>
@@ -1934,7 +1934,7 @@
 <li>Identify your Azure Stream Analytics jobs that use the custom .NET deserializer and the formats they ingest. The notice provides no discovery procedure.</li>
 <li>Use a built-in JSON, AVRO or CSV deserializer where your input format permits.</li>
 <li>For Protobuf, XML, Bond or other unsupported formats, preprocess events into JSON before ingestion through a supported input, such as Event Hub, IoT Hub or Blob Input. Azure Functions converting XML to JSON before EventHub ingestion is an example, not a requirement.</li>
-<li>Complete the transition; the notice required completion before 2024-09-30.</li>
+<li>Complete the transition; the notice required completion before September 30, 2024.</li>
 </ol>
 <p>The supplied material does not provide validation, cutover or rollback procedures. The referenced Azure Functions guidance was unavailable in the supplied input.</p>
 </div>
@@ -1942,7 +1942,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your Azure Stream Analytics jobs depend on the custom .NET deserializer. After 2024-09-30, those jobs cannot continue using that feature; unsupported formats require conversion before ingestion.</p>
+<div class="rich-content"><p>You are affected if your Azure Stream Analytics jobs depend on the custom .NET deserializer. After September 30, 2024, those jobs cannot continue using that feature; unsupported formats require conversion before ingestion.</p>
 <p>Built-in JSON, AVRO and CSV deserializers remain the documented alternatives. The notice does not announce their retirement or a shutdown of Azure Stream Analytics itself.</p>
 <p>The supplied material does not specify regional exceptions, data retention or deletion changes, or migration costs. It does not establish whether your resources use the retired feature.</p>
 </div>

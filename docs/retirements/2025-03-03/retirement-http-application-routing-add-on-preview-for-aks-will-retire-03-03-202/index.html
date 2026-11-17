@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge retired" data-deadline="2025-03-03"><span></span>Retired</span></div>
-  <h1>Retirement: HTTP application routing add-on (preview) for AKS will retire 03/03/2025</h1><p>The HTTP application routing add-on (preview) for AKS retired on 2025-03-03. Microsoft directed customers to migrate ingresses to the Web Application Routing add-on by that date to avoid service disruptions; the notice does not specify shutdown behavior. The replacement&#39;s managed NGINX support milestone in November 2026 is separate, not an extension of this retirement.</p>
+  <h1>Retirement: HTTP application routing add-on (preview) for AKS will retire 03/03/2025</h1><p>The HTTP application routing add-on (preview) for AKS retired on March 3, 2025. Microsoft directed customers to migrate ingresses to the Web Application Routing add-on by that date to avoid service disruptions; the notice does not specify shutdown behavior. The replacement&#39;s managed NGINX support milestone in November 2026 is separate, not an extension of this retirement.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-03-03"><strong>Retired</strong><span>Retirement date: <time datetime="2025-03-03">3 Mar 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 5 months, 9 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">3 Mar 2025</p>
-<div class="rich-content"><p>The HTTP application routing add-on (preview) for AKS retired on <strong>2025-03-03</strong>. Microsoft directed you to migrate your ingresses by that same date to avoid service disruptions. The notice does not specify exact post-retirement shutdown behavior.</p>
+<div class="rich-content"><p>The HTTP application routing add-on (preview) for AKS retired on <strong>March 3, 2025</strong>. Microsoft directed you to migrate your ingresses by that same date to avoid service disruptions. The notice does not specify exact post-retirement shutdown behavior.</p>
 <p>The linked product guidance describes a separate milestone: Microsoft's critical-security-patch support for managed application routing NGINX resources runs through November 2026, with migration directed by that month and Azure support ending afterward. No exact day is supplied. This is not an extension of the preview add-on retirement or a documented workload shutdown.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired the HTTP application routing add-on (preview) for AKS on <strong>2025-03-03</strong>. The notice names the Web Application Routing add-on as its replacement, providing Prometheus metrics, Azure DNS zone management and TLS termination using certificates stored in Azure Key Vault.</p>
+<div class="rich-content"><p>Microsoft retired the HTTP application routing add-on (preview) for AKS on <strong>March 3, 2025</strong>. The notice names the Web Application Routing add-on as its replacement, providing Prometheus metrics, Azure DNS zone management and TLS termination using certificates stored in Azure Key Vault.</p>
 <p>The retired preview add-on supports Kubernetes only through version 1.22, which had already reached end of life. The notice does not document maintenance or security-update commitments through retirement, regional exceptions or exact shutdown behavior.</p>
 <p>The linked replacement guidance now directs managed NGINX users toward application routing Gateway API or another supported implementation for the separate November 2026 support milestone. The Kubernetes lifecycle reference does not independently establish a different retirement date for the preview add-on.</p>
 </div>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your AKS ingresses using the retired HTTP application routing add-on (preview). The retirement notice supplies no discovery procedure; the managed NGINX class documented in replacement guidance does not establish an inventory of the retired preview add-on.</li>
-<li>Follow Microsoft's migration guidance for those ingresses. The original required target was Web Application Routing by <strong>2025-03-03</strong>. The supplied content does not include a complete legacy-preview migration or cutover procedure.</li>
+<li>Follow Microsoft's migration guidance for those ingresses. The original required target was Web Application Routing by <strong>March 3, 2025</strong>. The supplied content does not include a complete legacy-preview migration or cutover procedure.</li>
 <li>Account for the replacement's separate lifecycle when selecting your destination. Current supplied guidance directs managed NGINX users to application routing Gateway API or another supported implementation by November 2026. Application Gateway for Containers supports Ingress API and Gateway API; consider the Istio service mesh add-on for mesh or advanced ingress requirements.</li>
 <li>Check capability gaps before choosing application routing Gateway API: it does not support request header/body size limits, Lua scripts, rate limiting or EnvoyFilter. It requires Azure CLI 2.86.0 or later and Managed Gateway API CRDs, and cannot coexist with the Istio service mesh add-on.</li>
 <li>As team-owned migration checks, validate your production routes, DNS, TLS and required customizations before cutover and cleanup. The supplied pages do not provide a complete preview-to-replacement validation procedure.</li>
@@ -1942,7 +1942,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your AKS ingresses use the HTTP application routing add-on (preview). It supports Kubernetes only through version 1.22, which had already reached end of life. The notice warns of service disruptions without migration by <strong>2025-03-03</strong>, but does not establish exact shutdown behavior or identify your resources.</p>
+<div class="rich-content"><p>You are affected if your AKS ingresses use the HTTP application routing add-on (preview). It supports Kubernetes only through version 1.22, which had already reached end of life. The notice warns of service disruptions without migration by <strong>March 3, 2025</strong>, but does not establish exact shutdown behavior or identify your resources.</p>
 <p>The November 2026 milestone applies separately to the replacement's managed NGINX resources. Losing support is not a documented automatic workload shutdown. Microsoft's managed-add-on support commitment does not extend to OSS NGINX installations merely because they receive migration guidance.</p>
 <p>When choosing a replacement, assess Azure DNS, Key Vault-backed TLS, annotations and advanced NGINX behavior; the supplied content does not establish full feature parity. It documents no preview-retirement-specific regional exceptions, data deletion, retention changes, pricing changes or loss of console/API access.</p>
 </div>

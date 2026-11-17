@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2023-08-31"><span></span>Retired</span></div>
-  <h1>NV-series and NV Promo Azure Virtual Machines retirement extended to 31 August 2023</h1><p>Microsoft extended retirement of Azure NV6, NV12 and NV24 VMs and their Promo variants from 2022-08-31 to 2023-08-31. The migration guide instead records NV-series retirement on 2023-09-06 and says it is no longer available, without separately dating NV_Promo retirement. The structured deadline uses the earlier date because these same-milestone dates differ by six days; the discrepancy remains unresolved. Migrate affected workloads to a suitable replacement and deallocate retiring VMs. NVv3 and NVv4 are explicitly excluded from this retirement.</p>
+  <h1>NV-series and NV Promo Azure Virtual Machines retirement extended to 31 August 2023</h1><p>Microsoft extended retirement of Azure NV6, NV12 and NV24 VMs and their Promo variants from August 31, 2022 to August 31, 2023. The migration guide instead records NV-series retirement on September 6, 2023 and says it is no longer available, without separately dating NV_Promo retirement. The structured deadline uses the earlier date because these same-milestone dates differ by six days; the discrepancy remains unresolved. Migrate affected workloads to a suitable replacement and deallocate retiring VMs. NVv3 and NVv4 are explicitly excluded from this retirement.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2023-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2023-08-31">31 Aug 2023</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 5 months, 2 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2023</p>
-<div class="rich-content"><p>The retirement deadline is <strong>2023-08-31</strong> for NV6, NV6_Promo, NV12, NV12_Promo, NV24 and NV24_Promo. Microsoft explicitly extended the original <strong>2022-08-31</strong> deadline.</p>
-<p>The migration guide instead records NV-series retirement on <strong>2023-09-06</strong> and says it is no longer available. These dates differ by six days, so the structured deadline uses the earlier date. The supplied content does not explain the discrepancy or establish a further extension. The guide describes NV_Promo as retired without giving it a separate date.</p>
+<div class="rich-content"><p>The retirement deadline is <strong>August 31, 2023</strong> for NV6, NV6_Promo, NV12, NV12_Promo, NV24 and NV24_Promo. Microsoft explicitly extended the original <strong>August 31, 2022</strong> deadline.</p>
+<p>The migration guide instead records NV-series retirement on <strong>September 6, 2023</strong> and says it is no longer available. These dates differ by six days, so the structured deadline uses the earlier date. The supplied content does not explain the discrepancy or establish a further extension. The guide describes NV_Promo as retired without giving it a separate date.</p>
 <p>The older notice's deallocation and workload-stop paragraphs retain the superseded 2022 date. They document intended consequences, but not a consistently updated shutdown date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired the original Azure <strong>NV-series and NV_Promo</strong> VM sizes: NV6, NV12 and NV24 and their Promo variants. The notices give <strong>2023-08-31</strong>; the migration guide records <strong>2023-09-06</strong> and says NV-series is no longer available.</p>
+<div class="rich-content"><p>Microsoft retired the original Azure <strong>NV-series and NV_Promo</strong> VM sizes: NV6, NV12 and NV24 and their Promo variants. The notices give <strong>August 31, 2023</strong>; the migration guide records <strong>September 6, 2023</strong> and says NV-series is no longer available.</p>
 <p><strong>NVv3 and NVv4 are explicitly unaffected by this retirement.</strong> The guide recommends NVsv3 or NVv4 replacements. The extension notice also identifies NV A10 v5 as an additional migration option, described as preview at that time. The separate NVadsA10_v5 capability reference does not announce its retirement or independently confirm the notice's expected general-availability date.</p>
 <p>The sources do not document maintenance, support or security-update commitments through retirement.</p>
 </div>
@@ -1936,7 +1936,7 @@
 <li>Assess GPU dependencies, guest operating system, CPU, memory, temporary storage and data-disk requirements. Choose NVsv3 for graphics workloads requiring NVIDIA GPUs or CUDA. For graphics workloads without a GPU-vendor dependency, consider NVsv3 or NVv4. According to the guide, NVv4 supports only Windows guests and does not support CUDA. NV A10 v5 is another option named in the extension notice, but its historical preview description does not establish current availability.</li>
 <li>Compare target capacity, cost and performance. The guide's nearest-match sizes do not guarantee equivalent capacity. Its listed NVsv3 targets have less temporary storage and lower maximum data-disk counts than the source sizes; it provides no NVv4 target for Standard_NV24 or Standard_NV24_Promo.</li>
 <li>Obtain vCPU quota for the target family, then follow the resizing guidance. Use the NVIDIA GRID driver for NVsv3. For NVv4, remove the NVIDIA driver, install the AMD GPU driver and replace the NVIDIA driver extension with the AMD extension.</li>
-<li>Migrate affected workloads and deallocate retiring VMs. The revised notice deadline was <strong>2023-08-31</strong>, subject to the date discrepancy described above.</li>
+<li>Migrate affected workloads and deallocate retiring VMs. The revised notice deadline was <strong>August 31, 2023</strong>, subject to the date discrepancy described above.</li>
 </ol>
 <p>The supplied sources do not provide backup, cutover, cleanup or post-migration validation procedures. As team-owned validation, check workload operation and required capacity on the replacement before considering migration complete.</p>
 </div>

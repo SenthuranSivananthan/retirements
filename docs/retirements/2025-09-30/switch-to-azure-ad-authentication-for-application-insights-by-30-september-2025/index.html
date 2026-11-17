@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2025-09-30"><span></span>Retired</span></div>
-  <h1>Switch to Azure AD authentication for application insights by 30 September 2025</h1><p>Microsoft&#39;s retirement notice sets 2025-09-30 as the retirement date for API keys used to stream Application Insights Live Metrics telemetry. Switch affected applications to Azure AD authentication, called Microsoft Entra authentication in the configuration reference, to continue streaming. This is not a retirement of all Application Insights telemetry ingestion. The reference provides configuration guidance and compatibility limits but does not independently establish a retirement deadline.</p>
+  <h1>Switch to Azure AD authentication for application insights by 30 September 2025</h1><p>Microsoft&#39;s retirement notice sets September 30, 2025 as the retirement date for API keys used to stream Application Insights Live Metrics telemetry. Switch affected applications to Azure AD authentication, called Microsoft Entra authentication in the configuration reference, to continue streaming. This is not a retirement of all Application Insights telemetry ingestion. The reference provides configuration guidance and compatibility limits but does not independently establish a retirement deadline.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2025-09-30">30 Sep 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 4 months, 15 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,7 +1916,7 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2025</p>
-<div class="rich-content"><p>The retirement date is <strong>2025-09-30</strong>. Microsoft's notice directs you to switch affected applications to Azure AD authentication by that date. After that date, applications using API keys can no longer send Live Metrics telemetry to Application Insights through that authentication method.</p>
+<div class="rich-content"><p>The retirement date is <strong>September 30, 2025</strong>. Microsoft's notice directs you to switch affected applications to Azure AD authentication by that date. After that date, applications using API keys can no longer send Live Metrics telemetry to Application Insights through that authentication method.</p>
 <p>The authentication reference supplies no separate retirement date or extension. The supplied Q&amp;A listing and portal content do not establish additional milestones.</p>
 </div>
     </section>
@@ -1933,7 +1933,7 @@
 <div class="rich-content"><ol>
 <li>Identify applications using API keys for Application Insights Live Metrics streaming. The retirement notice does not provide an inventory method.</li>
 <li>Check SDK and instrumentation compatibility before changing authentication. The reference lists unsupported scenarios, including Java 2.x SDK, JavaScript SDK, OpenCensus Python with Python 3.4 or 3.5, Python automatic instrumentation on Azure App Service, and GraalVM Native applications. It does not supply retirement-specific alternatives for these cases.</li>
-<li>Switch affected applications to Azure AD/Microsoft Entra authentication. The notice sets <strong>2025-09-30</strong> as the required migration deadline. The reference recommends a managed identity when available, or a service principal where supported. Its prerequisites include familiarity with identities and role assignments, plus Owner access to the resource group for granting roles. Assign Monitoring Metrics Publisher at the target Application Insights resource scope; this role publishes all telemetry, not just metrics.</li>
+<li>Switch affected applications to Azure AD/Microsoft Entra authentication. The notice sets <strong>September 30, 2025</strong> as the required migration deadline. The reference recommends a managed identity when available, or a service principal where supported. Its prerequisites include familiarity with identities and role assignments, plus Owner access to the resource group for granting roles. Assign Monitoring Metrics Publisher at the target Application Insights resource scope; this role publishes all telemetry, not just metrics.</li>
 <li>Follow the applicable language-specific configuration. Java requires agent 3.2.0 or later, a managed identity and a full connection string including IngestionEndpoint; restart the application after setting its authentication environment variable. Custom ingestion clients must use the audience appropriate to their Azure cloud.</li>
 <li>Validate telemetry using the Azure portal, Live Metrics Stream or Application Insights queries. These are configuration checks from the reference, not a documented retirement-completion procedure.</li>
 </ol>
@@ -1943,7 +1943,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your applications use API keys to stream Application Insights Live Metrics telemetry. The notice states that this authentication method stops working after <strong>2025-09-30</strong>; it does not describe application shutdown or retirement of other telemetry ingestion methods.</p>
+<div class="rich-content"><p>You are affected if your applications use API keys to stream Application Insights Live Metrics telemetry. The notice states that this authentication method stops working after <strong>September 30, 2025</strong>; it does not describe application shutdown or retirement of other telemetry ingestion methods.</p>
 <p>Migration compatibility depends on your SDK and instrumentation. The reference identifies these unsupported Microsoft Entra-authenticated ingestion scenarios:</p>
 <ul>
 <li>Application Insights Java 2.x SDK; the prerequisites require Java agent 3.2.0 or later. A separate note mentions initial support in 3.2.0-BETA.</li>

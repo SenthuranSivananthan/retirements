@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Synapse Analytics</span><span class="badge unknown" data-deadline=""><span></span>Date to confirm</span></div>
-  <h1>Retirement: Azure Synapse Runtime for Apache Spark 3.3</h1><p>Microsoft announced retirement and disablement of Azure Synapse Runtime for Apache Spark 3.3 for March 2025, without an exact day. Current lifecycle guidance lists end of support as 2025-03-31 but still describes disablement as forthcoming, so actual disablement timing remains unconfirmed; no extension is documented. Assess migration to a supported runtime such as Synapse Spark 3.5. The original recommendation to use Spark 3.4 is outdated: that version reached end of support on 2026-03-31.</p>
+  <h1>Retirement: Azure Synapse Runtime for Apache Spark 3.3</h1><p>Microsoft announced retirement and disablement of Azure Synapse Runtime for Apache Spark 3.3 for March 2025, without an exact day. Current lifecycle guidance lists end of support as March 31, 2025 but still describes disablement as forthcoming, so actual disablement timing remains unconfirmed; no extension is documented. Assess migration to a supported runtime such as Synapse Spark 3.5. The original recommendation to use Spark 3.4 is outdated: that version reached end of support on March 31, 2026.</p>
   <div class="retirement-countdown unknown" data-countdown data-deadline=""><strong>Retirement date to confirm</strong><span class="badge amber customer-lead-time-pill">Lead time: Not calculable</span></div>
 </div>
 <div class="detail-layout">
@@ -1917,14 +1917,14 @@
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">Date not specified</p>
 <div class="rich-content"><p>The original notice schedules Azure Synapse Runtime for Apache Spark 3.3 retirement and disablement for <strong>March 2025</strong>, without an exact day.</p>
-<p>Lifecycle guidance separately lists <strong>2025-03-31</strong> as Spark 3.3's end-of-support date. That does not establish an exact retirement or workload-shutdown date. <strong>2024-07-12</strong> is the support announcement date, not the shutdown date.</p>
+<p>Lifecycle guidance separately lists <strong>March 31, 2025</strong> as Spark 3.3's end-of-support date. That does not establish an exact retirement or workload-shutdown date. <strong>July 12, 2024</strong> is the support announcement date, not the shutdown date.</p>
 <p>The lifecycle page still describes Spark 3.3 as soon to be disabled without supplying a disablement date. This leaves actual disablement timing unconfirmed against the original notice; no supplied source explicitly documents an extension. The structured retirement deadline therefore remains month-only.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft announced that Azure Synapse Runtime for Apache Spark 3.3 would retire and be disabled in March 2025. Lifecycle guidance confirms end of support on 2025-03-31 but describes disablement as forthcoming, without confirming when workloads stop running.</p>
-<p>The original notice recommends Spark 3.4, but that version separately reached end of support on 2026-03-31. It is not a supported migration destination under the supplied guidance. Synapse Spark 3.5 is listed as generally available with no announced end-of-support date.</p>
+<div class="rich-content"><p>Microsoft announced that Azure Synapse Runtime for Apache Spark 3.3 would retire and be disabled in March 2025. Lifecycle guidance confirms end of support on March 31, 2025 but describes disablement as forthcoming, without confirming when workloads stop running.</p>
+<p>The original notice recommends Spark 3.4, but that version separately reached end of support on March 31, 2026. It is not a supported migration destination under the supplied guidance. Synapse Spark 3.5 is listed as generally available with no announced end-of-support date.</p>
 <p>The sources do not announce retirement of Azure Synapse Analytics or Spark 3.5. They do not specify regional exceptions or establish continued Spark 3.3 patch availability after end of support.</p>
 </div>
       <div class="notice"></div>
@@ -1945,7 +1945,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>Your workloads are in scope if their Synapse Spark pools use runtime 3.3. The documented workspace and pool enumeration reports runtime versions; this summary does not inspect your resources.</p>
-<p>Spark 3.3 passed its documented end-of-support date on 2025-03-31. The original notice schedules disablement for March 2025, while lifecycle guidance still describes it as forthcoming. Leaving workloads on 3.3 exposes them to the announced disablement, but the sources do not confirm actual shutdown timing or exact workload failure behavior.</p>
+<p>Spark 3.3 passed its documented end-of-support date on March 31, 2025. The original notice schedules disablement for March 2025, while lifecycle guidance still describes it as forthcoming. Leaving workloads on 3.3 exposes them to the announced disablement, but the sources do not confirm actual shutdown timing or exact workload failure behavior.</p>
 <p>Migration may require changes to SQL, UDFs, Spark APIs and dependencies. An in-place PowerShell upgrade using <code>ForceApplySetting</code> decommissions existing old-version clusters and is explicitly discouraged when workspace custom libraries are installed.</p>
 <p>No supplied source establishes data deletion, retention, cost consequences or separate console/API effects. Azure Synapse Analytics and Spark 3.5 have no announced retirement or required migration deadline in the supplied lifecycle guidance.</p>
 </div>

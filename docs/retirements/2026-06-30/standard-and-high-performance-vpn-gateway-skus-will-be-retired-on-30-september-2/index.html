@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">IP Addresses · VPN Gateway</span><span class="badge retired" data-deadline="2026-06-30"><span></span>Retired</span></div>
-  <h1>Standard and High-Performance VPN Gateway SKUs will be retired on 30 September 2025</h1><p>Azure VPN Gateway Standard and High Performance legacy SKUs retire on 2026-06-30 according to the supplied product guidance, preferred over the original announcement&#39;s 2025-09-30 date. The sources do not explicitly document an extension, and the product page points to separate latest-timeline guidance that was not supplied. Migrate Standard to VpnGw1AZ and High Performance to VpnGw2AZ using the Azure portal Basic IP migration tool to retain your IP address. Microsoft supports existing gateways and customer-initiated migration through retirement and says it will attempt automatic migration after June 2026; constraints can prevent completion. No guaranteed workload shutdown date is documented. VPN Gateway Basic is excluded, and the migration path for classic gateways remains unresolved.</p>
+  <h1>Standard and High-Performance VPN Gateway SKUs will be retired on 30 September 2025</h1><p>Azure VPN Gateway Standard and High Performance legacy SKUs retire on June 30, 2026 according to the supplied product guidance, preferred over the original announcement&#39;s September 30, 2025 date. The sources do not explicitly document an extension, and the product page points to separate latest-timeline guidance that was not supplied. Migrate Standard to VpnGw1AZ and High Performance to VpnGw2AZ using the Azure portal Basic IP migration tool to retain your IP address. Microsoft supports existing gateways and customer-initiated migration through retirement and says it will attempt automatic migration after June 2026; constraints can prevent completion. No guaranteed workload shutdown date is documented. VPN Gateway Basic is excluded, and the migration path for classic gateways remains unresolved.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-06-30"><strong>Retired</strong><span>Retirement date: <time datetime="2026-06-30">30 Jun 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 6 months, 28 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,11 +1916,11 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Jun 2026</p>
-<div class="rich-content"><p>The supplied product guidance identifies <strong>2026-06-30</strong> as the retirement/deprecation date for Azure VPN Gateway Standard and High Performance legacy SKUs. Microsoft states that existing gateways and customer-initiated migration remain supported until that date.</p>
+<div class="rich-content"><p>The supplied product guidance identifies <strong>June 30, 2026</strong> as the retirement/deprecation date for Azure VPN Gateway Standard and High Performance legacy SKUs. Microsoft states that existing gateways and customer-initiated migration remain supported until that date.</p>
 <p>The sources give different timelines:</p>
 <ul>
-<li>The original announcement specifies retirement on <strong>2025-09-30</strong>, recommends customer upgrades by <strong>August 2025</strong>, and describes automatic upgrades after 2025-09-30. It also says new gateway creation stopped on <strong>2023-12-01</strong>.</li>
-<li>The product guidance specifies retirement on <strong>2026-06-30</strong> and attempted automatic migration <strong>after June 2026</strong>. It also says new gateways cannot be created after deprecation, without reconciling the earlier creation restriction.</li>
+<li>The original announcement specifies retirement on <strong>September 30, 2025</strong>, recommends customer upgrades by <strong>August 2025</strong>, and describes automatic upgrades after September 30, 2025. It also says new gateway creation stopped on <strong>December 1, 2023</strong>.</li>
+<li>The product guidance specifies retirement on <strong>June 30, 2026</strong> and attempted automatic migration <strong>after June 2026</strong>. It also says new gateways cannot be created after deprecation, without reconciling the earlier creation restriction.</li>
 </ul>
 <p>The applicable product-guidance retirement date is preferred over the announcement. The supplied content does not explicitly establish an extension, and the separate guidance identified as containing the latest timeline was not supplied.</p>
 <p>Automatic migration is a separate phase, can be blocked by constraints, and does not establish a guaranteed workload shutdown date.</p>
@@ -1928,7 +1928,7 @@
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure VPN Gateway is retiring the legacy <strong>Standard</strong> and <strong>High Performance</strong> SKUs on <strong>2026-06-30</strong>, according to the supplied product guidance. The Azure portal Basic IP migration tool upgrades both the public IP and gateway SKU:</p>
+<div class="rich-content"><p>Azure VPN Gateway is retiring the legacy <strong>Standard</strong> and <strong>High Performance</strong> SKUs on <strong>June 30, 2026</strong>, according to the supplied product guidance. The Azure portal Basic IP migration tool upgrades both the public IP and gateway SKU:</p>
 <ul>
 <li>Standard becomes VpnGw1AZ.</li>
 <li>High Performance becomes VpnGw2AZ.</li>
@@ -1941,7 +1941,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Migrate affected gateways before <strong>2026-06-30</strong>, the retirement date in the supplied product guidance, rather than relying on attempted automatic migration.</p>
+<div class="rich-content"><p>Migrate affected gateways before <strong>June 30, 2026</strong>, the retirement date in the supplied product guidance, rather than relying on attempted automatic migration.</p>
 <ol>
 <li>Identify gateways using Standard or High Performance, their deployment model and associated Basic public IP addresses. The supplied content provides no inventory procedure.</li>
 <li>For an eligible gateway, use the Azure portal Basic IP migration tool to retain your IP address. It upgrades the public IP to Standard and moves Standard gateways to VpnGw1AZ or High Performance gateways to VpnGw2AZ. Check for and resolve constraints such as insufficient subnet size.</li>

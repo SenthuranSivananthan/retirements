@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2026-09-21"><span></span>Retired</span></div>
-  <h1>SMART on FHIR proxy feature in Azure Health Data Services will be retired on 21st September 2026 - Transition to SMART on FHIR (Enhanced).</h1><p>The SMART on FHIR proxy feature in Azure Health Data Services retires on 2026-09-21. Applications that continue using it after that date will report errors accessing the FHIR service; the notice does not announce retirement of the FHIR service itself. Migrate to SMART on FHIR (Enhanced), which requires integrating open-source samples and Azure products such as Azure API Management. The referenced technical migration guide was unavailable in the supplied inputs.</p>
+  <h1>SMART on FHIR proxy feature in Azure Health Data Services will be retired on 21st September 2026 - Transition to SMART on FHIR (Enhanced).</h1><p>The SMART on FHIR proxy feature in Azure Health Data Services retires on September 21, 2026. Applications that continue using it after that date will report errors accessing the FHIR service; the notice does not announce retirement of the FHIR service itself. Migrate to SMART on FHIR (Enhanced), which requires integrating open-source samples and Azure products such as Azure API Management. The referenced technical migration guide was unavailable in the supplied inputs.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-21"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-21">21 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 23 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">21 Sep 2026</p>
-<div class="rich-content"><p>The SMART on FHIR proxy feature retires on <strong>2026-09-21</strong>. Migrate by that date. Afterward, applications that still rely on the proxy will report errors accessing the FHIR service.</p>
+<div class="rich-content"><p>The SMART on FHIR proxy feature retires on <strong>September 21, 2026</strong>. Migrate by that date. Afterward, applications that still rely on the proxy will report errors accessing the FHIR service.</p>
 <p>The other supplied pages do not establish a different proxy retirement date. Documentation update dates and separate standards-certification milestones do not change this deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring the SMART on FHIR proxy feature integrated into the Azure Health Data Services FHIR service on <strong>2026-09-21</strong>. The notice identifies SMART on FHIR (Enhanced) as its replacement, not retirement of the FHIR service itself.</p>
+<div class="rich-content"><p>Microsoft is retiring the SMART on FHIR proxy feature integrated into the Azure Health Data Services FHIR service on <strong>September 21, 2026</strong>. The notice identifies SMART on FHIR (Enhanced) as its replacement, not retirement of the FHIR service itself.</p>
 <p>Both options support EHR launch. Enhanced also supports standalone launch and scope restrictions, but requires you to integrate Azure Health Data and AI open-source samples with the FHIR service and Azure products such as Azure API Management.</p>
 <p>The notice says Enhanced can be considered for SMART on FHIR Implementation Guide v1.0.0 and §170.315(g)(10) requirements; it does not establish that your implementation meets certification requirements. No regional exceptions or retirement-related maintenance and security-update commitments are documented.</p>
 </div>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify applications that depend on SMART on FHIR proxy. The notice provides no discovery or inventory method.</li>
-<li>Transition those applications to SMART on FHIR (Enhanced) by <strong>2026-09-21</strong>, integrating the referenced open-source sample with your FHIR service and required Azure products, such as Azure API Management. The referenced technical migration guide returned HTTP 404 in the supplied inputs, so its detailed prerequisites and migration procedure cannot be confirmed.</li>
+<li>Transition those applications to SMART on FHIR (Enhanced) by <strong>September 21, 2026</strong>, integrating the referenced open-source sample with your FHIR service and required Azure products, such as Azure API Management. The referenced technical migration guide returned HTTP 404 in the supplied inputs, so its detailed prerequisites and migration procedure cannot be confirmed.</li>
 <li>For integration validation, the supplied SMART documentation describes using a SMART client or SmartLauncher sample with a test patient to check discovery, authorization, token exchange and scoped FHIR API access. These are integration checks, not documented proof of complete proxy migration.</li>
 </ol>
 <p>For the documented SMART configuration, choose either v1.0.0 or v2.0.0 scopes for each client app registration; do not mix them. Microsoft Entra ID requires an orchestration layer, while a SMART-aware third-party identity provider is another documented option. Review the read/search-only FHIR SMART user role limits against your application's needs.</p>
@@ -1942,7 +1942,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your applications use SMART on FHIR proxy in Azure Health Data Services. After <strong>2026-09-21</strong>, applications that still depend on it will report errors accessing the FHIR service. This is a proxy-access consequence, not a documented shutdown of the FHIR service.</p>
+<div class="rich-content"><p>You are affected if your applications use SMART on FHIR proxy in Azure Health Data Services. After <strong>September 21, 2026</strong>, applications that still depend on it will report errors accessing the FHIR service. This is a proxy-access consequence, not a documented shutdown of the FHIR service.</p>
 <p>Enhanced shifts integration responsibilities to you: you must integrate an open-source sample and supporting Azure products rather than use the proxy built into the FHIR service. Microsoft support remains available for the FHIR service; sample issues use GitHub rather than Microsoft Support.</p>
 <p>The supplied SMART configuration guidance documents limits relevant to your design: the FHIR SMART user role permits read and search, not writes, and access requires clinical scopes and appropriate fhirUser context. These configuration limits are not additional retirement milestones.</p>
 <p>Your environment has not been inspected. The sources provide no retirement inventory method, regional exceptions, quantified costs, or retirement-specific data-retention or deletion consequences.</p>

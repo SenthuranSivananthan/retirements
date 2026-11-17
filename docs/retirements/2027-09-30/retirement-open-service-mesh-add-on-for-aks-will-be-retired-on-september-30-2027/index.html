@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge upcoming" data-deadline="2027-09-30"><span></span>Upcoming</span></div>
-  <h1>Retirement: Open Service Mesh add-on for AKS will be retired on September 30, 2027</h1><p>The Open Service Mesh (OSM) add-on for Azure Kubernetes Service (AKS) retires on 2027-09-30. Microsoft will provide security patches until then, but no new minor versions or features. Transition to the managed Istio add-on before retirement. The add-ons cannot run simultaneously on one cluster; migration disrupts service and creates a gap in mesh-level security and routing enforcement. The notice does not specify whether workloads stop running after retirement.</p>
+  <h1>Retirement: Open Service Mesh add-on for AKS will be retired on September 30, 2027</h1><p>The Open Service Mesh (OSM) add-on for Azure Kubernetes Service (AKS) retires on September 30, 2027. Microsoft will provide security patches until then, but no new minor versions or features. Transition to the managed Istio add-on before retirement. The add-ons cannot run simultaneously on one cluster; migration disrupts service and creates a gap in mesh-level security and routing enforcement. The notice does not specify whether workloads stop running after retirement.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-09-30"><strong>317 days remaining</strong><span>Retirement date: <time datetime="2027-09-30">30 Sep 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 4 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2027</p>
-<div class="rich-content"><p>The Open Service Mesh add-on for AKS retires on <strong>2027-09-30</strong>. You can continue using it until then, and Microsoft will provide security patches until that date. Transition to the Istio add-on before retirement.</p>
-<p>The retirement notice does not specify post-retirement workload shutdown behavior. The migration guide supplies no separate deadline. The upstream project's 2023-05-04 announcement concerns archival and no further releases; it is not the managed AKS add-on's retirement date.</p>
+<div class="rich-content"><p>The Open Service Mesh add-on for AKS retires on <strong>September 30, 2027</strong>. You can continue using it until then, and Microsoft will provide security patches until that date. Transition to the Istio add-on before retirement.</p>
+<p>The retirement notice does not specify post-retirement workload shutdown behavior. The migration guide supplies no separate deadline. The upstream project's May 4, 2023 announcement concerns archival and no further releases; it is not the managed AKS add-on's retirement date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>The managed Open Service Mesh (OSM) add-on for AKS retires on <strong>2027-09-30</strong>, following archival of the upstream OSM project. No new minor versions or features will be released; Microsoft will provide security patches until retirement.</p>
+<div class="rich-content"><p>The managed Open Service Mesh (OSM) add-on for AKS retires on <strong>September 30, 2027</strong>, following archival of the upstream OSM project. No new minor versions or features will be released; Microsoft will provide security patches until retirement.</p>
 <p>The documented alternative is the managed Istio add-on for AKS. OSM and Istio add-ons cannot run simultaneously on the same cluster.</p>
 <p>The migration guide covers an in-place Bookstore sample and separate policy-translation examples, not an exhaustive production runbook. It does not cover migration from upstream OSM to self-managed or open source Istio. No region, version or customer exceptions to the retirement are documented in the supplied content.</p>
 </div>
@@ -1930,7 +1930,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>If you use the managed OSM add-on, transition to the managed Istio add-on before <strong>2027-09-30</strong>. Adapt the supplied sample procedure to your workloads:</p>
+<div class="rich-content"><p>If you use the managed OSM add-on, transition to the managed Istio add-on before <strong>September 30, 2027</strong>. Adapt the supplied sample procedure to your workloads:</p>
 <ol>
 <li>Identify OSM-enabled AKS clusters, injected workloads and SMI policies. The walkthrough requires an Azure subscription, an existing OSM-enabled cluster, Azure CLI, add-on management permissions, kubectl access and the deployed Bookstore sample. Select a managed Istio revision supported in your cluster's region.</li>
 <li>Validate the procedure in non-production and plan downtime or reduced availability. AKS planned maintenance settings do not schedule this manual migration. Export SMI resources before disabling OSM for policy translation and rollback planning; do not rely on residual OSM objects.</li>
@@ -1947,7 +1947,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are in scope if your AKS clusters use the managed OSM add-on. Identify them through AKS add-on state, then inspect injected pods and SMI resources. These sources do not establish whether your tenant has affected clusters.</p>
-<p>Until <strong>2027-09-30</strong>, Microsoft will provide security patches, but no new minor versions or features. The notice does not say whether workloads will stop after retirement or specify post-retirement console, API, integration or deployment-tooling changes.</p>
+<p>Until <strong>September 30, 2027</strong>, Microsoft will provide security patches, but no new minor versions or features. The notice does not say whether workloads will stop after retirement or specify post-retirement console, API, integration or deployment-tooling changes.</p>
 <p>Migration causes service disruption. Disabling OSM immediately removes SMI traffic-policy enforcement, including mTLS and access control, even while existing pods continue running. Workloads lack mesh-level security or routing enforcement until the Istio rollout and equivalent policies are in place.</p>
 <p>Existing pods retain OSM sidecars after OSM is disabled. Replacement pods receive Istio sidecars only after the managed revision label is configured. Pods replaced before labeling receive neither mesh's sidecar and require recreation. Stale OSM admission webhooks can block pod creation.</p>
 <p>The in-place sample preserves the cluster, namespaces, services and workload controllers but replaces pods. Final CRD cleanup deletes associated custom resources across the whole cluster, not just the sample.</p>

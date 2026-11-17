@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">App Service</span><span class="badge retired" data-deadline="2023-06-27"><span></span>Retired</span></div>
-  <h1>Community support for Python 3.7 is ending on 27 June 2023</h1><p>Python 3.7 extended support on Linux ended on 2023-06-27. Affected Azure App Service applications continue running unchanged but are unsupported and receive no further patches. The notice recommended updating to Python 3.8 before that date; it does not establish Python 3.8&#39;s current support status or announce a workload shutdown.</p>
+  <h1>Community support for Python 3.7 is ending on 27 June 2023</h1><p>Python 3.7 extended support on Linux ended on June 27, 2023. Affected Azure App Service applications continue running unchanged but are unsupported and receive no further patches. The notice recommended updating to Python 3.8 before that date; it does not establish Python 3.8&#39;s current support status or announce a workload shutdown.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2023-06-27"><strong>Retired</strong><span>Retirement date: <time datetime="2023-06-27">27 Jun 2023</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 10 months, 1 day</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">27 Jun 2023</p>
-<div class="rich-content"><p>Python 3.7 extended support on Linux ended on <strong>2023-06-27</strong>. Azure App Service applications using it are unsupported and receive no further patches after that date.</p>
-<p>The notice recommended updating to Python 3.8 before 2023-06-27. This is an end-of-support milestone, not an application shutdown date. The separate Windows Python and Java 7 support dates concern different populations and do not conflict with this deadline.</p>
+<div class="rich-content"><p>Python 3.7 extended support on Linux ended on <strong>June 27, 2023</strong>. Azure App Service applications using it are unsupported and receive no further patches after that date.</p>
+<p>The notice recommended updating to Python 3.8 before June 27, 2023. This is an end-of-support milestone, not an application shutdown date. The separate Windows Python and Java 7 support dates concern different populations and do not conflict with this deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Python 3.7 on Linux lost extended support on <strong>2023-06-27</strong>. Affected Azure App Service applications continue running unchanged, but they are unsupported and receive no further patches.</p>
+<div class="rich-content"><p>Python 3.7 on Linux lost extended support on <strong>June 27, 2023</strong>. Affected Azure App Service applications continue running unchanged, but they are unsupported and receive no further patches.</p>
 <p>The retirement notice does not identify other operating systems or Python versions as affected. General App Service guidance separately says EOL Python versions are removed from the Runtime Stack selection dropdown; existing applications targeting those versions should not be affected by that selection change.</p>
 </div>
       <div class="notice"></div>
@@ -1931,7 +1931,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your Azure App Service applications that use Python 3.7 on Linux. The supplied content does not provide an application inventory method.</li>
-<li>Select a supported replacement runtime. The retirement notice recommended Python 3.8 before 2023-06-27, but it does not establish that version's current support status. The general reference recommends the most recent version and documents <code>az webapp list-runtimes --os-type linux</code> to list supported Linux runtimes.</li>
+<li>Select a supported replacement runtime. The retirement notice recommended Python 3.8 before June 27, 2023, but it does not establish that version's current support status. The general reference recommends the most recent version and documents <code>az webapp list-runtimes --os-type linux</code> to list supported Linux runtimes.</li>
 <li>For an applicable app, the reference documents changing its Python version in the Azure portal: open the app, select Configuration &gt; General settings &gt; Stack Settings &gt; Minor version, choose the version, and select Save. Changing stack settings restarts the application.</li>
 </ol>
 <p>The supplied content does not provide compatibility prerequisites, a complete migration procedure, or application-validation steps.</p>
@@ -1940,7 +1940,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your Azure App Service applications use Python 3.7 on Linux. After <strong>2023-06-27</strong>, those applications continue running unchanged but are unsupported and receive no patches.</p>
+<div class="rich-content"><p>You are affected if your Azure App Service applications use Python 3.7 on Linux. After <strong>June 27, 2023</strong>, those applications continue running unchanged but are unsupported and receive no patches.</p>
 <p>Separately, general App Service guidance says EOL versions disappear from Runtime Stack selection without affecting existing applications targeting them. Changing stack settings triggers an application restart.</p>
 <p>The retirement notice does not announce workload shutdown, data deletion, or changes to API access, integrations or data access. The supplied content does not establish which of your applications are affected or quantify costs.</p>
 </div>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Microsoft Entra ID (formerly Azure AD)</span><span class="badge retired" data-deadline="2024-02-29"><span></span>Retired</span></div>
-  <h1>Please upgrade your Azure AD Connect sync to a newer version by 29 February 2024</h1><p>Microsoft retired Azure AD Connect sync version 1.1.751.0 and older on 2024-02-29. Affected customers should upgrade to minimize service disruption; the retirement notice does not specify whether synchronization stops after that date. The supplied upgrade guide separately documents a legacy-authentication retirement on 2027-04-07, not an extension of the 2024 version retirement.</p>
+  <h1>Please upgrade your Azure AD Connect sync to a newer version by 29 February 2024</h1><p>Microsoft retired Azure AD Connect sync version 1.1.751.0 and older on February 29, 2024. Affected customers should upgrade to minimize service disruption; the retirement notice does not specify whether synchronization stops after that date. The supplied upgrade guide separately documents a legacy-authentication retirement on April 7, 2027, not an extension of the 2024 version retirement.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-02-29"><strong>Retired</strong><span>Retirement date: <time datetime="2024-02-29">29 Feb 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 5 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">29 Feb 2024</p>
-<div class="rich-content"><p>Microsoft retired Azure AD Connect sync versions published before 2018-05-05, identified as <strong>version 1.1.751.0 and older</strong>, on <strong>2024-02-29</strong>. The notice calls for upgrading to minimize service disruption but does not state whether synchronization stops after retirement.</p>
-<p>The supplied upgrade guide separately documents <strong>2027-04-07</strong> for Microsoft Entra Connect Sync legacy-authentication retirement. It states that synchronization will stop after that date unless you use version <strong>2.6.84.0 or later</strong> and configure <strong>application-based authentication</strong>. This is a different milestone, not an extension of the 2024 retirement, and is established here by the upgrade guide alone.</p>
+<div class="rich-content"><p>Microsoft retired Azure AD Connect sync versions published before May 5, 2018, identified as <strong>version 1.1.751.0 and older</strong>, on <strong>February 29, 2024</strong>. The notice calls for upgrading to minimize service disruption but does not state whether synchronization stops after retirement.</p>
+<p>The supplied upgrade guide separately documents <strong>April 7, 2027</strong> for Microsoft Entra Connect Sync legacy-authentication retirement. It states that synchronization will stop after that date unless you use version <strong>2.6.84.0 or later</strong> and configure <strong>application-based authentication</strong>. This is a different milestone, not an extension of the 2024 retirement, and is established here by the upgrade guide alone.</p>
 <p>The guide also says versions older than V2 are already deprecated, without providing a separate deprecation date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired <strong>Azure AD Connect sync version 1.1.751.0 and older</strong> on <strong>2024-02-29</strong>. Newer versions are outside this notice's stated retirement scope. The notice does not specify pre-retirement availability, maintenance, support or security-update commitments, or an exact post-retirement shutdown behavior.</p>
-<p>Separately, the supplied current upgrade guide requires Microsoft Entra Connect Sync version <strong>2.6.84.0 or later</strong> and application-based authentication to continue synchronization after <strong>2027-04-07</strong>. Upgrading alone does not meet both requirements.</p>
+<div class="rich-content"><p>Microsoft retired <strong>Azure AD Connect sync version 1.1.751.0 and older</strong> on <strong>February 29, 2024</strong>. Newer versions are outside this notice's stated retirement scope. The notice does not specify pre-retirement availability, maintenance, support or security-update commitments, or an exact post-retirement shutdown behavior.</p>
+<p>Separately, the supplied current upgrade guide requires Microsoft Entra Connect Sync version <strong>2.6.84.0 or later</strong> and application-based authentication to continue synchronization after <strong>April 7, 2027</strong>. Upgrading alone does not meet both requirements.</p>
 </div>
       <div class="notice"></div>
     </section>
@@ -1946,7 +1946,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are in scope for the <strong>2024-02-29</strong> retirement if you use Azure AD Connect sync <strong>version 1.1.751.0 or older</strong>. The notice warns of possible service disruption but does not specify whether remaining on those versions stops synchronization or changes support or data access. It does not announce retirement of newer versions.</p>
+<div class="rich-content"><p>You are in scope for the <strong>February 29, 2024</strong> retirement if you use Azure AD Connect sync <strong>version 1.1.751.0 or older</strong>. The notice warns of possible service disruption but does not specify whether remaining on those versions stops synchronization or changes support or data access. It does not announce retirement of newer versions.</p>
 <p>Upgrade effects depend on your configuration:</p>
 <ul>
 <li>An in-place upgrade can suspend normal delta synchronization during full import and full synchronization for hours or potentially longer in large environments. Password synchronization continues during the described full synchronization process.</li>
@@ -1954,7 +1954,7 @@
 <li>Swing migration requires additional server capacity. With only two servers, upgrading staging temporarily leaves no ready staging backup.</li>
 <li>Retired servers left operational can overwrite Microsoft Entra data with stale values. Downgrading to legacy clients after cutover is unsupported and can cause data loss.</li>
 </ul>
-<p>Separately, the upgrade guide says synchronization will stop after <strong>2027-04-07</strong> unless both its minimum-version and application-based authentication requirements are met. It does not say existing Microsoft Entra workloads shut down or directory data is deleted.</p>
+<p>Separately, the upgrade guide says synchronization will stop after <strong>April 7, 2027</strong> unless both its minimum-version and application-based authentication requirements are met. It does not say existing Microsoft Entra workloads shut down or directory data is deleted.</p>
 <p>The supplied sources provide no tenant-wide discovery method or cost estimate; they do not establish your deployment's exposure.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

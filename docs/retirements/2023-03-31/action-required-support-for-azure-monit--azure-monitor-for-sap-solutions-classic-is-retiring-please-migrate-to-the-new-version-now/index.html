@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2023-03-31"><span></span>Retired</span></div>
-  <h1>Action required: Support for Azure Monitor for SAP solutions (classic) resources will end by 31 March 2023.</h1><p>Support for Azure Monitor for SAP solutions (classic) resources ended by 2023-03-31. Microsoft recommended migrating to version 2.0 before that date to avoid or mitigate possible workflow disruptions; the supplied sources do not specify a workload shutdown date. Documented migration automation covers SAP HANA and SAP NetWeaver providers. If you reuse the classic Log Analytics workspace, do not delete the classic resource or its managed resource group: doing so deletes the shared workspace, loses historical telemetry and stops collection. The migration repository became read-only on 2026-06-11.</p>
+  <h1>Action required: Support for Azure Monitor for SAP solutions (classic) resources will end by 31 March 2023.</h1><p>Support for Azure Monitor for SAP solutions (classic) resources ended by March 31, 2023. Microsoft recommended migrating to version 2.0 before that date to avoid or mitigate possible workflow disruptions; the supplied sources do not specify a workload shutdown date. Documented migration automation covers SAP HANA and SAP NetWeaver providers. If you reuse the classic Log Analytics workspace, do not delete the classic resource or its managed resource group: doing so deletes the shared workspace, loses historical telemetry and stops collection. The migration repository became read-only on June 11, 2026.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2023-03-31"><strong>Retired</strong><span>Retirement date: <time datetime="2023-03-31">31 Mar 2023</time></span><span class="badge amber customer-lead-time-pill">Lead time: 5 months, 24 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2023</p>
-<div class="rich-content"><p>Support for Azure Monitor for SAP solutions (classic) resources ended by <strong>2023-03-31</strong>. Microsoft recommended migrating to version 2.0 <strong>before 2023-03-31</strong> to avoid or mitigate possible workflow disruptions.</p>
+<div class="rich-content"><p>Support for Azure Monitor for SAP solutions (classic) resources ended by <strong>March 31, 2023</strong>. Microsoft recommended migrating to version 2.0 <strong>before March 31, 2023</strong> to avoid or mitigate possible workflow disruptions.</p>
 <p>This is an end-of-support milestone, not a documented shutdown date. The supplied sources do not specify when classic resources stop operating or become inaccessible.</p>
-<p>The version 2 public-preview announcement on 2022-07-19 and migration repository archive date of 2026-06-11 are separate milestones. Neither establishes a different retirement deadline or an extension.</p>
+<p>The version 2 public-preview announcement on July 19, 2022 and migration repository archive date of June 11, 2026 are separate milestones. Neither establishes a different retirement deadline or an extension.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Monitor for SAP solutions (classic), also called AMS 1.0, is retiring, with support ending by <strong>2023-03-31</strong>. Microsoft identifies version 2.0 as the migration destination and directs new SAP monitoring investments exclusively to it.</p>
+<div class="rich-content"><p>Azure Monitor for SAP solutions (classic), also called AMS 1.0, is retiring, with support ending by <strong>March 31, 2023</strong>. Microsoft identifies version 2.0 as the migration destination and directs new SAP monitoring investments exclusively to it.</p>
 <p>The retirement notice describes version 2.0 as public preview, with feature parity and a similar pricing model. Version 2 uses Azure Functions rather than a virtual machine for telemetry collection, with Log Analytics storage and Azure Workbooks visualization.</p>
 <p>The migration README instead describes the newer resource as private preview requiring subscription allow-listing. The supplied sources do not establish whether those preview conditions remain current. Its automation covers SAP HANA and SAP NetWeaver providers and their alerts; support for high-availability (pacemaker), SQL Server and OS providers is described only as planned.</p>
 <p>The sources do not establish classic availability before or after support ends, maintenance or security-update commitments, or regional retirement exceptions.</p>
@@ -1932,7 +1932,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Microsoft recommended migrating classic resources to version 2.0 before <strong>2023-03-31</strong>. Use the supplied migration guidance with its documented scope and preview-status uncertainty:</p>
+<div class="rich-content"><p>Microsoft recommended migrating classic resources to version 2.0 before <strong>March 31, 2023</strong>. Use the supplied migration guidance with its documented scope and preview-status uncertainty:</p>
 <ol>
 <li>Identify your classic resource and provider types. Gather the subscription ID from the classic overview, tenant ID from the Azure Active Directory overview, and both resource ARM IDs from resource properties. Review version 2 regional availability and infrastructure charges.</li>
 <li>Follow the onboarding guidance to deploy the newer AMS resource without providers. The README describes subscription allow-listing for private preview; the retirement notice describes public preview, so the supplied sources do not confirm the current prerequisite. Choose <strong>Use existing log analytics workspace</strong> if you want access to previously collected telemetry through the new resource.</li>
@@ -1963,7 +1963,7 @@
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
 <div class="rich-content"><p>Use the migration script's execution result as evidence of provider migration. The README refers to successful output but does not supply its text. After provider migration, the script compares workspaces and offers alert migration when they differ; alert coverage is limited to the selected provider type.</p>
 <p>For <strong>team-owned completion evidence</strong>, record your provider scope, script outcome, workspace choice and alert-migration decision, then verify continued telemetry before deleting migrated classic providers. This is local planning guidance, not a documented migration dashboard or an assessment of your resources. Operational workbooks and queries alone do not establish migration completion; queries opened from an AMS resource include only that resource's data.</p>
-<p>The public-preview announcement lists standard support through the Azure portal. The README directs cases to GitHub Issues, but the repository became archived and read-only on 2026-06-11, so you cannot assume that route accepts new cases. The supplied community reference is also read-only and does not establish a usable escalation route.</p>
+<p>The public-preview announcement lists standard support through the Azure portal. The README directs cases to GitHub Issues, but the repository became archived and read-only on June 11, 2026, so you cannot assume that route accepts new cases. The supplied community reference is also read-only and does not establish a usable escalation route.</p>
 </div>
     </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">

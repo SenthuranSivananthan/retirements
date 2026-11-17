@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Network Watcher</span><span class="badge retired" data-deadline="2024-02-29"><span></span>Retired</span></div>
-  <h1>We’re retiring Network Performance Monitor on 29 February 2024</h1><p>Azure Network Performance Monitor retired on 2024-02-29. Microsoft instructed customers to migrate tests to Connection Monitor in Azure Network Watcher before that date. New tests in existing workspaces and enabling new workspaces were blocked from 2021-07-01. Current supplied guidance says Network Performance Monitor is no longer available, but retains migration procedures whose present availability is unconfirmed. Migration requires checking agent prerequisites, updating alerts and integrations, and disabling legacy tests to stop their documented charges. Connection Monitor does not support ExpressRoute bandwidth monitoring.</p>
+  <h1>We’re retiring Network Performance Monitor on 29 February 2024</h1><p>Azure Network Performance Monitor retired on February 29, 2024. Microsoft instructed customers to migrate tests to Connection Monitor in Azure Network Watcher before that date. New tests in existing workspaces and enabling new workspaces were blocked from July 1, 2021. Current supplied guidance says Network Performance Monitor is no longer available, but retains migration procedures whose present availability is unconfirmed. Migration requires checking agent prerequisites, updating alerts and integrations, and disabling legacy tests to stop their documented charges. Connection Monitor does not support ExpressRoute bandwidth monitoring.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-02-29"><strong>Retired</strong><span>Retirement date: <time datetime="2024-02-29">29 Feb 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 6 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">29 Feb 2024</p>
-<div class="rich-content"><p>Network Performance Monitor retired on <strong>2024-02-29</strong>. Microsoft instructed you to migrate existing tests to Connection Monitor before that date to minimize disruption.</p>
-<p>A separate restriction began on <strong>2021-07-01</strong>: you could no longer add tests to existing workspaces or enable new workspaces. Tests created earlier could continue ahead of retirement.</p>
+<div class="rich-content"><p>Network Performance Monitor retired on <strong>February 29, 2024</strong>. Microsoft instructed you to migrate existing tests to Connection Monitor before that date to minimize disruption.</p>
+<p>A separate restriction began on <strong>July 1, 2021</strong>: you could no longer add tests to existing workspaces or enable new workspaces. Tests created earlier could continue ahead of retirement.</p>
 <p>The supplied migration guidance now states that Network Performance Monitor is no longer available, but retains procedures describing continued legacy test operation. It does not confirm a remaining migration window or specify the exact shutdown behavior of existing tests. No separate support-end date is documented.</p>
 <p>Connection monitor (classic) is a separate deprecated offering; its undated unavailability notice does not change Network Performance Monitor's retirement date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Network Performance Monitor retired on <strong>2024-02-29</strong>. Microsoft identifies the current Connection Monitor in Azure Network Watcher as its replacement for Performance Monitor, Service Connectivity Monitor and ExpressRoute Monitor tests.</p>
+<div class="rich-content"><p>Azure Network Performance Monitor retired on <strong>February 29, 2024</strong>. Microsoft identifies the current Connection Monitor in Azure Network Watcher as its replacement for Performance Monitor, Service Connectivity Monitor and ExpressRoute Monitor tests.</p>
 <p>The migration guidance describes transferring tests into connection monitors, test groups, endpoints and configurations. Test and agent descriptions are not migrated. ExpressRoute loss and latency monitoring are supported, but <strong>ExpressRoute bandwidth monitoring is not available</strong> in Connection Monitor.</p>
 <p>The guidance describes zero-downtime migration while also stating that Network Performance Monitor is no longer available; it does not establish that the older migration path remains usable. No regional retirement exceptions or ongoing support and security-update commitments are documented. Do not select Connection monitor (classic), which the supplied overview also says is no longer available.</p>
 </div>
@@ -1947,7 +1947,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you use Network Performance Monitor tests or workspaces, including Performance Monitor, Service Connectivity Monitor or ExpressRoute Monitor. The supplied sources do not establish whether you have affected resources.</p>
-<p>New tests and new workspace enablement were blocked from <strong>2021-07-01</strong>. The service retired on <strong>2024-02-29</strong>, and current guidance says it is no longer available. The sources do not establish that retirement shuts down your applications, VMs or network connections, or clarify current legacy-test continuity.</p>
+<p>New tests and new workspace enablement were blocked from <strong>July 1, 2021</strong>. The service retired on <strong>February 29, 2024</strong>, and current guidance says it is no longer available. The sources do not establish that retirement shuts down your applications, VMs or network connections, or clarify current legacy-test continuity.</p>
 <p>Migration creates one connection monitor per region and subscription, with test names becoming test group names. Test and agent descriptions are not transferred. ExpressRoute bandwidth monitoring has no documented replacement capability in Connection Monitor. Azure VM and on-premises sources must meet the current agent prerequisites; older unchanged-agent guidance conflicts with the current on-premises requirements.</p>
 <p>Historical data remains in the original workspace's <code>NetworkMonitoring</code> table. The documented transition also writes results to <code>NWConnectionMonitorTestResult</code> and <code>NWConnectionMonitorPathResult</code>; after legacy tests are disabled, new data goes only to those two tables. Alerts, dashboards and integrations using the old table require updates.</p>
 <p>The migration article says legacy tests incur charges until manually disabled. It provides no retirement-specific retention or deletion schedule, and no supported estimate of your costs.</p>

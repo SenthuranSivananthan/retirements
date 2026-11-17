@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Time Series Insights</span><span class="badge retired" data-deadline="2024-07-07"><span></span>Retired</span></div>
-  <h1>Azure Time Series Insights will be retired on 31 March 2025</h1><p>Microsoft&#39;s migration guidance identifies 2024-07-07 as the retirement date for Azure Time Series Insights Gen1 and Gen2 and warns of automatic resource deletion if migration is incomplete. This conflicts with the announcement&#39;s 2025-03-31 retirement and end-of-support date. The structured deadline follows the applicable product migration guidance; the supplied sources do not reconcile the dates or document an extension. Microsoft recommends Eventhouse in Fabric Real-Time Intelligence; Azure Data Explorer is another documented destination. Gen1 migration requires parallel ingestion for its fixed retention period. Gen2 cold-storage data remains accessible in your storage account after retirement, but this does not preserve the Time Series Insights service.</p>
+  <h1>Azure Time Series Insights will be retired on 31 March 2025</h1><p>Microsoft&#39;s migration guidance identifies July 7, 2024 as the retirement date for Azure Time Series Insights Gen1 and Gen2 and warns of automatic resource deletion if migration is incomplete. This conflicts with the announcement&#39;s March 31, 2025 retirement and end-of-support date. The structured deadline follows the applicable product migration guidance; the supplied sources do not reconcile the dates or document an extension. Microsoft recommends Eventhouse in Fabric Real-Time Intelligence; Azure Data Explorer is another documented destination. Gen1 migration requires parallel ingestion for its fixed retention period. Gen2 cold-storage data remains accessible in your storage account after retirement, but this does not preserve the Time Series Insights service.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-07-07"><strong>Retired</strong><span>Retirement date: <time datetime="2024-07-07">7 Jul 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 3 months, 15 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,16 +1916,16 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">7 Jul 2024</p>
-<div class="rich-content"><p>The applicable Gen1/Gen2 migration guidance gives <strong>2024-07-07</strong> as the retirement deadline and warns that Time Series Insights resources will be automatically deleted if migration is incomplete. The structured deadline follows this product guidance rather than the announcement.</p>
-<p>The announcement instead gives <strong>2025-03-31</strong> for retirement and says the service will not be supported afterward. These are conflicting retirement dates, not documented successive phases or an established extension. The supplied sources do not reconcile them; the announcement does not specify workload shutdown or data-deletion timing.</p>
-<p>Separately, new feature releases stopped on <strong>2022-03-31</strong>. The announcement explicitly guarantees support through its stated retirement date for instances created before 2022-03-31, without explaining later-created instances. The Q&amp;A listing's unanswered reference to March 2025 does not independently confirm a deadline or distinguish support loss from shutdown.</p>
+<div class="rich-content"><p>The applicable Gen1/Gen2 migration guidance gives <strong>July 7, 2024</strong> as the retirement deadline and warns that Time Series Insights resources will be automatically deleted if migration is incomplete. The structured deadline follows this product guidance rather than the announcement.</p>
+<p>The announcement instead gives <strong>March 31, 2025</strong> for retirement and says the service will not be supported afterward. These are conflicting retirement dates, not documented successive phases or an established extension. The supplied sources do not reconcile them; the announcement does not specify workload shutdown or data-deletion timing.</p>
+<p>Separately, new feature releases stopped on <strong>March 31, 2022</strong>. The announcement explicitly guarantees support through its stated retirement date for instances created before March 31, 2022, without explaining later-created instances. The Q&amp;A listing's unanswered reference to March 2025 does not independently confirm a deadline or distinguish support loss from shutdown.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring <strong>Azure Time Series Insights Gen1 and Gen2</strong>. The migration guidance identifies 2024-07-07 and automatic resource deletion for environments not migrated by then; the announcement instead identifies 2025-03-31 and loss of support afterward. The supplied sources leave this conflict unresolved.</p>
+<div class="rich-content"><p>Microsoft is retiring <strong>Azure Time Series Insights Gen1 and Gen2</strong>. The migration guidance identifies July 7, 2024 and automatic resource deletion for environments not migrated by then; the announcement instead identifies March 31, 2025 and loss of support afterward. The supplied sources leave this conflict unresolved.</p>
 <p>Microsoft recommends <strong>Eventhouse in Fabric Real-Time Intelligence</strong>. Azure Data Explorer is another documented destination, with readiness guidance and migration tools referenced through the tsi2rti repository.</p>
-<p>New feature releases stopped on 2022-03-31. The announcement says instances created before that date can continue to be used and supported through its stated retirement date. The sources do not establish regional exceptions, support eligibility for later-created instances or security-update commitments.</p>
+<p>New feature releases stopped on March 31, 2022. The announcement says instances created before that date can continue to be used and supported through its stated retirement date. The sources do not establish regional exceptions, support eligibility for later-created instances or security-update commitments.</p>
 </div>
       <div class="notice"></div>
     </section>
@@ -1934,7 +1934,7 @@
 <div class="rich-content"><ol>
 <li>Identify your Time Series Insights environments and whether they use Gen1 or Gen2. The supplied guidance provides no inventory command.</li>
 <li>Select a destination. Microsoft recommends Eventhouse in Fabric Real-Time Intelligence; Azure Data Explorer is an alternative. Use the referenced tsi2rti readiness guidance and migration tools for your chosen destination.</li>
-<li>Plan against the migration guidance's <strong>2024-07-07</strong> deadline while explicitly recording its unresolved conflict with the announcement's 2025-03-31 date.</li>
+<li>Plan against the migration guidance's <strong>July 7, 2024</strong> deadline while explicitly recording its unresolved conflict with the announcement's March 31, 2025 date.</li>
 </ol>
 <h3>Gen1 migration to Eventhouse</h3>
 <ol>
@@ -1958,7 +1958,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>The migration guidance covers <strong>Time Series Insights Gen1 and Gen2</strong> and warns of automatic resource deletion if migration is incomplete by 2024-07-07. The announcement instead states retirement and loss of support after 2025-03-31 without defining shutdown or deletion timing. These consequences must not be treated as a confirmed two-phase schedule.</p>
+<div class="rich-content"><p>The migration guidance covers <strong>Time Series Insights Gen1 and Gen2</strong> and warns of automatic resource deletion if migration is incomplete by July 7, 2024. The announcement instead states retirement and loss of support after March 31, 2025 without defining shutdown or deletion timing. These consequences must not be treated as a confirmed two-phase schedule.</p>
 <ul>
 <li><strong>Gen1:</strong> There is no cold storage or hierarchy capability. Its fixed retention period requires parallel ingestion for that period in the documented migration sequence.</li>
 <li><strong>Gen2:</strong> Cold data resides as Parquet blobs in your subscription. The guidance says this data remains accessible in your storage account after Time Series Insights resource deletion. It limits Azure Resource Manager access to management operations, such as changing storage-account settings, retrieving properties or keys, and deleting storage accounts; it does not specify the post-retirement data-reading interface.</li>

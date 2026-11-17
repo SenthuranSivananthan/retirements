@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Batch</span><span class="badge retired" data-deadline="2025-09-30"><span></span>Retired</span></div>
-  <h1>Azure Batch Low Priority VMs will be retired on 30 September 2025</h1><p>Azure Batch Low Priority VMs retired on the notice&#39;s stated date, 2025-09-30, with transition to Spot VMs required before that date. Microsoft states that support ends afterward; existing Low Priority pools may stop working or provisioning and may be forced to scale down. The supplied content does not confirm universal shutdown or actual enforcement. Batch Spot VMs can interrupt workloads and provide no SLA or availability guarantee, so validate task recovery and capacity requirements.</p>
+  <h1>Azure Batch Low Priority VMs will be retired on 30 September 2025</h1><p>Azure Batch Low Priority VMs retired on the notice&#39;s stated date, September 30, 2025, with transition to Spot VMs required before that date. Microsoft states that support ends afterward; existing Low Priority pools may stop working or provisioning and may be forced to scale down. The supplied content does not confirm universal shutdown or actual enforcement. Batch Spot VMs can interrupt workloads and provide no SLA or availability guarantee, so validate task recovery and capacity requirements.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2025-09-30">30 Sep 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2025</p>
-<div class="rich-content"><p>The notice sets <strong>2025-09-30</strong> as the retirement date for Azure Batch Low Priority VMs and directs you to transition to Spot VMs before that date.</p>
+<div class="rich-content"><p>The notice sets <strong>September 30, 2025</strong> as the retirement date for Azure Batch Low Priority VMs and directs you to transition to Spot VMs before that date.</p>
 <p>Microsoft states that support ends afterward. Existing Low Priority pools may stop working or provisioning and may be forced to scale down. The notice gives no separate enforcement date and does not confirm that every pool shut down on the retirement date.</p>
 <p>The supporting Spot VM reference pages do not establish another retirement date or an extension.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Batch's deprecated Low Priority VM feature has a stated retirement date of <strong>2025-09-30</strong>. The notice directs affected customers to use Spot VMs instead; it does not announce retirement of Azure Batch or Spot VMs.</p>
+<div class="rich-content"><p>Azure Batch's deprecated Low Priority VM feature has a stated retirement date of <strong>September 30, 2025</strong>. The notice directs affected customers to use Spot VMs instead; it does not announce retirement of Azure Batch or Spot VMs.</p>
 <p>Batch pools can use Spot VMs, dedicated VMs or a mixture, with job and task submission remaining unchanged across these configurations. Spot capacity varies by VM family, size, region and time, and has no SLA or availability guarantee.</p>
 <p>The retirement notice does not specify regional exceptions, availability guarantees before retirement, or maintenance and security-update commitments.</p>
 </div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify Azure Batch pools using Low Priority VMs. The retirement notice provides no identification procedure. The Batch Spot reference documents pool dedicated/Spot counts and node indicators, but these identify capacity type rather than independently proving retirement exposure.</li>
-<li>Transition affected pools to Spot VMs, as directed by the notice. The stated completion requirement was before <strong>2025-09-30</strong>. The supplied content does not provide a complete retirement-specific migration or cutover procedure.</li>
+<li>Transition affected pools to Spot VMs, as directed by the notice. The stated completion requirement was before <strong>September 30, 2025</strong>. The supplied content does not provide a complete retirement-specific migration or cutover procedure.</li>
 <li>Check workload interruption tolerance, quota, regional capacity, VM availability and subscription eligibility. Choose Spot-only capacity for interruption-tolerant work or combine Spot with dedicated capacity. Favor dedicated VMs for strict deadlines or long-running, tightly coupled MPI jobs. Batch Spot VMs do not support ephemeral OS disks, maximum-price settings or price-based eviction.</li>
 <li>Implement durable checkpointing if you need progress recovery. Validate a representative job in a nonproduction pool by removing a running Spot node with the deallocation option set to requeue. Check task recovery, checkpoint recovery where applicable, one correct result and completion under reduced capacity.</li>
 </ol>
@@ -1943,7 +1943,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Azure Batch pools using Low Priority VMs are in scope. After <strong>2025-09-30</strong>, Microsoft states that these VMs are unsupported; existing pools may stop working or provisioning and may be forced to scale down. This is not confirmation of a universal workload shutdown or of your resources' current state.</p>
+<div class="rich-content"><p>Azure Batch pools using Low Priority VMs are in scope. After <strong>September 30, 2025</strong>, Microsoft states that these VMs are unsupported; existing pools may stop working or provisioning and may be forced to scale down. This is not confirmation of a universal workload shutdown or of your resources' current state.</p>
 <p>Moving to Batch Spot VMs introduces interruption and capacity constraints:</p>
 <ul>
 <li>Spot nodes can be evicted immediately after creation. Local VM data is lost, and work without durable checkpoints may need to restart.</li>

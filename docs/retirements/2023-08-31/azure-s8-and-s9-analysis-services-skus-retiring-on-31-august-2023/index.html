@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Analysis Services</span><span class="badge retired" data-deadline="2023-08-31"><span></span>Retired</span></div>
-  <h1>Azure S8 and S9 Analysis Services SKUs retiring on 31 August 2023</h1><p>After 2023-08-31, Azure Analysis Services S8 and S9 SKUs are unavailable for new deployments. Existing servers continue on old hardware; no shutdown or migration-completion deadline is stated. Microsoft recommends S8v2 or S9v2, subject to regional availability and query replica limits. This retirement does not apply to Azure Analysis Services as a whole.</p>
+  <h1>Azure S8 and S9 Analysis Services SKUs retiring on 31 August 2023</h1><p>After August 31, 2023, Azure Analysis Services S8 and S9 SKUs are unavailable for new deployments. Existing servers continue on old hardware; no shutdown or migration-completion deadline is stated. Microsoft recommends S8v2 or S9v2, subject to regional availability and query replica limits. This retirement does not apply to Azure Analysis Services as a whole.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2023-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2023-08-31">31 Aug 2023</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 28 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2023</p>
-<div class="rich-content"><p>The retirement milestone is <strong>2023-08-31</strong>. After that date, Azure Analysis Services S8 and S9 SKUs are unavailable for new deployments.</p>
-<p>Microsoft recommends starting migration before 2023-08-31, but the notice does not specify a migration-completion deadline or an existing-server shutdown date.</p>
-<p>The supplied service overview confirms deprecation without giving another deadline. Its 2025-04-22 last-updated date is not a retirement milestone.</p>
+<div class="rich-content"><p>The retirement milestone is <strong>August 31, 2023</strong>. After that date, Azure Analysis Services S8 and S9 SKUs are unavailable for new deployments.</p>
+<p>Microsoft recommends starting migration before August 31, 2023, but the notice does not specify a migration-completion deadline or an existing-server shutdown date.</p>
+<p>The supplied service overview confirms deprecation without giving another deadline. Its April 22, 2025 last-updated date is not a retirement milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Analysis Services retired S8 and S9 SKUs from new deployments after 2023-08-31. Existing S8 and S9 servers continue on old hardware.</p>
+<div class="rich-content"><p>Azure Analysis Services retired S8 and S9 SKUs from new deployments after August 31, 2023. Existing S8 and S9 servers continue on old hardware.</p>
 <p>Microsoft recommends S8v2 and S9v2. Each provides twice the QPUs of its corresponding deprecated plan, with the same memory:</p>
 <ul>
 <li>S8v2: 640 QPUs and 200 GB of memory.</li>
@@ -1938,7 +1938,7 @@
 <div class="rich-content"><ol>
 <li>Review your Azure Analysis Services server's selected plan in the Azure portal to identify S8 or S9 servers.</li>
 <li>Review S8v2 or S9v2 availability and query replica limits in your region before selecting a replacement. For new servers, use an available replacement or review the pricing page for another suitable SKU.</li>
-<li>Plan the change using the documented Azure portal or PowerShell plan-changing capabilities. The service supports changing plans within a tier. Microsoft's retirement notice recommends starting migration before 2023-08-31, but sets no completion deadline.</li>
+<li>Plan the change using the documented Azure portal or PowerShell plan-changing capabilities. The service supports changing plans within a tier. Microsoft's retirement notice recommends starting migration before August 31, 2023, but sets no completion deadline.</li>
 </ol>
 <p>The supplied sources do not provide S8/S9-specific migration prerequisites, backup, cutover, downtime or validation procedures.</p>
 </div>
@@ -1946,7 +1946,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if you use Azure Analysis Services S8 or S9, or planned new deployments with either SKU. After 2023-08-31, these SKUs are unavailable for new deployments. Existing servers continue on old hardware; the notice does not state that their workloads shut down.</p>
+<div class="rich-content"><p>You are affected if you use Azure Analysis Services S8 or S9, or planned new deployments with either SKU. After August 31, 2023, these SKUs are unavailable for new deployments. Existing servers continue on old hardware; the notice does not state that their workloads shut down.</p>
 <p>S8v2 and S9v2 are not available in every region. Their listed regional query replica limits range from one to three, so check your region before selecting a replacement.</p>
 <p>The sources do not document retirement-related data deletion, loss of data access, integration changes or deployment-tooling changes. They do not establish whether you have affected resources.</p>
 <p>Costs depend on region, plan and query replicas; replicas are billed at the server's rate. The referenced pricing calculator covers one server in one region, not an entire deployment. No migration cost estimate is supplied.</p>

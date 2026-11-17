@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Application Gateway</span><span class="badge retired" data-deadline="2026-04-28"><span></span>Retired</span></div>
-  <h1>Application Gateway V1 will be retired on 28 April 2026– Transition to Application Gateway V2</h1><p>Azure Application Gateway V1, including Standard V1 and Web Application Firewall V1, retired on 2026-04-28. Microsoft states that running V1 gateways will be stopped and unmigrated gateways will later be force deleted after customers receive deletion timelines; no exact deletion date is supplied. V1 gateways are not automatically upgraded. You must migrate configuration to V2, validate it and redirect client traffic separately. Review networking, certificate-validation, authentication, WAF and pricing differences before cutover.</p>
+  <h1>Application Gateway V1 will be retired on 28 April 2026– Transition to Application Gateway V2</h1><p>Azure Application Gateway V1, including Standard V1 and Web Application Firewall V1, retired on April 28, 2026. Microsoft states that running V1 gateways will be stopped and unmigrated gateways will later be force deleted after customers receive deletion timelines; no exact deletion date is supplied. V1 gateways are not automatically upgraded. You must migrate configuration to V2, validate it and redirect client traffic separately. Review networking, certificate-validation, authentication, WAF and pricing differences before cutover.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-04-28"><strong>Retired</strong><span>Retirement date: <time datetime="2026-04-28">28 Apr 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 30 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,19 +1916,19 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">28 Apr 2026</p>
-<div class="rich-content"><p>Application Gateway V1, including Standard V1 and Web Application Firewall V1, retired on <strong>2026-04-28</strong>. Microsoft required migration to V2 by that date. The announcement states that running V1 gateways will be stopped at retirement and unmigrated gateways will subsequently be force deleted after customers receive deletion timelines. No exact deletion date is supplied.</p>
+<div class="rich-content"><p>Application Gateway V1, including Standard V1 and Web Application Firewall V1, retired on <strong>April 28, 2026</strong>. Microsoft required migration to V2 by that date. The announcement states that running V1 gateways will be stopped at retirement and unmigrated gateways will subsequently be force deleted after customers receive deletion timelines. No exact deletion date is supplied.</p>
 <p>Separate earlier milestones were:</p>
 <ul>
-<li><strong>2023-04-28:</strong> Microsoft announced deprecation.</li>
-<li><strong>2023-07-01:</strong> V1 deployments became unavailable on subscriptions without V1 gateways.</li>
-<li><strong>2024-08-28:</strong> New V1 creation stopped for all customers.</li>
+<li><strong>April 28, 2023:</strong> Microsoft announced deprecation.</li>
+<li><strong>July 1, 2023:</strong> V1 deployments became unavailable on subscriptions without V1 gateways.</li>
+<li><strong>August 28, 2024:</strong> New V1 creation stopped for all customers.</li>
 </ul>
 <p>The announcement and migration guide agree on the retirement date. The migration guide does not independently describe post-retirement shutdown behavior; the pricing page, Q&amp;A listing and portal content establish no alternative retirement date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired Azure Application Gateway Standard V1 and Web Application Firewall V1 on <strong>2026-04-28</strong>. The announcement states that running V1 gateways will be stopped. V2 is the migration destination, not the retiring version; V1 gateways are not automatically upgraded.</p>
+<div class="rich-content"><p>Microsoft retired Azure Application Gateway Standard V1 and Web Application Firewall V1 on <strong>April 28, 2026</strong>. The announcement states that running V1 gateways will be stopped. V2 is the migration destination, not the retiring version; V1 gateways are not automatically upgraded.</p>
 <p>Migration requires two separate changes: cloning the gateway configuration to V2 and redirecting client traffic. Microsoft recommends the enhanced cloning script, which supports private-only V2 gateways and avoids manual frontend certificate input. The legacy script requires certificate inputs and does not support private-only gateways.</p>
 <p>The supplied content documents no regional retirement exceptions or maintenance and security-update commitments before retirement. The pricing page's descriptions of V1 billing do not establish continued V1 availability.</p>
 </div>
@@ -1937,7 +1937,7 @@
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
-<li>Identify your Standard V1 and Web Application Firewall V1 gateways. Find each resource ID under the gateway's Properties in the Azure portal, or use the PowerShell lookup documented in the migration guide. Migration to V2 was required by <strong>2026-04-28</strong>; V1 does not upgrade automatically.</li>
+<li>Identify your Standard V1 and Web Application Firewall V1 gateways. Find each resource ID under the gateway's Properties in the Azure portal, or use the PowerShell lookup documented in the migration guide. Migration to V2 was required by <strong>April 28, 2026</strong>; V1 does not upgrade automatically.</li>
 <li>Prepare an active Azure subscription and current PowerShell modules, or use Azure Cloud Shell. Set the correct V1 subscription context before every script run: the guide warns that an incorrect context can cause resource-group cleanup. Avoid concurrent changes to gateways and associated resources, and choose target names that do not overwrite existing resources.</li>
 <li>Prepare a separate subnet in the V1 gateway's virtual network with sufficient available IP addresses. Check NSG and route requirements; virtual network service endpoint policies are unsupported in Application Gateway subnets. For private-only migration, register EnableApplicationGatewayNetworkIsolation before running the script and delegate the subnet to Microsoft.Network/applicationGateways. Network-isolated public-only deployments also require delegation.</li>
 <li>Clone configuration with the recommended enhanced script. If you use the legacy script, provide all frontend TLS/SSL certificates for HTTPS listeners and applicable backend trusted root certificates; it cannot create private-only gateways. If retaining installed Az modules, use the manual script-download method because the Install-Script method requires those modules not to be installed beforehand.</li>

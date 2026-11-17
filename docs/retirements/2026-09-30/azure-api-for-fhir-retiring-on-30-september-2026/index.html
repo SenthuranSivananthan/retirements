@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure API for FHIR</span><span class="badge retired" data-deadline="2026-09-30"><span></span>Retired</span></div>
-  <h1>Azure API for FHIR retiring on 30 September 2026</h1><p>Azure API for FHIR retired on 2026-09-30. Microsoft directs customers to migrate data and applications to Azure Health Data Services FHIR service. The supplied Q&amp;A states that account management, data access, updates and customer support are unavailable after retirement; it does not specify automatic data deletion. New deployments were restricted from April 2025, with differing wording about the 2025-04-01 boundary. SMART on FHIR proxy has a separate transition deadline of 2026-09-21. Migration requires reviewing identity, integration and capacity constraints; source instances above 2 TB require contacting Azure support before migration.</p>
+  <h1>Azure API for FHIR retiring on 30 September 2026</h1><p>Azure API for FHIR retired on September 30, 2026. Microsoft directs customers to migrate data and applications to Azure Health Data Services FHIR service. The supplied Q&amp;A states that account management, data access, updates and customer support are unavailable after retirement; it does not specify automatic data deletion. New deployments were restricted from April 2025, with differing wording about the April 1, 2025 boundary. SMART on FHIR proxy has a separate transition deadline of September 21, 2026. Migration requires reviewing identity, integration and capacity constraints; source instances above 2 TB require contacting Azure support before migration.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-30">30 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 1 day</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,21 +1916,21 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2026</p>
-<div class="rich-content"><p>Azure API for FHIR retired on <strong>2026-09-30</strong>. The retirement announcement and migration guide identify this milestone; the healthcare overview calls the same date deprecation. These sources do not document an extension.</p>
+<div class="rich-content"><p>Azure API for FHIR retired on <strong>September 30, 2026</strong>. The retirement announcement and migration guide identify this milestone; the healthcare overview calls the same date deprecation. These sources do not document an extension.</p>
 <p>Microsoft directed migration before retirement; the Q&amp;A recommends completion by that date. According to the Q&amp;A, account management, data access, updates and customer support are unavailable after retirement. The sources do not specify a separate workload-shutdown date or automatic data-deletion schedule.</p>
-<p>New deployments were restricted from April 2025. The announcement says restrictions began <strong>2025-04-01</strong>, while its FAQ says deployments were allowed until that date and prohibited afterward. The exact boundary is inconsistent; this is not a retirement-date conflict.</p>
-<p>Separately, SMART on FHIR proxy users had to transition to SMART on FHIR (Enhanced) by <strong>2026-09-21</strong>. Applications relying on the proxy report FHIR-service access errors after that date unless transitioned.</p>
+<p>New deployments were restricted from April 2025. The announcement says restrictions began <strong>April 1, 2025</strong>, while its FAQ says deployments were allowed until that date and prohibited afterward. The exact boundary is inconsistent; this is not a retirement-date conflict.</p>
+<p>Separately, SMART on FHIR proxy users had to transition to SMART on FHIR (Enhanced) by <strong>September 21, 2026</strong>. Applications relying on the proxy report FHIR-service access errors after that date unless transitioned.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired <strong>Azure API for FHIR</strong> on <strong>2026-09-30</strong> and directs customers to <strong>Azure Health Data Services FHIR service</strong>. The Q&amp;A documents loss of account management, data access, updates and customer support after retirement.</p>
+<div class="rich-content"><p>Microsoft retired <strong>Azure API for FHIR</strong> on <strong>September 30, 2026</strong> and directs customers to <strong>Azure Health Data Services FHIR service</strong>. The Q&amp;A documents loss of account management, data access, updates and customer support after retirement.</p>
 <p>Azure API for FHIR is separate from the FHIR service in Azure Health Data Services and the open-source FHIR server for Azure. This retirement does not announce retirement of those offerings. No regional exceptions or detailed pre-retirement maintenance and security-update commitments are documented.</p>
 <p>The destination is not a like-for-like replacement:</p>
 <ul>
 <li>Local RBAC and custom authority are unsupported. The token issuer must be the authentication endpoint for the tenant hosting the destination service.</li>
 <li>The migration guide lists destination storage support as 4 TB; larger capacity requires contacting Azure support.</li>
-<li>Sync agent and FHIR Proxy are also being deprecated, but the guide supplies no separate dates. The Q&amp;A separately dates the SMART on FHIR proxy transition to 2026-09-21.</li>
+<li>Sync agent and FHIR Proxy are also being deprecated, but the guide supplies no separate dates. The Q&amp;A separately dates the SMART on FHIR proxy transition to September 21, 2026.</li>
 <li>The IoT connector is supported only with Azure API for FHIR. Existing device FHIR data can migrate through bulk export and import, but the guide identifies no replacement connector.</li>
 </ul>
 </div>
@@ -1938,12 +1938,12 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Microsoft directed you to migrate before <strong>2026-09-30</strong>, which has passed. The supplied sources do not establish whether migration access remains available after retirement or promise an extension.</p>
+<div class="rich-content"><p>Microsoft directed you to migrate before <strong>September 30, 2026</strong>, which has passed. The supplied sources do not establish whether migration access remains available after retirement or promise an extension.</p>
 <ol>
 <li><strong>Assess your source and dependencies.</strong> Identify Azure API for FHIR data, historical versions, applications, permissions, integrations and jobs. Distinguish it from the separate Azure Health Data Services FHIR service. If your source instance exceeds <strong>2 TB</strong>, the guide requires contacting Azure support before migration and providing both source and destination instance names. Request support if destination storage must exceed 4 TB.</li>
 <li><strong>Choose a migration pattern.</strong> The guide offers lift and shift with bulk export and import when longer downtime is acceptable, or incremental copy for larger datasets, less downtime or continued source operation during migration. Review the OSS migration tool's capabilities and limitations before using it, or build your own migration solution.</li>
 <li><strong>Prepare the destination.</strong> Deploy an Azure Health Data Services workspace and FHIR service, configure settings, and decide whether to retain historical versions. Removing unused source data or servers is optional preparation.</li>
-<li><strong>Address capability gaps.</strong> Replace local RBAC and custom authority configurations and review SMART on FHIR identity settings. Review the data integration toolkit for Dataverse sync agent use, built-in eventing for FHIR Proxy event use, and the Azure Health Data Services toolkit for customized alternatives. Bulk export and import can move existing IoT device data, not establish continued connector functionality. SMART on FHIR proxy users were directed to transition to SMART on FHIR (Enhanced) by <strong>2026-09-21</strong>.</li>
+<li><strong>Address capability gaps.</strong> Replace local RBAC and custom authority configurations and review SMART on FHIR identity settings. Review the data integration toolkit for Dataverse sync agent use, built-in eventing for FHIR Proxy event use, and the Azure Health Data Services toolkit for customized alternatives. Bulk export and import can move existing IoT device data, not establish continued connector functionality. SMART on FHIR proxy users were directed to transition to SMART on FHIR (Enhanced) by <strong>September 21, 2026</strong>.</li>
 <li><strong>Migrate and validate where access permits.</strong> Copy data, update application endpoints and permissions, reconfigure settings and recreate recurring jobs. Compare source and destination metadata endpoints for configuration alignment; this is not a complete data-validation method.</li>
 <li><strong>Cut over only after confirming destination stability.</strong> Move business scenarios and turn off source pipelines. The guide then directs cleanup of intermediate migration-storage data if necessary, deletion of source FHIR data and decommissioning of the source account. These are customer-performed cleanup steps, not an automatic deletion policy.</li>
 </ol>
@@ -1953,7 +1953,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are in scope if you use <strong>Azure API for FHIR</strong> or dependent applications and integrations. The sources do not inspect your environment or provide a resource-discovery procedure.</p>
-<p>The Q&amp;A states that after <strong>2026-09-30</strong>, customers cannot:</p>
+<p>The Q&amp;A states that after <strong>September 30, 2026</strong>, customers cannot:</p>
 <ul>
 <li>Create or manage Azure API for FHIR accounts.</li>
 <li>Access data through the Azure portal, APIs, SDKs or client tools.</li>
@@ -1961,7 +1961,7 @@
 <li>Access customer support by phone, email or web.</li>
 </ul>
 <p>These documented access and support consequences do not establish a separate workload-shutdown mechanism or automatic data-deletion schedule.</p>
-<p>Migration changes application endpoints, permissions, configuration and recurring jobs. Local RBAC and custom authority cannot carry over unchanged. Review Dataverse sync agent, FHIR Proxy, SMART on FHIR and IoT connector dependencies. Separately, untransitioned SMART on FHIR proxy applications report access errors after <strong>2026-09-21</strong>.</p>
+<p>Migration changes application endpoints, permissions, configuration and recurring jobs. Local RBAC and custom authority cannot carry over unchanged. Review Dataverse sync agent, FHIR Proxy, SMART on FHIR and IoT connector dependencies. Separately, untransitioned SMART on FHIR proxy applications report access errors after <strong>September 21, 2026</strong>.</p>
 <p>Lift and shift involves longer downtime; incremental copy supports less downtime and continued source operation during migration. Source instances above 2 TB require support-assisted planning, and destination capacity above 4 TB requires a support request. The guide lists differing disaster-recovery capabilities without establishing equivalent behavior for every configuration.</p>
 <p>No regional exceptions, automatic retention or deletion periods, or migration-cost estimates are supplied. The separate Azure Health Data Services FHIR service is not named as retiring.</p>
 </div>
@@ -1977,7 +1977,7 @@
 <li>Confirm destination stability before cutover, then verify source pipelines are off and planned cleanup and decommissioning are complete.</li>
 </ul>
 <p>The supplied sources provide no resource-discovery procedure, migration dashboard or OSS migration-tool completeness guarantee. The FHIR overview's audit logs record data events, not retirement migration completion.</p>
-<p>The guidance directs questions to Microsoft Q&amp;A or an Azure support request using <strong>Azure API for FHIR Extension Request</strong>; it does not document extension eligibility or approval. However, the Q&amp;A states that Azure API for FHIR customer support is unavailable after <strong>2026-09-30</strong>, so these references do not establish continued post-retirement support.</p>
+<p>The guidance directs questions to Microsoft Q&amp;A or an Azure support request using <strong>Azure API for FHIR Extension Request</strong>; it does not document extension eligibility or approval. However, the Q&amp;A states that Azure API for FHIR customer support is unavailable after <strong>September 30, 2026</strong>, so these references do not establish continued post-retirement support.</p>
 </div>
     </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">

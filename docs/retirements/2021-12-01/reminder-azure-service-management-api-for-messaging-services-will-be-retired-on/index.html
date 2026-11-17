@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Event Grid · Service Bus</span><span class="badge retired" data-deadline="2021-12-01"><span></span>Retired</span></div>
-  <h1>Reminder: Azure Service Management API for Messaging Services will be retired on 1 December 2021</h1><p>Microsoft set 2021-12-01 as the retirement date for classic Azure Service Management management REST APIs for Service Bus, Relay and Event Hubs, explicitly extending the previous 2021-11-01 date. Customers were instructed to migrate management integrations to Azure Resource Manager by 2021-11-30. Messaging runtime operations are unaffected. Separately, Notification Hubs enumeration in Visual Studio 2019 requires version 16.11.5 or later.</p>
+  <h1>Reminder: Azure Service Management API for Messaging Services will be retired on 1 December 2021</h1><p>Microsoft set December 1, 2021 as the retirement date for classic Azure Service Management management REST APIs for Service Bus, Relay and Event Hubs, explicitly extending the previous November 1, 2021 date. Customers were instructed to migrate management integrations to Azure Resource Manager by November 30, 2021. Messaging runtime operations are unaffected. Separately, Notification Hubs enumeration in Visual Studio 2019 requires version 16.11.5 or later.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2021-12-01"><strong>Retired</strong><span>Retirement date: <time datetime="2021-12-01">1 Dec 2021</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 month, 24 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Dec 2021</p>
-<div class="rich-content"><p>Microsoft set <strong>2021-12-01</strong> as the retirement date for classic Azure Service Management management REST APIs for Service Bus, Relay and Event Hubs. Microsoft explicitly extended the previous <strong>2021-11-01</strong> date; these are successive dates for the same milestone, not an unresolved conflict.</p>
-<p>The documented migration target was <strong>2021-11-30</strong>, before retirement. This is a separate action deadline. The notices establish the retirement schedule but do not independently verify that shutdown occurred.</p>
+<div class="rich-content"><p>Microsoft set <strong>December 1, 2021</strong> as the retirement date for classic Azure Service Management management REST APIs for Service Bus, Relay and Event Hubs. Microsoft explicitly extended the previous <strong>November 1, 2021</strong> date; these are successive dates for the same milestone, not an unresolved conflict.</p>
+<p>The documented migration target was <strong>November 30, 2021</strong>, before retirement. This is a separate action deadline. The notices establish the retirement schedule but do not independently verify that shutdown occurred.</p>
 <p>The retirement concerns management APIs, not messaging runtime operations. The deployment-model reference and Azure portal content establish no additional retirement deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft announced replacement of classic Azure Service Management management REST APIs for <strong>Service Bus, Relay and Event Hubs</strong> with Azure Resource Manager (ARM), with retirement scheduled for <strong>2021-12-01</strong>. The guidance also identifies deprecated Service Manager PowerShell commands and replacement operations.</p>
+<div class="rich-content"><p>Microsoft announced replacement of classic Azure Service Management management REST APIs for <strong>Service Bus, Relay and Event Hubs</strong> with Azure Resource Manager (ARM), with retirement scheduled for <strong>December 1, 2021</strong>. The guidance also identifies deprecated Service Manager PowerShell commands and replacement operations.</p>
 <p>Sending and receiving messages are runtime operations and are unaffected. This is not retirement of the three messaging services. The supplied content does not document separate maintenance or security-update commitments.</p>
 <p>Separately, Notification Hubs tooling in Visual Studio 2019 uses ARM to enumerate hubs. Version <strong>16.11.5 or later</strong> is required; earlier versions display an enumeration error.</p>
 </div>
@@ -1934,7 +1934,7 @@
 <div class="rich-content"><ol>
 <li>Identify Service Bus, Relay and Event Hubs management integrations whose API URIs contain management.core.windows.net. Review deployment scripts for the deprecated Service Manager PowerShell commands listed in the supplied guidance.</li>
 <li>Replace affected REST calls and PowerShell commands with their service-specific ARM alternatives, using the documented operation mappings and referenced migration guidance. For example, replace <code>Get-AzureSBNamespace</code> with <code>Get-AzServiceBusNamespace</code>. Some operation mappings are blank; do not assume the supplied guidance documents a replacement for every operation.</li>
-<li>As a team-owned validation step, test changed management workflows and confirm that the dependencies you reviewed no longer use classic endpoints. The documented migration target was <strong>2021-11-30</strong>.</li>
+<li>As a team-owned validation step, test changed management workflows and confirm that the dependencies you reviewed no longer use classic endpoints. The documented migration target was <strong>November 30, 2021</strong>.</li>
 <li>If you use Notification Hubs tooling in Visual Studio 2019, update to <strong>16.11.5 or later</strong> to avoid enumeration errors.</li>
 </ol>
 <p>For help locating ASM calls or resolving migration questions, contact rdfemsg@microsoft.com or create a support request. The supplied content does not provide a complete backup, cutover, rollback or cleanup procedure.</p>
@@ -1944,7 +1944,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are in scope if your Service Bus, Relay or Event Hubs management integrations use classic ASM REST APIs identified by management.core.windows.net, or the listed deprecated PowerShell commands. Affected operations include namespace administration, authorization rules, connection details and selected service-specific resource management.</p>
-<p>Unchanged integrations retain dependencies on management interfaces scheduled for retirement on <strong>2021-12-01</strong>. The supplied content does not specify their exact post-retirement error behavior. ARM is the replacement, not the retirement target.</p>
+<p>Unchanged integrations retain dependencies on management interfaces scheduled for retirement on <strong>December 1, 2021</strong>. The supplied content does not specify their exact post-retirement error behavior. ARM is the replacement, not the retirement target.</p>
 <p>Messaging runtime operations, including sending and receiving messages, are unaffected. Separately, Notification Hubs enumeration through Visual Studio 2019 displays an error on versions earlier than <strong>16.11.5</strong>.</p>
 <p>The supplied content does not document data deletion, retention changes, cost impact or regional exceptions. Your resources have not been inspected. General statements about classic VM automation in the deployment-model reference do not establish an exception for these messaging management APIs.</p>
 </div>

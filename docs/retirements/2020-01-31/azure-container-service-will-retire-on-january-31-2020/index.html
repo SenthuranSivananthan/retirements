@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge retired" data-deadline="2020-01-31"><span></span>Retired</span></div>
-  <h1>Azure Container Service Will Retire on January 31, 2020</h1><p>Microsoft scheduled Azure Container Service (ACS) retirement and migration for 2020-01-31. The notice says cluster creation, updates and scaling would become unavailable through the portal, CLI and Resource Manager templates, while listing and deletion would remain available. Existing clusters and applications were expected to continue running without technical support or feature improvements; this was not a stated workload shutdown date. Migration options depend on the orchestrator. The original Kubernetes option, aks-engine, was subsequently deprecated for Azure public cloud, so the historical recommendations need to be read alongside the supplied successor guidance. Separate repository archival dates do not change the ACS retirement deadline.</p>
+  <h1>Azure Container Service Will Retire on January 31, 2020</h1><p>Microsoft scheduled Azure Container Service (ACS) retirement and migration for January 31, 2020. The notice says cluster creation, updates and scaling would become unavailable through the portal, CLI and Resource Manager templates, while listing and deletion would remain available. Existing clusters and applications were expected to continue running without technical support or feature improvements; this was not a stated workload shutdown date. Migration options depend on the orchestrator. The original Kubernetes option, aks-engine, was subsequently deprecated for Azure public cloud, so the historical recommendations need to be read alongside the supplied successor guidance. Separate repository archival dates do not change the ACS retirement deadline.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2020-01-31"><strong>Retired</strong><span>Retirement date: <time datetime="2020-01-31">31 Jan 2020</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 1 month, 26 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Jan 2020</p>
-<div class="rich-content"><p>The ACS retirement and migration deadline was <strong>2020-01-31</strong>.</p>
+<div class="rich-content"><p>The ACS retirement and migration deadline was <strong>January 31, 2020</strong>.</p>
 <p>From that date, the notice says cluster creation, updates and scaling through the portal, CLI and Resource Manager templates would become unavailable. Although it broadly states that all ACS APIs would be blocked, it explicitly preserves listing and deletion through those tools.</p>
 <p>This was not a documented workload shutdown date: existing clusters and applications were expected to continue running without technical support or feature improvements.</p>
-<p>The acs-engine repository archival on <strong>2023-01-11</strong> and original aks-engine repository archival on <strong>2023-10-24</strong> are separate milestones, not extensions of the ACS deadline. The supplied repository pages provide no separate migration or workload shutdown deadline.</p>
+<p>The acs-engine repository archival on <strong>January 11, 2023</strong> and original aks-engine repository archival on <strong>October 24, 2023</strong> are separate milestones, not extensions of the ACS deadline. The supplied repository pages provide no separate migration or workload shutdown deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft scheduled <strong>Azure Container Service (ACS)</strong> to retire as a standalone service on <strong>2020-01-31</strong>, covering ACS deployments using Kubernetes, Docker and DC/OS.</p>
+<div class="rich-content"><p>Microsoft scheduled <strong>Azure Container Service (ACS)</strong> to retire as a standalone service on <strong>January 31, 2020</strong>, covering ACS deployments using Kubernetes, Docker and DC/OS.</p>
 <p>After retirement, the notice says you would no longer be able to create, update or scale ACS clusters through the portal, CLI or Resource Manager templates. Listing and deletion would remain available. Existing clusters and applications were expected to keep running, but without technical support or feature improvements.</p>
 <p>Separately, acs-engine was deprecated, and its Kubernetes code moved to aks-engine. The supplied aks-engine page subsequently documents deprecation for Azure public cloud customers: no further releases are planned, and Kubernetes 1.24 was the final version to receive updates.</p>
 <p>Azure Stack Hub is an exception to that aks-engine deprecation: the Hub team continues support throughout Azure Stack Hub's lifespan, with releases starting at v0.75.3 published from Azure/aks-engine-azurestack. This exception does not change the ACS retirement deadline.</p>
@@ -1933,7 +1933,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>The ACS notice required migration by <strong>2020-01-31</strong>. Use the supplied successor guidance alongside its historical recommendations.</p>
+<div class="rich-content"><p>The ACS notice required migration by <strong>January 31, 2020</strong>. Use the supplied successor guidance alongside its historical recommendations.</p>
 <ol>
 <li>Identify whether your ACS clusters use Kubernetes, Docker or DC/OS, and whether your deployment tooling uses acs-engine or aks-engine. The supplied content provides no ACS resource-discovery procedure.</li>
 <li>Select a destination appropriate to your orchestrator:</li>
@@ -1953,7 +1953,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are in scope for the ACS retirement if you use ACS with Kubernetes, Docker or DC/OS. The supplied content does not establish whether you have affected resources or specify version or regional exceptions.</p>
-<p>From <strong>2020-01-31</strong>, the notice documents these consequences:</p>
+<p>From <strong>January 31, 2020</strong>, the notice documents these consequences:</p>
 <ul>
 <li><strong>Management:</strong> No cluster creation, updates or scaling through the portal, CLI or Resource Manager templates. Listing and deletion remain explicit exceptions to the broader statement that all ACS APIs would be blocked.</li>
 <li><strong>Workloads:</strong> Existing clusters and applications were expected to continue running. Continued operation was an expectation, not a shutdown guarantee or ongoing support commitment.</li>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Monitor</span><span class="badge retired" data-deadline="2025-10-01"><span></span>Retired</span></div>
-  <h1>Retirement: HELM chart-based onboarding workflow for the Azure Monitor Container Insights agent is retiring on October 1, 2025</h1><p>Microsoft&#39;s HELM chart-based onboarding workflow for the Azure Monitor Container Insights agent retires on 2025-10-01. If you enabled Container Insights through HELM on Kubernetes clusters outside Azure, Microsoft requires migration to the Azure Arc Kubernetes Container Insights extension by that date to continue receiving critical security, quality and feature updates. The notice does not establish a workload shutdown date or data-retention consequences. The supplied reference pages do not change this deadline.</p>
+  <h1>Retirement: HELM chart-based onboarding workflow for the Azure Monitor Container Insights agent is retiring on October 1, 2025</h1><p>Microsoft&#39;s HELM chart-based onboarding workflow for the Azure Monitor Container Insights agent retires on October 1, 2025. If you enabled Container Insights through HELM on Kubernetes clusters outside Azure, Microsoft requires migration to the Azure Arc Kubernetes Container Insights extension by that date to continue receiving critical security, quality and feature updates. The notice does not establish a workload shutdown date or data-retention consequences. The supplied reference pages do not change this deadline.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-10-01"><strong>Retired</strong><span>Retirement date: <time datetime="2025-10-01">1 Oct 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 5 months, 15 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Oct 2025</p>
-<div class="rich-content"><p>The HELM chart-based onboarding workflow retires starting <strong>2025-10-01</strong>. Microsoft requires affected clusters to migrate to the Azure Arc Kubernetes Container Insights extension by that date.</p>
+<div class="rich-content"><p>The HELM chart-based onboarding workflow retires starting <strong>October 1, 2025</strong>. Microsoft requires affected clusters to migrate to the Azure Arc Kubernetes Container Insights extension by that date.</p>
 <p>The notice does not specify a separate agent shutdown or end-of-support date, or state that Kubernetes workloads will stop. The supplied references establish no conflicting date or extension for this retirement.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring HELM chart-based onboarding for the Azure Monitor Container Insights agent on <strong>2025-10-01</strong>. The notice addresses Kubernetes clusters hosted outside Azure that use unmanaged onboarding methods such as HELM.</p>
+<div class="rich-content"><p>Microsoft is retiring HELM chart-based onboarding for the Azure Monitor Container Insights agent on <strong>October 1, 2025</strong>. The notice addresses Kubernetes clusters hosted outside Azure that use unmanaged onboarding methods such as HELM.</p>
 <p>The replacement is Container Insights enabled through the Azure Arc Kubernetes extension. This is an onboarding-workflow retirement, not a documented retirement of Kubernetes workloads or all Container Insights onboarding methods.</p>
 <p>The notice does not identify affected agent versions, regional exceptions, pre-retirement maintenance commitments or exact post-retirement availability.</p>
 </div>
@@ -1930,7 +1930,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Microsoft requires migration by <strong>2025-10-01</strong>:</p>
+<div class="rich-content"><p>Microsoft requires migration by <strong>October 1, 2025</strong>:</p>
 <ol>
 <li>In the Azure portal, open AzureMonitoringBrowseBlade and <strong>Monitored clusters</strong>. Use the <strong>non-AKS</strong> cluster type to find candidates, then establish which clusters actually use HELM-based Container Insights onboarding. The cluster type alone does not prove that they are affected.</li>
 <li>Prepare the cluster for Azure Arc: meet network requirements and have an active Azure subscription, sign-in identity, running cluster and kubeconfig context. The supplied quickstart requires at least one linux/amd64 or linux/arm64 node, at least 850 MB free for agents and capacity for approximately 7% of one CPU. Use the latest Azure CLI and connectedk8s extension, or Azure PowerShell 6.6.0 or later with Az.ConnectedKubernetes. Register Microsoft.Kubernetes, Microsoft.KubernetesConfiguration and Microsoft.ExtendedLocation. If you use an outbound proxy, configure routing and exclusions and allow WebSocket connections.</li>

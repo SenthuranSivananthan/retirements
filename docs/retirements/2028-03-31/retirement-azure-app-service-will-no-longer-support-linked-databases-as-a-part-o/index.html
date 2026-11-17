@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">App Service</span><span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure App Service Will No Longer Support Linked Databases as a Part of Custom Backups After March 31, 2028</h1><p>Starting 2028-03-31, Azure App Service custom backups will stop including linked databases, including those in existing configurations. Arrange separate database backups before that cutoff. Earlier restrictions on new custom backup configurations are scheduled for November 2025 for MySQL/PostgreSQL and April 2026 for Azure SQL/SQL Server; exact days are not supplied. App-content and configuration backups are not being retired, and the notice does not announce an app or database shutdown. Microsoft recommends native database backup and restore tools.</p>
+  <h1>Retirement: Azure App Service Will No Longer Support Linked Databases as a Part of Custom Backups After March 31, 2028</h1><p>Starting March 31, 2028, Azure App Service custom backups will stop including linked databases, including those in existing configurations. Arrange separate database backups before that cutoff. Earlier restrictions on new custom backup configurations are scheduled for November 2025 for MySQL/PostgreSQL and April 2026 for Azure SQL/SQL Server; exact days are not supplied. App-content and configuration backups are not being retired, and the notice does not announce an app or database shutdown. Microsoft recommends native database backup and restore tools.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-03-31"><strong>500 days remaining</strong><span>Retirement date: <time datetime="2028-03-31">31 Mar 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,7 +1916,7 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2028</p>
-<div class="rich-content"><p>Starting <strong>2028-03-31</strong>, Azure App Service custom backups will no longer include linked databases, including those in existing configurations. Implement separate database backups before that cutoff to avoid losing database backup coverage.</p>
+<div class="rich-content"><p>Starting <strong>March 31, 2028</strong>, Azure App Service custom backups will no longer include linked databases, including those in existing configurations. Implement separate database backups before that cutoff to avoid losing database backup coverage.</p>
 <p>Earlier restrictions apply to linked-database selection in <strong>new custom backup configurations</strong>:</p>
 <ul>
 <li><strong>November 2025:</strong> MySQL and PostgreSQL.</li>
@@ -1927,7 +1927,7 @@
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure App Service is retiring linked-database support in custom backups starting <strong>2028-03-31</strong>. Existing linked-database configurations retain coverage until that cutoff; new configurations face the earlier database-specific restrictions.</p>
+<div class="rich-content"><p>Azure App Service is retiring linked-database support in custom backups starting <strong>March 31, 2028</strong>. Existing linked-database configurations retain coverage until that cutoff; new configurations face the earlier database-specific restrictions.</p>
 <p>The change does not retire app-content or configuration backups. Automatic backups already exclude linked databases and cannot replace database backups.</p>
 <p>The supplied guidance lists SQL Database, Azure Database for MySQL, Azure Database for PostgreSQL and MySQL in-app as supported linked databases; the retirement schedule also names SQL Server. No separate retirement exception is documented for MySQL in-app, and no regional exception is specified.</p>
 </div>
@@ -1937,7 +1937,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify apps that rely on linked-database custom backups. Review each app's <strong>Backups</strong> configuration and database selections in the Azure portal. Check <strong>Configuration</strong> connection strings: the guidance considers a database linked when a valid connection string points to it. MySQL in-app can be backed up without explicit configuration, so connection strings alone are not sufficient.</li>
-<li>Arrange separate database backups before <strong>2028-03-31</strong>. Microsoft recommends each database service's native backup and restore tools. Account for the earlier restrictions when creating new custom backup configurations.</li>
+<li>Arrange separate database backups before <strong>March 31, 2028</strong>. Microsoft recommends each database service's native backup and restore tools. Account for the earlier restrictions when creating new custom backup configurations.</li>
 <li>For Azure Database for MySQL or PostgreSQL Flexible Server, use the respective database backup and restore guidance. App Service linked-database custom backups do not support Flexible Server; upgrading from Single Server can cause those backups to fail.</li>
 <li>As a <strong>team-owned validation step</strong>, confirm that replacement backups cover each affected database and test recovery before relying on them. The supplied guidance does not provide a retirement-specific migration, cutover, cleanup or replacement-tool validation procedure.</li>
 </ol>
@@ -1947,7 +1947,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if you rely on App Service custom backups to protect linked databases. Starting <strong>2028-03-31</strong>, those backups will omit database data. Without a replacement strategy, you lose that backup coverage and risk data or functionality loss. The notice does not announce that running apps or databases will stop.</p>
+<div class="rich-content"><p>You are affected if you rely on App Service custom backups to protect linked databases. Starting <strong>March 31, 2028</strong>, those backups will omit database data. Without a replacement strategy, you lose that backup coverage and risk data or functionality loss. The notice does not announce that running apps or databases will stop.</p>
 <p>New configurations face linked MySQL/PostgreSQL selection restrictions from <strong>November 2025</strong>, and linked Azure SQL/SQL Server restrictions from <strong>April 2026</strong>. Existing configurations retain linked-database coverage until the final cutoff.</p>
 <p>Existing coverage also has limits:</p>
 <ul>

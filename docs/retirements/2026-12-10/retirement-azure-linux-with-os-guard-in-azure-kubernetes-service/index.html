@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge soon" data-deadline="2026-12-10"><span></span>Within 90 days</span></div>
-  <h1>Retirement: Azure Linux with OS Guard in Azure Kubernetes Service</h1><p>Support for Azure Linux with OS Guard (preview) in Azure Kubernetes Service ends on 2026-12-10. New affected node pools, new node images and security patches will no longer be available. On 2027-03-10, AKS removes the affected images, causing scaling and remediation operations to fail. Migrate to Azure Container Linux after checking compatibility and validating workloads. The notice does not announce automatic workload shutdown on either date.</p>
+  <h1>Retirement: Azure Linux with OS Guard in Azure Kubernetes Service</h1><p>Support for Azure Linux with OS Guard (preview) in Azure Kubernetes Service ends on December 10, 2026. New affected node pools, new node images and security patches will no longer be available. On March 10, 2027, AKS removes the affected images, causing scaling and remediation operations to fail. Migrate to Azure Container Linux after checking compatibility and validating workloads. The notice does not announce automatic workload shutdown on either date.</p>
   <div class="retirement-countdown soon" data-countdown data-deadline="2026-12-10"><strong>23 days remaining</strong><span>Retirement date: <time datetime="2026-12-10">10 Dec 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 months, 29 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">10 Dec 2026</p>
-<div class="rich-content"><p>Support for Azure Linux with OS Guard (preview) in AKS ends on <strong>2026-12-10</strong>. From that date, you cannot create new affected node pools, and AKS stops providing new images and security patches for existing affected pools.</p>
-<p>On <strong>2027-03-10</strong>, AKS removes the affected node images. Scaling and remediation operations, including reimage and redeploy, will then fail.</p>
+<div class="rich-content"><p>Support for Azure Linux with OS Guard (preview) in AKS ends on <strong>December 10, 2026</strong>. From that date, you cannot create new affected node pools, and AKS stops providing new images and security patches for existing affected pools.</p>
+<p>On <strong>March 10, 2027</strong>, AKS removes the affected node images. Scaling and remediation operations, including reimage and redeploy, will then fail.</p>
 <p>These are separate milestones, not conflicting dates. The notice specifies no separate migration deadline and does not state that running workloads automatically shut down on either date. The migration tutorial does not independently establish a retirement deadline; the Azure Linux 2.0 dates in the general AKS reference concern a different retirement.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Linux with OS Guard (preview) in Azure Kubernetes Service is retiring, with support ending on <strong>2026-12-10</strong>. <strong>Azure Container Linux (ACL)</strong> is the replacement.</p>
-<p>New affected node-pool creation, new images and security patches end at the support cutoff. AKS removes the affected images on <strong>2027-03-10</strong>, after which affected scaling and remediation operations fail.</p>
+<div class="rich-content"><p>Azure Linux with OS Guard (preview) in Azure Kubernetes Service is retiring, with support ending on <strong>December 10, 2026</strong>. <strong>Azure Container Linux (ACL)</strong> is the replacement.</p>
+<p>New affected node-pool creation, new images and security patches end at the support cutoff. AKS removes the affected images on <strong>March 10, 2027</strong>, after which affected scaling and remediation operations fail.</p>
 <p>This notice does not retire all Azure Linux node pools. It states no region-specific exceptions. The referenced tutorial documents migration options and compatibility limits, rather than a separate retirement.</p>
 </div>
       <div class="notice"></div>
@@ -1939,14 +1939,14 @@
 <li>For in-place migration, ensure you have an existing Linux pool and Pod Disruption Budgets that allow pods to move between VMs. This method is unavailable through PowerShell or the Azure portal, cannot rename pools, and does not support Ubuntu pools with UseGPUDedicatedVHD enabled.</li>
 <li>Verify node OS, pods, daemonsets, labels and node image versions before completing the migration. Microsoft recommends monitoring service health for a couple of weeks before production migration. If in-place migration causes issues, the documented rollback restores the previous OS SKU and triggers another upgrade and reimage.</li>
 </ol>
-<p>Plan around the <strong>2026-12-10</strong> support cutoff and <strong>2027-03-10</strong> image removal. The tutorial's command examples depend on environment variables established in its first tutorial.</p>
+<p>Plan around the <strong>December 10, 2026</strong> support cutoff and <strong>March 10, 2027</strong> image removal. The tutorial's command examples depend on environment variables established in its first tutorial.</p>
 </div>
       <p> </p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you use Azure Linux with OS Guard (preview) node pools in AKS. The supplied sources do not establish which resources you use or how many pools are affected. This retirement is distinct from Azure Linux 2.0 retirement.</p>
-<p>Without migration, affected pools stop receiving security patches on <strong>2026-12-10</strong>, and you cannot create new affected pools. After image removal on <strong>2027-03-10</strong>, scaling and remediation operations, including reimage and redeploy, fail.</p>
+<p>Without migration, affected pools stop receiving security patches on <strong>December 10, 2026</strong>, and you cannot create new affected pools. After image removal on <strong>March 10, 2027</strong>, scaling and remediation operations, including reimage and redeploy, fail.</p>
 <p>Migration also has operational effects: in-place migration reimages nodes and moves pods between VMs. The tutorial does not promise uninterrupted workload availability. ACL's Trusted Launch requirements, unsupported features and upgrade-channel limits may require configuration changes before migration.</p>
 <p>The notice does not state that running workloads automatically stop, that the AKS control plane becomes unavailable, or that data is deleted. It provides no cost estimate.</p>
 </div>

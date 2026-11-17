@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Log Analytics</span><span class="badge retired" data-deadline="2026-03-31"><span></span>Retired</span></div>
-  <h1>Retirement: Log Analytics Beta API to Be Retired on March 31, 2026</h1><p>The Azure Monitor Log Analytics beta API retirement deadline was 2026-03-31. Move affected calls to the standard v1 API and update request and response handling. The retirement notice says beta queries stop working after that date; the supplied deprecation guidance identifies a support cutoff without confirming shutdown, so post-cutoff availability remains unconfirmed. Batch query operations have a separate support cutoff of 2028-03-31 and require migration to individual queries. Neither milestone retires the entire Log Analytics service.</p>
+  <h1>Retirement: Log Analytics Beta API to Be Retired on March 31, 2026</h1><p>The Azure Monitor Log Analytics beta API retirement deadline was March 31, 2026. Move affected calls to the standard v1 API and update request and response handling. The retirement notice says beta queries stop working after that date; the supplied deprecation guidance identifies a support cutoff without confirming shutdown, so post-cutoff availability remains unconfirmed. Batch query operations have a separate support cutoff of March 31, 2028 and require migration to individual queries. Neither milestone retires the entire Log Analytics service.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-03-31"><strong>Retired</strong><span>Retirement date: <time datetime="2026-03-31">31 Mar 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 30 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,16 +1916,16 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2026</p>
-<div class="rich-content"><p>The Log Analytics beta API retirement and migration deadline was <strong>2026-03-31</strong>.</p>
+<div class="rich-content"><p>The Log Analytics beta API retirement and migration deadline was <strong>March 31, 2026</strong>.</p>
 <p>The retirement notice says beta queries will no longer work after that date. The supplied deprecation guidance instead describes it as a support cutoff and does not specify when requests stop working. The date agrees, but the shutdown consequence remains unconfirmed across the sources.</p>
-<p><strong>2028-03-31</strong> is a separate support cutoff for batch query operations, not an extension of the beta deadline. The guidance does not confirm a batch-request shutdown date.</p>
+<p><strong>March 31, 2028</strong> is a separate support cutoff for batch query operations, not an extension of the beta deadline. The guidance does not confirm a batch-request shutdown date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring the Azure Monitor Log Analytics beta API. Replace affected beta calls with the standard <strong>v1 API</strong>, using its request and response formats. The stated beta deadline was 2026-03-31; the sources differ on whether that date establishes request failure or only the end of support.</p>
+<div class="rich-content"><p>Microsoft is retiring the Azure Monitor Log Analytics beta API. Replace affected beta calls with the standard <strong>v1 API</strong>, using its request and response formats. The stated beta deadline was March 31, 2026; the sources differ on whether that date establishes request failure or only the end of support.</p>
 <p>The broader deprecation guidance covers Log Analytics query and metadata operations, Log Analytics queries through ARM, and Application Insights query, metadata, metrics and events operations. It lists both azure.com and .io beta endpoints; the domain difference alone does not establish a retirement.</p>
-<p>Batch query operations have a separate support cutoff of 2028-03-31. Replace batches with individual queries.</p>
+<p>Batch query operations have a separate support cutoff of March 31, 2028. Replace batches with individual queries.</p>
 <p>The supplied content does not announce retirement of the entire Log Analytics service or standard v1 API. It specifies no regional exceptions or retirement-specific maintenance and security-update commitments.</p>
 </div>
       <div class="notice"></div>
@@ -1933,8 +1933,8 @@
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
-<li>Identify beta endpoint calls, including SDK usage and Log Analytics queries through ARM using <code>api-version=2017-01-01-preview</code>. Inventory batch requests separately because their support cutoff is 2028-03-31.</li>
-<li>Migrate beta paths to v1. For Log Analytics queries through ARM, adopt the Logs Query API v1 request format rather than simply changing the path. The beta migration deadline was 2026-03-31.</li>
+<li>Identify beta endpoint calls, including SDK usage and Log Analytics queries through ARM using <code>api-version=2017-01-01-preview</code>. Inventory batch requests separately because their support cutoff is March 31, 2028.</li>
+<li>Migrate beta paths to v1. For Log Analytics queries through ARM, adopt the Logs Query API v1 request format rather than simply changing the path. The beta migration deadline was March 31, 2026.</li>
 <li>Update requests and response handling. The request guidance requires a workspace GUID and KQL query; POST requests use a valid JSON body and the Content-Type: application/json header. Responses contain tables, column schemas and rows. Handle non-fatal <code>PartialError</code> responses even when the status is <code>200 OK</code>.</li>
 <li>Before the separate batch support cutoff, split each batch request into individual queries using its query section. Replace SDK batch calls with the corresponding individual-query methods.</li>
 </ol>
@@ -1945,7 +1945,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>Your integrations are affected if they use the documented beta operations, the Log Analytics ARM preview request format, or batch queries. The notice directs you to review usage through Azure Monitor Query client SDKs; no tenant inspection is established by these sources.</p>
-<p>For beta calls, the notice says queries stop working after 2026-03-31, while the deprecation guidance confirms only a support cutoff. Request availability after that date remains unconfirmed. For batch queries, support ends on 2028-03-31 without a confirmed shutdown date.</p>
+<p>For beta calls, the notice says queries stop working after March 31, 2026, while the deprecation guidance confirms only a support cutoff. Request availability after that date remains unconfirmed. For batch queries, support ends on March 31, 2028 without a confirmed shutdown date.</p>
 <p>The batch guidance lists SDK packages for .NET, Go, Java, Python and JavaScript. Migration can therefore affect application integrations and response processing, not just direct REST calls.</p>
 <p>Neither milestone establishes shutdown of the entire service or standard v1 API. The supplied content documents no retirement-related data deletion, retention changes, cost effects or console-access changes.</p>
 </div>

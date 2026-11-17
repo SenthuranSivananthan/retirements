@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Storage Accounts</span><span class="badge retired" data-deadline="2026-10-13"><span></span>Retired</span></div>
-  <h1>Retirement: GPv1 and Legacy Blob storage account creation</h1><p>Azure Storage lists 2026-10-13 as the retirement date for GPv1 and legacy Blob storage accounts, with remaining accounts moving to GPv2. Microsoft describes GPv1 upgrades as permanent, in-place changes without downtime or data loss, but pricing can increase. Review remaining accounts, deployment artifacts and costs, then upgrade customer-managed accounts and validate workloads and billing. Databricks-managed DBFS accounts require no customer migration action and have a separate conversion window extending into Q1 2027. The supplied guidance conflicts on new-account restrictions and general conversion timing; it does not confirm completed conversion or establish a workload shutdown.</p>
+  <h1>Retirement: GPv1 and Legacy Blob storage account creation</h1><p>Azure Storage lists October 13, 2026 as the retirement date for GPv1 and legacy Blob storage accounts, with remaining accounts moving to GPv2. Microsoft describes GPv1 upgrades as permanent, in-place changes without downtime or data loss, but pricing can increase. Review remaining accounts, deployment artifacts and costs, then upgrade customer-managed accounts and validate workloads and billing. Databricks-managed DBFS accounts require no customer migration action and have a separate conversion window extending into Q1 2027. The supplied guidance conflicts on new-account restrictions and general conversion timing; it does not confirm completed conversion or establish a workload shutdown.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-10-13"><strong>Retired</strong><span>Retirement date: <time datetime="2026-10-13">13 Oct 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 4 months, 2 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,21 +1916,21 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">13 Oct 2026</p>
-<div class="rich-content"><p><strong>2026-10-13 is the stated retirement date for GPv1 and legacy Blob storage accounts.</strong> The retirement overviews also identify October 2026. These dates have passed, but the supplied material does not confirm that conversion has completed.</p>
+<div class="rich-content"><p><strong>October 13, 2026 is the stated retirement date for GPv1 and legacy Blob storage accounts.</strong> The retirement overviews also identify October 2026. These dates have passed, but the supplied material does not confirm that conversion has completed.</p>
 <h3>Separate milestones and conflicts</h3>
 <ul>
-<li><strong>Announcement:</strong> the notice lists 2025-10-01; the migration overviews list September 2025. The announcement timing remains inconsistent.</li>
-<li><strong>New GPv1 account creation:</strong> the notice lists 2026-09-01 and the GPv1 overview lists September 2026, but the upgrade guide says Q1 2026. Current guidance conflicts, so the restriction date is unconfirmed. For legacy Blob accounts, the notice lists 2026-09-01 and the overview lists September 2026.</li>
-<li><strong>GPv1 automatic conversion:</strong> sources describe conversion after 2026-10-13 or under the October 2026 milestone. No exact completion date is established. GPv2 pricing is expected shortly after retirement, even if backend conversion is unfinished.</li>
-<li><strong>Legacy Blob conversion and billing:</strong> the overview says automatic migration follows 2026-10-13 and billing changes begin in November 2026. Its general conversion window runs from early November through “Q1CY26,” an internally inconsistent end period. Completion timing is unconfirmed; this does not establish an extension.</li>
-<li><strong>Databricks-managed DBFS accounts:</strong> Microsoft converts these separately after 2026-10-13, in waves extending into Q1 2027. No customer migration action is required.</li>
+<li><strong>Announcement:</strong> the notice lists October 1, 2025; the migration overviews list September 2025. The announcement timing remains inconsistent.</li>
+<li><strong>New GPv1 account creation:</strong> the notice lists September 1, 2026 and the GPv1 overview lists September 2026, but the upgrade guide says Q1 2026. Current guidance conflicts, so the restriction date is unconfirmed. For legacy Blob accounts, the notice lists September 1, 2026 and the overview lists September 2026.</li>
+<li><strong>GPv1 automatic conversion:</strong> sources describe conversion after October 13, 2026 or under the October 2026 milestone. No exact completion date is established. GPv2 pricing is expected shortly after retirement, even if backend conversion is unfinished.</li>
+<li><strong>Legacy Blob conversion and billing:</strong> the overview says automatic migration follows October 13, 2026 and billing changes begin in November 2026. Its general conversion window runs from early November through “Q1CY26,” an internally inconsistent end period. Completion timing is unconfirmed; this does not establish an extension.</li>
+<li><strong>Databricks-managed DBFS accounts:</strong> Microsoft converts these separately after October 13, 2026, in waves extending into Q1 2027. No customer migration action is required.</li>
 </ul>
 <p>The upgrade guide warns of service disruption if GPv1 accounts are not upgraded, while other guidance describes non-disruptive conversion. The sources do not reconcile those statements or establish a separate workload shutdown date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Storage is retiring <strong>GPv1 and legacy Blob storage account types</strong> and moving remaining accounts to GPv2. The stated retirement date is 2026-10-13; Microsoft says it will automatically convert accounts that customers do not migrate.</p>
+<div class="rich-content"><p>Azure Storage is retiring <strong>GPv1 and legacy Blob storage account types</strong> and moving remaining accounts to GPv2. The stated retirement date is October 13, 2026; Microsoft says it will automatically convert accounts that customers do not migrate.</p>
 <p>GPv1 retirement applies globally, across redundancy options, including accounts supporting Blobs, Tables, Queues and Files. Legacy BlobStorage accounts are also in scope. Existing GPv2 accounts are not identified as requiring migration.</p>
 <p>Microsoft describes the GPv1 upgrade as a permanent, in-place account-type change that preserves data and endpoints, with no downtime or data-loss risk. The upgrade guide says existing applications and tools continue working without changes. For legacy Blob accounts, the overview says most blob-only workloads need no code changes, not that every workload is guaranteed compatible.</p>
 <p>Databricks-managed DBFS accounts are a separate population that Microsoft migrates automatically. The supplied sources do not document pre-retirement maintenance, support or security-update commitments.</p>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2025-01-14"><span></span>Retired</span></div>
-  <h1>Retirement: Azure CDN Standard/Premium from Edgio (formerly Verizon) will be retired</h1><p>All Azure CDN Standard/Premium from Edgio customers needed to complete migration by 2025-01-14, ahead of the scheduled platform shutdown on 2025-01-15. The FAQ explicitly replaced the former 2025-11-04 retirement date; this was not an extension. Microsoft recommended Azure Front Door Standard/Premium for compatible workloads or another CDN. Best-effort automatic migration did not guarantee compatibility or continuity. The supplied sources describe the planned shutdown but do not confirm its outcome or your resources&#39; current state. Retained-domain support follows separate deadlines and does not extend Edgio service.</p>
+  <h1>Retirement: Azure CDN Standard/Premium from Edgio (formerly Verizon) will be retired</h1><p>All Azure CDN Standard/Premium from Edgio customers needed to complete migration by January 14, 2025, ahead of the scheduled platform shutdown on January 15, 2025. The FAQ explicitly replaced the former November 4, 2025 retirement date; this was not an extension. Microsoft recommended Azure Front Door Standard/Premium for compatible workloads or another CDN. Best-effort automatic migration did not guarantee compatibility or continuity. The supplied sources describe the planned shutdown but do not confirm its outcome or your resources&#39; current state. Retained-domain support follows separate deadlines and does not extend Edgio service.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-01-14"><strong>Retired</strong><span>Retirement date: <time datetime="2025-01-14">14 Jan 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 months, 7 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,27 +1916,27 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">14 Jan 2025</p>
-<div class="rich-content"><p>Complete migration by <strong>2025-01-14</strong>, the last service day specified in the FAQ, ahead of the scheduled Edgio platform shutdown on <strong>2025-01-15</strong>. These are separate completion and shutdown milestones, not conflicting dates.</p>
-<p>The FAQ explicitly replaced the former <strong>2025-11-04</strong> retirement date with the earlier shutdown date. Extensions were unavailable, and Microsoft did not guarantee availability before shutdown. The supplied sources do not confirm whether shutdown occurred.</p>
+<div class="rich-content"><p>Complete migration by <strong>January 14, 2025</strong>, the last service day specified in the FAQ, ahead of the scheduled Edgio platform shutdown on <strong>January 15, 2025</strong>. These are separate completion and shutdown milestones, not conflicting dates.</p>
+<p>The FAQ explicitly replaced the former <strong>November 4, 2025</strong> retirement date with the earlier shutdown date. Extensions were unavailable, and Microsoft did not guarantee availability before shutdown. The supplied sources do not confirm whether shutdown occurred.</p>
 <h3>Earlier restrictions and migration</h3>
 <ul>
-<li><strong>2024-12-13:</strong> New Edgio profile creation ended.</li>
-<li><strong>2025-01-03:</strong> Profile configuration froze unless the subscription had enabled DoNotForceMigrateEdgioCDNProfiles before that date.</li>
-<li><strong>2025-01-06:</strong> Last day to set the subscription-level flag to prevent automatic migration, also described as before 2025-01-07.</li>
-<li><strong>2025-01-07 through 2025-01-14:</strong> Microsoft scheduled best-effort automatic migration and status emails.</li>
+<li><strong>December 13, 2024:</strong> New Edgio profile creation ended.</li>
+<li><strong>January 3, 2025:</strong> Profile configuration froze unless the subscription had enabled DoNotForceMigrateEdgioCDNProfiles before that date.</li>
+<li><strong>January 6, 2025:</strong> Last day to set the subscription-level flag to prevent automatic migration, also described as before January 7, 2025.</li>
+<li><strong>January 7, 2025 through January 14, 2025:</strong> Microsoft scheduled best-effort automatic migration and status emails.</li>
 </ul>
 <h3>Separate retention and domain-support dates</h3>
 <ul>
-<li><strong>2025-03-15:</strong> Inactive-profile configuration-reference period ended; Microsoft stated it would delete those profiles afterward.</li>
-<li><strong>2025-03-31:</strong> Support ended for retained *.azureedge.net and *.vo.msecnd.net domains used by customers migrating to Akamai.</li>
-<li><strong>2027-09-30:</strong> Support ends for retained *.azureedge.net domains used by customers migrating to Front Door Standard/Premium.</li>
+<li><strong>March 15, 2025:</strong> Inactive-profile configuration-reference period ended; Microsoft stated it would delete those profiles afterward.</li>
+<li><strong>March 31, 2025:</strong> Support ended for retained *.azureedge.net and *.vo.msecnd.net domains used by customers migrating to Akamai.</li>
+<li><strong>September 30, 2027:</strong> Support ends for retained *.azureedge.net domains used by customers migrating to Front Door Standard/Premium.</li>
 </ul>
 <p>Retained-domain support does not extend Edgio service. The sources do not specify domain behavior after support ends.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p><strong>Azure CDN Standard/Premium from Edgio</strong>, formerly Verizon, was scheduled to shut down on <strong>2025-01-15</strong>, affecting all customers of that offering. Customers needed to migrate by 2025-01-14 to Azure Front Door Standard/Premium for compatible workloads or another CDN.</p>
+<div class="rich-content"><p><strong>Azure CDN Standard/Premium from Edgio</strong>, formerly Verizon, was scheduled to shut down on <strong>January 15, 2025</strong>, affecting all customers of that offering. Customers needed to migrate by January 14, 2025 to Azure Front Door Standard/Premium for compatible workloads or another CDN.</p>
 <p>Microsoft scheduled best-effort automatic migration of eligible profiles to <strong>Azure Front Door Standard</strong>. Subscriptions with the opt-out flag and endpoints using *.vo.msecnd.net were excluded. Automatic migration could not be rolled back and did not guarantee feature parity or workload compatibility.</p>
 <p>Existing services could continue operating during the configuration freeze, but Microsoft did not guarantee availability through shutdown. The supplied sources document no maintenance or security-update commitments and do not confirm the eventual shutdown or migration outcome.</p>
 <p>Retained domains have separate support deadlines. The supplied comparison page's retirement dates for Front Door (classic) and Azure CDN Standard from Microsoft (classic) concern different services, not extensions of Edgio service.</p>
@@ -1955,7 +1955,7 @@
 <li>At completion, enable Front Door at weight 100, disable the Edgio Traffic Manager endpoint, point the custom-domain CNAME directly to Front Door, verify DNS propagation and restore the original TTL. Update clients referencing the old azureedge.net endpoint where applicable. Without custom domains, this gradual approach is unavailable; update clients unless using the documented temporary domain-retention option.</li>
 <li>Validate certificates, DNS, routing, workload behavior and Front Door metrics and logs. Contact Microsoft Support for failed migrations or functionality, availability and performance issues; direct billing questions to support or your account team.</li>
 </ol>
-<p>Historically, opting out required the subscription-level DoNotForceMigrateEdgioCDNProfiles flag before 2025-01-07; setting it before 2025-01-03 also avoided the configuration freeze. These are past prerequisites, not available deadline extensions.</p>
+<p>Historically, opting out required the subscription-level DoNotForceMigrateEdgioCDNProfiles flag before January 7, 2025; setting it before January 3, 2025 also avoided the configuration freeze. These are past prerequisites, not available deadline extensions.</p>
 </div>
       <p> </p>
     </section>
@@ -1963,12 +1963,12 @@
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are in scope if you used <strong>Azure CDN Standard/Premium from Edgio profiles or endpoints</strong>. The sources do not establish your inventory, migration status or current exposure.</p>
 <ul>
-<li><strong>Workload continuity:</strong> Unmigrated workloads faced interruption at the scheduled 2025-01-15 shutdown. Microsoft did not guarantee availability beforehand. Best-effort automatic migration was not a continuity guarantee and excluded opted-out subscriptions and *.vo.msecnd.net endpoints.</li>
+<li><strong>Workload continuity:</strong> Unmigrated workloads faced interruption at the scheduled January 15, 2025 shutdown. Microsoft did not guarantee availability beforehand. Best-effort automatic migration was not a continuity guarantee and excluded opted-out subscriptions and *.vo.msecnd.net endpoints.</li>
 <li><strong>Compatibility:</strong> Automatic migration was irreversible and could affect features, availability and performance. A success email did not prove workload compatibility. Multiple endpoints required corresponding destination configuration and validation.</li>
-<li><strong>Configuration access:</strong> Profiles without the early opt-out froze on 2025-01-03, including the ability to stop endpoints. The FAQ identifies profile deletion as an alternative and warns that stopping or disabling an Edgio endpoint removes supplemental-portal resources that restarting does not automatically restore.</li>
-<li><strong>Domains and cutover:</strong> Gradual Traffic Manager migration requires existing custom domains. Retained *.azureedge.net domains on Front Door Standard/Premium have support through 2027-09-30. Support for retained *.azureedge.net and *.vo.msecnd.net domains on Akamai ended on 2025-03-31. Neither date extends Edgio service.</li>
+<li><strong>Configuration access:</strong> Profiles without the early opt-out froze on January 3, 2025, including the ability to stop endpoints. The FAQ identifies profile deletion as an alternative and warns that stopping or disabling an Edgio endpoint removes supplemental-portal resources that restarting does not automatically restore.</li>
+<li><strong>Domains and cutover:</strong> Gradual Traffic Manager migration requires existing custom domains. Retained *.azureedge.net domains on Front Door Standard/Premium have support through September 30, 2027. Support for retained *.azureedge.net and *.vo.msecnd.net domains on Akamai ended on March 31, 2025. Neither date extends Edgio service.</li>
 <li><strong>Billing:</strong> Front Door uses a different model, including a per-profile base fee and request and data-transfer charges. The FAQ reports a billing bug affecting some migrated profiles without a resolution date. Your cost change cannot be estimated from these sources.</li>
-<li><strong>Configuration retention:</strong> Microsoft planned to retain inactive profiles as references until 2025-03-15 and delete them afterward. The sources do not confirm deletion of any particular profile or establish broader workload-data retention rules.</li>
+<li><strong>Configuration retention:</strong> Microsoft planned to retain inactive profiles as references until March 15, 2025 and delete them afterward. The sources do not confirm deletion of any particular profile or establish broader workload-data retention rules.</li>
 </ul>
 <p>No region-specific exceptions or separate console/API shutdown milestones are documented. Other classic-service retirements mentioned in the comparison page are separate from this Edgio retirement.</p>
 </div>
@@ -1976,7 +1976,7 @@
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
 <div class="rich-content"><p>Use the <strong>Migrate away from Azure CDN from Edgio</strong> dashboard to identify impacted resources. The supplied sources do not establish its current coverage or your resources' current state.</p>
-<p>Microsoft scheduled automatic-migration success or failure emails for <strong>2025-01-07 through 2025-01-14</strong>. Treat those messages as migration-status evidence, not proof of application compatibility.</p>
+<p>Microsoft scheduled automatic-migration success or failure emails for <strong>January 7, 2025 through January 14, 2025</strong>. Treat those messages as migration-status evidence, not proof of application compatibility.</p>
 <h3>Validate completion</h3>
 <ul>
 <li>Check DNS routing and propagation using the documented DNS-checking methods.</li>

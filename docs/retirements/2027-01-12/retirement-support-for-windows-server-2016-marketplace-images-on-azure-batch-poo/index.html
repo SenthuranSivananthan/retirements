@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Batch</span><span class="badge soon" data-deadline="2027-01-12"><span></span>Within 90 days</span></div>
-  <h1>Retirement: Support for Windows Server 2016 Marketplace images on Azure Batch pools will end on January 12, 2027</h1><p>Azure Batch support for Windows Server 2016 ends on 2027-01-12, and the affected Marketplace images become unavailable. Migrate affected pools before that date. The notice does not confirm that existing workloads shut down then. The notice also dates Windows Server 2016 extended-support end to 2027-01-12, while the lifecycle page lists 2027-01-13 Pacific Time; use the earlier date for planning. A licensed custom image with Azure ESU may be an option, but it does not extend Azure Batch support.</p>
+  <h1>Retirement: Support for Windows Server 2016 Marketplace images on Azure Batch pools will end on January 12, 2027</h1><p>Azure Batch support for Windows Server 2016 ends on January 12, 2027, and the affected Marketplace images become unavailable. Migrate affected pools before that date. The notice does not confirm that existing workloads shut down then. The notice also dates Windows Server 2016 extended-support end to January 12, 2027, while the lifecycle page lists January 13, 2027 Pacific Time; use the earlier date for planning. A licensed custom image with Azure ESU may be an option, but it does not extend Azure Batch support.</p>
   <div class="retirement-countdown soon" data-countdown data-deadline="2027-01-12"><strong>56 days remaining</strong><span>Retirement date: <time datetime="2027-01-12">12 Jan 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 9 months, 27 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">12 Jan 2027</p>
-<div class="rich-content"><p>Azure Batch support for Windows Server 2016 ends on <strong>2027-01-12</strong>, when the affected Marketplace images become unavailable. Migrate before that date: the notice also says “no later than,” but gives no exact cutoff time or confirmation that existing pools stop running.</p>
-<p>For the separate Windows Server 2016 extended-support milestone, the Batch notice states <strong>2027-01-12</strong>, while the Windows Server lifecycle page lists <strong>2027-01-13</strong>, with dates in Pacific Time. These dates differ by one day; use the earlier date for planning while retaining the discrepancy. This does not change the explicitly stated Batch deadline or establish an extension.</p>
+<div class="rich-content"><p>Azure Batch support for Windows Server 2016 ends on <strong>January 12, 2027</strong>, when the affected Marketplace images become unavailable. Migrate before that date: the notice also says “no later than,” but gives no exact cutoff time or confirmation that existing pools stop running.</p>
+<p>For the separate Windows Server 2016 extended-support milestone, the Batch notice states <strong>January 12, 2027</strong>, while the Windows Server lifecycle page lists <strong>January 13, 2027</strong>, with dates in Pacific Time. These dates differ by one day; use the earlier date for planning while retaining the discrepancy. This does not change the explicitly stated Batch deadline or establish an extension.</p>
 <p>The lifecycle page lists subsequent ESU periods, but these do not extend Azure Batch support.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Batch is retiring Windows Server 2016 support on <strong>2027-01-12</strong>. The notice identifies Windows Server 2016 Marketplace images under MicrosoftWindowsServer / WindowsServer as becoming unavailable.</p>
+<div class="rich-content"><p>Azure Batch is retiring Windows Server 2016 support on <strong>January 12, 2027</strong>. The notice identifies Windows Server 2016 Marketplace images under MicrosoftWindowsServer / WindowsServer as becoming unavailable.</p>
 <p>A Windows Server 2016 custom image may remain an option with appropriate licensing and Azure ESU, but it does not preserve Azure Batch support. The supplied custom-image reference explains configuration requirements; it does not independently establish retirement dates or ESU eligibility.</p>
 <p>The notice does not document maintenance or security-update commitments before the deadline, or regional exceptions.</p>
 </div>
@@ -1934,7 +1934,7 @@
 <div class="rich-content"><ol>
 <li>Identify your Batch pools using the affected Marketplace image SKUs listed under impact. The notice supplies no inventory command.</li>
 <li>Select a supported Windows Server image. Microsoft recommends the latest Windows Server version where possible. If you must retain Windows Server 2016, assess appropriate licensing and Azure ESU before choosing a custom image; this does not extend Batch support.</li>
-<li>Plan the pool-property changes using the referenced update guidance, and migrate before <strong>2027-01-12</strong>. The supplied reference does not provide a complete Windows Server 2016 migration procedure. Do not treat its separate disk-encryption migration example as instructions for this retirement.</li>
+<li>Plan the pool-property changes using the referenced update guidance, and migrate before <strong>January 12, 2027</strong>. The supplied reference does not provide a complete Windows Server 2016 migration procedure. Do not treat its separate disk-encryption migration example as instructions for this retirement.</li>
 <li>Test the migration before changing production configurations, as Microsoft recommends. Specific retirement completion checks, backup, cutover and cleanup requirements are not supplied.</li>
 </ol>
 <h3>If you choose a custom image</h3>
@@ -1956,7 +1956,7 @@
 <li>2016-datacenter-with-containers</li>
 <li>2016-datacenter-with-containers-gs</li>
 </ul>
-<p>Without migration, you risk service disruptions as the images become unavailable and Batch support ends on <strong>2027-01-12</strong>. The notice does not establish that running workloads shut down that day or specify console, API, integration or deployment-tooling changes.</p>
+<p>Without migration, you risk service disruptions as the images become unavailable and Batch support ends on <strong>January 12, 2027</strong>. The notice does not establish that running workloads shut down that day or specify console, API, integration or deployment-tooling changes.</p>
 <p>The custom-image option does not avoid the end of Batch support for Windows Server 2016. The supplied sources do not establish data-retention, deletion or cost consequences, quantify disruption, or assess your pool inventory.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

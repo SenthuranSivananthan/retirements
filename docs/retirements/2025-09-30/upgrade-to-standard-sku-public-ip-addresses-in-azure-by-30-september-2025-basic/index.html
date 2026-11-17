@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2025-09-30"><span></span>Retired</span></div>
-  <h1>Upgrade to Standard SKU public IP addresses in Azure by 30 September 2025—Basic SKU will be retired</h1><p>Azure Basic SKU public IP addresses retired on 2025-09-30. Microsoft&#39;s upgrade guidance states that affected addresses remain operational after retirement, but without support or SLA guarantees; it gives no shutdown date. Upgrade to Standard SKU as soon as possible and plan for downtime and resource-specific requirements. Existing and new Cloud Services Extended Support deployments are exempt. VPN Gateway has separate migration timelines not supplied here. The announcement restricted new Basic SKU creation after 2025-03-31; the upgrade guidance permits creation for exempt Cloud Services Extended Support deployments through non-portal methods.</p>
+  <h1>Upgrade to Standard SKU public IP addresses in Azure by 30 September 2025—Basic SKU will be retired</h1><p>Azure Basic SKU public IP addresses retired on September 30, 2025. Microsoft&#39;s upgrade guidance states that affected addresses remain operational after retirement, but without support or SLA guarantees; it gives no shutdown date. Upgrade to Standard SKU as soon as possible and plan for downtime and resource-specific requirements. Existing and new Cloud Services Extended Support deployments are exempt. VPN Gateway has separate migration timelines not supplied here. The announcement restricted new Basic SKU creation after March 31, 2025; the upgrade guidance permits creation for exempt Cloud Services Extended Support deployments through non-portal methods.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2025-09-30">30 Sep 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 23 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2025</p>
-<div class="rich-content"><p>Azure Basic SKU public IP addresses retired on <strong>2025-09-30</strong>. Microsoft's upgrade guidance states that affected addresses remain operational after retirement, but without support or SLA guarantees. It directs you to upgrade as soon as possible and does not specify a shutdown date.</p>
-<p>The announcement separately restricted new Basic SKU public IP creation after <strong>2025-03-31</strong>. Existing and new Cloud Services Extended Support (CSES) deployments are exempt; the upgrade guidance permits Basic IP creation for CSES through non-portal methods.</p>
-<p>VPN Gateway has a separate migration timeline that is not included in the supplied content. Application Gateway v1's separate retirement date, <strong>2026-04-28</strong>, is not the Basic public IP retirement milestone.</p>
+<div class="rich-content"><p>Azure Basic SKU public IP addresses retired on <strong>September 30, 2025</strong>. Microsoft's upgrade guidance states that affected addresses remain operational after retirement, but without support or SLA guarantees. It directs you to upgrade as soon as possible and does not specify a shutdown date.</p>
+<p>The announcement separately restricted new Basic SKU public IP creation after <strong>March 31, 2025</strong>. Existing and new Cloud Services Extended Support (CSES) deployments are exempt; the upgrade guidance permits Basic IP creation for CSES through non-portal methods.</p>
+<p>VPN Gateway has a separate migration timeline that is not included in the supplied content. Application Gateway v1's separate retirement date, <strong>April 28, 2026</strong>, is not the Basic public IP retirement milestone.</p>
 <p>The announcement warned of potential disruption without describing post-retirement behavior; the upgrade guidance explicitly describes continued operation without support or SLA guarantees. The reference page also retains a general Basic SKU creation statement that conflicts with the restrictions and does not establish general post-retirement creation availability.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Basic SKU public IP addresses retired on <strong>2025-09-30</strong>. For affected resources, Microsoft directs you to upgrade or migrate to Standard SKU to retain support. Basic addresses remain operational after retirement, but without support or SLA guarantees; no shutdown date is supplied.</p>
+<div class="rich-content"><p>Azure Basic SKU public IP addresses retired on <strong>September 30, 2025</strong>. For affected resources, Microsoft directs you to upgrade or migrate to Standard SKU to retain support. Basic addresses remain operational after retirement, but without support or SLA guarantees; no shutdown date is supplied.</p>
 <p>Existing and new <strong>Cloud Services Extended Support (CSES)</strong> deployments are exempt. You can continue using Basic public IPs for those deployments and create them through non-portal methods such as Azure CLI or PowerShell.</p>
 <p>Standard public IPs use static allocation and block inbound traffic by default when used as a frontend unless a network security group permits it. Standard supports zonal and zone-redundant configurations, with zone redundancy limited to regions supporting availability zones. Standard v2 currently works only with Standard v2 NAT Gateway, not other components.</p>
 <p>The supplied content does not document security-update commitments or distinguish IPv4 and IPv6 retirement dates.</p>
@@ -1944,7 +1944,7 @@
 <li><strong>Basic Load Balancer:</strong> migrate to Standard Load Balancer using the referenced upgrade script.</li>
 <li><strong>VPN Gateway:</strong> follow its separate migration guidance and timeline, which are not supplied here. The upgrade page states that all non-AZ SKUs become AZ SKUs.</li>
 <li><strong>ExpressRoute gateway:</strong> use the gateway migration experience. For zone redundancy, select an availability zone-enabled gateway SKU; Azure assigns and manages the zone-redundant public IP.</li>
-<li><strong>Application Gateway v1:</strong> migrate to v2; v1's separate retirement date was 2026-04-28.</li>
+<li><strong>Application Gateway v1:</strong> migrate to v2; v1's separate retirement date was April 28, 2026.</li>
 <li><strong>Azure Databricks:</strong> ephemeral workloads receive Standard IPs as VMs are replaced through regular usage. For long-running workloads, the page recommends restarting compute resources to replace Basic IPs.</li>
 <li><strong>Disassociated public IPs:</strong> follow the referenced Azure portal, PowerShell or Azure CLI upgrade procedure.</li>
 </ul>

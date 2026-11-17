@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Batch</span><span class="badge retired" data-deadline="2026-03-31"><span></span>Retired</span></div>
-  <h1>Update: The retirement date for default outbound access has been extended to March 31, 2026.</h1><p>Azure is changing default outbound connectivity for new virtual networks, not shutting down default outbound access everywhere. The update explicitly extends its earlier 2025-09-30 date to 2026-03-31. Current product guidance scopes the change to new VNets using an API version released after 2026-03-31; its release date is unspecified, so this is not a universal migration deadline. The portal already defaults to private subnets. Existing VNets remain unchanged. Workloads in private subnets need explicit outbound connectivity to reach public endpoints.</p>
+  <h1>Update: The retirement date for default outbound access has been extended to March 31, 2026.</h1><p>Azure is changing default outbound connectivity for new virtual networks, not shutting down default outbound access everywhere. The update explicitly extends its earlier September 30, 2025 date to March 31, 2026. Current product guidance scopes the change to new VNets using an API version released after March 31, 2026; its release date is unspecified, so this is not a universal migration deadline. The portal already defaults to private subnets. Existing VNets remain unchanged. Workloads in private subnets need explicit outbound connectivity to reach public endpoints.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-03-31"><strong>Retired</strong><span>Retirement date: <time datetime="2026-03-31">31 Mar 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 months, 19 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2026</p>
-<div class="rich-content"><p>The update explicitly extends <strong>2025-09-30 to 2026-03-31</strong>. The older Batch notice still lists 2025-09-30, but the update identifies that date as superseded.</p>
-<p>Current product guidance gives a narrower trigger: new VNets using an API version released <strong>after 2026-03-31</strong> default to private subnets. It does not provide that API version's release date. Treat 2026-03-31 as the announced milestone and API-release boundary, not a confirmed universal shutdown or migration deadline.</p>
+<div class="rich-content"><p>The update explicitly extends <strong>September 30, 2025 to March 31, 2026</strong>. The older Batch notice still lists September 30, 2025, but the update identifies that date as superseded.</p>
+<p>Current product guidance gives a narrower trigger: new VNets using an API version released <strong>after March 31, 2026</strong> default to private subnets. It does not provide that API version's release date. Treat March 31, 2026 as the announced milestone and API-release boundary, not a confirmed universal shutdown or migration deadline.</p>
 <p>The portal already defaults to private subnets. Existing VNets are not automatically changed, and earlier API versions retain the previous default. Configure required explicit egress before deploying workloads into private subnets or making existing subnets private.</p>
 <p>A referenced broader VM retirement announcement was unavailable for verification.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure is making subnets private by default in new VNets created with an API version released after 2026-03-31. Default outbound access is disabled by default, not removed. VMs in private subnets need explicit outbound connectivity to reach internet and Microsoft public endpoints.</p>
+<div class="rich-content"><p>Azure is making subnets private by default in new VNets created with an API version released after March 31, 2026. Default outbound access is disabled by default, not removed. VMs in private subnets need explicit outbound connectivity to reach internet and Microsoft public endpoints.</p>
 <p>The Batch notices particularly identify pools using Simplified compute node communication without public IP addresses that rely on default Internet outbound access.</p>
 <ul>
 <li>Existing VNets, including new VMs added to them, retain their behavior unless you make their subnets private.</li>
@@ -1951,7 +1951,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>New VNets using the post-2026-03-31 API version are affected unless you explicitly configure supported subnets as nonprivate or provide outbound connectivity. VMs in private subnets cannot rely on default outbound access for public endpoints, including Windows activation and updates.</p>
+<div class="rich-content"><p>New VNets using the post-March 31, 2026 API version are affected unless you explicitly configure supported subnets as nonprivate or provide outbound connectivity. VMs in private subnets cannot rely on default outbound access for public endpoints, including Windows activation and updates.</p>
 <p>For dependent Batch pools without explicit egress, loss of internet connectivity can affect pools, compute nodes, jobs and tasks. The older notice says these resources <strong>may stop working</strong>, not that every workload fails immediately. Current guidance does not establish a shutdown of existing VNets.</p>
 <ul>
 <li>Existing VNets, including newly added VMs, remain unchanged. Existing explicit outbound connectivity continues operating.</li>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Dedicated Host · Virtual Machines</span><span class="badge retired" data-deadline="2022-02-28"><span></span>Retired</span></div>
-  <h1>The G5 and GS5 Azure VMs will no longer be hardware-isolated on 28 February 2022</h1><p>After 2022-02-28, Azure G5 and GS5 VMs no longer have supported hardware-isolation guarantees. If you require hardware isolation, the notice directs you to migrate before 2022-02-28 to Azure Dedicated Host or E80ids_v4/E80is_v4 isolated VMs. No action is required if you do not need hardware isolation. This is not an announced shutdown of G5 or GS5 VMs.</p>
+  <h1>The G5 and GS5 Azure VMs will no longer be hardware-isolated on 28 February 2022</h1><p>After February 28, 2022, Azure G5 and GS5 VMs no longer have supported hardware-isolation guarantees. If you require hardware isolation, the notice directs you to migrate before February 28, 2022 to Azure Dedicated Host or E80ids_v4/E80is_v4 isolated VMs. No action is required if you do not need hardware isolation. This is not an announced shutdown of G5 or GS5 VMs.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-02-28"><strong>Retired</strong><span>Retirement date: <time datetime="2022-02-28">28 Feb 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 6 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">28 Feb 2022</p>
-<div class="rich-content"><p>After <strong>2022-02-28</strong>, G5 and GS5 Azure VMs are no longer hardware-isolated, and Microsoft no longer supports their isolation guarantee.</p>
-<p>If you require hardware isolation, the notice directs you to migrate before 2022-02-28. This milestone concerns hardware isolation, not a stated VM shutdown. The supplied reference pages do not establish an alternative G5/GS5 deadline; dates for other retirements and deployment changes are separate.</p>
+<div class="rich-content"><p>After <strong>February 28, 2022</strong>, G5 and GS5 Azure VMs are no longer hardware-isolated, and Microsoft no longer supports their isolation guarantee.</p>
+<p>If you require hardware isolation, the notice directs you to migrate before February 28, 2022. This milestone concerns hardware isolation, not a stated VM shutdown. The supplied reference pages do not establish an alternative G5/GS5 deadline; dates for other retirements and deployment changes are separate.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure is removing hardware isolation and support for the isolation guarantee for <strong>G5 and GS5 VMs</strong> after 2022-02-28.</p>
+<div class="rich-content"><p>Azure is removing hardware isolation and support for the isolation guarantee for <strong>G5 and GS5 VMs</strong> after February 28, 2022.</p>
 <p>The notice does not announce retirement of these VM sizes themselves. If you do not require hardware isolation, no action is required. No region-specific exceptions or other support and security-update changes are documented.</p>
 </div>
       <div class="notice"></div>
@@ -1932,7 +1932,7 @@
 <div class="rich-content"><ol>
 <li>Determine whether you use G5 or GS5 VMs and whether those workloads require hardware isolation. The notice provides no inventory procedure.</li>
 <li>If isolation is required, select one of the notice's alternatives: Azure Dedicated Host, which provides single-tenant physical servers for Windows and Linux VMs, or E80ids_v4/E80is_v4 isolated VMs. Check regional availability, supported sizes and capacity before moving to Dedicated Host. The supplied Edv4/Ev4 reference pages do not independently confirm the named E80 isolated sizes' capabilities or availability.</li>
-<li>Complete the migration before 2022-02-28. For Dedicated Host, the notice points to Azure CLI or portal guidance. For the isolated-VM alternative, stop your current G/GS VMs and follow the applicable Windows or Linux resizing guidance.</li>
+<li>Complete the migration before February 28, 2022. For Dedicated Host, the notice points to Azure CLI or portal guidance. For the isolated-VM alternative, stop your current G/GS VMs and follow the applicable Windows or Linux resizing guidance.</li>
 <li>Check resize compatibility and plan disruption. Windows cannot directly resize between sizes with and without local temporary disks. Resizing a running VM causes a restart; required deallocation releases dynamic IP addresses and can affect every VM in an availability set if the target size is unavailable.</li>
 <li>Confirm successful allocation after resizing. A displayed requested size alone is insufficient: after a failed resize, the portal and GET operations can show the requested size while the VM still runs at its previous size.</li>
 </ol>
@@ -1942,7 +1942,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>This change affects workloads that rely on the hardware-isolation guarantee of G5 or GS5 Azure VMs. If you retain those sizes after 2022-02-28, you cannot rely on supported hardware isolation.</p>
+<div class="rich-content"><p>This change affects workloads that rely on the hardware-isolation guarantee of G5 or GS5 Azure VMs. If you retain those sizes after February 28, 2022, you cannot rely on supported hardware isolation.</p>
 <p>The notice requires no action for workloads that do not need hardware isolation. It does not announce VM shutdown, data deletion, console/API removal or other support changes.</p>
 <p>Migration can introduce operational impacts: resizing can restart workloads, and deallocation releases dynamic IP addresses but does not affect OS or data disks. Dedicated Host compatibility and capacity vary by configuration and region. Dedicated hosts incur charges even when empty; the supplied material provides no cost comparison for the alternatives.</p>
 <p>The supplied content does not establish which of your resources are affected.</p>

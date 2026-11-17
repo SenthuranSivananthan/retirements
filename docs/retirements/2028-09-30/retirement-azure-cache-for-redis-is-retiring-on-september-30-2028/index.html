@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Cache for Redis</span><span class="badge upcoming" data-deadline="2028-09-30"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure Cache for Redis is retiring on September 30, 2028.</h1><p>Microsoft will retire Azure Cache for Redis Basic, Standard and Premium on 2028-09-30. Migrate these instances to Azure Managed Redis before that date to avoid shutdown. Enterprise and Enterprise Flash retire separately on 2027-03-31; Microsoft says remaining caches will migrate to Azure Managed Redis then. Creation restrictions vary by tier, cloud and customer eligibility.</p>
+  <h1>Retirement: Azure Cache for Redis is retiring on September 30, 2028.</h1><p>Microsoft will retire Azure Cache for Redis Basic, Standard and Premium on September 30, 2028. Migrate these instances to Azure Managed Redis before that date to avoid shutdown. Enterprise and Enterprise Flash retire separately on March 31, 2027; Microsoft says remaining caches will migrate to Azure Managed Redis then. Creation restrictions vary by tier, cloud and customer eligibility.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-09-30"><strong>683 days remaining</strong><span>Retirement date: <time datetime="2028-09-30">30 Sep 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 22 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1917,21 +1917,21 @@
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2028</p>
 <div class="rich-content"><h3>Basic, Standard and Premium</h3>
-<p>Retirement and the migration deadline are <strong>2028-09-30</strong> across Azure public cloud, Azure Government and Azure operated by 21Vianet in China.</p>
-<p>The announcement says unmigrated instances shut down on <strong>2028-09-30</strong>. An older product-guidance section gives <strong>2028-10-01</strong> for shutdown. Use the earlier date, <strong>2028-09-30</strong>, for planning: these shutdown dates differ by one day. Revised guidance confirms migration by 2028-09-30 but does not separately resolve the shutdown-date discrepancy.</p>
-<p>From <strong>2026-04-01</strong>, Azure public cloud blocks new customers from creating these caches. The July 2026 update removes planned creation blocks for existing customers in all clouds. Government and China have no creation block before retirement. This supersedes older creation-block dates of <strong>2026-10-01</strong> and <strong>2027-04-01</strong>, not the retirement deadline.</p>
+<p>Retirement and the migration deadline are <strong>September 30, 2028</strong> across Azure public cloud, Azure Government and Azure operated by 21Vianet in China.</p>
+<p>The announcement says unmigrated instances shut down on <strong>September 30, 2028</strong>. An older product-guidance section gives <strong>October 1, 2028</strong> for shutdown. Use the earlier date, <strong>September 30, 2028</strong>, for planning: these shutdown dates differ by one day. Revised guidance confirms migration by September 30, 2028 but does not separately resolve the shutdown-date discrepancy.</p>
+<p>From <strong>April 1, 2026</strong>, Azure public cloud blocks new customers from creating these caches. The July 2026 update removes planned creation blocks for existing customers in all clouds. Government and China have no creation block before retirement. This supersedes older creation-block dates of <strong>October 1, 2026</strong> and <strong>April 1, 2027</strong>, not the retirement deadline.</p>
 <h3>Enterprise and Enterprise Flash</h3>
-<p>New-cache creation is blocked from <strong>2026-04-01</strong>. Retirement is <strong>2027-03-31</strong>, when Microsoft says remaining caches will migrate to Azure Managed Redis. This is a separate tier-specific milestone, not a conflicting Basic, Standard and Premium deadline.</p>
+<p>New-cache creation is blocked from <strong>April 1, 2026</strong>. Retirement is <strong>March 31, 2027</strong>, when Microsoft says remaining caches will migrate to Azure Managed Redis. This is a separate tier-specific milestone, not a conflicting Basic, Standard and Premium deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
 <div class="rich-content"><p>Microsoft is retiring Azure Cache for Redis and directing customers to Azure Managed Redis.</p>
 <ul>
-<li><strong>Basic, Standard and Premium:</strong> Existing caches remain usable until retirement on <strong>2028-09-30</strong>. Migrate before that date to avoid shutdown.</li>
-<li><strong>Enterprise and Enterprise Flash:</strong> Existing caches remain usable until retirement on <strong>2027-03-31</strong>. Microsoft says remaining caches will migrate to Azure Managed Redis then; the supplied content does not describe this as workload shutdown.</li>
+<li><strong>Basic, Standard and Premium:</strong> Existing caches remain usable until retirement on <strong>September 30, 2028</strong>. Migrate before that date to avoid shutdown.</li>
+<li><strong>Enterprise and Enterprise Flash:</strong> Existing caches remain usable until retirement on <strong>March 31, 2027</strong>. Microsoft says remaining caches will migrate to Azure Managed Redis then; the supplied content does not describe this as workload shutdown.</li>
 </ul>
-<p>For Basic, Standard and Premium, qualifying existing public-cloud customers can continue creating caches until retirement. A tenant qualifies if any subscription in it had an Azure Cache for Redis instance before <strong>2026-04-01</strong>. New public-cloud customers cannot create these caches from that date. Government and China have no creation block before retirement.</p>
+<p>For Basic, Standard and Premium, qualifying existing public-cloud customers can continue creating caches until retirement. A tenant qualifies if any subscription in it had an Azure Cache for Redis instance before <strong>April 1, 2026</strong>. New public-cloud customers cannot create these caches from that date. Government and China have no creation block before retirement.</p>
 <p>The supplied content does not specify maintenance, support or security-update commitments through retirement.</p>
 </div>
       <div class="notice"></div>
@@ -1939,8 +1939,8 @@
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
-<li>Identify your Azure Cache for Redis instances by tier and cloud. To assess public-cloud Basic, Standard and Premium creation eligibility, determine whether any subscription in your tenant had an instance before <strong>2026-04-01</strong>. The supplied content provides no inventory procedure.</li>
-<li>Migrate Basic, Standard and Premium workloads to <strong>Azure Managed Redis before 2028-09-30</strong>. Plan Enterprise and Enterprise Flash migration against <strong>2027-03-31</strong>; Microsoft says remaining caches in those tiers will migrate on that date.</li>
+<li>Identify your Azure Cache for Redis instances by tier and cloud. To assess public-cloud Basic, Standard and Premium creation eligibility, determine whether any subscription in your tenant had an instance before <strong>April 1, 2026</strong>. The supplied content provides no inventory procedure.</li>
+<li>Migrate Basic, Standard and Premium workloads to <strong>Azure Managed Redis before September 30, 2028</strong>. Plan Enterprise and Enterprise Flash migration against <strong>March 31, 2027</strong>; Microsoft says remaining caches in those tiers will migrate on that date.</li>
 <li>Review the referenced tier-specific migration guidance before selecting tooling. The April 2026 entry describes generally available Enterprise tooling that transforms the existing instance. It separately describes public-preview Basic, Standard and Premium tooling that redirects the existing endpoint to an Azure Managed Redis instance you must create first. Enterprise Flash tooling coverage is not explicitly established.</li>
 </ol>
 <p>Detailed compatibility, backup/export, cutover, validation and cleanup steps are not supplied. Capability-preview descriptions from May 2025 do not establish current availability.</p>
@@ -1951,9 +1951,9 @@
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>Your exposure depends on your instances' tiers, clouds and creation eligibility; the supplied content does not establish which resources you have.</p>
 <ul>
-<li><strong>Basic, Standard and Premium:</strong> Existing workloads remain usable until <strong>2028-09-30</strong>. The announcement says unmigrated instances shut down that day; older guidance lists <strong>2028-10-01</strong>. Plan against the earlier date.</li>
-<li><strong>Enterprise and Enterprise Flash:</strong> Creation is blocked from <strong>2026-04-01</strong>. Microsoft says remaining caches migrate on <strong>2027-03-31</strong>, rather than describing a workload shutdown.</li>
-<li><strong>Creation restrictions:</strong> New public-cloud customers cannot create Basic, Standard and Premium caches from <strong>2026-04-01</strong>. Qualifying existing customers can continue until retirement. Government and China have no pre-retirement creation block.</li>
+<li><strong>Basic, Standard and Premium:</strong> Existing workloads remain usable until <strong>September 30, 2028</strong>. The announcement says unmigrated instances shut down that day; older guidance lists <strong>October 1, 2028</strong>. Plan against the earlier date.</li>
+<li><strong>Enterprise and Enterprise Flash:</strong> Creation is blocked from <strong>April 1, 2026</strong>. Microsoft says remaining caches migrate on <strong>March 31, 2027</strong>, rather than describing a workload shutdown.</li>
+<li><strong>Creation restrictions:</strong> New public-cloud customers cannot create Basic, Standard and Premium caches from <strong>April 1, 2026</strong>. Qualifying existing customers can continue until retirement. Government and China have no pre-retirement creation block.</li>
 </ul>
 <p>The described Basic, Standard and Premium preview tooling redirects the existing endpoint to a precreated Azure Managed Redis instance; Enterprise tooling transforms the existing instance. The supplied content does not establish downtime, application compatibility, detailed console/API or integration changes, data retention/deletion, or cost effects.</p>
 </div>

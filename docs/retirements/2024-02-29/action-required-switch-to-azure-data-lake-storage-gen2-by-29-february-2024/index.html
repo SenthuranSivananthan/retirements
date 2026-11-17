@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Data Lake Storage</span><span class="badge retired" data-deadline="2024-02-29"><span></span>Retired</span></div>
-  <h1>Action required: Switch to Azure Data Lake Storage Gen2 by 29 February 2024</h1><p>Microsoft retired Azure Data Lake Storage Gen1 on 2024-02-29 and required migration to Gen2 by that same date to avoid service disruption. The retirement notice ends Gen1 account management, data access through the listed interfaces, service updates and customer support. The migration guide confirms that Gen1 resources are no longer accessible; its historical procedures do not establish that migration or recovery remains possible after retirement.</p>
+  <h1>Action required: Switch to Azure Data Lake Storage Gen2 by 29 February 2024</h1><p>Microsoft retired Azure Data Lake Storage Gen1 on February 29, 2024 and required migration to Gen2 by that same date to avoid service disruption. The retirement notice ends Gen1 account management, data access through the listed interfaces, service updates and customer support. The migration guide confirms that Gen1 resources are no longer accessible; its historical procedures do not establish that migration or recovery remains possible after retirement.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-02-29"><strong>Retired</strong><span>Retirement date: <time datetime="2024-02-29">29 Feb 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 4 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">29 Feb 2024</p>
-<div class="rich-content"><p>Azure Data Lake Storage Gen1 retired on <strong>2024-02-29</strong>. Microsoft's notice required migration to Gen2 by that same date to avoid service disruption; this was not a separate migration milestone.</p>
+<div class="rich-content"><p>Azure Data Lake Storage Gen1 retired on <strong>February 29, 2024</strong>. Microsoft's notice required migration to Gen2 by that same date to avoid service disruption; this was not a separate migration milestone.</p>
 <p>After that date, the notice says Gen1 account creation and management, data access through the listed interfaces, service updates and customer support are unavailable. The migration guide confirms that Gen1 resources are no longer accessible but supplies no separate retirement date.</p>
 <p>The other supplied reference pages do not independently establish a retirement deadline or document an extension.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired <strong>Azure Data Lake Storage Gen1</strong> on 2024-02-29 and directed customers to migrate data, workloads and applications to Azure Data Lake Storage Gen2. Gen1 resources are no longer accessible.</p>
+<div class="rich-content"><p>Microsoft retired <strong>Azure Data Lake Storage Gen1</strong> on February 29, 2024 and directed customers to migrate data, workloads and applications to Azure Data Lake Storage Gen2. Gen1 resources are no longer accessible.</p>
 <p>Gen1 and Gen2 are different services, so there is no in-place upgrade. Gen2 uses Azure Blob Storage with hierarchical namespace capabilities. This retirement concerns Gen1, not Gen2 or Azure Blob Storage generally.</p>
 <p>The supplied sources identify no regional or customer exceptions, continued Gen1 access, or specific pre-retirement maintenance and security-update commitments.</p>
 </div>
@@ -1938,13 +1938,13 @@
 <li>Where migration remains possible, create a Gen2 storage account with hierarchical namespace enabled and move the data. Update workload endpoints, application APIs, scripts and URI references. Configure Azure roles, file and folder permissions, firewalls and virtual networks. For HDInsight, update storage configuration, including Hive configuration when migrating external Hive tables.</li>
 <li>Validate scenarios incrementally. Once workloads are stable on Gen2, the guide calls for stopping remaining Gen1 pipelines and decommissioning the Gen1 account.</li>
 </ol>
-<p>The notice points to Microsoft Q&amp;A and email to the Microsoft team for questions. It also references technical support for customers with a support plan, but explicitly states that Gen1 customer support is unavailable after 2024-02-29.</p>
+<p>The notice points to Microsoft Q&amp;A and email to the Microsoft team for questions. It also references technical support for customers with a support plan, but explicitly states that Gen1 customer support is unavailable after February 29, 2024.</p>
 </div>
       <p> </p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>If your workloads still depend on Azure Data Lake Storage Gen1, they cannot rely on continued Gen1 data access. The retirement affects more than support: after <strong>2024-02-29</strong>, the notice says you cannot:</p>
+<div class="rich-content"><p>If your workloads still depend on Azure Data Lake Storage Gen1, they cannot rely on continued Gen1 data access. The retirement affects more than support: after <strong>February 29, 2024</strong>, the notice says you cannot:</p>
 <ul>
 <li>Create or manage Gen1 accounts.</li>
 <li>Access Gen1 data through the Azure portal or Azure Data Lake Store APIs, SDKs or client tools.</li>
@@ -1960,7 +1960,7 @@
 <div class="rich-content"><p>Use <strong>team-owned migration evidence</strong> to track identified datasets, <code>adl://</code> dependencies, endpoint changes, application and script updates, and security configuration. Searching these references helps identify dependencies but does not prove that every dependency has been found.</p>
 <p>The migration guide recommends incremental scenario validation. Completion evidence includes business scenarios running on Gen2, applications and workloads operating stably, remaining Gen1 pipelines stopped, and the Gen1 account decommissioned.</p>
 <p>These are migration checks, not an automated retirement tracker. Historical steps requiring Gen1 access are not confirmed as executable after retirement, and the sources provide no post-retirement recovery check.</p>
-<p>For questions, the notice points to Microsoft Q&amp;A and email to the Microsoft team. Its support-plan referral must be read alongside its statement that Gen1 customer support is unavailable after 2024-02-29.</p>
+<p>For questions, the notice points to Microsoft Q&amp;A and email to the Microsoft team. Its support-plan referral must be read alongside its statement that Gen1 customer support is unavailable after February 29, 2024.</p>
 </div>
     </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">

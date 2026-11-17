@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Service Fabric</span><span class="badge upcoming" data-deadline="2027-03-31"><span></span>Upcoming</span></div>
-  <h1>Retirement: Service Fabric support for Windows Server 2019 ends on March 31, 2027 - upgrade to Windows Server 2025</h1><p>Service Fabric support for Windows Server 2019 ends on 2027-03-31 across all Service Fabric environments. Upgrade affected clusters to Windows Server 2025 before that date to remain supported. Virtual Machine Scale Sets will continue to function on Windows Server 2019 afterward; this is not a documented workload shutdown. The referenced replacement-node procedures include health checks, resource cleanup and possible availability interruptions.</p>
+  <h1>Retirement: Service Fabric support for Windows Server 2019 ends on March 31, 2027 - upgrade to Windows Server 2025</h1><p>Service Fabric support for Windows Server 2019 ends on March 31, 2027 across all Service Fabric environments. Upgrade affected clusters to Windows Server 2025 before that date to remain supported. Virtual Machine Scale Sets will continue to function on Windows Server 2019 afterward; this is not a documented workload shutdown. The referenced replacement-node procedures include health checks, resource cleanup and possible availability interruptions.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-03-31"><strong>134 days remaining</strong><span>Retirement date: <time datetime="2027-03-31">31 Mar 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 30 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2027</p>
-<div class="rich-content"><p>Service Fabric support for all clusters running Windows Server 2019 ends on <strong>2027-03-31</strong>. Microsoft directs you to upgrade before that date to remain supported.</p>
+<div class="rich-content"><p>Service Fabric support for all clusters running Windows Server 2019 ends on <strong>March 31, 2027</strong>. Microsoft directs you to upgrade before that date to remain supported.</p>
 <p>This is an end-of-support deadline, not a workload shutdown date. Virtual Machine Scale Sets will continue to function on Windows Server 2019 afterward.</p>
 <p>The supporting migration, Q&amp;A and support-request pages establish no additional retirement deadlines. Their update timestamps and migration operation durations are not retirement milestones.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Service Fabric is ending support for Windows Server 2019 across all Service Fabric environments on <strong>2027-03-31</strong>. Microsoft directs affected customers to Windows Server 2025.</p>
+<div class="rich-content"><p>Service Fabric is ending support for Windows Server 2019 across all Service Fabric environments on <strong>March 31, 2027</strong>. Microsoft directs affected customers to Windows Server 2025.</p>
 <p>The notice states that Service Fabric will no longer support Windows Server OS images beyond their mainstream support end date. It does not specify maintenance or security-update commitments before the deadline.</p>
 <p>The referenced primary and nonprimary node-type procedures show Windows Server 2019-to-2022 examples. The retirement notice explicitly says those procedures also apply to Windows Server 2025; the examples do not establish another retirement or change the required destination.</p>
 </div>
@@ -1931,7 +1931,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Upgrade your Service Fabric clusters running Windows Server 2019 to Windows Server 2025 before <strong>2027-03-31</strong> to remain supported.</p>
+<div class="rich-content"><p>Upgrade your Service Fabric clusters running Windows Server 2019 to Windows Server 2025 before <strong>March 31, 2027</strong> to remain supported.</p>
 <ol>
 <li>Identify affected clusters and their primary and nonprimary node types. The notice provides no inventory method.</li>
 <li>Review the applicable replacement-node procedure and sample templates, and validate the migration on a test cluster. Do not start with an unhealthy cluster. Obtain the cluster certificate's Key Vault secret identifier, thumbprint and vault resource ID, and prepare required workload extensions.</li>
@@ -1947,7 +1947,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>All Service Fabric clusters running Windows Server 2019 are affected, across all Service Fabric environments. If you do not upgrade before <strong>2027-03-31</strong>, you lose Service Fabric support. Continued Virtual Machine Scale Set operation on Windows Server 2019 does not preserve that support or establish a workload shutdown.</p>
+<div class="rich-content"><p>All Service Fabric clusters running Windows Server 2019 are affected, across all Service Fabric environments. If you do not upgrade before <strong>March 31, 2027</strong>, you lose Service Fabric support. Continued Virtual Machine Scale Set operation on Windows Server 2019 does not preserve that support or establish a workload shutdown.</p>
 <p>The retirement notice says supported upgrade procedures do not impact applications. However, the detailed primary-node procedure warns of possible brief cluster unavailability, and the nonprimary procedure targets minimal—not zero—downtime. Plan for those documented operational limits rather than assuming uninterrupted availability.</p>
 <p>Original and replacement scale sets run side by side during migration. The final template deployment requires node restarts and usually takes up to two hours. Management endpoints, applicable DNS settings and deployment templates also need updates. The nonprimary procedure leaves the primary node type unchanged; that does not exempt a Windows Server 2019 primary node type from this retirement.</p>
 <p>Cleanup removes original scale sets and obsolete node state. The supplied content does not document retirement-related data-retention or deletion policies, cost estimates, or separate console/API retirement changes. It does not establish which resources you own.</p>

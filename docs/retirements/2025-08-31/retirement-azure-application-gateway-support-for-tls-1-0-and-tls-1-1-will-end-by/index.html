@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Application Gateway</span><span class="badge retired" data-deadline="2025-08-31"><span></span>Retired</span></div>
-  <h1>Retirement: Azure Application Gateway support for TLS 1.0 and TLS 1.1 will end by 31 August 2025</h1><p>Azure Application Gateway discontinues TLS 1.0 and TLS 1.1 support starting 2025-08-31. Clients and backend servers must support TLS 1.2 or higher. Review gateway policies, client and backend compatibility, and certificate-dependent cipher requirements. TLS 1.3-capable 2022 Predefined and CustomV2 policies require v2 SKUs. Exact regional enforcement dates are not documented; this is not retirement of Application Gateway itself.</p>
+  <h1>Retirement: Azure Application Gateway support for TLS 1.0 and TLS 1.1 will end by 31 August 2025</h1><p>Azure Application Gateway discontinues TLS 1.0 and TLS 1.1 support starting August 31, 2025. Clients and backend servers must support TLS 1.2 or higher. Review gateway policies, client and backend compatibility, and certificate-dependent cipher requirements. TLS 1.3-capable 2022 Predefined and CustomV2 policies require v2 SKUs. Exact regional enforcement dates are not documented; this is not retirement of Application Gateway itself.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2025-08-31">31 Aug 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 5 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2025</p>
-<div class="rich-content"><p>Azure Application Gateway discontinues TLS 1.0 and TLS 1.1 support starting <strong>2025-08-31</strong>. Clients and backend servers must use TLS 1.2 or higher.</p>
-<p>The notice separately describes backend connections using TLS 1.2 through TLS 1.3 after 2025-08-31. Microsoft recommends updating gateway policies before enforcement reaches all Azure regions, but the supplied guidance gives no exact enforcement time, regional schedule or completion date. It documents no extension.</p>
+<div class="rich-content"><p>Azure Application Gateway discontinues TLS 1.0 and TLS 1.1 support starting <strong>August 31, 2025</strong>. Clients and backend servers must use TLS 1.2 or higher.</p>
+<p>The notice separately describes backend connections using TLS 1.2 through TLS 1.3 after August 31, 2025. Microsoft recommends updating gateway policies before enforcement reaches all Azure regions, but the supplied guidance gives no exact enforcement time, regional schedule or completion date. It documents no extension.</p>
 <p>This milestone retires support for the older protocols, not Application Gateway itself. The supplied empty Azure Updates listing provides no additional retirement evidence.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Application Gateway is discontinuing support for TLS 1.0 and TLS 1.1 starting <strong>2025-08-31</strong>, affecting both frontend clients and backend servers. The supplied guidance identifies no SKU or regional exemptions.</p>
+<div class="rich-content"><p>Azure Application Gateway is discontinuing support for TLS 1.0 and TLS 1.1 starting <strong>August 31, 2025</strong>, affecting both frontend clients and backend servers. The supplied guidance identifies no SKU or regional exemptions.</p>
 <p>For frontend connections, Microsoft recommends AppGwSslPolicy20220101S, AppGwSslPolicy20220101, or a Custom policy with a minimum TLS version of 1.2. CustomV2 defaults to a TLS 1.2 minimum. TLS 1.3-capable 2022 Predefined and CustomV2 policies require Standard_v2 or WAF_v2. Older and newer policy families cannot coexist on one gateway, including its SSL profiles.</p>
 <p>Backend connections prefer TLS 1.3 when available and fall back to TLS 1.2. You cannot customize their TLS versions or cipher suites.</p>
 </div>
@@ -1931,10 +1931,10 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Ensure your clients and backend servers support TLS 1.2 or higher for the retirement starting <strong>2025-08-31</strong>. Microsoft recommends updating gateway policies before regional enforcement applies.</p>
+<div class="rich-content"><p>Ensure your clients and backend servers support TLS 1.2 or higher for the retirement starting <strong>August 31, 2025</strong>. Microsoft recommends updating gateway policies before regional enforcement applies.</p>
 <ol>
 <li>Review each gateway's SKU, SSL policy, SSL profiles, and client and backend compatibility. Gateway configuration calls the TLS policy an SSL policy.</li>
-<li>Check implicit defaults where no policy is specified. Gateways created using API versions earlier than 2023-02-01 default to AppGwSslPolicy20150501 with a TLS 1.0 minimum; API versions 2023-02-01 or later default to AppGwSslPolicy20220101 with a TLS 1.2 minimum.</li>
+<li>Check implicit defaults where no policy is specified. Gateways created using API versions earlier than February 1, 2023 default to AppGwSslPolicy20150501 with a TLS 1.0 minimum; API versions February 1, 2023 or later default to AppGwSslPolicy20220101 with a TLS 1.2 minimum.</li>
 <li>Where needed, select a compatible predefined or custom policy with a minimum of TLS 1.2. An existing recommended secure policy needs no frontend policy change, but you must still check client compatibility. Use 2022 Predefined or CustomV2 policies only on v2 SKUs, and do not mix older and newer policy families across the gateway and its SSL profiles. Clients requiring Maximum Fragment Length Negotiation need these newer policies.</li>
 <li>Check cipher compatibility with listener and backend certificate types. For a custom policy on v1 Standard or WAF, retain TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, which is mandatory for metrics and logging. Backend TLS settings cannot be customized.</li>
 <li>Update clients, backend servers and gateway policies as needed. As a team-owned validation step, confirm both client-to-gateway and gateway-to-backend connectivity afterward.</li>
@@ -1945,7 +1945,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Connections relying on TLS 1.0 or TLS 1.1 are affected by the requirement starting <strong>2025-08-31</strong>. This includes client-to-gateway and gateway-to-backend connections. Incompatible backends risk connection disruptions; exact failure behavior and regional enforcement dates are not documented.</p>
+<div class="rich-content"><p>Connections relying on TLS 1.0 or TLS 1.1 are affected by the requirement starting <strong>August 31, 2025</strong>. This includes client-to-gateway and gateway-to-backend connections. Incompatible backends risk connection disruptions; exact failure behavior and regional enforcement dates are not documented.</p>
 <p>Microsoft states that policy changes are non-disruptive when clients and backends use TLS 1.2 or higher. Existing recommended secure policies need no frontend policy change, but they do not prove that every client and backend is compatible. Similarly, an older policy allowing TLS 1.0 does not establish which protocol your connections actually use.</p>
 <p>Certificate types and cipher suites also affect compatibility. Application Gateway v2 does not use the listed DHE cipher suites for client connections, even when they appear in predefined policies. Switching policy families therefore requires more than checking the minimum TLS version.</p>
 <p>The supplied material does not establish which of your resources are affected or document workload deletion, data-retention changes or retirement-related charges.</p>

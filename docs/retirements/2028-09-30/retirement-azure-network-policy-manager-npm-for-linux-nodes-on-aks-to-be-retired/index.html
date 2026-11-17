@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge upcoming" data-deadline="2028-09-30"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure Network Policy Manager (NPM) for Linux nodes on AKS to Be Retired by September 30, 2028</h1><p>Microsoft will end support for Azure Network Policy Manager (NPM) on AKS Linux nodes on 2028-09-30. Migrate affected clusters to Cilium Network Policy by that date to avoid possible disruptions. Migration requires Azure CNI powered by Cilium, reimages all node pools and changes policy enforcement. The notice does not specify a workload shutdown date; the migration guide does not independently establish a retirement deadline.</p>
+  <h1>Retirement: Azure Network Policy Manager (NPM) for Linux nodes on AKS to Be Retired by September 30, 2028</h1><p>Microsoft will end support for Azure Network Policy Manager (NPM) on AKS Linux nodes on September 30, 2028. Migrate affected clusters to Cilium Network Policy by that date to avoid possible disruptions. Migration requires Azure CNI powered by Cilium, reimages all node pools and changes policy enforcement. The notice does not specify a workload shutdown date; the migration guide does not independently establish a retirement deadline.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-09-30"><strong>683 days remaining</strong><span>Retirement date: <time datetime="2028-09-30">30 Sep 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 29 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2028</p>
-<div class="rich-content"><p>Microsoft will end support for Azure Network Policy Manager (NPM) on AKS Linux nodes on <strong>2028-09-30</strong>. Migrate affected clusters by that date to avoid possible disruptions.</p>
+<div class="rich-content"><p>Microsoft will end support for Azure Network Policy Manager (NPM) on AKS Linux nodes on <strong>September 30, 2028</strong>. Migrate affected clusters by that date to avoid possible disruptions.</p>
 <p>This is an end-of-support milestone, not a documented workload shutdown date. The migration guide supplies no separate retirement deadline. Page update dates are not retirement milestones.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is ending support for Azure NPM on AKS Linux nodes on 2028-09-30. The notice directs affected customers to Cilium Network Policy, which requires Azure CNI powered by Cilium.</p>
+<div class="rich-content"><p>Microsoft is ending support for Azure NPM on AKS Linux nodes on September 30, 2028. The notice directs affected customers to Cilium Network Policy, which requires Azure CNI powered by Cilium.</p>
 <p>Enabling the Cilium dataplane automatically uninstalls NPM and replaces it with Cilium. The migration guidance covers Azure CNI to Azure CNI with the Cilium dataplane; it does not cover bring-your-own CNIs or IPAM-mode changes. Windows nodes are not supported by this guidance, and the notice does not establish retirement milestones for other node operating systems.</p>
 <p>The supplied content does not document pre-deadline maintenance or security-update commitments.</p>
 </div>
@@ -1935,7 +1935,7 @@
 <li>Review and adapt policies before migration. For Cilium earlier than 1.17, replace <code>endPort</code> ranges with individual ports; Cilium 1.17 or later needs no such change. Replace named ports with numeric values because reusing a name for different ports can cause incorrect enforcement.</li>
 <li>For Pod egress currently permitted through <code>ipBlock</code>, add appropriate namespace and Pod selectors before migration. Review dependencies on NPM's implicit local-node egress allowance. Node-IP access requires explicit Cilium policies using the appropriate <code>host</code> or <code>remote-node</code> entities after migration; the guide gives no pre-migration workaround for that access.</li>
 <li>Review LoadBalancer and NodePort ingress rules using <code>externalTrafficPolicy=Cluster</code>. Explicitly allow expected sources rather than relying on NPM's enforcement exception.</li>
-<li>Plan for every node pool to be reimaged simultaneously; upgrading pools separately is unsupported. Use Azure CLI 2.52.0 or later and migrate by <strong>2028-09-30</strong> with your cluster and resource-group values:</li>
+<li>Plan for every node pool to be reimaged simultaneously; upgrading pools separately is unsupported. Use Azure CLI 2.52.0 or later and migrate by <strong>September 30, 2028</strong> with your cluster and resource-group values:</li>
 </ol>
 <pre><code>az aks update --name &lt;clusterName&gt; --resource-group &lt;resourceGroupName&gt; --network-dataplane cilium
 </code></pre>
@@ -1949,7 +1949,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are in scope if your AKS clusters use Azure NPM on Linux nodes. Azure Resource Graph can identify matching cluster configurations, but its query does not inspect workload policy compatibility. Windows nodes are not supported by the supplied Cilium migration guidance; this does not establish their retirement status.</p>
-<p>If you remain on NPM after <strong>2028-09-30</strong>, the affected configuration will be outside NPM support. The notice warns of possible disruptions but does not state whether or when workloads would stop running.</p>
+<p>If you remain on NPM after <strong>September 30, 2028</strong>, the affected configuration will be outside NPM support. The notice warns of possible disruptions but does not state whether or when workloads would stop running.</p>
 <p>Migration reimages every node pool and can disrupt networking. Policy enforcement might be temporarily inconsistent during reimaging; Cilium enforcement starts only after all nodes are reimaged.</p>
 <p>Connectivity can change:</p>
 <ul>

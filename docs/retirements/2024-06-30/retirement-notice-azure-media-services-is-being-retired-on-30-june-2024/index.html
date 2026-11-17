@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Media Player · Media Services</span><span class="badge retired" data-deadline="2024-06-30"><span></span>Retired</span></div>
-  <h1>Retirement notice: Azure Media Services is being retired on 30 June 2024</h1><p>Azure Media Services, including v2 and v3 APIs, and Azure Media Player retired on 2024-06-30. The migration guide documents an account-specific, one-time extension until early August, not a change to the general retirement date. At account expiration, streaming stops and accounts become largely read-only; account data is deleted approximately 90 days later. Videos and associated files remain in Azure Storage. Replace media workflows with suitable partner solutions and move analyzer-preset workflows to Azure Video Indexer where available. Azure Video Indexer itself is not retiring. Export needed metadata before account deletion and check regional, encryption, URL and player requirements.</p>
+  <h1>Retirement notice: Azure Media Services is being retired on 30 June 2024</h1><p>Azure Media Services, including v2 and v3 APIs, and Azure Media Player retired on June 30, 2024. The migration guide documents an account-specific, one-time extension until early August, not a change to the general retirement date. At account expiration, streaming stops and accounts become largely read-only; account data is deleted approximately 90 days later. Videos and associated files remain in Azure Storage. Replace media workflows with suitable partner solutions and move analyzer-preset workflows to Azure Video Indexer where available. Azure Video Indexer itself is not retiring. Export needed metadata before account deletion and check regional, encryption, URL and player requirements.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-06-30"><strong>Retired</strong><span>Retirement date: <time datetime="2024-06-30">30 Jun 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 11 months, 16 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Jun 2024</p>
-<div class="rich-content"><p>Azure Media Services v2 and v3 APIs and Azure Media Player retired on <strong>2024-06-30</strong>. The notice required you to transition before that date and stated that service would remain available through it, with support and account access ending afterward.</p>
+<div class="rich-content"><p>Azure Media Services v2 and v3 APIs and Azure Media Player retired on <strong>June 30, 2024</strong>. The notice required you to transition before that date and stated that service would remain available through it, with support and account access ending afterward.</p>
 <p>The migration guide documents a more specific account-expiration process, including a one-time, account-specific 30-day extension until early August. You had to request it through the Azure portal before your account became read-only; no further extension was available. The guide provides no exact August date. Check each account's expiration date and time in the portal rather than treating this extension as a revised general retirement date. Its separate reference to July deactivation does not establish a precise expiration date for every account.</p>
 <p>Running live events and streaming endpoints stop within approximately one hour of account expiration. Account deletion follows approximately 90 days later. The notice's blanket statement about loss of account access differs from the guide's limited read-only access; the guide supplies the more specific operational guidance.</p>
-<p>The announcement was made in June 2023. Bitmovin automatic migration's retention of existing non-DRM streaming URLs until <strong>2025-06-30</strong> was a separate migration capability, not an extension of Azure Media Services.</p>
+<p>The announcement was made in June 2023. Bitmovin automatic migration's retention of existing non-DRM streaming URLs until <strong>June 30, 2025</strong> was a separate migration capability, not an extension of Azure Media Services.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Media Services retired on <strong>2024-06-30</strong>, including both v2 and v3 APIs. Azure Media Player retired on the same date. Creation of new Media Services accounts is blocked in all Azure regions; the supplied guidance does not give a separate start date for that restriction.</p>
+<div class="rich-content"><p>Azure Media Services retired on <strong>June 30, 2024</strong>, including both v2 and v3 APIs. Azure Media Player retired on the same date. Creation of new Media Services accounts is blocked in all Azure regions; the supplied guidance does not give a separate start date for that restriction.</p>
 <p>You need replacement solutions for on-demand encoding, live streaming, on-demand streaming and content protection. At account expiration, live events and streaming endpoints stop, and accounts become largely read-only before deletion approximately 90 days later.</p>
 <p><strong>Azure Video Indexer is not retiring.</strong> Microsoft stated that it would remove Video Indexer's dependency on Media Services before retirement. Media Services audio and video analyzer-preset workflows still require separate migration.</p>
 <p>Replacement availability and capabilities vary by region. The guide identifies Ravnur for Azure Government and Arcvideo and bopoda for Azure China.</p>
@@ -1933,12 +1933,12 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>The notice required transition before <strong>2024-06-30</strong>. Both API versions retired together, so an interim migration from v2 to v3 was not required.</p>
+<div class="rich-content"><p>The notice required transition before <strong>June 30, 2024</strong>. Both API versions retired together, so an interim migration from v2 to v3 was not required.</p>
 <ol>
 <li>Check each Media Services account's expiration date and time in the Azure portal. Identify encoding, streaming, content-protection and analyzer-preset workflows, v2/v3 API integrations, and Azure Media Player dependencies.</li>
 <li>Select a replacement that meets your region, format, encryption and player requirements:
 <ul>
-<li>Bitmovin automatic migration documented retention of existing non-DRM URLs without a player update until 2025-06-30, with no data move required until that date. It supports AES but not DRM; that dated capability is not an ongoing retirement extension.</li>
+<li>Bitmovin automatic migration documented retention of existing non-DRM URLs without a player update until June 30, 2025, with no data move required until that date. It supports AES but not DRM; that dated capability is not an ongoing retirement extension.</li>
 <li>Bitmovin Streams/VOD requires a data move, new URLs and a player update. It supports AES and the listed DRM systems in 20+ regions.</li>
 <li>MediaKind and Ravnur support HLS/DASH, AES, PlayReady, Widevine and FairPlay. Their comparison entries retain URL structure but require hostname and player updates, without a data move. MediaKind lists eight regions; Ravnur runs in your subscription and supports Azure Government.</li>
 <li>Static migration requires compute in the storage account's region, a data move, new URLs and a player update. AES requires your own key-delivery service. Microsoft recommends enabling CDN for scale. Its format is not supported by Azure Media Player.</li>
@@ -1956,7 +1956,7 @@
 <div class="rich-content"><p>All Azure Media Services accounts are affected, with actual interruption tied to account expiration. The supplied pages do not establish which resources you use; check your accounts in the Azure portal.</p>
 <ul>
 <li><strong>Workloads:</strong> Running live events and streaming endpoints stop within approximately one hour of expiration. Without a replacement, Media Services no longer streams your content.</li>
-<li><strong>Support and account access:</strong> The notice says support and account access end after 2024-06-30. The migration guide more specifically describes an account-expiration and read-only period; it does not establish continued support during that period.</li>
+<li><strong>Support and account access:</strong> The notice says support and account access end after June 30, 2024. The migration guide more specifically describes an account-expiration and read-only period; it does not establish continued support during that period.</li>
 <li><strong>APIs:</strong> During the read-only period, the guide says GET operations remain available, while PATCH, PUT and POST operations are rejected except for streaming-endpoint CDN-setting updates. It separately warns that v2 APIs are not expected to work after expiration, so do not depend on them for exports.</li>
 <li><strong>Account data:</strong> Streaming endpoints, live events and asset metadata are deleted approximately 90 days after expiration.</li>
 <li><strong>Stored media:</strong> Videos and associated files remain in your Azure Storage account after Media Services account deletion. This does not preserve streaming or account metadata.</li>

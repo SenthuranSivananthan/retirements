@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2023-08-01"><span></span>Retired</span></div>
-  <h1>Pod Security Policy is being deprecated with AKS 1.25 and 2023-06-01 API version</h1><p>AKS Pod Security Policy (preview) retired on 2023-08-01 alongside AKS 1.24 retirement. AKS 1.25 removes the feature; clusters with it enabled cannot upgrade to 1.25 or later. Microsoft recommends migrating to Pod Security Admission or Azure Policy. The supplied PSA configuration pages describe replacement setup, not an independent retirement deadline.</p>
+  <h1>Pod Security Policy is being deprecated with AKS 1.25 and 2023-06-01 API version</h1><p>AKS Pod Security Policy (preview) retired on August 1, 2023 alongside AKS 1.24 retirement. AKS 1.25 removes the feature; clusters with it enabled cannot upgrade to 1.25 or later. Microsoft recommends migrating to Pod Security Admission or Azure Policy. The supplied PSA configuration pages describe replacement setup, not an independent retirement deadline.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2023-08-01"><strong>Retired</strong><span>Retirement date: <time datetime="2023-08-01">1 Aug 2023</time></span><span class="badge amber customer-lead-time-pill">Lead time: -4 months, 1 day</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Aug 2023</p>
-<div class="rich-content"><p>AKS Pod Security Policy (preview) retired on <strong>2023-08-01</strong>, alongside AKS 1.24 retirement. The feature is removed in AKS 1.25, and clusters with it enabled cannot upgrade to AKS 1.25 or later.</p>
+<div class="rich-content"><p>AKS Pod Security Policy (preview) retired on <strong>August 1, 2023</strong>, alongside AKS 1.24 retirement. The feature is removed in AKS 1.25, and clusters with it enabled cannot upgrade to AKS 1.25 or later.</p>
 <p>Upstream Kubernetes deprecated PSP in 1.21 and removed it in 1.25; the supplied upstream article gives no calendar removal date. These version milestones are distinct from the AKS retirement date.</p>
-<p>The notice title names API version <code>2023-06-01</code>, but the supplied content does not explain its implications or establish a separate API retirement date. The PSA reference pages do not independently establish a retirement deadline.</p>
+<p>The notice title names API version <code>June 1, 2023</code>, but the supplied content does not explain its implications or establish a separate API retirement date. The PSA reference pages do not independently establish a retirement deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>AKS retired Pod Security Policy (preview) on 2023-08-01 and removed it in AKS 1.25. Microsoft recommends Pod Security Admission (PSA) for single-cluster implementations or Azure Policy for enterprise-grade policy needs.</p>
+<div class="rich-content"><p>AKS retired Pod Security Policy (preview) on August 1, 2023 and removed it in AKS 1.25. Microsoft recommends Pod Security Admission (PSA) for single-cluster implementations or Azure Policy for enterprise-grade policy needs.</p>
 <p>The supplied configuration guidance says PSA is enabled by default and uses namespace labels to apply Pod Security Standards. Its walkthrough requires Kubernetes 1.23 or higher.</p>
 <p>PodSecurityContext and container SecurityContext are distinct from PSP and are unaffected by its deprecation. The retirement notice does not document maintenance or security-update commitments.</p>
 </div>
@@ -1946,7 +1946,7 @@
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>The documented upgrade restriction affects AKS clusters with PSP enabled: you cannot upgrade them to AKS 1.25 or later while it remains enabled. After removal, you cannot rely on PSP to reject disallowed Pod settings or supply supported defaults.</p>
 <p>Replacement policy configuration can affect new Pod admission. The PSA restricted example creates deployment and service objects but prevents noncompliant Pods from running; warning-only labels do not enforce restrictions. RBAC alone does not replace PSP's checks on resource settings.</p>
-<p>The notice does not state that existing workloads shut down on 2023-08-01. It does not document data deletion, cost changes or the API-version implications named in the title. No supplied content establishes whether your clusters are affected.</p>
+<p>The notice does not state that existing workloads shut down on August 1, 2023. It does not document data deletion, cost changes or the API-version implications named in the title. No supplied content establishes whether your clusters are affected.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>
     </section>

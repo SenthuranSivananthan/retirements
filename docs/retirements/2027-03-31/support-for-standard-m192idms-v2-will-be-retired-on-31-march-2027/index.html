@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge upcoming" data-deadline="2027-03-31"><span></span>Upcoming</span></div>
-  <h1>Support for Standard_M192idms_v2 will be retired on 31 March 2027</h1><p>Azure Standard_M192idms_v2 retires on 2027-03-31. Migrate by that date; the announcement names Standard_M176ds_4_v3, while the migration guide covers Msv3 and Mdsv3 Medium Memory replacements. The migration guide says remaining affected VMs will be stopped and deallocated without VM billing while deallocated. The announcement instead says workloads will be deleted and application data lost; data-deletion consequences remain unconfirmed. Migration requirements depend on Availability Set membership, cluster pinning and Proximity Placement Group membership.</p>
+  <h1>Support for Standard_M192idms_v2 will be retired on 31 March 2027</h1><p>Azure Standard_M192idms_v2 retires on March 31, 2027. Migrate by that date; the announcement names Standard_M176ds_4_v3, while the migration guide covers Msv3 and Mdsv3 Medium Memory replacements. The migration guide says remaining affected VMs will be stopped and deallocated without VM billing while deallocated. The announcement instead says workloads will be deleted and application data lost; data-deletion consequences remain unconfirmed. Migration requirements depend on Availability Set membership, cluster pinning and Proximity Placement Group membership.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-03-31"><strong>134 days remaining</strong><span>Retirement date: <time datetime="2027-03-31">31 Mar 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 9 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2027</p>
-<div class="rich-content"><p>Azure <strong>Standard_M192idms_v2 retires on 2027-03-31</strong>. Complete migration by that date to avoid disruption. Microsoft states that you can continue using the size without disruption until retirement.</p>
+<div class="rich-content"><p>Azure <strong>Standard_M192idms_v2 retires on March 31, 2027</strong>. Complete migration by that date to avoid disruption. Microsoft states that you can continue using the size without disruption until retirement.</p>
 <p>The applicable product migration guide says Azure will stop and deallocate remaining affected VMs on that date, with no VM billing while deallocated. This is the preferred operational guidance. The announcement instead says workloads will be deleted and associated application data lost. The supplied sources do not reconcile those consequences; data deletion and retention remain unconfirmed.</p>
-<p>The same retirement date also applies to Standard_M192is_v2, Standard_M192ims_v2 and Standard_M192ids_v2. The isolation reference lists 2024-03-22 as their announcement date, not their retirement date.</p>
+<p>The same retirement date also applies to Standard_M192is_v2, Standard_M192ims_v2 and Standard_M192ids_v2. The isolation reference lists March 22, 2024 as their announcement date, not their retirement date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring <strong>Standard_M192idms_v2</strong>, an Azure Mdsv2 Medium Memory isolated VM size, on <strong>2027-03-31</strong> because its underlying hardware generation has been replaced. This is full-size retirement, not merely loss of physical isolation or end of support.</p>
+<div class="rich-content"><p>Microsoft is retiring <strong>Standard_M192idms_v2</strong>, an Azure Mdsv2 Medium Memory isolated VM size, on <strong>March 31, 2027</strong> because its underlying hardware generation has been replaced. This is full-size retirement, not merely loss of physical isolation or end of support.</p>
 <p>The announcement names <strong>Standard_M176ds_4_v3</strong> as the migration destination. The product migration guide covers replacement sizes in the <strong>Msv3 and Mdsv3 Medium Memory</strong> series.</p>
 <p>The guide also covers Standard_M192is_v2, Standard_M192ims_v2 and Standard_M192ids_v2. It does not establish retirement of other VM sizes or specify regional exceptions. The Msv3 specification pages describe replacement capabilities; they do not independently establish a retirement.</p>
 </div>
@@ -1934,7 +1934,7 @@
 <div class="rich-content"><ol>
 <li>Identify VMs using <strong>Standard_M192idms_v2</strong>. In each VM's Azure portal properties, check Availability Set and Proximity Placement Group (PPG) membership. The supplied guidance does not document an automated inventory method.</li>
 <li>Select a compatible replacement. The announcement names <strong>Standard_M176ds_4_v3</strong>; the migration guide covers Msv3 and Mdsv3 Medium Memory sizes. Check workload and isolation requirements, assess pricing with the pricing calculator, and obtain quota for the target series.</li>
-<li>Determine the applicable placement path below and complete migration by <strong>2027-03-31</strong>.</li>
+<li>Determine the applicable placement path below and complete migration by <strong>March 31, 2027</strong>.</li>
 </ol>
 <h3>Placement-dependent migration</h3>
 <ul>
@@ -1953,7 +1953,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you run <strong>Standard_M192idms_v2</strong>. The same migration guide also covers Standard_M192is_v2, Standard_M192ims_v2 and Standard_M192ids_v2. The supplied content does not establish whether your subscription contains affected VMs.</p>
-<p>Without migration, the product migration guide says Azure will stop and deallocate affected VMs on <strong>2027-03-31</strong>, interrupting workloads. It says the VMs will not be billed while deallocated, but does not address other resource charges. The announcement instead states that workloads will be deleted and application data lost. That conflict leaves data-deletion and retention consequences unconfirmed.</p>
+<p>Without migration, the product migration guide says Azure will stop and deallocate affected VMs on <strong>March 31, 2027</strong>, interrupting workloads. It says the VMs will not be billed while deallocated, but does not address other resource charges. The announcement instead states that workloads will be deleted and application data lost. That conflict leaves data-deletion and retention consequences unconfirmed.</p>
 <p>Migration can require downtime for other VMs in the same Availability Set or PPG. Cluster pinning can require Azure Support assistance. Replacement suitability, regional availability and workload-specific costs must be assessed; the supplied sources do not establish them for your environment.</p>
 <p>The isolation reference's no-action and no-downtime assurance for historical isolation-only retirements does <strong>not</strong> apply to these fully retiring sizes. No separate console, API or deployment-tooling changes are documented.</p>
 </div>

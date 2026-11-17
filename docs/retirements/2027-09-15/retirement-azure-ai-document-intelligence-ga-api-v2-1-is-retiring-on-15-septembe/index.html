@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure AI Services</span><span class="badge upcoming" data-deadline="2027-09-15"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure AI Document Intelligence GA API v2.1 is retiring on 15 September 2027</h1><p>Azure AI Document Intelligence GA API v2.1 retires on 2027-09-15. The retirement notice states that all v2.1 requests will fail from that date. Migrate to v4.0 (2024-11-30), the target identified in the supplied product guidance, before retirement. Microsoft recommends retraining v2.1 custom models with a newer GA API. Other versions have separate milestones.</p>
+  <h1>Retirement: Azure AI Document Intelligence GA API v2.1 is retiring on 15 September 2027</h1><p>Azure AI Document Intelligence GA API v2.1 retires on September 15, 2027. The retirement notice states that all v2.1 requests will fail from that date. Migrate to v4.0 (2024-11-30), the target identified in the supplied product guidance, before retirement. Microsoft recommends retraining v2.1 custom models with a newer GA API. Other versions have separate milestones.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-09-15"><strong>302 days remaining</strong><span>Retirement date: <time datetime="2027-09-15">15 Sep 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 3 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">15 Sep 2027</p>
-<div class="rich-content"><p>Azure AI Document Intelligence GA API v2.1 retires on <strong>2027-09-15</strong>. The retirement notice states that all requests using v2.1 will fail from that date, so you need to migrate before retirement.</p>
+<div class="rich-content"><p>Azure AI Document Intelligence GA API v2.1 retires on <strong>September 15, 2027</strong>. The retirement notice states that all requests using v2.1 will fail from that date, so you need to migrate before retirement.</p>
 <p>The product guidance lists the same date as v2.1's end of support but does not independently specify request shutdown. The request-failure consequence comes from the retirement notice.</p>
-<p>The product guidance's 2026-06-30 deadline applies to three REST preview versions, and 2029-03-30 applies to v3.0. Neither changes the v2.1 deadline.</p>
+<p>The product guidance's June 30, 2026 deadline applies to three REST preview versions, and March 30, 2029 applies to v3.0. Neither changes the v2.1 deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring Azure AI Document Intelligence GA API v2.1 on <strong>2027-09-15</strong>. From that date, requests using v2.1 will fail.</p>
+<div class="rich-content"><p>Microsoft is retiring Azure AI Document Intelligence GA API v2.1 on <strong>September 15, 2027</strong>. From that date, requests using v2.1 will fail.</p>
 <p>The retirement notice directs you to a newer GA API without naming a version. The supplied product guidance identifies <strong>v4.0 (2024-11-30)</strong> as the migration target; older sections recommending v3.1 are not its explicit retirement guidance.</p>
 <p>The supplied content does not document maintenance or security-update commitments before retirement or regional exceptions. This notice does not retire every Document Intelligence API version.</p>
 </div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify applications and integrations that call GA API v2.1. The retirement notice does not provide an application-wide discovery method.</li>
-<li>Migrate affected integrations to <strong>v4.0 (2024-11-30)</strong> before <strong>2027-09-15</strong>. If you use an SDK, update to the current language-specific SDK and follow the referenced migration guide.</li>
+<li>Migrate affected integrations to <strong>v4.0 (2024-11-30)</strong> before <strong>September 15, 2027</strong>. If you use an SDK, update to the current language-specific SDK and follow the referenced migration guide.</li>
 <li>Update API methods and response handling. Check applicable compatibility changes, including <code>boundingBox</code> becoming <code>polygon</code>, removal of <code>includeTextDetails</code>, and the single-level nesting limit for composed models.</li>
 <li>If you use v2.1 custom models, follow Microsoft's recommendation to retrain them using a newer GA API. This is a recommendation, not an explicit v2.1 requirement. Check model expiration dates and available neural-model build quota when planning retraining.</li>
 <li>Validate analysis results and model operations before switching production workloads.</li>
@@ -1944,7 +1944,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your applications send Azure AI Document Intelligence requests using GA API v2.1. Without migration, all such requests will fail from <strong>2027-09-15</strong>.</p>
+<div class="rich-content"><p>You are affected if your applications send Azure AI Document Intelligence requests using GA API v2.1. Without migration, all such requests will fail from <strong>September 15, 2027</strong>.</p>
 <p>Migration can require changes to integrations, response parsing, model training, composition and copy workflows. Microsoft recommends retraining v2.1 custom models; the separate requirement to retrain preview-trained models should not be treated as a v2.1 requirement.</p>
 <p>When planning migration, account for documented custom neural model-build limits per subscription and region. Formula, font-property and high-resolution OCR features can incur additional charges if used.</p>
 <p>The supplied content does not describe retirement-related data retention or deletion, console-access changes, or regional exceptions. Other API versions have separate lifecycle guidance; they are not all retiring on the v2.1 date.</p>

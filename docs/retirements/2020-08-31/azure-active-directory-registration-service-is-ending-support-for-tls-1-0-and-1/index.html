@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Microsoft Entra ID (formerly Azure AD)</span><span class="badge retired" data-deadline="2020-08-31"><span></span>Retired</span></div>
-  <h1>Azure Active Directory Registration Service is ending support for TLS 1.0 and 1.1</h1><p>Azure AD Device Registration Service retired TLS 1.0 and 1.1 support on 2020-08-31 in sovereign clouds, including GCC High and DoD, and on 2020-10-30 in commercial clouds. The structured deadline represents the earlier sovereign-cloud milestone. Update communicating clients, servers and intermediaries to support TLS 1.2. The supplied Microsoft Entra reference describes TLS 1.2 preparation but provides no enforcement date; it neither changes the announced dates nor confirms when connection blocking occurred.</p>
+  <h1>Azure Active Directory Registration Service is ending support for TLS 1.0 and 1.1</h1><p>Azure AD Device Registration Service retired TLS 1.0 and 1.1 support on August 31, 2020 in sovereign clouds, including GCC High and DoD, and on October 30, 2020 in commercial clouds. The structured deadline represents the earlier sovereign-cloud milestone. Update communicating clients, servers and intermediaries to support TLS 1.2. The supplied Microsoft Entra reference describes TLS 1.2 preparation but provides no enforcement date; it neither changes the announced dates nor confirms when connection blocking occurred.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2020-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2020-08-31">31 Aug 2020</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 month, 3 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1918,16 +1918,16 @@
       <p class="deadline-date">31 Aug 2020</p>
 <div class="rich-content"><p>Azure AD Device Registration Service TLS 1.0 and 1.1 support-retirement dates differ by cloud:</p>
 <ul>
-<li><strong>2020-08-31:</strong> all sovereign clouds, including GCC High and DoD.</li>
-<li><strong>2020-10-30:</strong> all commercial clouds.</li>
+<li><strong>August 31, 2020:</strong> all sovereign clouds, including GCC High and DoD.</li>
+<li><strong>October 30, 2020:</strong> all commercial clouds.</li>
 </ul>
 <p>The structured deadline records the sovereign-cloud milestone, not a universal deadline.</p>
-<p>The Microsoft Entra Device Registration Service reference describes the end of support prospectively but supplies no retirement or enforcement date. Its last-updated date, 2025-06-27, is not a deadline and does not establish an extension. The inputs do not confirm when connections using older protocols were blocked.</p>
+<p>The Microsoft Entra Device Registration Service reference describes the end of support prospectively but supplies no retirement or enforcement date. Its last-updated date, June 27, 2025, is not a deadline and does not establish an extension. The inputs do not confirm when connections using older protocols were blocked.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure AD Device Registration Service ended support for TLS 1.0 and 1.1 on 2020-08-31 in sovereign clouds and 2020-10-30 in commercial clouds. You need TLS 1.2 support on components communicating with the service to maintain access.</p>
+<div class="rich-content"><p>Azure AD Device Registration Service ended support for TLS 1.0 and 1.1 on August 31, 2020 in sovereign clouds and October 30, 2020 in commercial clouds. You need TLS 1.2 support on components communicating with the service to maintain access.</p>
 <p>The Microsoft Entra reference confirms TLS 1.2 support and recommends disabling TLS 1.0 and 1.1, but does not confirm enforcement timing. This is a protocol-support retirement, not retirement of the registration service. The supplied sources document no exceptions or exact post-retirement connection-blocking behavior.</p>
 </div>
       <div class="notice"></div>
@@ -1947,7 +1947,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if clients, browsers, servers or intermediaries communicating with the registration service depend on TLS 1.0 or 1.1. The support-retirement dates were 2020-08-31 for sovereign clouds and 2020-10-30 for commercial clouds. Hybrid infrastructure and AD FS need TLS 1.2 in both directions.</p>
+<div class="rich-content"><p>You are affected if clients, browsers, servers or intermediaries communicating with the registration service depend on TLS 1.0 or 1.1. The support-retirement dates were August 31, 2020 for sovereign clouds and October 30, 2020 for commercial clouds. Hybrid infrastructure and AD FS need TLS 1.2 in both directions.</p>
 <p>The reference identifies these clients as unable to support TLS 1.2:</p>
 <ul>
 <li>Android 4.3 and earlier.</li>

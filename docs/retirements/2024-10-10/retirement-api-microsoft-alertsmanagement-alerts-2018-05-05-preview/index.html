@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Monitor</span><span class="badge retired" data-deadline="2024-10-10"><span></span>Retired</span></div>
-  <h1>Retirement:  API “Microsoft.AlertsManagement alerts 2018-05-05-preview”</h1><p>Microsoft deprecated Microsoft.AlertsManagement alerts API version 2018-05-05-preview on 2024-10-10. The notice states that after that date, ARM rejects requests using this version with an “API version is not supported” error. Update affected requests and integrations to version 2019-03-01, the generally available replacement identified in the notice. This is an API-version retirement, not a documented shutdown of the alerts service. The linked resource references describe read-only resources; they do not independently establish retirement dates or migration requirements.</p>
+  <h1>Retirement:  API “Microsoft.AlertsManagement alerts 2018-05-05-preview”</h1><p>Microsoft deprecated Microsoft.AlertsManagement alerts API version 2018-05-05-preview on October 10, 2024. The notice states that after that date, ARM rejects requests using this version with an “API version is not supported” error. Update affected requests and integrations to version 2019-03-01, the generally available replacement identified in the notice. This is an API-version retirement, not a documented shutdown of the alerts service. The linked resource references describe read-only resources; they do not independently establish retirement dates or migration requirements.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-10-10"><strong>Retired</strong><span>Retirement date: <time datetime="2024-10-10">10 Oct 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 months, 22 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">10 Oct 2024</p>
-<div class="rich-content"><p>The deprecation date for Microsoft.AlertsManagement alerts API version 2018-05-05-preview is <strong>2024-10-10</strong>. The notice states that after that date, ARM returns an “API version is not supported” error for requests using this version.</p>
+<div class="rich-content"><p>The deprecation date for Microsoft.AlertsManagement alerts API version 2018-05-05-preview is <strong>October 10, 2024</strong>. The notice states that after that date, ARM returns an “API version is not supported” error for requests using this version.</p>
 <p>The linked resource references provide no separate retirement dates and do not contradict the notice. Their API version identifiers and page update dates are not retirement milestones.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft deprecated Microsoft.AlertsManagement alerts API version 2018-05-05-preview on 2024-10-10. The notice identifies version 2019-03-01 as the generally available replacement.</p>
+<div class="rich-content"><p>Microsoft deprecated Microsoft.AlertsManagement alerts API version 2018-05-05-preview on October 10, 2024. The notice identifies version 2019-03-01 as the generally available replacement.</p>
 <p>The notice does not announce retirement of the alerts service itself or specify regional exceptions. It provides no maintenance or security-update commitments.</p>
 <p>The linked references document both API versions as read-only resource types: you cannot deploy them through Bicep, ARM templates or Terraform AzAPI. They describe retrieval of existing instances through resource provider operations, but do not establish continued availability of the retired API version.</p>
 </div>
@@ -1941,7 +1941,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your requests or integrations use Microsoft.AlertsManagement alerts API version 2018-05-05-preview. After 2024-10-10, ARM rejects those requests with an “API version is not supported” error.</p>
+<div class="rich-content"><p>You are affected if your requests or integrations use Microsoft.AlertsManagement alerts API version 2018-05-05-preview. After October 10, 2024, ARM rejects those requests with an “API version is not supported” error.</p>
 <p>The notice does not establish that existing alerts stop running or that version 2019-03-01 is retiring. It does not describe console access, data retention, deletion or cost effects. Your resource usage has not been assessed.</p>
 <p>Separately, the resource references document a deployment limitation for both versions: Microsoft.AlertsManagement/alerts is read-only and cannot be deployed through Bicep, ARM templates or Terraform AzAPI. This limitation is not presented as a consequence of retirement.</p>
 </div>

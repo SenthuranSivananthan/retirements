@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Automation</span><span class="badge retired" data-deadline="2025-02-01"><span></span>Retired</span></div>
-  <h1>Retirement: Azure Automation will discontinue execution of PowerShell runbooks using AzureRM modules from February 1, 2025</h1><p>From 2025-02-01, Azure Automation discontinues execution of all runbooks that use AzureRM modules. Update affected runbooks to Az PowerShell and remove AzureRM modules from your Automation account. AzureRM&#39;s separate deprecation on 2024-02-29 ended module maintenance and support; it is not a conflicting execution deadline. Migration requires compatibility review and validation, not just cmdlet renaming.</p>
+  <h1>Retirement: Azure Automation will discontinue execution of PowerShell runbooks using AzureRM modules from February 1, 2025</h1><p>From February 1, 2025, Azure Automation discontinues execution of all runbooks that use AzureRM modules. Update affected runbooks to Az PowerShell and remove AzureRM modules from your Automation account. AzureRM&#39;s separate deprecation on February 29, 2024 ended module maintenance and support; it is not a conflicting execution deadline. Migration requires compatibility review and validation, not just cmdlet renaming.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-02-01"><strong>Retired</strong><span>Retirement date: <time datetime="2025-02-01">1 Feb 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 8 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Feb 2025</p>
-<div class="rich-content"><p>Azure Automation's execution cutoff for all runbooks using AzureRM modules is <strong>2025-02-01</strong>. Leaving affected runbooks unchanged prevents their execution from that date.</p>
-<p>The AzureRM PowerShell module was separately deprecated on <strong>2024-02-29</strong>, ending its maintenance and support. These are different milestones, not conflicting dates. General guidance that AzureRM may still function does not override Azure Automation's execution cutoff.</p>
+<div class="rich-content"><p>Azure Automation's execution cutoff for all runbooks using AzureRM modules is <strong>February 1, 2025</strong>. Leaving affected runbooks unchanged prevents their execution from that date.</p>
+<p>The AzureRM PowerShell module was separately deprecated on <strong>February 29, 2024</strong>, ending its maintenance and support. These are different milestones, not conflicting dates. General guidance that AzureRM may still function does not override Azure Automation's execution cutoff.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>From <strong>2025-02-01</strong>, Azure Automation discontinues execution of all runbooks using AzureRM modules. Az PowerShell is the documented replacement. The notice gives no regional exceptions or explicit commitments about execution availability before the cutoff.</p>
-<p>AzureRM itself is no longer maintained or supported following its separate 2024-02-29 deprecation. Microsoft recommends Az for continued support and updates. AzureRM scripts do not automatically work with Az: module names, cmdlets, parameters and return values can change.</p>
+<div class="rich-content"><p>From <strong>February 1, 2025</strong>, Azure Automation discontinues execution of all runbooks using AzureRM modules. Az PowerShell is the documented replacement. The notice gives no regional exceptions or explicit commitments about execution availability before the cutoff.</p>
+<p>AzureRM itself is no longer maintained or supported following its separate February 29, 2024 deprecation. Microsoft recommends Az for continued support and updates. AzureRM scripts do not automatically work with Az: module names, cmdlets, parameters and return values can change.</p>
 <p>Support for <code>Enable-AzureRmAlias</code>, Az's compatibility-alias feature, is not deprecated with AzureRM.</p>
 </div>
       <div class="notice"></div>
@@ -1943,7 +1943,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your Azure Automation runbooks are affected if they use AzureRM modules: Azure Automation discontinues their execution from <strong>2025-02-01</strong>. This changes workload execution, not just support.</p>
+<div class="rich-content"><p>Your Azure Automation runbooks are affected if they use AzureRM modules: Azure Automation discontinues their execution from <strong>February 1, 2025</strong>. This changes workload execution, not just support.</p>
 <p>Installation checks and script searches can help identify AzureRM usage, but they do not establish tenant-wide coverage or prove that migrated runbooks work. Moving to Az can require changes beyond cmdlet names; compatibility aliases do not address every breaking change.</p>
 <p>Outside this Automation execution restriction, the module guidance says AzureRM may still function without maintenance or support. That statement is not an exception for affected Automation runbooks. The supplied content does not describe effects on other runbooks, data retention or costs.</p>
 </div>

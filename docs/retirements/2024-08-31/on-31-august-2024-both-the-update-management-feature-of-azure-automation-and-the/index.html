@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2024-08-31"><span></span>Retired</span></div>
-  <h1>On 31 August 2024, both the update management feature of Azure Automation and the Log Analytics agent it uses will be retired</h1><p>Azure Automation Update Management and the Log Analytics agent it uses had a retirement date of 2024-08-31. The Q&amp;A describes this as Update Management end of support and agent deprecation; neither source establishes that running virtual machines shut down. Microsoft directed affected customers to migrate assessment and patching to Azure Update Manager. Check OS compatibility, Azure Arc prerequisites and pricing exemptions before migrating, and account for assessment and Hybrid Worker removal when cleaning up the old solution.</p>
+  <h1>On 31 August 2024, both the update management feature of Azure Automation and the Log Analytics agent it uses will be retired</h1><p>Azure Automation Update Management and the Log Analytics agent it uses had a retirement date of August 31, 2024. The Q&amp;A describes this as Update Management end of support and agent deprecation; neither source establishes that running virtual machines shut down. Microsoft directed affected customers to migrate assessment and patching to Azure Update Manager. Check OS compatibility, Azure Arc prerequisites and pricing exemptions before migrating, and account for assessment and Hybrid Worker removal when cleaning up the old solution.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-08-31">31 Aug 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 8 months, 8 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2024</p>
-<div class="rich-content"><p>Azure Automation Update Management and the Log Analytics agent it uses had a retirement date of <strong>2024-08-31</strong> in the announcement. The supplied Q&amp;A describes the same date as Update Management end of support and Log Analytics agent deprecation.</p>
+<div class="rich-content"><p>Azure Automation Update Management and the Log Analytics agent it uses had a retirement date of <strong>August 31, 2024</strong> in the announcement. The supplied Q&amp;A describes the same date as Update Management end of support and Log Analytics agent deprecation.</p>
 <p>The announcement directs you to migrate by that date to avoid service disruptions; the Q&amp;A says before that date. These sources do not establish the exact post-retirement behavior or confirm workload shutdown.</p>
-<p>The FAQ's 2023-09-01 date is a pricing-eligibility cutoff, not a retirement milestone. Documentation update dates do not change the retirement deadline.</p>
+<p>The FAQ's September 1, 2023 date is a pricing-eligibility cutoff, not a retirement milestone. Documentation update dates do not change the retirement deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Automation Update Management reached its documented retirement/end-of-support milestone on <strong>2024-08-31</strong>, alongside retirement/deprecation of the Log Analytics agent it uses. Microsoft identifies Azure Update Manager as the replacement for virtual-machine assessment and patching.</p>
+<div class="rich-content"><p>Azure Automation Update Management reached its documented retirement/end-of-support milestone on <strong>August 31, 2024</strong>, alongside retirement/deprecation of the Log Analytics agent it uses. Microsoft identifies Azure Update Manager as the replacement for virtual-machine assessment and patching.</p>
 <p>This notice concerns the Update Management solution, not Azure Automation as a whole or every virtual machine. Azure Update Manager manages Windows and Linux servers on Azure VMs and Azure Arc-connected machines without depending on Azure Automation or Log Analytics.</p>
 <p>The supplied content does not establish pre-retirement maintenance or security-update commitments, regional exceptions or exactly which old-service functions remained available afterward.</p>
 </div>
@@ -1934,8 +1934,8 @@
 <div class="rich-content"><ol>
 <li>Identify whether you use Azure Automation Update Management and its Log Analytics agent. No complete inventory method is supplied. The Q&amp;A moderator says customers without Automation accounts can ignore this Update Management notification.</li>
 <li>Check replacement prerequisites and capability gaps. Non-Azure machines require Azure Arc. Azure Update Manager does not support Windows 10/11 patching; the FAQ recommends Microsoft Intune for those devices. Azure Lighthouse integration is unsupported. Check the OS support matrix; the Q&amp;A leaves CIS-hardened Windows 2019/2022 support unresolved and does not validate the proposed workaround.</li>
-<li>Migrate assessment and patching to Azure Update Manager using the referenced migration guide. Microsoft's documented target was before/by <strong>2024-08-31</strong>. The supplied content does not reproduce the procedure or establish whether its script is required.</li>
-<li>Review pricing eligibility before onboarding Arc-enabled servers. The FAQ identifies exemptions, including eligible existing Automation Update Management servers that used the service for free as of 2023-09-01. Newly onboarded machines in the same subscription are not automatically exempt.</li>
+<li>Migrate assessment and patching to Azure Update Manager using the referenced migration guide. Microsoft's documented target was before/by <strong>August 31, 2024</strong>. The supplied content does not reproduce the procedure or establish whether its script is required.</li>
+<li>Review pricing eligibility before onboarding Arc-enabled servers. The FAQ identifies exemptions, including eligible existing Automation Update Management servers that used the service for free as of September 1, 2023. Newly onboarded machines in the same subscription are not automatically exempt.</li>
 <li>Account for cleanup effects before deleting the old <code>updates</code> solution from the Log Analytics workspace: this removes VMs from the old solution, stops its assessments and deletes associated system Hybrid Workers, including when automatic inclusion of available and future machines was enabled.</li>
 </ol>
 <p>Detailed migration validation, export, backup and cutover instructions are not supplied.</p>
@@ -1945,7 +1945,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you rely on Azure Automation Update Management; having virtual machines alone does not establish that you use it. The Q&amp;A says customers without Automation accounts can ignore this notification. Your resources have not been inspected.</p>
-<p>Without migration, you remain on an offering whose support ended on <strong>2024-08-31</strong>. The announcement warns of service disruptions, but the supplied content does not confirm VM shutdown or specify post-retirement API, portal, integration, deployment-tooling or data-access behavior. Retirement-related retention and deletion rules are not documented. Separately, deleting the old <code>updates</code> solution stops assessments and deletes associated system Hybrid Workers.</p>
+<p>Without migration, you remain on an offering whose support ended on <strong>August 31, 2024</strong>. The announcement warns of service disruptions, but the supplied content does not confirm VM shutdown or specify post-retirement API, portal, integration, deployment-tooling or data-access behavior. Retirement-related retention and deletion rules are not documented. Separately, deleting the old <code>updates</code> solution stops assessments and deletes associated system Hybrid Workers.</p>
 <p>The announcement lists Azure Update Manager as free for Azure VMs and Azure Stack HCI VMs, with a charge of $5 per Azure Arc-enabled server per month. The FAQ adds scope and exemptions: Azure VMs and qualifying Azure Arc-enabled Azure Local VMs created through an Azure Arc resource bridge have no additional Update Manager charge. Other Arc-enabled servers generally incur daily-prorated charges when connected and managed, unless exempt.</p>
 <p>Documented exemptions include eligible existing Automation Update Management servers, Arc-enabled ESU machines, qualifying Windows Server licensing and subscriptions with Defender for Servers Plan 2. Defender use through a security connector does not qualify for that Plan 2 exemption. The supplied content cannot establish your eligibility or costs.</p>
 </div>

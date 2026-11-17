@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Stream Analytics</span><span class="badge retired" data-deadline="2024-09-30"><span></span>Retired</span></div>
-  <h1>.Net Standard user-defined functions for Azure Stream Analytics will be retired on 30 September 2024.</h1><p>Azure Stream Analytics retired public-preview support for .NET Standard user-defined functions on 2024-09-30. The notice states that these functions cannot be used after that date. Replace affected functions with JavaScript UDFs where their stateless, compute-only, scalar-function limits meet your needs. The supplied JavaScript documentation describes replacement capabilities, not a separate retirement.</p>
+  <h1>.Net Standard user-defined functions for Azure Stream Analytics will be retired on 30 September 2024.</h1><p>Azure Stream Analytics retired public-preview support for .NET Standard user-defined functions on September 30, 2024. The notice states that these functions cannot be used after that date. Replace affected functions with JavaScript UDFs where their stateless, compute-only, scalar-function limits meet your needs. The supplied JavaScript documentation describes replacement capabilities, not a separate retirement.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2024-09-30">30 Sep 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 5 months, 11 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2024</p>
-<div class="rich-content"><p>The retirement date was <strong>2024-09-30</strong>. The notice states that Azure Stream Analytics .NET Standard user-defined functions cannot be used after that date; it does not describe the resulting job-level failure behavior.</p>
-<p>Microsoft committed to technical support and recommendations until retirement, with no new features or updates. The JavaScript documentation's 2026-08-27 last-updated date is not a retirement milestone or an extension.</p>
+<div class="rich-content"><p>The retirement date was <strong>September 30, 2024</strong>. The notice states that Azure Stream Analytics .NET Standard user-defined functions cannot be used after that date; it does not describe the resulting job-level failure behavior.</p>
+<p>Microsoft committed to technical support and recommendations until retirement, with no new features or updates. The JavaScript documentation's August 27, 2026 last-updated date is not a retirement milestone or an extension.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Stream Analytics retired its public-preview support for <strong>.NET Standard user-defined functions</strong>, including functions written in C# and F#, on <strong>2024-09-30</strong>.</p>
+<div class="rich-content"><p>Azure Stream Analytics retired its public-preview support for <strong>.NET Standard user-defined functions</strong>, including functions written in C# and F#, on <strong>September 30, 2024</strong>.</p>
 <p>The notice directs you to JavaScript user-defined functions. It does not announce retirement of Azure Stream Analytics itself. The supplied JavaScript reference documents capabilities and limitations; it does not independently establish a retirement.</p>
 </div>
       <div class="notice"></div>
@@ -1941,7 +1941,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your jobs are affected if they use Azure Stream Analytics .NET Standard user-defined functions. The notice states that those functions cannot be used after <strong>2024-09-30</strong>, but does not specify whether or how affected jobs fail.</p>
+<div class="rich-content"><p>Your jobs are affected if they use Azure Stream Analytics .NET Standard user-defined functions. The notice states that those functions cannot be used after <strong>September 30, 2024</strong>, but does not specify whether or how affected jobs fail.</p>
 <p>When assessing JavaScript replacements, account for its scalar, stateless and connectivity limits. JavaScript integer precision is limited to 2^53, and dates support milliseconds. Compatibility level 1.0 lowercases fields from SELECT statements; 1.1 and later preserve specified casing. Runtime errors are fatal; the reference also states that error-level logging throws an exception and stops the job, while informational and warning messages allow computation to continue.</p>
 <p>The sources do not establish a broader Stream Analytics shutdown, data retention or deletion changes, or cost effects. They do not establish that your resources have been inspected.</p>
 </div>

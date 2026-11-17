@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2024-08-31"><span></span>Retired</span></div>
-  <h1>Cloud Services (classic) deployment model is retiring on 31 August 2024</h1><p>Azure Cloud Services (classic) retired on 2024-08-31 according to Microsoft&#39;s announcement, which required migration before that date. The notice stated that remaining classic deployments would be stopped and deallocated beginning 2024-09-01, with permanent data loss; the supplied material does not independently confirm that shutdown occurred. The announced destination, Cloud Services (extended support), has a separate lifecycle: deprecation on 2025-03-31 and full retirement on 2027-03-31. That later date is not an extension for classic deployments.</p>
+  <h1>Cloud Services (classic) deployment model is retiring on 31 August 2024</h1><p>Azure Cloud Services (classic) retired on August 31, 2024 according to Microsoft&#39;s announcement, which required migration before that date. The notice stated that remaining classic deployments would be stopped and deallocated beginning September 1, 2024, with permanent data loss; the supplied material does not independently confirm that shutdown occurred. The announced destination, Cloud Services (extended support), has a separate lifecycle: deprecation on March 31, 2025 and full retirement on March 31, 2027. That later date is not an extension for classic deployments.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-08-31">31 Aug 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 months, 21 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2024</p>
-<div class="rich-content"><p>Microsoft set <strong>2024-08-31</strong> as the retirement date for Azure Cloud Services (classic) and required migration <strong>before 2024-08-31</strong>.</p>
-<p>The announcement stated that remaining classic deployments would be stopped and deallocated beginning <strong>2024-09-01</strong>, with permanent data loss. A Microsoft Q&amp;A moderator also said services would stop working on September 1. This is a separate consequence milestone, not a conflicting retirement date. The supplied material does not independently confirm that shutdown occurred or establish current availability.</p>
-<p>Cloud Services (extended support) has separate milestones: deprecation on <strong>2025-03-31</strong> and full retirement on <strong>2027-03-31</strong>. These dates do not extend the classic deadline. No extension for classic is documented.</p>
+<div class="rich-content"><p>Microsoft set <strong>August 31, 2024</strong> as the retirement date for Azure Cloud Services (classic) and required migration <strong>before August 31, 2024</strong>.</p>
+<p>The announcement stated that remaining classic deployments would be stopped and deallocated beginning <strong>September 1, 2024</strong>, with permanent data loss. A Microsoft Q&amp;A moderator also said services would stop working on September 1. This is a separate consequence milestone, not a conflicting retirement date. The supplied material does not independently confirm that shutdown occurred or establish current availability.</p>
+<p>Cloud Services (extended support) has separate milestones: deprecation on <strong>March 31, 2025</strong> and full retirement on <strong>March 31, 2027</strong>. These dates do not extend the classic deadline. No extension for classic is documented.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft announced retirement of the <strong>Azure Cloud Services (classic) deployment model on 2024-08-31</strong>. The notice required affected services to move to <strong>Cloud Services (extended support) in Azure Resource Manager</strong> to continue operating.</p>
-<p>The announced destination offers deployment-template support, role-based access control and regional resiliency. However, the supplied product guidance separately states that extended support was deprecated on <strong>2025-03-31</strong> and will fully retire on <strong>2027-03-31</strong>. Moving from classic to extended support does not resolve that later retirement.</p>
+<div class="rich-content"><p>Microsoft announced retirement of the <strong>Azure Cloud Services (classic) deployment model on August 31, 2024</strong>. The notice required affected services to move to <strong>Cloud Services (extended support) in Azure Resource Manager</strong> to continue operating.</p>
+<p>The announced destination offers deployment-template support, role-based access control and regional resiliency. However, the supplied product guidance separately states that extended support was deprecated on <strong>March 31, 2025</strong> and will fully retire on <strong>March 31, 2027</strong>. Moving from classic to extended support does not resolve that later retirement.</p>
 <p>The sources do not document regional exceptions or classic maintenance and security-update commitments before retirement. They do not establish current classic availability.</p>
 </div>
       <div class="notice"></div>
@@ -1933,8 +1933,8 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your classic deployments. Community guidance recommends searching for <strong>Cloud Services (classic)</strong> in the Azure portal with all subscriptions selected. Cross-check Azure Advisor &gt; Workbooks &gt; Service Retirement with subscription, resource group and location filters set to all. These checks are not confirmed as exhaustive.</li>
-<li>Distinguish classic deployments from extended-support deployments. The classic announcement required migration to extended support before <strong>2024-08-31</strong>; it does not establish whether that migration remains available now.</li>
-<li>Account for extended support's separate <strong>2027-03-31</strong> retirement. Evaluate the alternatives listed in the product guidance: Virtual Machine Scale Sets, Azure Container Apps, App Service, Azure Kubernetes Service and Azure Service Fabric. Select according to your application requirements; the supplied page does not establish feature equivalence or provide migration procedures to these alternatives.</li>
+<li>Distinguish classic deployments from extended-support deployments. The classic announcement required migration to extended support before <strong>August 31, 2024</strong>; it does not establish whether that migration remains available now.</li>
+<li>Account for extended support's separate <strong>March 31, 2027</strong> retirement. Evaluate the alternatives listed in the product guidance: Virtual Machine Scale Sets, Azure Container Apps, App Service, Azure Kubernetes Service and Azure Service Fabric. Select according to your application requirements; the supplied page does not establish feature equivalence or provide migration procedures to these alternatives.</li>
 <li>As team-owned planning, record your destination, migration outcome and application-validation evidence. Use Microsoft Q&amp;A for questions, or create a technical support request if you have a support plan.</li>
 </ol>
 <h3>Documented classic-to-extended-support procedure</h3>
@@ -1946,8 +1946,8 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are in scope for the <strong>2024-08-31 classic retirement</strong> if you have services deployed using Cloud Services (classic). The announcement stated that remaining deployments would be stopped and deallocated beginning <strong>2024-09-01</strong>, with permanent data loss—not merely loss of deployment capability. The supplied sources do not independently verify execution or specify the affected data in detail.</p>
-<p>Cloud Services (extended support) is a different population with its own <strong>2027-03-31</strong> retirement. Its guidance does not describe post-retirement workload shutdown, API availability, data retention, deletion or costs.</p>
+<div class="rich-content"><p>You are in scope for the <strong>August 31, 2024 classic retirement</strong> if you have services deployed using Cloud Services (classic). The announcement stated that remaining deployments would be stopped and deallocated beginning <strong>September 1, 2024</strong>, with permanent data loss—not merely loss of deployment capability. The supplied sources do not independently verify execution or specify the affected data in detail.</p>
+<p>Cloud Services (extended support) is a different population with its own <strong>March 31, 2027</strong> retirement. Its guidance does not describe post-retirement workload shutdown, API availability, data retention, deletion or costs.</p>
 <h3>Separate migration effects</h3>
 <p>For the documented classic-to-extended-support migration:</p>
 <ul>

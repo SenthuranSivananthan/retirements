@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span></div>
-  <h1>Retirement: Kubenet Networking for Azure Kubernetes Service to Be Retired on March 31, 2028</h1><p>Microsoft will retire kubenet networking for Azure Kubernetes Service (AKS) on 2028-03-31. Migrate affected clusters to Azure CNI Overlay before that date to avoid the service disruptions warned of in the notice. Kubenet workloads will no longer be supported from that date; the notice does not specify a workload shutdown date. Overlay migration is irreversible, has eligibility and routing prerequisites, and reimages node pools with potential networking disruption. The supplied upgrade reference explains migration options but does not independently establish a retirement deadline.</p>
+  <h1>Retirement: Kubenet Networking for Azure Kubernetes Service to Be Retired on March 31, 2028</h1><p>Microsoft will retire kubenet networking for Azure Kubernetes Service (AKS) on March 31, 2028. Migrate affected clusters to Azure CNI Overlay before that date to avoid the service disruptions warned of in the notice. Kubenet workloads will no longer be supported from that date; the notice does not specify a workload shutdown date. Overlay migration is irreversible, has eligibility and routing prerequisites, and reimages node pools with potential networking disruption. The supplied upgrade reference explains migration options but does not independently establish a retirement deadline.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-03-31"><strong>500 days remaining</strong><span>Retirement date: <time datetime="2028-03-31">31 Mar 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 13 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2028</p>
-<div class="rich-content"><p>Microsoft will retire kubenet networking for AKS on <strong>2028-03-31</strong>. You must migrate before that date to avoid the service disruptions warned of in the notice. Workloads using kubenet will no longer be supported from that date; the notice does not specify a workload shutdown date.</p>
-<p>The supplied upgrade reference does not establish a separate retirement deadline or an extension. Its last-updated date, 2026-06-03, is not a migration deadline. No separate new-customer restriction date is supplied.</p>
+<div class="rich-content"><p>Microsoft will retire kubenet networking for AKS on <strong>March 31, 2028</strong>. You must migrate before that date to avoid the service disruptions warned of in the notice. Workloads using kubenet will no longer be supported from that date; the notice does not specify a workload shutdown date.</p>
+<p>The supplied upgrade reference does not establish a separate retirement deadline or an extension. Its last-updated date, June 3, 2026, is not a migration deadline. No separate new-customer restriction date is supplied.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring kubenet networking for Azure Kubernetes Service (AKS) on <strong>2028-03-31</strong>. The notice directs affected customers to Azure CNI Overlay, which retains an IP address overlay architecture and adds scalability capabilities.</p>
+<div class="rich-content"><p>Microsoft is retiring kubenet networking for Azure Kubernetes Service (AKS) on <strong>March 31, 2028</strong>. The notice directs affected customers to Azure CNI Overlay, which retains an IP address overlay architecture and adds scalability capabilities.</p>
 <p>The notice does not specify version or regional exceptions, or maintenance and security-update commitments before retirement. From the retirement date, kubenet workloads will no longer be supported; an automatic workload shutdown is not documented.</p>
 <p>The upgrade reference describes two separate changes:</p>
 <ul>
@@ -1941,7 +1941,7 @@
 <li>Prepare routing and identity. Kubenet migration requires a user-assigned managed identity and detachment of its associated route table; a system-assigned identity is unsupported for this operation. Any new overlay range must not overlap the node-pool virtual network address space or existing service CIDR.</li>
 <li>Review custom non-SNAT ranges because Overlay pod IPs are unreachable from outside cluster nodes. Delete an unintentionally retained <code>azure-ip-masq-agent-config</code> ConfigMap before updating, but do not remove an intentional custom configuration without review.</li>
 <li>Resolve the reference's pod CIDR ambiguity for your configuration. It says <code>--pod-cidr</code> is required for legacy CNI updates, but includes a Node Subnet example without it and says Kubenet retains its pod CIDR when omitted. Do not treat the parameter as universally required or optional.</li>
-<li>Follow the referenced Overlay upgrade procedure and complete migration before <strong>2028-03-31</strong>. Plan for irreversible addressing changes, simultaneous node-pool reimaging and potential networking disruption. Per-node-pool migration is unsupported.</li>
+<li>Follow the referenced Overlay upgrade procedure and complete migration before <strong>March 31, 2028</strong>. Plan for irreversible addressing changes, simultaneous node-pool reimaging and potential networking disruption. Per-node-pool migration is unsupported.</li>
 <li>As team-owned validation, check workload connectivity, routing and network policy behavior after migration. The supplied reference does not provide a post-update validation procedure or export/backup procedure.</li>
 </ol>
 <p><strong>Optional Cilium update:</strong> Perform it separately, after Overlay migration for kubenet clusters. Cilium excludes Windows node pools and requires Azure CLI 2.52.0 or later; <code>az --version</code> checks the CLI version. If node auto-provisioning is enabled, disable it before the update and re-enable it afterward. Review policy compatibility because Cilium replaces Azure Network Policy Manager or Calico.</p>
@@ -1950,7 +1950,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>The retirement affects AKS workloads using kubenet networking. From <strong>2028-03-31</strong>, those workloads will no longer be supported. The notice warns of service disruptions without migration, but does not explicitly say workloads will shut down.</p>
+<div class="rich-content"><p>The retirement affects AKS workloads using kubenet networking. From <strong>March 31, 2028</strong>, those workloads will no longer be supported. The notice warns of service disruptions without migration, but does not explicitly say workloads will shut down.</p>
 <p>Your migration impact depends on cluster configuration; the supplied content does not inspect your resources or quantify your exposure.</p>
 <ul>
 <li><strong>Availability:</strong> Overlay migration reimages node pools simultaneously and can disrupt networking. You cannot migrate individual node pools separately.</li>

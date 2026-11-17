@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Functions</span><span class="badge retired" data-deadline="2026-04-30"><span></span>Retired</span></div>
-  <h1>Retirement: Support for Node.js 20 ends on April 30, 2026 – upgrade your apps to Node.js 22</h1><p>Support for Node.js 20 in Azure Functions ended on 2026-04-30. Apps can continue running, but Microsoft no longer provides security updates, performance optimizations or customer support for Node.js 20. Upgrade affected apps to Node.js 22. The supplied language-update reference provides migration guidance but does not establish a different Node.js retirement date.</p>
+  <h1>Retirement: Support for Node.js 20 ends on April 30, 2026 – upgrade your apps to Node.js 22</h1><p>Support for Node.js 20 in Azure Functions ended on April 30, 2026. Apps can continue running, but Microsoft no longer provides security updates, performance optimizations or customer support for Node.js 20. Upgrade affected apps to Node.js 22. The supplied language-update reference provides migration guidance but does not establish a different Node.js retirement date.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-04-30"><strong>Retired</strong><span>Retirement date: <time datetime="2026-04-30">30 Apr 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 6 months</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,20 +1916,20 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Apr 2026</p>
-<div class="rich-content"><p>Support for Node.js 20 in Azure Functions ended on <strong>2026-04-30</strong>, the documented deadline to upgrade to Node.js 22. This is an end-of-support date, not an app shutdown date: hosted apps can continue running.</p>
-<p>The reference page's 2026-11-10 deadline applies to .NET in-process migration, not Node.js 20. It does not conflict with or extend this deadline.</p>
+<div class="rich-content"><p>Support for Node.js 20 in Azure Functions ended on <strong>April 30, 2026</strong>, the documented deadline to upgrade to Node.js 22. This is an end-of-support date, not an app shutdown date: hosted apps can continue running.</p>
+<p>The reference page's November 10, 2026 deadline applies to .NET in-process migration, not Node.js 20. It does not conflict with or extend this deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Functions ended support for Node.js 20 on <strong>2026-04-30</strong>, in alignment with the end of community support. The notice directs you to upgrade to Node.js 22.</p>
+<div class="rich-content"><p>Azure Functions ended support for Node.js 20 on <strong>April 30, 2026</strong>, in alignment with the end of community support. The notice directs you to upgrade to Node.js 22.</p>
 <p>Apps can continue running afterward, but Microsoft no longer provides security updates, performance optimizations or customer support for Node.js 20. The general language-support policy says retired-language apps can still be created and deployed; this does not restore support.</p>
 </div>
       <div class="notice"></div>
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Upgrade your Azure Functions apps using Node.js 20 to <strong>Node.js 22</strong>; the documented deadline was 2026-04-30.</p>
+<div class="rich-content"><p>Upgrade your Azure Functions apps using Node.js 20 to <strong>Node.js 22</strong>; the documented deadline was April 30, 2026.</p>
 <ol>
 <li>Identify each app's configured language version, operating system, hosting plan and Functions runtime. The FUNCTIONS_WORKER_RUNTIME setting identifies the language stack, not its version.</li>
 <li>Review dependencies, extension bundles, binding extensions, local tools and build/deployment settings for compatibility. Ensure the app uses Functions runtime 4.x; follow the applicable migration guidance for older runtimes. Rebuild and test locally.</li>
@@ -1944,7 +1944,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>This retirement affects Azure Functions apps using Node.js 20. The supplied content does not identify your resources or establish how many apps are affected.</p>
-<p>Without an upgrade, apps can continue running after 2026-04-30, but Microsoft no longer provides Node.js 20 security updates, performance optimizations or customer support. The notice identifies potential security vulnerabilities as a reason to upgrade. The general policy also says retired-language apps may face instance-allocation limits, potentially down to one instance; it does not establish that such a limit applies to your apps.</p>
+<p>Without an upgrade, apps can continue running after April 30, 2026, but Microsoft no longer provides Node.js 20 security updates, performance optimizations or customer support. The notice identifies potential security vulnerabilities as a reason to upgrade. The general policy also says retired-language apps may face instance-allocation limits, potentially down to one instance; it does not establish that such a limit applies to your apps.</p>
 <p>The update reference says changing the language version restarts the app, with typical unavailability of 30–60 seconds. In-flight requests terminate and new requests fail until restart succeeds. Dependencies and deployment settings may also need changes.</p>
 <p>The supplied content does not specify data deletion, retention changes or cost consequences for this retirement.</p>
 </div>

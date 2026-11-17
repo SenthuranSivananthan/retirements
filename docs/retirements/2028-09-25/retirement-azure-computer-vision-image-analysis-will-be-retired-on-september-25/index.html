@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Microsoft Foundry</span><span class="badge upcoming" data-deadline="2028-09-25"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure Computer Vision – Image Analysis will be retired on September 25, 2028</h1><p>Azure Vision / Computer Vision Image Analysis retires on 2028-09-25, after which service calls fail. The migration guidance covers Image Analysis REST API versions v3.2 and v4.0 across cloud APIs and connected and disconnected containers. Microsoft supports existing customers until retirement. The guidance separately calls for a transition plan by 2026-09-25. Assess dependencies, select alternatives for your use cases, test replacements and complete migration before retirement.</p>
+  <h1>Retirement: Azure Computer Vision – Image Analysis will be retired on September 25, 2028</h1><p>Azure Vision / Computer Vision Image Analysis retires on September 25, 2028, after which service calls fail. The migration guidance covers Image Analysis REST API versions v3.2 and v4.0 across cloud APIs and connected and disconnected containers. Microsoft supports existing customers until retirement. The guidance separately calls for a transition plan by September 25, 2026. Assess dependencies, select alternatives for your use cases, test replacements and complete migration before retirement.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-09-25"><strong>678 days remaining</strong><span>Retirement date: <time datetime="2028-09-25">25 Sep 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 2 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">25 Sep 2028</p>
-<div class="rich-content"><p>Complete your Image Analysis migration by <strong>2028-09-25</strong>. Microsoft supports existing customers until retirement; calls to the service fail after that date.</p>
-<p>The migration guidance separately directs you to make a transition plan by <strong>2026-09-25</strong>. This is a planning milestone, not an earlier retirement date.</p>
+<div class="rich-content"><p>Complete your Image Analysis migration by <strong>September 25, 2028</strong>. Microsoft supports existing customers until retirement; calls to the service fail after that date.</p>
+<p>The migration guidance separately directs you to make a transition plan by <strong>September 25, 2026</strong>. This is a planning milestone, not an earlier retirement date.</p>
 <p>The announcement and migration guidance agree on retirement. The announcement does not describe post-retirement behavior, but the migration guidance explicitly documents failed service calls. No separate new-customer restriction date is supplied.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Vision in Foundry Tools / Azure Computer Vision Image Analysis retires on <strong>2028-09-25</strong>. The migration guidance identifies Image Analysis REST API versions <strong>v3.2 and v4.0</strong>, covering cloud APIs, connected containers and disconnected containers.</p>
+<div class="rich-content"><p>Azure Vision in Foundry Tools / Azure Computer Vision Image Analysis retires on <strong>September 25, 2028</strong>. The migration guidance identifies Image Analysis REST API versions <strong>v3.2 and v4.0</strong>, covering cloud APIs, connected containers and disconnected containers.</p>
 <p>Microsoft provides full support for existing customers until retirement. After that date, service calls fail. The supplied sources do not specify separate maintenance or security-update commitments, regional exceptions or retirement of other Azure Vision APIs.</p>
 </div>
       <div class="notice"></div>
@@ -1935,7 +1935,7 @@
 <p>Assess your Image Analysis usage, dependencies, business scenarios and technical requirements. The guidance supplies no discovery commands or automated inventory method.</p>
 </li>
 <li>
-<p>Make a transition plan by <strong>2026-09-25</strong> and select alternatives based on capabilities, integration, cost and support:</p>
+<p>Make a transition plan by <strong>September 25, 2026</strong> and select alternatives based on capabilities, integration, cost and support:</p>
 <ul>
 <li><strong>OCR and Read:</strong> Azure Document Intelligence.</li>
 <li><strong>Face scenarios:</strong> Face API. The supplied Face overview separately says emotion and gender inference have retired and access to certain attributes is limited; it does not announce retirement of the entire Face service. Face access has eligibility requirements.</li>
@@ -1947,11 +1947,11 @@
 <p>Plan model migration and test the replacement in staging against your requirements. The sources do not guarantee feature parity across alternatives.</p>
 </li>
 <li>
-<p>Update production workflows, retrain stakeholders and complete migration by <strong>2028-09-25</strong>.</p>
+<p>Update production workflows, retrain stakeholders and complete migration by <strong>September 25, 2028</strong>.</p>
 </li>
 </ol>
 <h3>Alternative-specific constraints</h3>
-<p>For Document Intelligence, Microsoft directs new development to v4.0 API (2024-11-30). Its v3.0 API (2022-08-31) separately reaches end of support on <strong>2029-03-30</strong>; that is not an Image Analysis deadline or a documented workload shutdown date.</p>
+<p>For Document Intelligence, Microsoft directs new development to v4.0 API (2024-11-30). Its v3.0 API (August 31, 2022) separately reaches end of support on <strong>March 30, 2029</strong>; that is not an Image Analysis deadline or a documented workload shutdown date.</p>
 <p>The retirement announcement describes Content Understanding as preview, and the migration guidance labels its cited image solutions material preview. The supplied Content Understanding overview separately recommends API version 2025-11-01 (GA) for production and 2026-06-01-preview for evaluation. Do not treat every capability as production-ready. Using Content Understanding requires a Foundry Azure Resource and your own supported model deployments where applicable.</p>
 <p>The supplied sources do not provide detailed Image Analysis export, backup, cutover or cleanup procedures.</p>
 </div>
@@ -1960,14 +1960,14 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are in scope if your workflows depend on Image Analysis REST API <strong>v3.2 or v4.0</strong>, including cloud APIs and connected or disconnected containers. The supplied guidance recommends assessing usage and dependencies but does not provide an automated identification method. Your resources have not been inspected.</p>
-<p>Without migration, service calls fail after <strong>2028-09-25</strong>, affecting workflows that depend on those calls. Microsoft supports existing customers until retirement.</p>
+<p>Without migration, service calls fail after <strong>September 25, 2028</strong>, affecting workflows that depend on those calls. Microsoft supports existing customers until retirement.</p>
 <p>The sources do not establish retirement of other Azure Vision APIs or document regional exceptions. They also do not specify separate console or deployment-tooling changes, data retention or deletion behavior, or migration costs. Replacement suitability depends on your required capabilities and each alternative's access requirements and limits.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>
     </section>
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
 <div class="rich-content"><p>Tracking guidance is not available for this retirement.</p>
-<p>For <strong>team-owned tracking</strong>, use the migration page's preparation checklist to record dependency assessments, requirements, alternative selection, model migration plans, staging test results, production workflow updates and stakeholder retraining. Track the planning milestone of <strong>2026-09-25</strong> separately from migration completion by <strong>2028-09-25</strong>.</p>
+<p>For <strong>team-owned tracking</strong>, use the migration page's preparation checklist to record dependency assessments, requirements, alternative selection, model migration plans, staging test results, production workflow updates and stakeholder retraining. Track the planning milestone of <strong>September 25, 2026</strong> separately from migration completion by <strong>September 25, 2028</strong>.</p>
 <p>These are local planning records, not an automated inventory or service-wide completion check. The migration page offers Ask Learn for topic clarification but does not document a migration-specific escalation route.</p>
 </div>
     </section>

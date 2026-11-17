@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Cosmos DB · Azure Synapse Analytics</span><span class="badge upcoming" data-deadline="2029-03-31"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure Synapse Link for Azure Cosmos DB NoSQL</h1><p>Azure Synapse Link for Azure Cosmos DB NoSQL reaches end of life on 2029-03-31. New NoSQL accounts cannot enable it from 2026-03-31; Microsoft states that existing customers remain fully supported until end of life. Microsoft recommends migrating to Cosmos DB mirroring in Microsoft Fabric. The documented migration path excludes Azure Government and Azure China. Preserve analytical-only history before disabling the analytical store, or that history becomes inaccessible. The notice does not specify shutdown timing or post-retirement data retention.</p>
+  <h1>Retirement: Azure Synapse Link for Azure Cosmos DB NoSQL</h1><p>Azure Synapse Link for Azure Cosmos DB NoSQL reaches end of life on March 31, 2029. New NoSQL accounts cannot enable it from March 31, 2026; Microsoft states that existing customers remain fully supported until end of life. Microsoft recommends migrating to Cosmos DB mirroring in Microsoft Fabric. The documented migration path excludes Azure Government and Azure China. Preserve analytical-only history before disabling the analytical store, or that history becomes inaccessible. The notice does not specify shutdown timing or post-retirement data retention.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2029-03-31"><strong>865 days remaining</strong><span>Retirement date: <time datetime="2029-03-31">31 Mar 2029</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 9 months, 21 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1918,15 +1918,15 @@
       <p class="deadline-date">31 Mar 2029</p>
 <div class="rich-content"><p>Azure Synapse Link for Azure Cosmos DB NoSQL has two distinct milestones:</p>
 <ul>
-<li><strong>2026-03-31:</strong> New NoSQL accounts can no longer enable Azure Synapse Link.</li>
-<li><strong>2029-03-31:</strong> Azure Synapse Link reaches end of life. Microsoft states that existing customers remain fully supported until this date.</li>
+<li><strong>March 31, 2026:</strong> New NoSQL accounts can no longer enable Azure Synapse Link.</li>
+<li><strong>March 31, 2029:</strong> Azure Synapse Link reaches end of life. Microsoft states that existing customers remain fully supported until this date.</li>
 </ul>
-<p>The retirement notice does not specify workload shutdown timing or data-access consequences after end of life. The migration guide provides no separate deadline; its 2026-03-18 last-updated date is not a retirement milestone.</p>
+<p>The retirement notice does not specify workload shutdown timing or data-access consequences after end of life. The migration guide provides no separate deadline; its March 18, 2026 last-updated date is not a retirement milestone.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Synapse Link for Azure Cosmos DB NoSQL is retiring on 2029-03-31. New NoSQL accounts cannot enable it from 2026-03-31; existing customers remain fully supported until end of life.</p>
+<div class="rich-content"><p>Azure Synapse Link for Azure Cosmos DB NoSQL is retiring on March 31, 2029. New NoSQL accounts cannot enable it from March 31, 2026; existing customers remain fully supported until end of life.</p>
 <p>Microsoft recommends Cosmos DB mirroring in Microsoft Fabric, which stores replicated data as Delta tables in OneLake. The documented migration path supports NoSQL accounts but excludes Azure Government and Azure China.</p>
 <p>MongoDB, Gremlin, Table and Cassandra have no supported mirroring migration path in the supplied guide. The guide directs customers using unsupported APIs or excluded account types to continue using Synapse Link until mirroring support is announced. This does not establish a retirement deadline for those other APIs or an extension for excluded NoSQL accounts.</p>
 </div>
@@ -1934,7 +1934,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Begin migrating supported NoSQL analytics workloads before end of life on 2029-03-31, as Microsoft recommends.</p>
+<div class="rich-content"><p>Begin migrating supported NoSQL analytics workloads before end of life on March 31, 2029, as Microsoft recommends.</p>
 <ol>
 <li>Confirm migration eligibility: a supported NoSQL account with Synapse Link enabled, Fabric capacity and workspace permissions to create and manage mirrored databases. The documented path excludes Azure Government and Azure China.</li>
 <li>Inventory enabled containers using the migration guide's discovery script and its <code>-ListEnabled</code> or <code>--list-enabled</code> preview flag. Check transactional and analytical TTL separately, and inventory downstream queries, notebooks, reports, pipelines and custom schema mappings.</li>
@@ -1949,7 +1949,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>The retirement notice covers Azure Synapse Link for Azure Cosmos DB NoSQL: new accounts cannot enable it from 2026-03-31, and existing customers remain fully supported until end of life on 2029-03-31. It does not establish retirement details for other Cosmos DB APIs.</p>
+<div class="rich-content"><p>The retirement notice covers Azure Synapse Link for Azure Cosmos DB NoSQL: new accounts cannot enable it from March 31, 2026, and existing customers remain fully supported until end of life on March 31, 2029. It does not establish retirement details for other Cosmos DB APIs.</p>
 <p>Your migration scope depends on containers with analytical storage enabled, their transactional and analytical TTL settings, and downstream dependencies. The discovery script lists enabled containers in the account you run it against; it does not inspect your entire environment or determine historical-preservation needs by itself.</p>
 <p>Mirroring replicates transactional-store data, not records already expired there. Preserve any required analytical-only history before disabling the analytical store, or that history becomes inaccessible. Mirrored tables are read-only; preserved history remains separate and is combined through a view. Queries, notebooks, reports and pipelines need redirection and validation.</p>
 <p>Microsoft states that replication consumes no Request Units and does not affect transactional performance. Free mirrored storage depends on Fabric capacity; the notice gives 64 TB for F64 as an example. This does not establish that migration or overall Fabric usage is free.</p>

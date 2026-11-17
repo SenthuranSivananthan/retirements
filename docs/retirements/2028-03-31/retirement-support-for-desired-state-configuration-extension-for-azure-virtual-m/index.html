@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Automation</span><span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span></div>
-  <h1>Retirement: Support for Desired State Configuration Extension for Azure Virtual Machines to Be Retired on March 31, 2028</h1><p>Support for Desired State Configuration Extension for Azure Virtual Machines ends on 2028-03-31. Microsoft states that you can continue using it without disruption until that date and directs you to Azure Machine Configuration. Migration requires repackaging and testing configurations, updating deployment templates, and assessing compatibility gaps, including secrets management. The supplied sources do not establish that virtual machines or workloads will shut down.</p>
+  <h1>Retirement: Support for Desired State Configuration Extension for Azure Virtual Machines to Be Retired on March 31, 2028</h1><p>Support for Desired State Configuration Extension for Azure Virtual Machines ends on March 31, 2028. Microsoft states that you can continue using it without disruption until that date and directs you to Azure Machine Configuration. Migration requires repackaging and testing configurations, updating deployment templates, and assessing compatibility gaps, including secrets management. The supplied sources do not establish that virtual machines or workloads will shut down.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-03-31"><strong>500 days remaining</strong><span>Retirement date: <time datetime="2028-03-31">31 Mar 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 5 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2028</p>
-<div class="rich-content"><p>Transition to Azure Machine Configuration by <strong>2028-03-31</strong>. Microsoft's retirement notice states that you can continue using Desired State Configuration Extension for Azure Virtual Machines without disruption until that date; afterward, the extension will no longer be supported.</p>
+<div class="rich-content"><p>Transition to Azure Machine Configuration by <strong>March 31, 2028</strong>. Microsoft's retirement notice states that you can continue using Desired State Configuration Extension for Azure Virtual Machines without disruption until that date; afterward, the extension will no longer be supported.</p>
 <p>The migration guide supplies no separate deadline and does not conflict with the notice. Neither source establishes a virtual-machine or workload shutdown date.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring support for Desired State Configuration Extension for Azure Virtual Machines on <strong>2028-03-31</strong> and directs you to Azure Machine Configuration. The supplied sources identify no extension-version or regional exceptions and make no specific security-update commitments.</p>
+<div class="rich-content"><p>Microsoft is retiring support for Desired State Configuration Extension for Azure Virtual Machines on <strong>March 31, 2028</strong> and directs you to Azure Machine Configuration. The supplied sources identify no extension-version or regional exceptions and make no specific security-update commitments.</p>
 <p>The migration guide describes a move from DSC version 1 with Windows PowerShell 5.1 to DSC version 2 with PowerShell 7.2. Machine Configuration supports native Azure Resource Manager assignments without an Automation Account, Azure Policy assignments at scale, multiple configurations per machine, remediation timing controls, and Azure Resource Graph reporting. Both Linux and Windows can consume PowerShell-based DSC resources.</p>
 </div>
       <div class="notice"></div>
@@ -1933,7 +1933,7 @@
 <li>Identify affected VMs in the Azure portal: select each VM, then open <strong>Settings &gt; Extensions + Applications</strong> and check for Desired State Configuration Extension. Alternatively, use the migration guide's Azure Resource Graph query, which covers Windows DSC extensions attached to Azure VMs.</li>
 <li>Assess compatibility before migrating. Test existing resources against PowerShell 7.2. Machine Configuration has not implemented secrets management described by the guide, so assess dependencies on secrets supplied through extension privateSettings. Account for reboot management through Azure Resource Manager and the absence of execution-order orchestration between configurations.</li>
 <li>Download and expand the existing DSC extension ZIP. Review and adapt the configuration, using the existing MOF as a basis. Make custom PowerShell modules available in <code>$env:PSModulePath</code> before packaging. Recreate, test and publish the package with Machine Configuration PowerShell cmdlets, then republish it to Azure Storage; the existing ZIP is incompatible.</li>
-<li>Update deployment templates to replace the DSC extension with the Machine Configuration extension and add an assignment referencing the new package and its hash. Redeploy tested content and use Machine Configuration for future deployments by <strong>2028-03-31</strong>. Avoid managing the same configuration through both platforms because they do not detect conflicts.</li>
+<li>Update deployment templates to replace the DSC extension with the Machine Configuration extension and add an assignment referencing the new package and its hash. Redeploy tested content and use Machine Configuration for future deployments by <strong>March 31, 2028</strong>. Avoid managing the same configuration through both platforms because they do not detect conflicts.</li>
 <li>Review post-application reporting and drift results. For configurations assigned through Local Configuration Manager (LCM), Microsoft recommends removing the DSC extension and resetting LCM. The guide references <code>Remove-DscConfigurationDocument</code> for configuration removal. Removal stops management but does not undo applied settings.</li>
 </ol>
 <p>Optionally split complex configurations into smaller packages, but keep sequentially dependent steps together. Adding the custom-resource Reasons property is optional.</p>
@@ -1943,7 +1943,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>The retirement affects Azure VMs using Desired State Configuration Extension and deployment templates that deploy it. Check assigned VM extensions to establish your scope; the supplied information does not inspect your environment. The documented inventory query covers Windows DSC extensions, not all possible configurations.</p>
-<p>Microsoft states that use can continue without disruption until <strong>2028-03-31</strong>. Afterward, the extension is unsupported. Although the notice urges migration to avoid service disruptions, it does not specify whether or when existing configurations stop operating or workloads are interrupted.</p>
+<p>Microsoft states that use can continue without disruption until <strong>March 31, 2028</strong>. Afterward, the extension is unsupported. Although the notice urges migration to avoid service disruptions, it does not specify whether or when existing configurations stop operating or workloads are interrupted.</p>
 <p>Migration changes these behaviors:</p>
 <ul>
 <li><strong>Compatibility:</strong> Existing ZIP packages need repackaging, and resources need testing across the PowerShell version change. The guide documents no implemented equivalent for secrets passed through extension privateSettings.</li>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge retired" data-deadline="2025-01-10"><span></span>Retired</span></div>
-  <h1>Retirement: GPU image (Preview) in AKS</h1><p>AKS GPU VHD Image (preview) retired on 2025-01-10: support ended and new node-pool creation using the image stopped. Image removal starting 2025-07-17 causes scaling failures for existing nodes using the image. Migrate affected workloads to supported GPU-enabled node pools. These milestones do not establish a workload shutdown date or retirement of all AKS GPU-enabled node pools.</p>
+  <h1>Retirement: GPU image (Preview) in AKS</h1><p>AKS GPU VHD Image (preview) retired on January 10, 2025: support ended and new node-pool creation using the image stopped. Image removal starting July 17, 2025 causes scaling failures for existing nodes using the image. Migrate affected workloads to supported GPU-enabled node pools. These milestones do not establish a workload shutdown date or retirement of all AKS GPU-enabled node pools.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-01-10"><strong>Retired</strong><span>Retirement date: <time datetime="2025-01-10">10 Jan 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: -2 months, 4 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">10 Jan 2025</p>
-<div class="rich-content"><p>AKS GPU VHD Image (preview) retired on <strong>2025-01-10</strong>. Support ended and creation of new node pools using the image stopped.</p>
-<p>A separate image-removal phase starting <strong>2025-07-17</strong> causes scaling operations to fail for existing nodes using the image. This was not a support extension. No workload shutdown date is documented.</p>
-<p>The title history previously listed 2025-01-01, but that date was replaced with 2025-01-10 on 2024-09-10. The current title, announcement body and subsequent reminder consistently specify 2025-01-10.</p>
-<p>Separately, AKS stopped supporting the GPU driver-installation bypass tag on 2025-08-14. That migration-tooling change is not an alternative date for the image retirement.</p>
+<div class="rich-content"><p>AKS GPU VHD Image (preview) retired on <strong>January 10, 2025</strong>. Support ended and creation of new node pools using the image stopped.</p>
+<p>A separate image-removal phase starting <strong>July 17, 2025</strong> causes scaling operations to fail for existing nodes using the image. This was not a support extension. No workload shutdown date is documented.</p>
+<p>The title history previously listed January 1, 2025, but that date was replaced with January 10, 2025 on September 10, 2024. The current title, announcement body and subsequent reminder consistently specify January 10, 2025.</p>
+<p>Separately, AKS stopped supporting the GPU driver-installation bypass tag on August 14, 2025. That migration-tooling change is not an alternative date for the image retirement.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired <strong>AKS GPU VHD Image (preview)</strong> on 2025-01-10. Existing node pools using it are unsupported, and you cannot create new pools with that image. Image removal starting 2025-07-17 adds scaling failures for existing nodes using it.</p>
+<div class="rich-content"><p>Microsoft retired <strong>AKS GPU VHD Image (preview)</strong> on January 10, 2025. Existing node pools using it are unsupported, and you cannot create new pools with that image. Image removal starting July 17, 2025 adds scaling failures for existing nodes using it.</p>
 <p>The retirement concerns this preview image, not GPU workloads or AKS GPU-enabled node pools generally. The notices do not specify regional exceptions or security-update commitments for the retired image.</p>
 </div>
       <div class="notice"></div>
@@ -1945,9 +1945,9 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your workloads use AKS GPU VHD-enabled node pools. Since 2025-01-10, those pools are unsupported and new pools cannot use the image. Image removal starting 2025-07-17 causes scaling failures for existing nodes using it.</p>
+<div class="rich-content"><p>You are affected if your workloads use AKS GPU VHD-enabled node pools. Since January 10, 2025, those pools are unsupported and new pools cannot use the image. Image removal starting July 17, 2025 causes scaling failures for existing nodes using it.</p>
 <p>Existing workload shutdown is not documented. The sources do not establish retirement-related data deletion, retention changes or cost effects, and they do not determine whether your environment is affected.</p>
-<p>Separately, provisioning configurations using the retired driver-installation bypass tag must change because that provisioning path became unavailable on 2025-08-14. If you select self-managed drivers, you assume their maintenance and compatibility responsibilities.</p>
+<p>Separately, provisioning configurations using the retired driver-installation bypass tag must change because that provisioning path became unavailable on August 14, 2025. If you select self-managed drivers, you assume their maintenance and compatibility responsibilities.</p>
 <p>The separate Azure Linux 2.0 milestones in the product guidance do not establish additional deadlines for this GPU image retirement.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

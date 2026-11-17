@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Kubernetes Service (AKS)</span><span class="badge retired" data-deadline="2026-03-01"><span></span>Retired</span></div>
-  <h1>AKS will stop support for Windows Server 2019 on March 1 2026</h1><p>AKS support for Windows Server 2019 Kubernetes workloads ends on 2026-03-01, alongside Kubernetes 1.32 reaching end of life. Windows Server 2019 is unavailable in Kubernetes 1.33 and higher. The announcement directs migration to Windows Server 2022; it does not state that existing workloads shut down at support end. The supplied upgrade guide now focuses on Windows Server 2022, whose separate support-end date is 2028-06-30. That date does not establish an extension for Windows Server 2019.</p>
+  <h1>AKS will stop support for Windows Server 2019 on March 1 2026</h1><p>AKS support for Windows Server 2019 Kubernetes workloads ends on March 1, 2026, alongside Kubernetes 1.32 reaching end of life. Windows Server 2019 is unavailable in Kubernetes 1.33 and higher. The announcement directs migration to Windows Server 2022; it does not state that existing workloads shut down at support end. The supplied upgrade guide now focuses on Windows Server 2022, whose separate support-end date is June 30, 2028. That date does not establish an extension for Windows Server 2019.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-03-01"><strong>Retired</strong><span>Retirement date: <time datetime="2026-03-01">1 Mar 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 5 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Mar 2026</p>
-<div class="rich-content"><p>AKS support for Windows Server 2019 Kubernetes workloads ends on <strong>2026-03-01</strong>, when Kubernetes 1.32 reaches end of life. Windows Server 2019 is unavailable in Kubernetes 1.33 and higher; no separate calendar date is supplied for that restriction.</p>
+<div class="rich-content"><p>AKS support for Windows Server 2019 Kubernetes workloads ends on <strong>March 1, 2026</strong>, when Kubernetes 1.32 reaches end of life. Windows Server 2019 is unavailable in Kubernetes 1.33 and higher; no separate calendar date is supplied for that restriction.</p>
 <p>The notice does not state that existing workloads shut down on the support-end date.</p>
-<p>The upgrade guide's <strong>2028-06-30</strong> support-end date and <strong>2029-06-30</strong> node-image removal date apply to Windows Server 2022, not Windows Server 2019. They do not establish an extension of the Windows Server 2019 deadline.</p>
+<p>The upgrade guide's <strong>June 30, 2028</strong> support-end date and <strong>June 30, 2029</strong> node-image removal date apply to Windows Server 2022, not Windows Server 2019. They do not establish an extension of the Windows Server 2019 deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>AKS is ending support for Windows Server 2019 Kubernetes workloads on 2026-03-01. Windows Server 2019 is unavailable in Kubernetes 1.33 and higher.</p>
+<div class="rich-content"><p>AKS is ending support for Windows Server 2019 Kubernetes workloads on March 1, 2026. Windows Server 2019 is unavailable in Kubernetes 1.33 and higher.</p>
 <p>The announcement directs you to transition to Windows Server 2022. It does not specify maintenance or security-update commitments before the deadline.</p>
 <p>The supplied upgrade guide now focuses on Windows Server 2022 retirement and migration to Windows Server 2025. Its preview in-place migration option applies only to Windows Server 2022-to-2025 transitions, not Windows Server 2019.</p>
 </div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify Windows Server 2019 nodes using the upgrade guide's <code>kubectl get nodes -o wide</code> check, and check your Kubernetes version.</li>
-<li>Select a supported destination. The Windows Server 2019 announcement directs you to Windows Server 2022. The supplied guide separately states that Windows Server 2022 support ends on 2028-06-30 and is unavailable on Kubernetes 1.37 and later. Windows Server 2025 requires Kubernetes 1.32.0 or later and a FIPS-enabled image.</li>
+<li>Select a supported destination. The Windows Server 2019 announcement directs you to Windows Server 2022. The supplied guide separately states that Windows Server 2022 support ends on June 30, 2028 and is unavailable on Kubernetes 1.37 and later. Windows Server 2025 requires Kubernetes 1.32.0 or later and a FIPS-enabled image.</li>
 <li>Use the guide's manual new-node-pool method for a Windows Server 2019 transition. Its preview in-place option supports only Windows Server 2022 to 2025. Update the container base image for your destination, verify application compatibility, and test the application in an AKS development or testing environment.</li>
 <li>Create the destination node pool with equivalent permissions and access. Update the deployment's node selector to target the desired OS SKU and update its container image. Apply the deployment with <code>kubectl apply -f &lt;filename&gt;</code>. Update managed-identity access, including gMSA access where used.</li>
 <li>Check destination node OS images, pod status and placement before deleting the old node pool.</li>
@@ -1944,7 +1944,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>This retirement affects AKS Kubernetes workloads running on Windows Server 2019. They lose support on 2026-03-01, and Windows Server 2019 is unavailable in Kubernetes 1.33 and higher.</p>
+<div class="rich-content"><p>This retirement affects AKS Kubernetes workloads running on Windows Server 2019. They lose support on March 1, 2026, and Windows Server 2019 is unavailable in Kubernetes 1.33 and higher.</p>
 <p>The notice does not establish workload shutdown, data deletion, cost changes, or changes to console or API access. It does not establish retirement of other Windows Server versions or Linux pools under this milestone.</p>
 <p>The manual migration described in the supplied guide replaces existing pods with pods on matching destination nodes. A Windows-only node selector cannot distinguish Windows Server versions; target the desired OS SKU. New pools need equivalent permissions and managed-identity access.</p>
 <p>The supplied content cannot determine how many of your pools or workloads are affected.</p>

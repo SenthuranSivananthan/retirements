@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">VPN Gateway</span><span class="badge upcoming" data-deadline="2028-03-31"><span></span>Upcoming</span></div>
-  <h1>Retirement: Prepare for the Retirement of Manually Registered Azure VPN Clients on March 31, 2028</h1><p>Microsoft will retire manually registered Azure VPN clients for Point-to-Site Microsoft Entra ID authentication on 2028-03-31 in Azure Public Cloud and 2029-03-31 in Azure Government and Microsoft Azure operated by 21Vianet. Affected clients will stop functioning after their applicable date. Update both gateways and deployed clients to the Microsoft-registered Audience value. The announcement also restricts creating connections with manually registered clients beginning 2025-12-30. Product guidance excludes custom Audience configurations and gives no retirement date for Azure Germany.</p>
+  <h1>Retirement: Prepare for the Retirement of Manually Registered Azure VPN Clients on March 31, 2028</h1><p>Microsoft will retire manually registered Azure VPN clients for Point-to-Site Microsoft Entra ID authentication on March 31, 2028 in Azure Public Cloud and March 31, 2029 in Azure Government and Microsoft Azure operated by 21Vianet. Affected clients will stop functioning after their applicable date. Update both gateways and deployed clients to the Microsoft-registered Audience value. The announcement also restricts creating connections with manually registered clients beginning December 30, 2025. Product guidance excludes custom Audience configurations and gives no retirement date for Azure Germany.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-03-31"><strong>500 days remaining</strong><span>Retirement date: <time datetime="2028-03-31">31 Mar 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years</span></div>
 </div>
 <div class="detail-layout">
@@ -1918,19 +1918,19 @@
       <p class="deadline-date">31 Mar 2028</p>
 <div class="rich-content"><p>Two separate milestones apply:</p>
 <ul>
-<li><strong>2025-12-30:</strong> The announcement says creating Point-to-Site connections with manually registered clients is no longer possible. It does not provide cloud-specific exceptions to this restriction.</li>
-<li><strong>2028-03-31:</strong> Retirement in Azure Public Cloud.</li>
-<li><strong>2029-03-31:</strong> Retirement in Azure Government and Microsoft Azure operated by 21Vianet.</li>
+<li><strong>December 30, 2025:</strong> The announcement says creating Point-to-Site connections with manually registered clients is no longer possible. It does not provide cloud-specific exceptions to this restriction.</li>
+<li><strong>March 31, 2028:</strong> Retirement in Azure Public Cloud.</li>
+<li><strong>March 31, 2029:</strong> Retirement in Azure Government and Microsoft Azure operated by 21Vianet.</li>
 </ul>
 <p>Migrate before your cloud’s retirement date. After that date, affected clients will no longer function, and Microsoft will support only Microsoft-registered VPN clients.</p>
-<p>The announcement gives 2028-03-31 without cloud distinctions; the applicable product guidance supplies the separate cloud dates above. This does not establish an extension. Azure Germany’s retirement date is not stated. Custom Audience configurations are outside the product article’s scope.</p>
+<p>The announcement gives March 31, 2028 without cloud distinctions; the applicable product guidance supplies the separate cloud dates above. This does not establish an extension. Azure Germany’s retirement date is not stated. Custom Audience configurations are outside the product article’s scope.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
 <div class="rich-content"><p>Microsoft is retiring manually registered Azure VPN clients used for Point-to-Site connections with Microsoft Entra ID authentication. The product guidance covers Windows and macOS clients.</p>
 <p>Replace the manually registered Audience value with the Microsoft-registered value, c632b3df-fb67-4d84-bdcf-b95ad541b5c8, on both your gateway and deployed clients. Affected clients stop functioning after the applicable cloud retirement date.</p>
-<p>The announcement separately restricts creating connections with manually registered clients beginning 2025-12-30. The sources do not specify maintenance or security-update commitments before retirement. Custom Audience configurations are outside the product article’s scope.</p>
+<p>The announcement separately restricts creating connections with manually registered clients beginning December 30, 2025. The sources do not specify maintenance or security-update commitments before retirement. Custom Audience configurations are outside the product article’s scope.</p>
 </div>
       <div class="notice"></div>
     </section>
@@ -1956,7 +1956,7 @@
 <li>Microsoft Azure operated by 21Vianet: 49f817b6-84ae-4cc0-928c-73f27289b3aa.</li>
 <li>Azure Germany: 538ee9e6-310a-468d-afef-ea97365856a9; no retirement date is supplied.</li>
 </ul>
-<p>Creating connections with manually registered clients is restricted beginning 2025-12-30. Existing affected clients will no longer function after their applicable retirement date unless you migrate. Updating only the gateway is insufficient: deployed clients must use matching Audience and tenant values. The gateway update causes fewer than five minutes of documented downtime.</p>
+<p>Creating connections with manually registered clients is restricted beginning December 30, 2025. Existing affected clients will no longer function after their applicable retirement date unless you migrate. Updating only the gateway is insufficient: deployed clients must use matching Audience and tenant values. The gateway update causes fewer than five minutes of documented downtime.</p>
 <p>Custom Audience configurations are excluded from the product article. The sources do not establish effects on other authentication methods, data retention or deletion, or costs. This summary does not verify your subscriptions.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

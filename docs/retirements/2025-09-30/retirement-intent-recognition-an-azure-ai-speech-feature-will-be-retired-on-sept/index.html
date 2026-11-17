@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure AI Speech</span><span class="badge retired" data-deadline="2025-09-30"><span></span>Retired</span></div>
-  <h1>Retirement: Intent Recognition an Azure AI Speech feature will be retired on September 30th, 2025</h1><p>Azure AI Speech Intent Recognition has a documented retirement and end-of-support date of 2025-09-30. Separately, Microsoft states that its API will be removed from new Speech SDK versions after 2024-11-30; the first affected version is unspecified. The notice does not establish that existing workloads stop running. The documented alternative is Speech Recognition with the Conversational Language Understanding (CLU) API directly, but the supplied CLU guidance separately announces its retirement on 2029-03-31 and directs workloads to Microsoft Foundry.</p>
+  <h1>Retirement: Intent Recognition an Azure AI Speech feature will be retired on September 30th, 2025</h1><p>Azure AI Speech Intent Recognition has a documented retirement and end-of-support date of September 30, 2025. Separately, Microsoft states that its API will be removed from new Speech SDK versions after November 30, 2024; the first affected version is unspecified. The notice does not establish that existing workloads stop running. The documented alternative is Speech Recognition with the Conversational Language Understanding (CLU) API directly, but the supplied CLU guidance separately announces its retirement on March 31, 2029 and directs workloads to Microsoft Foundry.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2025-09-30">30 Sep 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 4 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2025</p>
-<div class="rich-content"><p>Azure AI Speech Intent Recognition's retirement and end-of-support date is <strong>2025-09-30</strong>. The notice also calls this deprecation; it does not explicitly establish a workload shutdown.</p>
-<p>Separately, Microsoft states that the Intent Recognition API will be removed from new Speech SDK versions after <strong>2024-11-30</strong>. The first affected SDK version is not identified.</p>
-<p>The documented alternative, Azure Language CLU, has its own retirement date of <strong>2029-03-31</strong>. That is a separate service milestone, not an extension of Intent Recognition's deadline.</p>
+<div class="rich-content"><p>Azure AI Speech Intent Recognition's retirement and end-of-support date is <strong>September 30, 2025</strong>. The notice also calls this deprecation; it does not explicitly establish a workload shutdown.</p>
+<p>Separately, Microsoft states that the Intent Recognition API will be removed from new Speech SDK versions after <strong>November 30, 2024</strong>. The first affected SDK version is not identified.</p>
+<p>The documented alternative, Azure Language CLU, has its own retirement date of <strong>March 31, 2029</strong>. That is a separate service milestone, not an extension of Intent Recognition's deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure AI Speech is retiring Intent Recognition, with documented support ending on <strong>2025-09-30</strong>. Microsoft also states that new Speech SDK versions after <strong>2024-11-30</strong> will omit the Intent Recognition API.</p>
+<div class="rich-content"><p>Azure AI Speech is retiring Intent Recognition, with documented support ending on <strong>September 30, 2025</strong>. Microsoft also states that new Speech SDK versions after <strong>November 30, 2024</strong> will omit the Intent Recognition API.</p>
 <p>The notice does not say that existing SDK versions lose the API or that deployed workloads stop running. It specifies no regional exceptions or security-update commitments.</p>
 </div>
       <div class="notice"></div>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify applications using Azure AI Speech Intent Recognition and record their Speech SDK dependencies. This is a team-owned inventory step; the notice provides no discovery procedure.</li>
-<li>Assess the documented alternative: Speech Recognition with the Conversational Language Understanding (CLU) API directly for intent and entity classification. Account for CLU's separate <strong>2029-03-31</strong> retirement: the supplied CLU guidance directs existing workloads and new projects to Microsoft Foundry. It does not establish a direct Intent Recognition-to-Foundry migration path.</li>
+<li>Assess the documented alternative: Speech Recognition with the Conversational Language Understanding (CLU) API directly for intent and entity classification. Account for CLU's separate <strong>March 31, 2029</strong> retirement: the supplied CLU guidance directs existing workloads and new projects to Microsoft Foundry. It does not establish a direct Intent Recognition-to-Foundry migration path.</li>
 <li>Adapt affected applications and, as a team-owned validation step, check the recognition, intent, entity and integration behavior your applications require.</li>
 </ol>
 <p>The supplied content does not provide detailed migration procedures, prerequisites, capability comparisons, or export, backup, cutover and cleanup requirements.</p>
@@ -1941,9 +1941,9 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are in scope if your applications use Azure AI Speech Intent Recognition. Its documented support ends on <strong>2025-09-30</strong>. New Speech SDK versions after <strong>2024-11-30</strong> will no longer include its API, affecting applications that depend on that API when adopting those versions.</p>
+<div class="rich-content"><p>You are in scope if your applications use Azure AI Speech Intent Recognition. Its documented support ends on <strong>September 30, 2025</strong>. New Speech SDK versions after <strong>November 30, 2024</strong> will no longer include its API, affecting applications that depend on that API when adopting those versions.</p>
 <p>The notice does not establish that existing SDK versions or deployed workloads stop running at retirement. It provides no tenant-specific assessment, resource-discovery procedure, retention or deletion policy, or cost information.</p>
-<p>If you adopt the documented CLU alternative, account for its separate <strong>2029-03-31</strong> retirement and Microsoft's direction to migrate CLU workloads to Microsoft Foundry.</p>
+<p>If you adopt the documented CLU alternative, account for its separate <strong>March 31, 2029</strong> retirement and Microsoft's direction to migrate CLU workloads to Microsoft Foundry.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>
     </section>

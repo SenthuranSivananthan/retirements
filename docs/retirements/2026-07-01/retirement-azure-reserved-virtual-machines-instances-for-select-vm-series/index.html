@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Virtual Machines</span><span class="badge retired" data-deadline="2026-07-01"><span></span>Retired</span></div>
-  <h1>Retirement: Azure Reserved Virtual Machines Instances for select VM series</h1><p>From 2026-07-01, Microsoft ends purchases and renewals of Azure Reserved VM Instances for selected VM series and terms. Existing reservations, including those renewed before the cutoff, retain discounts through their individual expiration dates. Without replacement coverage, continued usage moves to pay-as-you-go pricing at expiration, even if auto-renew is enabled. This reservation change does not shut down workloads; separate VM-series retirement deadlines apply.</p>
+  <h1>Retirement: Azure Reserved Virtual Machines Instances for select VM series</h1><p>From July 1, 2026, Microsoft ends purchases and renewals of Azure Reserved VM Instances for selected VM series and terms. Existing reservations, including those renewed before the cutoff, retain discounts through their individual expiration dates. Without replacement coverage, continued usage moves to pay-as-you-go pricing at expiration, even if auto-renew is enabled. This reservation change does not shut down workloads; separate VM-series retirement deadlines apply.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-07-01"><strong>Retired</strong><span>Retirement date: <time datetime="2026-07-01">1 Jul 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 month, 26 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,22 +1916,22 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Jul 2026</p>
-<div class="rich-content"><p>From <strong>2026-07-01</strong>, affected reservations are no longer available for purchase or renewal. Existing reservations remain valid through their individual terms; pay-as-you-go billing starts at expiration unless you arrange replacement coverage.</p>
-<p>The announcement and transition guidance say the cutoff starts on 2026-07-01; the VM migration guide says “after” that date. Use the earlier, explicit 2026-07-01 cutoff. This is not a workload-shutdown or end-of-support date.</p>
+<div class="rich-content"><p>From <strong>July 1, 2026</strong>, affected reservations are no longer available for purchase or renewal. Existing reservations remain valid through their individual terms; pay-as-you-go billing starts at expiration unless you arrange replacement coverage.</p>
+<p>The announcement and transition guidance say the cutoff starts on July 1, 2026; the VM migration guide says “after” that date. Use the earlier, explicit July 1, 2026 cutoff. This is not a workload-shutdown or end-of-support date.</p>
 <h3>Separate VM retirement deadlines</h3>
 <p>The VM migration guide lists these later deadlines for series affected by this reservation change:</p>
 <ul>
-<li><strong>2028-05-01:</strong> D, Ds, Dv2, Dsv2 and Ls.</li>
-<li><strong>2028-11-15:</strong> Av2, Amv2, Bv1, F, Fs, Fsv2, G, Gs and Lsv2.</li>
-<li><strong>2029-11-15:</strong> Dv3, Dsv3, Ev3 and Esv3, excluding Azure Government, Azure operated by 21Vianet and sovereign cloud regions.</li>
+<li><strong>May 1, 2028:</strong> D, Ds, Dv2, Dsv2 and Ls.</li>
+<li><strong>November 15, 2028:</strong> Av2, Amv2, Bv1, F, Fs, Fsv2, G, Gs and Lsv2.</li>
+<li><strong>November 15, 2029:</strong> Dv3, Dsv3, Ev3 and Esv3, excluding Azure Government, Azure operated by 21Vianet and sovereign cloud regions.</li>
 </ul>
 <p>Microsoft says retired VMs will be deallocated. Separate capacity-growth restrictions for Dv3/Dsv3/Ev3/Esv3 begin in <strong>July 2026</strong>, with no exact day supplied.</p>
-<p>The migration table also labels earlier three-year dates, 2025-05-01 or 2025-11-15 for other listed series, as “RI expiration.” Their meaning is unclear; they do not establish cancellation dates for active reservations. The management page's 2026-07-17 update date is not a retirement deadline.</p>
+<p>The migration table also labels earlier three-year dates, May 1, 2025 or November 15, 2025 for other listed series, as “RI expiration.” Their meaning is unclear; they do not establish cancellation dates for active reservations. The management page's July 17, 2026 update date is not a retirement deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft ends purchases and renewals of these Azure Reserved VM Instances from <strong>2026-07-01</strong>:</p>
+<div class="rich-content"><p>Microsoft ends purchases and renewals of these Azure Reserved VM Instances from <strong>July 1, 2026</strong>:</p>
 <ul>
 <li><strong>One-year terms:</strong> Av2, Amv2, Bv1, D, Ds, Dv2, Dsv2, F, Fs, Fsv2, G, Gs, Ls and Lsv2.</li>
 <li><strong>One-year and three-year terms:</strong> Dv3, Dsv3, Ev3 and Esv3.</li>
@@ -1947,7 +1947,7 @@
 <li>In the Azure portal, open Reservations, filter Product type to Virtual Machines, and compare VM family, reservation term and expiration date with the affected list. Reservation permissions are separate from subscription permissions.</li>
 <li>Review utilization and active usage in Cost Management + Billing &gt; Reservations. Confirm which workloads will continue after their reservations expire. Do not rely on auto-renew to preserve discounts.</li>
 <li>Choose coverage based on your workloads: evaluate a one-year or three-year savings plan for eligible hourly compute spend, assess newer VM SKUs and supported reservations, or deliberately accept pay-as-you-go pricing. The transition guide presents self-service reservation trade-in as an option; exchanges and refunds have limitations that the supplied management page does not detail.</li>
-<li>Align replacement coverage with reservation expiration and any VM modernization. The guide recommends planning 6–12 months before expiration and working with your Microsoft account team to model costs. Renewal before 2026-07-01 was a time-limited option, not an available post-cutoff action.</li>
+<li>Align replacement coverage with reservation expiration and any VM modernization. The guide recommends planning 6–12 months before expiration and working with your Microsoft account team to model costs. Renewal before July 1, 2026 was a time-limited option, not an available post-cutoff action.</li>
 <li>If you also migrate VMs, check the separate series deadline, target specifications, regional capacity and quota. For v6, the supplied guide requires Generation 2, an NVMe-supported OS, and MANA with a supported OS. Its resize sequence is to stop and deallocate, resize, then start the VM; plan for interruption and loss of in-memory and temporary-disk data.</li>
 </ol>
 <p>The reservation cutoff itself does not require workload migration. The supplied transition guidance does not provide detailed backup, cutover or cleanup procedures.</p>

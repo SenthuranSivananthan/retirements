@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2025-03-31"><span></span>Retired</span></div>
-  <h1>Update to Azure Functions Service Bus extension v5.x by 31 March 2025 for continued support</h1><p>Azure Functions Service Bus extension 4.x retired on 2025-03-31. Applications can continue to function, but Microsoft no longer provides maintenance or support for the extension. Migrate to extension 5.x and address breaking changes for continued support. Go function apps are outside this migration&#39;s scope. Separate library and .NET in-process support milestones do not extend the extension retirement date.</p>
+  <h1>Update to Azure Functions Service Bus extension v5.x by 31 March 2025 for continued support</h1><p>Azure Functions Service Bus extension 4.x retired on March 31, 2025. Applications can continue to function, but Microsoft no longer provides maintenance or support for the extension. Migrate to extension 5.x and address breaking changes for continued support. Go function apps are outside this migration&#39;s scope. Separate library and .NET in-process support milestones do not extend the extension retirement date.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-03-31"><strong>Retired</strong><span>Retirement date: <time datetime="2025-03-31">31 Mar 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 9 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,18 +1916,18 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2025</p>
-<div class="rich-content"><p>Azure Functions Service Bus extension 4.x retired on <strong>2025-03-31</strong>. Microsoft no longer provides maintenance or support for it. Applications can continue to function; this is not a documented workload shutdown date.</p>
+<div class="rich-content"><p>Azure Functions Service Bus extension 4.x retired on <strong>March 31, 2025</strong>. Microsoft no longer provides maintenance or support for it. Applications can continue to function; this is not a documented workload shutdown date.</p>
 <p>The migration guidance identifies separate milestones:</p>
 <ul>
-<li><strong>2026-09-30:</strong> retirement of the Microsoft.Azure.ServiceBus library used by extension 4.x.</li>
-<li><strong>2026-11-10:</strong> end of support for the .NET in-process model.</li>
+<li><strong>September 30, 2026:</strong> retirement of the Microsoft.Azure.ServiceBus library used by extension 4.x.</li>
+<li><strong>November 10, 2026:</strong> end of support for the .NET in-process model.</li>
 </ul>
-<p>The announcement associates the underlying SDK retirement with 2025-03-31, while the migration guidance dates the named library retirement to 2026-09-30. These source descriptions differ; the product migration guidance supplies the specific library date. Both sources agree on the extension retirement date, and neither documents an extension of it.</p>
+<p>The announcement associates the underlying SDK retirement with March 31, 2025, while the migration guidance dates the named library retirement to September 30, 2026. These source descriptions differ; the product migration guidance supplies the specific library date. Both sources agree on the extension retirement date, and neither documents an extension of it.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Functions Service Bus extension 4.x retired on <strong>2025-03-31</strong> and no longer receives maintenance or support from Microsoft. You can continue using it, but extension 5.x is the documented replacement for continued support and uses Azure.Messaging.ServiceBus.</p>
+<div class="rich-content"><p>Azure Functions Service Bus extension 4.x retired on <strong>March 31, 2025</strong> and no longer receives maintenance or support from Microsoft. You can continue using it, but extension 5.x is the documented replacement for continued support and uses Azure.Messaging.ServiceBus.</p>
 <p>The upgrade introduces breaking application changes. It applies to existing function apps using extension 4.x, not Go function apps, because first-class Go support was not available with 4.x. The supplied content specifies no regional exceptions.</p>
 </div>
       <div class="notice"></div>
@@ -1938,7 +1938,7 @@
 <li>Identify your function app's language, Service Bus extension version and, for .NET, process model. Review the extension package reference in .NET project files or the extension bundle configuration in host.json for non-.NET apps using bundles.</li>
 <li>Update the applicable configuration for extension 5.x:
 <ul>
-<li>.NET in-process: update Microsoft.Azure.WebJobs.Extensions.ServiceBus to the latest applicable 5.x release; the guidance recommends at least 5.13.4. Microsoft also recommends moving to the isolated worker model for full support because in-process support ends on 2026-11-10.</li>
+<li>.NET in-process: update Microsoft.Azure.WebJobs.Extensions.ServiceBus to the latest applicable 5.x release; the guidance recommends at least 5.13.4. Microsoft also recommends moving to the isolated worker model for full support because in-process support ends on November 10, 2026.</li>
 <li>.NET isolated worker: update Microsoft.Azure.Functions.Worker.Extensions.ServiceBus to the latest applicable 5.x release; the guidance recommends at least 5.14.1.</li>
 <li>Non-.NET apps using bundles: update host.json to extension bundle version 4, using the documented range [4.*, 5.0.0).</li>
 </ul>
@@ -1946,14 +1946,14 @@
 <li>Address breaking changes using the language-specific and client library migration guidance. Replace Microsoft.Azure.ServiceBus types as applicable, including using ServiceBusReceivedMessage instead of Message when receiving queue or subscription message metadata.</li>
 <li>As a team-owned validation step, test affected triggers, output bindings and message handling. The supplied content does not provide a detailed validation or cutover procedure.</li>
 </ol>
-<p>Migration was required by 2025-03-31 for continued extension support. This migration does not apply to Go function apps.</p>
+<p>Migration was required by March 31, 2025 for continued extension support. This migration does not apply to Go function apps.</p>
 </div>
       <p> </p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your Azure Functions applications use Service Bus extension 4.x. Review .NET project package references or, for non-.NET apps using bundles, the extension bundle configuration in host.json to identify affected configurations.</p>
-<p>If you remain on 4.x, applications can continue to function, but Microsoft no longer provides extension maintenance or support from <strong>2025-03-31</strong>. The announcement warns of possible service disruptions without specifying a shutdown or particular runtime failure.</p>
+<p>If you remain on 4.x, applications can continue to function, but Microsoft no longer provides extension maintenance or support from <strong>March 31, 2025</strong>. The announcement warns of possible service disruptions without specifying a shutdown or particular runtime failure.</p>
 <p>Moving to 5.x can require code changes, including replacing library types and the Message class. Go function apps are outside this migration's scope. Upgrading the extension does not resolve the separate end of support for the .NET in-process model.</p>
 <p>The supplied content does not establish tenant-specific impact, data-retention or deletion consequences, or costs.</p>
 </div>

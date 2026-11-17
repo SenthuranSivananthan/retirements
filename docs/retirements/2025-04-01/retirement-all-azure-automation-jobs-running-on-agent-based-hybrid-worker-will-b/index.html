@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Automation</span><span class="badge retired" data-deadline="2025-04-01"><span></span>Retired</span></div>
-  <h1>Retirement: All Azure Automation jobs running on Agent-based Hybrid Worker will be stopped from 1 April 2025</h1><p>Starting 2025-04-01, Azure Automation will stop jobs running on agent-based (V1) User Hybrid Runbook Workers on Windows and Linux. These workers retired on 2024-08-31 and no longer receive support or security fixes. Migrate to extension-based (V2) User Hybrid Runbook Workers to continue executing Hybrid jobs. The deployment guides document migration and coexistence but do not establish another deadline or extend V1 job execution.</p>
+  <h1>Retirement: All Azure Automation jobs running on Agent-based Hybrid Worker will be stopped from 1 April 2025</h1><p>Starting April 1, 2025, Azure Automation will stop jobs running on agent-based (V1) User Hybrid Runbook Workers on Windows and Linux. These workers retired on August 31, 2024 and no longer receive support or security fixes. Migrate to extension-based (V2) User Hybrid Runbook Workers to continue executing Hybrid jobs. The deployment guides document migration and coexistence but do not establish another deadline or extend V1 job execution.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-04-01"><strong>Retired</strong><span>Retirement date: <time datetime="2025-04-01">1 Apr 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 months, 9 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">1 Apr 2025</p>
-<div class="rich-content"><p>Starting <strong>2025-04-01</strong>, Azure Automation will stop all jobs running on agent-based User Hybrid Runbook Workers. The retirement notice requires migration before that date to continue executing Hybrid jobs.</p>
-<p>The Windows and Linux agent-based workers retired on <strong>2024-08-31</strong>, ending support and security fixes. This is separate from the later job-stopping milestone.</p>
-<p>The deployment guides supply no alternative retirement date. Their V1/V2 coexistence guidance does not establish an extension, and their last-updated date of 2026-05-05 is not a retirement deadline.</p>
+<div class="rich-content"><p>Starting <strong>April 1, 2025</strong>, Azure Automation will stop all jobs running on agent-based User Hybrid Runbook Workers. The retirement notice requires migration before that date to continue executing Hybrid jobs.</p>
+<p>The Windows and Linux agent-based workers retired on <strong>August 31, 2024</strong>, ending support and security fixes. This is separate from the later job-stopping milestone.</p>
+<p>The deployment guides supply no alternative retirement date. Their V1/V2 coexistence guidance does not establish an extension, and their last-updated date of May 5, 2026 is not a retirement deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Automation is stopping jobs on agent-based (V1) <strong>User Hybrid Runbook Workers</strong> on Windows and Linux starting <strong>2025-04-01</strong>. Microsoft recommends extension-based (V2) User Hybrid Runbook Workers for continued Hybrid job execution.</p>
-<p>V1 workers no longer receive support or security fixes following retirement on 2024-08-31. The supplied notice does not establish a separate maintenance commitment before job execution stops.</p>
+<div class="rich-content"><p>Azure Automation is stopping jobs on agent-based (V1) <strong>User Hybrid Runbook Workers</strong> on Windows and Linux starting <strong>April 1, 2025</strong>. Microsoft recommends extension-based (V2) User Hybrid Runbook Workers for continued Hybrid job execution.</p>
+<p>V1 workers no longer receive support or security fixes following retirement on August 31, 2024. The supplied notice does not establish a separate maintenance commitment before job execution stops.</p>
 <p>V2 deployment guidance covers Azure VMs and supported Azure Arc-enabled machines, including servers, VMware vSphere VMs and SCVMM VMs. Extension-based onboarding does not apply to System Hybrid Runbook Workers.</p>
 <p>V1 and V2 can coexist on the same machine as separate platform entries. Installing V2 does not affect V1 installation or management, but this coexistence is not a commitment to continue V1 job execution after the stopping date.</p>
 </div>
@@ -1938,7 +1938,7 @@
 <li>Check runtime compatibility. Windows requires Windows PowerShell 5.1 and .NET Framework 4.6.2 or later; the supplied prerequisites do not support PowerShell Core on Windows. Linux must not have Linux Hardening enabled and does not support Python 3.11 or later. Linux PowerShell runbooks require PowerShell Core 6.0.0 or later.</li>
 <li>Allow outbound port 443 to the documented Azure Automation endpoints for your cloud. Use AutomationHybridServiceUrl, not RegistrationUrl. For custom Windows worker credentials, grant the documented folder permissions directly when UAC/LUA applies. Reapply Arc token-folder permissions after Connected Machine agent updates remove them.</li>
 <li>In the existing worker group, select <strong>Hybrid Workers &gt; + Add</strong>, select the existing V1 machine and add it. The guides also document Bicep, ARM templates, PowerShell, REST API and Azure CLI for migration at scale. Creating a worker registration alone does not install its extension.</li>
-<li>Confirm successful extension installation under the VM's <strong>Extensions</strong> tab and an Extension based (V2) platform entry. As team-owned validation, test your required runbooks on V2 before removing V1; the guides provide no detailed acceptance or cutover test. Coexistence does not override the 2025-04-01 job-stopping date.</li>
+<li>Confirm successful extension installation under the VM's <strong>Extensions</strong> tab and an Extension based (V2) platform entry. As team-owned validation, test your required runbooks on V2 before removing V1; the guides provide no detailed acceptance or cutover test. Coexistence does not override the April 1, 2025 job-stopping date.</li>
 <li>Remove the V1 worker after validating V2. Deleting its portal entry leaves a stale worker on the VM; follow the referenced agent-uninstall guidance. Do not delete the V2 entry as V1 cleanup: deleting V2 removes its extension. Empty a worker group before deleting it.</li>
 </ol>
 <p>Microsoft recommends avoiding extension installation on domain controllers and enabling automatic extension upgrades. Minor-version upgrades are automatic by default; major-version upgrades require manual management. No retirement-specific backup or export procedure is supplied.</p>
@@ -1947,7 +1947,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>This affects jobs running on agent-based (V1) <strong>User Hybrid Runbook Workers on Windows and Linux</strong>. Starting <strong>2025-04-01</strong>, Azure Automation will stop those jobs if they remain on V1. V1 workers have received no support or security fixes since 2024-08-31.</p>
+<div class="rich-content"><p>This affects jobs running on agent-based (V1) <strong>User Hybrid Runbook Workers on Windows and Linux</strong>. Starting <strong>April 1, 2025</strong>, Azure Automation will stop those jobs if they remain on V1. V1 workers have received no support or security fixes since August 31, 2024.</p>
 <p>Use each worker group's Platform field to identify affected registrations. The supplied sources do not establish that System workers follow this migration path or that existing V2 workers require another platform migration.</p>
 <p>Important V2 constraints include:</p>
 <ul>

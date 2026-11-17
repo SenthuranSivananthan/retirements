@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Batch</span><span class="badge retired" data-deadline="2026-09-30"><span></span>Retired</span></div>
-  <h1>Retirement: End of life reminder of NVv3 and NVv4-series Azure virtual machine in Azure Batch pools</h1><p>NVv3- and NVv4-series VM support in Azure Batch pools retired on 2026-09-30. The Batch notice says new pools using these series are blocked after retirement; existing pools cannot scale out and are subject to forced resize to zero nodes, with no exact resizing time specified. Azure VM guidance explicitly extends NVv3 use for existing Azure UAE North users through 2027-01-31, but the supplied sources do not confirm that this extension applies to Azure Batch pools. Migrate affected pools to a suitable Batch-supported size. Batch SKU and image queries can help review support status, but do not establish migration completion or application health.</p>
+  <h1>Retirement: End of life reminder of NVv3 and NVv4-series Azure virtual machine in Azure Batch pools</h1><p>NVv3- and NVv4-series VM support in Azure Batch pools retired on September 30, 2026. The Batch notice says new pools using these series are blocked after retirement; existing pools cannot scale out and are subject to forced resize to zero nodes, with no exact resizing time specified. Azure VM guidance explicitly extends NVv3 use for existing Azure UAE North users through January 31, 2027, but the supplied sources do not confirm that this extension applies to Azure Batch pools. Migrate affected pools to a suitable Batch-supported size. Batch SKU and image queries can help review support status, but do not establish migration completion or application health.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-30">30 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 6 months, 14 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,23 +1916,23 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2026</p>
-<div class="rich-content"><p>The Azure Batch retirement deadline for both NVv3 and NVv4 pools was <strong>2026-09-30</strong>. After retirement, the Batch notice says new pools using these series are blocked, existing pools cannot scale out, and affected pools are subject to forced resize to zero nodes. It does not specify when forced resizing occurs.</p>
+<div class="rich-content"><p>The Azure Batch retirement deadline for both NVv3 and NVv4 pools was <strong>September 30, 2026</strong>. After retirement, the Batch notice says new pools using these series are blocked, existing pools cannot scale out, and affected pools are subject to forced resize to zero nodes. It does not specify when forced resizing occurs.</p>
 <h3>NVv3 regional exception</h3>
-<p>Azure VM guidance explicitly allows existing NVv3 users in Azure UAE North to continue until <strong>2027-01-31</strong>. The supplied guidance does not confirm whether that extension covers Azure Batch pools. Do not treat it as a confirmed Batch deadline extension.</p>
+<p>Azure VM guidance explicitly allows existing NVv3 users in Azure UAE North to continue until <strong>January 31, 2027</strong>. The supplied guidance does not confirm whether that extension covers Azure Batch pools. Do not treat it as a confirmed Batch deadline extension.</p>
 <h3>Separate purchasing milestones</h3>
-<p>Purchases of 1-year and 3-year reserved instances for both series ended on <strong>2025-11-02</strong>. All NVv4 Compute Pre-Purchase sales ended on <strong>2026-06-02</strong>. These are purchasing restrictions, not Batch workload retirement dates.</p>
+<p>Purchases of 1-year and 3-year reserved instances for both series ended on <strong>November 2, 2025</strong>. All NVv4 Compute Pre-Purchase sales ended on <strong>June 2, 2026</strong>. These are purchasing restrictions, not Batch workload retirement dates.</p>
 <p>The general Batch reference page establishes no separate retirement deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired NVv3- and NVv4-series VM support in Azure Batch pools on <strong>2026-09-30</strong>. The notice provided a migration window through that date; afterward, Batch blocks new affected pools, prevents scale-out of existing affected pools, and can force them to zero nodes.</p>
+<div class="rich-content"><p>Microsoft retired NVv3- and NVv4-series VM support in Azure Batch pools on <strong>September 30, 2026</strong>. The notice provided a migration window through that date; afterward, Batch blocks new affected pools, prevents scale-out of existing affected pools, and can force them to zero nodes.</p>
 <p>Affected sizes are:</p>
 <ul>
 <li>NVv3, powered by NVIDIA Tesla M60: Standard_NV12s_v3, Standard_NV12hs_v3, Standard_NV24s_v3, Standard_NV24ms_v3, Standard_NV32ms_v3 and Standard_NV48s_v3.</li>
 <li>NVv4, powered by AMD Radeon Instinct MI25: Standard_NV4as_v4, Standard_NV4ahs_v4, Standard_NV8as_v4, Standard_NV8ahs_v4, Standard_NV16as_v4, Standard_NV16ahs_v4, Standard_NV32as_v4 and Standard_NV32ahs_v4.</li>
 </ul>
-<p>Azure VM guidance documents an NVv3 extension for existing Azure UAE North users through <strong>2027-01-31</strong>, but its applicability to Batch pools is unconfirmed. It also states that retired VMs lose SLA coverage and included support. The sources do not document pre-retirement maintenance or security-update commitments.</p>
+<p>Azure VM guidance documents an NVv3 extension for existing Azure UAE North users through <strong>January 31, 2027</strong>, but its applicability to Batch pools is unconfirmed. It also states that retired VMs lose SLA coverage and included support. The sources do not document pre-retirement maintenance or security-update commitments.</p>
 <p>The retirement does not announce removal of other Batch VM sizes. The VM guidance identifies NVadsA10_v5 and NVadsV710_v5, written as NVads_V710_v5 in the NVv4 guidance, as outside these retirements.</p>
 </div>
       <div class="notice"></div>
@@ -1944,7 +1944,7 @@
 <li>Select a replacement that supports your workload and is available through Batch in your region. The Batch notice recommends a newer series in what it calls the “same NC product line,” or another Batch-supported size, but does not explain that wording for the affected NV series.</li>
 <li>Use Azure VM recommendations as candidates, not confirmation of Batch compatibility. For NVv3, Microsoft recommends NVadsA10_v5; graphics, virtual desktops, visualization and small AI alternatives include NC_RTXPRO6000BSE_v6. NCasT4_v3 is listed for offline inference when latency is not a priority. For NVv4, Microsoft recommends NVads_V710_v5; alternatives include NVadsA10_v5 for small AI or graphics workloads and NGads_V620 for graphics or gaming.</li>
 <li>Check target-region availability, pricing, Batch image compatibility and core quota; request target quota where needed. Review supported images with <code>az batch pool supported-images list</code>, including <code>verificationType</code> and <code>batchSupportEndOfLife</code>.</li>
-<li>Migrate affected Batch pools to a suitable supported size. The general deadline was <strong>2026-09-30</strong>. Do not assume the NVv3 UAE North VM extension permits continued Batch use without confirmation.</li>
+<li>Migrate affected Batch pools to a suitable supported size. The general deadline was <strong>September 30, 2026</strong>. Do not assume the NVv3 UAE North VM extension permits continued Batch use without confirmation.</li>
 </ol>
 <p>For VM resizing to NVads_V710_v5, the NVv4 guidance requires registering the subscription for <code>VMTempDiskResizePreview</code> and confirming registration to address a known resize error. That guidance does not establish a Batch pool migration procedure.</p>
 <p>The supplied sources do not provide a Batch-specific migration, backup, cutover, cleanup or post-migration validation procedure. Customers with a support plan can request VM resizing assistance under Virtual Machine running Windows/Linux, selecting Assistance with resizing my VM; the sources do not establish a Batch-specific escalation route.</p>
@@ -1954,8 +1954,8 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>Your Batch pools are affected if they use one of the listed NVv3 or NVv4 sizes. No tenant resources have been inspected. Regional supported-SKU results can help you compare support status with your configurations, but do not identify your deployed pools automatically.</p>
-<p>After <strong>2026-09-30</strong>, the Batch notice says new affected pools cannot be created and existing affected pools cannot scale out. Forced resize to zero nodes threatens workload continuity, not just support availability; its exact timing is unspecified.</p>
-<p>Separately, Azure VM guidance states that remaining retired VMs are deallocated, stop running, cease incurring VM billing charges, and lose SLA coverage and included support. Existing NVv3 users in Azure UAE North have a documented VM extension through <strong>2027-01-31</strong>; Batch coverage remains unconfirmed. The VM billing statement does not establish whether associated resources continue to incur charges.</p>
+<p>After <strong>September 30, 2026</strong>, the Batch notice says new affected pools cannot be created and existing affected pools cannot scale out. Forced resize to zero nodes threatens workload continuity, not just support availability; its exact timing is unspecified.</p>
+<p>Separately, Azure VM guidance states that remaining retired VMs are deallocated, stop running, cease incurring VM billing charges, and lose SLA coverage and included support. Existing NVv3 users in Azure UAE North have a documented VM extension through <strong>January 31, 2027</strong>; Batch coverage remains unconfirmed. The VM billing statement does not establish whether associated resources continue to incur charges.</p>
 <p>The sources do not specify retirement-related data deletion, retention, continued data access, migration costs or separate console, API, integration and deployment-tooling changes.</p>
 <p>Batch image verification is a separate consideration: an image becoming unverified means regular Batch interoperability testing has stopped, not that the image has stopped working. Verification does not cover every application or usage scenario.</p>
 </div>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Virtual Machine Scale Sets · Virtual Machines</span><span class="badge upcoming" data-deadline="2028-09-15"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure Disk Encryption</h1><p>Azure Disk Encryption (ADE) retires on 2028-09-15. Microsoft states that ADE remains usable without disruption until then. At retirement, workloads will continue running, but encrypted disks will fail to unlock after VM reboots. Migrate ADE-enabled Windows and Linux VMs, including backups and Azure Virtual Desktop session hosts, before retirement. Microsoft recommends encryption at host; Confidential VM sizes with OS disk encryption are another option for confidential computing needs. Migration requires replacement disks and VMs, with downtime; in-place conversion is not supported.</p>
+  <h1>Retirement: Azure Disk Encryption</h1><p>Azure Disk Encryption (ADE) retires on September 15, 2028. Microsoft states that ADE remains usable without disruption until then. At retirement, workloads will continue running, but encrypted disks will fail to unlock after VM reboots. Migrate ADE-enabled Windows and Linux VMs, including backups and Azure Virtual Desktop session hosts, before retirement. Microsoft recommends encryption at host; Confidential VM sizes with OS disk encryption are another option for confidential computing needs. Migration requires replacement disks and VMs, with downtime; in-place conversion is not supported.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2028-09-15"><strong>668 days remaining</strong><span>Retirement date: <time datetime="2028-09-15">15 Sep 2028</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 22 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">15 Sep 2028</p>
-<div class="rich-content"><p>Azure Disk Encryption retires on <strong>2028-09-15</strong>. Complete migration before that date, including backups. Both supplied sources give the same retirement date.</p>
+<div class="rich-content"><p>Azure Disk Encryption retires on <strong>September 15, 2028</strong>. Complete migration before that date, including backups. Both supplied sources give the same retirement date.</p>
 <p>Microsoft states that ADE remains usable without disruption until retirement. At retirement, workloads will continue running, but encrypted disks will fail to unlock after VM reboots. This is not an immediate workload shutdown.</p>
 <p>The supplied content does not specify separate new-customer restrictions, end-of-support dates or security-update milestones.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring Azure Disk Encryption (ADE) on <strong>2028-09-15</strong>. The migration guidance covers ADE-enabled Windows and Linux VMs, including backups, and Azure Virtual Desktop session hosts. No version, region or customer exceptions are specified.</p>
+<div class="rich-content"><p>Microsoft is retiring Azure Disk Encryption (ADE) on <strong>September 15, 2028</strong>. The migration guidance covers ADE-enabled Windows and Linux VMs, including backups, and Azure Virtual Desktop session hosts. No version, region or customer exceptions are specified.</p>
 <p>Microsoft recommends replacing ADE's guest-level encryption with encryption at host, which covers temporary disks, caches and data flows between compute and storage. For confidential computing needs, consider Confidential VM sizes with OS disk encryption.</p>
 <p>In-place conversion is not supported: migration requires new disks and VMs, with downtime. Linux VMs with ADE-encrypted OS disks require a new OS disk because Azure does not support disabling ADE on those disks.</p>
 </div>
@@ -1931,7 +1931,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Migrate all ADE-enabled VMs, including backups, before <strong>2028-09-15</strong>.</p>
+<div class="rich-content"><p>Migrate all ADE-enabled VMs, including backups, before <strong>September 15, 2028</strong>.</p>
 <ol>
 <li>Identify affected VMs and backups. Record configuration, networking, extensions, attached resources and domain settings. Back up critical data; where possible, test migration on a nonproduction VM. The supplied content does not provide a tenant-wide discovery procedure.</li>
 <li>Confirm target VM-size and subscription support for encryption at host, and plan downtime. For confidential computing workloads, consider Confidential VM sizes with OS disk encryption.</li>
@@ -1948,7 +1948,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you use ADE-enabled VMs or backups, including Windows, Linux and Azure Virtual Desktop session hosts. The supplied content does not establish which of your resources are affected or document regional exclusions.</p>
-<p>Without migration before <strong>2028-09-15</strong>, workloads can continue running, but encrypted disks will fail to unlock after VM reboots. The documented consequence is reboot-related service disruption, not immediate shutdown or data deletion.</p>
+<p>Without migration before <strong>September 15, 2028</strong>, workloads can continue running, but encrypted disks will fail to unlock after VM reboots. The documented consequence is reboot-related service disruption, not immediate shutdown or data deletion.</p>
 <p>Migration requires downtime and replacement disks and VMs. Important constraints include:</p>
 <ul>
 <li>Linux ADE-encrypted OS disks cannot be decrypted in place; rebuild the OS environment and migrate data.</li>

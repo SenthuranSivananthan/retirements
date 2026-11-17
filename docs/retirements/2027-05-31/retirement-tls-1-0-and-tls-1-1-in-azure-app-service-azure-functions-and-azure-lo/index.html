@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">App Service · Azure Functions · Logic Apps</span><span class="badge upcoming" data-deadline="2027-05-31"><span></span>Upcoming</span></div>
-  <h1>Retirement:  TLS 1.0 and TLS 1.1 in Azure App Service, Azure Functions, and Azure Logic Apps</h1><p>On 2027-05-31, the Azure App Service platform stops accepting inbound TLS 1.0 and 1.1 connections for App Service, Azure Functions, Logic Apps Standard and App Service Environments, including app and SCM endpoints and deployment slots. Upgrade clients and set both minimum TLS settings to TLS 1.2 or later before that date. Legacy connections will fail regardless of configured settings. Outbound connections are unaffected. The announcement names Logic Apps broadly, but the detailed guidance excludes Consumption from its scope; its applicability remains unconfirmed.</p>
+  <h1>Retirement:  TLS 1.0 and TLS 1.1 in Azure App Service, Azure Functions, and Azure Logic Apps</h1><p>On May 31, 2027, the Azure App Service platform stops accepting inbound TLS 1.0 and 1.1 connections for App Service, Azure Functions, Logic Apps Standard and App Service Environments, including app and SCM endpoints and deployment slots. Upgrade clients and set both minimum TLS settings to TLS 1.2 or later before that date. Legacy connections will fail regardless of configured settings. Outbound connections are unaffected. The announcement names Logic Apps broadly, but the detailed guidance excludes Consumption from its scope; its applicability remains unconfirmed.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-05-31"><strong>195 days remaining</strong><span>Retirement date: <time datetime="2027-05-31">31 May 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 10 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 May 2027</p>
-<div class="rich-content"><p>Complete changes before <strong>2027-05-31</strong>. Current product guidance says inbound TLS 1.0 and 1.1 handshakes will be rejected on that date at app and SCM (Kudu) endpoints, regardless of minimum TLS settings.</p>
-<p>The announcement says rejection starts “after” 2027-05-31; the detailed product guidance says “on” 2027-05-31. Use the product guidance's on-date cutoff. This is not a documented extension.</p>
-<p>After 2027-05-31, requests to create or update apps with either minimum TLS setting at 1.0 or 1.1 may also fail. No separate announcement or new-customer restriction date is supplied.</p>
+<div class="rich-content"><p>Complete changes before <strong>May 31, 2027</strong>. Current product guidance says inbound TLS 1.0 and 1.1 handshakes will be rejected on that date at app and SCM (Kudu) endpoints, regardless of minimum TLS settings.</p>
+<p>The announcement says rejection starts “after” May 31, 2027; the detailed product guidance says “on” May 31, 2027. Use the product guidance's on-date cutoff. This is not a documented extension.</p>
+<p>After May 31, 2027, requests to create or update apps with either minimum TLS setting at 1.0 or 1.1 may also fail. No separate announcement or new-customer restriction date is supplied.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>On <strong>2027-05-31</strong>, Microsoft retires inbound TLS 1.0 and 1.1 on the App Service platform for:</p>
+<div class="rich-content"><p>On <strong>May 31, 2027</strong>, Microsoft retires inbound TLS 1.0 and 1.1 on the App Service platform for:</p>
 <ul>
 <li>Azure App Service web apps on Windows and Linux.</li>
 <li>Azure Functions.</li>
@@ -1937,7 +1937,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Before <strong>2027-05-31</strong>:</p>
+<div class="rich-content"><p>Before <strong>May 31, 2027</strong>:</p>
 <ol>
 <li>Use the Azure services retirement workbook, filtered to App Service, to find apps whose app or SCM minimum TLS setting permits 1.0 or 1.1. Check every deployment slot separately.</li>
 <li>In each identified app's <strong>Diagnose and Solve Problems</strong>, search for <strong>Minimum TLS Version Checker</strong>. Review legacy clients before raising settings. Its traffic view covers only the last 24 hours, so repeat checks during peak usage.</li>
@@ -1952,7 +1952,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>From <strong>2027-05-31</strong>, clients negotiating TLS 1.0 or 1.1 will fail to connect to affected inbound endpoints. Raising minimum TLS settings earlier rejects those clients immediately.</p>
+<div class="rich-content"><p>From <strong>May 31, 2027</strong>, clients negotiating TLS 1.0 or 1.1 will fail to connect to affected inbound endpoints. Raising minimum TLS settings earlier rejects those clients immediately.</p>
 <ul>
 <li><strong>Application access:</strong> Legacy browsers, SDKs, scripts, webhooks and devices can lose access through custom domains or the default azurewebsites.net hostname.</li>
 <li><strong>Deployment and tooling:</strong> Legacy SCM connections can disrupt deployments, log streaming and advanced tooling, including outdated CI/CD agents.</li>

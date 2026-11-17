@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Digital Twins</span><span class="badge retired" data-deadline="2023-05-02"><span></span>Retired</span></div>
-  <h1>Azure Digital Twins Control-Plane Preview API Retirement (2020-03-31)</h1><p>Azure Digital Twins control-plane API versions 2020-03-01-preview and 2021-06-30-preview retired on 2023-05-02 and are no longer maintained. Current product guidance directs you to API 2023-01-31 (GA); the announcement named 2022-10-31 and requested migration before retirement. Migration requirements differ by preview version. The supplied guidance does not establish a request-blocking date or workload shutdown.</p>
+  <h1>Azure Digital Twins Control-Plane Preview API Retirement (2020-03-31)</h1><p>Azure Digital Twins control-plane API versions 2020-03-01-preview and 2021-06-30-preview retired on May 2, 2023 and are no longer maintained. Current product guidance directs you to API 2023-01-31 (GA); the announcement named October 31, 2022 and requested migration before retirement. Migration requirements differ by preview version. The supplied guidance does not establish a request-blocking date or workload shutdown.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2023-05-02"><strong>Retired</strong><span>Retirement date: <time datetime="2023-05-02">2 May 2023</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 months, 28 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">2 May 2023</p>
-<div class="rich-content"><p>Azure Digital Twins control-plane API versions <strong>2020-03-01-preview</strong> and <strong>2021-06-30-preview</strong> retired on <strong>2023-05-02</strong> and are no longer maintained.</p>
-<p>For 2020-03-01-preview, the announcement requested migration both “before” and “by” 2023-05-02; completing migration before that date satisfied both instructions. Current product guidance confirms the same retirement date for both versions.</p>
-<p>No separate request-blocking or workload shutdown date is documented. The title’s 2020-03-31 and the product page’s last-updated date do not establish retirement milestones.</p>
+<div class="rich-content"><p>Azure Digital Twins control-plane API versions <strong>2020-03-01-preview</strong> and <strong>2021-06-30-preview</strong> retired on <strong>May 2, 2023</strong> and are no longer maintained.</p>
+<p>For 2020-03-01-preview, the announcement requested migration both “before” and “by” May 2, 2023; completing migration before that date satisfied both instructions. Current product guidance confirms the same retirement date for both versions.</p>
+<p>No separate request-blocking or workload shutdown date is documented. The title’s March 31, 2020 and the product page’s last-updated date do not establish retirement milestones.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired Azure Digital Twins control-plane API versions <strong>2020-03-01-preview</strong> and <strong>2021-06-30-preview</strong> on 2023-05-02. Both versions are no longer maintained.</p>
-<p>Current product guidance identifies <strong>2023-01-31 (GA)</strong> as the replacement. The announcement named <strong>2022-10-31</strong> for migration from 2020-03-01-preview; use the current product-guidance destination rather than treating these as competing retirement dates.</p>
+<div class="rich-content"><p>Microsoft retired Azure Digital Twins control-plane API versions <strong>2020-03-01-preview</strong> and <strong>2021-06-30-preview</strong> on May 2, 2023. Both versions are no longer maintained.</p>
+<p>Current product guidance identifies <strong>2023-01-31 (GA)</strong> as the replacement. The announcement named <strong>October 31, 2022</strong> for migration from 2020-03-01-preview; use the current product-guidance destination rather than treating these as competing retirement dates.</p>
 <p>Migration from 2020-03-01-preview requires property, naming and response-handling changes. Microsoft documents migration from 2021-06-30-preview as backwards-compatible, with an explicit Updating state for endpoints and time-series database connections. The replacement also introduces user-assigned managed identities compared with 2021-06-30-preview.</p>
 <p>The supplied guidance does not document regional exceptions, security-update commitments or workload shutdown.</p>
 </div>
@@ -1934,7 +1934,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify management integrations using either retired control-plane API version, including through associated management SDKs. The supplied guidance provides no inventory procedure.</li>
-<li>Migrate those integrations to <strong>2023-01-31 (GA)</strong>, the destination in current product guidance. The announcement’s migration target for 2020-03-01-preview was 2022-10-31.</li>
+<li>Migrate those integrations to <strong>2023-01-31 (GA)</strong>, the destination in current product guidance. The announcement’s migration target for 2020-03-01-preview was October 31, 2022.</li>
 <li>For <strong>2020-03-01-preview</strong>, change Event Hubs property names from connectionString-PrimaryKey and connectionString-SecondaryKey to connectionStringPrimaryKey and connectionStringSecondaryKey. Handle asynchronous PATCH responses returning 202 Accepted instead of 200 OK. Check endpoint names against the 2–49 character limit and Digital Twins resource names against the 3–63 character limit. Remove dependencies on the instance SKU response property. Secondary secrets for Service Bus, Event Hubs and Event Grid endpoints become optional.</li>
 <li>For <strong>2021-06-30-preview</strong>, account for the explicit Updating state on endpoints and time-series database connections. Microsoft documents no breaking changes.</li>
 <li>If you use an associated management SDK, follow the referenced language-specific migration guidance. Microsoft recommends updating affected SDKs. For the 2021-06-30-preview Java SDK, the guidance also offers setting the SDK client’s service version to 2023-01-31 (GA).</li>
@@ -1945,7 +1945,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your management integrations use Azure Digital Twins control-plane API <strong>2020-03-01-preview</strong> or <strong>2021-06-30-preview</strong>, directly or through associated management SDKs. These versions retired on 2023-05-02 and are no longer maintained.</p>
+<div class="rich-content"><p>You are affected if your management integrations use Azure Digital Twins control-plane API <strong>2020-03-01-preview</strong> or <strong>2021-06-30-preview</strong>, directly or through associated management SDKs. These versions retired on May 2, 2023 and are no longer maintained.</p>
 <ul>
 <li><strong>2020-03-01-preview:</strong> migration changes Event Hubs property names, asynchronous PATCH handling, endpoint and resource name requirements, and availability of the instance SKU response property. Secondary endpoint secrets become optional.</li>
 <li><strong>2021-06-30-preview:</strong> Microsoft documents backwards compatibility and no breaking changes. Endpoints and time-series database connections gain an explicit Updating state.</li>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure platform</span><span class="badge retired" data-deadline="2024-05-31"><span></span>Retired</span></div>
-  <h1>Container insights recommended alerts (custom metrics) (preview) retirement moving up to 31 May 2024</h1><p>Container insights recommended alerts based on custom metrics (preview), the legacy alert rules and their underlying custom-metric collection retired on 2024-05-31. Microsoft explicitly advanced retirement from 2026-03-14. Disable legacy rules and enable replacement recommended alerts; use Prometheus-based rules for Azure Arc-enabled Kubernetes clusters. Review coverage gaps, including the absence of a listed recommended replacement for Node Disk Usage %. The sources do not establish Kubernetes workload shutdown or historical-data deletion.</p>
+  <h1>Container insights recommended alerts (custom metrics) (preview) retirement moving up to 31 May 2024</h1><p>Container insights recommended alerts based on custom metrics (preview), the legacy alert rules and their underlying custom-metric collection retired on May 31, 2024. Microsoft explicitly advanced retirement from March 14, 2026. Disable legacy rules and enable replacement recommended alerts; use Prometheus-based rules for Azure Arc-enabled Kubernetes clusters. Review coverage gaps, including the absence of a listed recommended replacement for Node Disk Usage %. The sources do not establish Kubernetes workload shutdown or historical-data deletion.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-05-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-05-31">31 May 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 5 months, 15 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 May 2024</p>
-<div class="rich-content"><p>The retirement date was <strong>2024-05-31</strong> for Container insights recommended alerts (custom metrics) (preview) and the custom metrics powering them. Product guidance confirms that collection of the listed custom metrics stopped starting that date.</p>
-<p>Microsoft explicitly moved retirement forward from <strong>2026-03-14</strong>. That older date remains in the original announcement and migration text but is superseded; this was not an extension. The notice instructed you to take migration actions before 2024-05-31.</p>
+<div class="rich-content"><p>The retirement date was <strong>May 31, 2024</strong> for Container insights recommended alerts (custom metrics) (preview) and the custom metrics powering them. Product guidance confirms that collection of the listed custom metrics stopped starting that date.</p>
+<p>Microsoft explicitly moved retirement forward from <strong>March 14, 2026</strong>. That older date remains in the original announcement and migration text but is superseded; this was not an extension. The notice instructed you to take migration actions before May 31, 2024.</p>
 <p>The announcements also state that you cannot onboard additional monitored Kubernetes clusters to this feature through Azure Portal, without specifying a separate effective date. They do not establish exactly when existing legacy rules stop evaluating.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired <strong>Container insights recommended alerts (custom metrics) (preview)</strong> and their underlying custom-metric collection on <strong>2024-05-31</strong>. The collection scope includes the listed node, pod, container and persistent-volume metrics for AKS and Azure Arc-enabled Kubernetes clusters, including entries labeled old, new and preview.</p>
+<div class="rich-content"><p>Microsoft retired <strong>Container insights recommended alerts (custom metrics) (preview)</strong> and their underlying custom-metric collection on <strong>May 31, 2024</strong>. The collection scope includes the listed node, pod, container and persistent-volume metrics for AKS and Azure Arc-enabled Kubernetes clusters, including entries labeled old, new and preview.</p>
 <p>The replacement experience offers recommended Prometheus and platform metric alert rules. You can enable both types for the same cluster, but <strong>Arc-enabled Kubernetes clusters require Prometheus-based rules</strong> because platform metric recommended rules are unsupported there.</p>
 <p>The updated announcement describes the replacement offering as generally available, while the older announcement calls Prometheus recommended alert rules preview. These descriptions do not establish the availability status of every replacement component. Migration guidance also lists coverage limits despite the older announcement's functionality-parity claim.</p>
 <p>This is not retirement of Container insights as a whole. The supplied content documents no regional exceptions or maintenance, support or security-update commitments.</p>
@@ -1947,7 +1947,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if your AKS or Azure Arc-enabled Kubernetes monitoring depends on the retiring custom metrics or legacy recommended alert rules. Documented uses include aggregate performance charts, pinned Azure portal dashboard charts, metrics explorer and metric alerts.</p>
-<p>Collection stopped on <strong>2024-05-31</strong>, so these dependencies cannot rely on new samples from that collection path. Microsoft warns of monitoring disruption without migration, but the sources do not specify exactly how each existing chart or legacy alert behaves afterward.</p>
+<p>Collection stopped on <strong>May 31, 2024</strong>, so these dependencies cannot rely on new samples from that collection path. Microsoft warns of monitoring disruption without migration, but the sources do not specify exactly how each existing chart or legacy alert behaves afterward.</p>
 <p>Replacement constraints include:</p>
 <ul>
 <li>Arc-enabled Kubernetes clusters cannot use platform metric recommended rules.</li>

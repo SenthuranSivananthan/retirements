@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure VMware Solution</span><span class="badge upcoming" data-deadline="2027-08-30"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure VMware Solution AV36P and AV52 node retirement on June 30, 2029</h1><p>Azure VMware Solution AV36P and AV52 have separate licensing and node-retirement milestones. License-included customers must purchase portable Broadcom VCF licenses and transition to VCF BYOL by 2027-08-30 to avoid the service disruption identified for 2027-08-31. Microsoft also requires migration to a new AVS node type before the current reserved instance term ends. All migrations off AV36P and AV52 VCF BYOL nodes must finish by 2029-06-30.</p>
+  <h1>Retirement: Azure VMware Solution AV36P and AV52 node retirement on June 30, 2029</h1><p>Azure VMware Solution AV36P and AV52 have separate licensing and node-retirement milestones. License-included customers must purchase portable Broadcom VCF licenses and transition to VCF BYOL by August 30, 2027 to avoid the service disruption identified for August 31, 2027. Microsoft also requires migration to a new AVS node type before the current reserved instance term ends. All migrations off AV36P and AV52 VCF BYOL nodes must finish by June 30, 2029.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-08-30"><strong>286 days remaining</strong><span>Retirement date: <time datetime="2027-08-30">30 Aug 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 1 year, 5 months, 13 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1917,20 +1917,20 @@
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Aug 2027</p>
 <div class="rich-content"><h3>License-included customers</h3>
-<p>2027-08-30 is the last day of AVS license-included service. You must transition to VCF BYOL by that date to avoid the service disruption identified for 2027-08-31.</p>
+<p>August 30, 2027 is the last day of AVS license-included service. You must transition to VCF BYOL by that date to avoid the service disruption identified for August 31, 2027.</p>
 <h3>AV36P and AV52 VCF BYOL</h3>
 <ul>
-<li>2026-06-30: Last day to purchase a 3-year reserved instance (RI).</li>
-<li>2028-06-30: Last day to purchase a 1-year RI.</li>
-<li>2029-06-30: Node retirement; all migrations off these node types must be complete.</li>
+<li>June 30, 2026: Last day to purchase a 3-year reserved instance (RI).</li>
+<li>June 30, 2028: Last day to purchase a 1-year RI.</li>
+<li>June 30, 2029: Node retirement; all migrations off these node types must be complete.</li>
 </ul>
 <p>Microsoft also requires transition to a new AVS node type before your current AV36P or AV52 RI term ends. These are separate milestones, not conflicting dates. The primary deadline above applies to license-included customers, not all BYOL customers.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring Azure VMware Solution AV36P and AV52 nodes on 2029-06-30. The notice covers existing AV36P and AV52 subscriptions.</p>
-<p>Earlier, on 2027-08-30, Microsoft will retire AVS license-included SKUs following Broadcom's VCF licensing change. Affected customers must purchase portable Broadcom VCF licenses and move to the corresponding AV36P or AV52 VCF BYOL SKUs. This licensing transition does not remove the later node-migration requirement.</p>
+<div class="rich-content"><p>Microsoft is retiring Azure VMware Solution AV36P and AV52 nodes on June 30, 2029. The notice covers existing AV36P and AV52 subscriptions.</p>
+<p>Earlier, on August 30, 2027, Microsoft will retire AVS license-included SKUs following Broadcom's VCF licensing change. Affected customers must purchase portable Broadcom VCF licenses and move to the corresponding AV36P or AV52 VCF BYOL SKUs. This licensing transition does not remove the later node-migration requirement.</p>
 <p>The supplied content does not document maintenance or security-update commitments through retirement. The regional availability reference does not independently establish affected regions or retirement exceptions.</p>
 </div>
       <div class="notice"></div>
@@ -1939,9 +1939,9 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Review your AV36P and AV52 subscriptions, licensing model and current RI expiration dates with your Microsoft Account Team.</li>
-<li>If you use license-included SKUs, purchase portable Broadcom VCF licenses and transition to the corresponding VCF BYOL SKUs by 2027-08-30.</li>
+<li>If you use license-included SKUs, purchase portable Broadcom VCF licenses and transition to the corresponding VCF BYOL SKUs by August 30, 2027.</li>
 <li>Identify replacement AVS node types using Azure Product Availability by Region, accounting for regional availability and access restrictions.</li>
-<li>Plan migration to a new AVS node type before your current AV36P or AV52 RI term ends. Complete all migrations off these BYOL node types by 2029-06-30.</li>
+<li>Plan migration to a new AVS node type before your current AV36P or AV52 RI term ends. Complete all migrations off these BYOL node types by June 30, 2029.</li>
 </ol>
 <p>The notice points to HCX migration documentation. The supplied HCX reference primarily describes on-premises-to-AVS migration, not a complete node-to-node procedure. Its options differ by downtime and scale: Cold Migration has long downtime; vMotion supports serial, small-scale migration without downtime; Bulk Migration supports parallel migration with minimal downtime; RAV supports larger-scale parallel migration without downtime. OSAM covers Hyper-V and KVM workloads with conversion downtime. The documented architecture uses an HCX add-on and Service Mesh, including a Layer 2 network extension.</p>
 <p>The supplied content does not provide complete backup, cutover, validation or cleanup procedures for this retirement.</p>
@@ -1950,7 +1950,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>If you use AV36P or AV52 license-included SKUs, failing to transition to VCF BYOL by 2027-08-30 exposes you to the service disruption identified for 2027-08-31. Customers already using VCF BYOL still need to migrate off these node types by 2029-06-30 and before their current RI term ends.</p>
+<div class="rich-content"><p>If you use AV36P or AV52 license-included SKUs, failing to transition to VCF BYOL by August 30, 2027 exposes you to the service disruption identified for August 31, 2027. Customers already using VCF BYOL still need to migrate off these node types by June 30, 2029 and before their current RI term ends.</p>
 <p>Review your subscriptions, licensing model and RI expiration dates with your Microsoft Account Team to establish your scope. Replacement-node availability depends on the regional product listing; that page alone does not identify retirement exposure.</p>
 <p>Migration downtime depends on the applicable migration method. The supplied content does not specify exact workload behavior after node retirement, console/API changes, data retention or deletion, or overall migration costs. The HCX reference says HCX Enterprise Edition licensing is included in the AVS service cost; this is not an estimate of total migration costs.</p>
 </div>

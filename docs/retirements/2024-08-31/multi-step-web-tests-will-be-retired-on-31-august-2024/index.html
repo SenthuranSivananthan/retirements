@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Application Insights · Azure Monitor</span><span class="badge retired" data-deadline="2024-08-31"><span></span>Retired</span></div>
-  <h1>Multi-step web tests will be retired on 31 August 2024</h1><p>Microsoft set 2024-08-31 as the retirement date for Application Insights multi-step web tests. Creation of new multi-step tests was blocked after 2023-08-31. Microsoft directs you to rewrite existing tests as custom availability tests using TrackAvailability() before retirement. The notice does not specify whether existing tests stop executing or how stored results remain accessible afterward.</p>
+  <h1>Multi-step web tests will be retired on 31 August 2024</h1><p>Microsoft set August 31, 2024 as the retirement date for Application Insights multi-step web tests. Creation of new multi-step tests was blocked after August 31, 2023. Microsoft directs you to rewrite existing tests as custom availability tests using TrackAvailability() before retirement. The notice does not specify whether existing tests stop executing or how stored results remain accessible afterward.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-08-31"><strong>Retired</strong><span>Retirement date: <time datetime="2024-08-31">31 Aug 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 6 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Aug 2024</p>
-<div class="rich-content"><p>Application Insights multi-step web tests retire on <strong>2024-08-31</strong>. Microsoft directs you to rewrite existing tests before that date.</p>
-<p>The restriction on creating new multi-step web tests applies after <strong>2023-08-31</strong>; it is a separate milestone. The notice does not specify post-retirement execution or stored-result access.</p>
+<div class="rich-content"><p>Application Insights multi-step web tests retire on <strong>August 31, 2024</strong>. Microsoft directs you to rewrite existing tests before that date.</p>
+<p>The restriction on creating new multi-step web tests applies after <strong>August 31, 2023</strong>; it is a separate milestone. The notice does not specify post-retirement execution or stored-result access.</p>
 <p>The supplied dates for URL ping tests, cloud-based load testing and classic work item integration concern different retirements, not extensions of this deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft is retiring <strong>Application Insights multi-step web tests</strong> on 2024-08-31. These tests depend on Visual Studio webtest files; the notice identifies Visual Studio 2019 as the last version with webtest functionality.</p>
+<div class="rich-content"><p>Microsoft is retiring <strong>Application Insights multi-step web tests</strong> on August 31, 2024. These tests depend on Visual Studio webtest files; the notice identifies Visual Studio 2019 as the last version with webtest functionality.</p>
 <p>Microsoft recommends custom availability tests that submit results through TrackAvailability(). You can author them in C# and run them on compute of your choice.</p>
 <p>This notice does not retire all Application Insights availability monitoring. It does not document support or security-update commitments through retirement, or specify when existing multi-step tests stop executing.</p>
 </div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify your Application Insights multi-step web tests. The retirement notice does not provide an inventory method.</li>
-<li>Rewrite them as custom availability tests that submit results through TrackAvailability(). Microsoft directs completion before <strong>2024-08-31</strong>. You can author the tests in C# and run them on compute of your choice.</li>
+<li>Rewrite them as custom availability tests that submit results through TrackAvailability(). Microsoft directs completion before <strong>August 31, 2024</strong>. You can author the tests in C# and run them on compute of your choice.</li>
 <li>If you use the overload accepting AvailabilityTelemetry, create a separate instance for each call, as documented in the supplied API reference.</li>
 </ol>
 <p>The retirement notice does not provide detailed migration, validation, export or cleanup procedures. The supplied URL ping-to-Standard migration procedures address a different test type and are not established as the migration path for multi-step tests.</p>
@@ -1943,7 +1943,7 @@
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you use <strong>Application Insights multi-step web tests</strong> based on Visual Studio webtest files. The notice does not document regional exceptions or an inventory procedure.</p>
-<p>You cannot create new multi-step web tests after <strong>2023-08-31</strong>. Existing tests are subject to the <strong>2024-08-31</strong> retirement, but the notice does not establish whether execution stops afterward, whether historical results remain accessible, or whether data is retained or deleted.</p>
+<p>You cannot create new multi-step web tests after <strong>August 31, 2023</strong>. Existing tests are subject to the <strong>August 31, 2024</strong> retirement, but the notice does not establish whether execution stops afterward, whether historical results remain accessible, or whether data is retained or deleted.</p>
 <p>The notice provides no cost information and does not establish shutdown of the applications being monitored. URL ping tests and their separately documented retirement are a different scope.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

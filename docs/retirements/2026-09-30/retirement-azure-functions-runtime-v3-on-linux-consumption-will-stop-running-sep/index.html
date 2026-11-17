@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Functions</span><span class="badge retired" data-deadline="2026-09-30"><span></span>Retired</span></div>
-  <h1>Retirement: Azure Functions runtime v3 on Linux Consumption will stop running September 30, 2026</h1><p>Azure Functions runtime v3 apps on Linux Consumption stop running after 2026-09-30 under the documented retirement. Migrate affected apps to runtime v4. Separately, .NET in-process support ends on 2026-11-10, and Linux Consumption hosting retires on 2028-09-30, requiring migration to Flex Consumption. These later milestones do not extend the v3 shutdown deadline.</p>
+  <h1>Retirement: Azure Functions runtime v3 on Linux Consumption will stop running September 30, 2026</h1><p>Azure Functions runtime v3 apps on Linux Consumption stop running after September 30, 2026 under the documented retirement. Migrate affected apps to runtime v4. Separately, .NET in-process support ends on November 10, 2026, and Linux Consumption hosting retires on September 30, 2028, requiring migration to Flex Consumption. These later milestones do not extend the v3 shutdown deadline.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-30"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-30">30 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 5 months, 13 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,21 +1916,21 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">30 Sep 2026</p>
-<div class="rich-content"><p>Azure Functions runtime v3 apps on Linux Consumption stop running after <strong>2026-09-30</strong>. Microsoft directs you to migrate before enforcement.</p>
+<div class="rich-content"><p>Azure Functions runtime v3 apps on Linux Consumption stop running after <strong>September 30, 2026</strong>. Microsoft directs you to migrate before enforcement.</p>
 <p>Separate milestones apply to different scopes:</p>
 <ul>
-<li><strong>2022-12-13:</strong> Extended support ended for runtimes v2 and v3. This does not establish a shutdown date for every app using those versions.</li>
-<li><strong>2026-11-10:</strong> Support ends for the .NET in-process model; the supplied guidance does not describe this as workload shutdown.</li>
-<li><strong>2028-09-30:</strong> Linux Consumption hosting retires. Migrate to Flex Consumption before that date. The announcement gives September 2028; the supplied product guidance specifies the day.</li>
+<li><strong>December 13, 2022:</strong> Extended support ended for runtimes v2 and v3. This does not establish a shutdown date for every app using those versions.</li>
+<li><strong>November 10, 2026:</strong> Support ends for the .NET in-process model; the supplied guidance does not describe this as workload shutdown.</li>
+<li><strong>September 30, 2028:</strong> Linux Consumption hosting retires. Migrate to Flex Consumption before that date. The announcement gives September 2028; the supplied product guidance specifies the day.</li>
 </ul>
 <p>The later milestones do not extend the v3 Linux Consumption shutdown deadline.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Functions runtime v3 apps on Linux Consumption will no longer start or process executions after <strong>2026-09-30</strong>. Existing deployments in that configuration stop functioning. Microsoft directs affected customers to runtime v4.</p>
-<p>V4 is highly backward compatible with v3, but language requirements and breaking changes require review. For .NET apps, Microsoft recommends the isolated worker model because in-process support ends on 2026-11-10.</p>
-<p>Separately, Linux Consumption hosting receives no new features or language versions and retires on 2028-09-30. Upgrading to v4 does not replace the required move to Flex Consumption. Windows Consumption apps are not currently affected by that hosting-plan retirement.</p>
+<div class="rich-content"><p>Azure Functions runtime v3 apps on Linux Consumption will no longer start or process executions after <strong>September 30, 2026</strong>. Existing deployments in that configuration stop functioning. Microsoft directs affected customers to runtime v4.</p>
+<p>V4 is highly backward compatible with v3, but language requirements and breaking changes require review. For .NET apps, Microsoft recommends the isolated worker model because in-process support ends on November 10, 2026.</p>
+<p>Separately, Linux Consumption hosting receives no new features or language versions and retires on September 30, 2028. Upgrading to v4 does not replace the required move to Flex Consumption. Windows Consumption apps are not currently affected by that hosting-plan retirement.</p>
 <p>The supplied sources do not document maintenance or security-update commitments for v3 before shutdown.</p>
 </div>
       <div class="notice"></div>
@@ -1943,14 +1943,14 @@
 <li>Update local tooling to Azure Functions Core Tools v4, then migrate project dependencies, bindings and settings using the language-specific guidance. Non-.NET apps need extension bundle 2.x or later. For isolated .NET, migrate startup configuration, replace incompatible WebJobs packages, update the worker setting, and review serialization and logging changes.</li>
 <li>Test locally on v4. In Azure portal, open <strong>Diagnose and solve problems</strong>, run <strong>Functions 4.x Pre-Upgrade Validator</strong>, and resolve its recommendations.</li>
 <li>Update the Azure host to v4 and configure the language stack to match the project's target framework before publishing. Code and application-setting changes restart the app. If you use deployment slots, follow the slot-specific configuration, staging validation, swap and rollback constraints.</li>
-<li>Publish and verify the migrated app. Separately, migrate Linux Consumption apps to Flex Consumption before 2028-09-30. Microsoft encourages this move, but the referenced plan-migration guide was unavailable in the supplied material; its procedure and completion checks are not established here.</li>
+<li>Publish and verify the migrated app. Separately, migrate Linux Consumption apps to Flex Consumption before September 30, 2028. Microsoft encourages this move, but the referenced plan-migration guide was unavailable in the supplied material; its procedure and completion checks are not established here.</li>
 </ol>
 </div>
       <p> </p>
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your apps face the documented shutdown after <strong>2026-09-30</strong> if they use <strong>runtime v3 on Linux Consumption</strong>. Without migration, they no longer start or process executions. The supplied sources do not establish this shutdown for v2 or v3 on other hosting configurations, although both versions are out of extended support.</p>
+<div class="rich-content"><p>Your apps face the documented shutdown after <strong>September 30, 2026</strong> if they use <strong>runtime v3 on Linux Consumption</strong>. Without migration, they no longer start or process executions. The supplied sources do not establish this shutdown for v2 or v3 on other hosting configurations, although both versions are out of extended support.</p>
 <p>Windows Consumption apps are not currently affected by the Linux Consumption plan retirement. This exception does not restore support for retired runtimes or the .NET in-process model.</p>
 <p>Migration has documented availability and compatibility effects:</p>
 <ul>

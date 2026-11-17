@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Application Insights</span><span class="badge retired" data-deadline="2025-03-31"><span></span>Retired</span></div>
-  <h1>Transition to using connection strings for data ingestion by 31 March 2025</h1><p>Technical support for instrumentation key–based global ingestion in Azure Monitor Application Insights ended on 2025-03-31. Microsoft no longer provides updates, bug fixes or customer support for that ingestion method, but resources continue receiving data. Migrate to connection strings to retain ingestion-related technical support. The migration guidance supplies SDK prerequisites and validation steps; it states that autoinstrumentation and billing are unaffected.</p>
+  <h1>Transition to using connection strings for data ingestion by 31 March 2025</h1><p>Technical support for instrumentation key–based global ingestion in Azure Monitor Application Insights ended on March 31, 2025. Microsoft no longer provides updates, bug fixes or customer support for that ingestion method, but resources continue receiving data. Migrate to connection strings to retain ingestion-related technical support. The migration guidance supplies SDK prerequisites and validation steps; it states that autoinstrumentation and billing are unaffected.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2025-03-31"><strong>Retired</strong><span>Retirement date: <time datetime="2025-03-31">31 Mar 2025</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 10 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Mar 2025</p>
-<div class="rich-content"><p>Technical support for instrumentation key–based global ingestion in Azure Monitor Application Insights ended on <strong>2025-03-31</strong>. Microsoft no longer provides updates, bug fixes or customer support for that ingestion method.</p>
-<p>Microsoft recommended transitioning to connection strings before 2025-03-31. This was not an ingestion shutdown: the announcements explicitly state that resources continue receiving data. No separate shutdown date is supplied.</p>
+<div class="rich-content"><p>Technical support for instrumentation key–based global ingestion in Azure Monitor Application Insights ended on <strong>March 31, 2025</strong>. Microsoft no longer provides updates, bug fixes or customer support for that ingestion method.</p>
+<p>Microsoft recommended transitioning to connection strings before March 31, 2025. This was not an ingestion shutdown: the announcements explicitly state that resources continue receiving data. No separate shutdown date is supplied.</p>
 <p>The connection-string reference and migration pages do not independently establish a retirement date. Their update timestamps are not retirement milestones.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft ended technical support for <strong>instrumentation key–based global ingestion</strong> in Application Insights on <strong>2025-03-31</strong>, while allowing resources to continue receiving data.</p>
+<div class="rich-content"><p>Microsoft ended technical support for <strong>instrumentation key–based global ingestion</strong> in Application Insights on <strong>March 31, 2025</strong>, while allowing resources to continue receiving data.</p>
 <p>The replacement is connection-string configuration, which supports regional ingestion endpoints, endpoint customization and Microsoft Entra authenticated ingestion. Connection strings still contain an instrumentation key; the change is not removal of that key from connection strings.</p>
 <p>The migration guidance states that autoinstrumentation scenarios are unaffected. It does not specify separate regional or customer-phase deadlines. The supplied guidance does not support enabling Microsoft Entra authentication for autoinstrumentation; Microsoft's stated future plans have no delivery date.</p>
 </div>
@@ -1931,7 +1931,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>To retain ingestion-related technical support, migrate applications using instrumentation key–based global ingestion to connection strings. Microsoft's recommended transition target was before 2025-03-31.</p>
+<div class="rich-content"><p>To retain ingestion-related technical support, migrate applications using instrumentation key–based global ingestion to connection strings. Microsoft's recommended transition target was before March 31, 2025.</p>
 <ol>
 <li>Identify instrumentation-key configuration in your applications, including hardcoded keys and deployment settings. For integrations supplied by another Azure product, consult that product's connection-string configuration guidance.</li>
 <li>Confirm you have an existing Application Insights resource and a supported SDK: .NET/.NET Core v2.12.0+, Java v2.5.1 or Java 3.0+, JavaScript v2.3.0+, NodeJS v1.5.0+, or Python v1.0.0+.</li>
@@ -1946,7 +1946,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your applications use instrumentation key–based global ingestion. Since <strong>2025-03-31</strong>, that ingestion method has received no updates, bug fixes or customer support. Microsoft states that resources continue receiving data; this is not a workload-shutdown announcement.</p>
+<div class="rich-content"><p>You are affected if your applications use instrumentation key–based global ingestion. Since <strong>March 31, 2025</strong>, that ingestion method has received no updates, bug fixes or customer support. Microsoft states that resources continue receiving data; this is not a workload-shutdown announcement.</p>
 <p>The migration guidance states that <strong>autoinstrumentation and billing are unaffected</strong>. It highlights endpoint configuration for firewall exceptions, proxy redirects, intranet monitoring, and sovereign or hybrid cloud environments.</p>
 <p>Migration configuration can affect telemetry visibility: competing key and connection-string settings can cause missing telemetry. Separately, disabling local authentication can stop browser telemetry unless you address the documented JavaScript authentication limitation.</p>
 <p>The Q&amp;A thread leaves support questions about connection strings without region-specific endpoints and AD B2C custom policies unresolved. A comment reporting loss of the portal's “View Application Insights data” option is a user report, not a confirmed general consequence or documented fix.</p>

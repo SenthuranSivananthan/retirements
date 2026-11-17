@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Container Apps</span><span class="badge retired" data-deadline="2023-11-16"><span></span>Retired</span></div>
-  <h1>Retirement: Azure Container Apps preview API versions 2022-06-01-preview and 2022-11-01-preview</h1><p>The notice sets 2023-11-16 as the start of retirement for Azure Container Apps control plane API versions 2022-06-01-preview and 2022-11-01-preview. Management requests using these versions may fail afterward; the notice does not establish workload shutdown. Update affected requests. The notice names 2023-05-01 as the stable replacement and 2023-04-01-preview as the preview replacement at publication.</p>
+  <h1>Retirement: Azure Container Apps preview API versions 2022-06-01-preview and 2022-11-01-preview</h1><p>The notice sets November 16, 2023 as the start of retirement for Azure Container Apps control plane API versions 2022-06-01-preview and 2022-11-01-preview. Management requests using these versions may fail afterward; the notice does not establish workload shutdown. Update affected requests. The notice names 2023-05-01 as the stable replacement and 2023-04-01-preview as the preview replacement at publication.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2023-11-16"><strong>Retired</strong><span>Retirement date: <time datetime="2023-11-16">16 Nov 2023</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 months, 29 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,13 +1916,13 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">16 Nov 2023</p>
-<div class="rich-content"><p>Retirement starts on <strong>2023-11-16</strong> for Azure Container Apps control plane API versions <strong>2022-06-01-preview</strong> and <strong>2022-11-01-preview</strong>. The notice instructs you to update affected requests before that date; management operations using retired versions may fail afterward.</p>
+<div class="rich-content"><p>Retirement starts on <strong>November 16, 2023</strong> for Azure Container Apps control plane API versions <strong>2022-06-01-preview</strong> and <strong>2022-11-01-preview</strong>. The notice instructs you to update affected requests before that date; management operations using retired versions may fail afterward.</p>
 <p>The general API reference and GitHub issues listing establish no alternative deadline for this retirement. Their page-update and issue-opening dates are not retirement milestones.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Container Apps is retiring control plane API versions <strong>2022-06-01-preview</strong> and <strong>2022-11-01-preview</strong>, starting <strong>2023-11-16</strong>.</p>
+<div class="rich-content"><p>Azure Container Apps is retiring control plane API versions <strong>2022-06-01-preview</strong> and <strong>2022-11-01-preview</strong>, starting <strong>November 16, 2023</strong>.</p>
 <p>The notice names <strong>2023-05-01</strong> as the stable replacement and <strong>2023-04-01-preview</strong> as the preview replacement at the time of publication. It does not specify regional exceptions, pre-retirement availability guarantees, or maintenance, support and security-update commitments.</p>
 <p>The reference page supplies general API-update guidance; it does not independently announce this retirement. The separate environment-archiving issue listing does not establish an additional retirement affecting these API versions.</p>
 </div>
@@ -1932,7 +1932,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>
-<p>Identify Azure Resource Manager requests and deployment templates that manage Azure Container Apps using <strong>2022-06-01-preview</strong> or <strong>2022-11-01-preview</strong>. The notice required updating these requests before <strong>2023-11-16</strong>.</p>
+<p>Identify Azure Resource Manager requests and deployment templates that manage Azure Container Apps using <strong>2022-06-01-preview</strong> or <strong>2022-11-01-preview</strong>. The notice required updating these requests before <strong>November 16, 2023</strong>.</p>
 </li>
 <li>
 <p>Select a replacement. The notice directs you to <strong>2023-04-01-preview or later</strong>, naming <strong>2023-05-01</strong> as the stable option and <strong>2023-04-01-preview</strong> as the preview option at publication. The reference advises reviewing Resource Manager API documentation, the Microsoft.App change log and the target version's JSON definitions; its examples are not complete schemas.</p>
@@ -1953,7 +1953,7 @@ az extension add -n containerapp --upgrade
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your Azure Resource Manager requests use <strong>2022-06-01-preview</strong> or <strong>2022-11-01-preview</strong> to manage Azure Container Apps. Those management operations may fail after retirement starts on <strong>2023-11-16</strong>. Check API requests and ARM or Bicep version references; no automated discovery method is supplied.</p>
+<div class="rich-content"><p>You are affected if your Azure Resource Manager requests use <strong>2022-06-01-preview</strong> or <strong>2022-11-01-preview</strong> to manage Azure Container Apps. Those management operations may fail after retirement starts on <strong>November 16, 2023</strong>. Check API requests and ARM or Bicep version references; no automated discovery method is supplied.</p>
 <p>This retirement concerns control plane management. The notice does not establish that running workloads shut down, or document data retention, deletion or cost effects. It does not identify regional exceptions.</p>
 <p>The general reference distinguishes application-scope configuration changes, which do not trigger a new revision, from template changes, which do. It does not state that changing an API version alone triggers a revision.</p>
 </div>

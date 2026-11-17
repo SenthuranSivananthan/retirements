@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Monitor</span><span class="badge retired" data-deadline="2026-07-31"><span></span>Retired</span></div>
-  <h1>Retirement: &#34;Send data to Event Hubs &amp; Storage (Preview)&#34; retiring July 31, 2026</h1><p>Azure Monitor&#39;s preview for sending Azure VM client data directly to Event Hubs and Storage retires on 2026-07-31. Existing configurations stop sending data at retirement, and Microsoft ends support for this capability. Current product guidance blocks new data collection rules starting February 2026, earlier than the announcement&#39;s retirement-date restriction; no exact February day is supplied. Migrate Storage blob scenarios to custom tables using the Auxiliary plan, or Event Hubs scenarios to Azure Monitor Logs with data export. No direct AMA-to-Event-Hubs replacement is available. Azure Monitor Agent itself remains generally available and supported.</p>
+  <h1>Retirement: &#34;Send data to Event Hubs &amp; Storage (Preview)&#34; retiring July 31, 2026</h1><p>Azure Monitor&#39;s preview for sending Azure VM client data directly to Event Hubs and Storage retires on July 31, 2026. Existing configurations stop sending data at retirement, and Microsoft ends support for this capability. Current product guidance blocks new data collection rules starting February 2026, earlier than the announcement&#39;s retirement-date restriction; no exact February day is supplied. Migrate Storage blob scenarios to custom tables using the Auxiliary plan, or Event Hubs scenarios to Azure Monitor Logs with data export. No direct AMA-to-Event-Hubs replacement is available. Azure Monitor Agent itself remains generally available and supported.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-07-31"><strong>Retired</strong><span>Retirement date: <time datetime="2026-07-31">31 Jul 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 6 months, 1 day</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Jul 2026</p>
-<div class="rich-content"><p>The preview retires on <strong>2026-07-31</strong>. Current product guidance states that after that date, existing configurations stop sending data and Microsoft no longer supports this capability.</p>
+<div class="rich-content"><p>The preview retires on <strong>July 31, 2026</strong>. Current product guidance states that after that date, existing configurations stop sending data and Microsoft no longer supports this capability.</p>
 <p>New data collection rules using the feature are blocked starting <strong>February 2026</strong>; the exact day is not specified. The announcement instead places the new-rule restriction at retirement. Use February 2026 from the applicable current product guidance for this separate milestone, not as a change to the retirement date.</p>
 <p>Creation instructions retained on the product page do not establish an exception or extension.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Monitor is retiring its public preview for sending Azure VM client data directly to Event Hubs and Azure Storage through data collection rules of kind <code>AgentDirectToStore</code> on <strong>2026-07-31</strong>.</p>
+<div class="rich-content"><p>Azure Monitor is retiring its public preview for sending Azure VM client data directly to Event Hubs and Azure Storage through data collection rules of kind <code>AgentDirectToStore</code> on <strong>July 31, 2026</strong>.</p>
 <p>Existing configurations can continue sending data until retirement; afterward, delivery stops and Microsoft ends support for this capability. New rules are restricted starting February 2026.</p>
 <p>This change does not retire Azure Monitor Agent (AMA), Event Hubs or Azure Storage. AMA remains generally available and supported. The preview supports Azure VMs only, not Arc-enabled VMs. The supplied content documents no regional exceptions or separate agent-version deadlines.</p>
 </div>
@@ -1934,7 +1934,7 @@
 <div class="rich-content"><ol>
 <li>Identify affected rules and associated VMs using the Azure Resource Graph queries described under progress.</li>
 <li>Select the documented alternative for your destination. For Storage blobs, update AMA configurations to send data to custom tables using the Auxiliary plan for longer-term storage. For Event Hubs, send data to Azure Monitor Logs and use data export to Event Hubs. No direct AMA-to-Event-Hubs replacement is available.</li>
-<li>Migrate affected configurations before <strong>2026-07-31</strong> to avoid losing delivery at retirement.</li>
+<li>Migrate affected configurations before <strong>July 31, 2026</strong> to avoid losing delivery at retirement.</li>
 <li>As a team-owned validation step, confirm that required data reaches the replacement destination before marking migration complete.</li>
 </ol>
 <p>The templates also include direct Storage table destinations, but the guidance does not specify a separate replacement for them. It does not provide detailed migration prerequisites, backup, cutover or cleanup procedures, or establish that each alternative supports every existing data type.</p>
@@ -1944,7 +1944,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your Azure VMs use AMA with <code>AgentDirectToStore</code> data collection rules. At retirement on <strong>2026-07-31</strong>, existing configurations lose data delivery to their configured destinations. The supplied content does not state that VMs or their workloads shut down.</p>
+<div class="rich-content"><p>You are affected if your Azure VMs use AMA with <code>AgentDirectToStore</code> data collection rules. At retirement on <strong>July 31, 2026</strong>, existing configurations lose data delivery to their configured destinations. The supplied content does not state that VMs or their workloads shut down.</p>
 <p>The documented preview covers:</p>
 <ul>
 <li>Windows Event Logs, Linux Syslog, and Windows/Linux performance counters to Event Hubs or Storage.</li>

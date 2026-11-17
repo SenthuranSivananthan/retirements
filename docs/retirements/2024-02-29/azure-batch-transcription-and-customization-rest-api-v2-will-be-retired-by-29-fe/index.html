@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure AI Speech</span><span class="badge retired" data-deadline="2024-02-29"><span></span>Retired</span></div>
-  <h1>Azure Batch Transcription and Customization Rest API v2 will be retired by 29 February 2024</h1><p>Azure Batch Transcription and Customization REST API v2 retired on 2024-02-29. Microsoft required customers to update code to version 3 by that date to avoid service interruptions. The supplied migration guide separately states that v3.0, 3.2-preview.1 and 3.2-preview.2 retired on 2026-03-31 and identifies 2025-10-15 as the latest generally available version. These are different version milestones, not conflicting dates or an extension of the v2 deadline. The supplied sources do not specify exact post-retirement shutdown or data-retention behavior.</p>
+  <h1>Azure Batch Transcription and Customization Rest API v2 will be retired by 29 February 2024</h1><p>Azure Batch Transcription and Customization REST API v2 retired on February 29, 2024. Microsoft required customers to update code to version 3 by that date to avoid service interruptions. The supplied migration guide separately states that v3.0, 3.2-preview.1 and 3.2-preview.2 retired on March 31, 2026 and identifies 2025-10-15 as the latest generally available version. These are different version milestones, not conflicting dates or an extension of the v2 deadline. The supplied sources do not specify exact post-retirement shutdown or data-retention behavior.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2024-02-29"><strong>Retired</strong><span>Retirement date: <time datetime="2024-02-29">29 Feb 2024</time></span><span class="badge amber customer-lead-time-pill">Lead time: 3 years, 5 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,14 +1916,14 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">29 Feb 2024</p>
-<div class="rich-content"><p>Azure Batch Transcription and Customization REST API v2 retired on <strong>2024-02-29</strong>. Microsoft specified the same date for updating your code to version 3 to avoid service interruptions.</p>
-<p>The migration guide separately states that Speech to text REST API v3.0, 3.2-preview.1 and 3.2-preview.2 retired on <strong>2026-03-31</strong>. This concerns different versions; it does not extend or contradict the v2 deadline.</p>
+<div class="rich-content"><p>Azure Batch Transcription and Customization REST API v2 retired on <strong>February 29, 2024</strong>. Microsoft specified the same date for updating your code to version 3 to avoid service interruptions.</p>
+<p>The migration guide separately states that Speech to text REST API v3.0, 3.2-preview.1 and 3.2-preview.2 retired on <strong>March 31, 2026</strong>. This concerns different versions; it does not extend or contradict the v2 deadline.</p>
 <p>The guide gives no retirement date for v3.1 or generally available v3.2. The retirement date for 2024-05-15-preview remains unannounced. The sources do not specify exact shutdown behavior at retirement.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft retired Azure Batch Transcription and Customization REST API v2 on <strong>2024-02-29</strong> and named version 3 as its replacement. The notice describes version 3 as building on the previous version and aligning the API layout more closely with other Azure and Cognitive Services APIs.</p>
+<div class="rich-content"><p>Microsoft retired Azure Batch Transcription and Customization REST API v2 on <strong>February 29, 2024</strong> and named version 3 as its replacement. The notice describes version 3 as building on the previous version and aligning the API layout more closely with other Azure and Cognitive Services APIs.</p>
 <p>That original replacement guidance is not sufficient to select a currently supported destination: the supplied migration guide also lists v3.0, 3.2-preview.1 and 3.2-preview.2 as retired and identifies 2025-10-15 as the latest generally available version.</p>
 <p>The sources do not document v2 regional exceptions or maintenance, support or security-update commitments.</p>
 </div>
@@ -1933,7 +1933,7 @@
       <p class="section-intro">Required actions, options, and available support.</p>
 <div class="rich-content"><ol>
 <li>Identify integrations that use Azure Batch Transcription and Customization REST API v2. The retirement notice does not provide a discovery method.</li>
-<li>Select your migration destination using the supplied migration-guide references. The original notice required version 3 by 2024-02-29, but the later guide lists v3.0 and two v3.2 preview versions as retired and identifies 2025-10-15 as the latest generally available version.</li>
+<li>Select your migration destination using the supplied migration-guide references. The original notice required version 3 by February 29, 2024, but the later guide lists v3.0 and two v3.2 preview versions as retired and identifies 2025-10-15 as the latest generally available version.</li>
 <li>Follow the guidance applicable to your migration path. The supplied guide details only the v3.1-to-v3.2 changes; it is not a complete procedure for migrating v2 to the latest version. For that documented step, update the base path to v3.2, retrieve v3.2-created transcriptions through v3.2 or higher, and replace the deprecated model-copy flow where applicable.</li>
 <li>Review applicable batch transcription pricing and custom model training charges. The guide's conflicting billing-property guidance leaves the boolean interpretation for training charges unconfirmed.</li>
 <li>As a team-owned validation step, verify transcription creation, retrieval and any custom speech operations your integrations use.</li>
@@ -1944,12 +1944,12 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your integrations are affected if they use Azure Batch Transcription and Customization REST API v2. Microsoft warned that failing to update by <strong>2024-02-29</strong> could cause service interruptions. The supplied content does not establish which versions your resources use or the exact behavior of requests after retirement.</p>
+<div class="rich-content"><p>Your integrations are affected if they use Azure Batch Transcription and Customization REST API v2. Microsoft warned that failing to update by <strong>February 29, 2024</strong> could cause service interruptions. The supplied content does not establish which versions your resources use or the exact behavior of requests after retirement.</p>
 <p>Keep migration effects separate from retirement consequences:</p>
 <ul>
 <li>Transcriptions created through v3.2 cannot be retrieved through v3.0 or v3.1; requests can return an API-version error.</li>
 <li>The documented v3.2 migration introduces batch transcription pricing changes. No rates or cost estimate are supplied.</li>
-<li>The guide states that custom speech training is chargeable for base models created on or after 2023-10-01, but not for earlier base models. Its billing-property names and boolean guidance conflict, so that interpretation remains unconfirmed.</li>
+<li>The guide states that custom speech training is chargeable for base models created on or after October 1, 2023, but not for earlier base models. Its billing-property names and boolean guidance conflict, so that interpretation remains unconfirmed.</li>
 <li>Custom model-copy integrations must account for the deprecated copy operation and its replacement authorization/copy flow.</li>
 </ul>
 <p>The sources do not document v2 retirement-related console changes, data retention or deletion, or workload-continuity guarantees.</p>

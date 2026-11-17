@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Scheduler</span><span class="badge retired" data-deadline="2022-01-31"><span></span>Retired</span></div>
-  <h1>Azure Scheduler will be retired on 31 January 2022</h1><p>Azure Scheduler’s standalone-service retirement was explicitly extended to 2022-01-31. Microsoft directs you to move configured jobs to Azure Logic Apps before that date. A supplied Q&amp;A answer instead reports full retirement on 2019-12-31; the explicit extension notices establish the applicable date. Earlier Free SKU shutdown and portal restrictions are separate milestones. Internally scheduled WebJobs are unaffected, while WebJobs triggered through Azure Scheduler require migration. The original timeline associates full retirement with stopping all jobs and deleting all data, but the extension does not separately confirm revised deletion timing. The supplied migration-reference content is a Logic Apps quickstart and does not establish migration completion checks.</p>
+  <h1>Azure Scheduler will be retired on 31 January 2022</h1><p>Azure Scheduler’s standalone-service retirement was explicitly extended to January 31, 2022. Microsoft directs you to move configured jobs to Azure Logic Apps before that date. A supplied Q&amp;A answer instead reports full retirement on December 31, 2019; the explicit extension notices establish the applicable date. Earlier Free SKU shutdown and portal restrictions are separate milestones. Internally scheduled WebJobs are unaffected, while WebJobs triggered through Azure Scheduler require migration. The original timeline associates full retirement with stopping all jobs and deleting all data, but the extension does not separately confirm revised deletion timing. The supplied migration-reference content is a Logic Apps quickstart and does not establish migration completion checks.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2022-01-31"><strong>Retired</strong><span>Retirement date: <time datetime="2022-01-31">31 Jan 2022</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 months, 8 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,19 +1916,19 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Jan 2022</p>
-<div class="rich-content"><p>Azure Scheduler’s retirement date was explicitly extended to <strong>2022-01-31</strong>. The latest supplied notice directs you to move configured jobs to Azure Logic Apps <strong>before 2022-01-31</strong> to continue using them.</p>
+<div class="rich-content"><p>Azure Scheduler’s retirement date was explicitly extended to <strong>January 31, 2022</strong>. The latest supplied notice directs you to move configured jobs to Azure Logic Apps <strong>before January 31, 2022</strong> to continue using them.</p>
 <p>Separate historical milestones apply to different capabilities:</p>
 <ul>
-<li><strong>2019-09-30:</strong> Free SKU job collections were disabled and their jobs stopped; data remained retrievable for migration. Portal creation of job collections ended for all SKUs.</li>
-<li><strong>2019-10-31:</strong> Scheduler was removed from the Azure portal. Existing Standard, P10 and P20 resources continued running through API and SDK access.</li>
-<li><strong>2019-12-31:</strong> The original full-retirement milestone specified stopping all jobs and deleting all data. Microsoft subsequently extended retirement to 2022-01-31, without separately restating deletion timing.</li>
+<li><strong>September 30, 2019:</strong> Free SKU job collections were disabled and their jobs stopped; data remained retrievable for migration. Portal creation of job collections ended for all SKUs.</li>
+<li><strong>October 31, 2019:</strong> Scheduler was removed from the Azure portal. Existing Standard, P10 and P20 resources continued running through API and SDK access.</li>
+<li><strong>December 31, 2019:</strong> The original full-retirement milestone specified stopping all jobs and deleting all data. Microsoft subsequently extended retirement to January 31, 2022, without separately restating deletion timing.</li>
 </ul>
-<p>A supplied Q&amp;A accepted answer reports full retirement on <strong>2019-12-31</strong>. This differs from the explicit extension notices; the extension establishes the applicable retirement date. Older text also retains a <strong>2019-09-30</strong> retirement and migration target, while introductory accounts differ about the earliest retirement plans. These historical statements do not override the explicit extension.</p>
+<p>A supplied Q&amp;A accepted answer reports full retirement on <strong>December 31, 2019</strong>. This differs from the explicit extension notices; the extension establishes the applicable retirement date. Older text also retains a <strong>September 30, 2019</strong> retirement and migration target, while introductory accounts differ about the earliest retirement plans. These historical statements do not override the explicit extension.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Scheduler is retiring as a standalone service on <strong>2022-01-31</strong>. Microsoft identifies Azure Logic Apps as its replacement and directs you to migrate scheduled jobs for continued use.</p>
+<div class="rich-content"><p>Azure Scheduler is retiring as a standalone service on <strong>January 31, 2022</strong>. Microsoft identifies Azure Logic Apps as its replacement and directs you to migrate scheduled jobs for continued use.</p>
 <p>The retained timeline separates Free SKU shutdown and portal removal from continued API and SDK operation of existing Standard, P10 and P20 resources. The extension does not explicitly revise those earlier restrictions or guarantee availability before retirement.</p>
 <p>For WebJobs, the supplied Q&amp;A distinguishes Scheduler-triggered jobs from internal scheduling: WebJobs using Azure Scheduler are affected; internally scheduled WebJobs are not affected by this retirement.</p>
 <p>The original full-retirement timeline says all Scheduler jobs stop and all data is deleted. The extension does not separately confirm revised deletion timing. Regional exceptions and maintenance, support or security-update commitments are not documented.</p>
@@ -1937,14 +1937,14 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Move Azure Scheduler jobs you need to continue using to <strong>Azure Logic Apps before 2022-01-31</strong>.</p>
+<div class="rich-content"><p>Move Azure Scheduler jobs you need to continue using to <strong>Azure Logic Apps before January 31, 2022</strong>.</p>
 <ol>
 <li>Identify your configured Scheduler jobs. For WebJobs, distinguish internal scheduling from Azure Scheduler calls to the WebJobs API; the supplied content provides no inventory tool or discovery command.</li>
 <li>Move Scheduler-dependent jobs to Logic Apps. For Scheduler-triggered WebJobs, the supplied Q&amp;A describes using a Logic App HTTP Action to invoke the WebJobs API.</li>
 <li>Consult the migration guidance and FAQ referenced by the notices. The supplied content at the migration-reference URL is instead a Logic Apps Consumption quickstart, so it does not supply retirement migration procedures or establish completion.</li>
 </ol>
 <p>Internally scheduled WebJobs do not require migration for this retirement. The Q&amp;A moderator states that their website must have <strong>Always On</strong> configured for scheduling to work.</p>
-<p>The inputs do not provide detailed compatibility checks, migration prerequisites, export or backup procedures, cutover, validation or cleanup steps. The historical instruction to disable or delete job collections before 2019-10-31 applied to customers who did not want jobs to continue after portal removal; it was not the final retirement deadline.</p>
+<p>The inputs do not provide detailed compatibility checks, migration prerequisites, export or backup procedures, cutover, validation or cleanup steps. The historical instruction to disable or delete job collections before October 31, 2019 applied to customers who did not want jobs to continue after portal removal; it was not the final retirement deadline.</p>
 </div>
       <p> </p>
     </section>
@@ -1952,12 +1952,12 @@
       <p class="section-intro">Your affected environments, resources, and users.</p>
 <div class="rich-content"><p>You are affected if you rely on jobs configured in Azure Scheduler. Continued scheduled execution requires migration to Logic Apps; the supplied content does not establish which resources you use.</p>
 <ul>
-<li><strong>Free SKU:</strong> Jobs stopped on 2019-09-30 under the original timeline, with data remaining retrievable for migration.</li>
-<li><strong>All SKUs:</strong> Portal creation of job collections ended on 2019-09-30, and Scheduler portal access ended on 2019-10-31.</li>
+<li><strong>Free SKU:</strong> Jobs stopped on September 30, 2019 under the original timeline, with data remaining retrievable for migration.</li>
+<li><strong>All SKUs:</strong> Portal creation of job collections ended on September 30, 2019, and Scheduler portal access ended on October 31, 2019.</li>
 <li><strong>Existing Standard, P10 and P20:</strong> Jobs continued running after portal removal through API and SDK access. This was not an exemption from final retirement.</li>
 <li><strong>WebJobs:</strong> Jobs triggered through Azure Scheduler are affected. Internally scheduled WebJobs are unaffected by this retirement, subject to the documented Always On requirement.</li>
 </ul>
-<p>The original full-retirement consequence was that all Scheduler jobs would stop and all data would be deleted. Retirement was extended to 2022-01-31, but the extension does not separately confirm revised deletion timing or precise shutdown mechanics.</p>
+<p>The original full-retirement consequence was that all Scheduler jobs would stop and all data would be deleted. Retirement was extended to January 31, 2022, but the extension does not separately confirm revised deletion timing or precise shutdown mechanics.</p>
 <p>The inputs do not quantify affected resources, establish migration costs or detail final API, integration, deployment-tooling or data-access behavior.</p>
 </div>
       <div class="notice">No tenant access; compare this guidance with your inventory. </div>

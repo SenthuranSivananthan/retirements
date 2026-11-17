@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Functions</span><span class="badge retired" data-deadline="2026-09-14"><span></span>Retired</span></div>
-  <h1>Support for the 1.x version of Azure Functions ends 14 September 2026</h1><p>Support for Azure Functions runtime 1.x ended on 2026-09-14. Existing apps can continue running, but Microsoft no longer provides support, software updates or security updates for that runtime. Migrate to runtime 4.x for continued support. For C#, choose a supported .NET target with the isolated worker model; the separate .NET in-process support milestone was 2026-11-10, not an extension of runtime 1.x support. Azure Stack Hub cannot host Functions 4.x, so affected apps need public-cloud Azure Functions 4.x or WebJobs on Azure Stack Hub.</p>
+  <h1>Support for the 1.x version of Azure Functions ends 14 September 2026</h1><p>Support for Azure Functions runtime 1.x ended on September 14, 2026. Existing apps can continue running, but Microsoft no longer provides support, software updates or security updates for that runtime. Migrate to runtime 4.x for continued support. For C#, choose a supported .NET target with the isolated worker model; the separate .NET in-process support milestone was November 10, 2026, not an extension of runtime 1.x support. Azure Stack Hub cannot host Functions 4.x, so affected apps need public-cloud Azure Functions 4.x or WebJobs on Azure Stack Hub.</p>
   <div class="retirement-countdown retired" data-countdown data-deadline="2026-09-14"><strong>Retired</strong><span>Retirement date: <time datetime="2026-09-14">14 Sep 2026</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 16 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,15 +1916,15 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">14 Sep 2026</p>
-<div class="rich-content"><p>Support for Azure Functions runtime 1.x ended on <strong>2026-09-14</strong>. The notice also required migration to runtime 4.x by that date for continued support.</p>
+<div class="rich-content"><p>Support for Azure Functions runtime 1.x ended on <strong>September 14, 2026</strong>. The notice also required migration to runtime 4.x by that date for continued support.</p>
 <p>This was an end-of-support milestone, not a shutdown. Existing 1.x apps can continue running, but Microsoft no longer provides support, software updates or security updates for that runtime.</p>
-<p>The migration guide separately lists <strong>2026-11-10</strong> as the end of support for the .NET in-process model. That is a different milestone, not an extension of runtime 1.x support.</p>
+<p>The migration guide separately lists <strong>November 10, 2026</strong> as the end of support for the .NET in-process model. That is a different milestone, not an extension of runtime 1.x support.</p>
 </div>
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Azure Functions runtime <strong>1.x</strong> is out of support as of <strong>2026-09-14</strong>. Microsoft directs you to migrate to runtime <strong>4.x</strong>, updating project code, bindings, configuration and the Azure-hosted runtime.</p>
-<p>The guide provides C# and JavaScript migration paths. For C#, choose a supported .NET target using the isolated worker model. Its examples include .NET 10 and .NET Framework 4.8 isolated workers; its .NET 8 examples use the in-process model, whose separate support milestone was 2026-11-10. Go, Java, TypeScript, PowerShell and Python were not supported on runtime 1.x, so references to them are not additional 1.x migration paths.</p>
+<div class="rich-content"><p>Azure Functions runtime <strong>1.x</strong> is out of support as of <strong>September 14, 2026</strong>. Microsoft directs you to migrate to runtime <strong>4.x</strong>, updating project code, bindings, configuration and the Azure-hosted runtime.</p>
+<p>The guide provides C# and JavaScript migration paths. For C#, choose a supported .NET target using the isolated worker model. Its examples include .NET 10 and .NET Framework 4.8 isolated workers; its .NET 8 examples use the in-process model, whose separate support milestone was November 10, 2026. Go, Java, TypeScript, PowerShell and Python were not supported on runtime 1.x, so references to them are not additional 1.x migration paths.</p>
 <p><strong>Azure Stack Hub cannot host Functions 4.x.</strong> Move affected apps to public-cloud Azure Functions 4.x or switch to WebJobs on an App Service plan in Azure Stack Hub.</p>
 </div>
       <div class="notice"></div>
@@ -1946,7 +1946,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>You are affected if your function apps use Azure Functions runtime <strong>1.x</strong>. Since <strong>2026-09-14</strong>, those apps can still run, but Microsoft no longer provides runtime support, software updates or security updates. The sources do not announce automatic workload shutdown, data deletion or cost changes, and do not establish your affected app count or regional exceptions.</p>
+<div class="rich-content"><p>You are affected if your function apps use Azure Functions runtime <strong>1.x</strong>. Since <strong>September 14, 2026</strong>, those apps can still run, but Microsoft no longer provides runtime support, software updates or security updates. The sources do not announce automatic workload shutdown, data deletion or cost changes, and do not establish your affected app count or regional exceptions.</p>
 <p>The documented inventory checks FUNCTIONS_EXTENSION_VERSION against the script's 1.x filter within a subscription. It does not establish tenant-wide exposure or prove migration readiness.</p>
 <p>Migration can affect availability and integrations:</p>
 <ul>

@@ -1908,7 +1908,7 @@
 <a class="back-link" href="../../../" data-back>← All retirements</a>
 <div class="detail-heading">
   <div class="card-top"><span class="service-name">Azure Stream Analytics</span><span class="badge upcoming" data-deadline="2027-10-31"><span></span>Upcoming</span></div>
-  <h1>Retirement: Azure Stream Analytics PowerBI output connector</h1><p>Microsoft will retire the Azure Stream Analytics Power BI output connector on 2027-10-31. Existing jobs using it will stop, and existing customers will no longer be able to create new jobs with it. New customers have been restricted since 2024-10-31. Migrate before retirement to avoid disruption. Options include Fabric Real-Time Intelligence or retaining Azure Stream Analytics with an alternative output for Power BI reporting. The supplied references do not establish a separate Power BI real-time streaming retirement deadline.</p>
+  <h1>Retirement: Azure Stream Analytics PowerBI output connector</h1><p>Microsoft will retire the Azure Stream Analytics Power BI output connector on October 31, 2027. Existing jobs using it will stop, and existing customers will no longer be able to create new jobs with it. New customers have been restricted since October 31, 2024. Migrate before retirement to avoid disruption. Options include Fabric Real-Time Intelligence or retaining Azure Stream Analytics with an alternative output for Power BI reporting. The supplied references do not establish a separate Power BI real-time streaming retirement deadline.</p>
   <div class="retirement-countdown upcoming" data-countdown data-deadline="2027-10-31"><strong>348 days remaining</strong><span>Retirement date: <time datetime="2027-10-31">31 Oct 2027</time></span><span class="badge amber customer-lead-time-pill">Lead time: 2 years, 11 months, 30 days</span></div>
 </div>
 <div class="detail-layout">
@@ -1916,10 +1916,10 @@
     <section id="deadline"><h2><span class="section-number">1</span>What is the deadline?</h2>
       <p class="section-intro">Key dates and the consequences of not acting.</p>
       <p class="deadline-date">31 Oct 2027</p>
-<div class="rich-content"><p>The Azure Stream Analytics Power BI output connector retires on <strong>2027-10-31</strong>, when existing jobs using it will stop.</p>
+<div class="rich-content"><p>The Azure Stream Analytics Power BI output connector retires on <strong>October 31, 2027</strong>, when existing jobs using it will stop.</p>
 <ul>
-<li><strong>2024-10-31:</strong> New customers could no longer create jobs using this connector.</li>
-<li><strong>2027-10-31:</strong> Existing customers can no longer create new jobs using it, and existing jobs using it stop.</li>
+<li><strong>October 31, 2024:</strong> New customers could no longer create jobs using this connector.</li>
+<li><strong>October 31, 2027:</strong> Existing customers can no longer create new jobs using it, and existing jobs using it stop.</li>
 </ul>
 <p>Microsoft states that existing customers can continue using the connector without disruption until retirement. This is a documented job shutdown, not merely an end-of-support date.</p>
 <p>The migration article supplies no separate deadline for Power BI real-time streaming. Its publication and update dates are not retirement milestones; the Fabric documentation index establishes no retirement date.</p>
@@ -1927,7 +1927,7 @@
     </section>
     <section id="what"><h2><span class="section-number">2</span>What is changing?</h2>
       <p class="section-intro">The change and what it means, including technical and financial considerations.</p>
-<div class="rich-content"><p>Microsoft will retire the <strong>Azure Stream Analytics Power BI output connector on 2027-10-31</strong>. Existing customers can use it without disruption until retirement; afterward, existing jobs using it stop and new jobs cannot use it. New customers have been restricted since 2024-10-31.</p>
+<div class="rich-content"><p>Microsoft will retire the <strong>Azure Stream Analytics Power BI output connector on October 31, 2027</strong>. Existing customers can use it without disruption until retirement; afterward, existing jobs using it stop and new jobs cannot use it. New customers have been restricted since October 31, 2024.</p>
 <p>Microsoft recommends Fabric Real-Time Intelligence. The migration article also describes retaining Azure Stream Analytics processing with another output and continuing Power BI reporting through replacement data sources.</p>
 <p>The sources identify Power BI real-time streaming retirement as related context but do not establish its separate deadline. They do not specify regional or version exceptions, or maintenance and security-update commitments.</p>
 </div>
@@ -1935,7 +1935,7 @@
     </section>
     <section id="actions"><h2><span class="section-number">3</span>What do I need to do?</h2>
       <p class="section-intro">Required actions, options, and available support.</p>
-<div class="rich-content"><p>Migrate jobs away from the Power BI output connector before <strong>2027-10-31</strong> to avoid job shutdown.</p>
+<div class="rich-content"><p>Migrate jobs away from the Power BI output connector before <strong>October 31, 2027</strong> to avoid job shutdown.</p>
 <ol>
 <li>Identify your Azure Stream Analytics jobs that use Power BI as an output. The supplied sources provide no inventory method.</li>
 <li>Select a replacement architecture. For Fabric Real-Time Intelligence, use Eventstream to ingest and transform events, with an Eventhouse KQL database recommended for real-time reporting; the article also lists Lakehouse as a destination. To retain Azure Stream Analytics processing, send its output to Fabric or use a listed DirectQuery-compatible alternative: SQL Server, PostgreSQL, SynapseSQL or Azure Data Explorer.</li>
@@ -1948,7 +1948,7 @@
     </section>
     <section id="impact"><h2><span class="section-number">4</span>Where, and how much, am I impacted?</h2>
       <p class="section-intro">Your affected environments, resources, and users.</p>
-<div class="rich-content"><p>Your Azure Stream Analytics jobs using the <strong>Power BI output connector will stop on 2027-10-31</strong> unless you migrate away from that configuration. Existing customers can continue using it without disruption until then, but cannot create new jobs with it from that date. New customers have been restricted since 2024-10-31.</p>
+<div class="rich-content"><p>Your Azure Stream Analytics jobs using the <strong>Power BI output connector will stop on October 31, 2027</strong> unless you migrate away from that configuration. Existing customers can continue using it without disruption until then, but cannot create new jobs with it from that date. New customers have been restricted since October 31, 2024.</p>
 <p>The replacement architectures allow you to retain Power BI reporting and, where needed, Azure Stream Analytics processing while changing the output destination and reporting connection. Automatic page refresh requires a DirectQuery-compatible source; import mode does not meet that requirement.</p>
 <p>The sources provide no tenant inventory method, and your resources have not been inspected. They do not document regional or version exceptions, effects on jobs using other connectors, separate console/API or deployment-tooling consequences, data retention or deletion, or migration costs.</p>
 </div>
@@ -1957,7 +1957,7 @@
     <section id="progress"><h2><span class="section-number">5</span>How can I track progress?</h2>
 <div class="rich-content"><p>Tracking guidance is not available for this retirement.</p>
 <p>The sources provide no retirement-specific inventory tool, migration-status tool or completion checklist. The Fabric index lists Eventstream monitoring and Eventhouse metrics and logs, but does not establish their use for identifying retirement exposure or verifying migration completion. Any local inventory or validation record would be team-owned.</p>
-<p>The migration article names RTISupport for migration questions, askasa@microsoft.com for Azure Stream Analytics questions, and a request form for further Microsoft guidance. A reader comment dated 2026-04-29 reports that both contact addresses were unreachable; their current availability is unconfirmed.</p>
+<p>The migration article names RTISupport for migration questions, askasa@microsoft.com for Azure Stream Analytics questions, and a request form for further Microsoft guidance. A reader comment dated April 29, 2026 reports that both contact addresses were unreachable; their current availability is unconfirmed.</p>
 </div>
     </section>
 <div id="further-reading" class="further-reading" aria-labelledby="further-reading-heading">
