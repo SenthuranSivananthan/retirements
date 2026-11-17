@@ -7,7 +7,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 from pathlib import Path
-from scripts.catalog import DETAIL_QUESTIONS, format_date, prepare_site, record_url, record_urls, retirement_outlook
+from scripts.catalog import DETAIL_QUESTIONS, RETIREMENT_PERIODS, announcement_period_options, format_retirement_date, prepare_site, record_url, record_urls, retirement_outlook
 from scripts.check_site import check_site
 from html5lib import parse
 
@@ -53,6 +53,7 @@ class StaticSiteTests(unittest.TestCase):
         self.view = {
             "record": record, "status": "unknown", "label": "Date to confirm",
             "countdown": "Retirement date to confirm", "year": "unknown", "categories": ["Uncategorized"],
+            "announcementPeriod": None,
             "url": record_url(record), "deadline": "Date not specified", "announced": "Date not specified",
             "customerLeadTime": "Not calculable", "updated": "Not provided by source", "sourceUrl": None, "resources": [],
             "support": {"url": None, "title": "Support"}, "advisor": {"url": None, "title": "Advisor"},
@@ -61,6 +62,8 @@ class StaticSiteTests(unittest.TestCase):
         self.metadata = {
             "byId": {"example": self.view}, "buildDate": "2026-11-10", "count": 1,
             "navigation": [], "categories": [], "services": [], "initialIds": ["example"], "upcoming": 0, "soon": 0,
+            "retirementPeriods": RETIREMENT_PERIODS,
+            "announcementPeriods": announcement_period_options("2026-11-10"),
             "refreshed": "10 Nov 2026",
             "outlook": retirement_outlook([record], "2026-11-10"),
         }
@@ -104,9 +107,14 @@ class StaticSiteTests(unittest.TestCase):
                           if "timeline-date-label" in label.attrib.get("class", "").split()],
                          ["Retirement date", "Customer lead time"])
         self.assertEqual(timeline_date.find("span[@class='timeline-lead-time']").text, "Not calculable")
-        announced_options = document.findall(".//select[@id='announced-year']/option")
-        self.assertEqual([option.attrib["value"] for option in announced_options], ["", "2026", "2025", "2024", "2023"])
-        self.assertEqual(announced_options[1].text, "Announced in 2026")
+        announced_options = document.findall(".//select[@id='announced-year']//option")
+        self.assertEqual([option.attrib["value"] for option in announced_options],
+                         ["", "this-week", "this-month", "this-quarter", "last-quarter", "2026", "2025", "2024", "2023"])
+        self.assertEqual([option.text for option in announced_options[1:5]], [
+            "Announced this week", "Announced this month",
+            "Announced Oct–Dec 2026", "Announced Jul–Sep 2026",
+        ])
+        self.assertEqual(announced_options[5].text, "Announced in 2026")
         self.assertEqual(document.find(".//h1[@id='hero-title']").text, "Azure Retirement Catalog")
         self.assertIsNone(document.find(".//select[@id='announced']"))
         self.assertEqual(document.find(".//span[@id='year-navigation-count']").text, "1")
@@ -138,6 +146,43 @@ class StaticSiteTests(unittest.TestCase):
         self.assertEqual(len(document.findall(".//section[@class='outlook']")), 1)
         self.assertIsNone(document.find(".//main//section[@class='outlook']"))
         self.assertIn("hidden", document.find(".//section[@class='stats']").attrib)
+
+    def test_retirement_date_uses_full_month_name_on_home_and_detail_pages(self):
+        deadline = self.view["record"]["questions"]["deadline"]
+        deadline.update({"date": "2026-10-31", "month": "October 2026"})
+        self.view.update({"status": "upcoming", "label": "Upcoming", "deadline": "October 31, 2026"})
+        self.view["url"] = record_url(self.view["record"])
+        self.metadata["navigation"] = [{"year": "2026", "label": "2026", "count": 1, "categories": []}]
+        self.save()
+        builder.build_site(self.root)
+
+        home = parse((self.root / "docs" / "index.html").read_text(encoding="utf-8"), namespaceHTMLElements=False)
+        retirement_date = home.find(".//div[@class='timeline-date']/time")
+        self.assertEqual(retirement_date.attrib["datetime"], "2026-10-31")
+        self.assertEqual(retirement_date.text, "October 31, 2026")
+
+        detail = parse(self.detail_path().read_text(encoding="utf-8"), namespaceHTMLElements=False)
+        self.assertEqual(detail.find(".//p[@class='deadline-date']").text, "October 31, 2026")
+
+    def test_announcement_flag_and_current_year_period_links_render(self):
+        self.view["record"]["announcedOn"] = "2026-11-09"
+        self.view["announcementPeriod"] = "Announced this week"
+        self.metadata["navigation"] = [{"year": "2026", "label": "2026", "count": 1, "categories": []}]
+        self.save()
+        builder.build_site(self.root)
+
+        home = parse((self.root / "docs" / "index.html").read_text(encoding="utf-8"), namespaceHTMLElements=False)
+        timeline_flag = home.find(".//article[@class='timeline-content']/span[@data-announcement-flag]")
+        self.assertEqual(timeline_flag.text, "Announced this week")
+        self.assertEqual(timeline_flag.attrib["data-announced-on"], "2026-11-09")
+        period_links = home.findall(".//div[@class='year-period-filters']/a")
+        self.assertEqual([link.attrib["data-period"] for link in period_links],
+                         ["this-week", "this-month", "last-month", "this-quarter", "last-quarter"])
+        self.assertTrue(all(link.attrib["data-year"] == "2026" for link in period_links))
+
+        detail = parse(self.detail_path().read_text(encoding="utf-8"), namespaceHTMLElements=False)
+        detail_flag = detail.find(".//div[@class='card-top']/span[@data-announcement-flag]")
+        self.assertEqual(detail_flag.text, "Announced this week")
 
     def test_question_html_renders_semantic_markup_and_escapes_text(self):
         markup = (
@@ -251,7 +296,7 @@ class StaticSiteTests(unittest.TestCase):
             view = copy.deepcopy(self.view)
             view["record"].update({"id": identifier, "title": title, "categories": categories, "services": services})
             view["record"]["questions"]["deadline"].update({"date": deadline, "month": "May 2029"})
-            view.update({"url": record_url(view["record"]), "deadline": format_date(deadline)})
+            view.update({"url": record_url(view["record"]), "deadline": format_retirement_date(deadline)})
             self.metadata["byId"][identifier] = view
             self.metadata["initialIds"].append(identifier)
         self.metadata["count"] = 5
@@ -550,9 +595,13 @@ class StaticSiteTests(unittest.TestCase):
                 summary: '', announcedOn: '2026-01-01',
                 questions: { what: { announcement: '' }, deadline: { date: `${record.year}-01-01`, month: null } },
             }));
-            const filters = { q: 'Matching', year: '2030', category: 'Compute', status: 'all' };
+            const filters = {
+                q: 'Matching', year: '2030', category: 'Compute', service: 'Example',
+                status: 'all', announcedYear: '2026',
+            };
             const directoryLink = context => '/?' + new URLSearchParams(context);
             const detailLink = (record, context) => `/retirements/${record.id}/?` + new URLSearchParams(context);
+            const currentYear = new Date().toISOString().slice(0, 4);
             const node = (dataset = {}, parent = null) => ({
                 dataset, hidden: false, attributes: {}, parentElement: parent,
                 closest() { return dataset.yearGroup || dataset.categoryGroup ? this : parent; },
@@ -562,6 +611,9 @@ class StaticSiteTests(unittest.TestCase):
             for (const isDirectory of [true, false]) {
                 const activeRecord = isDirectory ? null : visibleRecords[0];
                 const links = [];
+                const periodLinks = ['this-week', 'this-month', 'last-month', 'this-quarter', 'last-quarter']
+                    .map(period => node({ period, year: currentYear, category: '' }));
+                links.push(...periodLinks);
                 const yearGroups = groupRetirements(visibleRecords).map(year => {
                     const group = node({ yearGroup: year.year });
                     const count = node(), all = node({ year: year.year, category: '' });
@@ -584,13 +636,27 @@ class StaticSiteTests(unittest.TestCase):
                 });
                 const total = node(), empty = node();
                 const element = selector => selector === '#year-navigation-count' ? total : empty;
-                const document = { querySelectorAll: selector => selector.includes('.year-group') ? yearGroups : links };
+                const document = { querySelectorAll: selector => selector.includes('.year-group')
+                    ? yearGroups : selector.includes('[data-period]') ? periodLinks : links };
+                const knownYear = source.slice(source.indexOf('function isKnownRetirementYear('),
+                    source.indexOf('const labels ='));
+                eval(`const years = new Set(['2030']); ${knownYear}
+                    assert.equal(isKnownRetirementYear(currentYear), true);
+                    assert.equal(isKnownRetirementYear('2024'), false);`);
                 eval(updateNav + '\nupdateNav();');
                 assert.equal(total.textContent, isDirectory ? '1' : '3');
                 assert.equal(empty.hidden, true);
                 assert.deepEqual(links.filter(link => link.dataset.record && !link.hidden)
                     .map(link => link.dataset.record).sort(),
                     isDirectory ? ['current'] : ['current', 'neighbor', 'other-year']);
+                const monthLink = periodLinks.find(link => link.dataset.period === 'this-month');
+                const monthUrl = new URL(monthLink.href, 'https://example.test');
+                assert.equal(monthUrl.searchParams.get('year'), currentYear);
+                assert.equal(monthUrl.searchParams.get('period'), 'this-month');
+                assert.equal(monthUrl.searchParams.has('q'), isDirectory);
+                assert.equal(monthUrl.searchParams.has('category'), isDirectory);
+                assert.equal(monthUrl.searchParams.has('service'), isDirectory);
+                assert.equal(monthUrl.searchParams.has('announcedYear'), isDirectory);
                 assert.equal(yearGroups.find(group => group.dataset.yearGroup === '2031').hidden, isDirectory);
                 if (!isDirectory) {
                     const current = links.find(link => link.dataset.record === 'current');

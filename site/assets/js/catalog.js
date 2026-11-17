@@ -47,6 +47,29 @@ export function customerLeadTime(announcedOn, retirementDate) {
     return negative ? `-${duration}` : duration;
 }
 export const RETIREMENT_WINDOWS = ['retired-year', '6', '12', '18'];
+export const RETIREMENT_PERIODS = [
+    { key: 'this-week', label: 'This week' },
+    { key: 'this-month', label: 'This month' },
+    { key: 'last-month', label: 'Last month' },
+    { key: 'this-quarter', label: 'This quarter' },
+    { key: 'last-quarter', label: 'Last quarter' },
+];
+export function announcementPeriods(today = new Date().toISOString().slice(0, 10)) {
+    const current = new Date(`${today}T00:00:00Z`);
+    const year = current.getUTCFullYear();
+    const quarterStart = Math.floor(current.getUTCMonth() / 3) * 3;
+    const currentQuarterStart = new Date(Date.UTC(year, quarterStart, 1));
+    const currentQuarterEnd = new Date(Date.UTC(year, quarterStart + 3, 0));
+    const previousQuarterStart = new Date(Date.UTC(year, quarterStart - 3, 1));
+    const previousQuarterEnd = new Date(Date.UTC(year, quarterStart, 0));
+    const monthName = date => new Intl.DateTimeFormat('en', { month: 'short', timeZone: 'UTC' }).format(date);
+    return [
+        { key: 'this-week', label: 'Announced this week' },
+        { key: 'this-month', label: 'Announced this month' },
+        { key: 'this-quarter', label: `Announced ${monthName(currentQuarterStart)}–${monthName(currentQuarterEnd)} ${currentQuarterEnd.getUTCFullYear()}` },
+        { key: 'last-quarter', label: `Announced ${monthName(previousQuarterStart)}–${monthName(previousQuarterEnd)} ${previousQuarterEnd.getUTCFullYear()}` },
+    ];
+}
 export function announcedYears(today = new Date().toISOString().slice(0, 10)) {
     const currentYear = Number(today.slice(0, 4));
     return Array.from({ length: 4 }, (_, offset) => String(currentYear - offset));
@@ -71,6 +94,89 @@ export function retirementWindow(window, today = new Date().toISOString().slice(
 export function inRetirementWindow(deadline, bounds) {
     return deadline.date !== null && deadline.date >= bounds.start
         && (bounds.retired ? deadline.date < bounds.end : deadline.date <= bounds.end);
+}
+export function retirementPeriodBounds(period, today = new Date().toISOString().slice(0, 10)) {
+    const current = new Date(`${today}T00:00:00Z`);
+    const year = current.getUTCFullYear();
+    const month = current.getUTCMonth();
+    const day = current.getUTCDate();
+    let start, end;
+    if (period === 'this-week') {
+        const mondayOffset = (current.getUTCDay() + 6) % 7;
+        start = new Date(Date.UTC(year, month, day - mondayOffset));
+        end = new Date(Date.UTC(year, month, day - mondayOffset + 6));
+    }
+    else if (period === 'this-month') {
+        start = new Date(Date.UTC(year, month, 1));
+        end = new Date(Date.UTC(year, month + 1, 0));
+    }
+    else if (period === 'last-month') {
+        start = new Date(Date.UTC(year, month - 1, 1));
+        end = new Date(Date.UTC(year, month, 0));
+    }
+    else if (period === 'this-quarter') {
+        const quarterStart = Math.floor(month / 3) * 3;
+        start = new Date(Date.UTC(year, quarterStart, 1));
+        end = new Date(Date.UTC(year, quarterStart + 3, 0));
+    }
+    else if (period === 'last-quarter') {
+        const quarterStart = Math.floor(month / 3) * 3;
+        start = new Date(Date.UTC(year, quarterStart - 3, 1));
+        end = new Date(Date.UTC(year, quarterStart, 0));
+    }
+    else
+        throw new Error(`Unknown retirement period: ${period}`);
+    return {
+        start: start.toISOString().slice(0, 10),
+        end: end.toISOString().slice(0, 10),
+    };
+}
+export function inRetirementPeriod(deadline, period, today = new Date().toISOString().slice(0, 10)) {
+    return deadline.date !== null
+        && deadline.date.slice(0, 4) === today.slice(0, 4)
+        && deadline.date >= period.start
+        && deadline.date <= period.end;
+}
+export function announcementPeriodBounds(period, today = new Date().toISOString().slice(0, 10)) {
+    const current = new Date(`${today}T00:00:00Z`);
+    const year = current.getUTCFullYear();
+    const month = current.getUTCMonth();
+    const day = current.getUTCDate();
+    let start;
+    if (period === 'this-week') {
+        const mondayOffset = (current.getUTCDay() + 6) % 7;
+        start = new Date(Date.UTC(year, month, day - mondayOffset));
+    }
+    else if (period === 'this-month')
+        start = new Date(Date.UTC(year, month, 1));
+    else if (period === 'this-quarter')
+        start = new Date(Date.UTC(year, Math.floor(month / 3) * 3, 1));
+    else if (period === 'last-quarter') {
+        const quarterStart = Math.floor(month / 3) * 3;
+        start = new Date(Date.UTC(year, quarterStart - 3, 1));
+        const end = new Date(Date.UTC(year, quarterStart, 0));
+        return { start: start.toISOString().slice(0, 10), end: end.toISOString().slice(0, 10) };
+    }
+    else if (period === 'this-year')
+        start = new Date(Date.UTC(year, 0, 1));
+    else
+        throw new Error(`Unknown announcement period: ${period}`);
+    return { start: start.toISOString().slice(0, 10), end: today };
+}
+export function inAnnouncementPeriod(announcedOn, period, today = new Date().toISOString().slice(0, 10)) {
+    const bounds = announcementPeriodBounds(period, today);
+    return announcedOn !== null && announcedOn >= bounds.start && announcedOn <= bounds.end;
+}
+export function announcementPeriod(announcedOn, today = new Date().toISOString().slice(0, 10)) {
+    if (inAnnouncementPeriod(announcedOn, 'this-week', today))
+        return 'Announced this week';
+    if (inAnnouncementPeriod(announcedOn, 'this-month', today))
+        return 'Announced this month';
+    if (inAnnouncementPeriod(announcedOn, 'this-quarter', today))
+        return 'Announced this quarter';
+    if (inAnnouncementPeriod(announcedOn, 'this-year', today))
+        return 'Announced this year';
+    return null;
 }
 export function retirementYear(record) {
     const { date, month } = record.questions.deadline;
@@ -225,16 +331,21 @@ export function findDetailRecord(records, urls, encodedSegment) {
 export function filterRecords(records, filters, today = new Date().toISOString().slice(0, 10)) {
     const terms = (filters.q || '').toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
     const window = filters.window ? retirementWindow(filters.window, today) : null;
+    const period = filters.period ? retirementPeriodBounds(filters.period, today) : null;
     const announcedYear = announcedYears(today).includes(filters.announcedYear) ? filters.announcedYear : '';
+    const announcedPeriod = announcementPeriods(today).some(item => item.key === filters.announcedPeriod)
+        ? filters.announcedPeriod : '';
     return records.filter(record => {
         const status = statusOf(record.questions.deadline, today);
         const text = `${record.title} ${record.service} ${record.summary} ${record.questions.what.announcement}`.toLocaleLowerCase();
         return terms.every(term => text.includes(term))
             && (!filters.service || servicesOf(record).includes(filters.service))
             && (!announcedYear || record.announcedOn?.slice(0, 4) === announcedYear)
+            && (!announcedPeriod || inAnnouncementPeriod(record.announcedOn, announcedPeriod, today))
             && (!filters.year || retirementYear(record) === filters.year)
             && (!filters.category || categoriesOf(record).includes(filters.category))
             && (!window || inRetirementWindow(record.questions.deadline, window))
+            && (!period || inRetirementPeriod(record.questions.deadline, period, today))
             && (!filters.status || filters.status === 'all' || status === filters.status
                 || (filters.status === 'upcoming' && status === 'soon'));
     }).sort((a, b) => {
@@ -247,8 +358,17 @@ export function filterRecords(records, filters, today = new Date().toISOString()
         return (a.questions.deadline.date || '9999').localeCompare(b.questions.deadline.date || '9999') || a.title.localeCompare(b.title);
     });
 }
+export function categoriesForFilters(records, filters) {
+    const availableFilters = { ...filters, category: '' };
+    return [...new Set(filterRecords(records, availableFilters).flatMap(categoriesOf))]
+        .sort((a, b) => a.localeCompare(b));
+}
 export function formatDate(date) {
     return date ? new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
+        .format(new Date(`${date}T00:00:00Z`)) : 'Date not specified';
+}
+export function formatRetirementDate(date) {
+    return date ? new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
         .format(new Date(`${date}T00:00:00Z`)) : 'Date not specified';
 }
 export function escapeHtml(value = '') {

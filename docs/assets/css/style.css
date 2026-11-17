@@ -91,6 +91,8 @@ nav a svg { width: 17px; height: 17px; }
 .year-group > summary { font-weight: 600; }
 .year-group:has(a[aria-current]) > summary, .category-group:has(a[aria-current]) > summary { color: var(--accent); }
 .category-group { margin-left: 14px; }
+.year-period-filters { margin: 2px 0 6px 14px; }
+.sidebar .year-period-filters a { padding: 6px 12px; color: var(--muted); }
 .sidebar .nav-record { margin-left: 18px; padding-left: 16px; border-left: 1px solid var(--line); border-radius: 0 6px 6px 0; overflow-wrap: anywhere; }
 .sidebar .category-all { color: var(--accent); }
 .status-navigation { border-top: 1px solid var(--line); margin-top: 16px; padding-top: 8px; }

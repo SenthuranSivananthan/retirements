@@ -14,7 +14,7 @@ from html5lib import parseFragment
 from scripts.catalog import QUESTIONS, parse_catalog, valid_question_html
 from scripts.enrichment import (
     CANONICAL, ENRICH_AUTO, ENRICH_MANUAL, SOURCE_AUTO, SOURCE_MANUAL,
-    Enrichment, command_adapter, discover, format_answer, main, merge, reprocess_record,
+    Enrichment, command_adapter, discover, format_answer, incremental_targets, main, merge, reprocess_record,
     valid_summary, validate_canonical,
 )
 from scripts.enrichment_http import DownloadError, extract_content, fetch_http, public_url, sha256
@@ -575,6 +575,65 @@ class JSONEnrichmentTests(unittest.TestCase):
         write_json(output, baseline, None)
         self.run_pipeline()
         self.assertEqual(json.loads(output.read_text(encoding="utf-8"))["records"], baseline["records"])
+        self.assertEqual(self.fetch.calls, [])
+        self.assertEqual(self.payloads, [])
+
+    def test_full_enrichment_skips_hidden_records_without_deleting_them(self):
+        baseline = catalog()
+        protected = copy.deepcopy(baseline["records"][0])
+        protected["id"] = "manual-id"
+        protected["hidden"] = True
+        baseline["records"].append(protected)
+        output = self.directory / "retirements.json"
+        write_json(output, baseline, None)
+        engine = self.new_engine(output=output)
+
+        engine.download(force=True)
+        engine.enrich(force=True)
+        result = reprocess_record(self.store, "manual-id", engine, output)
+        merged = merge(self.store, output)
+
+        self.assertEqual(self.fetch.calls, [])
+        self.assertEqual(self.payloads, [])
+        self.assertEqual(result["skipped"], "manual-id")
+        self.assertEqual(merged["protected"], ["manual-id"])
+        self.assertEqual(json.loads(output.read_text(encoding="utf-8"))["records"], baseline["records"])
+
+    def test_merge_hides_feed_absent_automatic_records_but_keeps_them_and_manual_records(self):
+        source = self.store.load(SOURCE_AUTO)
+        feed_url = "https://example.com/feed-retirement"
+        self.fetch.bodies[feed_url] = "<main><p>Feed retirement content.</p></main>"
+        source["records"]["feed-id"] = {
+            "title": "Feed retirement", "urls": [feed_url], "services": ["Example"],
+            "categories": ["Compute"], "announcedOn": "2026-01-01", "lastUpdatedOn": None,
+        }
+        self.store.save(SOURCE_AUTO)
+        output = self.run_pipeline()
+        self.assertEqual({record["id"] for record in json.loads(output.read_text())["records"]},
+                         {"feed-id", "manual-id"})
+
+        source["records"].pop("feed-id")
+        self.store.save(SOURCE_AUTO)
+        result = merge(self.store, output)
+
+        self.assertEqual(result["hidden"], ["feed-id"])
+        archived = {record["id"]: record for record in json.loads(output.read_text())["records"]}
+        self.assertEqual(set(archived), {"feed-id", "manual-id"})
+        self.assertTrue(archived["feed-id"]["hidden"])
+        self.assertEqual(archived["feed-id"]["hiddenReason"], "not-in-azure-updates")
+        self.assertNotIn("feed-id", [record["id"] for record in parse_catalog(json.loads(output.read_text()))["records"]
+                                      if not record.get("hidden")])
+
+        source["records"]["feed-id"] = {
+            "title": "Feed retirement", "urls": [feed_url], "services": ["Example"],
+            "categories": ["Compute"], "announcedOn": "2026-01-01", "lastUpdatedOn": None,
+        }
+        self.store.save(SOURCE_AUTO)
+        reappeared = merge(self.store, output)
+        self.assertEqual(reappeared["protected"], ["feed-id"])
+        reappeared_records = {record["id"]: record for record in json.loads(output.read_text())["records"]}
+        self.assertTrue(reappeared_records["feed-id"]["hidden"])
+        self.assertEqual(reappeared_records["feed-id"]["hiddenReason"], "not-in-azure-updates")
 
     def test_mutated_stage_does_not_overwrite_user_changes(self):
         path = self.directory / f"{SOURCE_MANUAL}.json"
@@ -617,21 +676,44 @@ class JSONEnrichmentTests(unittest.TestCase):
         with self.assertRaisesRegex(DownloadError, "exact retirement"):
             extract_content(json.dumps(ITEM).encode(), "application/json", ROOT_URL, "different")
 
-    def test_discovery_only_azure_updates_preserves_absent_source_entries(self):
+    def test_discovery_replaces_the_automatic_snapshot_and_reports_changes(self):
         stage = self.store.load(SOURCE_AUTO)
         stage["records"]["old"] = {"title": "Old retirement", "urls": ["https://example.com/old"]}
         self.store.save(SOURCE_AUTO)
         urls = []
+        item = copy.deepcopy(ITEM)
 
         def fetch(url, previous, force):
             urls.append(url)
-            return {"status": 200, "body": json.dumps({"@odata.count": 1, "value": [ITEM]}).encode()}
+            return {"status": 200, "body": json.dumps({"@odata.count": 1, "value": [item]}).encode()}
 
-        discover(self.store, fetch)
+        result = discover(self.store, fetch)
         self.assertEqual(len(urls), 1)
         self.assertIn("releasecommunications/api/v2/azure?", urls[0])
-        self.assertFalse(stage["records"]["old"]["present"])
-        self.assertTrue(stage["records"]["a"]["present"])
+        self.assertEqual(result, {"discovered": 1, "added": ["a"], "updated": [], "removed": ["old"]})
+        self.assertEqual(set(stage["records"]), {"a"})
+        self.assertNotIn("present", stage["records"]["a"])
+
+        unchanged = discover(self.store, fetch)
+        self.assertEqual(unchanged, {"discovered": 1, "added": [], "updated": [], "removed": []})
+        item["title"] = "Updated retirement title"
+        updated = discover(self.store, fetch)
+        self.assertEqual(updated, {"discovered": 1, "added": [], "updated": ["a"], "removed": []})
+        self.assertEqual(incremental_targets(self.store, updated), ["a", "manual-id"])
+
+    def test_run_defaults_to_incremental_targets_and_full_flag_forces_all(self):
+        discovery = {"discovered": 1, "added": ["new"], "updated": [], "removed": []}
+        for full, expected_targets in ((False, ["new"]), (True, None)):
+            with self.subTest(full=full), tempfile.TemporaryDirectory() as directory:
+                with patch("scripts.enrichment.discover", return_value=discovery), \
+                        patch.object(Enrichment, "download") as download, \
+                        patch.object(Enrichment, "enrich"), \
+                        patch("scripts.enrichment.merge", return_value={"records": 0}):
+                    arguments = ["run", "--data-dir", directory, "--summarizer-command", '["unused"]']
+                    if full:
+                        arguments.append("--full")
+                    self.assertEqual(main(arguments), 0)
+                    download.assert_called_once_with(identifiers=expected_targets, force=full)
 
     def test_blob_tampering_blocks_processing(self):
         self.engine.download()

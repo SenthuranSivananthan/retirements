@@ -8,7 +8,7 @@ from pathlib import Path
 
 from fixtures import ITEM, catalog
 from scripts.catalog import (
-    ROOT, QUESTIONS, DETAIL_QUESTIONS, categories_of, countdown, customer_lead_time, days_until, format_date, group_retirements,
+    ROOT, QUESTIONS, DETAIL_QUESTIONS, announcement_period, announcement_period_options, categories_of, countdown, customer_lead_time, days_until, format_date, format_retirement_date, group_retirements,
     parse_catalog, prepare_site, record_url, record_urls, retirement_year, safe_url, status_of, title_slug,
     group_timeline, in_retirement_window, retirement_outlook, retirement_window, sanitize_question_html, services_of, sort_timeline,
 )
@@ -108,6 +108,9 @@ class CatalogTests(unittest.TestCase):
             source.write_text(json.dumps(value), encoding="utf-8")
             metadata = prepare_site(root, "2026-11-10")
             self.assertEqual(metadata["initialIds"], ["latest", "middle", "earliest", "unknown"])
+            current_year = next(group for group in metadata["navigation"] if group["year"] == "2026")
+            self.assertEqual(current_year["count"], 0)
+            self.assertEqual(current_year["categories"], [])
 
     def test_detail_urls_use_title_slugs_and_exact_or_unknown_deadlines(self):
         record = catalog()["records"][0]
@@ -341,6 +344,172 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(status_of({"date": "2027-02-09"}, "2026-11-10"), "upcoming")
         self.assertEqual(format_date(None), "Date not specified")
         self.assertEqual(format_date("2026-11-10"), "10 Nov 2026")
+        self.assertEqual(format_retirement_date(None), "Date not specified")
+        self.assertEqual(format_retirement_date("2026-10-31"), "October 31, 2026")
+
+    def test_announcement_period_uses_the_most_specific_current_utc_period(self):
+        today = "2026-11-10"
+        self.assertEqual(announcement_period("2026-11-09", today), "Announced this week")
+        self.assertEqual(announcement_period("2026-11-01", today), "Announced this month")
+        self.assertEqual(announcement_period("2026-10-01", today), "Announced this quarter")
+        self.assertEqual(announcement_period("2026-02-01", today), "Announced this year")
+        self.assertIsNone(announcement_period("2026-11-11", today))
+        self.assertIsNone(announcement_period("2025-11-10", today))
+        self.assertEqual(announcement_period("2025-12-29", "2026-01-03"), "Announced this week")
+        self.assertEqual(announcement_period_options(today)[2:], [
+            {"key": "this-quarter", "label": "Announced Oct–Dec 2026"},
+            {"key": "last-quarter", "label": "Announced Jul–Sep 2026"},
+        ])
+        self.assertEqual(announcement_period_options("2026-01-03")[2:], [
+            {"key": "this-quarter", "label": "Announced Jan–Mar 2026"},
+            {"key": "last-quarter", "label": "Announced Oct–Dec 2025"},
+        ])
+
+    @unittest.skipUnless(shutil.which("node"), "Node.js is optional")
+    def test_javascript_announcement_flags_and_retirement_period_boundaries(self):
+        module = (ROOT / "site" / "assets" / "js" / "catalog.js").as_uri()
+        program = f"""
+            import {{ readFile }} from 'node:fs/promises';
+            const source = await readFile(new URL({json.dumps(module)}), 'utf8');
+            const {{ announcementPeriod, announcementPeriods, retirementPeriodBounds, inRetirementPeriod }} = await import(
+                `data:text/javascript;base64,${{Buffer.from(source).toString('base64')}}`
+            );
+            const week = retirementPeriodBounds('this-week', '2026-11-10');
+            const quarter = retirementPeriodBounds('this-quarter', '2026-11-10');
+            const lastQuarter = retirementPeriodBounds('last-quarter', '2026-11-10');
+            const januaryLastQuarter = retirementPeriodBounds('last-quarter', '2026-01-03');
+            console.log(JSON.stringify([
+                week, quarter, lastQuarter,
+                inRetirementPeriod({{ date: '2026-11-09' }}, week, '2026-11-10'),
+                inRetirementPeriod({{ date: '2026-11-16' }}, week, '2026-11-10'),
+                inRetirementPeriod({{ date: '2025-12-29' }}, januaryLastQuarter, '2026-01-03'),
+                announcementPeriod('2026-11-09', '2026-11-10'),
+                announcementPeriod('2026-11-01', '2026-11-10'),
+                announcementPeriod('2026-10-01', '2026-11-10'),
+                announcementPeriod('2026-02-01', '2026-11-10'),
+                announcementPeriod('2026-11-11', '2026-11-10'),
+                announcementPeriod('2025-12-29', '2026-01-03'),
+                announcementPeriods('2026-11-10'),
+                announcementPeriods('2026-01-03'),
+            ]));
+        """
+        result = subprocess.run(
+            [shutil.which("node"), "--input-type=module", "-e", program],
+            check=True, capture_output=True, text=True, encoding="utf-8",
+        )
+        self.assertEqual(json.loads(result.stdout), [
+            {"start": "2026-11-09", "end": "2026-11-15"},
+            {"start": "2026-10-01", "end": "2026-12-31"},
+            {"start": "2026-07-01", "end": "2026-09-30"},
+            True, False, False,
+            "Announced this week", "Announced this month", "Announced this quarter", "Announced this year",
+            None, "Announced this week",
+            [
+                {"key": "this-week", "label": "Announced this week"},
+                {"key": "this-month", "label": "Announced this month"},
+                {"key": "this-quarter", "label": "Announced Oct–Dec 2026"},
+                {"key": "last-quarter", "label": "Announced Jul–Sep 2026"},
+            ],
+            [
+                {"key": "this-week", "label": "Announced this week"},
+                {"key": "this-month", "label": "Announced this month"},
+                {"key": "this-quarter", "label": "Announced Jan–Mar 2026"},
+                {"key": "last-quarter", "label": "Announced Oct–Dec 2025"},
+            ],
+        ])
+
+    @unittest.skipUnless(shutil.which("node"), "Node.js is optional")
+    def test_javascript_announcement_period_filters_include_nested_periods(self):
+        module = (ROOT / "site" / "assets" / "js" / "catalog.js").as_uri()
+        program = f"""
+            import {{ readFile }} from 'node:fs/promises';
+            const source = await readFile(new URL({json.dumps(module)}), 'utf8');
+            const {{ filterRecords, announcementPeriodBounds }} = await import(
+                `data:text/javascript;base64,${{Buffer.from(source).toString('base64')}}`
+            );
+            const dates = ['2026-11-16', '2026-11-01', '2026-10-01', '2026-02-01', '2026-08-15', '2025-12-29', null];
+            const records = dates.map((announcedOn, index) => ({{
+                id: `record-${{index}}`, title: `Record ${{index}}`, service: 'Example',
+                summary: '', announcedOn, categories: ['Compute'], services: ['Example'],
+                questions: {{ what: {{ announcement: '' }}, deadline: {{ date: null }} }},
+            }}));
+            console.log(JSON.stringify([
+                ...['this-week', 'this-month', 'this-quarter', 'last-quarter'].map(announcedPeriod =>
+                    filterRecords(records, {{ announcedPeriod, sort: 'newest' }}, '2026-11-17').map(record => record.id)
+                ),
+                announcementPeriodBounds('last-quarter', '2026-01-03'),
+            ]));
+        """
+        result = subprocess.run(
+            [shutil.which("node"), "--input-type=module", "-e", program],
+            check=True, capture_output=True, text=True,
+        )
+        self.assertEqual(json.loads(result.stdout), [
+            ["record-0"],
+            ["record-0", "record-1"],
+            ["record-0", "record-1", "record-2"],
+            ["record-4"],
+            {"start": "2025-10-01", "end": "2025-12-31"},
+        ])
+
+    @unittest.skipUnless(shutil.which("node"), "Node.js is optional")
+    def test_javascript_retirement_date_uses_full_month_name(self):
+        module = (ROOT / "site" / "assets" / "js" / "catalog.js").as_uri()
+        program = f"""
+            import {{ readFile }} from 'node:fs/promises';
+            const source = await readFile(new URL({json.dumps(module)}), 'utf8');
+            const {{ formatRetirementDate }} = await import(
+                `data:text/javascript;base64,${{Buffer.from(source).toString('base64')}}`
+            );
+            console.log(JSON.stringify([
+                formatRetirementDate('2026-10-31'),
+                formatRetirementDate(null),
+            ]));
+        """
+        result = subprocess.run(
+            [shutil.which("node"), "--input-type=module", "-e", program],
+            check=True, capture_output=True, text=True,
+        )
+        self.assertEqual(json.loads(result.stdout), ["October 31, 2026", "Date not specified"])
+
+    @unittest.skipUnless(shutil.which("node"), "Node.js is optional")
+    def test_javascript_category_options_only_include_categories_with_matching_records(self):
+        value = catalog()
+        records = []
+        for identifier, category, service in (
+            ("compute", "Compute", "Virtual Machines"),
+            ("storage", "Storage", "Blob Storage"),
+            ("network", "Networking", "Virtual Network"),
+        ):
+            item = copy.deepcopy(value["records"][0])
+            item.update({
+                "id": identifier,
+                "title": f"{category} retirement",
+                "category": category,
+                "categories": [category],
+                "service": service,
+                "services": [service],
+            })
+            records.append(item)
+        module = (ROOT / "site" / "assets" / "js" / "catalog.js").as_uri()
+        program = f"""
+            import {{ readFile }} from 'node:fs/promises';
+            const source = await readFile(new URL({json.dumps(module)}), 'utf8');
+            const {{ categoriesForFilters }} = await import(
+                `data:text/javascript;base64,${{Buffer.from(source).toString('base64')}}`
+            );
+            let input = '';
+            for await (const chunk of process.stdin) input += chunk;
+            const {{ records }} = JSON.parse(input);
+            console.log(JSON.stringify(categoriesForFilters(records, {{
+                category: 'Compute', service: 'Blob Storage',
+            }})));
+        """
+        result = subprocess.run(
+            [shutil.which("node"), "--input-type=module", "-e", program],
+            input=json.dumps({"records": records}), check=True, capture_output=True, text=True,
+        )
+        self.assertEqual(json.loads(result.stdout), ["Storage"])
 
     def test_safe_source_urls(self):
         for url in ("javascript:evil()", "data:text/html,test", "http://example.com", "https://[invalid"):
