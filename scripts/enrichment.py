@@ -11,7 +11,7 @@ import time
 from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import quote, urlsplit
+from urllib.parse import quote, urlsplit, urlunsplit
 
 from markdown_it import MarkdownIt
 
@@ -19,7 +19,7 @@ from .catalog import QUESTIONS, ROOT, parse_catalog, sanitize_question_html, val
 from .enrichment_http import DownloadError, MAX_BYTES, extract_content, fetch_http, public_url, sha256
 from .enrichment_json import STAGES, Stages, fingerprint, read_bytes, write_json
 from .feed import ENDPOINT, fetch_retirements, normalize
-from .manual_data import compose_catalog, merge_fields
+from .manual_data import merge_fields
 from .pipeline import announcement_id
 
 SOURCE_AUTO, SOURCE_MANUAL, ENRICH_AUTO, ENRICH_MANUAL, CANONICAL = STAGES
@@ -609,9 +609,30 @@ def to_record(identifier, source, summary, references, baseline=None):
     return record
 
 
+def reference_exclusion_reason(url, page):
+    lowered_url = url.casefold()
+    if "%22" in lowered_url or "hyperlink" in lowered_url:
+        return "malformed extracted link"
+    title = (page.get("title") or "").strip().casefold()
+    if title == "error" or title.startswith("search - microsoft bing"):
+        return "generic error or search-result page"
+    if title.startswith("sign in") or "login.microsoftonline.com" in lowered_url:
+        return "authentication page"
+    if page.get("status") != "ready":
+        return "page was not successfully processed"
+    return None
+
+
+def issue_reference_url(url):
+    parsed = urlsplit(url)
+    if parsed.hostname and parsed.hostname.casefold() == "login.microsoftonline.com":
+        return urlunsplit((parsed.scheme, parsed.netloc, parsed.path, "", ""))
+    return url
+
+
 def merge(store, output, identifiers=None):
     sources = source_records(store)
-    if not sources and not (store.load(ENRICH_AUTO).get("sqliteImport") and Path(output).is_file()):
+    if not sources:
         raise ValueError("No retirement sources; existing website catalog preserved")
     selected = set(sources) if identifiers is None else set(identifiers)
     unknown = selected - set(sources)
@@ -658,30 +679,12 @@ def merge(store, output, identifiers=None):
             continue
         baseline = records.get(identifier)
         auto = automatic["records"].get(identifier)
-        converted_manual = identifier in manual.get("recordOverrides", {})
-        managed = converted_manual or (auto and auto.get("origin") == "sqlite-import") or (
-            baseline and baseline.get("enrichment")
-        )
+        managed = baseline and baseline.get("enrichment")
         if baseline and (baseline.get("hidden") or (baseline.get("manualEnrichment") and not managed)):
             protected.append(identifier)
             continue
         if not auto or auto.get("error"):
             raise ValueError(f"Missing/current automatic summary required: {identifier}")
-        if auto.get("origin") == "sqlite-import" and identifier not in manual["inputs"]:
-            imported = auto["importedRecord"]
-            root_pages = {}
-            for name in (SOURCE_AUTO, SOURCE_MANUAL):
-                for url in source["urls"]:
-                    if url in store.load(name)["pages"]:
-                        root_pages[url] = store.load(name)["pages"][url]
-            if (fingerprint(imported) != auto["importedRecordRevision"]
-                    or fingerprint(root_pages) != auto["importedSourceRevision"]
-                    or auto["inputRevision"] != engine.revision(source, automatic, auto["importedInputUrls"])
-                    or auto.get("summaryRevision") != fingerprint(
-                        {key: auto[key] for key in ("summary", "questions", "deadline")})):
-                raise ValueError(f"Imported inputs changed for {identifier}; download and enrich before merging")
-            records[identifier] = copy.deepcopy(imported)
-            continue
         roots = {}
         for name in (SOURCE_AUTO, SOURCE_MANUAL):
             for url in source["urls"]:
@@ -722,30 +725,30 @@ def merge(store, output, identifiers=None):
             summary = apply_overrides(summary, entry.get("overrides", {}))
             input_urls.extend(url for url in item["inputUrls"] if url not in input_urls)
         references = []
+        reference_issues = []
         for url in input_urls:
-            page = automatic["pages"].get(url) or manual["pages"].get(url, {})
+            stage = automatic if url in automatic["pages"] else manual
+            page = stage["pages"].get(url, {})
+            reason = reference_exclusion_reason(url, page)
+            if reason:
+                reference_issues.append(
+                    f"{issue_reference_url(url)}: excluded from rendered references ({reason})"
+                )
+                continue
             references.append({"title": page.get("title") or url, "url": url})
         record = to_record(identifier, source, summary, references, baseline)
+        issues = list(auto["issues"])
+        if identifier in manual["inputs"]:
+            issues.extend(manual["records"].get(identifier, {}).get("issues", []))
+        issues.extend(reference_issues)
         record["enrichment"] = {
             "automaticRevision": auto["inputRevision"],
             "manualRevision": manual["records"].get(identifier, {}).get("inputRevision")
             if identifier in manual["inputs"] else None,
-            "issues": auto["issues"], "manualOverrides": copy.deepcopy(manual["inputs"].get(identifier, {}).get("overrides", {})),
+            "issues": list(dict.fromkeys(issues)),
+            "manualOverrides": copy.deepcopy(manual["inputs"].get(identifier, {}).get("overrides", {})),
         }
         records[identifier] = record
-    override_rows = []
-    for identifier, fields in manual.get("recordOverrides", {}).items():
-        if identifier not in selected:
-            continue
-        if identifier not in records:
-            raise ValueError(f"Imported manual override has no retirement baseline: {identifier}")
-        override_rows.append({
-            "retirement_id": identifier, "fields_json": json.dumps(fields, ensure_ascii=False),
-            "base_record_json": json.dumps(records[identifier], ensure_ascii=False),
-        })
-    if override_rows:
-        composed = compose_catalog({**previous, "records": list(records.values())}, override_rows)
-        records = {record["id"]: record for record in composed["records"]}
     catalog_metadata = copy.deepcopy(canonical["catalogMetadata"] if canonical["records"] else {
         key: value for key, value in previous.items()
         if key not in {"schemaVersion", "records", "enrichmentPipeline"}
@@ -773,9 +776,7 @@ def merge(store, output, identifiers=None):
                 revision["automaticSummaryRevision"] = auto["summaryRevision"]
         if manual_record is not None and manual_record.get("inputRevision") is not None:
             revision["manualInputRevision"] = manual_record["inputRevision"]
-        if identifier in manual.get("recordOverrides", {}):
-            revision["manualFieldsSha256"] = fingerprint(manual["recordOverrides"][identifier])
-        elif manual_record is None:
+        if manual_record is None:
             revision.pop("manualFieldsSha256", None)
         revisions[identifier] = revision
     canonical["records"] = records

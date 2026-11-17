@@ -97,7 +97,7 @@ class Stages:
             body = read_bytes(self.directory / f"{name}.json")
             value = json.loads(body) if body is not None else {
                 "schemaVersion": 1, "kind": name, "records": {}, "pages": {},
-                **({"inputs": {}, "recordOverrides": {}} if name == "retirement_enrichment_manual" else {}),
+                **({"inputs": {}} if name == "retirement_enrichment_manual" else {}),
                 **({"catalogMetadata": {}, "revisions": {}, "projectionRevision": None}
                    if name == "retirements_canonical" else {}),
             }
@@ -107,10 +107,7 @@ class Stages:
                 or not isinstance(value.get("pages"), dict)
             )
             if not invalid and name == "retirement_enrichment_manual":
-                invalid = (
-                    not isinstance(value.get("inputs"), dict)
-                    or not isinstance(value.get("recordOverrides", {}), dict)
-                )
+                invalid = not isinstance(value.get("inputs"), dict)
             if not invalid and name == "retirements_canonical":
                 pending = value.get("pendingProjection")
                 invalid = (

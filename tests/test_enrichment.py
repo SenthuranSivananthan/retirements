@@ -363,6 +363,40 @@ class JSONEnrichmentTests(unittest.TestCase):
         self.assertIn("404", record["enrichment"]["issues"][0])
         self.assertNotIn(REFERENCE, [link["url"] for link in record["questions"]["actions"]["resources"]])
 
+    def test_generic_search_reference_is_flagged_but_not_projected(self):
+        self.fetch.bodies[REFERENCE] = (
+            "<title>Search - Microsoft Bing</title><main><p>Search results</p></main>"
+        )
+        output = self.run_pipeline()
+        record = json.loads(output.read_text(encoding="utf-8"))["records"][0]
+        self.assertNotIn(REFERENCE, [link["url"] for link in record["questions"]["actions"]["resources"]])
+        self.assertTrue(any(
+            REFERENCE in issue and "search-result page" in issue
+            for issue in record["enrichment"]["issues"]
+        ))
+
+    def test_malformed_and_auth_references_are_flagged_without_query_secrets(self):
+        malformed = "https://example.com/%22HYPERLINK%20%22https://example.com"
+        auth = (
+            "https://login.microsoftonline.com/organizations/oauth2/v2.0/authorize"
+            "?login_hint=private@example.com&state=private-state"
+        )
+        self.fetch.bodies[ROOT_URL] = (
+            f'<main><a href="{malformed}">Workbook</a><a href="{auth}">Support</a></main>'
+        )
+        self.fetch.bodies[malformed] = "<title>Workbook</title><main>Instructions</main>"
+        self.fetch.bodies[auth] = "<title>Sign in to Microsoft Azure</title><main>Sign in</main>"
+        output = self.run_pipeline()
+        record = json.loads(output.read_text(encoding="utf-8"))["records"][0]
+        resources = [link["url"] for link in record["questions"]["actions"]["resources"]]
+        self.assertNotIn(malformed, resources)
+        self.assertNotIn(auth, resources)
+        issues = "\n".join(record["enrichment"]["issues"])
+        self.assertIn("malformed extracted link", issues)
+        self.assertIn("authentication page", issues)
+        self.assertNotIn("private@example.com", issues)
+        self.assertNotIn("private-state", issues)
+
     def test_manual_links_context_and_field_level_overrides(self):
         manual_url = "https://example.com/my-reference"
         self.fetch.bodies[manual_url] = f'<main>Team instructions<a href="{GRANDCHILD}">More</a></main>'
