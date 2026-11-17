@@ -33,7 +33,8 @@ def require(condition, message):
 def check_site(root=ROOT):
     root = Path(root)
     destination = root / "docs"
-    catalog = parse_catalog(json.loads((root / "data" / "retirements.json").read_text(encoding="utf-8")))
+    catalog_json = json.loads((root / "data" / "retirements.json").read_text(encoding="utf-8"))
+    catalog = parse_catalog(catalog_json)
     visible = [record for record in catalog["records"] if not record.get("hidden", False)]
     home_html = (destination / "index.html").read_text(encoding="utf-8")
     home = Elements(home_html)
@@ -103,7 +104,8 @@ def check_site(root=ROOT):
         tracking = record["questions"]["progress"].get("tracking")
         tracking_links = [attrs.get("href") for tag, attrs in Elements(progress[1]).tags if tag == "a"]
         require(tracking_links == ([tracking["sourceUrl"]] if tracking else []), f'{record["id"]}: incorrect tracking source')
-        require(bool(tracking) or "Tracking guidance is not available for this retirement." in progress[1],
+        summarized = bool(record.get("enrichment") and record["questions"]["progress"].get("html"))
+        require(bool(tracking) or summarized or "Tracking guidance is not available for this retirement." in progress[1],
                 f'{record["id"]}: tracking fallback missing')
         require("data-step" not in progress[1] and "progress-summary" not in progress[1],
                 f'{record["id"]}: obsolete checklist is present')
@@ -132,7 +134,7 @@ def check_site(root=ROOT):
         require('src="../../../assets/js/main.js"' in html, f'{record["id"]}: script path missing')
     actual = {str(path.relative_to(destination)).replace("\\", "/") for path in (destination / "retirements").rglob("index.html")}
     require(actual == expected, "Generated retirement pages do not match the catalog")
-    require(json.loads((destination / "assets" / "data" / "retirements.json").read_text(encoding="utf-8")) == catalog, "Download differs from the canonical catalog")
+    require(json.loads((destination / "assets" / "data" / "retirements.json").read_text(encoding="utf-8")) == catalog_json, "Download differs from the canonical catalog")
     require((destination / ".nojekyll").is_file(), "Missing docs/.nojekyll")
     for private in ("src", "scripts", "tests", "site", "data", "requirements.txt", "package.json"):
         require(not (destination / private).exists(), f"Private source published: {private}")

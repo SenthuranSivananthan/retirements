@@ -2,23 +2,26 @@ import unittest
 from urllib.parse import parse_qs, urlsplit
 
 from fixtures import ITEM
-from scripts.feed import fetch_retirements, merge_retirements, normalize, read_announcement, title_date
+from scripts.feed import announcement_id, fetch_retirements, normalize, read_announcement, title_date
 
 
 class FeedTests(unittest.TestCase):
-    def test_hidden_flag_survives_refresh_without_protecting_other_fields(self):
-        previous = normalize(ITEM)
-        previous["hidden"] = True
-        fresh = normalize({**ITEM, "title": "Updated announcement"})
-        merged = merge_retirements([fresh], [previous])
-        self.assertTrue(merged[0]["hidden"])
-        self.assertEqual(merged[0]["title"], "Updated announcement")
-        self.assertFalse(fresh["hidden"])
-        previous["hidden"] = False
-        self.assertFalse(merge_retirements([fresh], [previous])[0]["hidden"])
-        previous["hidden"] = "true"
-        with self.assertRaises(ValueError):
-            merge_retirements([fresh], [previous])
+    def test_announcement_identity_accepts_supported_azure_updates_urls(self):
+        for url in (
+            "https://azure.microsoft.com/updates?id=retirement-1",
+            "https://azure.microsoft.com/en-us/updates?id=retirement-1",
+            "https://azure.microsoft.com/updates/retirement-1",
+        ):
+            with self.subTest(url=url):
+                self.assertEqual(announcement_id(url), "retirement-1")
+        for url in (
+            "http://azure.microsoft.com/updates?id=retirement-1",
+            "https://azure.microsoft.com.evil.test/updates?id=retirement-1",
+            "https://azure.microsoft.com/updates?id=retirement-1&id=other",
+            "https://azure.microsoft.com/updates",
+        ):
+            with self.subTest(url=url), self.assertRaises(ValueError):
+                announcement_id(url)
 
     def test_source_backed_dates_and_five_questions(self):
         record = normalize(ITEM)

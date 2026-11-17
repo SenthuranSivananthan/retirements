@@ -404,10 +404,6 @@ function isRetirementRecord(value) {
         && typeof value.id === 'string' && typeof value.title === 'string'
         && typeof value.service === 'string' && typeof value.summary === 'string'
         && typeof value.sourceUrl === 'string' && isCatalogDate(value.announcedOn) && isCatalogDate(value.lastUpdatedOn)
-        && !('manuallyEnriched' in value)
-        && (value.manualEnrichment === undefined || (isObject(value.manualEnrichment)
-            && Object.keys(value.manualEnrichment).length === 1 && isChecklist(value.manualEnrichment.fields)
-            && value.manualEnrichment.fields.every(path => path.trim())))
         && (value.hidden === undefined || typeof value.hidden === 'boolean')
         && (value.categories === undefined || (Array.isArray(value.categories) && value.categories.length > 0
             && value.categories.every((category) => typeof category === 'string' && category.trim().length > 0)))

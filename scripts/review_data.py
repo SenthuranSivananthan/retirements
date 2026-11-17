@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 
 from .catalog import QUESTIONS, ROOT, parse_catalog
-from .refresh_data import read_snapshot, write_snapshot
+from .catalog_io import read_snapshot, write_snapshot
 
 
 def review_report(catalog, limit=10):
@@ -85,11 +85,6 @@ def review_snapshot(batch, original):
 def apply_reviews(batch, output=ROOT / "data" / "retirements.json"):
     output = Path(output)
     original = read_snapshot(output)
-    if original is not None:
-        catalog = json.loads(original)
-        parse_catalog(catalog)
-        if any("manualEnrichment" in record for record in catalog["records"]):
-            raise ValueError("Review automatic research through scripts.pipeline review, not the composed manual catalog")
     catalog = review_snapshot(batch, original)
     write_snapshot(catalog, output, original, operation="content review")
     return catalog

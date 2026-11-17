@@ -8,7 +8,7 @@ Change/rebuild the site here; use `retirement-enrichment.prompt.md` for catalog 
 
 - Python/Jinja static site with maintained browser JavaScript, CSS and templates. No TypeScript, JS build system, backend or new dependencies without an explicitly requested architecture change.
 - Source: `data\retirements.json`, `site\templates`, `site\assets`, `scripts\catalog.py`, `site\build.py`. `docs` is generated publication output, never hand-edited; `site\_data` and `site\assets\data` are ignored generated artifacts.
-- Pipeline stores: `data\pipeline\{raw,extracted,web_cache,canonical,manual}.sqlite`. Builds read automatic-plus-manual exported JSON, never the stores; no build-time refresh. Manual fields override supplied paths, not whole records; `manuallyEnriched` is deprecated.
+- The public catalog and enrichment stage state are JSON. Builds read `data\retirements.json`; they never fetch announcements or run synthesis.
 - Inspect templates/helpers/tests/README; preserve patterns and make the smallest requested change.
 
 ## Product and interface requirements
