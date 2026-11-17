@@ -468,6 +468,48 @@ JSON enrichment workflow, review its output, rebuild `docs`, and commit the
 intended JSON and generated site changes. GitHub Pages serves the committed
 `docs` directory from the configured branch.
 
+#### Manual catalog update and site build from the command line
+
+After installing dependencies, run catalog acquisition and synthesis from the
+repository root with a real JSON-in/JSON-out summarizer adapter. The placeholder
+below is not included in this repository; replace it with your adapter command.
+`run` performs discovery, download, enrichment, canonical reconciliation, and
+JSON projection:
+
+```powershell
+$SummarizerCommand = '["python","my_summarizer.py"]'
+python -m scripts.enrichment status --data-dir data
+if ($LASTEXITCODE -ne 0) { throw "Could not read enrichment status." }
+python -m scripts.enrichment run --data-dir data --workers 4 --batch-size 10 --summarizer-command $SummarizerCommand
+if ($LASTEXITCODE -ne 0) { throw "Enrichment failed; inspect the stage status before continuing." }
+git diff -- data\retirements.json
+python -m scripts.review_data --limit 20
+if ($LASTEXITCODE -ne 0) { throw "Could not prepare the content-review report." }
+```
+
+Inspect the projected catalog and complete the required content review before
+rebuilding; see [Evidence-based content reviews](#evidence-based-content-reviews)
+for preparing and applying a review batch. Then run tests, rebuild, and validate:
+
+```powershell
+python -m unittest discover -s tests -v
+if ($LASTEXITCODE -ne 0) { throw "Tests failed; do not rebuild or publish." }
+python site\build.py
+if ($LASTEXITCODE -ne 0) { throw "Site build failed; do not publish." }
+python -m scripts.check_site
+if ($LASTEXITCODE -ne 0) { throw "Generated site validation failed." }
+git diff --check
+if ($LASTEXITCODE -ne 0) { throw "Whitespace errors detected." }
+git diff -- data\retirements.json docs
+```
+
+For a website-only change, omit the enrichment commands and run the tests, build,
+and site check. Linux or WSL users can run the same module commands with
+`python3`, use `site/build.py` and `/` in paths, and set the adapter argument to
+`'["python3","my_summarizer.py"]'`. The detailed stage-by-stage
+commands and manual source-input instructions are in the
+[JSON enrichment pipeline](#json-enrichment-pipeline) section.
+
 ## Explore and plan
 
 - **Outlook:** retired-this-year and cumulative next 6/12/18-month views use exact
